@@ -1,0 +1,24 @@
+.Avatar {
+  padding: 1em 0;
+  width: 50%;
+
+  & img {
+    height: 50px;
+    width: 50px;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    float: left;
+    margin-right: 1em;
+  }
+
+  & a,
+  & small {
+    display: block;
+  }
+
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
