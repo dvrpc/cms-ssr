@@ -1,233 +1,30 @@
 /* global styles */
 :root {
-  --color-text: rgba(0, 0, 0, 0.87);
-  --color-body-bg: #fafafa;
-  --color-footer-bg: #fff;
-  --color-footer-text: rgba(0, 0, 0, 0.67);
   --color-h1: #8b6c4b;
   --color-h2: #7b6b5b;
   --color-h3: #666;
 }
-*,
-:after,
-:before {
-  box-sizing: border-box;
-}
 body {
-  background-color: var(--color-body-bg);
-  font: 16px/1.4 Roboto, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -webkit-font-kerning: normal;
   font-kerning: normal;
   font-feature-settings: "kern", "salt", "liga", "tnum";
   font-variant-ligatures: contextual common-ligatures;
-  margin: 0;
+  line-height: 1.4;
 }
-.row,
-header > div,
-aside,
-body > footer {
-  display: flex;
-  justify-content: center;
-}
-header > div > div,
-aside > div,
-main,
-body > footer > div {
-  flex-basis: calc(80ch + 330px);
-  margin: 0 20px;
-}
-main {
-  max-width: 80ch;
-  flex-basis: 80ch;
-}
-header {
-  height: 400px;
-  background: #fdfeff bottom
-    url(https://www.dvrpc.org/img/banner/full/philly1.jpg) no-repeat;
-}
-header > div {
-  height: 110px;
-  background: rgba(255, 255, 255, 0.9);
-}
-header > div > div {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-}
-header > div > div::after {
-  flex: 0 1 174px;
-  display: block;
-  content: "";
-}
-header img {
-  justify-self: flex-start;
-  margin: 20px 20px 20px 0;
-}
-.search {
-  cursor: text;
-  display: inline-flex;
-  line-height: 1.1875em;
-  align-items: center;
-  flex: 2;
-  background: #fff;
-  border-radius: 3px;
-  max-width: 500px;
-}
-.search div {
-  width: 72px;
-  height: 100%;
-  display: flex;
-  position: absolute;
-  align-items: center;
-  pointer-events: none;
-  justify-content: center;
-}
-.search svg {
-  fill: #777;
-  width: 1em;
-  height: 1em;
-  display: inline-block;
-  font-size: 24px;
-  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  user-select: none;
-  flex-shrink: 0;
-}
-.search input {
-  font: inherit;
-  width: 100%;
-  border: 0;
-  margin: 0;
-  padding: 8px 8px 8px 80px;
-  display: block;
-  min-width: 0;
-  box-sizing: content-box;
-  background: none;
-  -webkit-tap-highlight-color: transparent;
-}
-aside {
-  background-image: linear-gradient(
-    to bottom,
-    #cea77e,
-    #cea77e 45.4px,
-    #c79d73
-  );
-  background-color: #eee0d2;
-  color: rgba(0, 0, 0, 0.67);
-  background-size: 1px 49px;
-  background-repeat: repeat-x;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.175);
-  height: 49px;
-}
-nav {
-  flex: 0 0 250px;
-  margin-top: 2em;
-}
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  justify-content: space-around;
-}
-nav li {
-  padding: 10px 15px;
-  margin-bottom: -1px;
-  border: 1px solid #ddd;
-}
-.row.full {
-  justify-content: space-between;
-  width: 100%;
-}
-body > footer {
-  background: var(--color-footer-bg);
-  color: var(--color-footer-text);
-  padding: 1em 0;
-  border-top: 1px solid #eee;
-}
-body > footer > div {
-  flex-basis: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-.footer-left {
-  flex: 50%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-.footer-left h4 {
-  margin: 0;
-}
-.footer-left nav li {
-  margin-bottom: 0;
-  border: none;
-  padding-left: 0;
-}
-.footer-left > p {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #ddd;
-}
-.ads {
-  flex: 50%;
-  border-left: 1px solid #ddd;
-  margin-left: 20px;
-  padding-left: 20px;
-}
-.ads > div {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
-.ads a {
-  width: 200px;
-  height: 175px;
-  margin: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-article {
-  border-bottom: 1px solid #ddd;
-}
-h1 {
-  color: var(--color-h1);
-}
-h2 {
-  color: var(--color-h2);
-}
-h3 {
-  color: var(--color-h3);
+.sans-serif {
+  font-family: "Roboto", sans-serif;
 }
 a {
   color: inherit;
 }
-.btn {
-  padding: 5px 16px;
-  border-radius: 4px;
-  border: 1px solid currentColor;
-  text-decoration: none;
+main h1 {
+  color: var(--color-h1);
 }
-.btn:hover {
-  background-color: #f7f7f7;
+main h2 {
+  color: var(--color-h2);
 }
-.btn:active {
-  border-color: #000;
-}
-aside h2 {
-  flex: 1;
-  font-weight: 700;
-  color: var(--color-text);
-  font-size: 19px;
-  line-height: 1;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-  padding: 10px 0.83em;
-  margin: 10px 20px 0;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.175);
+main h3 {
+  color: var(--color-h3);
 }

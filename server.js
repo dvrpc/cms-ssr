@@ -30,10 +30,22 @@ app.get(/^[^\.]*$/, async (req, res) => {
   const clean = (str) =>
     str.replace(/[\n\r]/g, "").replace(/(?=<!--)([\s\S]*?)-->/g, "");
 
+  const consolidate = (str) => {
+    const extracted = new Set();
+    str = str.replace(/\<style.*?\>(.*?)\<\/style\>/g, (match, $1) => {
+      extracted.add($1);
+      return "";
+    });
+    return str.replace(
+      "</head>",
+      `<style>${[...extracted].join("")}</style></head>`
+    );
+  };
+
   renderToStringWithData(app).then((content) => {
     res.status(200);
     res.write("<!doctype html>");
-    res.write(clean(content));
+    res.write(clean(consolidate(content)));
     res.end();
   });
 });

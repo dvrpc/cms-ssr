@@ -1,9 +1,9 @@
 import React from "react";
-import "./ConnectWithUs.css";
 
 const A = ({ href, children }) => {
   return (
     <a
+      className="db"
       href={href}
       onClick={(e) => {
         e.preventDefault();
@@ -19,45 +19,64 @@ const A = ({ href, children }) => {
   );
 };
 
+const Icon = ({ className, style, children, ...props }) => {
+  return (
+    <i
+      {...props}
+      css={{
+        top: "1px",
+        background:
+          "transparent url(https://www.dvrpc.org/img/homepage/sprites.svg) no-repeat",
+        backgroundSize: "139px 18px",
+        textIndent: "-9999rem",
+        height: "18px",
+        width: "18px",
+        ...style,
+      }}
+      className={`relative dib ${className}`}
+    >
+      {children}
+    </i>
+  );
+};
+
 const ConnectWithUs = ({ title, location }) => {
   return (
-    <ul className="ConnectWithUs">
-      <li>Connect With Us!</li>
-      <li>
+    <ul className="flex justify-end b pa0" css={{ color: "#0078ae" }}>
+      {[
+        "Connect With Us!",
         <A href={`https://www.facebook.com/sharer/sharer.php?u=${location}`}>
-          <i className="icon icon-fb">Facebook</i>
-        </A>
-      </li>
-      <li>
+          <Icon css={{ backgroundPosition: "-102px 0" }}>Facebook</Icon>
+        </A>,
         <A href={`https://twitter.com/home?status=${title} @DVRPC ${location}`}>
-          <i className="icon icon-twitter">Twitter</i>
-        </A>
-      </li>
-      <li>
+          <Icon css={{ backgroundPosition: "-65px 0" }}>Twitter</Icon>
+        </A>,
         <a
           rel="noopener"
           target="_blank"
           href="https://www.instagram.com/dvrpc/"
         >
-          <i className="icon icon-instagram">Instagram</i>
-        </a>
-      </li>
-      <li>
+          <Icon css={{ backgroundPosition: "-83px 0" }}>Instagram</Icon>
+        </a>,
         <A
           href={`https://www.linkedin.com/shareArticle?mini=true&url=${location}&amp;title=${title}`}
         >
-          <i className="icon icon-linkedin">LinkedIn</i>
-        </A>
-      </li>
-      <li>
+          <Icon css={{ backgroundPosition: "-121px 0" }}>LinkedIn</Icon>
+        </A>,
         <a
           rel="noopener"
           target="_blank"
           href="https://www.youtube.com/channel/UCEU8UI5_iGkVypHP93b5jLA"
         >
-          <i className="icon icon-youtube">YouTube</i>
-        </a>
-      </li>
+          <Icon css={{ backgroundPosition: "-38px 0", width: "26px" }}>
+            YouTube
+          </Icon>
+        </a>,
+      ].map((i) => (
+        <li key={i.props ? i.props.href : "connect"} className="di mh2">
+          {i}
+        </li>
+      ))}
     </ul>
   );
 };

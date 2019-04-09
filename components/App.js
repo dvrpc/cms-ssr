@@ -66,10 +66,10 @@ const App = ({ location }) => (
 
       const { title, fieldStaffContact, body } = data.route.nodeContext;
       const content = (
-        <main>
+        <main className="mh3 mw7">
           <h1>{title}</h1>
           <article dangerouslySetInnerHTML={{ __html: body.processed }} />
-          <div className="row full">
+          <div className="flex justify-between bt b--light-silver">
             <Avatar contact={fieldStaffContact.entity} />
             <ConnectWithUs
               title={title}
