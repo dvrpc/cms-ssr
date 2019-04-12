@@ -9,13 +9,14 @@ const Nav = ({ children }) => (
   </nav>
 );
 
-const Layout = ({ title, children }) => {
+const Layout = ({ title, description, children }) => {
   return (
-    <html>
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{title} | DVRPC</title>
+        <meta name="description" content={description} />
         <link rel="stylesheet" href="/main.css" />
       </head>
       <body className="bg-near-white sans-serif">
@@ -106,14 +107,20 @@ const Layout = ({ title, children }) => {
         <div className="flex justify-center">
           <Nav>
             {[
-              { href: "#", text: "About Us" },
-              { href: "#", text: "Data and Products" },
-              { href: "#", text: "Long-Range Plan and TIP" },
-              { href: "#", text: "Transportation" },
-              { href: "#", text: "Land Use and Environment" },
-              { href: "#", text: "Planning Assistance Center" },
-              { href: "#", text: "Commuter Services" },
-              { href: "#", text: "Get Involved" }
+              { href: "/About/", text: "About Us" },
+              { href: "/DataProducts/", text: "Data and Products" },
+              {
+                href: "/LongRangePlanAndTIP/",
+                text: "Long-Range Plan and TIP"
+              },
+              { href: "/Transportation/", text: "Transportation" },
+              {
+                href: "/LandUseEnvironment/",
+                text: "Land Use and Environment"
+              },
+              { href: "/Planning/", text: "Planning Assistance Center" },
+              { href: "/CommuterServices/", text: "Commuter Services" },
+              { href: "/GetInvolved/", text: "Get Involved" }
             ].map(i => (
               <li
                 className="pa2 pl3 ba b"
