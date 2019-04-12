@@ -81,7 +81,9 @@ const App = ({ location }) => (
       return typeof document !== "undefined" ? (
         content
       ) : (
-        <Layout title={title}>{content}</Layout>
+        <Layout title={title} description={body.summaryProcessed}>
+          {content}
+        </Layout>
       );
     }}
   </Query>
@@ -97,7 +99,9 @@ if (typeof document !== "undefined") {
   });
   const app = (
     <ApolloProvider client={client}>
-      <App location={location.pathname} />
+      <App
+        location={location.pathname === "/" ? "/index" : location.pathname}
+      />
     </ApolloProvider>
   );
   ReactDOM.hydrate(app, document.getElementById("root"));

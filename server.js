@@ -13,6 +13,7 @@ app.use(express.static("dist"));
 
 //Any URI that does NOT contain a period
 app.get(/^[^\.]*$/, async (req, res) => {
+  if (req.url === "/") req.url = "/index";
   console.log("Routing: " + req.url);
   const client = new ApolloClient({
     ssrMode: true,
