@@ -1,0 +1,30 @@
+query Route($path: String!) {
+  route(path: $path) {
+    ... on EntityCanonicalUrl {
+      nodeContext {
+        ... on NodePage {
+          title
+          fieldStaffContact {
+            ... on FieldNodePageFieldStaffContact {
+              entity {
+                ... on TaxonomyTermEditors {
+                  fieldEmail
+                  name
+                  fieldPhoto {
+                    alt
+                    url
+                  }
+                  fieldTitle
+                }
+              }
+            }
+          }
+          body {
+            processed
+            summaryProcessed
+          }
+        }
+      }
+    }
+  }
+}
