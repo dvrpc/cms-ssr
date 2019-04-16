@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Avatar = ({ contact }) => {
   const fieldPhoto = contact.fieldPhoto || {};
@@ -19,4 +20,9 @@ const Avatar = ({ contact }) => {
     </footer>
   );
 };
+
+Avatar.propTypes = {
+  contact: PropTypes.object.isRequired
+};
+
 export default Avatar;
