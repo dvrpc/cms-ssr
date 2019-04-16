@@ -1,55 +1,62 @@
-import "cross-fetch/polyfill";
-import React from "react";
+/*eslint-env node*/
 import express from "express";
-import { ApolloProvider, renderToStringWithData } from "react-apollo";
-import { ApolloClient } from "apollo-client";
-import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import App from "./components/App";
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { GraphQLClient, ClientContext } from "graphql-hooks";
+import { getInitialState } from "graphql-hooks-ssr";
+import memCache from "graphql-hooks-memcache";
+import fetch from "cross-fetch";
+import { ServerStyleSheet } from "styled-components";
+import Helmet from "react-helmet";
+
+import AppComponent from "./components/App";
 
 const app = express();
+app.use(express.static(__dirname));
 
-app.use(express.static("dist"));
-
-//Any URI that does NOT contain a period
-app.get(/^[^\.]*$/, async (req, res) => {
-  if (req.url === "/") req.url = "/index";
-  console.log("Routing: " + req.url);
-  const client = new ApolloClient({
+app.get(/^[^.]*$/, async (req, res) => {
+  const location = req.url === "/" ? "/index" : req.url;
+  console.log("Routing: " + location);
+  const client = new GraphQLClient({
     ssrMode: true,
-    link: createHttpLink({
-      uri: "https://cms.dvrpc.org/graphql",
-    }),
-    cache: new InMemoryCache(),
+    url: "https://cms.dvrpc.org/graphql",
+    cache: memCache(), // NOTE: a cache is required for SSR
+    fetch,
   });
-  const app = (
-    <ApolloProvider client={client}>
-      <App location={req.url} />
-    </ApolloProvider>
+
+  const App = (
+    <ClientContext.Provider value={client}>
+      <AppComponent location={location} />
+    </ClientContext.Provider>
   );
+  await getInitialState({ App, client });
 
-  const clean = (str) =>
-    str.replace(/[\n\r]/g, "").replace(/(?=<!--)([\s\S]*?)-->/g, "");
+  const sheet = new ServerStyleSheet();
+  let html = renderToString(sheet.collectStyles(App));
+  const styleTags = sheet.getStyleTags();
+  sheet.seal();
+  const helmet = Helmet.renderStatic();
 
-  const consolidate = (str) => {
-    const extracted = new Set();
-    str = str.replace(/\<style.*?\>(.*?)\<\/style\>/g, (match, $1) => {
-      extracted.add($1);
-      return "";
-    });
-    return str.replace(
-      "</head>",
-      `<style>${[...extracted].join("")}</style></head>`
-    );
-  };
-
-  renderToStringWithData(app).then((content) => {
-    res.status(200);
-    res.write("<!doctype html>");
-    res.write(clean(consolidate(content)));
-    res.end();
-  });
+  res.send(`<!DOCTYPE html>
+  <html lang=en ${helmet.htmlAttributes.toString()}>
+  <head>
+  <meta charSet="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/main.css" />
+  ${helmet.title.toString()}
+  ${helmet.meta.toString()}
+  ${helmet.link.toString()}
+  ${styleTags}
+  </head>
+  <body id=root ${helmet.bodyAttributes.toString()}>
+  ${html}
+  <script src="/main.js" defer></script>
+  </body>
+  </html>`);
 });
 
-app.listen(3000);
-console.log("Listening on: 3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`App listening to ${PORT}....`);
+  console.log("Press Ctrl+C to quit.");
+});
