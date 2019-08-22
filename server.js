@@ -50,7 +50,6 @@ app.get(/^[^.]*$/, async (req, res) => {
   </head>
   <body id=root ${helmet.bodyAttributes.toString()}>
   ${html}
-  <script src="/main.js" defer></script>
   </body>
   </html>`);
 });

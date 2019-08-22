@@ -2,10 +2,11 @@
   "name": "cms-ssr",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server.js",
+  "main": "dist/main.js",
   "scripts": {
-    "build": "rm -rf dist && webpack --mode production --config webpack.server.config.js && webpack --mode production --config webpack.client.config.js",
-    "start": "node ./dist/server.js"
+    "build": "rm -rf dist && webpack --mode production",
+    "build:dev": "rm -rf dist && webpack --mode development",
+    "start": "node ./dist/main.js"
   },
   "author": "Jesse Strangfeld <jstrangfeld@dvrpc.org>",
   "license": "CC0-1.0",
@@ -51,7 +52,6 @@
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
   }
 }
