@@ -13,8 +13,8 @@ const Avatar = ({ contact }) => {
         }
         alt={fieldPhoto.alt || "avatar"}
       />
-      <a className="db" href={`mailto:${contact.fieldEmail}`}>
-        {contact.name}
+      <a className="db" href={`mailto:${contact.mail}`}>
+        {contact.fieldDisplayName}
       </a>
       <small className="db f6">{contact.fieldTitle}</small>
     </footer>

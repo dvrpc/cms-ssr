@@ -5,17 +5,11 @@ query Route($path: String!) {
         ... on NodePage {
           title
           fieldStaffContact {
-            ... on FieldNodePageFieldStaffContact {
-              entity {
-                ... on TaxonomyTermEditors {
-                  fieldEmail
-                  name
-                  fieldPhoto {
-                    alt
-                    url
-                  }
-                  fieldTitle
-                }
+            entity {
+              ... on User {
+                mail
+                fieldDisplayName
+                fieldTitle
               }
             }
           }
