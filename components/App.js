@@ -11,6 +11,7 @@ import "../node_modules/tachyons/css/tachyons.css";
 import "./App.css";
 
 import RouteQuery from "./RouteQuery.graphql";
+import MenuQuery from "./MenuQuery.graphql";
 
 const App = ({ location }) => {
   let content;
@@ -21,17 +22,19 @@ const App = ({ location }) => {
   const { loading, error, data } = useQuery(RouteQuery, {
     variables: { path: location },
   });
+  const { data: menu } = useQuery(MenuQuery);
 
   if (loading) {
     content = "Loading...";
   } else if (error) {
-    console.warn(error.message);
+    console.warn("error", error.message);
     content = <p style={{ color: "red" }}>{error.message}</p>;
   } else if (!data.route) {
-    console.warn(data);
+    console.warn("no route", data);
     content = <NotFound />;
   } else {
-    ({ title, fieldStaffContact, body } = data.route.nodeContext);
+    const { title, fieldStaffContact, body } = data.route.nodeContext;
+
     content = (
       <>
         <h1>{title}</h1>
@@ -47,7 +50,11 @@ const App = ({ location }) => {
     );
   }
   return (
-    <Layout title={title} description={body.summaryProcessed}>
+    <Layout
+      title={title}
+      description={body.summaryProcessed}
+      nav={menu ? menu.menuByName.links : []}
+    >
       <main className="mh3" css={{ width: "48rem" }}>
         {content}
       </main>

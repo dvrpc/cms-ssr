@@ -1,0 +1,41 @@
+query Menu {
+  menuByName(name: "main") {
+    links {
+      ...LinkFields
+      links {
+        ...LinkFields
+        links {
+          ...LinkFields
+          links {
+            ...LinkFields
+            links {
+              ...LinkFields
+              links {
+                ...LinkFields
+                links {
+                  ...LinkFields
+                  links {
+                    ...LinkFields
+                    links {
+                      ...LinkFields
+                      links {
+                        ...LinkFields
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment LinkFields on MenuLink {
+  label
+  url {
+    path
+  }
+}

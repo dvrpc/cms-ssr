@@ -2,16 +2,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
+import Nav from "./Nav";
 
-const handleClick = (section) => console.log(section);
-
-const Nav = ({ children }) => (
-  <nav className="mt4 nested-list-reset">
-    <ul className="ma0 flex flex-column w-100 justify-around">{children}</ul>
-  </nav>
-);
-
-const Layout = ({ title, description, children }) => {
+const Layout = ({ title, description, nav, children }) => {
+  console.log(nav.length && nav[0].url);
   return (
     <>
       <Helmet titleTemplate="%s | DVRPC">
@@ -104,36 +98,7 @@ const Layout = ({ title, description, children }) => {
         </div>
       </aside>
       <div className="flex justify-center">
-        <Nav>
-          {[
-            { href: "/About/", text: "About Us" },
-            { href: "/DataProducts/", text: "Data and Products" },
-            {
-              href: "/LongRangePlanAndTIP/",
-              text: "Long-Range Plan and TIP",
-            },
-            { href: "/Transportation/", text: "Transportation" },
-            {
-              href: "/LandUseEnvironment/",
-              text: "Land Use and Environment",
-            },
-            { href: "/Planning/", text: "Planning Assistance Center" },
-            { href: "/CommuterServices/", text: "Commuter Services" },
-            { href: "/GetInvolved/", text: "Get Involved" },
-          ].map((i) => (
-            <li
-              className="pa2 pl3 ba b"
-              css={{
-                background: "linear-gradient(to right,#eee0d2 0,#f4f4f4 65%)",
-                borderColor: "#eee0d2",
-                marginBottom: "-1px",
-              }}
-              key={i.href}
-            >
-              <a href={i.href}>{i.text}</a>
-            </li>
-          ))}
-        </Nav>
+        <Nav data={nav} />
         <div id="root">{children}</div>
       </div>
       <footer className="flex justify-center bg-white black-70 pv3 bt b--light-silver">
@@ -169,21 +134,29 @@ const Layout = ({ title, description, children }) => {
             </div>
             <div>
               <h4 className="ma0">LINKS</h4>
-              <Nav>
-                {[
-                  { href: "/HumanResources/", text: "Careers" },
-                  { href: "/Consultant/", text: "Consultant Opportunities" },
-                  { href: "/Planning/", text: "Planning Assistance Center" },
-                  { href: "/DataProducts/", text: "Data and Products" },
-                  { href: "/Transportation/", text: "Transportation" },
-                  { href: "/Policies/", text: "Policies" },
-                  { href: "/Links/", text: "Other Links" },
-                ].map((i) => (
-                  <li key={i.text} className="mb0 bn pl0 pa1">
-                    <a href={i.href}>{i.text}</a>
-                  </li>
-                ))}
-              </Nav>
+              <Nav
+                data={[
+                  { url: { path: "/HumanResources/" }, label: "Careers" },
+                  {
+                    url: { path: "/Business/" },
+                    label: "Business Opportunities",
+                  },
+                  {
+                    url: { path: "/Planning/" },
+                    label: "Planning Assistance Center",
+                  },
+                  {
+                    url: { path: "/DataProducts/" },
+                    label: "Data and Products",
+                  },
+                  {
+                    url: { path: "/Transportation/" },
+                    label: "Transportation",
+                  },
+                  { url: { path: "/Policies/" }, label: "Policies" },
+                  { url: { path: "/Links/" }, label: "Other Links" },
+                ]}
+              />
             </div>
             <p className="mt5 f6">
               DVRPC fully complies with Title VI of the Civil Rights Act of
@@ -246,13 +219,10 @@ const Layout = ({ title, description, children }) => {
   );
 };
 
-Nav.propTypes = {
-  children: PropTypes.node,
-};
-
 Layout.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
+  nav: PropTypes.array,
   children: PropTypes.node,
 };
 
