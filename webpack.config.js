@@ -1,4 +1,5 @@
 /*eslint-env node*/
+require("babel-polyfill");
 const glob = require("glob");
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
@@ -6,8 +7,19 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const PurgecssPlugin = require("purgecss-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
+  entry: {
+    main: ["babel-polyfill", "./server.js"],
+  },
+  target: "node",
+  node: {
+    // Need this when working with express, otherwise the build fails
+    __dirname: false, // if you don't put this is, __dirname
+    __filename: false, // and __filename return blank or /
+  },
+  externals: [nodeExternals()],
   output: {
     publicPath: "/",
     filename: "[name].js",
