@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const A = ({ href, children }) => {
   return (
     <a
-      className="db"
+      className="block"
       href={href}
       onClick={e => {
         e.preventDefault();
@@ -22,21 +22,18 @@ const A = ({ href, children }) => {
 };
 
 const Icon = ({ className, style, children, ...props }) => {
+  const styles = {
+    top: "1px",
+    background:
+      "transparent url(https://www.dvrpc.org/img/homepage/sprites.svg) no-repeat",
+    backgroundSize: "139px 18px",
+    textIndent: "-9999rem",
+    height: "18px",
+    width: "18px",
+    ...style
+  };
   return (
-    <i
-      {...props}
-      css={{
-        top: "1px",
-        background:
-          "transparent url(https://www.dvrpc.org/img/homepage/sprites.svg) no-repeat",
-        backgroundSize: "139px 18px",
-        textIndent: "-9999rem",
-        height: "18px",
-        width: "18px",
-        ...style
-      }}
-      className={`relative dib ${className}`}
-    >
+    <i {...props} css={styles} className={`relative inline-block ${className}`}>
       {children}
     </i>
   );
@@ -83,9 +80,9 @@ const ConnectWithUs = ({ title, location }) => {
     </a>
   ];
   return (
-    <ul className="flex justify-end b pa0" css={{ color: "#005780" }}>
+    <ul className="flex justify-end font-bold p-0" css={{ color: "#005780" }}>
       {items.map(i => (
-        <li key={i.props ? i.props.href : "connect"} className="di mh2">
+        <li key={i.props ? i.props.href : "connect"} className="inline mx-2">
           {i}
         </li>
       ))}

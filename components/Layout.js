@@ -1,17 +1,16 @@
 /*eslint-env node*/
 import React from "react";
 import PropTypes from "prop-types";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Nav from "./Nav";
 
 const Layout = ({ title, description, nav, children }) => {
-  console.log(nav.length && nav[0].url);
   return (
     <>
       <Helmet titleTemplate="%s | DVRPC">
         <title>{title}</title>
         <meta name="description" content={description} />
-        <body className="bg-near-white sans-serif" />
+        <body className="bg-gray-100 font-sans" />
       </Helmet>
       <header
         className="bg-white"
@@ -23,24 +22,24 @@ const Layout = ({ title, description, nav, children }) => {
         }}
       >
         <div
-          className="flex justify-center pb3"
+          className="flex justify-center pb-4"
           css={{ background: "rgba(255, 255, 255, 0.9)" }}
         >
           <div
-            className="mh3 flex flex-wrap flex-nowrap-ns items-baseline justify-center justify-between-ns"
+            className="mx-4 flex flex-wrap sm:flex-nowrap items-baseline justify-center sm:justify-between"
             css={{ flexBasis: "calc(80ch + 330px)" }}
           >
             <img
               src="https://www.dvrpc.org/img/homepage/dvrpclogo70px.png"
               alt="DVRPC"
-              className="ma3 ml0"
+              className="m-4 ml-0"
             />
             <form
-              className="w-auto-ns w-100 relative ml5-ns bg-white br2"
+              className="sm:w-auto w-full relative sm:ml-16 bg-white rounded"
               action="https://www.dvrpc.org/Search/"
             >
               <div
-                className="mw3 h-100 flex absolute items-center justify-center"
+                className="mw3 h-full flex absolute items-center justify-center"
                 css={{ pointerEvents: "none" }}
               >
                 <svg
@@ -48,7 +47,7 @@ const Layout = ({ title, description, nav, children }) => {
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                   role="presentation"
-                  className="w2 h2 dib"
+                  className="w-8 h-8 inline-block"
                   css={{
                     fill: "#777",
                     transition: "fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
@@ -60,11 +59,11 @@ const Layout = ({ title, description, nav, children }) => {
                   <path fill="none" d="M0 0h24v24H0z" />
                 </svg>
               </div>
-              <div className="w-100 color-inherit">
+              <div className="w-full">
                 <input
                   name="q"
                   placeholder="Search..."
-                  className="sans-serif w5-ns w-100 bn ma0 pa2 pl5 color-inherit db bg-transparent"
+                  className="font-sans sm:w-64 w-full border-0 border-none m-0 p-2 pl-16 block bg-transparent"
                   css={{
                     minWidth: 0,
                     boxSizing: "content-box",
@@ -83,12 +82,12 @@ const Layout = ({ title, description, nav, children }) => {
         css={{ backgroundColor: "#cea77e" }}
       >
         <div
-          className="flex justify-center justify-between mh3"
+          className="flex justify-center justify-between mx-4"
           css={{ width: "calc(80ch + 330px)" }}
         >
           {["Announcements", "Products", "Events", "Twitter"].map(text => (
             <h2
-              className="link flex-auto fw7 f4 lh-solid br--top br3 pt3 pl3 pb2 mt2 mr4 mb0 bg-white-20"
+              className="link flex-auto font-bold text-xl leading-none br--top rounded-lg pt-4 pl-4 pb-2 mt-2 mr-8 mb-0 bg-white-20"
               onClick={() => handleClick(text)}
               key={text}
             >
@@ -101,15 +100,15 @@ const Layout = ({ title, description, nav, children }) => {
         <Nav data={nav} />
         <div id="root">{children}</div>
       </div>
-      <footer className="flex justify-center bg-white black-70 pv3 bt b--light-silver">
-        <div className="mh3 w-100 flex justify-between">
+      <footer className="flex justify-center bg-white black-70 py-4 border-t b--light-silver">
+        <div className="mx-4 w-full flex justify-between">
           <div className="w-50 flex flex-wrap justify-between items-end">
             <div>
-              <a href="/" className="no-underline lh-solid">
+              <a href="/" className="no-underline leading-none">
                 <img
                   src="https://www.dvrpc.org/img/homepage/logo_small.png"
                   alt="DVRPC"
-                  className="h2"
+                  className="h-8"
                 />
               </a>
               <p>
@@ -125,7 +124,7 @@ const Layout = ({ title, description, nav, children }) => {
                 <a
                   href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
                   rel="noopener"
-                  className="pv2 ph3 br2 ba b--black-70 hover-bg-near-white hover-black no-underline"
+                  className="py-2 px-4 rounded border border-solid b--black-70 hover-bg-near-white hover-black no-underline"
                 >
                   Sign up for our email lists
                 </a>
@@ -133,7 +132,7 @@ const Layout = ({ title, description, nav, children }) => {
               <p />
             </div>
             <div>
-              <h4 className="ma0">LINKS</h4>
+              <h4 className="m-0">LINKS</h4>
               <Nav
                 data={[
                   { url: { path: "/HumanResources/" }, label: "Careers" },
@@ -158,7 +157,7 @@ const Layout = ({ title, description, nav, children }) => {
                 ]}
               />
             </div>
-            <p className="mt5 f6">
+            <p className="mt-16 text-sm">
               DVRPC fully complies with Title VI of the Civil Rights Act of
               1964, the Civil Rights Restoration Act of 1987, Executive Order
               12898 on Environmental Justice, and related nondiscrimination
@@ -182,7 +181,7 @@ const Layout = ({ title, description, nav, children }) => {
               email public_affairs@dvrpc.org.
             </p>
           </div>
-          <div className="w-50 bl b--light-gray ml3 pl3">
+          <div className="w-50 lg:border border-gray-200 ml-4 pl-4">
             <div className="flex flex-wrap items-start">
               {[
                 {
@@ -205,7 +204,7 @@ const Layout = ({ title, description, nav, children }) => {
                 <a
                   href={i.href}
                   key={i.href}
-                  className="ma3 flex items-center justify-center"
+                  className="m-4 flex items-center justify-center"
                   css={{ width: "200px", height: "175px" }}
                 >
                   <img src={i.src} />

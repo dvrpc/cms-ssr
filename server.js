@@ -1,15 +1,22 @@
 /*eslint-env node*/
 import express from "express";
 import React from "react";
-import { renderToString } from "react-dom/server";
-import { GraphQLClient, ClientContext } from "graphql-hooks";
-import { getInitialState } from "graphql-hooks-ssr";
-import memCache from "graphql-hooks-memcache";
-import fetch from "cross-fetch";
+import { renderToStaticMarkup } from "react-dom/server";
+import {
+  Provider,
+  Client,
+  dedupExchange,
+  cacheExchange,
+  fetchExchange,
+  ssrExchange
+} from "urql";
+import ssrPrepass from "react-ssr-prepass";
 import { ServerStyleSheet } from "styled-components";
-import Helmet from "react-helmet";
+import { HelmetProvider } from "react-helmet-async";
 
 import AppComponent from "./components/App";
+
+import "isomorphic-unfetch";
 
 const app = express();
 app.use(express.static(__dirname));
@@ -17,44 +24,50 @@ app.use(express.static(__dirname));
 app.get(/^[^.]*$/, async (req, res) => {
   const location = req.url === "/" ? "/index" : req.url;
   console.log("Routing: " + location);
-  const client = new GraphQLClient({
-    ssrMode: true,
+
+  const ssrCache = ssrExchange();
+
+  const client = new Client({
+    exchanges: [dedupExchange, cacheExchange, ssrCache, fetchExchange],
     url: "https://cms.dvrpc.org/graphql",
-    cache: memCache(), // NOTE: a cache is required for SSR
-    fetch
+    suspense: true
   });
 
+  const helmetContext = {};
   const App = (
-    <ClientContext.Provider value={client}>
-      <AppComponent location={location} />
-    </ClientContext.Provider>
+    <Provider value={client}>
+      <HelmetProvider context={helmetContext}>
+        <AppComponent location={location} />
+      </HelmetProvider>
+    </Provider>
   );
-  await getInitialState({ App, client });
-
+  await ssrPrepass(App);
+  ssrCache.extractData();
   const sheet = new ServerStyleSheet();
-  let html = renderToString(sheet.collectStyles(App));
+  let html = renderToStaticMarkup(sheet.collectStyles(App));
   const styleTags = sheet.getStyleTags();
   sheet.seal();
-  const helmet = Helmet.renderStatic();
+  const { helmet } = helmetContext;
 
   res.send(`<!DOCTYPE html>
-  <html lang=en ${helmet.htmlAttributes.toString()}>
+  <html lang="en" ${helmet.htmlAttributes.toString()}>
   <head>
   <meta charSet="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/main.css" />
   ${helmet.title.toString()}
   ${helmet.meta.toString()}
   ${helmet.link.toString()}
+  <link rel="stylesheet" href="/main.css" />
   ${styleTags}
   </head>
-  <body id=root ${helmet.bodyAttributes.toString()}>
+  <body ${helmet.bodyAttributes.toString()}>
   ${html}
   </body>
   </html>`);
 });
 
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
   console.log(`App listening to ${PORT}....`);
   console.log("Press Ctrl+C to quit.");
