@@ -1,4 +1,8 @@
 /* global styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --color-h1: #8b6c4b;
   --color-h2: #7b6b5b;
@@ -13,7 +17,7 @@ body {
   font-variant-ligatures: contextual common-ligatures;
   line-height: 1.4;
 }
-.sans-serif {
+.font-sans {
   font-family: "Roboto", sans-serif;
 }
 a {

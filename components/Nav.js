@@ -2,15 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Nav = ({ data = [] }) => (
-  <nav className="mt4 nested-list-reset">
-    <ul className="ma0 flex flex-column w-100 justify-around">{nest(data)}</ul>
+  <nav className="mt-8 nested-list-reset">
+    <ul className="m-0 flex flex-col w-full justify-around">{nest(data)}</ul>
   </nav>
 );
 
 const nest = (data) =>
   data.map((i) => (
     <li
-      className="pa2 pl3 ba b"
+      className="p-2 pl-4 border border-solid font-bold"
       css={{
         background: "linear-gradient(to right,#eee0d2 0,#f4f4f4 65%)",
         borderColor: "#eee0d2",
@@ -20,7 +20,7 @@ const nest = (data) =>
     >
       <a href={i.url.path}>{i.label}</a>
       {i.links && i.links.length ? (
-        <ul className="ma0 flex flex-column w-100 justify-around">
+        <ul className="m-0 flex flex-col w-full justify-around">
           {nest(i.links)}
         </ul>
       ) : (

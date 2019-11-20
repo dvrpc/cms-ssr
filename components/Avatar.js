@@ -4,19 +4,19 @@ import PropTypes from "prop-types";
 const Avatar = ({ contact }) => {
   const fieldPhoto = contact.fieldPhoto || {};
   return (
-    <footer className="w-50 pv3 cf">
+    <footer className="w-50 py-4 cf">
       <img
-        className="h3 w3 br-100 fl mr3"
+        className="h-16 w-16 br-100 fl mr-4"
         src={
           fieldPhoto.url ||
           "https://utulsa.edu/wp-content/uploads/2018/08/generic-avatar.jpg"
         }
         alt={fieldPhoto.alt || "avatar"}
       />
-      <a className="db" href={`mailto:${contact.mail}`}>
+      <a className="block" href={`mailto:${contact.mail}`}>
         {contact.fieldDisplayName}
       </a>
-      <small className="db f6">{contact.fieldTitle}</small>
+      <small className="block text-sm">{contact.fieldTitle}</small>
     </footer>
   );
 };
