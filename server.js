@@ -1,5 +1,6 @@
 /*eslint-env node*/
 import express from "express";
+import fs from "fs";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import {
@@ -13,10 +14,13 @@ import {
 import ssrPrepass from "react-ssr-prepass";
 import { ServerStyleSheet } from "styled-components";
 import { HelmetProvider } from "react-helmet-async";
+import PurgeCSS from "purgecss";
 
 import AppComponent from "./components/App";
 
 import "isomorphic-unfetch";
+
+const rawCss = fs.readFileSync("dist/main.css").toString();
 
 const app = express();
 app.use(express.static(__dirname));
@@ -49,7 +53,7 @@ app.get(/^[^.]*$/, async (req, res) => {
   sheet.seal();
   const { helmet } = helmetContext;
 
-  res.send(`<!DOCTYPE html>
+  const htmlString = `<!DOCTYPE html>
   <html lang="en" ${helmet.htmlAttributes.toString()}>
   <head>
   <meta charSet="utf-8" />
@@ -57,13 +61,29 @@ app.get(/^[^.]*$/, async (req, res) => {
   ${helmet.title.toString()}
   ${helmet.meta.toString()}
   ${helmet.link.toString()}
-  <link rel="stylesheet" href="/main.css" />
+  <!--%STYLESHEET%-->
   ${styleTags}
   </head>
   <body ${helmet.bodyAttributes.toString()}>
   ${html}
   </body>
-  </html>`);
+  </html>`;
+
+  const css = await new PurgeCSS().purge({
+    content: [{ raw: htmlString, extension: "html" }],
+    css: [{ raw: rawCss }],
+    extractors: [
+      {
+        extractor: content => {
+          return content.match(/[A-Za-z0-9-_:\/]+/g) || [];
+        },
+        extensions: ["css", "html", "vue"]
+      }
+    ]
+  });
+  res.send(
+    htmlString.replace("<!--%STYLESHEET%-->", `<style>${css[0].css}</style>`)
+  );
 });
 
 const PORT = process.env.PORT || 3000;
