@@ -88,7 +88,6 @@ const Layout = ({ title, description, nav, children }) => {
           {["Announcements", "Products", "Events", "Twitter"].map((text) => (
             <h2
               className="link flex-auto font-bold text-xl leading-none br--top rounded-lg pt-4 pl-4 pb-2 mt-2 mr-8 mb-0 bg-white-20"
-              onClick={() => handleClick(text)}
               key={text}
             >
               {text}
@@ -98,7 +97,9 @@ const Layout = ({ title, description, nav, children }) => {
       </aside>
       <div className="flex justify-center">
         <Nav data={nav} />
-        <div id="root">{children}</div>
+        <div style={{ width: "80ch" }} id="root">
+          {children}
+        </div>
       </div>
       <footer className="flex justify-center bg-white black-70 py-4 border-t b--light-silver">
         <div className="mx-4 w-full flex justify-between">

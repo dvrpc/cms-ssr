@@ -50,6 +50,7 @@ const App = ({ location }) => {
       </>
     );
   }
+
   return (
     <Layout
       title={title}

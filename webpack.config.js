@@ -1,13 +1,12 @@
 /*eslint-env node*/
 require("babel-polyfill");
-const glob = require("glob");
-const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const PurgecssPlugin = require("purgecss-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const nodeExternals = require("webpack-node-externals");
+const postcssPresetEnv = require("postcss-preset-env");
+const tailwindCss = require("tailwindcss");
 
 module.exports = {
   entry: {
@@ -26,14 +25,8 @@ module.exports = {
   },
   devtool: "inline-source-map",
   optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true, // set to true if you want JS source maps
-      }),
-      new OptimizeCSSAssetsPlugin({}),
-    ],
+    minimize: true,
+    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
   },
   module: {
     rules: [
@@ -70,7 +63,7 @@ module.exports = {
       {
         // Loads images into CSS and Javascript files
         test: /\.jpg$/,
-        use: [{ loader: "url-loader" }],
+        use: ["url-loader"],
       },
       {
         // Loads CSS into a file when you import it via Javascript
@@ -87,7 +80,16 @@ module.exports = {
           {
             loader: "postcss-loader",
             options: {
-              plugins: [require("tailwindcss"), require("autoprefixer")],
+              ident: "postcss",
+              plugins: () => [
+                postcssPresetEnv({
+                  browsers: "ie 11, >0.5% in US",
+                  features: {
+                    "nesting-rules": true,
+                  },
+                }),
+                tailwindCss,
+              ],
             },
           },
         ],
@@ -106,12 +108,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css",
-    }),
-    new PurgecssPlugin({
-      paths: () =>
-        glob.sync(`${path.join(__dirname, "components")}/**/*`, {
-          nodir: true,
-        }),
     }),
   ],
 };
