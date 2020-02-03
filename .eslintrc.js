@@ -5,5 +5,10 @@ module.exports = {
     "plugin:prettier/recommended",
     "prettier/react"
   ],
-  parser: "babel-eslint"
+  parser: "babel-eslint",
+  settings: {
+    react: {
+      version: "detect"
+    }
+  }
 };

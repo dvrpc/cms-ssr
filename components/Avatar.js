@@ -1,13 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { css } from "styled-components/macro";
+import tw from "tailwind.macro";
 
 const Avatar = ({ contact }) => {
   return (
-    <footer className="w-50 py-4 cf">
-      <a className="block" href={`mailto:${contact.mail}`}>
+    <footer css={tw`w-50 py-4 clearfix`}>
+      <a css={tw`block`} href={`mailto:${contact.mail}`}>
         {contact.fieldDisplayName}
       </a>
-      <small className="block text-sm">{contact.fieldTitle}</small>
+      <small css={tw`block text-sm`}>{contact.fieldTitle}</small>
     </footer>
   );
 };

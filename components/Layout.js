@@ -2,228 +2,224 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet-async";
+import { css } from "styled-components/macro";
+import tw from "tailwind.macro";
+import Header from "./Header";
+import Infobar from "./Infobar";
 import Nav from "./Nav";
+import Footer from "./Footer";
 
-const Layout = ({ title, description, nav, children }) => {
+const styles = css`
+  ${tw`flex justify-center`}
+
+  a {
+    color: inherit;
+  }
+
+  .list-group {
+    background-color: #fdfeff;
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08), 0 2px 5px 0 rgba(0, 0, 0, 0.06);
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+
+    & > .footer,
+    & > footer {
+      margin: 0 -18px -18px;
+      padding: 4.5px 18px;
+      background-color: #f7f7f7;
+      text-align: right;
+      border-top: 1px solid #eee;
+      font-weight: 700;
+    }
+    & > li {
+      position: relative;
+      display: block;
+      padding: 10px 15px;
+      margin-bottom: -1px;
+      background-color: #fdfeff;
+      border: 1px solid #ddd;
+    }
+  }
+  .list-group-heading:first-of-type,
+  .list-group-item:first-of-type {
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+  }
+  .list-group-heading:last-child,
+  .list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+  .list-group-heading {
+    color: #717171;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  a.list-group-item {
+    color: #555;
+  }
+  a.list-group-item .list-group-item-heading {
+    color: #333;
+  }
+  a.list-group-item:focus,
+  a.list-group-item:hover {
+    text-decoration: none;
+    color: #555;
+    background-color: #f5f5f5;
+  }
+  .list-group-item.disabled,
+  .list-group-item.disabled:focus,
+  .list-group-item.disabled:hover {
+    background-color: #ddd;
+    color: #717171;
+    cursor: disabled;
+  }
+  .list-group-item.disabled .list-group-item-heading,
+  .list-group-item.disabled:focus .list-group-item-heading,
+  .list-group-item.disabled:hover .list-group-item-heading {
+    color: inherit;
+  }
+  .list-group-item.disabled .list-group-item-text,
+  .list-group-item.disabled:focus .list-group-item-text,
+  .list-group-item.disabled:hover .list-group-item-text {
+    color: #717171;
+  }
+  .list-group-item.active,
+  .list-group-item.active:focus,
+  .list-group-item.active:hover {
+    z-index: 2;
+    color: #fff;
+    background-color: #0078ae;
+    border-color: #0078ae;
+  }
+  .list-group-item.active .list-group-item-heading,
+  .list-group-item.active .list-group-item-heading > .small,
+  .list-group-item.active .list-group-item-heading > small,
+  .list-group-item.active:focus .list-group-item-heading,
+  .list-group-item.active:focus .list-group-item-heading > .small,
+  .list-group-item.active:focus .list-group-item-heading > small,
+  .list-group-item.active:hover .list-group-item-heading,
+  .list-group-item.active:hover .list-group-item-heading > .small,
+  .list-group-item.active:hover .list-group-item-heading > small {
+    color: inherit;
+  }
+  .list-group-item.active .list-group-item-text,
+  .list-group-item.active:focus .list-group-item-text,
+  .list-group-item.active:hover .list-group-item-text {
+    color: #7bd6ff;
+  }
+  .list-group-item-heading {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  .list-group-item-text {
+    margin-bottom: 0;
+    line-height: 1.3;
+  }
+  .card {
+    background-color: #fdfeff;
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08), 0 2px 5px 0 rgba(0, 0, 0, 0.06);
+    padding: 18px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .card > h2:first-of-type {
+    margin: -18px -18px 0;
+    padding: 9px 18px;
+    background-color: #2d799a;
+    color: #fff;
+  }
+  .card > h3:first-of-type {
+    margin: -18px -18px 0;
+    padding: 9px 18px;
+    background-color: #4b6a77;
+    color: #fff;
+  }
+  .card > .footer,
+  .card > footer {
+    margin: 0 -18px -18px;
+    padding: 4.5px 18px;
+    background-color: #f7f7f7;
+    text-align: right;
+    border-top: 1px solid #eee;
+    font-weight: 700;
+  }
+  .card .list-group {
+    margin-left: -18px;
+    margin-right: -18px;
+    box-shadow: none;
+  }
+  .card .list-group > .list-group-heading,
+  .card .list-group > .list-group-item {
+    border-radius: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+  }
+  .card :first-of-type + .list-group {
+    margin-top: 0;
+  }
+  .card .list-group:last-child {
+    margin-bottom: -18px;
+  }
+  .list-group > h2:first-of-type {
+    margin: 0;
+    padding: 9px 18px;
+    background-color: #2d799a;
+    color: #fff;
+  }
+  .list-group > h3:first-of-type {
+    margin: 0;
+    padding: 9px 18px;
+    background-color: #4b6a77;
+    color: #fff;
+  }
+`;
+
+const Layout = ({ nav, main }) => {
   return (
     <>
-      <Helmet titleTemplate="%s | DVRPC">
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <body className="bg-gray-100 font-sans" />
+      <Helmet>
+        <body
+          style={`
+            background-color: #f7fafc;	
+            font-family: 'Roboto', sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -webkit-font-kerning: normal;
+            font-kerning: normal;
+            font-feature-settings: "kern", "salt", "liga", "tnum";
+            font-variant-ligatures: contextual common-ligatures;
+            line-height: 1.4;
+          `}
+        />
       </Helmet>
-      <header
-        className="bg-white"
-        css={{
-          height: "400px",
-          background:
-            "bottom url(https://www.dvrpc.org/img/banner/full/philly1.jpg) no-repeat",
-          backgroundSize: "cover"
-        }}
-      >
+      <Header />
+      <Infobar />
+      <div css={styles}>
         <div
-          className="flex justify-center pb-4"
-          css={{ background: "rgba(255, 255, 255, 0.9)" }}
+          css={css`
+            width: 40ch;
+          `}
         >
-          <div
-            className="mx-4 flex flex-wrap sm:flex-nowrap items-baseline justify-center sm:justify-between"
-            css={{ flexBasis: "calc(80ch + 330px)" }}
-          >
-            <img
-              src="https://www.dvrpc.org/img/homepage/dvrpclogo70px.png"
-              alt="DVRPC"
-              className="m-4 ml-0"
-            />
-            <form
-              className="sm:w-auto w-full relative sm:ml-16 bg-white rounded"
-              action="https://www.dvrpc.org/Search/"
-            >
-              <div
-                className="mw3 h-full flex absolute items-center justify-center"
-                css={{ pointerEvents: "none" }}
-              >
-                <svg
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  role="presentation"
-                  className="w-8 h-8 inline-block"
-                  css={{
-                    fill: "#777",
-                    transition: "fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-                    userSelect: "none",
-                    flexShrink: 0
-                  }}
-                >
-                  <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-                  <path fill="none" d="M0 0h24v24H0z" />
-                </svg>
-              </div>
-              <div className="w-full">
-                <input
-                  name="q"
-                  placeholder="Search..."
-                  className="font-sans sm:w-64 w-full border-0 border-none m-0 p-2 pl-16 block bg-transparent"
-                  css={{
-                    minWidth: 0,
-                    boxSizing: "content-box",
-                    WebkitTapHighlightColor: "transparent",
-                    transition: "width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"
-                  }}
-                />
-              </div>
-            </form>
-            <div css={{ width: "174px" }} />
-          </div>
+          <Nav data={nav} />
         </div>
-      </header>
-      <aside
-        className="flex justify-center black-70"
-        css={{ backgroundColor: "#cea77e" }}
-      >
-        <div
-          className="flex justify-center justify-between mx-4"
-          css={{ width: "calc(80ch + 330px)" }}
-        >
-          {["Announcements", "Products", "Events", "Twitter"].map(text => (
-            <h2
-              className="link flex-auto font-bold text-xl leading-none br--top rounded-lg pt-4 pl-4 pb-2 mt-2 mr-8 mb-0 bg-white-20"
-              key={text}
-            >
-              {text}
-            </h2>
-          ))}
-        </div>
-      </aside>
-      <div className="flex justify-center">
-        <Nav data={nav} />
-        <div style={{ width: "80ch" }} id="root">
-          {children}
-        </div>
+        {main}
       </div>
-      <footer className="flex justify-center bg-white black-70 py-4 border-t b--light-silver">
-        <div className="mx-4 w-full flex justify-between">
-          <div className="w-50 flex flex-wrap justify-between items-end">
-            <div>
-              <a href="/" className="no-underline leading-none">
-                <img
-                  src="https://www.dvrpc.org/img/homepage/logo_small.png"
-                  alt="DVRPC"
-                  className="h-8"
-                />
-              </a>
-              <p>
-                190 N Independence Mall West
-                <br />
-                8th Floor
-                <br />
-                Philadelphia, PA 19106-1520
-                <br />
-                215.592.1800 | fax: 215.592.9125
-              </p>
-              <p>
-                <a
-                  href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
-                  rel="noopener"
-                  className="py-2 px-4 rounded border border-solid b--black-70 hover-bg-near-white hover-black no-underline"
-                >
-                  Sign up for our email lists
-                </a>
-              </p>
-              <p />
-            </div>
-            <div>
-              <h4 className="m-0">LINKS</h4>
-              <Nav
-                data={[
-                  { url: { path: "/HumanResources/" }, label: "Careers" },
-                  {
-                    url: { path: "/Business/" },
-                    label: "Business Opportunities"
-                  },
-                  {
-                    url: { path: "/Planning/" },
-                    label: "Planning Assistance Center"
-                  },
-                  {
-                    url: { path: "/DataProducts/" },
-                    label: "Data and Products"
-                  },
-                  {
-                    url: { path: "/Transportation/" },
-                    label: "Transportation"
-                  },
-                  { url: { path: "/Policies/" }, label: "Policies" },
-                  { url: { path: "/Links/" }, label: "Other Links" }
-                ]}
-              />
-            </div>
-            <p className="mt-16 text-sm">
-              DVRPC fully complies with Title VI of the Civil Rights Act of
-              1964, the Civil Rights Restoration Act of 1987, Executive Order
-              12898 on Environmental Justice, and related nondiscrimination
-              statutes and regulations in all programs and activities.
-              DVRPC&#39;s website, www.dvrpc.org, may be translated into
-              multiple languages. Publications and other public documents can be
-              made available in alternative languages and formats, if requested.
-              DVRPC public meetings are always held in ADA-accessible
-              facilities, and in transit-accessible locations when possible.
-              Auxiliary services can be provided to individuals who submit a
-              request at least seven days prior to a public meeting. Requests
-              will be accommodated to the greatest extent possible. Any person
-              who believes they have been aggrieved by an unlawful
-              discriminatory practice by DVRPC under Title VI has a right to
-              file a formal complaint. Any such complaint may be in writing and
-              filed with DVRPC&#39;s Title VI Compliance Manager and/or the
-              appropriate state or federal agency within 180 days of the alleged
-              discriminatory occurrence. For more information on DVRPC&#39;s
-              Title VI program or to obtain a Title VI Complaint Form, please
-              visit: www.dvrpc.org/GetInvolved/TitleVI, call (215) 592-1800, or
-              email public_affairs@dvrpc.org.
-            </p>
-          </div>
-          <div className="w-50 lg:border border-gray-200 ml-4 pl-4">
-            <div className="flex flex-wrap items-start">
-              {[
-                {
-                  href: "/Connections2045/",
-                  src: "https://www.dvrpc.org/img/LRP_ConnectionsGraphic.png"
-                },
-                {
-                  href: "/AnnualReport/",
-                  src: "https://www.dvrpc.org/img/AR2018_placard.png"
-                },
-                {
-                  href: "/Newsroom/",
-                  src: "https://www.dvrpc.org/img/dvrpcnews.png"
-                },
-                {
-                  href: "/GetInvolved/",
-                  src: "https://www.dvrpc.org/img/getinvolved.png"
-                }
-              ].map(i => (
-                <a
-                  href={i.href}
-                  key={i.href}
-                  className="m-4 flex items-center justify-center"
-                  css={{ width: "200px", height: "175px" }}
-                >
-                  <img src={i.src} />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 };
 
 Layout.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
   nav: PropTypes.array,
-  children: PropTypes.node
+  main: PropTypes.node
 };
 
 export default Layout;
