@@ -6,4 +6,9 @@ module.exports = {
     "prettier/react",
   ],
   parser: "babel-eslint",
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
 };
