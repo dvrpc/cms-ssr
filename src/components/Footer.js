@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "styled-components/macro";
-import tw from "tailwind.macro";
+import tw from "twin.macro";
 import FooterAds from "./FooterAds";
 import Nav from "./Nav";
 import quicklinks from "../configs/quicklinks";

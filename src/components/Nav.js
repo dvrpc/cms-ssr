@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { css } from "styled-components/macro";
-import tw from "tailwind.macro";
+import tw from "twin.macro";
 
 const Nav = ({ data = [] }) => (
   <nav css={tw`m-0 p-0 list-none mt-8`}>

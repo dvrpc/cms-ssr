@@ -2,7 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { css } from "styled-components/macro";
-import tw from "tailwind.macro";
+import tw from "twin.macro";
 
 const A = ({ href, children }) => {
   return (
