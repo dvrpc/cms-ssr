@@ -1,12 +1,12 @@
-/*eslint-env node*/
 import React from "react";
 import PropTypes from "prop-types";
-import { Helmet } from "react-helmet-async";
+import Helmet from "react-helmet";
 import { css } from "styled-components/macro";
-import tw from "tailwind.macro";
+import tw from "twin.macro";
+import Menu from "../utils/gatsby_drupal_menus";
 import Header from "./Header";
 import Infobar from "./Infobar";
-import Nav from "./Nav";
+import Main from "./Main";
 import Footer from "./Footer";
 
 const styles = css`
@@ -182,7 +182,7 @@ const styles = css`
   }
 `;
 
-const Layout = ({ nav, main }) => {
+const Layout = ({ location, title, body, staffContact }) => {
   return (
     <>
       <Helmet>
@@ -208,9 +208,14 @@ const Layout = ({ nav, main }) => {
             width: 40ch;
           `}
         >
-          <Nav data={nav} />
+          <Menu />
         </div>
-        {main}
+        <Main
+          body={body}
+          fieldStaffContact={staffContact}
+          title={title}
+          location={location}
+        />
       </div>
       <Footer />
     </>
@@ -218,8 +223,10 @@ const Layout = ({ nav, main }) => {
 };
 
 Layout.propTypes = {
-  nav: PropTypes.array,
-  main: PropTypes.node,
+  body: PropTypes.object,
+  fieldStaffContact: PropTypes.object,
+  title: PropTypes.string,
+  location: PropTypes.string,
 };
 
 export default Layout;

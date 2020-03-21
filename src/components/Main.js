@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Helmet } from "react-helmet-async";
+import Helmet from "react-helmet";
 import { css } from "styled-components/macro";
-import tw from "tailwind.macro";
+import tw from "twin.macro";
 import Avatar from "./Avatar";
 import ConnectWithUs from "./ConnectWithUs";
 
@@ -44,7 +44,7 @@ const Main = ({ body, fieldStaffContact, title, location }) => {
     <>
       <Helmet titleTemplate="%s | DVRPC">
         <title>{title}</title>
-        <meta name="description" content={body.summaryProcessed} />
+        <meta name="description" content={body.summary} />
       </Helmet>
       <main css={styles}>
         <h1 css={tw`mt-0`}>{title}</h1>
@@ -55,7 +55,7 @@ const Main = ({ body, fieldStaffContact, title, location }) => {
             border-color: #aaa;
           `}
         >
-          <Avatar contact={fieldStaffContact.entity} />
+          <Avatar contact={fieldStaffContact} />
           <ConnectWithUs
             title={title}
             location={`https://www.dvrpc.org${location}`}

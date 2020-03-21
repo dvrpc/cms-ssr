@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "styled-components/macro";
-import tw from "tailwind.macro";
+import tw from "twin.macro";
 
 const Header = () => {
   return (
@@ -21,7 +21,7 @@ const Header = () => {
       >
         <div
           css={css`
-            ${tw`mx-4 flex flex-wrap sm:flex-nowrap items-baseline justify-center sm:justify-between`}
+            ${tw`mx-4 flex flex-wrap sm:flex-no-wrap items-baseline justify-center sm:justify-between`}
             flex-basis: calc(80ch + 330px);
           `}
         >

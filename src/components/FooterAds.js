@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "styled-components/macro";
-import tw from "tailwind.macro";
+import tw from "twin.macro";
 import ads from "../configs/ads";
 
 const FooterAds = () => {
