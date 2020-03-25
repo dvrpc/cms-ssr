@@ -3,5 +3,13 @@ module.exports = {
     extend: {}
   },
   variants: {},
-  plugins: [require("tailwindcss-alpha")()]
+  plugins: [
+    require("tailwindcss-alpha")({
+      modules: {
+        backgroundColors: true,
+        textColors: true,
+        borderColors: true
+      }
+    })
+  ]
 };
