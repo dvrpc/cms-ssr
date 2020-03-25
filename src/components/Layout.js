@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Helmet from "react-helmet";
-import { css } from "styled-components/macro";
+import { createGlobalStyle, css } from "styled-components/macro";
 import tw from "twin.macro";
 import Menu from "../utils/gatsby_drupal_menus";
 import Header from "./Header";
@@ -9,13 +8,23 @@ import Infobar from "./Infobar";
 import Main from "./Main";
 import Footer from "./Footer";
 
-const styles = css`
-  ${tw`flex justify-center`}
-
+const GlobalStyles = createGlobalStyle`
+  body {
+    background-color: #f7fafc;
+    font-family: "Public Sans", sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -webkit-font-kerning: normal;
+    font-kerning: normal;
+    font-feature-settings: "kern";
+    font-variant: contextual common-ligatures discretionary-ligatures
+      historical-ligatures stacked-fractions;
+    line-height: 1.4;
+    ${tw`text-gray-900-75`}
+  }
   a {
     color: inherit;
   }
-
   .list-group {
     background-color: #fdfeff;
     border-radius: 2px;
@@ -94,8 +103,8 @@ const styles = css`
   .list-group-item.active:hover {
     z-index: 2;
     color: #fff;
-    background-color: #0078ae;
-    border-color: #0078ae;
+    background-color: ${(props) => props.theme.h1};
+    border-color: ${(props) => props.theme.h1};
   }
   .list-group-item.active .list-group-item-heading,
   .list-group-item.active .list-group-item-heading > .small,
@@ -133,13 +142,13 @@ const styles = css`
   .card > h2:first-of-type {
     margin: -18px -18px 0;
     padding: 9px 18px;
-    background-color: #2d799a;
+    background-color: ${(props) => props.theme.h2};
     color: #fff;
   }
   .card > h3:first-of-type {
     margin: -18px -18px 0;
     padding: 9px 18px;
-    background-color: #4b6a77;
+    background-color: ${(props) => props.theme.h3};
     color: #fff;
   }
   .card > .footer,
@@ -171,13 +180,13 @@ const styles = css`
   .list-group > h2:first-of-type {
     margin: 0;
     padding: 9px 18px;
-    background-color: #2d799a;
+    background-color: ${(props) => props.theme.h2};
     color: #fff;
   }
   .list-group > h3:first-of-type {
     margin: 0;
     padding: 9px 18px;
-    background-color: #4b6a77;
+    background-color: ${(props) => props.theme.h3};
     color: #fff;
   }
 `;
@@ -185,30 +194,29 @@ const styles = css`
 const Layout = ({ location, title, body, staffContact }) => {
   return (
     <>
-      <Helmet>
-        <body
-          style={`
-            background-color: #f7fafc;	
-            font-family: 'Roboto', sans-serif;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            -webkit-font-kerning: normal;
-            font-kerning: normal;
-            font-feature-settings: "kern", "salt", "liga", "tnum";
-            font-variant-ligatures: contextual common-ligatures;
-            line-height: 1.4;
-          `}
-        />
-      </Helmet>
+      <GlobalStyles />
       <Header />
       <Infobar />
-      <div css={styles}>
+      <div css={tw`flex justify-center`}>
         <div
           css={css`
+            ${tw`mx-4 mt-8`}
             width: 40ch;
+
+            nav {
+              ${tw`m-0 p-0 list-none`}
+            }
+            ul {
+              ${tw`m-0 p-0 flex flex-col w-full justify-around list-none`}
+            }
+            a {
+              ${tw`block py-2`}
+            }
           `}
         >
-          <Menu />
+          <div className="card">
+            <Menu />
+          </div>
         </div>
         <Main
           body={body}

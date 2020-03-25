@@ -11,22 +11,29 @@ const styles = css`
   width: 80ch;
 
   hr {
-    ${tw`border-solid border-gray-400 m-8`};
+    ${tw`border border-solid border-gray-400 m-8`};
   }
   a {
     ${tw`underline`};
     color: inherit;
   }
+  h1 {
+    ${tw`mt-0`};
+    color: ${(props) => props.theme.h1};
+  }
   h2 {
     ${tw`font-bold text-xl my-4`};
-    color: var(--color-h2);
+    color: ${(props) => props.theme.h2};
   }
   h3 {
     ${tw`font-bold text-lg my-4`};
-    color: var(--color-h3);
+    color: ${(props) => props.theme.h3};
   }
   p {
     ${tw`my-4`};
+  }
+  p.lead {
+    ${tw`text-lg`};
   }
   .size-medium {
     ${tw`w-1/2 ml-4`};
@@ -47,8 +54,15 @@ const Main = ({ body, fieldStaffContact, title, location }) => {
         <meta name="description" content={body.summary} />
       </Helmet>
       <main css={styles}>
-        <h1 css={tw`mt-0`}>{title}</h1>
-        <article dangerouslySetInnerHTML={{ __html: body.processed }} />
+        <h1>{title}</h1>
+        <article
+          dangerouslySetInnerHTML={{
+            __html: body.processed.replace(
+              /(src|href)(=['"]?)https?:\/\/www\.dvrpc\.org/g,
+              "$1$2"
+            ),
+          }}
+        />
         <div
           css={css`
             ${tw`flex justify-between border-t`}

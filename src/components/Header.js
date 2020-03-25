@@ -8,8 +8,7 @@ const Header = () => {
       css={css`
         ${tw`bg-white`}
         height: 400px;
-        background: bottom
-          url(https://www.dvrpc.org/img/banner/full/philly1.jpg) no-repeat;
+        background: bottom url(${(props) => props.theme.bgImage}) no-repeat;
         background-size: cover;
       `}
     >

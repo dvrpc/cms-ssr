@@ -45,7 +45,10 @@ exports.createPages = ({ actions, graphql }) => {
         createPage({
           path: node.path.alias,
           component: template,
-          context: { slug: node.path.alias },
+          context: {
+            slug: node.path.alias,
+            theme: node.path.fieldTheme,
+          },
         });
     });
   });

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import { css } from "styled-components/macro";
 import tw from "twin.macro";
 import FooterAds from "./FooterAds";
@@ -8,11 +9,7 @@ import quicklinks from "../configs/quicklinks";
 const Footer = () => {
   return (
     <footer
-      css={css`
-        ${tw`flex justify-center bg-white py-4 border-t`}
-        border-color: #aaa;
-        color: rgba(0, 0, 0, 0.7);
-      `}
+      css={tw`flex justify-center bg-white py-4 border-t border-gray-500 text-gray-900-75`}
     >
       <div
         css={css`
@@ -48,10 +45,7 @@ const Footer = () => {
               <a
                 href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
                 rel="noopener"
-                css={css`
-                  ${tw`block mt-4 py-2 px-4 rounded border border-solid no-underline`}
-                  border-color: rgba(0,0,0,.7)
-                `}
+                css={tw`block mt-4 py-2 px-4 rounded border border-solid no-underline border-gray-900-75`}
               >
                 Sign up for our email lists
               </a>
@@ -77,9 +71,13 @@ const Footer = () => {
           DVRPC&#39;s Title VI Compliance Manager and/or the appropriate state
           or federal agency within 180 days of the alleged discriminatory
           occurrence. For more information on DVRPC&#39;s Title VI program or to
-          obtain a Title VI Complaint Form, please visit:
-          www.dvrpc.org/GetInvolved/TitleVI, call (215) 592-1800, or email
-          public_affairs@dvrpc.org.
+          obtain a Title VI Complaint Form, please visit:{" "}
+          <Link to="/GetInvolved/TitleVI/">
+            www.dvrpc.org/GetInvolved/TitleVI
+          </Link>
+          , call (215) 592-1800, or email{" "}
+          <a href="mailto:public_affairs@dvrpc.org">public_affairs@dvrpc.org</a>
+          .
         </p>
       </div>
     </footer>

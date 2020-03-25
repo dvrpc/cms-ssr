@@ -1,15 +1,26 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { ThemeProvider } from "styled-components/macro";
 import Layout from "../components/Layout";
 
-const App = ({ data }) => {
+const defaultTheme = {
+  h1: "#0078ae",
+  h2: "#2d799a",
+  h3: "#4b6a77",
+  bgPrimary: "#e7df8b",
+  bgImage: "https://www.dvrpc.org/img/banner/full/philly1.jpg",
+};
+
+const App = ({ data, pageContext }) => {
   return (
-    <Layout
-      location={data.page.path.alias}
-      title={data.page.title}
-      body={data.page.body}
-      staffContact={data.page.relationships.field_staff_contact}
-    />
+    <ThemeProvider theme={pageContext.theme ?? defaultTheme}>
+      <Layout
+        location={data.page.path.alias}
+        title={data.page.title}
+        body={data.page.body}
+        staffContact={data.page.relationships.field_staff_contact}
+      />
+    </ThemeProvider>
   );
 };
 
