@@ -14,10 +14,7 @@ const Nav = ({ data = [] }) => (
 const nest = (data) =>
   data.map((i) => (
     <li
-      css={css`
-        ${tw`p-2 pl-4 border border-solid font-bold`}
-        border-color: rgba(0, 0, 0, 0.7);
-      `}
+      css={tw`p-2 pl-4 border border-solid font-bold border-gray-900-75`}
       key={i.url.path}
     >
       <a href={i.url.path} dangerouslySetInnerHTML={{ __html: i.label }}></a>

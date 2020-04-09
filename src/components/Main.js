@@ -7,11 +7,10 @@ import Avatar from "./Avatar";
 import ConnectWithUs from "./ConnectWithUs";
 
 const styles = css`
-  ${tw`mx-4 mt-8`}
-  width: 80ch;
+  ${tw`mx-4 mt-8 max-w-3xl`}
 
   hr {
-    ${tw`border border-solid border-gray-400 m-8`};
+    ${tw`border border-solid border-gray-400 mx-16 my-8`};
   }
   a {
     ${tw`underline`};
@@ -22,7 +21,7 @@ const styles = css`
     color: ${(props) => props.theme.h1};
   }
   h2 {
-    ${tw`font-bold text-xl my-4`};
+    ${tw`font-bold text-xl my-4 clear-both`};
     color: ${(props) => props.theme.h2};
   }
   h3 {
@@ -38,8 +37,12 @@ const styles = css`
   .size-medium {
     ${tw`w-1/2 ml-4`};
   }
+  .fright,
   .alignright {
-    ${tw`float-right`};
+    ${tw`float-right m-0 ml-8`};
+  }
+  figure {
+    ${tw`max-w-sm rounded border border-solid border-gray-400 p-1 bg-white italic`}
   }
   img {
     ${tw`max-w-full`}
@@ -47,6 +50,12 @@ const styles = css`
 `;
 
 const Main = ({ body, fieldStaffContact, title, location }) => {
+  const content = body.processed
+    .replace(/(src|href)(=['"]?)https?:\/\/www\.dvrpc\.org/g, "$1$2")
+    .replace(
+      /\/sites\/default\/files\//g,
+      "https://cdn.dvrpc.org/s3fs-public/"
+    );
   return (
     <>
       <Helmet titleTemplate="%s | DVRPC">
@@ -57,10 +66,7 @@ const Main = ({ body, fieldStaffContact, title, location }) => {
         <h1>{title}</h1>
         <article
           dangerouslySetInnerHTML={{
-            __html: body.processed.replace(
-              /(src|href)(=['"]?)https?:\/\/www\.dvrpc\.org/g,
-              "$1$2"
-            ),
+            __html: content,
           }}
         />
         <div

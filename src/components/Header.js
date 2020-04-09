@@ -12,12 +12,7 @@ const Header = () => {
         background-size: cover;
       `}
     >
-      <div
-        css={css`
-          ${tw`flex justify-center pb-4`}
-          background: rgba(255, 255, 255, 0.9);
-        `}
-      >
+      <div css={tw`flex justify-center pb-4 bg-gray-100-75`}>
         <div
           css={css`
             ${tw`mx-4 flex flex-wrap sm:flex-no-wrap items-baseline justify-center sm:justify-between`}

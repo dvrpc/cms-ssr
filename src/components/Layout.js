@@ -197,11 +197,10 @@ const Layout = ({ location, title, body, staffContact }) => {
       <GlobalStyles />
       <Header />
       <Infobar />
-      <div css={tw`flex justify-center`}>
+      <div css={tw`justify-center`}>
         <div
           css={css`
             ${tw`mx-4 mt-8`}
-            width: 40ch;
 
             nav {
               ${tw`m-0 p-0 list-none`}
@@ -211,6 +210,23 @@ const Layout = ({ location, title, body, staffContact }) => {
             }
             a {
               ${tw`block py-2`}
+            }
+
+            nav {
+              > ul > li > a {
+                ${tw`font-bold text-lg`}
+              }
+            }
+            .submenu {
+              ${tw`flex flex-row flex-wrap justify-start`}
+
+              li {
+                ${tw`mr-4`}
+              }
+
+              > li > .submenu {
+                ${tw`hidden`}
+              }
             }
           `}
         >
