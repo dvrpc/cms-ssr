@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { css } from "styled-components/macro";
 import tw from "twin.macro";
 import Avatar from "./Avatar";
