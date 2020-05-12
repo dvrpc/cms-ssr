@@ -5,6 +5,12 @@ module.exports = {
     author: `Delaware Valley Regional Planning Commission <webmaster@dvrpc.org>`,
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-express",
+      options: {
+        output: "public/gatsby-express.json",
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -39,15 +45,11 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-catch-links`,
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-web-font-loader`,
       options: {
-        fonts: [
-          {
-            family: `Public Sans`,
-            subsets: [`latin`],
-            variants: [`400`, `400i`, `700`, `700i`],
-          },
-        ],
+        google: {
+          families: ["Public Sans:400,400i,700,700i:latin"],
+        },
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

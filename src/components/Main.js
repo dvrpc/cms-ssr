@@ -47,6 +47,9 @@ const styles = css`
   img {
     ${tw`max-w-full`}
   }
+  .sm {
+    ${tw`text-sm text-red-700`}
+  }
 `;
 
 const Main = ({ body, fieldStaffContact, title, location }) => {
@@ -63,7 +66,6 @@ const Main = ({ body, fieldStaffContact, title, location }) => {
         <meta name="description" content={body.summary} />
       </Helmet>
       <main css={styles}>
-        <h1>{title}</h1>
         <article
           dangerouslySetInnerHTML={{
             __html: content,
