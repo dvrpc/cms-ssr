@@ -213,19 +213,23 @@ const Layout = ({ location, title, body, staffContact }) => {
             }
 
             nav {
+              > ul {
+                ${tw`flex flex-col justify-between`}
+              }
+
+              > ul > li {
+                ${tw`flex-auto max-w-md`}
+              }
+
               > ul > li > a {
                 ${tw`font-bold text-lg`}
               }
             }
             .submenu {
-              ${tw`flex flex-row flex-wrap justify-start`}
+              ${tw`flex flex-wrap justify-start`}
 
               li {
                 ${tw`mr-4`}
-              }
-
-              > li > .submenu {
-                ${tw`hidden`}
               }
             }
           `}
