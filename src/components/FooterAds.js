@@ -5,7 +5,7 @@ import ads from "../configs/ads";
 
 const FooterAds = () => {
   return (
-    <div css={tw`flex flex-wrap items-start`}>
+    <div css={tw`w-full flex flex-wrap justify-between items-start`}>
       {ads.map((i) => (
         <a
           href={i.href}

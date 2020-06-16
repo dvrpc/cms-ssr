@@ -1,22 +1,17 @@
 export default [
   {
-    href: "/Connections2045/",
-    src: "https://www.dvrpc.org/img/LRP_ConnectionsGraphic.png",
-    label: "Connections 2045",
+    href: "/TrackingProgress/",
+    src: "https://www.dvrpc.org/img/tracking_progress.png",
+    label: "Tracking Progress",
   },
   {
     href: "/AnnualReport/",
-    src: "https://www.dvrpc.org/img/AR2018_placard.png",
+    src: "https://www.dvrpc.org/img/AR2019_placard.png",
     label: "Annual Report",
   },
   {
-    href: "/Newsroom/",
-    src: "https://www.dvrpc.org/img/dvrpcnews.png",
-    label: "DVRPC News",
-  },
-  {
-    href: "/GetInvolved/",
-    src: "https://www.dvrpc.org/img/getinvolved.png",
-    label: "Get Involved",
+    href: "/Connections2045/MIT/",
+    src: "https://www.dvrpc.org/img/Muni-Web-Placard-01.png",
+    label: "Municipal Implementation Toolbox",
   },
 ];

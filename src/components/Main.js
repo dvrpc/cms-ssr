@@ -72,10 +72,7 @@ const Main = ({ body, fieldStaffContact, title, location }) => {
           }}
         />
         <div
-          css={css`
-            ${tw`flex justify-between border-t`}
-            border-color: #aaa;
-          `}
+          css={tw`flex justify-between border-solid border-0 border-t border-gray-400`}
         >
           <Avatar contact={fieldStaffContact} />
           <ConnectWithUs

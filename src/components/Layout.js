@@ -20,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
     font-variant: contextual common-ligatures discretionary-ligatures
       historical-ligatures stacked-fractions;
     line-height: 1.4;
+    margin: 0;
     ${tw`text-gray-900-75`}
   }
   a {
@@ -197,10 +198,10 @@ const Layout = ({ location, title, body, staffContact }) => {
       <GlobalStyles />
       <Header />
       <Infobar />
-      <div css={tw`justify-center`}>
+      <div css={tw`flex justify-center`}>
         <div
           css={css`
-            ${tw`mx-4 mt-8`}
+            ${tw`max-w-sm mx-4 mt-8`}
 
             nav {
               ${tw`m-0 p-0 list-none`}
