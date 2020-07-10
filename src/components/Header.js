@@ -8,13 +8,13 @@ const Header = () => {
     <header tw="bg-white">
       <div tw="container mx-auto flex flex-wrap sm:flex-no-wrap items-start justify-center sm:justify-between">
         <img
-          src="https://www.dvrpc.org/img/homepage/dvrpclogo70px.png"
+          src="https://www2.dvrpc.org/img/homepage/dvrpclogo70px.png"
           alt="DVRPC"
           tw="m-4 md:ml-0"
         />
         <form
           tw="sm:w-auto w-full relative m-4 sm:ml-16 bg-white rounded"
-          action="https://www.dvrpc.org/Search/"
+          action="https://www2.dvrpc.org/Search/"
         >
           <div tw="w-16 h-full flex absolute items-center justify-center pointer-events-none">
             <svg

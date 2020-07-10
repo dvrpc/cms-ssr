@@ -42,7 +42,7 @@
     "prettier": "^2.0.5"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby clean && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "node -r esm server/server.js",

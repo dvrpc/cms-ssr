@@ -8,8 +8,8 @@ import Layout from "../components/Layout";
 const fetchData = async () => {
   const responses = await Promise.all(
     [
-      fetch("https://www.dvrpc.org/asp/homepage/"),
-      fetch("https://www.dvrpc.org/asp/homepage/twitter.aspx"),
+      fetch("https://www2.dvrpc.org/asp/homepage/"),
+      fetch("https://www2.dvrpc.org/asp/homepage/twitter.aspx"),
     ].map((p) => p.catch((e) => e))
   );
   const data = await responses[0].json();

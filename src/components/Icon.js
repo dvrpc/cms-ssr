@@ -8,7 +8,7 @@ const Icon = ({ style, children, ...props }) => {
     css`
       top: 1px;
       background: transparent
-        url(https://www.dvrpc.org/img/homepage/sprites.svg) no-repeat;
+        url(https://www2.dvrpc.org/img/homepage/sprites.svg) no-repeat;
       background-size: 139px 18px;
       text-indent: -9999rem;
       height: 18px;

@@ -49,6 +49,7 @@ const rootParent = {
 //3. Render active links
 
 export default ({ data }) => {
+  data = data || {};
   data.parent = data.parent || rootParent;
   return (
     <nav>

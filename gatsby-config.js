@@ -21,7 +21,7 @@ module.exports = {
     {
       resolve: `gatsby-source-remote-file`,
       options: {
-        url: "https://www.dvrpc.org/js/homepage/navigation.min.json", //your remote url
+        url: "https://www2.dvrpc.org/js/homepage/navigation.min.json", //your remote url
         name: "nav",
         ext: ".json",
       },
@@ -50,7 +50,7 @@ module.exports = {
     {
       resolve: `gatsby-source-drupal`,
       options: {
-        baseUrl: `http://cms.dvrpc.org/`,
+        baseUrl: `https://cms.dvrpc.org/`,
         filters: {
           "node--page": `filter[status][value]=1`,
         },
