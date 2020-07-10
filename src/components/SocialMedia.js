@@ -1,15 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 import tw, { css } from "twin.macro";
 import A from "./A";
 import Icon from "./Icon";
 
-const ConnectWithUs = ({ title, location }) => {
+const SocialMedia = () => {
   const items = [
-    "Connect With Us!",
     <A
       key="facebook"
-      href={`https://www.facebook.com/sharer/sharer.php?u=${location}`}
+      href="https://www.facebook.com/DVRPC"
       aria-label="Facebook"
     >
       <Icon
@@ -20,11 +18,7 @@ const ConnectWithUs = ({ title, location }) => {
         Facebook
       </Icon>
     </A>,
-    <A
-      key="twitter"
-      href={`https://twitter.com/home?status=${title} @DVRPC ${location}`}
-      aria-label="Twitter"
-    >
+    <A key="twitter" href="https://www.twitter.com/DVRPC" aria-label="Twitter">
       <Icon
         css={css`
           background-position: -65px 0;
@@ -50,7 +44,7 @@ const ConnectWithUs = ({ title, location }) => {
     </a>,
     <A
       key="linkedin"
-      href={`https://www.linkedin.com/shareArticle?mini=true&url=${location}&amp;title=${title}`}
+      href="http://www.linkedin.com/company/delaware-valley-regional-planning-commission"
       aria-label="LinkedIn"
     >
       <Icon
@@ -79,16 +73,9 @@ const ConnectWithUs = ({ title, location }) => {
     </a>,
   ];
   return (
-    <ul
-      css={[
-        tw`flex md:justify-end font-bold py-4`,
-        css`
-          color: #005780;
-        `,
-      ]}
-    >
+    <ul tw="flex justify-end font-bold py-4">
       {items.map((i) => (
-        <li key={i.props ? i.props.href : "connect"} tw="inline mx-2">
+        <li key={i.props.href} tw="inline mx-2">
           {i}
         </li>
       ))}
@@ -96,9 +83,4 @@ const ConnectWithUs = ({ title, location }) => {
   );
 };
 
-ConnectWithUs.propTypes = {
-  title: PropTypes.string,
-  location: PropTypes.string,
-};
-
-export default ConnectWithUs;
+export default SocialMedia;

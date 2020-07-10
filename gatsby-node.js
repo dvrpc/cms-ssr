@@ -48,10 +48,73 @@ exports.createPages = ({ actions, graphql }) => {
           context: {
             slug: node.path.alias,
             theme: node.path.fieldTheme,
+            regex: `/^${node.path.alias.replace(/\//g, "/")}\//i`,
           },
         });
     });
   });
+};
+
+exports.onCreateNode = async ({
+  node,
+  loadNodeContent,
+  actions: { createNode, createParentChildLink },
+  createNodeId,
+  createContentDigest,
+}) => {
+  if (node.name !== "nav") return;
+
+  const iterateTree = async (nodes, parent) => {
+    const generate = async (node) => {
+      const child = {
+        ...node,
+        id: createNodeId(node.href),
+        children: [],
+        parent: (parent && parent.id) || null,
+        internal: {
+          type: "NavItem",
+          contentDigest: createContentDigest(node),
+          description: node.href,
+        },
+      };
+      await createNode(child);
+      parent && createParentChildLink({ parent, child });
+      child.links && iterateTree(child.links, child);
+    };
+
+    for (const node of nodes) {
+      await generate(node);
+    }
+  };
+
+  try {
+    console.time("Loading navigation");
+    const nodeContent = await loadNodeContent(node);
+    const arr = JSON.parse(nodeContent);
+    console.timeEnd("Loading navigation");
+    console.time("Building navigation");
+    await iterateTree(arr, null);
+    console.timeEnd("Building navigation");
+    console.log("success Navigation built");
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//Add optional fields to GraphQL
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type NavLinks implements Node {
+      style: String
+      class: String
+    }
+    type NavLinksLinks implements Node {
+      style: String
+      class: String
+    }
+  `;
+  createTypes(typeDefs);
 };
 
 exports.onCreateWebpackConfig = ({ getConfig, stage }) => {

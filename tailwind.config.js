@@ -1,15 +1,13 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Public Sans", ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
   variants: {},
-  plugins: [
-    require("tailwindcss-alpha")({
-      modules: {
-        backgroundColors: true,
-        textColors: true,
-        borderColors: true,
-      },
-    }),
-  ],
+  plugins: [require("@tailwindcss/ui")],
 };

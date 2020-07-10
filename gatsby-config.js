@@ -13,6 +13,20 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-transformer-json`,
+      options: {
+        typeName: "Nav",
+      },
+    },
+    {
+      resolve: `gatsby-source-remote-file`,
+      options: {
+        url: "https://www.dvrpc.org/js/homepage/navigation.min.json", //your remote url
+        name: "nav",
+        ext: ".json",
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
@@ -36,13 +50,14 @@ module.exports = {
     {
       resolve: `gatsby-source-drupal`,
       options: {
-        baseUrl: `https://cms.dvrpc.org/`,
+        baseUrl: `http://cms.dvrpc.org/`,
         filters: {
           "node--page": `filter[status][value]=1`,
         },
       },
     },
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-catch-links`,
     {
       resolve: `gatsby-plugin-web-font-loader`,

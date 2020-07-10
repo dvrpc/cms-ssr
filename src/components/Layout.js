@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createGlobalStyle, css } from "styled-components/macro";
-import tw from "twin.macro";
-import Menu from "../utils/gatsby_drupal_menus";
+import { createGlobalStyle } from "styled-components/macro";
+import tw, { css } from "twin.macro";
+import Menu from "./MenuJson";
 import Header from "./Header";
 import Infobar from "./Infobar";
 import Main from "./Main";
@@ -10,18 +10,7 @@ import Footer from "./Footer";
 
 const GlobalStyles = createGlobalStyle`
   body {
-    background-color: #f7fafc;
-    font-family: "Public Sans", sans-serif;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -webkit-font-kerning: normal;
-    font-kerning: normal;
-    font-feature-settings: "kern";
-    font-variant: contextual common-ligatures discretionary-ligatures
-      historical-ligatures stacked-fractions;
-    line-height: 1.4;
-    margin: 0;
-    ${tw`text-gray-900-75`}
+    ${tw`bg-gray-100 text-gray-900 m-0 leading-normal`}
   }
   a {
     color: inherit;
@@ -192,59 +181,24 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-const Layout = ({ location, title, body, staffContact }) => {
+const Layout = ({ location, title, body, staffContact, menu }) => {
   return (
     <>
       <GlobalStyles />
       <Header />
       <Infobar />
-      <div css={tw`flex justify-center`}>
-        <div
-          css={css`
-            ${tw`max-w-sm mx-4 mt-8`}
-
-            nav {
-              ${tw`m-0 p-0 list-none`}
-            }
-            ul {
-              ${tw`m-0 p-0 flex flex-col w-full justify-around list-none`}
-            }
-            a {
-              ${tw`block py-2`}
-            }
-
-            nav {
-              > ul {
-                ${tw`flex flex-col justify-between`}
-              }
-
-              > ul > li {
-                ${tw`flex-auto max-w-md`}
-              }
-
-              > ul > li > a {
-                ${tw`font-bold text-lg`}
-              }
-            }
-            .submenu {
-              ${tw`flex flex-wrap justify-start`}
-
-              li {
-                ${tw`mr-4`}
-              }
-            }
-          `}
-        >
-          <div className="card">
-            <Menu />
-          </div>
+      <div tw="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-4">
+        <div tw="md:order-2 md:col-span-2">
+          <Main
+            body={body}
+            fieldStaffContact={staffContact}
+            title={title}
+            location={location}
+          />
         </div>
-        <Main
-          body={body}
-          fieldStaffContact={staffContact}
-          title={title}
-          location={location}
-        />
+        <div tw="md:order-1 md:col-span-1 md:my-10">
+          <Menu data={menu} />
+        </div>
       </div>
       <Footer />
     </>
@@ -256,6 +210,7 @@ Layout.propTypes = {
   fieldStaffContact: PropTypes.object,
   title: PropTypes.string,
   location: PropTypes.string,
+  menu: PropTypes.object,
 };
 
 export default Layout;

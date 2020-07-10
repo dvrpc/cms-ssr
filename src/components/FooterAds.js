@@ -1,20 +1,15 @@
 import React from "react";
-import { css } from "styled-components/macro";
 import tw from "twin.macro";
 import ads from "../configs/ads";
 
 const FooterAds = () => {
   return (
-    <div css={tw`w-full flex flex-wrap justify-between items-start`}>
+    <div tw="w-full flex flex-wrap justify-center md:justify-between items-start">
       {ads.map((i) => (
         <a
           href={i.href}
           key={i.href}
-          css={css`
-            ${tw`m-4 flex items-center justify-center`}
-            width: 200px;
-            height: 175px;
-          `}
+          tw="m-4 w-48 h-40 flex items-center justify-center"
         >
           <img src={i.src} alt={i.label} />
         </a>

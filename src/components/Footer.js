@@ -1,28 +1,25 @@
 import React from "react";
 import { Link } from "gatsby";
-import { css } from "styled-components/macro";
 import tw from "twin.macro";
 import FooterAds from "./FooterAds";
 
 const Footer = () => {
   return (
     <>
-      <footer
-        css={tw`flex justify-center bg-white border-solid border-0 border-t border-gray-400`}
-      >
-        <div css={tw`max-w-6xl w-full`}>
+      <footer tw="flex justify-center bg-white border-solid border-0 border-t border-gray-400">
+        <div tw="container">
           <FooterAds />
         </div>
       </footer>
-      <footer css={tw`flex justify-center bg-gray-800 py-4 text-white`}>
-        <div css={tw`mx-4 max-w-6xl w-full`}>
-          <div css={tw`w-full flex justify-between`}>
+      <footer tw="flex justify-center bg-gray-800 py-4 text-white">
+        <div tw="container">
+          <div tw="w-full m-4 md:flex justify-between">
             <div>
-              <a href="/" css={tw`no-underline leading-none`}>
+              <a href="/" tw="no-underline leading-none">
                 <img
                   src="https://www.dvrpc.org/img/banner/new/dvrpclogotinywhite.png"
                   alt="DVRPC"
-                  css={tw`h-8`}
+                  tw="h-8"
                 />
               </a>
               <p>
@@ -36,22 +33,20 @@ const Footer = () => {
               </p>
             </div>
             <div>
-              <p>
-                <a
-                  href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
-                  rel="noopener"
-                  css={tw`block mt-4 py-2 px-4 rounded border border-solid no-underline border-gray-900-75`}
-                >
-                  Sign up for our email lists
-                </a>
-              </p>
-              <p css={tw`ml-px pl-4`}>
+              <a
+                href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
+                rel="noopener"
+                tw="inline-block my-4 py-2 px-4 rounded border border-solid no-underline border-gray-900"
+              >
+                Sign up for our email lists
+              </a>
+              <div>
                 <a href="/Policies/">Policies</a> |{" "}
                 <a href="/Links/">Other Links</a>
-              </p>
+              </div>
             </div>
           </div>
-          <p css={tw`mt-16 text-sm`}>
+          <p tw="p-4 md:p-0 md:mt-16 text-sm">
             DVRPC fully complies with Title VI of the Civil Rights Act of 1964,
             the Civil Rights Restoration Act of 1987, Executive Order 12898 on
             Environmental Justice, and related nondiscrimination statutes and

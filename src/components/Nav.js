@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { css } from "styled-components/macro";
 import tw from "twin.macro";
 
 const Nav = ({ data = [] }) => (
-  <nav css={tw`m-0 p-0 list-none mt-8`}>
-    <ul css={tw`m-0 p-0 flex flex-col w-full justify-around list-none`}>
+  <nav tw="m-0 p-0 list-none mt-8">
+    <ul tw="m-0 p-0 flex flex-col w-full justify-around list-none">
       {nest(data)}
     </ul>
   </nav>
@@ -14,12 +13,12 @@ const Nav = ({ data = [] }) => (
 const nest = (data) =>
   data.map((i) => (
     <li
-      css={tw`p-2 pl-4 border border-solid font-bold border-gray-900-75`}
+      tw="p-2 pl-4 border border-solid font-bold border-gray-900-75"
       key={i.url.path}
     >
       <a href={i.url.path} dangerouslySetInnerHTML={{ __html: i.label }}></a>
       {i.links && i.links.length ? (
-        <ul css={tw`m-0 p-0 flex flex-col w-full justify-around list-none`}>
+        <ul tw="m-0 p-0 flex flex-col w-full justify-around list-none">
           {nest(i.links)}
         </ul>
       ) : (

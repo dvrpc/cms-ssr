@@ -1,56 +1,58 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
-import { css } from "styled-components/macro";
-import tw from "twin.macro";
+import tw, { css } from "twin.macro";
 import Avatar from "./Avatar";
 import ConnectWithUs from "./ConnectWithUs";
 
-const styles = css`
-  ${tw`mx-4 mt-8 max-w-3xl`}
+const styles = [
+  tw`mx-4 mt-8`,
+  css`
+    max-width: 80ch;
 
-  hr {
-    ${tw`border border-solid border-gray-400 mx-16 my-8`};
-  }
-  a {
-    ${tw`underline`};
-    color: inherit;
-  }
-  h1 {
-    ${tw`mt-0`};
-    color: ${(props) => props.theme.h1};
-  }
-  h2 {
-    ${tw`font-bold text-xl my-4 clear-both`};
-    color: ${(props) => props.theme.h2};
-  }
-  h3 {
-    ${tw`font-bold text-lg my-4`};
-    color: ${(props) => props.theme.h3};
-  }
-  p {
-    ${tw`my-4`};
-  }
-  p.lead {
-    ${tw`text-lg`};
-  }
-  .size-medium {
-    ${tw`w-1/2 ml-4`};
-  }
-  .fright,
-  .alignright {
-    ${tw`float-right m-0 ml-8`};
-  }
-  figure {
-    ${tw`max-w-sm rounded border border-solid border-gray-400 p-1 bg-white italic`}
-  }
-  img {
-    ${tw`max-w-full`}
-  }
-  .sm {
-    ${tw`text-sm text-red-700`}
-  }
-`;
+    hr {
+      ${tw`border border-solid border-gray-400 mx-16 my-8`};
+    }
+    a {
+      ${tw`underline`};
+      color: inherit;
+    }
+    h1 {
+      ${tw`mt-0 text-3xl font-bold`};
+      color: ${(props) => props.theme.h1};
+    }
+    h2 {
+      ${tw`font-bold text-xl my-4 clear-both`};
+      color: ${(props) => props.theme.h2};
+    }
+    h3 {
+      ${tw`font-bold text-lg my-4`};
+      color: ${(props) => props.theme.h3};
+    }
+    p {
+      ${tw`my-4`};
+    }
+    p.lead {
+      ${tw`text-lg`};
+    }
+    .size-medium {
+      ${tw`w-1/2 ml-4`};
+    }
+    .fright,
+    .alignright {
+      ${tw`float-right m-0 ml-8`};
+    }
+    figure {
+      ${tw`max-w-sm rounded border border-solid border-gray-400 p-1 bg-white italic`}
+    }
+    img {
+      ${tw`max-w-full`}
+    }
+    .sm {
+      ${tw`text-sm text-red-700`}
+    }
+  `,
+];
 
 const Main = ({ body, fieldStaffContact, title, location }) => {
   const content = body.processed
@@ -71,9 +73,7 @@ const Main = ({ body, fieldStaffContact, title, location }) => {
             __html: content,
           }}
         />
-        <div
-          css={tw`flex justify-between border-solid border-0 border-t border-gray-400`}
-        >
+        <div tw="md:flex justify-between border-solid border-0 border-t border-gray-400">
           <Avatar contact={fieldStaffContact} />
           <ConnectWithUs
             title={title}
