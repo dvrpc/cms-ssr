@@ -7,11 +7,13 @@ const Header = () => {
   return (
     <header tw="bg-white">
       <div tw="container mx-auto flex flex-wrap sm:flex-no-wrap items-start justify-center sm:justify-between">
-        <img
-          src="https://www2.dvrpc.org/img/homepage/dvrpclogo70px.png"
-          alt="DVRPC"
-          tw="m-4 md:ml-0"
-        />
+        <a href="/">
+          <img
+            src="https://www2.dvrpc.org/img/homepage/dvrpclogo70px.png"
+            alt="DVRPC"
+            tw="m-4 md:ml-0"
+          />
+        </a>
         <form
           tw="sm:w-auto w-full relative m-4 sm:ml-16 bg-white rounded"
           action="https://www2.dvrpc.org/Search/"

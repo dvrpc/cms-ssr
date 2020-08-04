@@ -68,6 +68,7 @@ const Main = ({ body, fieldStaffContact, title, location }) => {
         <meta name="description" content={body.summary} />
       </Helmet>
       <main css={styles}>
+        <h1>{title}</h1>
         <article
           dangerouslySetInnerHTML={{
             __html: content,
