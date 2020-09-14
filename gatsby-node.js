@@ -29,6 +29,17 @@ exports.createPages = ({ actions, graphql }) => {
                 field_display_name
                 field_title
               }
+              field_theme {
+                field_primary_color
+                field_secondary_color
+                relationships {
+                  field_banner {
+                    uri {
+                      url
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -47,7 +58,7 @@ exports.createPages = ({ actions, graphql }) => {
           component: template,
           context: {
             slug: node.path.alias,
-            theme: node.path.fieldTheme,
+            theme: node.relationships.field_theme,
             regex: `/^${node.path.alias.replace(/\//g, "/")}\//i`,
           },
         });

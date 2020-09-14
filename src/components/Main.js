@@ -42,6 +42,10 @@ const styles = [
     .alignright {
       ${tw`float-right m-0 ml-8`};
     }
+    .fleft,
+    .alignleft {
+      ${tw`float-left m-0 mr-8`};
+    }
     figure {
       ${tw`max-w-sm rounded border border-solid border-gray-400 p-1 bg-white italic`}
     }
@@ -59,7 +63,7 @@ const Main = ({ body, fieldStaffContact, title, location }) => {
     .replace(/(src|href)(=['"]?)https?:\/\/www\.dvrpc\.org/g, "$1$2")
     .replace(
       /\/sites\/default\/files\//g,
-      "https://cdn.dvrpc.org/s3fs-public/"
+      "https://cms.dvrpc.org/sites/default/files/"
     );
   return (
     <>

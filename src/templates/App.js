@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import { ThemeProvider } from "styled-components/macro";
 import defaultTheme from "../utils/theme";
 import Layout from "../components/Layout";
+import color from "color";
 
 const fetchData = async () => {
   const responses = await Promise.all(
@@ -18,8 +19,16 @@ const fetchData = async () => {
 };
 
 const App = ({ data, pageContext }) => {
+  const theme = {
+    ...defaultTheme,
+    h1: pageContext.theme.field_primary_color,
+    h2: color(pageContext.theme.field_primary_color).lighten(0.1),
+    h3: color(pageContext.theme.field_primary_color).lighten(0.2),
+    bgPrimary: pageContext.theme.field_secondary_color,
+    bgImage: `https://cms.dvrpc.org/${pageContext.theme.relationships.field_banner[0].uri.url}`
+  }
   return (
-    <ThemeProvider theme={pageContext.theme ?? defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Async promiseFn={fetchData}>
         <Layout
           location={data.page.path.alias}
@@ -36,49 +45,67 @@ const App = ({ data, pageContext }) => {
 export default App;
 
 export const query = graphql`
-  query($slug: String!, $regex: String!) {
-    page: nodePage(path: { alias: { eq: $slug } }) {
-      title
-      path {
-        alias
-      }
-      body {
-        processed
-        summary
-      }
-      relationships {
-        field_staff_contact {
-          name
-          field_display_name
-          field_title
+query ($slug: String!, $regex: String!) {
+  page: nodePage(path: {alias: {eq: $slug}}) {
+    title
+    path {
+      alias
+    }
+    body {
+      processed
+      summary
+    }
+    relationships {
+      field_staff_contact {
+        mail
+        field_display_name
+        field_title
+        relationships {
+          user_picture {
+            uri {
+              value
+            }
+          }
         }
       }
-    }
-    navItem(href: { regex: $regex }) {
-      href
-      link
-      style
-      class
-      links {
-        href
-        link
-        style
-        class
-      }
-      parent {
-        ... on NavItem {
-          href
-          link
-          style
-          class
-          links {
-            href
-            link
-            style
-            class
+      field_theme {
+        field_primary_color
+        field_secondary_color
+        relationships {
+          field_banner {
+            uri {
+              url
+            }
           }
         }
       }
     }
   }
+  navItem(href: {regex: $regex}) {
+    href
+    link
+    style
+    class
+    links {
+      href
+      link
+      style
+      class
+    }
+    parent {
+      ... on NavItem {
+        href
+        link
+        style
+        class
+        links {
+          href
+          link
+          style
+          class
+        }
+      }
+    }
+  }
+}
 `;
