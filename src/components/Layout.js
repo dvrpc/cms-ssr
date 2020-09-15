@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
 import { createGlobalStyle } from "styled-components/macro";
 import tw, { css } from "twin.macro";
 import Menu from "./MenuJson";
@@ -7,6 +8,7 @@ import Header from "./Header";
 import Infobar from "./Infobar";
 import Main from "./Main";
 import Footer from "./Footer";
+import favicon from "../images/favicon.ico";
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -184,6 +186,9 @@ const GlobalStyles = createGlobalStyle`
 const Layout = ({ location, title, body, staffContact, menu }) => {
   return (
     <>
+      <Helmet>
+        <link rel="icon" href={favicon} />
+      </Helmet>
       <GlobalStyles />
       <Header />
       <Infobar />
