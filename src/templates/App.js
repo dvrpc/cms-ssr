@@ -25,8 +25,8 @@ const App = ({ data, pageContext }) => {
     h2: color(pageContext.theme.field_primary_color).lighten(0.1),
     h3: color(pageContext.theme.field_primary_color).lighten(0.2),
     bgPrimary: pageContext.theme.field_secondary_color,
-    bgImage: `https://cms.dvrpc.org/${pageContext.theme.relationships.field_banner[0].uri.url}`
-  }
+    bgImage: `https://cms.dvrpc.org/${pageContext.theme.relationships.field_banner[0].uri.url}`,
+  };
   return (
     <ThemeProvider theme={theme}>
       <Async promiseFn={fetchData}>
@@ -45,67 +45,67 @@ const App = ({ data, pageContext }) => {
 export default App;
 
 export const query = graphql`
-query ($slug: String!, $regex: String!) {
-  page: nodePage(path: {alias: {eq: $slug}}) {
-    title
-    path {
-      alias
-    }
-    body {
-      processed
-      summary
-    }
-    relationships {
-      field_staff_contact {
-        mail
-        field_display_name
-        field_title
-        relationships {
-          user_picture {
-            uri {
-              value
+  query($slug: String!, $regex: String!) {
+    page: nodePage(path: { alias: { eq: $slug } }) {
+      title
+      path {
+        alias
+      }
+      body {
+        processed
+        summary
+      }
+      relationships {
+        field_staff_contact {
+          mail
+          field_display_name
+          field_title
+          relationships {
+            user_picture {
+              uri {
+                value
+              }
+            }
+          }
+        }
+        field_theme {
+          field_primary_color
+          field_secondary_color
+          relationships {
+            field_banner {
+              uri {
+                url
+              }
             }
           }
         }
       }
-      field_theme {
-        field_primary_color
-        field_secondary_color
-        relationships {
-          field_banner {
-            uri {
-              url
-            }
-          }
-        }
-      }
     }
-  }
-  navItem(href: {regex: $regex}) {
-    href
-    link
-    style
-    class
-    links {
+    navItem(href: { regex: $regex }) {
       href
       link
       style
       class
-    }
-    parent {
-      ... on NavItem {
+      links {
         href
         link
         style
         class
-        links {
+      }
+      parent {
+        ... on NavItem {
           href
           link
           style
           class
+          links {
+            href
+            link
+            style
+            class
+          }
         }
       }
     }
   }
-}
 `;

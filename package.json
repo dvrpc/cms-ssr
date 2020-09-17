@@ -38,12 +38,14 @@
     "twin.macro": "^1.7.0"
   },
   "devDependencies": {
-    "husky": "^4.2.5",
-    "prettier": "^2.0.5"
+    "cpr": "^3.0.1",
+    "husky": "^4.3.0",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^3.0.2"
   },
   "scripts": {
-    "build": "gatsby clean && gatsby build",
-    "develop": "gatsby develop",
+    "build": "gatsby clean && gatsby build && cpr public dist --delete-first",
+    "develop": "gatsby clean && gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "node -r esm server/server.js",
     "serve": "gatsby serve",
@@ -52,7 +54,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format"
+      "pre-commit": "pretty-quick --staged"
     }
   }
 }

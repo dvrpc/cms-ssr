@@ -16,7 +16,7 @@ app.get("/_build", (req, res) => {
       .write(
         "<body style='background:black;color:white;margin:0;padding:1em'><pre>"
       );
-    const stream = exec("npx gatsby build", {
+    const stream = exec("npm run build", {
       env: { ...process.env, FORCE_COLOR: true },
     });
     stream.stdout
@@ -25,16 +25,16 @@ app.get("/_build", (req, res) => {
     stream.stderr
       .setEncoding("utf-8")
       .on("data", (data) => res.write(convert.toHtml(data)));
-    stream.stdout.on("end", () => res.end());
+    stream.stdout.on("end", () => exec("pm2 restart cms-dev"));
   } else {
     res.status(401).send("Unauthorized");
   }
 });
-app.use(express.static(path.resolve(__dirname, "../public/")));
+app.use(express.static(path.resolve(__dirname, "../dist/")));
 app.use(
-  gatsyExpress("public/gatsby-express.json", {
-    publicDir: path.resolve(__dirname, "../public/"),
-    template: path.resolve(__dirname, "../public/404/index.html"),
+  gatsyExpress("dist/gatsby-express.json", {
+    publicDir: path.resolve(__dirname, "../dist/"),
+    template: path.resolve(__dirname, "../dist/404/index.html"),
     redirectSlashes: true,
   })
 );
