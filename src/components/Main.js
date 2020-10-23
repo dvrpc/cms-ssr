@@ -11,40 +11,50 @@ const styles = [
     max-width: 80ch;
 
     hr {
-      ${tw`border border-solid border-gray-400 mx-16 my-8`};
+      ${tw`border border-solid border-gray-400 mx-16 my-8`}
     }
     a {
-      ${tw`underline`};
+      ${tw`underline`}
       color: inherit;
     }
     h1 {
-      ${tw`mt-0 text-3xl font-bold`};
+      ${tw`mt-0 text-3xl font-bold`}
       color: ${(props) => props.theme.h1};
     }
     h2 {
-      ${tw`font-bold text-xl my-4 clear-both`};
+      ${tw`font-bold text-xl my-4 clear-both`}
       color: ${(props) => props.theme.h2};
     }
     h3 {
-      ${tw`font-bold text-lg my-4`};
+      ${tw`font-bold text-lg my-4`}
       color: ${(props) => props.theme.h3};
     }
     p {
-      ${tw`my-4`};
+      ${tw`my-4`}
     }
     p.lead {
-      ${tw`text-lg`};
+      ${tw`text-lg`}
+    }
+    ol {
+      list-style: decimal;
+      ${tw`my-4`}
+    }
+    ol[type='A'] {
+      list-style: upper-alpha;
+    }
+    ul {
+      ${tw`pl-10 my-4 list-disc`}
     }
     .size-medium {
-      ${tw`w-1/2 ml-4`};
+      ${tw`w-1/2 ml-4`}
     }
     .fright,
     .alignright {
-      ${tw`float-right m-0 ml-8`};
+      ${tw`float-right m-0 ml-8`}
     }
     .fleft,
     .alignleft {
-      ${tw`float-left m-0 mr-8`};
+      ${tw`float-left m-0 mr-8`}
     }
     figure {
       ${tw`max-w-sm rounded border border-solid border-gray-400 p-1 bg-white italic`}
@@ -54,6 +64,16 @@ const styles = [
     }
     .sm {
       ${tw`text-sm text-red-700`}
+    }
+    .btn {
+      ${tw`inline-block no-underline text-center align-middle border-solid border-0 border-transparent py-2 px-3 rounded transition duration-150 ease-in-out`}
+    }
+    .btn-primary {
+      ${tw`text-white bg-blue-700 border-blue-700 hover:bg-blue-800`}
+    }
+    [disabled],
+    .disabled {
+      ${tw`bg-gray-400 border-gray-400 pointer-events-none`}
     }
   `,
 ];

@@ -12,6 +12,7 @@ import favicon from "../images/favicon.ico";
 
 const GlobalStyles = createGlobalStyle`
   body {
+    font-family: Public Sans,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
     ${tw`bg-gray-100 text-gray-900 m-0 leading-normal`}
   }
   a {
@@ -187,6 +188,7 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
   return (
     <>
       <Helmet>
+        <html lang="en" />
         <link rel="icon" href={favicon} />
       </Helmet>
       <GlobalStyles />
