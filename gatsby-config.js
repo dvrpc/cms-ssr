@@ -11,6 +11,7 @@ module.exports = {
         output: "public/gatsby-express.json",
       },
     },
+    `gatsby-plugin-preact`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-transformer-json`,
@@ -58,7 +59,6 @@ module.exports = {
     },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-remove-trailing-slashes`,
-    `gatsby-plugin-catch-links`,
     {
       resolve: `gatsby-plugin-web-font-loader`,
       options: {
