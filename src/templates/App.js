@@ -26,6 +26,7 @@ const App = ({ data, pageContext }) => {
     h3: color(pageContext.theme.field_primary_color).lighten(0.2),
     bgPrimary: pageContext.theme.field_secondary_color,
     bgImage: `https://cms.dvrpc.org/${pageContext.theme.relationships.field_banner[0].uri.url}`,
+    bgCredits: pageContext.theme.field_photo_credits || "",
   };
   return (
     <ThemeProvider theme={theme}>
@@ -71,6 +72,7 @@ export const query = graphql`
         field_theme {
           field_primary_color
           field_secondary_color
+          field_photo_credits
           relationships {
             field_banner {
               uri {

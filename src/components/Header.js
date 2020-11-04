@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Async from "react-async";
 import tw, { css } from "twin.macro";
+import { ThemeContext } from "styled-components";
 import SocialMedia from "./SocialMedia";
 
 const Header = () => {
+  const theme = useContext(ThemeContext);
+
   return (
     <header tw="bg-white">
       <div tw="container mx-auto flex flex-wrap sm:flex-no-wrap items-start justify-center sm:justify-between">
@@ -42,14 +45,13 @@ const Header = () => {
         <SocialMedia />
       </div>
       <div
-        css={[
-          tw`w-full bg-cover bg-bottom flex justify-center`,
-          (props) =>
-            css`
-              background-image: url(${props.theme.bgImage});
-              height: 24rem;
-            `,
-        ]}
+        tw="w-full bg-cover bg-bottom flex justify-center"
+        css={(props) =>
+          css`
+            background-image: url(${props.theme.bgImage});
+            height: 24rem;
+          `
+        }
       >
         <Async.Fulfilled>
           {(data) =>
@@ -61,6 +63,15 @@ const Header = () => {
             )
           }
         </Async.Fulfilled>
+        <div
+          tw="self-end absolute right-0 text-black font-bold italic pr-2"
+          css={css`
+            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+              1px 1px 0 #fff;
+          `}
+        >
+          {theme.bgCredits}
+        </div>
       </div>
     </header>
   );

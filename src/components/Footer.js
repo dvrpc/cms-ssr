@@ -13,7 +13,7 @@ const Footer = () => {
       </footer>
       <footer tw="flex justify-center bg-gray-800 py-4 text-white">
         <div tw="container">
-          <div tw="w-full m-4 md:flex justify-between">
+          <div tw="w-full m-4 md:m-0 md:flex justify-between">
             <div>
               <a href="/" tw="no-underline leading-none">
                 <img
@@ -40,7 +40,7 @@ const Footer = () => {
               >
                 Sign up for our email lists
               </a>
-              <div>
+              <div tw="mx-4 px-px">
                 <a href="/Policies/">Policies</a> |{" "}
                 <a href="/Links/">Other Links</a>
               </div>
