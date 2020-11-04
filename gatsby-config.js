@@ -11,7 +11,6 @@ module.exports = {
         output: "public/gatsby-express.json",
       },
     },
-    `gatsby-plugin-preact`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-transformer-json`,
