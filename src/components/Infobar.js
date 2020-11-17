@@ -33,7 +33,8 @@ const Product = (props) => (
       alt="cover"
     />
     <p tw="mt-4">
-      {props.Abstract.substring(0, props.Abstract.indexOf(" ", 250))}…
+      {props.Abstract.slice(0, props.Abstract.indexOf(" ", 250))}
+      {props.Abstract.length > 250 ? "…" : ""}
     </p>
   </div>
 );
