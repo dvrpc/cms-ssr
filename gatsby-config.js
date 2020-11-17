@@ -62,7 +62,7 @@ module.exports = {
       resolve: `gatsby-plugin-web-font-loader`,
       options: {
         google: {
-          families: ["Public Sans:400,400i,700,700i:latin"],
+          families: ["Public Sans:400,400i,700,700i:latin&display=swap"],
         },
       },
     },
