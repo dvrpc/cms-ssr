@@ -5,12 +5,6 @@ module.exports = {
     author: `Delaware Valley Regional Planning Commission <webmaster@dvrpc.org>`,
   },
   plugins: [
-    {
-      resolve: "gatsby-plugin-express",
-      options: {
-        output: "public/gatsby-express.json",
-      },
-    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-transformer-json`,
@@ -50,10 +44,7 @@ module.exports = {
     {
       resolve: `gatsby-source-drupal`,
       options: {
-        baseUrl: `https://cms.dvrpc.org/`,
-        filters: {
-          "node--page": `filter[status][value]=1`,
-        },
+        baseUrl: `https://cms.dvrpc.org/`
       },
     },
     `gatsby-plugin-styled-components`,

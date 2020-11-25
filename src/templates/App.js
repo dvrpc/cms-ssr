@@ -21,18 +21,22 @@ const fetchData = async () => {
 const App = ({ data, pageContext }) => {
   const theme = {
     ...defaultTheme,
-    h1: pageContext.theme.field_primary_color,
-    h2: color(pageContext.theme.field_primary_color).lighten(0.1),
-    h3: color(pageContext.theme.field_primary_color).lighten(0.2),
-    bgPrimary: pageContext.theme.field_secondary_color,
-    bgImage: `https://cms.dvrpc.org/${pageContext.theme.relationships.field_banner[0].uri.url}`,
-    bgCredits: pageContext.theme.field_photo_credits || "",
+    h1: data.page.relationships.field_theme.field_primary_color,
+    h2: color(data.page.relationships.field_theme.field_primary_color).lighten(
+      0.1
+    ),
+    h3: color(data.page.relationships.field_theme.field_primary_color).lighten(
+      0.2
+    ),
+    bgPrimary: data.page.relationships.field_theme.field_secondary_color,
+    bgImage: `https://cms.dvrpc.org/${data.page.relationships.field_theme.relationships.field_banner[0].uri.url}`,
+    bgCredits: data.page.relationships.field_theme.field_photo_credits || "",
   };
   return (
     <ThemeProvider theme={theme}>
       <Async promiseFn={fetchData}>
         <Layout
-          location={data.page.path.alias}
+          location={pageContext.slug || pageContext.guid}
           title={data.page.title}
           body={data.page.body}
           staffContact={data.page.relationships.field_staff_contact}
@@ -46,8 +50,8 @@ const App = ({ data, pageContext }) => {
 export default App;
 
 export const query = graphql`
-  query($slug: String!, $regex: String!) {
-    page: nodePage(path: { alias: { eq: $slug } }) {
+  query($slug: String, $guid: String, $regex: String!) {
+    page: nodePage(drupal_id: { eq: $guid }, path: { alias: { eq: $slug } }) {
       title
       path {
         alias
