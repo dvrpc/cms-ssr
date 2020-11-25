@@ -44,7 +44,13 @@ module.exports = {
     {
       resolve: `gatsby-source-drupal`,
       options: {
-        baseUrl: `https://cms.dvrpc.org/`
+        baseUrl: `https://cms.dvrpc.org/`,
+        filters: {
+          "node--page":
+            process.env.GATSBY_ENV === "development"
+              ? ""
+              : "filter[status][value]=1",
+        },
       },
     },
     `gatsby-plugin-styled-components`,
