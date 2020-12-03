@@ -6,7 +6,7 @@ import color from "color";
 const Announcement = (props) => (
   <div
     key={props.guid["#text"]}
-    tw="p-4 my-4 mx-2 flex-1 bg-white flex flex-col shadow border border-solid border-gray-100"
+    tw="p-4 my-4 mx-2 md:flex-1 bg-white flex flex-col shadow border border-solid border-gray-100"
   >
     <h4 tw="m-0 font-bold text-lg">
       <a tw="underline" href={props.link}>
@@ -20,7 +20,7 @@ const Announcement = (props) => (
 const Product = (props) => (
   <div
     key={props.PubId}
-    tw="p-4 my-4 mx-2 flex-1 bg-white shadow border border-solid border-gray-100"
+    tw="w-full md:w-auto p-4 my-4 mx-2 md:flex-1 bg-white shadow border border-solid border-gray-100"
   >
     <h4 tw="m-0 font-bold text-lg">
       <a tw="underline" href={`https://www.dvrpc.org/Products/${props.PubId}`}>
@@ -28,14 +28,16 @@ const Product = (props) => (
       </a>
     </h4>
     <img
-      tw="float-right p-1 mt-5 ml-2 mb-1 border-solid border border-gray-400"
+      tw="float-right p-1 mt-5 ml-3 mb-1 border-solid border border-gray-400"
       src={`https://www.dvrpc.org/asp/pubs/100px/${props.PubId}.png`}
       alt="cover"
     />
-    <p tw="mt-4">
-      {props.Abstract.slice(0, props.Abstract.indexOf(" ", 250))}
-      {props.Abstract.length > 250 ? "…" : ""}
-    </p>
+    {props.Abstract && (
+      <p tw="mt-4">
+        {props.Abstract.slice(0, props.Abstract.indexOf(" ", 250))}
+        {props.Abstract.length > 250 ? "…" : ""}
+      </p>
+    )}
   </div>
 );
 
@@ -46,7 +48,7 @@ const Event = (props) => {
   return (
     <div
       key={props.StartDate + props.Title}
-      tw="flex-1 mx-4 my-4 p-4 bg-white flex flex-col shadow border border-solid border-gray-100"
+      tw="w-full md:w-auto md:flex-1 mx-4 my-4 p-4 bg-white flex flex-col shadow border border-solid border-gray-100"
     >
       <h4 tw="font-normal mt-0 mb-8">
         {props.Info ? (

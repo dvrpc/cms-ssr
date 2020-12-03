@@ -9,8 +9,8 @@ const Header = () => {
 
   return (
     <header tw="bg-white">
-      <div tw="container mx-auto flex flex-wrap sm:flex-no-wrap items-start justify-center sm:justify-between">
-        <a href="/">
+      <div tw="container md:h-32 md:px-8 xl:p-0 mx-auto flex flex-wrap sm:flex-no-wrap items-start justify-center sm:justify-between">
+        <a href="/" tw="block self-center">
           <img
             src="https://www2.dvrpc.org/img/homepage/dvrpclogo70px.png"
             alt="DVRPC"
