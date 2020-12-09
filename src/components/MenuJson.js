@@ -42,18 +42,24 @@ const rootParent = {
 
 export default ({ data }) => {
   let root = data;
-  if (data.parent) {
-    data.parent.links.find((n) => n.href === data.href).links = data.links;
-    root = data.parent;
-
-    if (data.parent.parent) {
-      data.parent.parent.links.find((n) => n.href === data.parent.href).links =
-        data.parent.links;
-      root = data.parent.parent;
-    }
-  } else {
-    rootParent.links.find((n) => n.href === data.href).links = data.links;
+  if (data === null) {
     root = rootParent;
+    data = { href: "" };
+  } else {
+    if (data.parent) {
+      data.parent.links.find((n) => n.href === data.href).links = data.links;
+      root = data.parent;
+
+      if (data.parent.parent) {
+        data.parent.parent.links.find(
+          (n) => n.href === data.parent.href
+        ).links = data.parent.links;
+        root = data.parent.parent;
+      }
+    } else {
+      rootParent.links.find((n) => n.href === data.href).links = data.links;
+      root = rootParent;
+    }
   }
 
   return (
