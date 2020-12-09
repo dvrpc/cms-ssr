@@ -6,13 +6,27 @@ import Icon from "./Icon";
 const SocialMedia = () => {
   const items = [
     <A
+      key="newsletters"
+      href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
+      aria-label="Newsletters"
+    >
+      <Icon
+        css={css`
+          background-position: -1px 0;
+          width: 27px;
+        `}
+      >
+        Newsletters
+      </Icon>
+    </A>,
+    <A
       key="facebook"
       href="https://www.facebook.com/DVRPC"
       aria-label="Facebook"
     >
       <Icon
         css={css`
-          background-position: -102px 0;
+          background-position: -128px 0;
         `}
       >
         Facebook
@@ -21,7 +35,7 @@ const SocialMedia = () => {
     <A key="twitter" href="https://www.twitter.com/DVRPC" aria-label="Twitter">
       <Icon
         css={css`
-          background-position: -65px 0;
+          background-position: -92px 0;
         `}
       >
         Twitter
@@ -36,7 +50,7 @@ const SocialMedia = () => {
     >
       <Icon
         css={css`
-          background-position: -83px 0;
+          background-position: -110px 0;
         `}
       >
         Instagram
@@ -49,7 +63,7 @@ const SocialMedia = () => {
     >
       <Icon
         css={css`
-          background-position: -121px 0;
+          background-position: -147px 0;
         `}
       >
         LinkedIn
@@ -64,7 +78,7 @@ const SocialMedia = () => {
     >
       <Icon
         css={css`
-          background-position: -38px 0;
+          background-position: -66px 0;
           width: 26px;
         `}
       >

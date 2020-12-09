@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import tw, { css } from "twin.macro";
+import sprites from "../images/sprites.svg";
 
 const Icon = ({ style, children, ...props }) => {
   const styles = [
     tw`relative inline-block`,
     css`
       top: 1px;
-      background: transparent
-        url(https://www2.dvrpc.org/img/homepage/sprites.svg) no-repeat;
-      background-size: 139px 18px;
+      background: transparent url(${sprites}) no-repeat;
+      background-size: 167px 18px;
       text-indent: -9999rem;
       height: 18px;
       width: 18px;
