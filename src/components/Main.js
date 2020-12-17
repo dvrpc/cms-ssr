@@ -75,6 +75,19 @@ const styles = [
     .disabled {
       ${tw`bg-gray-400 border-gray-400 pointer-events-none`}
     }
+    details {
+      ${tw`border border-gray-300 my-8`}
+    }
+    summary {
+      ${tw`bg-gray-200 hover:bg-gray-300 text-lg p-4 text-left cursor-pointer outline-none border-0 border-l-2 border-b border-gray-600`}
+    }
+    summary:after {
+      content: "\02795";
+      float: right;
+    }
+    details[open] > summary:after {
+      content: "\02796";
+    }
   `,
 ];
 
