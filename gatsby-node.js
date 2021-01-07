@@ -59,7 +59,7 @@ exports.createPages = ({ actions, graphql }) => {
         component: template,
         context: {
           guid: node.drupal_id,
-          regex: `/^${node.path.alias.replace(/\//g, "/")}\//i`,
+          regex: `/^${node.path?.alias?.replace(/\//g, "/")}\//i`,
         },
       });
       node.path.alias &&
