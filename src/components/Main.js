@@ -59,6 +59,10 @@ const styles = [
     figure {
       ${tw`max-w-sm rounded border border-solid border-gray-400 p-1 bg-white italic`}
     }
+    figcaption {
+      ${tw`p-2`}
+    }
+    .alignfull,
     img {
       ${tw`max-w-full`}
     }
@@ -76,17 +80,23 @@ const styles = [
       ${tw`bg-gray-400 border-gray-400 pointer-events-none`}
     }
     details {
-      ${tw`border border-gray-300 my-8`}
+      ${tw`border border-gray-300 bg-white my-8`}
     }
-    summary {
-      ${tw`bg-gray-200 hover:bg-gray-300 text-lg p-4 text-left cursor-pointer outline-none border-0 border-l-2 border-b border-gray-600`}
+    details > * {
+      ${tw`mx-4`}
     }
-    summary:after {
-      content: "\02795";
-      float: right;
+    details > summary {
+      ${tw`bg-gray-200 hover:bg-gray-300 text-lg p-4 text-left cursor-pointer outline-none border-0 border-l-2 border-b border-gray-600 block m-0`}
     }
-    details[open] > summary:after {
-      content: "\02796";
+    details > summary::after {
+      content: '\\2795';
+      ${tw`float-right text-xl`}
+    }
+    details[open] > summary::after {
+      content: '\\2796';
+    }
+    summary::-webkit-details-marker {
+      display: none;
     }
   `,
 ];
