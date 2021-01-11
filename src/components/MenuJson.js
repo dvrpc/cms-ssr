@@ -65,6 +65,7 @@ export default ({ data }) => {
   return (
     <nav>
       <ul
+        tw="h-full"
         css={(props) => css`
           background: linear-gradient(
             to right,

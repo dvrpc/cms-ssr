@@ -4,7 +4,7 @@ import tw, { css } from "twin.macro";
 import { ThemeContext } from "styled-components";
 import SocialMedia from "./SocialMedia";
 
-const Header = () => {
+const Header = ({ children }) => {
   const theme = useContext(ThemeContext);
 
   return (
@@ -45,24 +45,27 @@ const Header = () => {
         <SocialMedia />
       </div>
       <div
-        tw="w-full bg-cover bg-bottom flex justify-center"
+        tw="w-full bg-cover bg-bottom flex flex-col items-center justify-center p-8"
         css={(props) =>
           css`
             background-image: url(${props.theme.bgImage});
-            height: 24rem;
+            min-height: 24rem;
           `
         }
       >
         <Async.Fulfilled>
           {(data) =>
             data.alert.Text.length && (
-              <div
-                tw="bg-red-700 text-white p-6 m-auto max-w-4xl"
-                dangerouslySetInnerHTML={{ __html: data.alert.Text }}
-              />
+              <div tw="container flex justify-center">
+                <div
+                  tw="bg-red-700 text-white p-6 mb-8"
+                  dangerouslySetInnerHTML={{ __html: data.alert.Text }}
+                />
+              </div>
             )
           }
         </Async.Fulfilled>
+        {children}
         <div
           tw="self-end absolute right-0 text-black font-bold italic pr-2"
           css={css`

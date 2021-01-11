@@ -285,14 +285,14 @@ const Tweet = (props) => {
   );
 };
 
-const Infobar = () => {
+const Infobar = ({ openedTab = null }) => {
   const tabs = [
     { title: "Announcements", key: "anns", render: Announcement },
     { title: "Products", key: "pubs", render: Product },
     { title: "Events", key: "events", render: Event },
     { title: "Twitter", key: "twitter", render: Tweet },
   ];
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState(openedTab);
 
   return (
     <aside>
