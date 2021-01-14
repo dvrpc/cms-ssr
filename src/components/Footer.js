@@ -11,7 +11,7 @@ const Footer = () => {
           <FooterAds />
         </div>
       </footer>
-      <footer tw="flex justify-center bg-gray-800 py-4 text-white">
+      <footer tw="flex justify-center bg-gray-800 p-4 text-white">
         <div tw="container">
           <div tw="w-full m-4 md:m-0 md:flex justify-between">
             <div>

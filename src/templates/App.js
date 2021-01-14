@@ -3,20 +3,9 @@ import Async from "react-async";
 import { graphql } from "gatsby";
 import { ThemeProvider } from "styled-components/macro";
 import defaultTheme from "../utils/theme";
+import fetchData from "../utils/fetchData";
 import Layout from "../components/Layout";
 import color from "color";
-
-const fetchData = async () => {
-  const responses = await Promise.all(
-    [
-      fetch("https://www2.dvrpc.org/asp/homepage/"),
-      fetch("https://www2.dvrpc.org/asp/homepage/twitter.aspx?all=true"),
-    ].map((p) => p.catch((e) => e))
-  );
-  const data = await responses[0].json();
-  data.twitter = await responses[1].json();
-  return data;
-};
 
 const App = ({ data, pageContext }) => {
   const theme = {
@@ -29,7 +18,9 @@ const App = ({ data, pageContext }) => {
       0.2
     ),
     bgPrimary: data.page.relationships.field_theme.field_secondary_color,
-    bgImage: `https://cms.dvrpc.org/${data.page.relationships.field_theme.relationships.field_banner[0].uri.url}`,
+    bgImage: data.page.relationships.field_theme.relationships.field_banner.map(
+      (i) => `https://cms.dvrpc.org/${i.uri.url}`
+    ),
     bgCredits: data.page.relationships.field_theme.field_photo_credits || "",
   };
   return (
