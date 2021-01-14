@@ -48,6 +48,9 @@ const styles = [
     ul {
       ${tw`pl-10 my-4 list-disc`}
     }
+    .list-group {
+      ${tw`pl-0`}
+    }
     .size-medium {
       ${tw`w-1/2 ml-4`}
     }

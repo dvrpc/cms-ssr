@@ -45,26 +45,16 @@ const Header = ({ children }) => {
         <SocialMedia />
       </div>
       <div
-        tw="w-full bg-cover bg-bottom flex flex-col items-center justify-center p-8"
+        tw="w-full bg-bottom flex flex-col items-center justify-center p-8"
         css={(props) =>
           css`
-            background-image: url(${props.theme.bgImage});
+            background-image: url(${props.theme.bgImage[1]}),
+              url(${props.theme.bgImage[0]});
+            background-size: 1600px 400px, cover;
             min-height: 24rem;
           `
         }
       >
-        <Async.Fulfilled>
-          {(data) =>
-            data.alert.Text.length && (
-              <div tw="container flex justify-center">
-                <div
-                  tw="bg-red-700 text-white p-6 mb-8"
-                  dangerouslySetInnerHTML={{ __html: data.alert.Text }}
-                />
-              </div>
-            )
-          }
-        </Async.Fulfilled>
         {children}
         <div
           tw="self-end absolute right-0 text-black font-bold italic pr-2"
