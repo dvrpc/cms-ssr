@@ -29,6 +29,9 @@ const styles = [
       ${tw`font-bold text-lg my-4`}
       color: ${(props) => props.theme.h3};
     }
+    h4 {
+      ${tw`font-bold text-lg my-4`}
+    }
     p {
       ${tw`my-4`}
     }
@@ -57,14 +60,17 @@ const styles = [
       ${tw`float-left m-0 mr-8`}
     }
     figure {
-      ${tw`max-w-sm rounded border border-solid border-gray-400 p-1 bg-white italic`}
+      ${tw`table max-w-sm rounded border border-solid border-gray-400 p-1 bg-white italic`}
     }
     figcaption {
-      ${tw`p-2`}
+      ${tw`p-2 table-caption`}
+      caption-side: bottom;
     }
-    .alignfull,
     img {
-      ${tw`max-w-full`}
+      ${tw`max-w-full block`}
+    }
+    .alignfull {
+      ${tw`max-w-full mx-auto`}
     }
     .sm {
       ${tw`text-sm text-red-700`}
