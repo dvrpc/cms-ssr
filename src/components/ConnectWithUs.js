@@ -6,7 +6,7 @@ import Icon from "./Icon";
 
 const ConnectWithUs = ({ title, location }) => {
   const items = [
-    "Connect With Us!",
+    "Share",
     <A
       key="facebook"
       href={`https://www.facebook.com/sharer/sharer.php?u=${location}`}

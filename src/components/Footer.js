@@ -1,52 +1,56 @@
 import React from "react";
 import { Link } from "gatsby";
-import tw from "twin.macro";
+import tw, { css } from "twin.macro";
 import FooterAds from "./FooterAds";
 
 const Footer = () => {
   return (
     <>
-      <footer tw="flex justify-center bg-white border-solid border-0 border-t border-gray-400">
+      <footer tw="flex justify-center bg-white" css={css`a { text-decoration:underline;}`}>
         <div tw="container">
           <FooterAds />
         </div>
       </footer>
-      <footer tw="flex justify-center bg-gray-800 p-4 text-white">
+      <footer
+        tw="flex justify-center p-4 text-white"
+        css={css`
+          background-color: #3a3a3a;
+        `}
+      >
         <div tw="container">
           <div tw="w-full m-4 md:m-0 md:flex justify-between">
             <div>
               <a href="/" tw="no-underline leading-none">
                 <img
-                  src="https://www.dvrpc.org/img/banner/new/dvrpclogotinywhite.png"
+                  src="https://www.dvrpc.org/img/gatsby/5546_DVRPC_Aconym.png"
                   alt="DVRPC"
-                  tw="h-8"
+                  css={css`
+                    height: 29px;
+                  `}
                 />
               </a>
               <p>
-                190 N Independence Mall West
-                <br />
-                8th Floor
+                190 N Independence Mall West, 8th Floor
                 <br />
                 Philadelphia, PA 19106-1520
                 <br />
-                215.592.1800 | fax: 215.592.9125
+                215.592.1800
               </p>
             </div>
-            <div>
-              <a
-                href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
-                rel="noopener"
-                tw="inline-block my-4 py-2 px-4 rounded border border-solid no-underline border-gray-900"
-              >
-                Sign up for our email lists
-              </a>
+            <div tw="items-end flex flex-col">
               <div tw="mx-4 px-px">
                 <a href="/Policies/">Policies</a> |{" "}
-                <a href="/Links/">Other Links</a>
+                <a href="/Links/">Other Links</a> |{" "}
+                <a
+                  href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
+                  rel="noopener"
+                >
+                  Sign Up for Our Email Lists
+                </a>
               </div>
             </div>
           </div>
-          <p tw="p-4 md:p-0 md:mt-16 text-sm">
+          <p tw="p-4 md:p-0 md:mt-16 text-sm hidden">
             DVRPC fully complies with Title VI of the Civil Rights Act of 1964,
             the Civil Rights Restoration Act of 1987, Executive Order 12898 on
             Environmental Justice, and related nondiscrimination statutes and
