@@ -43,7 +43,7 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
       </div>
       <div tw="bg-gray-300">
         <div tw="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-4">
-          <div tw="md:col-span-2 md:col-start-2 sm:px-4 md:px-0 md:flex justify-between items-center">
+          <div tw="md:col-span-2 md:col-start-2 px-4 md:flex justify-between items-center">
             <Avatar contact={staffContact} />
             <ConnectWithUs
               title={title}
