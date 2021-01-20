@@ -52,7 +52,7 @@ const styles = [
       ${tw`pl-0`}
     }
     .size-medium {
-      ${tw`w-1/2 ml-4`}
+      ${tw`max-w-xl ml-4`}
     }
     .fright,
     .alignright {
@@ -68,6 +68,9 @@ const styles = [
     figcaption {
       ${tw`p-2 table-caption`}
       caption-side: bottom;
+    }
+    .simple > figure {
+      ${tw`rounded-none p-0 bg-transparent border-none`}
     }
     img {
       ${tw`max-w-full block`}
@@ -95,11 +98,11 @@ const styles = [
       ${tw`mx-4`}
     }
     details > summary {
-      ${tw`bg-gray-200 hover:bg-gray-300 text-lg p-4 text-left cursor-pointer outline-none border-0 border-l-2 border-b border-gray-600 block m-0`}
+      ${tw`bg-gray-200 hover:bg-gray-300 text-lg p-4 pr-14 text-left cursor-pointer outline-none border-0 border-l-2 border-b border-gray-600 block m-0 relative`}
     }
     details > summary::after {
       content: "\\2795";
-      ${tw`float-right text-xl`}
+      ${tw`absolute text-xl top-4 right-4`}
     }
     details[open] > summary::after {
       content: "\\2796";
