@@ -88,7 +88,7 @@ const ConnectWithUs = ({ title, location }) => {
       ]}
     >
       {items.map((i) => (
-        <li key={i.props ? i.props.href : "connect"} tw="inline mx-2">
+        <li key={i.props ? i.props.href : "connect"} tw="inline mr-4">
           {i}
         </li>
       ))}

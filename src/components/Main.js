@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import tw, { css } from "twin.macro";
-import Avatar from "./Avatar";
-import ConnectWithUs from "./ConnectWithUs";
 
 const styles = [
   tw`mx-4 mt-8`,
@@ -279,7 +277,7 @@ const styles = [
   `,
 ];
 
-const Main = ({ body, fieldStaffContact, title, location }) => {
+const Main = ({ body, title }) => {
   const content = body.processed
     .replace(/(src|href)(=['"]?)https?:\/\/www\.dvrpc\.org/g, "$1$2")
     .replace(
@@ -298,24 +296,7 @@ const Main = ({ body, fieldStaffContact, title, location }) => {
           dangerouslySetInnerHTML={{
             __html: content,
           }}
-          css={css`margin-bottom: calc(1rem + 88px)`}
         />
-        <div
-          tw="md:flex justify-between"
-          css={css`
-            background-color: #e0e0e0;
-            position: absolute; left: 0; right: 0;
-            height: 88px;
-            margin-top: -88px;
-            padding-left: 58ch;
-          `}
-        >
-          <Avatar contact={fieldStaffContact} />
-          <ConnectWithUs
-            title={title}
-            location={`https://www.dvrpc.org${location}`}
-          />
-        </div>
       </main>
     </>
   );
@@ -323,9 +304,7 @@ const Main = ({ body, fieldStaffContact, title, location }) => {
 
 Main.propTypes = {
   body: PropTypes.object,
-  fieldStaffContact: PropTypes.object,
   title: PropTypes.string,
-  location: PropTypes.string,
 };
 
 export default Main;
