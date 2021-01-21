@@ -20,10 +20,10 @@ const Infobar = ({ openedTab = null }) => {
               `}
             >
               <div tw="container flex-auto md:flex justify-between">
-                {data.map(({ title }) => (
+                {data.map(({ title, link }) => (
                   <h2
                     css={[
-                      tw`cursor-pointer no-underline flex-auto font-bold text-xl leading-none rounded-lg md:rounded-b-none px-4 py-3 my-2 mx-4 md:mb-0`,
+                      tw`cursor-pointer no-underline flex-auto font-bold text-xl leading-none rounded-lg md:rounded-b-none px-4 py-3 my-2 mx-4 md:mb-0 flex justify-between items-center`,
                       (props) => css`
                         background-color: ${color(props.theme.bgPrimary)
                           .lighten(0.15)
@@ -36,7 +36,20 @@ const Infobar = ({ openedTab = null }) => {
                       setActive(active === selected ? null : selected);
                     }}
                   >
-                    {title}
+                    <span>{title}</span>
+                    {active === title ? (
+                      <small>
+                        <a href={link}>View More</a>
+                      </small>
+                    ) : (
+                      <small
+                        css={css`
+                          visibility: hidden;
+                        `}
+                      >
+                        <a>View More</a>
+                      </small>
+                    )}
                   </h2>
                 ))}
               </div>

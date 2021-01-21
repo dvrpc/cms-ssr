@@ -6,10 +6,30 @@ import Tweet from "../components/Tweet";
 
 const fetchData = async () => {
   const tabs = [
-    { title: "Announcements", key: "anns", render: Announcement },
-    { title: "Products", key: "pubs", render: Product },
-    { title: "Events", key: "events", render: Event },
-    { title: "Twitter", key: "twitter", render: Tweet },
+    {
+      title: "Announcements",
+      key: "anns",
+      link: "http://feeds.feedburner.com/DVRPCAnnouncements",
+      render: Announcement,
+    },
+    {
+      title: "Products",
+      key: "pubs",
+      link: "https://www.dvrpc.org/Products/Search/",
+      render: Product,
+    },
+    {
+      title: "Events",
+      key: "events",
+      link: "https://www.dvrpc.org/Calendar/",
+      render: Event,
+    },
+    {
+      title: "Twitter",
+      key: "twitter",
+      link: "https://www.twitter.com/dvrpc",
+      render: Tweet,
+    },
   ];
   const responses = await Promise.all(
     [
