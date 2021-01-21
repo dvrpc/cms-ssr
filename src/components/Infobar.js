@@ -13,12 +13,11 @@ const Infobar = ({ openedTab = null }) => {
         {(data) => (
           <aside>
             <div
-              css={[
-                tw`flex justify-center text-gray-900`,
-                (props) => css`
-                  background-color: ${props.theme.bgPrimary};
-                `,
-              ]}
+              tw="flex justify-center"
+              css={(props) => css`
+                background-color: ${props.theme.bgPrimary};
+                color: ${props.theme.navColor};
+              `}
             >
               <div tw="container flex-auto md:flex justify-between">
                 {data.map(({ title }) => (

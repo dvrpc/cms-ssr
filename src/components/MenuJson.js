@@ -70,9 +70,10 @@ export default ({ data }) => {
           background: linear-gradient(
             to right,
             ${props.theme.bgPrimary} 0,
-            ${twColor.gray[100]} 65%
+            ${props.theme.bgPrimary} 50%,
+            ${twColor.gray[100]} 100%
           );
-          border: 1px solid ${props.theme.bgPrimary};
+          color: ${props.theme.navColor};
         `}
       >
         {nest(root.links, data)}
@@ -99,7 +100,8 @@ const nest = (nodes, activeNode) => {
                 background: linear-gradient(
                   to right,
                   ${color(props.theme.bgPrimary).lighten(0.15).string()} 0,
-                  ${twColor.gray[100]} 65%
+                  ${color(props.theme.bgPrimary).lighten(0.15).string()} 50%,
+                  ${twColor.gray[100]} 100%
                 );
               `
             }

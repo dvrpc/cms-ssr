@@ -2,13 +2,13 @@ import React from "react";
 import Async from "react-async";
 import { graphql } from "gatsby";
 import { ThemeProvider } from "styled-components/macro";
-import defaultTheme from "../utils/theme";
+import defaultTheme, { createTheme } from "../utils/theme";
 import fetchData from "../utils/fetchData";
 import Layout from "../components/Layout";
 import color from "color";
 
 const App = ({ data, pageContext }) => {
-  const theme = {
+  const theme = createTheme({
     ...defaultTheme,
     h1: data.page.relationships.field_theme.field_primary_color,
     h2: color(data.page.relationships.field_theme.field_primary_color).lighten(
@@ -22,7 +22,7 @@ const App = ({ data, pageContext }) => {
       (i) => `https://cms.dvrpc.org/${i.uri.url}`
     ),
     bgCredits: data.page.relationships.field_theme.field_photo_credits || "",
-  };
+  });
   return (
     <ThemeProvider theme={theme}>
       <Async promiseFn={fetchData}>

@@ -1,3 +1,5 @@
+import colorContrast from "color-contrast";
+
 const defaultTheme = {
   h1: "#0078ae",
   h2: "#2d799a",
@@ -7,4 +9,18 @@ const defaultTheme = {
   bgCredits: "",
 };
 
+const createTheme = (theme, opts = { light: "#fff", dark: "#161e2e" }) => {
+  const light = colorContrast(theme.bgPrimary, opts.light);
+  const dark = colorContrast(theme.bgPrimary, opts.dark);
+  console.log({ light, dark });
+
+  if (light > dark) {
+    theme.navColor = opts.light;
+  } else {
+    theme.navColor = opts.dark;
+  }
+  return theme;
+};
+
 export default defaultTheme;
+export { createTheme };
