@@ -12,12 +12,15 @@ const defaultTheme = {
 const createTheme = (theme, opts = { light: "#fff", dark: "#161e2e" }) => {
   const light = colorContrast(theme.bgPrimary, opts.light);
   const dark = colorContrast(theme.bgPrimary, opts.dark);
-  console.log({ light, dark });
 
   if (light > dark) {
     theme.navColor = opts.light;
   } else {
     theme.navColor = opts.dark;
+  } 
+
+  if (light < 4.5 && dark < 4.5) {
+    console.error("Insufficient color contrast: ", theme);
   }
   return theme;
 };

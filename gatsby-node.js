@@ -54,21 +54,22 @@ exports.createPages = ({ actions, graphql }) => {
 
     // Create pages for each node.
     result.data.allNodePage.edges.forEach(({ node }) => {
-      process.env.GATSBY_ENV === "development" && createPage({
-        path: `/${node.drupal_id}`,
-        component: template,
-        context: {
-          guid: node.drupal_id,
-          regex: `/^${node.path?.alias?.replace(/\//g, "/")}\//i`,
-        },
-      });
+      process.env.GATSBY_ENV === "development" &&
+        createPage({
+          path: `/${node.drupal_id}`,
+          component: template,
+          context: {
+            guid: node.drupal_id,
+            regex: `/^${node.path?.alias?.replace(/\//g, "/")}\/?$/i`,
+          },
+        });
       node.path.alias &&
         createPage({
           path: node.path.alias,
           component: template,
           context: {
             slug: node.path.alias,
-            regex: `/^${node.path.alias.replace(/\//g, "/")}\//i`,
+            regex: `/^${node.path.alias.replace(/\//g, "/")}\/?$/i`,
           },
         });
     });
