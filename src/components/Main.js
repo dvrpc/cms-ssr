@@ -54,14 +54,14 @@ const styles = [
     }
     .fright,
     .alignright {
-      ${tw`float-right m-0 ml-8`}
+      ${tw`float-right mr-0 ml-8`}
     }
     .fleft,
     .alignleft {
-      ${tw`float-left m-0 mr-8`}
+      ${tw`float-left ml-0 mr-8`}
     }
     figure {
-      ${tw`table max-w-sm rounded border border-solid border-gray-400 p-1 bg-white italic`}
+      ${tw`table max-w-sm rounded border border-solid border-gray-400 p-1 mb-4 bg-white italic`}
     }
     figcaption {
       ${tw`p-2 table-caption`}
@@ -69,6 +69,9 @@ const styles = [
     }
     .simple > figure {
       ${tw`rounded-none p-0 bg-transparent border-none`}
+    }
+    .simple figcaption {
+      ${tw`pl-0 pb-0`}
     }
     img {
       ${tw`max-w-full block`}
@@ -279,7 +282,6 @@ const styles = [
 
 const Main = ({ body, title }) => {
   const content = body.processed
-    .replace(/(src|href)(=['"]?)https?:\/\/www\.dvrpc\.org/g, "$1$2")
     .replace(
       /\/sites\/default\/files\//g,
       "https://cms.dvrpc.org/sites/default/files/"
