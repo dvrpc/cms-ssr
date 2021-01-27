@@ -64,7 +64,7 @@ const styles = [
       ${tw`table max-w-sm rounded border border-solid border-gray-400 p-1 mb-4 bg-white italic`}
     }
     figcaption {
-      ${tw`p-2 table-caption`}
+      ${tw`p-2 pt-1 table-caption text-sm`}
       caption-side: bottom;
     }
     .simple > figure {
@@ -87,6 +87,9 @@ const styles = [
     }
     .btn-primary {
       ${tw`text-white bg-blue-700 border-blue-700 hover:bg-blue-800`}
+    }
+    .btn a {
+      ${tw`no-underline`}
     }
     [disabled],
     .disabled {
@@ -281,11 +284,10 @@ const styles = [
 ];
 
 const Main = ({ body, title }) => {
-  const content = body.processed
-    .replace(
-      /\/sites\/default\/files\//g,
-      "https://cms.dvrpc.org/sites/default/files/"
-    );
+  const content = body.processed.replace(
+    /\/sites\/default\/files\//g,
+    "https://cms.dvrpc.org/sites/default/files/"
+  );
   return (
     <>
       <Helmet titleTemplate="%s | DVRPC">
