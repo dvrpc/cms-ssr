@@ -99,8 +99,8 @@ const nest = (nodes, activeNode) => {
               css`
                 background: linear-gradient(
                   to right,
-                  ${color(props.theme.bgNav).lighten(0.15).string()} 0,
-                  ${color(props.theme.bgNav).lighten(0.15).string()} 50%,
+                  ${color(props.theme.bgNav).lighten(0.05).string()} 0,
+                  ${color(props.theme.bgNav).lighten(0.05).string()} 50%,
                   ${twColor.gray[100]} 100%
                 );
               `
