@@ -84,9 +84,18 @@ const styles = [
     }
     .btn {
       ${tw`inline-block no-underline text-center align-middle border-solid border-0 border-transparent py-2 px-3 rounded transition duration-150 ease-in-out`}
+
+      &:hover {
+        background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.1)
+        );
+      }
     }
     .btn-primary {
-      ${tw`text-white bg-blue-700 border-blue-700 hover:bg-blue-800`}
+      background-color: #0078ae;
+      ${tw`text-white`}
     }
     .btn a {
       ${tw`no-underline`}

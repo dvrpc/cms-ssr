@@ -10,16 +10,28 @@ const defaultTheme = {
 };
 
 const createTheme = (theme, opts = { light: "#fff", dark: "#161e2e" }) => {
-  const light = colorContrast(theme.bgPrimary, opts.light);
-  const dark = colorContrast(theme.bgPrimary, opts.dark);
+  const lightInfo = colorContrast(theme.bgPrimary, opts.light);
+  const darkInfo = colorContrast(theme.bgPrimary, opts.dark);
 
-  if (light > dark) {
+  if (lightInfo > darkInfo) {
+    theme.infoColor = opts.light;
+  } else {
+    theme.infoColor = opts.dark;
+  }
+
+  const lightNav = colorContrast(theme.bgNav, opts.light);
+  const darkNav = colorContrast(theme.bgNav, opts.dark);
+
+  if (lightNav > darkNav) {
     theme.navColor = opts.light;
   } else {
     theme.navColor = opts.dark;
-  } 
+  }
 
-  if (light < 4.5 && dark < 4.5) {
+  if (
+    (lightInfo < 4.5 && darkInfo < 4.5) ||
+    (lightNav < 4.5 && darkNav < 4.5)
+  ) {
     console.error("Insufficient color contrast: ", theme);
   }
   return theme;

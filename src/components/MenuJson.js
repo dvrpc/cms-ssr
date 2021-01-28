@@ -69,8 +69,8 @@ export default ({ data }) => {
         css={(props) => css`
           background: linear-gradient(
             to right,
-            ${props.theme.bgPrimary} 0,
-            ${props.theme.bgPrimary} 50%,
+            ${props.theme.bgNav} 0,
+            ${props.theme.bgNav} 50%,
             ${twColor.gray[100]} 100%
           );
           color: ${props.theme.navColor};
@@ -99,8 +99,8 @@ const nest = (nodes, activeNode) => {
               css`
                 background: linear-gradient(
                   to right,
-                  ${color(props.theme.bgPrimary).lighten(0.15).string()} 0,
-                  ${color(props.theme.bgPrimary).lighten(0.15).string()} 50%,
+                  ${color(props.theme.bgNav).lighten(0.15).string()} 0,
+                  ${color(props.theme.bgNav).lighten(0.15).string()} 50%,
                   ${twColor.gray[100]} 100%
                 );
               `

@@ -33,6 +33,7 @@ exports.createPages = ({ actions, graphql }) => {
               field_theme {
                 field_primary_color
                 field_secondary_color
+                field_third_color
                 field_photo_credits
                 relationships {
                   field_banner {

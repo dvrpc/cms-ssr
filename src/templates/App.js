@@ -18,6 +18,7 @@ const App = ({ data, pageContext }) => {
       0.2
     ),
     bgPrimary: data.page.relationships.field_theme.field_secondary_color,
+    bgNav: data.page.relationships.field_theme.field_third_color || data.page.relationships.field_theme.field_primary_color,
     bgImage: data.page.relationships.field_theme.relationships.field_banner.map(
       (i) => `https://cms.dvrpc.org/${i.uri.url}`
     ),
@@ -67,6 +68,7 @@ export const query = graphql`
         field_theme {
           field_primary_color
           field_secondary_color
+          field_third_color
           field_photo_credits
           relationships {
             field_banner {

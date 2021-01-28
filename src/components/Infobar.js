@@ -16,7 +16,7 @@ const Infobar = ({ openedTab = null }) => {
               tw="flex justify-center"
               css={(props) => css`
                 background-color: ${props.theme.bgPrimary};
-                color: ${props.theme.navColor};
+                color: ${props.theme.infoColor};
               `}
             >
               <div tw="container flex-auto md:flex justify-between">
