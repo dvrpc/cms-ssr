@@ -79,6 +79,9 @@ const styles = [
     .alignfull {
       ${tw`max-w-full mx-auto`}
     }
+    .text-center {
+      ${tw`text-center`}
+    }
     .sm {
       ${tw`text-sm text-red-700`}
     }
