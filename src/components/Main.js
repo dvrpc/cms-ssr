@@ -85,7 +85,7 @@ const styles = [
     .sm {
       ${tw`text-sm text-red-700`}
     }
-    .btn {
+    .btn a {
       ${tw`inline-block no-underline text-center align-middle border-solid border-0 border-transparent py-2 px-3 rounded transition duration-150 ease-in-out`}
 
       &:hover {
@@ -96,12 +96,9 @@ const styles = [
         );
       }
     }
-    .btn-primary {
+    .btn-primary a {
       background-color: #0078ae;
       ${tw`text-white`}
-    }
-    .btn a {
-      ${tw`no-underline`}
     }
     [disabled],
     .disabled {
