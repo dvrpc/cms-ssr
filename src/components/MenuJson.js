@@ -1,6 +1,5 @@
 import React from "react";
 import tw, { css } from "twin.macro";
-import color from "color";
 import twColor from "@tailwindcss/ui/colors";
 
 const rootParent = {
@@ -70,44 +69,47 @@ export default ({ data }) => {
           background: linear-gradient(
             to right,
             ${props.theme.bgNav} 0,
-            ${props.theme.bgNav} 50%,
-            ${twColor.gray[100]} 100%
+            ${props.theme.bgNav} 0.5rem,
+            ${twColor.gray[100]} 0.5rem
           );
-          color: ${props.theme.navColor};
         `}
       >
-        {nest(root.links, data)}
+        {nest(root.links, data, 0)}
       </ul>
     </nav>
   );
 };
 
-const nest = (nodes, activeNode) => {
+const nest = (nodes, activeNode, level) => {
   return nodes.map((node) => {
     const isActive = node.href === activeNode.href;
     return (
       <li key={node.href} tw="-mb-px">
         <a
-          css={[tw`underline block pl-6 pr-3 py-2`, isActive && tw`font-bold`]}
+          css={[
+            css`
+              padding-left: ${1.5 + level}rem;
+            `,
+            tw`underline block pr-3 py-2`,
+            isActive && tw`font-bold`,
+          ]}
           href={node.href}
         >
           {node.link}
         </a>
         {node.links && (
           <ul
-            css={(props) =>
-              css`
-                background: linear-gradient(
-                  to right,
-                  ${color(props.theme.bgNav).lighten(0.05).string()} 0,
-                  ${color(props.theme.bgNav).lighten(0.05).string()} 50%,
-                  ${twColor.gray[100]} 100%
-                );
-              `
-            }
-            tw="pl-3 pt-2 pb-3 mt-1"
+            css={css`
+              background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.15) 0,
+                rgba(255, 255, 255, 0.15) 0.5rem,
+                ${twColor.gray[100]} 0.5rem
+              );
+            `}
+            tw="pt-2 pb-3 mt-1"
           >
-            {nest(node.links, activeNode)}
+            {nest(node.links, activeNode, level + 1)}
           </ul>
         )}
       </li>
