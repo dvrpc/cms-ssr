@@ -4,11 +4,11 @@ import Async from "react-async";
 import Helmet from "react-helmet";
 import { ThemeProvider } from "styled-components/macro";
 import color from "color";
-import Header from "../components/Header";
+import LogoBar from "../components/LogoBar";
 import Menu from "../components/MenuJson";
 import Footer from "../components/Footer";
 import favicon from "../images/favicon.ico";
-import defaultTheme from "../utils/theme";
+import defaultTheme, { createTheme } from "../utils/theme";
 import fetchData from "../utils/fetchData";
 import Infobar from "../components/Infobar";
 
@@ -41,8 +41,9 @@ const HomePage = () => {
       ],
     },
   ];
+  const theme = createTheme(themes[Math.floor(new Date().getHours() / 7)]);
   return (
-    <ThemeProvider theme={themes[Math.floor(new Date().getHours() / 7)]}>
+    <ThemeProvider theme={theme}>
       <Async promiseFn={fetchData}>
         <Helmet>
           <html lang="en" />
@@ -53,21 +54,34 @@ const HomePage = () => {
             content="The Delaware Valley Regional Planning Commission is the federally designated Metropolitan Planning Organization for nine counties: Bucks, Chester, Delaware, Montgomery, and Philadelphia, Pennsylvania; and Burlington, Camden, Gloucester, and Mercer, New Jersey."
           />
         </Helmet>
-        <Header>
-          <Async.Fulfilled>
-            {(data) =>
-              data.alert.Text.length && (
-                <div tw="container flex justify-center">
-                  <div
-                    tw="bg-red-700 text-white p-6 mb-8"
-                    dangerouslySetInnerHTML={{ __html: data.alert.Text }}
-                  />
-                </div>
-              )
-            }
-          </Async.Fulfilled>
+        <LogoBar />
+        <Async.Fulfilled>
+          {(data) =>
+            data.alert.Text.length && (
+              <div tw="bg-red-700 text-white">
+                <div
+                  tw="mx-auto container p-6"
+                  dangerouslySetInnerHTML={{ __html: data.alert.Text }}
+                />
+              </div>
+            )
+          }
+        </Async.Fulfilled>
+        <div
+          tw="w-full bg-bottom flex flex-col items-center justify-center p-8 pt-16"
+          css={() =>
+            css`
+              background-image: url(${theme.bgImage[1]}),
+                url(${theme.bgImage[0]});
+              background-size: 1600px 400px, cover;
+              min-height: 24rem;
+            `
+          }
+        >
           <div tw="flex flex-col-reverse md:flex-row container m-auto justify-center items-stretch">
-            <Menu data={null} />
+            <div tw="bg-white">
+              <Menu data={null} />
+            </div>
             <article
               tw="bg-white p-4 my-8 md:my-0 md:ml-12"
               css={css`
@@ -120,7 +134,7 @@ const HomePage = () => {
               </p>
             </article>
           </div>
-        </Header>
+        </div>
         <Infobar openedTab="Announcements" />
         <Footer />
       </Async>

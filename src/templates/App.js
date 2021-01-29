@@ -15,14 +15,14 @@ const App = ({ data, pageContext }) => {
       0.1
     ),
     h3: color(data.page.relationships.field_theme.field_primary_color).lighten(
-      0.2
+      0.1
     ),
     bgPrimary: data.page.relationships.field_theme.field_secondary_color,
     bgNav:
       data.page.relationships.field_theme.field_third_color ||
       data.page.relationships.field_theme.field_secondary_color,
     bgImage: data.page.relationships.field_theme.relationships.field_banner.map(
-      (i) => `https://cms.dvrpc.org/${i.uri.url}`
+      (i) => `https://cms.dvrpc.org${i.uri.url}`
     ),
     bgCredits: data.page.relationships.field_theme.field_photo_credits || "",
   });
