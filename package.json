@@ -40,7 +40,7 @@
     "prettier": "^2.2.0"
   },
   "scripts": {
-    "build": "gatsby clean && gatsby build",
+    "build": "gatsby clean && gatsby build && rm -rv dist/* && cp -rv public/* dist",
     "develop": "gatsby clean && gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run build && npm run serve",
