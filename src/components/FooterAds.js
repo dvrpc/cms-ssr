@@ -23,11 +23,7 @@ const FooterAds = () => {
             }
           `}
         >
-          <a
-            href={i.href}
-            key={i.href}
-            tw="p-4 w-52 h-40 flex items-center"
-          >
+          <a href={i.href} key={i.href} tw="p-4 w-52 h-40 flex items-center">
             <img src={i.src} alt={i.label} css={i.style} />
           </a>
         </div>

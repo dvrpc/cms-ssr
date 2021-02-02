@@ -4,7 +4,7 @@ import tw from "twin.macro";
 
 const Avatar = ({ contact }) => {
   return (
-    <footer tw="py-4 clearfix">
+    <footer tw="py-4 flow-root">
       <a tw="block" href={`mailto:${contact.mail}`}>
         {contact.field_display_name}
       </a>

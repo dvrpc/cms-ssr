@@ -1,4 +1,4 @@
-import colorContrast from "color-contrast";
+import color from "color";
 
 const defaultTheme = {
   h1: "#0078ae",
@@ -10,8 +10,8 @@ const defaultTheme = {
 };
 
 const createTheme = (theme, opts = { light: "#fff", dark: "#161e2e" }) => {
-  const lightInfo = colorContrast(theme.bgPrimary, opts.light);
-  const darkInfo = colorContrast(theme.bgPrimary, opts.dark);
+  const lightInfo = color(theme.bgPrimary).contrast(color(opts.light));
+  const darkInfo = color(theme.bgPrimary).contrast(color(opts.dark));
 
   if (lightInfo > darkInfo) {
     theme.infoColor = opts.light;

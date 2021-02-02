@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
-import { createGlobalStyle } from "styled-components/macro";
+import GlobalStyles from "./GlobalStyles";
 import tw, { css } from "twin.macro";
 import Menu from "./MenuJson";
 import Header from "./Header";
@@ -11,17 +11,6 @@ import Avatar from "./Avatar";
 import ConnectWithUs from "./ConnectWithUs";
 import Footer from "./Footer";
 import favicon from "../images/favicon.ico";
-
-const GlobalStyles = createGlobalStyle`
-  body {
-    font-family: Public Sans,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;
-    ${tw`bg-gray-100 text-gray-900 m-0 leading-normal`}
-  }
-  a {
-    color: inherit;
-    text-decoration: underline;
-  }
-`;
 
 const Layout = ({ location, title, body, staffContact, menu }) => {
   return (

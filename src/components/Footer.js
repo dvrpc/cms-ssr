@@ -6,7 +6,14 @@ import FooterAds from "./FooterAds";
 const Footer = () => {
   return (
     <>
-      <footer tw="flex justify-center bg-white" css={css`a { text-decoration:underline;}`}>
+      <footer
+        tw="flex justify-center bg-white"
+        css={css`
+          a {
+            text-decoration: underline;
+          }
+        `}
+      >
         <div tw="container">
           <FooterAds />
         </div>

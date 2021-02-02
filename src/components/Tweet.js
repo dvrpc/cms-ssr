@@ -165,40 +165,42 @@ const Tweet = (props) => {
               />,
             ]}
 
-        {props.extended_entities?.media?.length && (
-          <a
-            href={`https://www.twitter.com/${props.user.screen_name}/status/${props.id_str}`}
-            rel="noopener"
-            tw="block border border-solid border-gray-300 rounded-lg flex overflow-hidden h-40"
-            css={css`
-              div:first-of-type {
-                ${tw`rounded-l-lg`}
-              }
+        {props.extended_entities &&
+          props.extended_entities.media &&
+          props.extended_entities.media.length && (
+            <a
+              href={`https://www.twitter.com/${props.user.screen_name}/status/${props.id_str}`}
+              rel="noopener"
+              tw="block border border-solid border-gray-300 rounded-lg flex overflow-hidden h-40"
+              css={css`
+                div:first-of-type {
+                  ${tw`rounded-l-lg`}
+                }
 
-              div:last-of-type {
-                ${tw`rounded-r-lg`}
-              }
-            `}
-          >
-            {props.extended_entities.media.map((media) => (
-              <div
-                key={media.media_url_https}
-                tw="border-solid overflow-hidden bg-white"
-                css={css`
-                  width: ${(100 / props.extended_entities.media.length).toFixed(
-                    2
-                  )}%;
-                `}
-              >
-                <img
-                  alt="twitter image"
-                  src={`${media.media_url_https}?name=small`}
-                  tw="min-h-full max-w-full"
-                />
-              </div>
-            ))}
-          </a>
-        )}
+                div:last-of-type {
+                  ${tw`rounded-r-lg`}
+                }
+              `}
+            >
+              {props.extended_entities.media.map((media) => (
+                <div
+                  key={media.media_url_https}
+                  tw="border-solid overflow-hidden bg-white"
+                  css={css`
+                    width: ${(
+                      100 / props.extended_entities.media.length
+                    ).toFixed(2)}%;
+                  `}
+                >
+                  <img
+                    alt="twitter image"
+                    src={`${media.media_url_https}?name=small`}
+                    tw="min-h-full max-w-full"
+                  />
+                </div>
+              ))}
+            </a>
+          )}
         {props.quoted_status && (
           <Tweet embedded={true} {...props.quoted_status} />
         )}
