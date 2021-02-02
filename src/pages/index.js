@@ -135,43 +135,7 @@ const HomePage = () => {
             </article>
           </div>
         </div>
-        <Async.Fulfilled>
-          {(data) => (
-            <aside>
-              <div
-                css={[
-                  tw`flex flex-wrap justify-center text-gray-900`,
-                  (props) =>
-                    css`
-                      background-color: ${color(props.theme.bgPrimary)
-                        .lighten(0.15)
-                        .string()};
-                    `,
-                ]}
-              >
-                {data.map(({ title, components }, index) => (
-                  <div
-                    key={title}
-                    tw="flex flex-wrap items-stretch px-4 pb-4"
-                    css={(props) =>
-                      css`
-                        border-color: ${color(props.theme.bgPrimary)};
-                        background-color: ${color(props.theme.bgPrimary)
-                          .darken(0.12 * (data.length - index))
-                          .string()};
-                      `
-                    }
-                  >
-                    <h3 tw="text-xl font-bold flex uppercase items-center mx-8">
-                      {title}
-                    </h3>
-                    {components}
-                  </div>
-                ))}
-              </div>
-            </aside>
-          )}
-        </Async.Fulfilled>
+        <Infobar openedTab="Announcements" />
         <Footer />
       </Async>
     </ThemeProvider>
