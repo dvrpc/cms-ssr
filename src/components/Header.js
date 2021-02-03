@@ -22,15 +22,16 @@ const Header = ({ children }) => {
         }
       >
         {children}
-        <div
-          tw="self-end absolute right-0 text-black font-bold italic pr-2"
-          css={css`
-            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
-              1px 1px 0 #fff;
-          `}
-        >
-          {theme.bgCredits}
-        </div>
+      </div>
+      <div
+        tw="absolute right-0 text-black font-bold italic pr-2"
+        css={css`
+          text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+            1px 1px 0 #fff;
+          margin-top: -1.5rem;
+        `}
+      >
+        {theme.bgCredits}
       </div>
     </header>
   );
