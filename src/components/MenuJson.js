@@ -69,8 +69,7 @@ export default ({ data }) => {
           background: linear-gradient(
             to right,
             ${props.theme.bgNav} 0,
-            ${props.theme.bgNav} 0.5rem,
-            ${twColor.gray[100]} 0.5rem
+            ${twColor.gray[100]} 65%
           );
         `}
       >
@@ -103,8 +102,7 @@ const nest = (nodes, activeNode, level) => {
               background: linear-gradient(
                 to right,
                 rgba(255, 255, 255, 0.15) 0,
-                rgba(255, 255, 255, 0.15) 0.5rem,
-                ${twColor.gray[100]} 0.5rem
+                ${twColor.gray[100]} 65%
               );
             `}
             tw="pt-2 pb-3 mt-1"
