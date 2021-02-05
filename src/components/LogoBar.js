@@ -3,7 +3,7 @@ import tw, { css } from "twin.macro";
 import SocialMedia from "./SocialMedia";
 
 const LogoBar = () => (
-  <div tw="container md:h-32 md:px-8 xl:p-0 mx-auto flex flex-wrap sm:flex-nowrap items-start justify-center sm:justify-between">
+  <div tw="container md:h-32 md:px-8 xl:p-0 mx-auto flex flex-wrap items-start justify-center sm:justify-between">
     <a href="/" tw="block self-center">
       <img
         src="https://www2.dvrpc.org/img/gatsby/5546_DVRPC_Primary.png"
@@ -14,10 +14,10 @@ const LogoBar = () => (
         `}
       />
     </a>
-    <div tw="flex flex-col items-end">
+    <div tw="flex flex-col items-center md:items-end">
       <SocialMedia />
       <form
-        tw="sm:w-auto w-full relative bg-white rounded"
+        tw="sm:w-auto w-full mb-4 relative bg-white rounded"
         action="https://www2.dvrpc.org/Search/"
       >
         <div tw="w-16 h-full flex absolute items-center justify-center pointer-events-none">

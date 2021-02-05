@@ -7,6 +7,7 @@ const FooterAds = () => {
     <div tw="w-full flex flex-wrap justify-center md:justify-between items-start">
       {ads.map((i) => (
         <div
+          key={i.href}
           tw="flex-1 pr-px flex justify-center"
           css={css`
             &:not(:last-of-type) {
@@ -23,7 +24,7 @@ const FooterAds = () => {
             }
           `}
         >
-          <a href={i.href} key={i.href} tw="p-4 w-52 h-40 flex items-center">
+          <a href={i.href} tw="p-4 w-52 h-40 flex items-center">
             <img src={i.src} alt={i.label} css={i.style} />
           </a>
         </div>

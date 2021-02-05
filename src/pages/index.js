@@ -3,7 +3,7 @@ import tw, { css } from "twin.macro";
 import Async from "react-async";
 import Helmet from "react-helmet";
 import { ThemeProvider } from "styled-components/macro";
-import color from "color";
+import GlobalStyles from "../components/GlobalStyles";
 import LogoBar from "../components/LogoBar";
 import Menu from "../components/MenuJson";
 import Footer from "../components/Footer";
@@ -44,6 +44,7 @@ const HomePage = () => {
   const theme = createTheme(themes[Math.floor(new Date().getHours() / 7)]);
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyles />
       <Async promiseFn={fetchData}>
         <Helmet>
           <html lang="en" />
@@ -54,19 +55,21 @@ const HomePage = () => {
             content="The Delaware Valley Regional Planning Commission is the federally designated Metropolitan Planning Organization for nine counties: Bucks, Chester, Delaware, Montgomery, and Philadelphia, Pennsylvania; and Burlington, Camden, Gloucester, and Mercer, New Jersey."
           />
         </Helmet>
-        <LogoBar />
-        <Async.Fulfilled>
-          {(data) =>
-            data.alert.Text.length && (
-              <div tw="bg-red-700 text-white">
-                <div
-                  tw="mx-auto container p-6"
-                  dangerouslySetInnerHTML={{ __html: data.alert.Text }}
-                />
-              </div>
-            )
-          }
-        </Async.Fulfilled>
+        <header tw="bg-white">
+          <LogoBar />
+          <Async.Fulfilled>
+            {(data) =>
+              data.alert.Text.length && (
+                <div tw="bg-red-700 text-white">
+                  <div
+                    tw="mx-auto container p-6 xl:px-0"
+                    dangerouslySetInnerHTML={{ __html: data.alert.Text }}
+                  />
+                </div>
+              )
+            }
+          </Async.Fulfilled>
+        </header>
         <div
           tw="w-full bg-bottom flex flex-col items-center justify-center p-8 pt-16"
           css={() =>
@@ -85,7 +88,7 @@ const HomePage = () => {
             <article
               tw="bg-white p-4 my-8 md:my-0 md:ml-12"
               css={css`
-                width: 80ch;
+                max-width: 80ch;
 
                 p {
                   ${tw`mb-4`}

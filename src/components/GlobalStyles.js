@@ -13,5 +13,5 @@ const CustomGlobalStyles = createGlobalStyle`
 `;
 
 export default function GlobalStylesComponent() {
-  return [<GlobalStyles />, <CustomGlobalStyles />];
+  return [<GlobalStyles key={0} />, <CustomGlobalStyles key={1} />];
 }

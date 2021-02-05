@@ -89,7 +89,7 @@ const nest = (nodes, activeNode, level) => {
             css`
               padding-left: ${1.5 + level}rem;
             `,
-            tw`underline block pr-3 py-2`,
+            tw`underline block pr-6 py-2`,
             isActive && tw`font-bold`,
           ]}
           href={node.href}
