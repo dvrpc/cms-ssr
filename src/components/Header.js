@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Async from "react-async";
 import tw, { css } from "twin.macro";
 import { ThemeContext } from "styled-components";
 import LogoBar from "./LogoBar";

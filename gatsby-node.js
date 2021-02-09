@@ -84,40 +84,31 @@ exports.onCreateNode = async ({
   createNodeId,
   createContentDigest,
 }) => {
-  if (node.name !== "nav") return;
+  if (node.internal.type !== "nav") return;
 
-  const iterateTree = async (nodes, parent) => {
-    const generate = async (node) => {
-      const child = {
-        ...node,
-        id: createNodeId(node.href),
-        children: [],
-        parent: (parent && parent.id) || null,
-        internal: {
-          type: "NavItem",
-          contentDigest: createContentDigest(node),
-          description: node.href,
-        },
-      };
-      await createNode(child);
-      parent && createParentChildLink({ parent, child });
-      child.links && iterateTree(child.links, child);
+  const iterateTree = async (node, parent) => {
+    const child = {
+      ...node,
+      id: createNodeId(node.href),
+      children: [],
+      parent: (parent && parent.id) || null,
+      internal: {
+        type: "NavItem",
+        contentDigest: createContentDigest(node),
+        description: node.href,
+      },
     };
-
-    for (const node of nodes) {
-      await generate(node);
+    await createNode(child);
+    parent && createParentChildLink({ parent, child });
+    if (child.links) {
+      for (const grand of child.links) iterateTree(grand, child);
     }
   };
 
   try {
-    console.time("Loading navigation");
     const nodeContent = await loadNodeContent(node);
     const arr = JSON.parse(nodeContent);
-    console.timeEnd("Loading navigation");
-    console.time("Building navigation");
     await iterateTree(arr, null);
-    console.timeEnd("Building navigation");
-    console.log("success Navigation built");
   } catch (error) {
     console.error(error);
   }
@@ -127,11 +118,11 @@ exports.onCreateNode = async ({
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   const typeDefs = `
-    type NavLinks implements Node {
+    type nav implements Node {
       style: String
       class: String
     }
-    type NavLinksLinks implements Node {
+    type NavItem implements Node {
       style: String
       class: String
     }

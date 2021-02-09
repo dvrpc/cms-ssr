@@ -41,7 +41,9 @@ const fetchData = async () => {
   const data = await responses[0].json();
   data.twitter = await responses[1].json();
   initialData.alert = data.alert;
-  initialData.forEach((tab) => (tab.components = data[tab.key].map(tab.render)));
+  initialData.forEach(
+    (tab) => (tab.components = data[tab.key].map(tab.render))
+  );
   return Promise.resolve(initialData);
 };
 

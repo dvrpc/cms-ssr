@@ -59,13 +59,6 @@ export const query = graphql`
           mail
           field_display_name
           field_title
-          relationships {
-            user_picture {
-              uri {
-                value
-              }
-            }
-          }
         }
         field_theme {
           field_primary_color

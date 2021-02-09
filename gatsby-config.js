@@ -7,17 +7,26 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-transformer-json`,
-      options: {
-        typeName: "Nav",
-      },
-    },
-    {
-      resolve: `gatsby-source-remote-file`,
+      resolve: "gatsby-source-custom-api",
       options: {
         url: "https://www2.dvrpc.org/js/homepage/navigation.min.json", //your remote url
-        name: "nav",
-        ext: ".json",
+        rootKey: "nav",
+        schemas: {
+          NavItem: `
+            link: String!
+            href: String!
+            style: String
+            class: String
+            links: [NavItem]
+          `,
+          nav: `
+            link: String!
+            href: String!
+            style: String
+            class: String
+            links: [NavItem]
+          `,
+        },
       },
     },
     {
@@ -45,29 +54,40 @@ module.exports = {
       resolve: `gatsby-source-drupal`,
       options: {
         baseUrl: `https://cms.dvrpc.org/`,
+        basicAuth: {
+          username: process.env.DRUPAL_USER,
+          password: process.env.DRUPAL_PASS,
+        },
+        disallowedLinkTypes: [`contact_message--personal`, `view--view`],
         filters: {
           "node--page":
-            process.env.GATSBY_ENV === "development"
-              ? ""
-              : "filter[status][value]=1",
+            process.env.GATSBY_ENV === `development`
+              ? ``
+              : `filter[status][value]=1`,
         },
       },
     },
-    `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: { displayName: process.env.NODE_ENV !== "production" },
+    },
     `gatsby-plugin-remove-trailing-slashes`,
     {
       resolve: `gatsby-plugin-web-font-loader`,
       options: {
         google: {
-          families: ["Public Sans:400,400i,700,700i:latin&display=swap"],
+          families: [`Public Sans:400,400i,700,700i:latin&display=swap`],
         },
       },
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-9825778-1",
+        trackingId: `UA-9825778-1`,
       },
     },
+    `gatsby-plugin-purgecss`,
+    `gatsby-plugin-minify-classnames`,
+    `gatsby-plugin-minify`,
   ],
 };
