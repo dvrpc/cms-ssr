@@ -13,10 +13,10 @@ const FooterAds = () => {
             &:not(:last-of-type) {
               background: linear-gradient(
                 to bottom,
-                transparent 30%,
-                rgb(209, 213, 219) 30%,
-                rgb(209, 213, 219) 70%,
-                transparent 70%
+                transparent 1rem,
+                rgb(209, 213, 219) 1rem,
+                rgb(209, 213, 219) calc(100% - 1rem),
+                transparent calc(100% - 1rem)
               );
               background-size: 1px 100%;
               background-position: top right;
@@ -24,7 +24,11 @@ const FooterAds = () => {
             }
           `}
         >
-          <a href={i.href} tw="p-4 w-52 h-40 flex items-center">
+          <a
+            href={i.href}
+            target={i.new_window ? "_blank" : "_self"}
+            tw="p-4 w-52 h-40 flex items-center"
+          >
             <img src={i.src} alt={i.label} css={i.style} />
           </a>
         </div>

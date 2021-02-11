@@ -46,6 +46,19 @@ const styles = [
     ul {
       ${tw`pl-10 my-4 list-disc`}
     }
+    table {
+      ${tw`not-italic`}
+    }
+    thead {
+      ${tw`align-bottom`}
+    }
+    tbody {
+      ${tw`border-t-2 border-b-2 border-gray-300`}
+    }
+    th,
+    td {
+      ${tw`border-b border-gray-300 px-2 py-1`}
+    }
     .list-group {
       ${tw`pl-0`}
     }

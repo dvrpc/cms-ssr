@@ -4,6 +4,7 @@ export default [
     src: "https://www.dvrpc.org/asp/ads/aqp/default.ashx",
     label: "Air Quality Partnership",
     style: "width: 190px;",
+    new_window: true,
   },
   {
     href: "/COVID19Resources/",
@@ -16,6 +17,7 @@ export default [
     href: "https://indd.adobe.com/view/39a8d5db-23df-4324-9099-4562dd8ed59b",
     label: "Dispatches from Alternate Futures",
     style: "width: 200px;",
+    new_window: true,
   },
   {
     href: "/Connections2045/MIT/",
