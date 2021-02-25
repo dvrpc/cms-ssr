@@ -1,3 +1,5 @@
+require("dotenv").config({ path: `.env` });
+
 module.exports = {
   siteMetadata: {
     title: `Delaware Valley Regional Planning Commission`,
@@ -69,7 +71,10 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-styled-components`,
-      options: { displayName: process.env.NODE_ENV !== "production" },
+      options: {
+        displayName: process.env.NODE_ENV !== "production",
+        pure: true,
+      },
     },
     `gatsby-plugin-remove-trailing-slashes`,
     {
@@ -86,8 +91,5 @@ module.exports = {
         trackingId: `UA-9825778-1`,
       },
     },
-    `gatsby-plugin-purgecss`,
-    `gatsby-plugin-minify-classnames`,
-    `gatsby-plugin-minify`,
   ],
 };
