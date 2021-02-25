@@ -4,7 +4,7 @@ import { createGlobalStyle } from "styled-components";
 
 const CustomGlobalStyles = createGlobalStyle`
   body {
-    ${tw`font-sans bg-gray-100 text-gray-900 m-0 leading-normal`}
+    ${tw`font-sans bg-white text-gray-900 m-0 leading-normal`}
   }
   a {
     color: inherit;

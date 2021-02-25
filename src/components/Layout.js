@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import GlobalStyles from "./GlobalStyles";
 import tw, { css } from "twin.macro";
-import Menu from "./MenuJson";
+import Menu, { RootNav } from "./MenuJson";
 import Header from "./Header";
-import Infobar from "./Infobar";
 import Main from "./Main";
 import Avatar from "./Avatar";
 import ConnectWithUs from "./ConnectWithUs";
@@ -21,17 +20,27 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
       </Helmet>
       <GlobalStyles />
       <Header />
-      <Infobar />
-      <div tw="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-4">
+      <nav
+        tw="flex justify-center"
+        css={(props) => css`
+          background-color: ${props.theme.bgPrimary};
+          color: ${props.theme.infoColor};
+        `}
+      >
+        <div tw="container flex-auto md:flex py-4 divide-x divide-gray-900">
+          <RootNav data={menu} />
+        </div>
+      </nav>
+      <div tw="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12">
         <div tw="md:order-2 md:col-span-2">
           <Main body={body} title={title} />
         </div>
-        <div tw="md:order-1 md:col-span-1 md:my-10">
+        <div tw="md:order-1 md:col-span-1 md:mt-20">
           <Menu data={menu} />
         </div>
       </div>
       <div tw="bg-gray-300">
-        <div tw="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-4">
+        <div tw="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12">
           <div tw="md:col-span-2 md:col-start-2 px-4 md:flex justify-between items-center">
             <Avatar contact={staffContact} />
             <ConnectWithUs

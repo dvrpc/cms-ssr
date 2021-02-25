@@ -110,6 +110,48 @@ export const query = graphql`
                 style
                 class
               }
+              parent {
+                ... on NavItem {
+                  href
+                  link
+                  style
+                  class
+                  links {
+                    href
+                    link
+                    style
+                    class
+                  }
+                  parent {
+                    ... on NavItem {
+                      href
+                      link
+                      style
+                      class
+                      links {
+                        href
+                        link
+                        style
+                        class
+                      }
+                      parent {
+                        ... on NavItem {
+                          href
+                          link
+                          style
+                          class
+                          links {
+                            href
+                            link
+                            style
+                            class
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
