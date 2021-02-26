@@ -5,6 +5,7 @@ import GlobalStyles from "./GlobalStyles";
 import tw, { css } from "twin.macro";
 import Menu, { RootNav } from "./MenuJson";
 import Header from "./Header";
+import Icon from "./Icon";
 import Main from "./Main";
 import Avatar from "./Avatar";
 import ConnectWithUs from "./ConnectWithUs";
@@ -35,8 +36,54 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
         <div tw="md:order-2 md:col-span-2">
           <Main body={body} title={title} />
         </div>
-        <div tw="md:order-1 md:col-span-1 md:mt-20">
+        <div tw="md:order-1 md:col-span-1 md:mt-20 flex flex-col items-end">
           <Menu data={menu} />
+          <aside
+            css={css`
+              border-top-width: 2px;
+              border-image: linear-gradient(to left, #aaa, #fff) 1;
+            `}
+            tw="mt-12 pt-4"
+          >
+            <div tw="flex flex-1 gap-4">
+              <a href="https://www.dvrpc.org/Calendar/" tw="block">
+                <Icon
+                  css={css`
+                    background-position: -296.6px 0;
+                    width: 37px;
+                    height: 36px;
+                    display: block;
+                    margin: 0 auto 0.25rem;
+                  `}
+                />
+                Events
+              </a>
+              <a href="https://www.dvrpc.org/News/" tw="block">
+                <Icon
+                  css={css`
+                    background-position: -259.6px 0;
+                    width: 37px;
+                    height: 36px;
+                    display: block;
+                    margin: 0 auto 0.25rem;
+                  `}
+                />
+                News
+              </a>
+              <a href="https://www.dvrpc.org/Data/" tw="block">
+                <Icon
+                  css={css`
+                    background-position: -223.2px 0;
+                    width: 36.5px;
+                    height: 36px;
+                    display: block;
+                    margin: 0 auto 0.25rem;
+                  `}
+                />
+                Releases
+              </a>
+            </div>
+          </aside>
         </div>
       </div>
       <div tw="bg-gray-300">

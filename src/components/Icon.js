@@ -9,10 +9,10 @@ const Icon = ({ style, children, ...props }) => {
     css`
       top: 1px;
       background: transparent url(${sprites}) no-repeat;
-      background-size: 167px 18px;
+      background-size: 333px 36.4px;
       text-indent: -9999rem;
-      height: 18px;
-      width: 18px;
+      height: 24px;
+      width: 24px;
     `,
     style,
   ];

@@ -14,7 +14,7 @@ const ConnectWithUs = ({ title, location }) => {
     >
       <Icon
         css={css`
-          background-position: -128px 0;
+          background-position: -174px -12px;
         `}
       >
         Facebook
@@ -27,7 +27,7 @@ const ConnectWithUs = ({ title, location }) => {
     >
       <Icon
         css={css`
-          background-position: -92px 0;
+          background-position: -123px -12px;
         `}
       >
         Twitter
@@ -42,7 +42,7 @@ const ConnectWithUs = ({ title, location }) => {
     >
       <Icon
         css={css`
-          background-position: -110px 0;
+          background-position: -148.4px -12px;
         `}
       >
         Instagram
@@ -55,7 +55,7 @@ const ConnectWithUs = ({ title, location }) => {
     >
       <Icon
         css={css`
-          background-position: -147px 0;
+          background-position: -199px -12px;
         `}
       >
         LinkedIn
@@ -70,8 +70,8 @@ const ConnectWithUs = ({ title, location }) => {
     >
       <Icon
         css={css`
-          background-position: -66px 0;
-          width: 26px;
+          background-position: -91px -12px;
+          width: 30px;
         `}
       >
         YouTube
@@ -81,14 +81,20 @@ const ConnectWithUs = ({ title, location }) => {
   return (
     <ul
       css={[
-        tw`flex md:justify-end font-bold py-4`,
+        tw`flex md:justify-end font-bold py-4 divide-x divide-gray-900`,
         css`
           color: #005780;
         `,
       ]}
     >
       {items.map((i) => (
-        <li key={i.props ? i.props.href : "connect"} tw="inline mr-4">
+        <li
+          key={i.props ? i.props.href : "connect"}
+          tw="inline px-2"
+          css={css`
+            filter: grayscale(100%);
+          `}
+        >
           {i}
         </li>
       ))}
