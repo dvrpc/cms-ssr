@@ -67,6 +67,12 @@ module.exports = {
               ? ``
               : `filter[status][value]=1`,
         },
+        params: {
+          resourceVersion:
+            process.env.GATSBY_ENV === `development`
+              ? `rel:working-copy`
+              : `rel:latest-version`,
+        },
       },
     },
     {
