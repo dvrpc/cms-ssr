@@ -64,14 +64,8 @@ module.exports = {
         filters: {
           "node--page":
             process.env.GATSBY_ENV === `development`
-              ? ``
+              ? `resourceVersion=rel:working-copy`
               : `filter[status][value]=1`,
-        },
-        params: {
-          resourceVersion:
-            process.env.GATSBY_ENV === `development`
-              ? `rel:working-copy`
-              : `rel:latest-version`,
         },
       },
     },
