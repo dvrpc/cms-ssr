@@ -28,7 +28,12 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
           color: ${props.theme.infoColor};
         `}
       >
-        <div tw="container flex-auto md:flex py-4 divide-x" css={css`border-color: rgba(255,255,255,.45)`}>
+        <div
+          tw="container flex-auto md:flex py-4 divide-x"
+          css={css`
+            border-color: rgba(255, 255, 255, 0.45);
+          `}
+        >
           <RootNav data={menu} />
         </div>
       </nav>

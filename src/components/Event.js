@@ -25,7 +25,6 @@ const Event = (props) => {
           props.Title
         )}
       </h4>
-      
     </div>
   );
 };
