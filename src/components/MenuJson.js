@@ -38,7 +38,10 @@ const rootNavArr = [
 
 const getAncestor = (node) => (node.parent ? getAncestor(node.parent) : node);
 
-const RootNav = ({ data }) => {
+const RootNav = ({ data = null }) => {
+  if (data === null) {
+    data = { href: "" };
+  }
   const ancestor = getAncestor(data);
 
   return rootNavArr.map((link) => (
@@ -54,19 +57,19 @@ const RootNav = ({ data }) => {
 
 export { RootNav };
 
-export default ({ data }) => {
+export default ({ data = null }) => {
   if (data === null) {
     data = { href: "", links: null };
   }
 
-  let nodes = data.parent?.links;
+  let nodes = data.parent ? data.parent.links : [];
   if (data.links) {
     nodes = data.links;
   }
 
-  return (
+  return nodes.length ? (
     <nav>
-      <ul tw="h-full text-right">
+      <ul tw="h-full text-right mb-12">
         {nodes.map((node) => (
           <li key={node.href}>
             <a
@@ -81,5 +84,5 @@ export default ({ data }) => {
         ))}
       </ul>
     </nav>
-  );
+  ) : null;
 };

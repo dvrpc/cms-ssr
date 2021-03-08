@@ -8,7 +8,7 @@ const SocialMedia = () => {
     <A
       key="newsletters"
       href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
-      aria-label="Newsletters"
+      label="Newsletters"
     >
       <Icon
         css={css`
@@ -19,11 +19,7 @@ const SocialMedia = () => {
         Newsletters
       </Icon>
     </A>,
-    <A
-      key="facebook"
-      href="https://www.facebook.com/DVRPC"
-      aria-label="Facebook"
-    >
+    <A key="facebook" href="https://www.facebook.com/DVRPC" label="Facebook">
       <Icon
         css={css`
           background-position: -174px -12px;
@@ -32,7 +28,7 @@ const SocialMedia = () => {
         Facebook
       </Icon>
     </A>,
-    <A key="twitter" href="https://www.twitter.com/DVRPC" aria-label="Twitter">
+    <A key="twitter" href="https://www.twitter.com/DVRPC" label="Twitter">
       <Icon
         css={css`
           background-position: -123px -12px;
@@ -41,12 +37,10 @@ const SocialMedia = () => {
         Twitter
       </Icon>
     </A>,
-    <a
+    <A
       key="instagram"
-      target="_blank"
-      rel="noopener noreferrer"
       href="https://www.instagram.com/dvrpc/"
-      aria-label="Instagram"
+      label="Instagram"
     >
       <Icon
         css={css`
@@ -55,11 +49,11 @@ const SocialMedia = () => {
       >
         Instagram
       </Icon>
-    </a>,
+    </A>,
     <A
       key="linkedin"
       href="http://www.linkedin.com/company/delaware-valley-regional-planning-commission"
-      aria-label="LinkedIn"
+      label="LinkedIn"
     >
       <Icon
         css={css`
@@ -69,12 +63,10 @@ const SocialMedia = () => {
         LinkedIn
       </Icon>
     </A>,
-    <a
+    <A
       key="youtube"
-      target="_blank"
-      rel="noopener noreferrer"
       href="https://www.youtube.com/channel/UCEU8UI5_iGkVypHP93b5jLA"
-      aria-label="YouTube"
+      label="YouTube"
     >
       <Icon
         css={css`
@@ -84,7 +76,7 @@ const SocialMedia = () => {
       >
         YouTube
       </Icon>
-    </a>,
+    </A>,
   ];
   return (
     <ul tw="flex justify-end font-bold py-4">

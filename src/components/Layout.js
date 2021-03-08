@@ -28,7 +28,7 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
           color: ${props.theme.infoColor};
         `}
       >
-        <div tw="container flex-auto md:flex py-4 divide-x divide-gray-900">
+        <div tw="container flex-auto md:flex py-4 divide-x" css={css`border-color: rgba(255,255,255,.45)`}>
           <RootNav data={menu} />
         </div>
       </nav>
@@ -43,10 +43,10 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
               border-top-width: 2px;
               border-image: linear-gradient(to left, #aaa, #fff) 1;
             `}
-            tw="mt-12 pt-4"
+            tw="pt-4"
           >
             <div tw="flex flex-1 gap-4">
-              <a href="https://www.dvrpc.org/Calendar/" tw="block">
+              <a href="https://www.dvrpc.org/Calendar/" tw="block flex-1">
                 <Icon
                   css={css`
                     background-position: -296.6px 0;
@@ -58,7 +58,7 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
                 />
                 Events
               </a>
-              <a href="https://www.dvrpc.org/News/" tw="block">
+              <a href="https://www.dvrpc.org/News/" tw="block flex-1">
                 <Icon
                   css={css`
                     background-position: -259.6px 0;
@@ -70,7 +70,7 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
                 />
                 News
               </a>
-              <a href="https://www.dvrpc.org/Data/" tw="block">
+              <a href="https://www.dvrpc.org/Data/" tw="block flex-1">
                 <Icon
                   css={css`
                     background-position: -223.2px 0;

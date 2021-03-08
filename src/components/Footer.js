@@ -39,7 +39,6 @@ const Footer = () => {
             </div>
             <div tw="mt-4 md:m-0">
               <a href="/Policies/">Policies</a> |{" "}
-              <a href="/Links/">Resources</a> |{" "}
               <a
                 href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
                 rel="noopener"

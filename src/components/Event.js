@@ -8,9 +8,15 @@ const Event = (props) => {
   return (
     <div
       key={props.StartDate + props.Title}
-      tw="w-full md:w-auto md:flex-1 mx-4 my-4 p-4 bg-white flex flex-col shadow border border-solid border-gray-100"
+      tw="w-full md:w-auto md:flex-1 mx-4 my-4 p-4 flex items-center gap-4 divide-x divide-blue-400"
     >
-      <h4 tw="font-normal mt-0 mb-8">
+      <footer tw="flex flex-col items-center">
+        <p tw="m-0 text-2xl leading-none">
+          {+mon}/{+day}
+        </p>
+        <span tw="m-0 ml-auto">{props.StartTime !== "00:00" && start}</span>
+      </footer>
+      <h4 tw="font-normal m-0 pl-4">
         {props.Info ? (
           <a tw="underline" href={props.Info}>
             {props.Title}
@@ -19,12 +25,7 @@ const Event = (props) => {
           props.Title
         )}
       </h4>
-      <footer tw="flex mt-auto items-end">
-        <p tw="m-0 text-3xl leading-none">
-          {+mon}/{+day}
-        </p>
-        <b tw="m-0 ml-auto">{props.StartTime !== "00:00" && start}</b>
-      </footer>
+      
     </div>
   );
 };

@@ -20,9 +20,17 @@ const Header = ({ children }) => {
           `
         }
       >
-        <div tw="container">
+        <div tw="container mx-auto">
           <form
-            tw="sm:w-auto w-full mb-4 relative bg-white rounded"
+            tw="mb-4 relative w-min-content pr-32"
+            css={css`
+              background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.8),
+                rgba(255, 255, 255, 0.8) 18rem,
+                transparent 100%
+              );
+            `}
             action="https://www2.dvrpc.org/Search/"
           >
             <div tw="w-16 h-full flex absolute items-center justify-center pointer-events-none">
@@ -37,28 +45,35 @@ const Header = ({ children }) => {
                 <path fill="none" d="M0 0h24v24H0z" />
               </svg>
             </div>
-            <div tw="w-full">
+            <div tw="">
               <input
                 name="q"
                 placeholder="Search..."
                 aria-label="Search"
-                tw="sm:w-64 w-full border-0 border-none rounded-full m-0 p-2 pl-16 block bg-gray-100 border-2 border-solid border-gray-100 focus:border-gray-300 focus:outline-none min-w-0"
+                tw="w-72 border-0 border-none m-0 p-2 pl-16 block bg-transparent focus:outline-none min-w-0 placeholder-gray-600"
               />
             </div>
           </form>
         </div>
         {children}
       </div>
-      <div
-        tw="absolute right-0 text-black font-bold italic pr-2"
-        css={css`
-          text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
-            1px 1px 0 #fff;
-          margin-top: -1.5rem;
-        `}
-      >
-        {theme.bgCredits}
-      </div>
+      {theme.bgCredits && (
+        <div
+          tw="absolute right-0 p-1 px-2 leading-none text-gray-900 text-sm"
+          css={css`
+            padding-left: 8rem;
+            background: linear-gradient(
+              to left,
+              rgba(255, 255, 255, 0.5),
+              rgba(255, 255, 255, 0.5) 8rem,
+              transparent 100%
+            );
+            margin-top: -2.5rem;
+          `}
+        >
+          {theme.bgCredits}
+        </div>
+      )}
     </header>
   );
 };

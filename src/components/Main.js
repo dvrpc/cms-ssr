@@ -4,12 +4,12 @@ import { Helmet } from "react-helmet";
 import tw, { css } from "twin.macro";
 
 const styles = [
-  tw`mx-4 mt-8`,
+  tw`mx-4 my-8`,
   css`
     max-width: 80ch;
 
     hr {
-      ${tw`border border-solid border-gray-400 mx-16 my-8`}
+      ${tw`border-t border-solid border-gray-400 my-8`}
     }
     a {
       ${tw`underline`}

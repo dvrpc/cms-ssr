@@ -34,7 +34,7 @@ const initialData = [
 const fetchData = async () => {
   const responses = await Promise.all(
     [
-      fetch("https://www2.dvrpc.org/asp/homepage/"),
+      fetch("https://www2.dvrpc.org/asp/homepage/default2.aspx"),
       fetch("https://www2.dvrpc.org/asp/homepage/twitter.aspx?all=true"),
     ].map((p) => p.catch((e) => e))
   );

@@ -2,19 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import tw, { css } from "twin.macro";
 
-const A = ({ href, children }) => {
+const A = ({ href, label, children }) => {
   return (
     <a
       tw="block"
       href={href}
-      onClick={(e) => {
-        e.preventDefault();
-        window.open(
-          href,
-          null,
-          "toolbar=0, location=0, menubar=0, directories=0, noopener"
-        );
-      }}
+      aria-label={label}
+      title={label}
+      target="_blank"
+      rel="noopener noreferrer"
     >
       {children}
     </a>
@@ -23,6 +19,7 @@ const A = ({ href, children }) => {
 
 A.propTypes = {
   href: PropTypes.string,
+  label: PropTypes.string,
   children: PropTypes.node,
 };
 
