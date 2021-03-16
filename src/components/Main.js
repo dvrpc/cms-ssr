@@ -307,8 +307,8 @@ const styles = [
 
 const Main = ({ body, title }) => {
   const content = body.processed.replace(
-    /\/sites\/default\/files\//g,
-    "https://cms.dvrpc.org/sites/default/files/"
+    /"\/sites\/default\/files\//g,
+    '"https://cms.dvrpc.org/sites/default/files/'
   );
   return (
     <>
