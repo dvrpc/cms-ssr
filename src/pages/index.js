@@ -1,4 +1,5 @@
 import React from "react";
+import { graphql } from "gatsby";
 import tw, { css } from "twin.macro";
 import Async from "react-async";
 import Helmet from "react-helmet";
@@ -11,12 +12,13 @@ import favicon from "../images/favicon.ico";
 import defaultTheme, { createTheme } from "../utils/theme";
 import fetchData from "../utils/fetchData";
 import Infobar from "../components/Infobar";
+import bgImage from "../images/homepagebanner_2560.jpg";
 
-const HomePage = () => {
+const HomePage = ({ data }) => {
+  const alert = data.blockContentAlertBanner?.body?.processed ?? "";
   const theme = createTheme({
     ...defaultTheme,
     bgPrimary: "#0078ae",
-    bgImage: ["https://www.dvrpc.org/img/banner/new/GettyImages-820759256.jpg"],
   });
   return (
     <ThemeProvider theme={theme}>
@@ -37,29 +39,27 @@ const HomePage = () => {
             tw="w-full bg-bottom p-px"
             css={() =>
               css`
-                background-image: url(${theme.bgImage[0]});
+                background-image: url(${bgImage});
                 background-size: cover;
                 min-height: 24rem;
               `
             }
           >
-            <Async.Fulfilled>
-              {(data) =>
-                data.alert.Text.length && (
-                  <div
-                    tw="bg-red-600 text-white mb-4 text-center"
-                    css={css`
-                      --tw-bg-opacity: 0.9;
-                    `}
-                  >
-                    <div
-                      tw="mx-auto container p-6 xl:px-0"
-                      dangerouslySetInnerHTML={{ __html: data.alert.Text }}
-                    />
-                  </div>
-                )
-              }
-            </Async.Fulfilled>
+            {alert.length ? (
+              <div
+                tw="text-white mb-4 text-center"
+                css={css`
+                  background-color: rgba(200, 30, 29, 0.9);
+                `}
+              >
+                <div
+                  tw="mx-auto container p-6 xl:px-0"
+                  dangerouslySetInnerHTML={{ __html: alert }}
+                />
+              </div>
+            ) : (
+              ""
+            )}
             <div tw="container flex flex-col mx-auto my-12">
               <form
                 tw="mb-8 relative w-min-content pr-32"
@@ -230,3 +230,13 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+export const query = graphql`
+  query {
+    blockContentAlertBanner {
+      body {
+        processed
+      }
+    }
+  }
+`;

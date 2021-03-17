@@ -50,8 +50,8 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
             `}
             tw="pt-4"
           >
-            <div tw="flex flex-1 gap-4">
-              <a href="https://www.dvrpc.org/Calendar/" tw="block flex-1">
+            <div tw="grid grid-flow-col auto-cols-fr">
+              <a href="https://www.dvrpc.org/Calendar/" tw="block text-center">
                 <Icon
                   css={css`
                     background-position: -296.6px 0;
@@ -63,7 +63,7 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
                 />
                 Events
               </a>
-              <a href="https://www.dvrpc.org/News/" tw="block flex-1">
+              <a href="https://www.dvrpc.org/News/" tw="block text-center">
                 <Icon
                   css={css`
                     background-position: -259.6px 0;
@@ -75,7 +75,7 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
                 />
                 News
               </a>
-              <a href="https://www.dvrpc.org/Data/" tw="block flex-1">
+              <a href="https://www.dvrpc.org/Data/" tw="block text-center">
                 <Icon
                   css={css`
                     background-position: -223.2px 0;
