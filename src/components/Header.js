@@ -22,7 +22,7 @@ const Header = ({ children }) => {
       >
         <div tw="container mx-auto">
           <form
-            tw="mb-4 relative w-min-content pr-32"
+            tw="mb-4 relative md:w-min-content md:pr-32"
             css={css`
               background: linear-gradient(
                 to right,

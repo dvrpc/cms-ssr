@@ -45,7 +45,7 @@ const RootNav = ({ data = null }) => {
   const ancestor = getAncestor(data);
 
   return rootNavArr.map((link) => (
-    <div key={link.href} tw="text-center px-2 leading-none flex-auto">
+    <div key={link.href} tw="text-center px-2 md:leading-none flex-auto">
       <a
         css={[tw`no-underline`, link.href === ancestor.href && tw`font-bold`]}
         href={link.href}
@@ -69,7 +69,7 @@ export default ({ data = null }) => {
 
   return nodes.length ? (
     <nav>
-      <ul tw="h-full text-right mb-12">
+      <ul tw="h-full text-center md:text-right mb-12">
         {nodes.map((node) => (
           <li key={node.href}>
             <a

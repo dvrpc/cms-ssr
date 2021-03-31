@@ -10,7 +10,7 @@ const Body = ({ body, title, menu }) => {
       <div tw="md:order-2 md:col-span-2">
         <Main body={body} title={title} />
       </div>
-      <div tw="md:order-1 md:col-span-1 md:mt-20 flex flex-col items-end">
+      <div tw="md:order-1 md:col-span-1 md:mt-20 flex flex-col md:items-end">
         <Menu data={menu} />
         <InfoLinks />
       </div>

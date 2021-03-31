@@ -9,7 +9,7 @@ const InfoLinks = () => {
 				border-top-width: 2px;
 				border-image: linear-gradient(to left, #aaa, #fff) 1;
 			`}
-			tw="pt-4"
+			tw="py-4"
 		>
 			<div tw="grid grid-flow-col auto-cols-fr">
 				<a href="https://www.dvrpc.org/Calendar/" tw="block text-center">

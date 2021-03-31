@@ -41,7 +41,7 @@ const HomePage = ({ data }) => {
         <header tw="bg-white">
           <LogoBar />
           <div
-            tw="w-full bg-bottom p-px"
+            tw="w-full bg-bottom pb-px"
             css={() =>
               css`
                 background-image: url(${bgImage});
@@ -180,9 +180,9 @@ const HomePage = ({ data }) => {
             background-color: #e4f5f7;
           `}
         >
-          <div tw="container py-4 flex items-center gap-8">
+          <div tw="container py-4 flex flex-col md:flex-row items-center gap-8">
             <div
-              tw="w-3/4 border-gray-300"
+              tw="md:w-3/4 border-gray-300"
               css={css`
                 border-right-width: 1px;
               `}
@@ -203,7 +203,7 @@ const HomePage = ({ data }) => {
                 </Async.Fulfilled>
               </div>
             </div>
-            <div tw="w-1/4">
+            <div tw="w-full md:w-1/4">
               <h3>
                 <a
                   tw="text-3xl"
