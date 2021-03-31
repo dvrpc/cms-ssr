@@ -4,7 +4,7 @@ import Main from "./Main";
 import Menu from "./MenuJson";
 import InfoLinks from "./InfoLinks";
 
-export default Body = ({ body, title, menu }) => {
+const Body = ({ body, title, menu }) => {
   return (
     <div tw="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12">
       <div tw="md:order-2 md:col-span-2">
@@ -17,3 +17,5 @@ export default Body = ({ body, title, menu }) => {
     </div>
   );
 };
+
+export default Body;

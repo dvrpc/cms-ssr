@@ -2,7 +2,7 @@ import React from "react";
 import tw, { css } from "twin.macro";
 import { RootNav } from "./MenuJson";
 
-export default TopNav = ({ menu }) => {
+const TopNav = ({ menu }) => {
   return (
     <nav
       tw="flex justify-center"
@@ -22,3 +22,5 @@ export default TopNav = ({ menu }) => {
     </nav>
   );
 };
+
+export default TopNav;

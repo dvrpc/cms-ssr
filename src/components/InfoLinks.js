@@ -2,7 +2,7 @@ import React from "react";
 import tw, { css } from "twin.macro";
 import Icon from "./Icon";
 
-export default InfoLinks = () => {
+const InfoLinks = () => {
 	return (
 		<aside
 			css={css`
@@ -52,3 +52,5 @@ export default InfoLinks = () => {
 		</aside>
 	);
 };
+
+export default InfoLinks;

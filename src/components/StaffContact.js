@@ -3,7 +3,7 @@ import tw, { css } from "twin.macro";
 import Avatar from "./Avatar";
 import ConnectWithUs from "./ConnectWithUs";
 
-export default StaffContact = ({ staffContact, title, location }) => {
+const StaffContact = ({ staffContact, title, location }) => {
   return (
     <div tw="bg-gray-300">
       <div tw="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12">
@@ -18,3 +18,5 @@ export default StaffContact = ({ staffContact, title, location }) => {
     </div>
   );
 };
+
+export default StaffContact;
