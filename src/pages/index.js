@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 import tw, { css } from "twin.macro";
 import Async from "react-async";
@@ -15,6 +15,11 @@ import Infobar from "../components/Infobar";
 import bgImage from "../images/homepagebanner_2560.jpg";
 
 const HomePage = ({ data }) => {
+  const [max, setMax] = useState(0);
+  const [activeId, setActiveId] = useState(0);
+  const increment = () => setActiveId(activeId + 1 == max ? 0 : activeId + 1);
+  const decrement = () => setActiveId(activeId - 1 == 0 ? max : activeId - 1);
+
   const alert = data.blockContentAlertBanner?.body?.processed ?? "";
   const theme = createTheme({
     ...defaultTheme,
@@ -105,16 +110,26 @@ const HomePage = ({ data }) => {
                   );
                 `}
               >
-                <div tw="p-4 w-96 flex items-center gap-4">
-                  <div tw="text-gray-400 text-3xl leading-none cursor-pointer">
+                <div tw="p-4 w-96 h-40 flex items-center gap-4">
+                  <div
+                    tw="text-gray-400 text-3xl leading-none cursor-pointer"
+                    onClick={decrement}
+                  >
                     &#128896;
                   </div>
                   <Async.Fulfilled>
-                    {(data) =>
-                      data.filter((d) => d.key === "anns")[0].components[1]
-                    }
+                    {(data) => {
+                      const { components } = data.filter(
+                        (d) => d.key === "anns"
+                      )[0];
+                      setMax(components.length);
+                      return components[activeId];
+                    }}
                   </Async.Fulfilled>
-                  <div tw="text-gray-400 text-3xl leading-none cursor-pointer">
+                  <div
+                    tw="text-gray-400 text-3xl leading-none cursor-pointer"
+                    onClick={increment}
+                  >
                     &#128898;
                   </div>
                 </div>
