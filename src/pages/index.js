@@ -18,7 +18,7 @@ const HomePage = ({ data }) => {
   const [max, setMax] = useState(0);
   const [activeId, setActiveId] = useState(0);
   const increment = () => setActiveId(activeId + 1 == max ? 0 : activeId + 1);
-  const decrement = () => setActiveId(activeId - 1 == 0 ? max : activeId - 1);
+  const decrement = () => setActiveId(activeId - 1 == -1 ? max : activeId - 1);
 
   const alert = data.blockContentAlertBanner?.body?.processed ?? "";
   const theme = createTheme({
