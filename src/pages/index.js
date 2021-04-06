@@ -161,7 +161,7 @@ const HomePage = ({ data }) => {
                 css={css`
                   color: #296591;
                 `}
-                href="#"
+                href="https://www.dvrpc.org/Calendar/"
               >
                 Events
               </a>
@@ -192,7 +192,7 @@ const HomePage = ({ data }) => {
                   css={css`
                     color: #296591;
                   `}
-                  href="#"
+                  href="https://www.dvrpc.org/Products/Search/"
                 >
                   New Releases
                 </a>
@@ -204,35 +204,32 @@ const HomePage = ({ data }) => {
               </div>
             </div>
             <div tw="w-full md:w-1/4">
-              <h3>
-                <a
-                  tw="text-3xl"
-                  css={css`
-                    color: #296591;
-                  `}
-                  href="#"
-                >
-                  Quick Links
-                </a>
+              <h3
+                tw="text-3xl"
+                css={css`
+                  color: #296591;
+                `}
+              >
+                Quick Links
               </h3>
               <ul tw="my-8">
                 <li>
-                  <a href="#">Business Opportunities</a>
+                  <a href="https://www.dvrpc.org/business">Business Opportunities</a>
                 </li>
                 <li>
-                  <a href="#">Board Resources</a>
+                  <a href="https://www.dvrpc.org/committees/board">Board Resources</a>
                 </li>
                 <li>
-                  <a href="#">Committees</a>
+                  <a href="https://www.dvrpc.org/committees/">Committees</a>
                 </li>
                 <li>
-                  <a href="#">Jobs at DVRPC</a>
+                  <a href="https://www.dvrpc.org/humanresources">Jobs at DVRPC</a>
                 </li>
                 <li>
-                  <a href="#">News</a>
+                  <a href="https://www.dvrpc.org/news">News</a>
                 </li>
                 <li>
-                  <a href="#">Data</a>
+                  <a href="https://www.dvrpc.org/dataproducts">Data</a>
                 </li>
               </ul>
             </div>
