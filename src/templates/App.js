@@ -3,7 +3,6 @@ import Async from "react-async";
 import { graphql } from "gatsby";
 import { ThemeProvider } from "styled-components/macro";
 import defaultTheme, { createTheme } from "../utils/theme";
-import fetchData from "../utils/fetchData";
 import Layout from "../components/Layout";
 import color from "color";
 
@@ -28,15 +27,13 @@ const App = ({ data, pageContext }) => {
   });
   return (
     <ThemeProvider theme={theme}>
-      <Async promiseFn={fetchData}>
-        <Layout
-          location={pageContext.slug || pageContext.guid}
-          title={data.page.title}
-          body={data.page.body}
-          staffContact={data.page.relationships.field_staff_contact}
-          menu={data.navItem}
-        />
-      </Async>
+      <Layout
+        location={pageContext.slug || pageContext.guid}
+        title={data.page.title}
+        body={data.page.body}
+        staffContact={data.page.relationships.field_staff_contact}
+        menu={data.navItem}
+      />
     </ThemeProvider>
   );
 };

@@ -15,9 +15,9 @@ const InfoLinks = () => {
 				<a href="https://www.dvrpc.org/Calendar/" tw="block text-center">
 					<Icon
 						css={css`
-							background-position: -296.6px 0;
-							width: 37px;
-							height: 36px;
+							background-position: -268.2px 0;
+							width: 33px;
+							height: 35px;
 							display: block;
 							margin: 0 auto 0.25rem;
 						`}
@@ -27,9 +27,9 @@ const InfoLinks = () => {
 				<a href="https://www.dvrpc.org/News/" tw="block text-center">
 					<Icon
 						css={css`
-							background-position: -259.6px 0;
-							width: 37px;
-							height: 36px;
+							background-position: -235px 0;
+							width: 33px;
+							height: 35px;
 							display: block;
 							margin: 0 auto 0.25rem;
 						`}
@@ -39,9 +39,9 @@ const InfoLinks = () => {
 				<a href="https://www.dvrpc.org/Data/" tw="block text-center">
 					<Icon
 						css={css`
-							background-position: -223.2px 0;
-							width: 36.5px;
-							height: 36px;
+							background-position: -202px 0;
+							width: 33px;
+							height: 35px;
 							display: block;
 							margin: 0 auto 0.25rem;
 						`}

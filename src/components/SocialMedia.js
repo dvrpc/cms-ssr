@@ -12,8 +12,8 @@ const SocialMedia = () => {
     >
       <Icon
         css={css`
-          background-position: 0 -12px;
-          width: 35px;
+          background-position: 1px -12px;
+          width: 34px;
         `}
       >
         Newsletters
@@ -22,7 +22,7 @@ const SocialMedia = () => {
     <A key="facebook" href="https://www.facebook.com/DVRPC" label="Facebook">
       <Icon
         css={css`
-          background-position: -174px -12px;
+          background-position: -156.2px -12px;
         `}
       >
         Facebook
@@ -31,7 +31,7 @@ const SocialMedia = () => {
     <A key="twitter" href="https://www.twitter.com/DVRPC" label="Twitter">
       <Icon
         css={css`
-          background-position: -123px -12px;
+          background-position: -110.3px -12px;
         `}
       >
         Twitter
@@ -44,7 +44,7 @@ const SocialMedia = () => {
     >
       <Icon
         css={css`
-          background-position: -148.4px -12px;
+          background-position: -133.3px -12px;
         `}
       >
         Instagram
@@ -57,7 +57,8 @@ const SocialMedia = () => {
     >
       <Icon
         css={css`
-          background-position: -199px -12px;
+          background-position: -179.2px -12px;
+          width: 23.2px;
         `}
       >
         LinkedIn
@@ -70,8 +71,8 @@ const SocialMedia = () => {
     >
       <Icon
         css={css`
-          background-position: -91px -12px;
-          width: 30px;
+          background-position: -82px -12px;
+          width: 28px;
         `}
       >
         YouTube

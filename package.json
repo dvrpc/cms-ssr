@@ -35,7 +35,8 @@
     "styled-components": "^5.2.1",
     "tailwindcss": "^2.0.3",
     "twin.macro": "^2.3.0",
-    "twitter-text": "^3.1.0"
+    "twitter-text": "^3.1.0",
+    "use-async-resource": "^2.2.1"
   },
   "devDependencies": {
     "husky": "^5.1.3",

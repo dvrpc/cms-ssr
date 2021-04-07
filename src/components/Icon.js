@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import tw, { css } from "twin.macro";
-import sprites from "../images/sprites.svg";
+import sprites from "../images/new.svg";
 
 const Icon = ({ style, children, ...props }) => {
   const styles = [
@@ -9,7 +9,7 @@ const Icon = ({ style, children, ...props }) => {
     css`
       top: 1px;
       background: transparent url(${sprites}) no-repeat;
-      background-size: 333px 36.4px;
+      background-size: 343px 36px;
       text-indent: -9999rem;
       height: 24px;
       width: 24px;

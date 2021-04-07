@@ -14,7 +14,7 @@ const ConnectWithUs = ({ title, location }) => {
     >
       <Icon
         css={css`
-          background-position: -174px -12px;
+          background-position: -156.2px -12px;
         `}
       >
         Facebook
@@ -27,7 +27,7 @@ const ConnectWithUs = ({ title, location }) => {
     >
       <Icon
         css={css`
-          background-position: -123px -12px;
+          background-position: -110.3px -12px;
         `}
       >
         Twitter
@@ -42,7 +42,7 @@ const ConnectWithUs = ({ title, location }) => {
     >
       <Icon
         css={css`
-          background-position: -148.4px -12px;
+          background-position: -133.3px -12px;
         `}
       >
         Instagram
@@ -55,7 +55,7 @@ const ConnectWithUs = ({ title, location }) => {
     >
       <Icon
         css={css`
-          background-position: -199px -12px;
+          background-position: -179.2px -12px;
         `}
       >
         LinkedIn
@@ -70,8 +70,8 @@ const ConnectWithUs = ({ title, location }) => {
     >
       <Icon
         css={css`
-          background-position: -91px -12px;
-          width: 30px;
+          background-position: -82px -12px;
+          width: 28px;
         `}
       >
         YouTube
