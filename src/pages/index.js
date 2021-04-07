@@ -16,6 +16,7 @@ import { useAsyncResource } from "use-async-resource";
 import Announcement, { AnnouncementLoader } from "../components/Announcement";
 import Event, { EventLoader } from "../components/Event";
 import Product, { ProductLoader } from "../components/Product";
+import fetch from "cross-fetch";
 
 const fetchData = () =>
   fetch(`https://www.dvrpc.org/asp/homepage/default2.aspx`).then((r) =>
@@ -51,6 +52,7 @@ const Products = (props) => {
 };
 
 const HomePage = ({ data }) => {
+  const isSSR = typeof window === "undefined"
   const [dataReader, getNewData] = useAsyncResource(fetchData, []);
   const [max, setMax] = useState(0);
   const [activeId, setActiveId] = useState(0);
@@ -160,13 +162,13 @@ const HomePage = ({ data }) => {
                     `}
                   />
                 </div>
-                <Suspense fallback={<AnnouncementLoader />}>
+                {!isSSR && <Suspense fallback={<AnnouncementLoader />}>
                   <Anns
                     setMax={setMax}
                     activeId={activeId}
                     dataReader={dataReader}
                   />
-                </Suspense>
+                </Suspense>}
                 <div
                   tw="text-gray-400 text-3xl leading-none cursor-pointer"
                   onClick={increment}
@@ -213,13 +215,13 @@ const HomePage = ({ data }) => {
               Events
             </a>
           </h3>
-          <Suspense
+          {!isSSR && <Suspense
             fallback={[...Array(4)].map(() => (
               <EventLoader />
             ))}
           >
             <Events dataReader={dataReader} />
-          </Suspense>
+          </Suspense>}
         </div>
       </div>
 
@@ -247,13 +249,13 @@ const HomePage = ({ data }) => {
               </a>
             </h3>
             <div tw="flex flex-wrap">
-              <Suspense
+              {!isSSR && <Suspense
                 fallback={[...Array(6)].map(() => (
                   <ProductLoader />
                 ))}
               >
                 <Products dataReader={dataReader} />
-              </Suspense>
+              </Suspense>}
             </div>
           </div>
           <div tw="w-full md:w-1/4">
