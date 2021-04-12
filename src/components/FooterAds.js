@@ -8,19 +8,15 @@ const FooterAds = () => {
       {ads.map((i) => (
         <div
           key={i.href}
-          tw="flex justify-center"
+          tw="flex-1 flex self-stretch justify-center"
           css={css`
-            &:not(:last-of-type) {
-              background: linear-gradient(
-                to bottom,
-                transparent 1rem,
-                rgb(209, 213, 219) 1rem,
-                rgb(209, 213, 219) calc(100% - 1rem),
-                transparent calc(100% - 1rem)
-              );
-              background-size: 1px 100%;
-              background-position: top right;
-              background-repeat: no-repeat;
+            &:not(:last-of-type):after {
+              border-right: 1px solid #d1d5db;
+              content: "";
+              margin: 1rem auto;
+            }
+            &:last-of-type {
+              ${tw`flex-none`}
             }
           `}
         >

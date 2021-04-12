@@ -15,9 +15,9 @@ export default [
   {
     href:
       "https://storymaps.arcgis.com/stories/0d907b0c17cf49c785feaad14dfa8b12",
-    src: "https://www2.dvrpc.org/img/gatsby/5727_ar2020_placard.png",
+    src: "https://www.dvrpc.org/img/gatsby/5727_ar2020_placard.png",
     label: "2020 Annual Report",
-    style: "width: 199.5px;",
+    style: "width: 200px;",
     new_window: true,
   },
   {
