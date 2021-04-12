@@ -47,7 +47,10 @@ const RootNav = ({ data = null }) => {
   return rootNavArr.map((link) => (
     <div key={link.href} tw="text-center px-2 md:leading-none flex-auto">
       <a
-        css={[tw`no-underline hover:underline`, link.href === ancestor.href && tw`font-bold`]}
+        css={[
+          tw`no-underline hover:underline`,
+          link.href === ancestor.href && tw`font-bold`,
+        ]}
         href={link.href}
         dangerouslySetInnerHTML={{ __html: link.link }}
       ></a>

@@ -18,7 +18,7 @@ const Footer = () => {
         `}
       >
         <div tw="container">
-          <div tw="m-6 md:flex justify-between">
+          <div tw="my-6 md:flex justify-between">
             <div>
               <a href="/" tw="no-underline leading-none">
                 <img

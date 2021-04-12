@@ -14,7 +14,7 @@ const TopNav = ({ menu }) => {
       <div
         tw="container flex-auto md:flex py-4 divide-x"
         css={css`
-          border-color: rgba(255, 255, 255, 0.45);
+          border-color: rgba(255, 255, 255, 0.25);
         `}
       >
         <RootNav data={menu} />

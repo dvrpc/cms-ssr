@@ -52,7 +52,7 @@ const Products = (props) => {
 };
 
 const HomePage = ({ data }) => {
-  const isSSR = typeof window === "undefined"
+  const isSSR = typeof window === "undefined";
   const [dataReader, getNewData] = useAsyncResource(fetchData, []);
   const [max, setMax] = useState(0);
   const [activeId, setActiveId] = useState(0);
@@ -162,13 +162,15 @@ const HomePage = ({ data }) => {
                     `}
                   />
                 </div>
-                {!isSSR && <Suspense fallback={<AnnouncementLoader />}>
-                  <Anns
-                    setMax={setMax}
-                    activeId={activeId}
-                    dataReader={dataReader}
-                  />
-                </Suspense>}
+                {!isSSR && (
+                  <Suspense fallback={<AnnouncementLoader />}>
+                    <Anns
+                      setMax={setMax}
+                      activeId={activeId}
+                      dataReader={dataReader}
+                    />
+                  </Suspense>
+                )}
                 <div
                   tw="text-gray-400 text-3xl leading-none cursor-pointer"
                   onClick={increment}
@@ -215,13 +217,15 @@ const HomePage = ({ data }) => {
               Events
             </a>
           </h3>
-          {!isSSR && <Suspense
-            fallback={[...Array(4)].map(() => (
-              <EventLoader />
-            ))}
-          >
-            <Events dataReader={dataReader} />
-          </Suspense>}
+          {!isSSR && (
+            <Suspense
+              fallback={[...Array(4)].map(() => (
+                <EventLoader />
+              ))}
+            >
+              <Events dataReader={dataReader} />
+            </Suspense>
+          )}
         </div>
       </div>
 
@@ -231,7 +235,7 @@ const HomePage = ({ data }) => {
           background-color: #e4f5f7;
         `}
       >
-        <div tw="container py-4 flex flex-col md:flex-row items-center gap-8">
+        <div tw="container py-4 flex flex-col md:flex-row items-center gap-12">
           <div
             tw="md:w-3/4 border-gray-300"
             css={css`
@@ -249,13 +253,15 @@ const HomePage = ({ data }) => {
               </a>
             </h3>
             <div tw="flex flex-wrap">
-              {!isSSR && <Suspense
-                fallback={[...Array(6)].map(() => (
-                  <ProductLoader />
-                ))}
-              >
-                <Products dataReader={dataReader} />
-              </Suspense>}
+              {!isSSR && (
+                <Suspense
+                  fallback={[...Array(6)].map(() => (
+                    <ProductLoader />
+                  ))}
+                >
+                  <Products dataReader={dataReader} />
+                </Suspense>
+              )}
             </div>
           </div>
           <div tw="w-full md:w-1/4">

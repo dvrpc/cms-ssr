@@ -4,11 +4,11 @@ import ads from "../configs/ads";
 
 const FooterAds = () => {
   return (
-    <div tw="w-full flex flex-wrap justify-center md:justify-between items-start">
+    <div tw="w-full flex flex-wrap justify-between items-start">
       {ads.map((i) => (
         <div
           key={i.href}
-          tw="flex-1 pr-px flex justify-center"
+          tw="flex justify-center"
           css={css`
             &:not(:last-of-type) {
               background: linear-gradient(

@@ -13,17 +13,19 @@ export default [
     style: "width: 210px;",
   },
   {
+    href:
+      "https://storymaps.arcgis.com/stories/0d907b0c17cf49c785feaad14dfa8b12",
+    src: "https://www2.dvrpc.org/img/gatsby/5727_ar2020_placard.png",
+    label: "2020 Annual Report",
+    style: "width: 199.5px;",
+    new_window: true,
+  },
+  {
     src: "https://www.dvrpc.org/img/gatsby/5546_Dispatches.png",
     href: "https://indd.adobe.com/view/39a8d5db-23df-4324-9099-4562dd8ed59b",
     label: "Dispatches from Alternate Futures",
     style: "width: 200px;",
     new_window: true,
-  },
-  {
-    href: "/Connections2045/MIT/",
-    src: "https://www2.dvrpc.org/img/Muni-Web-Placard-01.png",
-    label: "Municipal Implementation Toolbox",
-    style: "width: 200px;",
   },
   {
     href: "/News/",
