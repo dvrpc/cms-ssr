@@ -4,7 +4,7 @@ import ads from "../configs/ads";
 
 const FooterAds = () => {
   return (
-    <div tw="w-full flex flex-wrap justify-between items-start">
+    <div tw="w-full py-4 flex flex-wrap justify-between items-start">
       {ads.map((i) => (
         <div
           key={i.href}
@@ -23,7 +23,7 @@ const FooterAds = () => {
           <a
             href={i.href}
             target={i.new_window ? "_blank" : "_self"}
-            tw="p-4 w-52 h-40 flex items-center"
+            tw="flex items-center"
           >
             <img src={i.src} alt={i.label} css={i.style} />
           </a>
