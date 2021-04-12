@@ -264,6 +264,10 @@ const styles = [
       background-color: ${(props) => props.theme.h3};
       color: #fff;
     }
+    .card > h2:first-of-type + *,
+    .card > h3:first-of-type + * {
+      margin-top: 0;
+    }
     .card > .footer,
     .card > footer {
       margin: 0 -18px -18px;
