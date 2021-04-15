@@ -21,6 +21,7 @@
     "gatsby-plugin-remove-trailing-slashes": "^3.0.0",
     "gatsby-plugin-sharp": "^3.0.1",
     "gatsby-plugin-styled-components": "^4.0.0",
+    "gatsby-plugin-svg-sprite-loader": "^0.2.0",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-custom-api": "^2.1.4",
     "gatsby-source-drupal": "^4.0.0",

@@ -310,6 +310,9 @@ const styles = [
 ];
 
 const Main = ({ body, title }) => {
+  if (body === null) {
+    body = { processed: "", summary: "" };
+  }
   const content = body.processed.replace(
     /"\/sites\/default\/files\//g,
     '"https://cms.dvrpc.org/sites/default/files/'

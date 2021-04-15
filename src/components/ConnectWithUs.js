@@ -12,26 +12,14 @@ const ConnectWithUs = ({ title, location }) => {
       href={`https://www.facebook.com/sharer/sharer.php?u=${location}`}
       aria-label="Facebook"
     >
-      <Icon
-        css={css`
-          background-position: -156.2px -12px;
-        `}
-      >
-        Facebook
-      </Icon>
+      <Icon use="facebook" />
     </A>,
     <A
       key="twitter"
       href={`https://twitter.com/home?status=${title} @DVRPC ${location}`}
       aria-label="Twitter"
     >
-      <Icon
-        css={css`
-          background-position: -110.3px -12px;
-        `}
-      >
-        Twitter
-      </Icon>
+      <Icon use="twitter" />
     </A>,
     <a
       key="instagram"
@@ -40,26 +28,14 @@ const ConnectWithUs = ({ title, location }) => {
       href="https://www.instagram.com/dvrpc/"
       aria-label="Instagram"
     >
-      <Icon
-        css={css`
-          background-position: -133.3px -12px;
-        `}
-      >
-        Instagram
-      </Icon>
+      <Icon use="instagram" />
     </a>,
     <A
       key="linkedin"
       href={`https://www.linkedin.com/shareArticle?mini=true&url=${location}&amp;title=${title}`}
       aria-label="LinkedIn"
     >
-      <Icon
-        css={css`
-          background-position: -179.2px -12px;
-        `}
-      >
-        LinkedIn
-      </Icon>
+      <Icon use="linkedin" />
     </A>,
     <a
       key="youtube"
@@ -68,14 +44,7 @@ const ConnectWithUs = ({ title, location }) => {
       href="https://www.youtube.com/channel/UCEU8UI5_iGkVypHP93b5jLA"
       aria-label="YouTube"
     >
-      <Icon
-        css={css`
-          background-position: -82px -12px;
-          width: 28px;
-        `}
-      >
-        YouTube
-      </Icon>
+      <Icon use="youtube" />
     </a>,
   ];
   return (

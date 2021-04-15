@@ -10,73 +10,34 @@ const SocialMedia = () => {
       href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
       label="Newsletters"
     >
-      <Icon
-        css={css`
-          background-position: 1px -12px;
-          width: 34px;
-        `}
-      >
-        Newsletters
-      </Icon>
+      <Icon use="mail" />
     </A>,
     <A key="facebook" href="https://www.facebook.com/DVRPC" label="Facebook">
-      <Icon
-        css={css`
-          background-position: -156.2px -12px;
-        `}
-      >
-        Facebook
-      </Icon>
+      <Icon use="facebook" />
     </A>,
     <A key="twitter" href="https://www.twitter.com/DVRPC" label="Twitter">
-      <Icon
-        css={css`
-          background-position: -110.3px -12px;
-        `}
-      >
-        Twitter
-      </Icon>
+      <Icon use="twitter" />
     </A>,
     <A
       key="instagram"
       href="https://www.instagram.com/dvrpc/"
       label="Instagram"
     >
-      <Icon
-        css={css`
-          background-position: -133.3px -12px;
-        `}
-      >
-        Instagram
-      </Icon>
+      <Icon use="instagram" />
     </A>,
     <A
       key="linkedin"
       href="http://www.linkedin.com/company/delaware-valley-regional-planning-commission"
       label="LinkedIn"
     >
-      <Icon
-        css={css`
-          background-position: -179.2px -12px;
-          width: 23.2px;
-        `}
-      >
-        LinkedIn
-      </Icon>
+      <Icon use="linkedin" />
     </A>,
     <A
       key="youtube"
       href="https://www.youtube.com/channel/UCEU8UI5_iGkVypHP93b5jLA"
       label="YouTube"
     >
-      <Icon
-        css={css`
-          background-position: -82px -12px;
-          width: 28px;
-        `}
-      >
-        YouTube
-      </Icon>
+      <Icon use="youtube" />
     </A>,
   ];
   return (

@@ -91,5 +91,6 @@ module.exports = {
         trackingId: `UA-9825778-1`,
       },
     },
+    `gatsby-plugin-svg-sprite-loader`
   ],
 };

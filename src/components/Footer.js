@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import tw, { css } from "twin.macro";
 import FooterAds from "./FooterAds";
+import I from "./Icon";
 
 const Footer = () => {
   return (
@@ -21,13 +22,7 @@ const Footer = () => {
           <div tw="my-6 md:flex justify-between">
             <div>
               <a href="/" tw="no-underline leading-none">
-                <img
-                  src="https://www.dvrpc.org/img/gatsby/5546_DVRPC_Aconym.png"
-                  alt="DVRPC"
-                  css={css`
-                    height: 29px;
-                  `}
-                />
+                <I use="dvrpcMini" tw="h-8" fillColor="#fff" />
               </a>
               <p>
                 190 N Independence Mall West, 8th Floor

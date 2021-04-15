@@ -1,31 +1,55 @@
 import React from "react";
 import PropTypes from "prop-types";
 import tw, { css } from "twin.macro";
-import sprites from "../images/new.svg";
 
-const Icon = ({ style, children, ...props }) => {
-  const styles = [
-    tw`relative inline-block`,
-    css`
-      top: 1px;
-      background: transparent url(${sprites}) no-repeat;
-      background-size: 343px 36px;
-      text-indent: -9999rem;
-      height: 24px;
-      width: 24px;
-    `,
-    style,
-  ];
-  return (
-    <i {...props} css={styles}>
-      {children}
-    </i>
-  );
+import twitter from "../images/twitter.svg";
+import facebook from "../images/facebook.svg";
+import linkedin from "../images/linkedin.svg";
+import youtube from "../images/youtube.svg";
+import instagram from "../images/instagram.svg";
+import mail from "../images/mail.svg";
+import news from "../images/news.svg";
+import events from "../images/events.svg";
+import products from "../images/products.svg";
+import leftarrow from "../images/leftarrow.svg";
+import rightarrow from "../images/rightarrow.svg";
+import search from "../images/search.svg";
+import dvrpc from "../images/dvrpc.svg";
+import dvrpcMini from "../images/dvrpc-mini.svg";
+
+const svg = {
+  twitter,
+  facebook,
+  linkedin,
+  youtube,
+  instagram,
+  mail,
+  news,
+  events,
+  products,
+  leftarrow,
+  rightarrow,
+  search,
+  dvrpc,
+  dvrpcMini,
 };
 
-Icon.propTypes = {
-  style: PropTypes.object,
-  children: PropTypes.node,
+const Icon = ({ use, scale = 6, fillColor = "#0078ae", ...props }) => {
+  if (!use in svg) {
+    return null;
+  }
+  return (
+    <svg
+      css={css`
+        fill: ${fillColor};
+        height: ${scale / 4}rem;
+      `}
+      viewBox={svg[use].viewBox}
+      {...props}
+    >
+      <use xlinkHref={svg[use].url} />
+    </svg>
+  );
 };
 
 export default Icon;
