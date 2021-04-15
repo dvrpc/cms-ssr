@@ -6,7 +6,12 @@ import Icon from "./Icon";
 
 const ConnectWithUs = ({ title, location }) => {
   const items = [
-    "Share",
+    <a
+      target="_blank"
+      href={`mailto:?to=&subject=${title}&body=I think you may find this resource interesting: ${location}`}
+    >
+      Share
+    </a>,
     <A
       key="facebook"
       href={`https://www.facebook.com/sharer/sharer.php?u=${location}`}
@@ -16,20 +21,11 @@ const ConnectWithUs = ({ title, location }) => {
     </A>,
     <A
       key="twitter"
-      href={`https://twitter.com/home?status=${title} @DVRPC ${location}`}
+      href={`https://twitter.com/intent/tweet?text=${title}&via=DVRPC&url=${location}`}
       aria-label="Twitter"
     >
       <Icon use="twitter" />
     </A>,
-    <a
-      key="instagram"
-      target="_blank"
-      rel="noopener noreferrer"
-      href="https://www.instagram.com/dvrpc/"
-      aria-label="Instagram"
-    >
-      <Icon use="instagram" />
-    </a>,
     <A
       key="linkedin"
       href={`https://www.linkedin.com/shareArticle?mini=true&url=${location}&amp;title=${title}`}
@@ -37,15 +33,6 @@ const ConnectWithUs = ({ title, location }) => {
     >
       <Icon use="linkedin" />
     </A>,
-    <a
-      key="youtube"
-      target="_blank"
-      rel="noopener noreferrer"
-      href="https://www.youtube.com/channel/UCEU8UI5_iGkVypHP93b5jLA"
-      aria-label="YouTube"
-    >
-      <Icon use="youtube" />
-    </a>,
   ];
   return (
     <ul
