@@ -20,7 +20,7 @@ const styles = [
       color: ${(props) => props.theme.h1};
     }
     h2 {
-      ${tw`font-bold text-xl my-4 clear-both`}
+      ${tw`font-bold text-2xl my-4 clear-both`}
       color: ${(props) => props.theme.h2};
     }
     h3 {

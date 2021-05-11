@@ -59,10 +59,10 @@ const Header = ({ children }) => {
           css={css`
             padding-left: 8rem;
             background: linear-gradient(
-              to left,
-              rgba(255, 255, 255, 0.5),
-              rgba(255, 255, 255, 0.5) 8rem,
-              transparent 100%
+              to right,
+              transparent,
+              rgba(255, 255, 255, 0.8) 8rem,
+              rgba(255, 255, 255, 0.8) 100%
             );
             margin-top: -2.5rem;
           `}
