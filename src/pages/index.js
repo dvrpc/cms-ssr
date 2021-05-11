@@ -91,7 +91,7 @@ const HomePage = ({ data }) => {
         >
           {alert.length ? (
             <div
-              tw="text-white mb-4 text-center"
+              tw="text-white text-center"
               css={css`
                 background-color: rgba(200, 30, 29, 0.9);
               `}
