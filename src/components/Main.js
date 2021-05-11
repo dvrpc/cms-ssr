@@ -98,6 +98,14 @@ const styles = [
     .sm {
       ${tw`text-sm text-red-700`}
     }
+    .buttons {
+      ${tw`flow-root`}
+
+      &>div {
+        ${tw`float-left mr-8`}
+      }
+    }
+    .button a,
     .btn a {
       ${tw`inline-block no-underline text-center align-middle border-solid border-0 border-transparent py-2 px-3 rounded transition duration-150 ease-in-out`}
 
@@ -109,6 +117,7 @@ const styles = [
         );
       }
     }
+    .button a,
     .btn-primary a {
       background-color: #0078ae;
       ${tw`text-white`}
