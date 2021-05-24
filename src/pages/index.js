@@ -104,18 +104,6 @@ const HomePage = ({ data }) => {
           ) : (
             ""
           )}
-          <div
-            tw="text-white mb-4 text-center"
-            css={css`
-              background-color: rgba(217, 119, 6, 0.9);
-            `}
-          >
-            <div tw="mx-auto container p-6 xl:px-0">
-              The DVRPC website will be undergoing maintenance May 22 - May 23.
-              During this time, some functionality may be limited or
-              unavailable. Thank you for your patience.
-            </div>
-          </div>
           <div tw="container flex flex-col mx-auto my-12">
             <form
               tw="mb-8 relative w-min-content pr-32"
