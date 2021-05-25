@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import tw, { css } from "twin.macro";
-import { ThemeContext } from "styled-components";
+import { useTheme } from "@emotion/react";
 import LogoBar from "./LogoBar";
 import I from "./Icon";
 
 const Header = ({ children }) => {
-  const theme = useContext(ThemeContext);
+  const theme = useTheme();
 
   return (
     <header tw="bg-white">
@@ -14,8 +14,8 @@ const Header = ({ children }) => {
         tw="w-full bg-bottom p-8"
         css={(props) =>
           css`
-            background-image: url(${props.theme.bgImage[1]}),
-              url(${props.theme.bgImage[0]});
+            background-image: url(${props.bgImage[1]}),
+              url(${props.bgImage[0]});
             background-size: 1600px 400px, cover;
             min-height: 24rem;
           `
@@ -23,7 +23,7 @@ const Header = ({ children }) => {
       >
         <div tw="container mx-auto">
           <form
-            tw="mb-4 relative md:w-min-content md:pr-32"
+            tw="mb-4 relative md:w-min md:pr-32"
             css={css`
               background: linear-gradient(
                 to right,

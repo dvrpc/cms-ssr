@@ -45,9 +45,10 @@ const Icon = ({ use, scale = 6, fillColor = "#0078ae", ...props }) => {
         height: ${scale / 4}rem;
       `}
       viewBox={svg[use].viewBox}
+      title={svg[use].title}
       {...props}
     >
-      <use xlinkHref={svg[use].url} />
+      <use xlinkHref={svg[use].symbol} />
     </svg>
   );
 };

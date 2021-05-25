@@ -69,13 +69,7 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: `gatsby-plugin-styled-components`,
-      options: {
-        displayName: process.env.NODE_ENV !== "production",
-        pure: true,
-      },
-    },
+    `gatsby-plugin-emotion`,
     `gatsby-plugin-remove-trailing-slashes`,
     {
       resolve: `gatsby-plugin-web-font-loader`,
@@ -91,6 +85,6 @@ module.exports = {
         trackingId: `UA-9825778-1`,
       },
     },
-    `gatsby-plugin-svg-sprite-loader`
+    `gatsby-plugin-svg-sprite-loader`,
   ],
 };

@@ -5,7 +5,7 @@ import tw, { css } from "twin.macro";
 
 const styles = [
   tw`mx-4 my-8`,
-  css`
+  (props) => css`
     max-width: 80ch;
 
     hr {
@@ -17,15 +17,15 @@ const styles = [
     }
     h1 {
       ${tw`mt-0 text-3xl font-bold`}
-      color: ${(props) => props.theme.h1};
+      color: ${props.h1};
     }
     h2 {
       ${tw`font-bold text-2xl my-4 clear-both`}
-      color: ${(props) => props.theme.h2};
+      color: ${props.h2};
     }
     h3 {
       ${tw`font-bold text-lg my-4`}
-      color: ${(props) => props.theme.h3};
+      color: ${props.h3};
     }
     h4 {
       ${tw`font-bold text-lg my-4`}
@@ -224,8 +224,8 @@ const styles = [
     .list-group-item.active:hover {
       z-index: 2;
       color: #fff;
-      background-color: ${(props) => props.theme.h1};
-      border-color: ${(props) => props.theme.h1};
+      background-color: ${props.h1};
+      border-color: ${props.h1};
     }
     .list-group-item.active .list-group-item-heading,
     .list-group-item.active .list-group-item-heading > .small,
@@ -264,13 +264,13 @@ const styles = [
     .card > h2:first-of-type {
       margin: -18px -18px 0;
       padding: 9px 18px;
-      background-color: ${(props) => props.theme.h2};
+      background-color: ${props.h2};
       color: #fff;
     }
     .card > h3:first-of-type {
       margin: -18px -18px 0;
       padding: 9px 18px;
-      background-color: ${(props) => props.theme.h3};
+      background-color: ${props.h3};
       color: #fff;
     }
     .card > h2:first-of-type + *,
@@ -306,13 +306,13 @@ const styles = [
     .list-group > h2:first-of-type {
       margin: 0;
       padding: 9px 18px;
-      background-color: ${(props) => props.theme.h2};
+      background-color: ${props.h2};
       color: #fff;
     }
     .list-group > h3:first-of-type {
       margin: 0;
       padding: 9px 18px;
-      background-color: ${(props) => props.theme.h3};
+      background-color: ${props.h3};
       color: #fff;
     }
   `,

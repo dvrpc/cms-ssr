@@ -1,64 +1,48 @@
 import React, { useState, Suspense } from "react";
 import { graphql } from "gatsby";
+import fetch from "cross-fetch";
 import tw, { css } from "twin.macro";
-import Async from "react-async";
 import Helmet from "react-helmet";
-import { ThemeProvider } from "styled-components/macro";
+import { useAsyncResource } from "use-async-resource";
+import { ThemeProvider } from "@emotion/react";
+import CSSSlider from "../components/CSSSlider";
+import defaultTheme, { createTheme } from "../utils/theme";
 import GlobalStyles from "../components/GlobalStyles";
 import LogoBar from "../components/LogoBar";
 import { RootNav } from "../components/MenuJson";
 import Footer from "../components/Footer";
-import favicon from "../images/favicon.ico";
-import defaultTheme, { createTheme } from "../utils/theme";
 import Icon from "../components/Icon";
-import bgImage from "../images/homepagebanner_2560.jpg";
-import { useAsyncResource } from "use-async-resource";
 import Announcement, { AnnouncementLoader } from "../components/Announcement";
 import Event, { EventLoader } from "../components/Event";
 import Product, { ProductLoader } from "../components/Product";
-import fetch from "cross-fetch";
+import favicon from "../images/favicon.ico";
+import bgImage from "../images/homepagebanner_2560.jpg";
+
+const isSSR = typeof window === "undefined";
 
 const fetchData = () =>
   fetch(`https://www.dvrpc.org/asp/homepage/default2.aspx`).then((r) =>
     r.json()
   );
 
-const Anns = (props) => {
-  const data = props.dataReader();
-  props.setMax(data.anns.length);
-  return (
-    <div>
-      {data.anns.map((d, index) => (
-        <Announcement
-          key={d.guid["#text"]}
-          active={props.activeId === index}
-          {...d}
-        />
-      ))}
-    </div>
-  );
-};
+const Anns = ({ dataReader }) => (
+  <CSSSlider dimensions={tw`w-96 h-40`}>
+    {dataReader().anns.map((d, index) => {
+      return <Announcement key={d.guid["#text"]} {...d} />;
+    })}
+  </CSSSlider>
+);
 
-const Events = (props) => {
-  const data = props.dataReader();
-  return data.events
-    .slice(0, 4)
+const Events = ({ dataReader }) =>
+  dataReader()
+    .events.slice(0, 4)
     .map((d) => <Event key={d.StartDate + d.StartTime} {...d} />);
-};
 
-const Products = (props) => {
-  const data = props.dataReader();
-  return data.pubs.map((d) => <Product key={d.PubId} {...d} />);
-};
+const Products = ({ dataReader }) =>
+  dataReader().pubs.map((d) => <Product key={d.PubId} {...d} />);
 
 const HomePage = ({ data }) => {
-  const isSSR = typeof window === "undefined";
-  const [dataReader, getNewData] = useAsyncResource(fetchData, []);
-  const [max, setMax] = useState(0);
-  const [activeId, setActiveId] = useState(0);
-  const increment = () => setActiveId(activeId + 1 === max ? 0 : activeId + 1);
-  const decrement = () =>
-    setActiveId(activeId - 1 === -1 ? max - 1 : activeId - 1);
+  const [dataReader] = useAsyncResource(fetchData, []);
 
   const alert = data.blockContentAlertBanner?.body?.processed ?? "";
   const theme = createTheme({
@@ -81,13 +65,11 @@ const HomePage = ({ data }) => {
         <LogoBar />
         <div
           tw="w-full bg-bottom pb-px"
-          css={() =>
-            css`
-              background-image: url(${bgImage});
-              background-size: cover;
-              min-height: 24rem;
-            `
-          }
+          css={css`
+            background-image: url(${bgImage});
+            background-size: cover;
+            min-height: 24rem;
+          `}
         >
           {alert.length ? (
             <div
@@ -106,7 +88,7 @@ const HomePage = ({ data }) => {
           )}
           <div tw="container flex flex-col mx-auto my-12">
             <form
-              tw="mb-8 relative w-min-content pr-32"
+              tw="mb-8 relative w-min pr-32"
               css={css`
                 background: linear-gradient(
                   to right,
@@ -134,7 +116,7 @@ const HomePage = ({ data }) => {
               </div>
             </form>
             <div
-              tw="w-min-content pr-32"
+              tw="w-min pr-32"
               css={css`
                 background: linear-gradient(
                   to right,
@@ -144,28 +126,12 @@ const HomePage = ({ data }) => {
                 );
               `}
             >
-              <div tw="p-4 w-96 h-40 flex items-center gap-4">
-                <div
-                  tw="text-gray-400 text-3xl leading-none cursor-pointer"
-                  onClick={decrement}
-                >
-                  <Icon use="leftarrow" fillColor="#6d6d6d" tw="h-10" />
-                </div>
+              <div tw="p-4 pl-12 w-96">
                 {!isSSR && (
                   <Suspense fallback={<AnnouncementLoader />}>
-                    <Anns
-                      setMax={setMax}
-                      activeId={activeId}
-                      dataReader={dataReader}
-                    />
+                    <Anns dataReader={dataReader} />
                   </Suspense>
                 )}
-                <div
-                  tw="text-gray-400 text-3xl leading-none cursor-pointer"
-                  onClick={increment}
-                >
-                  <Icon use="rightarrow" fillColor="#6d6d6d" tw="h-10" />
-                </div>
               </div>
             </div>
           </div>
@@ -175,7 +141,7 @@ const HomePage = ({ data }) => {
         tw="flex justify-center"
         css={(props) => css`
           background-color: #296591;
-          color: ${props.theme.infoColor};
+          color: ${props.infoColor};
         `}
       >
         <div tw="container flex-auto md:flex py-4 divide-x divide-white">
@@ -184,7 +150,7 @@ const HomePage = ({ data }) => {
       </nav>
       <div
         tw="flex justify-center"
-        css={(props) => css`
+        css={css`
           background-color: #bbe2f2;
         `}
       >
@@ -202,8 +168,8 @@ const HomePage = ({ data }) => {
           </h3>
           {!isSSR && (
             <Suspense
-              fallback={[...Array(4)].map(() => (
-                <EventLoader />
+              fallback={[...Array(4)].map((_, i) => (
+                <EventLoader key={i} />
               ))}
             >
               <Events dataReader={dataReader} />
@@ -214,7 +180,7 @@ const HomePage = ({ data }) => {
 
       <div
         tw="flex justify-center"
-        css={(props) => css`
+        css={css`
           background-color: #e4f5f7;
         `}
       >
@@ -238,8 +204,8 @@ const HomePage = ({ data }) => {
             <div tw="flex flex-wrap">
               {!isSSR && (
                 <Suspense
-                  fallback={[...Array(6)].map(() => (
-                    <ProductLoader />
+                  fallback={[...Array(6)].map((_, i) => (
+                    <ProductLoader key={i} />
                   ))}
                 >
                   <Products dataReader={dataReader} />

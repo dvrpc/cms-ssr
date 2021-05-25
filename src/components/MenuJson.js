@@ -7,7 +7,7 @@ const rootNavArr = [
     href: "/About/",
   },
   {
-    link: "Open Data",
+    link: "Products &amp; Data",
     href: "/DataProducts/",
   },
   {

@@ -25,7 +25,13 @@ const FooterAds = () => {
             target={i.new_window ? "_blank" : "_self"}
             tw="flex items-center"
           >
-            <img src={i.src} alt={i.label} css={i.style} />
+            <img
+              src={i.src}
+              alt={i.label}
+              css={css`
+                ${i.style}
+              `}
+            />
           </a>
         </div>
       ))}

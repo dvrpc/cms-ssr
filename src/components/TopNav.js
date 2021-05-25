@@ -7,8 +7,8 @@ const TopNav = ({ menu }) => {
     <nav
       tw="flex justify-center"
       css={(props) => css`
-        background-color: ${props.theme.bgPrimary};
-        color: ${props.theme.infoColor};
+        background-color: ${props.bgPrimary};
+        color: ${props.infoColor};
       `}
     >
       <div

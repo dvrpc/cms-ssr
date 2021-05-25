@@ -1,7 +1,6 @@
 import React from "react";
-import Async from "react-async";
 import { graphql } from "gatsby";
-import { ThemeProvider } from "styled-components/macro";
+import { ThemeProvider } from "@emotion/react";
 import defaultTheme, { createTheme } from "../utils/theme";
 import Layout from "../components/Layout";
 import color from "color";
@@ -10,12 +9,12 @@ const App = ({ data, pageContext }) => {
   const theme = createTheme({
     ...defaultTheme,
     h1: data.page.relationships.field_theme.field_primary_color,
-    h2: color(data.page.relationships.field_theme.field_primary_color).lighten(
-      0.1
-    ),
-    h3: color(data.page.relationships.field_theme.field_primary_color).lighten(
-      0.1
-    ),
+    h2: color(data.page.relationships.field_theme.field_primary_color)
+      .lighten(0.1)
+      .hex(),
+    h3: color(data.page.relationships.field_theme.field_primary_color)
+      .lighten(0.1)
+      .hex(),
     bgPrimary: data.page.relationships.field_theme.field_secondary_color,
     bgNav:
       data.page.relationships.field_theme.field_third_color ||
@@ -41,7 +40,7 @@ const App = ({ data, pageContext }) => {
 export default App;
 
 export const query = graphql`
-  query($slug: String, $guid: String, $regex: String!) {
+  query ($slug: String, $guid: String, $regex: String!) {
     page: nodePage(drupal_id: { eq: $guid }, path: { alias: { eq: $slug } }) {
       title
       path {
