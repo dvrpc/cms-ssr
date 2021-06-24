@@ -7,7 +7,7 @@ const rootNavArr = [
     href: "/About/",
   },
   {
-    link: "Products &amp; Data",
+    link: "Data &amp; Products",
     href: "/DataProducts/",
   },
   {
