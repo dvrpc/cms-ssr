@@ -61,6 +61,7 @@ module.exports = {
           password: process.env.DRUPAL_PASS,
         },
         disallowedLinkTypes: [`contact_message--personal`, `view--view`],
+        skipFileDownloads: true,
         filters: {
           "node--page":
             process.env.GATSBY_ENV === `development`

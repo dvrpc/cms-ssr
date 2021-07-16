@@ -1,5 +1,3 @@
-import { css } from "twin.macro";
-
 export default [
   {
     href: "https://www.airqualitypartnership.org/",
@@ -9,13 +7,15 @@ export default [
     new_window: true,
   },
   {
-    href: "/COVID19Resources/",
-    src: "https://www.dvrpc.org/img/5545_CovidNoDVRPCLogo-01.png",
-    label: "COVID-19 Resources",
-    style: "width: 176px;",
+    href: "https://www.research.net/r/dvrpcdata",
+    src: "https://www.dvrpc.org/img/gatsby/6051_DataUserSurveyPlacard-01.png",
+    label: "Take the DVRPC Data Survey",
+    style: "width: 211px;",
+    new_window: true,
   },
   {
-    href: "https://storymaps.arcgis.com/stories/0d907b0c17cf49c785feaad14dfa8b12",
+    href:
+      "https://storymaps.arcgis.com/stories/0d907b0c17cf49c785feaad14dfa8b12",
     src: "https://www.dvrpc.org/img/gatsby/5727_ar2020_placard.png",
     label: "2020 Annual Report",
     style: "width: 200px;",
