@@ -73,6 +73,15 @@ const styles = [
     .alignleft {
       ${tw`float-left ml-0 mr-8`}
     }
+    .clear-left {
+      ${tw`clear-left`}
+    }
+    .clear-right {
+      ${tw`clear-right`}
+    }
+    .clear-both {
+      ${tw`clear-both`}
+    }
     figure {
       ${tw`table max-w-sm rounded border border-solid border-gray-400 p-1 mb-4 bg-white italic`}
     }
