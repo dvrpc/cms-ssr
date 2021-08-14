@@ -106,7 +106,8 @@ const styles = [
       }
     }
     .button a,
-    .btn a {
+    .btn a,
+    button.btn {
       ${tw`inline-block no-underline text-center align-middle border-solid border-0 border-transparent py-2 px-3 rounded transition duration-150 ease-in-out`}
 
       &:hover {
@@ -118,7 +119,8 @@ const styles = [
       }
     }
     .button a,
-    .btn-primary a {
+    .btn-primary a,
+    button.btn {
       background-color: #0078ae;
       ${tw`text-white`}
     }
@@ -315,6 +317,28 @@ const styles = [
       background-color: ${props.h3};
       color: #fff;
     }
+    label {
+      font-weight: bold;
+      padding: 1rem 0 0.25rem;
+      display: block;
+    }
+    input,
+    .form-control,
+    select,
+    textarea {
+      display: block;
+      width: 100%;
+      padding: 6px 12px;
+      font-size: 16px;
+      line-height: 1.5;
+      color: rgba(0, 0, 0, 0.87);
+      background-color: #fdfeff;
+      background-image: none;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      box-shadow: 0 0 4px rgb(0 0 0 / 18%);
+      transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    }
   `,
 ];
 
@@ -326,6 +350,31 @@ const Main = ({ body, title }) => {
     /"\/sites\/default\/files\//g,
     '"https://cms.dvrpc.org/sites/default/files/'
   );
+
+  const formSubmit = (e) => {
+    e.preventDefault();
+    fetch(e.target.action, {
+      method: "post",
+      body: new URLSearchParams(new FormData(e.target)),
+    }).then(function (response) {
+      if (response.ok) {
+        alert(
+          "Thank you for your comment. An email confirmation will be sent."
+        );
+        e.target.reset();
+      } else {
+        alert(
+          "There was a problem submitting your comment. Please contact public_affairs@dvrpc.org for assistance.\n\nWe apologize for the inconvenience."
+        );
+      }
+    });
+  };
+
+  React.useEffect(() => {
+    document.body.addEventListener("submit", formSubmit);
+
+    return () => document.body.removeEventListener(formSubmit);
+  }, []);
   return (
     <>
       <Helmet titleTemplate="%s | DVRPC">
