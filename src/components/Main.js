@@ -348,6 +348,10 @@ const styles = [
       box-shadow: 0 0 4px rgb(0 0 0 / 18%);
       transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     }
+    .btn[disabled] {
+      background: #767676;
+      cursor: progress;
+    }
   `,
 ];
 
@@ -362,6 +366,8 @@ const Main = ({ body, title }) => {
 
   const formSubmit = (e) => {
     e.preventDefault();
+    const submitBtn = e.target.querySelector("[type='submit']");
+    submitBtn.disabled = true;
     fetch(e.target.action, {
       method: "post",
       body: new URLSearchParams(new FormData(e.target)),
@@ -376,13 +382,14 @@ const Main = ({ body, title }) => {
           "There was a problem submitting your comment. Please contact public_affairs@dvrpc.org for assistance.\n\nWe apologize for the inconvenience."
         );
       }
+      submitBtn.disabled = false;
     });
   };
 
   React.useEffect(() => {
     document.body.addEventListener("submit", formSubmit);
 
-    return () => document.body.removeEventListener(formSubmit);
+    return () => document.body.removeEventListener("submit", formSubmit);
   }, []);
   return (
     <>
