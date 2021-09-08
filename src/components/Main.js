@@ -67,11 +67,11 @@ const styles = [
     }
     .fright,
     .alignright {
-      ${tw`float-right mr-0 ml-8`}
+      ${tw`float-right clear-right mr-0 ml-8`}
     }
     .fleft,
     .alignleft {
-      ${tw`float-left ml-0 mr-8`}
+      ${tw`float-left clear-left ml-0 mr-8`}
     }
     .clear-left {
       ${tw`clear-left`}
