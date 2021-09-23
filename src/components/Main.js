@@ -8,10 +8,14 @@ import "balloon-css";
 const styles = [
   tw`mx-4 my-8`,
   (props) => css`
-    --balloon-text-color: #333;
-    --balloon-color: #fff;
+    --balloon-text-color: #000;
+    --balloon-color: #ddd;
     --balloon-font-size: 15px;
     max-width: 80ch;
+
+    [aria-label]::after {
+      width: 65ch;
+    }
 
     hr {
       ${tw`border-t border-solid border-gray-400 my-8`}
