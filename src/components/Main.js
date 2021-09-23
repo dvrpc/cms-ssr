@@ -15,6 +15,7 @@ const styles = [
 
     [aria-label]::after {
       width: 65ch;
+      white-space: unset;
     }
 
     hr {
