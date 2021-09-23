@@ -3,9 +3,14 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import tw, { css } from "twin.macro";
 
+import "balloon-css";
+
 const styles = [
   tw`mx-4 my-8`,
   (props) => css`
+    --balloon-text-color: #333;
+    --balloon-color: #fff;
+    --balloon-font-size: 15px;
     max-width: 80ch;
 
     hr {
@@ -81,6 +86,9 @@ const styles = [
     }
     .clear-both {
       ${tw`clear-both`}
+    }
+    .group__inner-container {
+      ${tw`flex flex-wrap`}
     }
     figure {
       ${tw`table max-w-sm rounded border border-solid border-gray-400 p-1 mb-4 bg-white italic`}
