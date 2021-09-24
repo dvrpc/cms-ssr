@@ -282,7 +282,6 @@ const styles = [
       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08),
         0 2px 5px 0 rgba(0, 0, 0, 0.06);
       padding: 18px;
-      overflow: hidden;
       margin-bottom: 10px;
     }
     .card > h2:first-of-type {
@@ -296,10 +295,6 @@ const styles = [
       padding: 9px 18px;
       background-color: ${props.h3};
       color: #fff;
-    }
-    .card > h2:first-of-type + *,
-    .card > h3:first-of-type + * {
-      margin-top: 0;
     }
     .card > .footer,
     .card > footer {
