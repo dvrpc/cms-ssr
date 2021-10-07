@@ -11,7 +11,7 @@ module.exports = {
     {
       resolve: "gatsby-source-custom-api",
       options: {
-        url: "https://www2.dvrpc.org/js/homepage/navigation.min.json", //your remote url
+        url: "https://www.dvrpc.org/js/homepage/navigation.min.json", //your remote url
         rootKey: "nav",
         schemas: {
           NavItem: `

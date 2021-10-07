@@ -43,7 +43,7 @@
     "prettier": "^2.3.0"
   },
   "scripts": {
-    "build": "gatsby build && rsync -a --out-format='%n' public/ dist/",
+    "build": "gatsby build && rsync -a --delete-delay --out-format='%n' public/ dist/",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run build && npm run serve",
