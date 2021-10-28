@@ -35,7 +35,7 @@ const Header = ({ children }) => {
                 transparent 100%
               );
             `}
-            action="https://www2.dvrpc.org/Search/"
+            action="https://www.dvrpc.org/Search/"
           >
             <div tw="w-16 h-full flex absolute items-center justify-center pointer-events-none">
               <I

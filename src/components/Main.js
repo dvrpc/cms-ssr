@@ -363,6 +363,26 @@ const styles = [
   `,
 ];
 
+const formSubmit = (e) => {
+  e.preventDefault();
+  const submitBtn = e.target.querySelector("[type='submit']");
+  submitBtn.disabled = true;
+  fetch(e.target.action, {
+    method: "post",
+    body: new URLSearchParams(new FormData(e.target)),
+  }).then(function (response) {
+    if (response.ok) {
+      alert("Thank you for your comment. An email confirmation will be sent.");
+      e.target.reset();
+    } else {
+      alert(
+        "There was a problem submitting your comment. Please contact public_affairs@dvrpc.org for assistance.\n\nWe apologize for the inconvenience."
+      );
+    }
+    submitBtn.disabled = false;
+  });
+};
+
 const Main = ({ body, title }) => {
   if (body === null) {
     body = { processed: "", summary: "" };
@@ -372,40 +392,13 @@ const Main = ({ body, title }) => {
     '"https://cms.dvrpc.org/sites/default/files/'
   );
 
-  const formSubmit = (e) => {
-    e.preventDefault();
-    const submitBtn = e.target.querySelector("[type='submit']");
-    submitBtn.disabled = true;
-    fetch(e.target.action, {
-      method: "post",
-      body: new URLSearchParams(new FormData(e.target)),
-    }).then(function (response) {
-      if (response.ok) {
-        alert(
-          "Thank you for your comment. An email confirmation will be sent."
-        );
-        e.target.reset();
-      } else {
-        alert(
-          "There was a problem submitting your comment. Please contact public_affairs@dvrpc.org for assistance.\n\nWe apologize for the inconvenience."
-        );
-      }
-      submitBtn.disabled = false;
-    });
-  };
-
-  React.useEffect(() => {
-    document.body.addEventListener("submit", formSubmit);
-
-    return () => document.body.removeEventListener("submit", formSubmit);
-  }, []);
   return (
     <>
       <Helmet titleTemplate="%s | DVRPC">
         <title>{title}</title>
         <meta name="description" content={body.summary} />
       </Helmet>
-      <main css={styles}>
+      <main css={styles} onSubmit={formSubmit}>
         <h1>{title}</h1>
         <article
           dangerouslySetInnerHTML={{

@@ -22,9 +22,10 @@ const App = ({ data, pageContext }) => {
     bgImage: data.page.relationships.field_theme.relationships.field_banner.map(
       (i) => `https://cms.dvrpc.org${i.uri.url}`
     ),
-    bgImage2x: data.page.relationships.field_theme.relationships.field_banner_2x.map(
-      (i) => `https://cms.dvrpc.org${i.uri.url}`
-    ),
+    bgImage2x:
+      data.page.relationships.field_theme.relationships.field_banner_2x.map(
+        (i) => `https://cms.dvrpc.org${i.uri.url}`
+      ),
     bgCredits: data.page.relationships.field_theme.field_photo_credits || "",
   });
   return (
