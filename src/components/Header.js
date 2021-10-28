@@ -11,17 +11,20 @@ const Header = ({ children }) => {
     <header tw="bg-white">
       <LogoBar />
       <div
-        tw="w-full bg-bottom p-8"
-        css={(props) =>
-          css`
-            background-image: url(${props.bgImage[1]}),
-              url(${props.bgImage[0]});
-            background-size: 1600px 400px, cover;
-            min-height: 24rem;
-          `
-        }
+        tw="relative"
+        css={css`
+          height: 25vw;
+        `}
       >
-        <div tw="container mx-auto">
+        {theme.bgImage.map((bg, i) => (
+          <img
+            srcSet={theme.bgImage2x[i] && `${theme.bgImage2x[i]} 2x`}
+            src={bg}
+            alt=""
+            tw="absolute w-full h-full object-cover"
+          />
+        ))}
+        <div tw="container mx-auto py-8">
           <form
             tw="mb-4 relative md:w-min md:pr-32"
             css={css`
@@ -32,7 +35,7 @@ const Header = ({ children }) => {
                 transparent 100%
               );
             `}
-            action="https://www2.dvrpc.org/Search/"
+            action="https://www.dvrpc.org/Search/"
           >
             <div tw="w-16 h-full flex absolute items-center justify-center pointer-events-none">
               <I
