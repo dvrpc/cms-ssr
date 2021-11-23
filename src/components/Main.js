@@ -102,6 +102,7 @@ const styles = [
       ${tw`p-2 pt-1 table-caption text-sm`}
       caption-side: bottom;
     }
+    .simple,
     .simple > figure {
       ${tw`rounded-none p-0 bg-transparent border-none`}
     }
@@ -111,7 +112,8 @@ const styles = [
     img {
       ${tw`max-w-full block`}
     }
-    .alignfull {
+    .alignfull,
+    .alignwide {
       ${tw`max-w-full mx-auto`}
     }
     .text-center {
