@@ -75,7 +75,7 @@ const HomePage = ({ data }) => {
             <div
               tw="text-white text-center"
               css={css`
-                background-color: hsla(205deg, 10%, 36%, 0.84);
+                background-color: rgba(0, 0, 0, 0.54);
               `}
             >
               <div
