@@ -34,7 +34,7 @@ const styles = [
       color: ${props.h2};
     }
     h3 {
-      ${tw`font-bold text-lg my-4`}
+      ${tw`font-bold text-xl my-4 clear-both`}
       color: ${props.h3};
     }
     h4 {
@@ -93,10 +93,16 @@ const styles = [
       ${tw`clear-both`}
     }
     .group__inner-container {
-      ${tw`flex flex-wrap`}
+      ${tw`flex flex-wrap justify-between`}
     }
     figure {
       ${tw`table max-w-sm rounded border border-solid border-gray-400 p-1 mb-4 bg-white italic`}
+    }
+    figure.table {
+      ${tw`w-full border-none`}
+    }
+    .alignfull > table {
+      ${tw`w-full`}
     }
     figcaption {
       ${tw`p-2 pt-1 table-caption text-sm`}
