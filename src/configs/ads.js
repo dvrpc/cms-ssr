@@ -13,17 +13,16 @@ export default [
     style: "width: 176px;",
   },
   {
+    src: "https://www.dvrpc.org/img/gatsby/C2050_WebPlacard[FINAL].png",
+    href: "https://www.dvrpc.org/Plan/",
+    label: "Connections 2050",
+    style: "height: 125px;",
+  },
+  {
     href: "https://storymaps.arcgis.com/stories/0d907b0c17cf49c785feaad14dfa8b12",
     src: "https://www.dvrpc.org/img/gatsby/5727_ar2020_placard.png",
     label: "2020 Annual Report",
     style: "width: 200px;",
-    new_window: true,
-  },
-  {
-    src: "https://www.dvrpc.org/img/gatsby/5546_Dispatches.png",
-    href: "https://indd.adobe.com/view/39a8d5db-23df-4324-9099-4562dd8ed59b",
-    label: "Dispatches from Alternate Futures",
-    style: "width: 176px;",
     new_window: true,
   },
   {
