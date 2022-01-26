@@ -19,11 +19,10 @@ export default [
     style: "height: 125px;",
   },
   {
-    href: "https://storymaps.arcgis.com/stories/0d907b0c17cf49c785feaad14dfa8b12",
-    src: "https://www.dvrpc.org/img/gatsby/5727_ar2020_placard.png",
-    label: "2020 Annual Report",
-    style: "width: 200px;",
-    new_window: true,
+    src: "https://www.dvrpc.org/img/gatsby/webplacard.png",
+    href: "https://www.dvrpc.org/IIJA/",
+    label: "Infrastructure Investment and Jobs Act (IIJA)",
+    style: "width: 230px;",
   },
   {
     href: "/News/",
