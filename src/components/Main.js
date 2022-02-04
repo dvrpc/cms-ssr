@@ -107,7 +107,7 @@ const styles = [
       ${tw`pl-0 pb-0`}
     }
     .group__inner-container > figure {
-      ${tw`text-center`}
+      ${tw`text-center my-8`}
     }
     img {
       ${tw`max-w-full block`}
@@ -145,7 +145,7 @@ const styles = [
     .button a,
     .btn-primary a,
     button.btn {
-      background-color: #0078ae;
+      background-color: ${props.h1};
       ${tw`text-white`}
     }
     [disabled],
