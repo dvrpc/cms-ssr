@@ -3,20 +3,12 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import tw, { css } from "twin.macro";
 
-import "balloon-css";
+import "./balloon-css.css";
 
 const styles = [
   tw`mx-4 my-8`,
   (props) => css`
-    --balloon-text-color: #000;
-    --balloon-color: #ddd;
-    --balloon-font-size: 15px;
     max-width: 80ch;
-
-    [aria-label]::after {
-      width: 65ch;
-      white-space: unset;
-    }
 
     hr {
       ${tw`border-t border-solid border-gray-400 my-8`}
@@ -93,10 +85,10 @@ const styles = [
       ${tw`clear-both`}
     }
     .group__inner-container {
-      ${tw`flex flex-wrap justify-between`}
+      ${tw`flex flex-wrap items-center justify-around`}
     }
     figure {
-      ${tw`table max-w-sm rounded border border-solid border-gray-400 p-1 mb-4 bg-white italic`}
+      ${tw`flex flex-col justify-center items-center max-w-sm rounded border border-solid border-gray-400 p-1 mb-4 bg-white italic`}
     }
     figure.table {
       ${tw`w-full border-none`}
@@ -105,8 +97,7 @@ const styles = [
       ${tw`w-full`}
     }
     figcaption {
-      ${tw`p-2 pt-1 table-caption text-sm`}
-      caption-side: bottom;
+      ${tw`p-2 pt-1 text-sm`}
     }
     .simple,
     .simple > figure {
@@ -114,6 +105,9 @@ const styles = [
     }
     .simple figcaption {
       ${tw`pl-0 pb-0`}
+    }
+    .group__inner-container > figure {
+      ${tw`text-center`}
     }
     img {
       ${tw`max-w-full block`}
