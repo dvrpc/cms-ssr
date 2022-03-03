@@ -65,7 +65,8 @@ const styles = [
       ${tw`pl-0`}
     }
     .size-medium {
-      ${tw`max-w-xl ml-4`}
+      ${tw`ml-4`}
+      max-width: 15rem;
     }
     .fright,
     .alignright {
@@ -85,7 +86,7 @@ const styles = [
       ${tw`clear-both`}
     }
     .group__inner-container {
-      ${tw`flex flex-wrap items-center justify-around`}
+      ${tw`flex flex-wrap items-start justify-around`}
     }
     figure {
       ${tw`flex flex-col justify-center items-center max-w-sm rounded border border-solid border-gray-400 p-1 mb-4 bg-white italic`}
@@ -125,7 +126,7 @@ const styles = [
     .buttons {
       ${tw`flow-root`}
 
-      &>div {
+      & > div {
         ${tw`float-left mr-8`}
       }
     }
@@ -199,8 +200,8 @@ const styles = [
         border: 1px solid #ddd;
       }
     }
-    .list-group-heading:first-of-type,
-    .list-group-item:first-of-type {
+    .list-group-heading:first-child,
+    .list-group-item:first-child {
       border-top-right-radius: 2px;
       border-top-left-radius: 2px;
     }
@@ -286,13 +287,13 @@ const styles = [
       padding: 18px;
       margin-bottom: 10px;
     }
-    .card > h2:first-of-type {
+    .card > h2:first-child {
       margin: -18px -18px 0;
       padding: 9px 18px;
       background-color: ${props.h2};
       color: #fff;
     }
-    .card > h3:first-of-type {
+    .card > h3:first-child {
       margin: -18px -18px 0;
       padding: 9px 18px;
       background-color: ${props.h3};
@@ -318,19 +319,19 @@ const styles = [
       border-left-width: 0;
       border-right-width: 0;
     }
-    .card :first-of-type + .list-group {
+    .card :first-child + .list-group {
       margin-top: 0;
     }
     .card .list-group:last-child {
       margin-bottom: -18px;
     }
-    .list-group > h2:first-of-type {
+    .list-group > h2:first-child {
       margin: 0;
       padding: 9px 18px;
       background-color: ${props.h2};
       color: #fff;
     }
-    .list-group > h3:first-of-type {
+    .list-group > h3:first-child {
       margin: 0;
       padding: 9px 18px;
       background-color: ${props.h3};

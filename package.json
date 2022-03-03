@@ -44,7 +44,7 @@
   },
   "scripts": {
     "build": "gatsby build && rsync -a --delete-delay --out-format='%n' public/ dist/",
-    "develop": "cross-env NODE_OPTIONS=--openssl-legacy-provider GATSBY_ENV=development gatsby develop",
+    "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run build && npm run serve",
     "serve": "gatsby serve",
