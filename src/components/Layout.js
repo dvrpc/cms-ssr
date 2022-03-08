@@ -10,7 +10,7 @@ import StaffContact from "./StaffContact";
 import Footer from "./Footer";
 import favicon from "../images/favicon.ico";
 
-const Layout = ({ location, title, body, staffContact, menu }) => {
+const Layout = ({ location, title, body, staffContact, menu, children }) => {
   return (
     <>
       <Helmet>
@@ -20,7 +20,7 @@ const Layout = ({ location, title, body, staffContact, menu }) => {
       <GlobalStyles />
       <Header />
       <TopNav menu={menu} />
-      <Body body={body} title={title} menu={menu} />
+      {children ? children : <Body body={body} title={title} menu={menu} />}
       <StaffContact
         staffContact={staffContact}
         title={title}

@@ -16,6 +16,7 @@ import rightarrow from "../images/rightarrow.svg";
 import search from "../images/search.svg";
 import dvrpc from "../images/dvrpc.svg";
 import dvrpcMini from "../images/dvrpc-mini.svg";
+import connections2050 from "../images/connections2050icon.svg";
 
 const svg = {
   twitter,
@@ -32,6 +33,7 @@ const svg = {
   search,
   dvrpc,
   dvrpcMini,
+  connections2050,
 };
 
 const Icon = ({ use, scale = 6, fillColor = "#0078ae", ...props }) => {
