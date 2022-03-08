@@ -5,6 +5,7 @@ import tw, { css } from "twin.macro";
 import defaultTheme, { createTheme } from "../utils/theme";
 import Layout from "../components/Layout";
 import I from "../components/Icon";
+import bgImage from "../images/datacenter.jpg";
 
 const NewsLoader = () => <div>Loading...</div>;
 
@@ -12,7 +13,7 @@ const Data = ({ data }) => {
   const theme = createTheme({
     ...defaultTheme,
     bgPrimary: "#0f1a3a",
-    bgImage: ["./datacenter.jpg"],
+    bgImage: [bgImage],
   });
   const location = "/data";
   const title = "Data Center";
