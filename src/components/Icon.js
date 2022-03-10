@@ -43,6 +43,7 @@ const Icon = ({ use, scale = 6, fillColor = "#0078ae", ...props }) => {
   return (
     <svg
       css={css`
+        color: ${fillColor};
         fill: ${fillColor};
         height: ${scale / 4}rem;
       `}

@@ -1,11 +1,12 @@
 import React from "react";
 import tw, { css } from "twin.macro";
 import { RootNav } from "./MenuJson";
+import Color from "color";
 
 const TopNav = ({ menu }) => {
   return (
     <nav
-      tw="flex justify-center"
+      tw="flex justify-center hidden md:visible"
       css={(props) => css`
         background-color: ${props.bgPrimary};
         color: ${props.infoColor};
@@ -13,8 +14,10 @@ const TopNav = ({ menu }) => {
     >
       <div
         tw="container flex-auto md:flex py-4 divide-x"
-        css={css`
-          border-color: rgba(255, 255, 255, 0.25);
+        css={(props) => css`
+          & > * {
+            border-color: ${Color(props.infoColor).alpha(.25).toString()};
+          }
         `}
       >
         <RootNav data={menu} />

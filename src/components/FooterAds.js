@@ -4,9 +4,9 @@ import ads from "../configs/ads";
 
 const FooterAds = () => {
   return (
-    <div tw="w-full py-4 grid grid-flow-col divide-x items-stretch">
+    <div tw="w-full md:py-8 grid md:grid-flow-col divide-x items-stretch">
       {ads.map((i) => (
-        <div key={i.href} tw="flex items-center justify-center">
+        <div key={i.href} tw="flex my-6 md:m-0 items-center justify-center">
           <a
             href={i.href}
             target={i.new_window ? "_blank" : "_self"}
