@@ -118,8 +118,8 @@ const Data = ({ data }) => {
 
       <div
         css={css`
-          background-color: #98b8c2;
-          color: #030a18;
+          background-color: #b1d0e0;
+          color: #040b1f;
         `}
       >
         <div tw="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12 p-8">
@@ -185,40 +185,46 @@ const Data = ({ data }) => {
         </div>
       </div>
       <div
-        tw="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12 p-4 font-bold text-sm"
         css={css`
-          color: #155575;
+          background-color: #b1d0e0;
+          color: #040b1f;
         `}
       >
-        <div tw="md:col-span-3 text-center">
-          <div tw="md:grid grid-cols-2 md:grid-cols-7">
-            {Object.entries({
-              "Bicycle+%26+Pedestrian": "connections2050",
-              "Demographics+%26+Housing": "connections2050",
-              Environment: "connections2050",
-              "Freight+%26+Aviation": "connections2050",
-              Imagery: "connections2050",
-              Planning: "connections2050",
-              TIP: "connections2050",
-              Boundaries: "connections2050",
-              Economy: "connections2050",
-              "Equity+%26+Diversity": "connections2050",
-              Highway: "connections2050",
-              "Long-Range+Plan": "connections2050",
-              "Safety+%26+Health": "connections2050",
-              Transit: "connections2050",
-            }).map(([category, icon]) => (
-              <div key={category} tw="my-4">
-                <a
-                  tw="no-underline hover:underline uppercase"
-                  href={`https://data.dvrpc.org/dataset/?category=${category}`}
-                  target="_blank"
-                >
-                  <I use={icon} tw="mx-auto w-16 h-16 mb-2" />
-                  {decodeURIComponent(category).replaceAll("+", " ")}
-                </a>
-              </div>
-            ))}
+        <div tw="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12 p-4 font-bold text-sm">
+          <div tw="md:col-span-3 text-center">
+            <div tw="md:grid grid-cols-2 md:grid-cols-7">
+              {Object.entries({
+                "Bicycle+%26+Pedestrian": "connections2050",
+                "Demographics+%26+Housing": "connections2050",
+                Environment: "connections2050",
+                "Freight+%26+Aviation": "connections2050",
+                Imagery: "connections2050",
+                Planning: "connections2050",
+                TIP: "connections2050",
+                Boundaries: "connections2050",
+                Economy: "connections2050",
+                "Equity+%26+Diversity": "connections2050",
+                Highway: "connections2050",
+                "Long-Range+Plan": "connections2050",
+                "Safety+%26+Health": "connections2050",
+                Transit: "connections2050",
+              }).map(([category, icon]) => (
+                <div key={category} tw="my-4">
+                  <a
+                    tw="no-underline hover:underline uppercase"
+                    href={`https://data.dvrpc.org/dataset/?category=${category}`}
+                    target="_blank"
+                  >
+                    <I
+                      use={icon}
+                      fillColor="#040b1f"
+                      tw="mx-auto w-16 h-16 mb-2"
+                    />
+                    {decodeURIComponent(category).replaceAll("+", " ")}
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -314,7 +320,9 @@ const Data = ({ data }) => {
       >
         <div tw="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12 p-8 pb-4 md:pb-8">
           <div tw="md:col-span-3 text-center">
-            <h2 tw="font-bold text-2xl">GREATER PHILADELPHIA REGION</h2>
+            <h2 tw="font-bold text-2xl">
+              ABOUT THE GREATER PHILADELPHIA REGION
+            </h2>
             <div
               tw="md:grid md:grid-cols-4 items-stretch justify-between text-xl mt-4 md:mt-8 md:divide-x divide-y md:divide-y-0"
               css={css`

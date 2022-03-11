@@ -6,7 +6,7 @@ import Color from "color";
 const TopNav = ({ menu }) => {
   return (
     <nav
-      tw="flex justify-center hidden md:visible"
+      tw="flex justify-center"
       css={(props) => css`
         background-color: ${props.bgPrimary};
         color: ${props.infoColor};
