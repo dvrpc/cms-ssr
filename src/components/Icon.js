@@ -16,7 +16,20 @@ import rightarrow from "../images/rightarrow.svg";
 import search from "../images/search.svg";
 import dvrpc from "../images/dvrpc.svg";
 import dvrpcMini from "../images/dvrpc-mini.svg";
-import connections2050 from "../images/connections2050icon.svg";
+import bikeped from "../images/bikeped.svg";
+import connections2050 from "../images/connections2050.svg";
+import economy from "../images/economy.svg";
+import environment from "../images/environment.svg";
+import equity from "../images/equity.svg";
+import freight from "../images/freight.svg";
+import health from "../images/health.svg";
+import highways from "../images/highways.svg";
+import housing from "../images/housing.svg";
+import imagery from "../images/imagery.svg";
+import planning from "../images/planning.svg";
+import region from "../images/region.svg";
+import tip from "../images/tip.svg";
+import transit from "../images/transit.svg";
 
 const svg = {
   twitter,
@@ -33,7 +46,20 @@ const svg = {
   search,
   dvrpc,
   dvrpcMini,
+  bikeped,
   connections2050,
+  economy,
+  environment,
+  equity,
+  freight,
+  health,
+  highways,
+  housing,
+  imagery,
+  planning,
+  region,
+  tip,
+  transit,
 };
 
 const Icon = ({ use, scale = 6, fillColor = "#0078ae", ...props }) => {
@@ -44,7 +70,6 @@ const Icon = ({ use, scale = 6, fillColor = "#0078ae", ...props }) => {
     <svg
       css={css`
         color: ${fillColor};
-        fill: ${fillColor};
         height: ${scale / 4}rem;
       `}
       viewBox={svg[use].viewBox}

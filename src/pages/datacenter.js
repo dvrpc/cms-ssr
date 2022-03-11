@@ -9,7 +9,6 @@ import GlobalStyles from "../components/GlobalStyles";
 import LogoBar from "../components/LogoBar";
 import TopNav from "../components/TopNav";
 import I from "../components/Icon";
-import Avatar from "../components/Avatar";
 import ConnectWithUs from "../components/ConnectWithUs";
 import FooterAds from "../components/FooterAds";
 import bgImage from "../images/datacenter.jpg";
@@ -194,20 +193,20 @@ const Data = ({ data }) => {
           <div tw="md:col-span-3 text-center">
             <div tw="md:grid grid-cols-2 md:grid-cols-7">
               {Object.entries({
-                "Bicycle+%26+Pedestrian": "connections2050",
-                "Demographics+%26+Housing": "connections2050",
-                Environment: "connections2050",
-                "Freight+%26+Aviation": "connections2050",
-                Imagery: "connections2050",
-                Planning: "connections2050",
-                TIP: "connections2050",
-                Boundaries: "connections2050",
-                Economy: "connections2050",
-                "Equity+%26+Diversity": "connections2050",
-                Highway: "connections2050",
+                "Bicycle+%26+Pedestrian": "bikeped",
+                "Demographics+%26+Housing": "housing",
+                Environment: "environment",
+                "Freight+%26+Aviation": "freight",
+                Imagery: "imagery",
+                Planning: "planning",
+                TIP: "tip",
+                Boundaries: "region",
+                Economy: "economy",
+                "Equity+%26+Diversity": "equity",
+                Highway: "highways",
                 "Long-Range+Plan": "connections2050",
-                "Safety+%26+Health": "connections2050",
-                Transit: "connections2050",
+                "Safety+%26+Health": "health",
+                Transit: "transit",
               }).map(([category, icon]) => (
                 <div key={category} tw="my-4">
                   <a
