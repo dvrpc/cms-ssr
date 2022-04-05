@@ -1,0 +1,263 @@
+@import url("https://fonts.googleapis.com/css?family=Public+Sans:400,400i,700&display=swap");
+
+html {
+  --color-default: #0078ae;
+  --color-h1: #0078ae;
+  --color-h2: #0078ae;
+  --color-h3: #0078ae;
+  --color-highlight: #0078ae;
+
+  --bg-cover-image: url(https://www.dvrpc.org/static/homepagebanner_2560-44e1b03151f728f813d044006d123932.jpg);
+  --height-banner: auto;
+}
+hr {
+  @apply border-t border-solid border-gray-400 my-8;
+}
+a {
+  @apply underline text-[color:inherit];
+}
+h1 {
+  @apply mt-0 text-3xl font-bold text-[color:var(--color-h1)];
+}
+h2 {
+  @apply font-bold text-2xl my-4 clear-both text-[color:var(--color-h2)];
+}
+h3 {
+  @apply font-bold text-xl my-4 clear-both text-[color:var(--color-h3)];
+}
+h4 {
+  @apply font-bold text-lg my-4;
+}
+p {
+  @apply my-4;
+}
+p.lead {
+  @apply text-lg;
+}
+ol {
+  @apply my-4 list-decimal;
+}
+ol[type="A"] {
+  list-style: upper-alpha;
+}
+ul {
+  @apply pl-10 my-4 list-disc;
+}
+table {
+  @apply not-italic;
+}
+thead {
+  @apply align-bottom;
+}
+tbody {
+  @apply border-t-2 border-b-2 border-gray-300;
+}
+th,
+td {
+  @apply border-b border-gray-300 px-2 py-1;
+}
+.list-group {
+  @apply pl-0;
+}
+.size-medium {
+  @apply max-w-xl ml-4;
+  max-width: 15rem;
+}
+.fright,
+.alignright {
+  @apply float-right clear-right mr-0 ml-8;
+}
+.fleft,
+.alignleft {
+  @apply float-left clear-left ml-0 mr-8;
+}
+.clear-left {
+  clear: left;
+}
+.clear-right {
+  clear: right;
+}
+.clear-both {
+  clear: both;
+}
+.group__inner-container {
+  @apply flex flex-wrap items-start justify-around;
+}
+figure {
+  @apply flex flex-col justify-center items-center max-w-sm rounded border border-solid border-gray-400 p-1 mb-4 bg-white italic;
+}
+figure.table {
+  @apply w-full border-none;
+}
+.alignfull > table {
+  @apply w-full;
+}
+figcaption {
+  @apply p-2 pt-1 text-sm;
+}
+.simple,
+.simple > figure {
+  @apply rounded-none p-0 bg-transparent border-none;
+}
+.simple figcaption {
+  @apply pl-0 pb-0;
+}
+.group__inner-container > figure {
+  @apply text-center my-8;
+}
+img {
+  @apply max-w-full block;
+}
+.alignfull,
+.alignwide {
+  @apply max-w-full mx-auto;
+}
+.text-center {
+  text-align: center;
+}
+.sm {
+  @apply text-sm text-red-700;
+}
+.buttons {
+  @apply flow-root;
+
+  & > div {
+    @apply float-left mr-8;
+  }
+}
+.button a,
+.btn a,
+button.btn {
+  @apply inline-block no-underline text-center align-middle border-solid border-0 border-transparent py-2 px-3 rounded transition duration-150 ease-in-out hover:brightness-125;
+}
+.button a,
+.btn-primary a,
+button.btn {
+  @apply text-white bg-[color:var(--color-h1)];
+}
+details {
+  @apply border border-gray-300 bg-white my-8;
+}
+details > * {
+  @apply mx-4;
+}
+details > summary {
+  @apply bg-gray-200 hover:bg-gray-300 text-lg p-4 pr-14 text-left cursor-pointer outline-none border-0 border-l-2 border-b border-gray-600 block m-0 relative;
+}
+details > summary::after {
+  @apply absolute text-xl top-4 right-4 content-["\2795"];
+}
+details[open] > summary::after {
+  @apply content-["\2796"];
+}
+summary::-webkit-details-marker {
+  @apply hidden;
+}
+.list-group {
+  @apply bg-gray-50 rounded-sm border-0 shadow p-0 overflow-hidden mb-5;
+
+  & > .footer,
+  & > footer {
+    @apply -mx-4 -mb-4 py-2 px-4 bg-gray-100 text-right border-t border-gray-200 font-bold;
+  }
+  & > li {
+    @apply relative block py-2 px-4 -mb-px bg-gray-50 border border-gray-200;
+  }
+}
+.list-group-heading:first-child,
+.list-group-item:first-child {
+  @apply rounded-t-sm;
+}
+.list-group-heading:last-child,
+.list-group-item:last-child {
+  @apply mb-0 rounded-b-sm;
+}
+.list-group-heading {
+  @apply text-gray-700 uppercase text-sm font-bold;
+}
+a.list-group-item {
+  @apply text-gray-700;
+}
+a.list-group-item .list-group-item-heading {
+  @apply text-gray-800;
+}
+a.list-group-item:focus,
+a.list-group-item:hover {
+  @apply text-gray-700 no-underline bg-gray-100;
+}
+.btn[disabled],
+.btn.disabled,
+.list-group-item.disabled,
+.list-group-item.disabled:focus,
+.list-group-item.disabled:hover {
+  @apply text-gray-500 bg-gray-300 cursor-not-allowed;
+}
+.list-group-item.disabled .list-group-item-text,
+.list-group-item.disabled:focus .list-group-item-text,
+.list-group-item.disabled:hover .list-group-item-text {
+  @apply text-gray-500;
+}
+.list-group-item.active,
+.list-group-item.active:focus,
+.list-group-item.active:hover {
+  @apply text-white z-10 border-[color:var(--color-h1)] bg-[color:var(--color-h1)];
+}
+.list-group-item.active .list-group-item-text,
+.list-group-item.active:focus .list-group-item-text,
+.list-group-item.active:hover .list-group-item-text {
+  @apply text-blue-300;
+}
+.list-group-item-heading {
+  @apply mt-0 mb-1;
+}
+.list-group-item-text {
+  @apply mb-1 leading-tight;
+}
+.card {
+  @apply bg-gray-50 rounded-sm border-none shadow p-4 overflow-hidden mb-4;
+}
+.card > h2:first-child {
+  @apply -m-4 mb-0 py-2 px-4 text-white bg-[color:var(--color-h2)];
+}
+.card > h3:first-child {
+  @apply -m-4 mb-0 py-2 px-4 text-white bg-[color:var(--color-h3)];
+}
+.card > h2:first-child + *,
+.card > h3:first-child + * {
+  @apply mt-0;
+}
+.card > .footer,
+.card > footer {
+  @apply -m-4 mt-0 py-1 px-4 bg-gray-50 text-right border-t border-gray-100 font-bold;
+}
+.card .list-group {
+  @apply -mx-4 shadow-none;
+}
+.card .list-group > .list-group-heading,
+.card .list-group > .list-group-item {
+  @apply rounded-none border-l-0;
+}
+.card > :first-child + .list-group {
+  @apply mt-0;
+}
+.card .list-group:last-child {
+  @apply -mb-4;
+}
+.list-group > h2:first-child {
+  @apply m-0 py-2 px-4 text-white bg-[color:var(--color-h2)];
+}
+.list-group > h3:first-child {
+  @apply m-0 py-2 px-4 text-white bg-[color:var(--color-h3)];
+}
+label {
+  @apply font-bold pt-4 pb-1 block;
+}
+input,
+.form-control,
+select,
+textarea {
+  @apply block w-full py-2 px-4 text-base leading-6 text-opacity-80 text-black bg-gray-50 bg-none border border-gray-200 rounded-sm transition-all;
+}
+.btn[disabled] {
+  @apply cursor-wait;
+}

@@ -1,64 +1,100 @@
-import React from "react";
+import * as React from "react";
 import { graphql } from "gatsby";
-import { ThemeProvider } from "@emotion/react";
-import defaultTheme, { createTheme } from "../utils/theme";
-import Layout from "../components/Layout";
-import color from "color";
+import Helmet from "react-helmet";
+import parseHtml from "../utils/parseHtml";
 
-const App = ({ data, pageContext }) => {
-  const theme = createTheme({
-    ...defaultTheme,
-    h1: data.page.relationships.field_theme.field_primary_color,
-    h2: color(data.page.relationships.field_theme.field_primary_color)
-      .lighten(0.1)
-      .hex(),
-    h3: color(data.page.relationships.field_theme.field_primary_color)
-      .lighten(0.1)
-      .hex(),
-    bgPrimary: data.page.relationships.field_theme.field_secondary_color,
-    bgNav:
-      data.page.relationships.field_theme.field_third_color ||
-      data.page.relationships.field_theme.field_secondary_color,
-    bgImage: data.page.relationships.field_theme.relationships.field_banner.map(
-      (i) => `https://cms.dvrpc.org${i.uri.url}`
-    ),
-    bgImage2x:
-      data.page.relationships.field_theme.relationships.field_banner_2x.map(
-        (i) => `https://cms.dvrpc.org${i.uri.url}`
-      ),
-    bgCredits: data.page.relationships.field_theme.field_photo_credits || "",
-  });
+import Header from "../components/Header";
+import TopNav from "../components/TopNav";
+import Body from "../components/Body";
+import StaffContact from "../components/StaffContact";
+import Footer from "../components/Footer";
+
+const themeConfig = [
+  ["field_primary_color", "--color-h1"],
+  ["field_primary_color", "--color-h2"],
+  ["field_primary_color", "--color-h3"],
+  ["field_secondary_color", "--color-highlight"],
+  [
+    "relationships.field_banner",
+    "--bg-cover-image",
+    (val) =>
+      val
+        .map(
+          (obj) =>
+            `url(${obj.localFile.childImageSharp.gatsbyImageData.images.fallback.src})`
+        )
+        .join(", "),
+  ],
+  ["field_photo_credits", "--content-photo-credits", (val) => `"${val}"`],
+  ["relationships.field_banner", "--height-banner", () => "400px"],
+];
+
+const themeToCustomVars = (theme, config) => {
+  return config
+    .map(([key, customVar, parseFunc = (v) => v]) => {
+      const val = key
+        .split(".")
+        .reduce((prev, cur) => prev && prev[cur], theme);
+      return val ? `${customVar}: ${parseFunc(val)};` : null;
+    })
+    .join("\n");
+};
+
+const DrupalPage = ({
+  data: {
+    navItem,
+    nodePage: {
+      body,
+      title,
+      path,
+      relationships: { field_staff_contact, field_theme },
+    },
+  },
+}) => {
   return (
-    <ThemeProvider theme={theme}>
-      <Layout
-        location={pageContext.slug || pageContext.guid}
-        title={data.page.title}
-        body={data.page.body}
-        staffContact={data.page.relationships.field_staff_contact}
-        menu={data.navItem}
+    <>
+      <Helmet titleTemplate="%s | DVRPC">
+        <html lang="en" />
+        <title>{title}</title>
+        <meta name="description" content={body.summary} />
+        <style>
+          {`:root {
+            ${themeToCustomVars(field_theme, themeConfig)}
+          }`}
+        </style>
+      </Helmet>
+      <Header />
+      <TopNav />
+      <Body title={title} menu={navItem}>
+        {parseHtml(body.processed)}
+      </Body>
+      <StaffContact
+        staffContact={field_staff_contact}
+        title={title}
+        location={path.alias}
       />
-    </ThemeProvider>
+      <Footer />
+    </>
   );
 };
 
-export default App;
-
 export const query = graphql`
-  query ($slug: String, $guid: String, $regex: String!) {
-    page: nodePage(drupal_id: { eq: $guid }, path: { alias: { eq: $slug } }) {
+  query ($id: String, $regex: String!) {
+    nodePage(id: { eq: $id }) {
+      id
       title
-      path {
-        alias
-      }
       body {
         processed
         summary
       }
+      path {
+        alias
+      }
       relationships {
         field_staff_contact {
-          mail
           field_display_name
           field_title
+          mail
         }
         field_theme {
           field_primary_color
@@ -67,13 +103,10 @@ export const query = graphql`
           field_photo_credits
           relationships {
             field_banner {
-              uri {
-                url
-              }
-            }
-            field_banner_2x {
-              uri {
-                url
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 1600, height: 400, formats: [WEBP])
+                }
               }
             }
           }
@@ -164,3 +197,4 @@ export const query = graphql`
     }
   }
 `;
+export default DrupalPage;

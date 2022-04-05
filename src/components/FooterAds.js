@@ -1,24 +1,20 @@
 import React from "react";
-import tw, { css } from "twin.macro";
 import ads from "../configs/ads";
 
 const FooterAds = () => {
   return (
-    <div tw="w-full md:py-8 grid md:grid-flow-col divide-x items-stretch">
+    <div className="m-4 grid md:grid-flow-col md:auto-cols-fr justify-stretch md:justify-between items-center divide-y md:divide-y-0 md:divide-x divide-[#d1d5db]">
       {ads.map((i) => (
-        <div key={i.href} tw="flex my-6 md:m-0 items-center justify-center">
+        <div
+          key={i.href}
+          className="flex justify-center py-6 md:p-0"
+        >
           <a
             href={i.href}
             target={i.new_window ? "_blank" : "_self"}
-            tw="flex items-center justify-center"
+            className="flex items-center"
           >
-            <img
-              src={i.src}
-              alt={i.label}
-              css={css`
-                ${i.style}
-              `}
-            />
+            <img src={i.src} alt={i.label} style={i.style} />
           </a>
         </div>
       ))}

@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import * as React from "react"
+import { Helmet } from "react-helmet"
 
-const NotFoundPage = ({ location: { pathname } }) => {
-  useEffect(() => {
-    //    location.href = `https://www2.dvrpc.org${pathname}`;
-  }, [pathname]);
-  return null;
-};
+const NotFoundPage = () => (
+  <article>
+    <Helmet title="404: Not found" />
+    <h1>404: Not Found</h1>
+    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+  </article>
+)
 
-export default NotFoundPage;
+export default NotFoundPage

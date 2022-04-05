@@ -1,20 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
-import tw from "twin.macro";
 
 const Avatar = ({ contact }) => {
   return (
-    <footer tw="py-4 flow-root">
-      <a tw="block" href={`mailto:${contact.mail}`}>
+    <footer className="flow-root">
+      <a className="block" href={`mailto:${contact.mail}`}>
         {contact.field_display_name}
       </a>
-      <small tw="block text-sm">{contact.field_title}</small>
+      <small className="block text-sm">{contact.field_title}</small>
     </footer>
   );
-};
-
-Avatar.propTypes = {
-  contact: PropTypes.object.isRequired,
 };
 
 export default Avatar;

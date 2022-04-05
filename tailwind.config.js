@@ -1,16 +1,16 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
-
 module.exports = {
+  mode: "jit",
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "media",
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Public Sans", ...defaultTheme.fontFamily.sans],
-      },
-      screens: {
-        "2xl": "1600px",
+        sans: ["Public Sans", "Roboto", "sans-serif"],
       },
     },
   },
-  variants: {},
+  variants: {
+    extend: {},
+  },
   plugins: [],
 };

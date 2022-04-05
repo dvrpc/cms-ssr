@@ -1,5 +1,4 @@
 import React from "react";
-import tw from "twin.macro";
 
 const Event = (props) => {
   const [, mon, day] = props.StartDate.split("-");
@@ -8,17 +7,19 @@ const Event = (props) => {
   return (
     <div
       key={props.StartDate + props.Title}
-      tw="w-full md:w-auto md:flex-1 p-8 flex items-center gap-2 divide-x divide-blue-400"
+      className="w-full md:w-auto md:flex-1 p-8 flex items-center gap-2 divide-x divide-blue-400"
     >
-      <footer tw="flex flex-col items-center">
-        <p tw="m-0 text-2xl leading-none">
+      <footer className="flex flex-col items-center">
+        <p className="m-0 text-2xl leading-none">
           {+mon}/{+day}
         </p>
-        <span tw="m-0 ml-auto">{props.StartTime !== "00:00" && start}</span>
+        <span className="m-0 ml-auto">
+          {props.StartTime !== "00:00" && start}
+        </span>
       </footer>
-      <h4 tw="font-normal m-0 pl-2">
+      <h4 className="font-normal m-0 pl-2">
         {props.Info ? (
-          <a tw="underline" href={props.Info}>
+          <a className="underline" href={props.Info}>
             {props.Title}
           </a>
         ) : (
@@ -30,12 +31,12 @@ const Event = (props) => {
 };
 
 const EventLoader = (props) => (
-  <div tw="w-72 md:w-auto md:flex-1 p-8 flex items-center gap-2 divide-x divide-blue-400 animate-pulse">
-    <footer tw="flex flex-col items-center">
-      <p tw="h-8 w-10 bg-gray-200" />
-      <span tw="h-6 my-2 w-10 bg-gray-200" />
+  <div className="w-72 md:w-auto md:flex-1 p-8 flex items-center gap-2 divide-x divide-blue-400 animate-pulse">
+    <footer className="flex flex-col items-center">
+      <p className="h-8 w-10 bg-gray-200" />
+      <span className="h-6 my-2 w-10 bg-gray-200" />
     </footer>
-    <h4 tw="w-48 h-20 m-0 pl-2 bg-gray-200" />
+    <h4 className="w-48 h-20 m-0 pl-2 bg-gray-200" />
   </div>
 );
 
