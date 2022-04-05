@@ -39,16 +39,16 @@ const img = ({ attribs }, query) => {
     ({ node }) => node.drupal_id === attribs["data-entity-uuid"]
   )[0];
   if (result) {
-    console.log("local file found: ", result);
+    console.log("local image found: ", result);
     return (
       <GatsbyImage
+        loading="eager"
         image={getImage(result.node.localFile)}
         alt={attribs.alt || ""}
       />
     );
-  } else {
-    console.warn(`no local image found for: ${attribs["data-entity-uuid"]}`);
   }
+  console.warn(`no local image found for: ${attribs["data-entity-uuid"]}`);
   return undefined;
 };
 
@@ -70,8 +70,10 @@ const parseHtml = (src) => {
               childImageSharp {
                 gatsbyImageData(
                   width: 783
-                  placeholder: BLURRED
-                  formats: [AUTO, WEBP, AVIF]
+                  quality: 100
+                  outputPixelDensities: [1]
+                  layout: CONSTRAINED
+                  formats: [AUTO]
                 )
               }
             }
