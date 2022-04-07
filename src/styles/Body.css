@@ -83,6 +83,9 @@ td {
 .group__inner-container {
   @apply flex flex-wrap items-start justify-around;
 }
+.group__inner-container > * {
+  @apply text-center my-8;
+}
 figure {
   @apply flex flex-col justify-center items-center max-w-sm rounded border border-solid border-gray-400 p-1 mb-4 bg-white italic;
 }
@@ -101,9 +104,6 @@ figcaption {
 }
 .simple figcaption {
   @apply pl-0 pb-0;
-}
-.group__inner-container > figure {
-  @apply text-center my-8;
 }
 img {
   @apply max-w-full block;

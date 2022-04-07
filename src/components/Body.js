@@ -2,7 +2,8 @@ import React from "react";
 import Menu from "./Menu.obsolete";
 import InfoLinks from "./InfoLinks";
 
-//import "./Body.css";
+import "../styles/Body.css";
+import "../styles/BalloonCSS.css";
 
 const Body = ({ children, title, menu }) => {
   return (
