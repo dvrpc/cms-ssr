@@ -12,8 +12,11 @@ import Product, { ProductLoader } from "../components/Product";
 import CSSSlider from "../components/CSSSlider";
 
 import "../styles/Body.css";
+import MobileHeader from "../components/MobileHeader";
+import LogoBar from "../components/LogoBar";
+import SocialMedia from "../components/SocialMedia";
 
-const isSSR = typeof window === "undefined";
+export const isSSR = typeof window === "undefined";
 
 const fetchData = () =>
   fetch(`https://www.dvrpc.org/asp/homepage/default2.aspx`).then((r) =>
@@ -38,6 +41,20 @@ const Products = ({ dataReader }) =>
 
 const HomePage = ({ data }) => {
   const [dataReader] = useAsyncResource(fetchData, []);
+
+  const AnnouncementSlider = () => {
+    return (
+      <div className="w-min md:pr-32 bg-gradient-to-r from-white/80 via-white/80 to-transparent">
+        <div className="p-4 md:pl-12 w-full md:w-96">
+          {!isSSR && (
+            <Suspense fallback={<AnnouncementLoader />}>
+              <Anns dataReader={dataReader} />
+            </Suspense>
+          )}
+        </div>
+      </div>
+    );
+  };
 
   const alert = data.blockContentAlertBanner?.body?.processed ?? "";
   return (
@@ -65,16 +82,11 @@ const HomePage = ({ data }) => {
           )
         }
       >
-        <div className="w-min md:pr-32 bg-gradient-to-r from-white/80 via-white/80 to-transparent">
-          <div className="p-4 md:pl-12 w-full md:w-96">
-            {!isSSR && (
-              <Suspense fallback={<AnnouncementLoader />}>
-                <Anns dataReader={dataReader} />
-              </Suspense>
-            )}
-          </div>
-        </div>
+        <AnnouncementSlider />
       </Header>
+      <MobileHeader>
+        <AnnouncementSlider />
+      </MobileHeader>
       <TopNav />
       <main>
         <div className="flex justify-center bg-[#bbe2f2]">
@@ -155,6 +167,9 @@ const HomePage = ({ data }) => {
         </div>
       </main>
       <Footer />
+      <div className="flex justify-center bg-[#383838] text-white sticky bottom-0">
+        <SocialMedia fill="#919191" />
+      </div>
     </>
   );
 };

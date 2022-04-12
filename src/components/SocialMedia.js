@@ -9,7 +9,7 @@ import Icon, {
   Youtube,
 } from "./Icon";
 
-const SocialMedia = () => {
+const SocialMedia = ({ fill }) => {
   const items = [
     <A
       key="newsletters"
@@ -47,7 +47,11 @@ const SocialMedia = () => {
     </A>,
   ];
   return (
-    <ul className="flex md:justify-end m-0 mb-4 p-0 md:p-4 text-[color:var(--color-default)]">
+    <ul
+      className={`flex md:justify-end m-0 mb-4 p-0 md:p-4 text-[${
+        !fill ? "color:var(--color-default)" : fill
+      }]`}
+    >
       {items.map((i) => (
         <li key={i.props.href} className="block p-4 md:px-2 md:py-0">
           {i}

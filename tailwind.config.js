@@ -7,6 +7,9 @@ module.exports = {
       fontFamily: {
         sans: ["Public Sans", "Roboto", "sans-serif"],
       },
+      colors: {
+        dvrpcBlue: "#14698e",
+      },
     },
   },
   variants: {
