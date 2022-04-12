@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { graphql } from "gatsby";
 import { Helmet } from "react-helmet";
 import { useAsyncResource } from "use-async-resource";
@@ -13,8 +13,8 @@ import CSSSlider from "../components/CSSSlider";
 
 import "../styles/Body.css";
 import MobileHeader from "../components/MobileHeader";
-import LogoBar from "../components/LogoBar";
 import SocialMedia from "../components/SocialMedia";
+import MobileNav from "../components/MobileNav";
 
 export const isSSR = typeof window === "undefined";
 

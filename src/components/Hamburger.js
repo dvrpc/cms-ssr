@@ -13,6 +13,7 @@ const Hamburger = () => {
           } else {
             e.target.classList.toggle("is-active");
           }
+          document.getElementById("mobile-nav").classList.toggle("hidden");
         }
       }}
     >

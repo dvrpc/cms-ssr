@@ -4,7 +4,7 @@ import Icon, { Search } from "./Icon";
 
 const Header = ({ bgStyles, alert, children }) => {
   return (
-    <header className="desktop-header bg-white">
+    <header className="hidden md:block bg-white">
       <LogoBar />
       <div
         className="w-full bg-bottom h-[var(--height-banner)] bg-cover relative after:absolute after:block after:bottom-4 after:right-0 after:p-1 after:px-2 after:pl-64 after:text-gray-900 after:text-sm after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:content-[var(--content-photo-credits)]"

@@ -44,23 +44,3 @@
   -o-transform: translateY(-14px) rotate(-45deg);
   transform: translateY(-14px) rotate(-45deg);
 }
-
-@media (max-width: 720px) {
-  .desktop-top-nav {
-    display: none;
-  }
-  .desktop-header {
-    display: none;
-  }
-  .desktop-footer {
-    display: none;
-  }
-}
-@media (min-width: 720px) {
-  .mobile-top-nav {
-    display: none;
-  }
-  .mobile-header {
-    display: none;
-  }
-}

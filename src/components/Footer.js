@@ -5,7 +5,7 @@ import Icon, { DvrpcMini } from "./Icon";
 
 const Footer = () => {
   return (
-    <div className="desktop-footer">
+    <div className="hidden md:block">
       <footer className="flex justify-center bg-white">
         <div className="container">
           <FooterAds />
