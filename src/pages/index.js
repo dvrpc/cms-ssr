@@ -15,6 +15,7 @@ import "../styles/Body.css";
 import MobileHeader from "../components/MobileHeader";
 import SocialMedia from "../components/SocialMedia";
 import MobileNav from "../components/MobileNav";
+import FooterAds from "../components/FooterAds";
 
 export const isSSR = typeof window === "undefined";
 
@@ -81,12 +82,9 @@ const HomePage = ({ data }) => {
             ""
           )
         }
-      >
-        <AnnouncementSlider />
-      </Header>
-      <MobileHeader>
-        <AnnouncementSlider />
-      </MobileHeader>
+        children={<AnnouncementSlider />}
+      />
+      <MobileHeader children={<AnnouncementSlider />} />
       <TopNav />
       <main>
         <div className="flex justify-center bg-[#bbe2f2]">
@@ -113,7 +111,7 @@ const HomePage = ({ data }) => {
 
         <div className="flex justify-center bg-[#e4f5f7]">
           <div className="container mx-8 py-4 flex flex-col md:flex-row items-center gap-12">
-            <div className="md:w-3/4 border-gray-300 border-r">
+            <div className="md:w-3/4 border-gray-300 md:border-r">
               <h3 className="mb-4 text-3xl">
                 <a
                   className="text-[#296591]"
@@ -135,7 +133,7 @@ const HomePage = ({ data }) => {
               </div>
             </div>
             <div className="w-full md:w-1/4">
-              <h3 className="text-3xl text-[#296591]">Quick Links</h3>
+              <h3 className="text-3xl text-[#296591] underline">Quick Links</h3>
               <ul className="my-8">
                 <li>
                   <a href="https://www.dvrpc.org/business">
@@ -165,10 +163,14 @@ const HomePage = ({ data }) => {
             </div>
           </div>
         </div>
+        <div className="md:hidden mx-8">
+          <h3 className="text-3xl text-[#296591] underline">Featured</h3>
+          <FooterAds />
+        </div>
       </main>
       <Footer />
-      <div className="flex justify-center bg-[#383838] text-white sticky bottom-0">
-        <SocialMedia fill="#919191" />
+      <div className="md:hidden flex justify-center bg-[#383838] text-white sticky bottom-0 z-50">
+        <SocialMedia fill="#666666" />
       </div>
     </>
   );

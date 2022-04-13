@@ -1,12 +1,12 @@
 import React from "react";
-import Icon, { Dvrpc, Search } from "./Icon";
+import Icon, { Dvrpc } from "./Icon";
 import Hamburger from "../components/Hamburger";
 import MobileNav from "./MobileNav";
 
 const MobileHeader = ({ children }) => {
   return (
-    <>
-      <div className="md:hidden fixed z-50">
+    <div className="md:hidden">
+      <div className="fixed z-50">
         <div className="w-screen top-0 logo-bar container md:px-8 mx-auto flex sm:justify-between bg-dvrpcBlue text-white z-50">
           <div className="flex items-center ml-8">
             <Hamburger />
@@ -23,30 +23,10 @@ const MobileHeader = ({ children }) => {
           backgroundImage: "var(--bg-cover-image)",
         }}
       >
-        <div className="container px-6 py-24 mx-auto">
-          <form
-            className="mb-4 relative md:w-min md:pr-32"
-            action="https://www.dvrpc.org/Search/"
-          >
-            <div className="w-16 h-full flex absolute items-center justify-center pointer-events-none">
-              <Icon
-                use={Search}
-                className="h-6 inline-block flex-shrink-0 select-none"
-              />
-            </div>
-            <div className="w-full">
-              <input
-                name="q"
-                placeholder="Search..."
-                aria-label="Search"
-                className="border-0 border-none m-0 p-2 pl-16 block focus:outline-none min-w-0 placeholder-gray-600 opacity-90"
-              />
-            </div>
-          </form>
-          {children}
-        </div>
+        <div className="container px-6 py-24 mx-auto">{children}</div>
       </div>
-    </>
+      <div className="p-24 bg-gray-500"></div>
+    </div>
   );
 };
 

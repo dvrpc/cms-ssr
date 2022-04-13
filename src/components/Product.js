@@ -6,7 +6,7 @@ const Product = (props) => (
     className="w-full md:w-1/2 my-4 flex items-center gap-4 pr-4"
   >
     <img
-      className="border-solid border border-gray-400 bg-white w-[100.5px]"
+      className="border-0 border border-solid border border-gray-400 bg-white w-[100.5px]"
       src={`https://www.dvrpc.org/asp/pubs/201px/${props.PubId}.png`}
       alt="cover"
     />

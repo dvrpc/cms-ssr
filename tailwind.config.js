@@ -9,6 +9,7 @@ module.exports = {
       },
       colors: {
         dvrpcBlue: "#14698e",
+        secondaryBlue: "#acd5ea",
       },
     },
   },
