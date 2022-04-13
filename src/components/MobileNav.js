@@ -6,7 +6,7 @@ const MobileNav = ({ additionalLinks }) => {
   return (
     <div
       id="mobile-nav"
-      className="absolute bg-dvrpcBlue border-t h-screen hidden w-full text-white z-50"
+      className="fixed bg-dvrpcBlue border-t h-screen hidden w-full text-white z-50"
     >
       {rootNavArr.map((item, index) => {
         return (

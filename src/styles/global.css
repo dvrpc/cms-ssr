@@ -44,3 +44,18 @@
   -o-transform: translateY(-14px) rotate(-45deg);
   transform: translateY(-14px) rotate(-45deg);
 }
+
+#mobile-nav {
+  overflow: hidden;
+  animation-duration: 0.75s;
+  animation-name: slidedown;
+}
+
+@keyframes slidedown {
+  from {
+    height: 0%;
+  }
+  to {
+    height: 100%;
+  }
+}
