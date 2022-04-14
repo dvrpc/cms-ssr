@@ -45,17 +45,66 @@
   transform: translateY(-14px) rotate(-45deg);
 }
 
-#mobile-nav {
-  overflow: hidden;
-  animation-duration: 0.75s;
-  animation-name: slidedown;
+.mobile-menu #mobnav-btn .mobnav-btn-label {
+  display: block;
 }
 
-@keyframes slidedown {
-  from {
-    height: 0%;
-  }
-  to {
-    height: 100%;
-  }
+.mobile-menu-open {
+  left: 50%;
+  overflow: hidden;
+}
+
+.xnav {
+  position: fixed;
+  width: 100%;
+  left: -100%;
+  bottom: 0%;
+  top: 6rem;
+  z-index: 99999999999999999;
+  zoom: 1;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-open .xnav {
+  z-index: 9999999999999;
+  zoom: 1;
+  left: 0%;
+}
+
+.xnav-wrapper {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.xnav-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: rgba(128, 128, 128, 0.7);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(32, 32, 32, 0.05);
+}
+
+/* end MOBILE NAV */
+
+#test {
+  height: 6rem;
 }

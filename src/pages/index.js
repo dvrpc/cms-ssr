@@ -169,7 +169,7 @@ const HomePage = ({ data }) => {
         </div>
       </main>
       <Footer />
-      <div className="md:hidden flex justify-center bg-[#383838] text-white sticky bottom-0 z-50">
+      <div className="md:hidden flex justify-center bg-[#383838] text-white fixed bottom-0 w-screen">
         <SocialMedia fill="#666666" />
       </div>
     </>
