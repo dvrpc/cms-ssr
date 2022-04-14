@@ -84,7 +84,21 @@ const HomePage = ({ data }) => {
         }
         children={<AnnouncementSlider />}
       />
-      <MobileHeader children={<AnnouncementSlider />} />
+      <MobileHeader
+        children={<AnnouncementSlider />}
+        alert={
+          alert.length ? (
+            <div className="text-white text-sm p-2 my-2 text-center bg-black/50">
+              <div
+                className="mx-auto container"
+                dangerouslySetInnerHTML={{ __html: alert }}
+              />
+            </div>
+          ) : (
+            ""
+          )
+        }
+      />
       <TopNav />
       <div className="md:hidden py-10 px-4 bg-gray-500">
         <SectionMenu />

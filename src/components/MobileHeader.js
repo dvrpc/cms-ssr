@@ -3,7 +3,7 @@ import Icon, { Dvrpc } from "./Icon";
 import Hamburger from "../components/Hamburger";
 import MobileNav from "./MobileNav";
 
-const MobileHeader = ({ children }) => {
+const MobileHeader = ({ alert, children }) => {
   return (
     <div className="md:hidden">
       <div className="fixed z-50" style={{ height: "6rem" }}>
@@ -23,7 +23,10 @@ const MobileHeader = ({ children }) => {
           backgroundImage: "var(--bg-cover-image)",
         }}
       >
-        <div className="container px-6 py-24 mx-auto">{children}</div>
+        <div className="container px-6 py-20 mx-auto">
+          {alert}
+          {children}
+        </div>
       </div>
     </div>
   );
