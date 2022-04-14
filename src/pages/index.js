@@ -14,8 +14,8 @@ import CSSSlider from "../components/CSSSlider";
 import "../styles/Body.css";
 import MobileHeader from "../components/MobileHeader";
 import SocialMedia from "../components/SocialMedia";
-import MobileNav from "../components/MobileNav";
 import FooterAds from "../components/FooterAds";
+import SectionMenu from "../components/SectionMenu";
 
 export const isSSR = typeof window === "undefined";
 
@@ -86,6 +86,9 @@ const HomePage = ({ data }) => {
       />
       <MobileHeader children={<AnnouncementSlider />} />
       <TopNav />
+      <div className="md:hidden py-10 px-4 bg-gray-500">
+        <SectionMenu />
+      </div>
       <main>
         <div className="flex justify-center bg-[#bbe2f2]">
           <div className="container mx-8 flex-auto items-center justify-between md:flex">

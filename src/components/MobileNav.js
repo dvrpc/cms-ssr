@@ -5,7 +5,7 @@ import Icon, { Search } from "./Icon";
 
 const MobileNav = ({ additionalLinks }) => {
   return (
-    <div className="bg-dvrpcBlue text-white border-t xnav">
+    <div className="bg-dvrpcBlue text-white border-t border-secondaryBlue xnav">
       <div className="xnav-wrapper">
         <form
           className="relative md:w-min md:pr-32 px-4 py-4"
