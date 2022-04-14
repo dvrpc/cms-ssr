@@ -180,7 +180,7 @@ const HomePage = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className="md:hidden mx-8">
+        <div className="md:hidden mx-8 mb-20">
           <h3 className="text-3xl text-[#296591] underline">Featured</h3>
           <FooterAds />
         </div>

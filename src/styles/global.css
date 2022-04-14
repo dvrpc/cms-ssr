@@ -76,7 +76,7 @@
 }
 
 .xnav-wrapper {
-  overflow-y: scroll;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   height: 100%;
 }
@@ -105,6 +105,13 @@
 
 /* end MOBILE NAV */
 
-#test {
-  height: 6rem;
+/* search navigation animation */
+/* #nav-search {
+  right: 0;
+  transition: all 0.5s;
+  width: 15%;
 }
+#nav-search:focus {
+  right: 100%;
+  width: 100%;
+} */
