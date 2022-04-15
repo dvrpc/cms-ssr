@@ -8,6 +8,9 @@ import TopNav from "../components/TopNav";
 import Body from "../components/Body";
 import StaffContact from "../components/StaffContact";
 import Footer from "../components/Footer";
+import MobileHeader from "../components/MobileHeader";
+import MobileNav from "../components/MobileNav";
+import MobileFooter from "../components/MobileFooter";
 
 const themeConfig = [
   ["field_primary_color", "--color-h1"],
@@ -63,6 +66,8 @@ const DrupalPage = ({
           }`}
         </style>
       </Helmet>
+      <MobileHeader />
+      <MobileNav additionalLinks={navItem} isIndex={false} />
       <Header />
       <TopNav />
       <Body title={title} menu={navItem}>
@@ -73,6 +78,7 @@ const DrupalPage = ({
         title={title}
         location={path.alias}
       />
+      <MobileFooter />
       <Footer />
     </>
   );

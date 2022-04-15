@@ -13,9 +13,10 @@ import CSSSlider from "../components/CSSSlider";
 
 import "../styles/Body.css";
 import MobileHeader from "../components/MobileHeader";
-import SocialMedia from "../components/SocialMedia";
 import FooterAds from "../components/FooterAds";
 import SectionMenu from "../components/SectionMenu";
+import MobileNav from "../components/MobileNav";
+import MobileFooter from "../components/MobileFooter";
 
 export const isSSR = typeof window === "undefined";
 
@@ -99,6 +100,7 @@ const HomePage = ({ data }) => {
           )
         }
       />
+      <MobileNav isIndex={true} />
       <TopNav />
       <div className="md:hidden py-10 px-4 bg-gray-500">
         <SectionMenu />
@@ -188,10 +190,8 @@ const HomePage = ({ data }) => {
           <FooterAds />
         </div>
       </main>
+      <MobileFooter />
       <Footer />
-      <div className="md:hidden flex justify-center bg-[#383838] text-white fixed bottom-0 w-screen">
-        <SocialMedia fill="#666666" />
-      </div>
     </>
   );
 };
