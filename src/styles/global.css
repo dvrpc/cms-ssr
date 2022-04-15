@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 .row .three {
   padding: 80px 30px;
   -webkit-box-sizing: border-box;

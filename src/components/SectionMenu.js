@@ -11,7 +11,9 @@ const SectionMenu = () => {
           scale={null}
           className="h-[50px]"
         />
-        <a className="cursor-pointer">Events</a>
+        <a href="/#events-section" className="cursor-pointer">
+          Events
+        </a>
       </div>
       <div className="h-100 px-2 flex flex-col items-center justify-center">
         <Icon
@@ -20,7 +22,9 @@ const SectionMenu = () => {
           scale={null}
           className="h-[50px]"
         />
-        <a className="cursor-pointer">Releases</a>
+        <a href="/#releases-section" className="cursor-pointer">
+          Releases
+        </a>
       </div>
       <div className="h-100 px-2 flex flex-col items-center justify-center">
         <Icon
@@ -29,7 +33,9 @@ const SectionMenu = () => {
           scale={null}
           className="h-[50px]"
         />
-        <a className="cursor-pointer">Links</a>
+        <a href="/#links-section" className="cursor-pointer">
+          Links
+        </a>
       </div>
       <div className="h-100 px-2 flex flex-col items-center justify-center">
         <Icon
@@ -38,7 +44,9 @@ const SectionMenu = () => {
           scale={null}
           className="h-[50px]"
         />
-        <a className="cursor-pointer">Featured</a>
+        <a href="/#featured-section" className="cursor-pointer">
+          Featured
+        </a>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import "../styles/CSSSlider.css";
 
 const CSSSlider = ({ children = [] }) => {
   return (
-    <div className="inline-block text-left relative mb-6">
+    <div className="md:inline-block text-left relative mb-6">
       {children.map((_, i) => (
         <input
           key={i}
@@ -37,7 +37,10 @@ const CSSSlider = ({ children = [] }) => {
             className="shadow-inner hover:shadow hidden absolute -top-1/2 p-4 cursor-pointer transition-shadow before:content before:absolute before:-top-full before:-left-full"
           ></label>
         ))}
-        <label htmlFor="slides_1" className="shadow-inner hover:shadow hidden absolute -top-1/2 p-4 cursor-pointer transition-shadow before:content before:absolute before:-top-full before:-left-full"></label>
+        <label
+          htmlFor="slides_1"
+          className="shadow-inner hover:shadow hidden absolute -top-1/2 p-4 cursor-pointer transition-shadow before:content before:absolute before:-top-full before:-left-full"
+        ></label>
         <label
           htmlFor={`slides_${children.length}`}
           className="shadow-inner hover:shadow hidden absolute -top-1/2 p-4 cursor-pointer transition-shadow before:content before:absolute before:-top-full before:-left-full"
