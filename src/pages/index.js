@@ -69,22 +69,6 @@ const HomePage = ({ data }) => {
           content="The Delaware Valley Regional Planning Commission is the federally designated Metropolitan Planning Organization for nine counties: Bucks, Chester, Delaware, Montgomery, and Philadelphia, Pennsylvania; and Burlington, Camden, Gloucester, and Mercer, New Jersey."
         />
       </Helmet>
-      <Header
-        bgStyles={{ backgroundSize: "cover" }}
-        alert={
-          alert.length ? (
-            <div className="text-white text-center bg-black/50">
-              <div
-                className="mx-auto container p-6 xl:px-0"
-                dangerouslySetInnerHTML={{ __html: alert }}
-              />
-            </div>
-          ) : (
-            ""
-          )
-        }
-        children={<AnnouncementSlider />}
-      />
       <MobileHeader
         children={<AnnouncementSlider />}
         alert={
@@ -102,6 +86,22 @@ const HomePage = ({ data }) => {
         isIndex={true}
       />
       <MobileNav isIndex={true} />
+      <Header
+        bgStyles={{ backgroundSize: "cover" }}
+        alert={
+          alert.length ? (
+            <div className="text-white text-center bg-black/50">
+              <div
+                className="mx-auto container p-6 xl:px-0"
+                dangerouslySetInnerHTML={{ __html: alert }}
+              />
+            </div>
+          ) : (
+            ""
+          )
+        }
+        children={<AnnouncementSlider />}
+      />
       <TopNav />
       <div className="md:hidden py-10 px-4 bg-gray-500">
         <SectionMenu />
