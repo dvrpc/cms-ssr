@@ -14,6 +14,7 @@ import Rightarrow from "../images/rightarrow.svg";
 import Search from "../images/search.svg";
 import Dvrpc from "../images/dvrpc.svg";
 import DvrpcMini from "../images/dvrpc-mini.svg";
+import DvrpcWhite from "../images/dvrpc-white.svg";
 import Bikeped from "../images/bikeped.svg";
 import Housing from "../images/housing.svg";
 import Environment from "../images/housing.svg";
@@ -58,6 +59,7 @@ export {
   Search,
   Dvrpc,
   DvrpcMini,
+  DvrpcWhite,
   Bikeped,
   Housing,
   Environment,

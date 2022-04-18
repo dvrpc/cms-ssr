@@ -1,9 +1,8 @@
 import React from "react";
-import Icon, { Dvrpc } from "./Icon";
+import Icon, { DvrpcMini, DvrpcWhite } from "./Icon";
 import Hamburger from "../components/Hamburger";
-import MobileNav from "./MobileNav";
 
-const MobileHeader = ({ alert, children }) => {
+const MobileHeader = ({ alert, children, isIndex }) => {
   return (
     <div className="md:hidden">
       <div className="fixed z-50" style={{ height: "6rem" }}>
@@ -15,7 +14,14 @@ const MobileHeader = ({ alert, children }) => {
             <Hamburger />
           </div>
           <a href="/" className="block self-center ml-auto">
-            <Icon use={Dvrpc} scale={null} className="m-8 md:ml-0 h-[60px]" />
+            {
+              <Icon
+                use={isIndex ? DvrpcWhite : DvrpcMini}
+                scale={null}
+                className="m-8 md:ml-0"
+                style={{ height: isIndex ? "50px" : "40px" }}
+              />
+            }
           </a>
         </div>
       </div>

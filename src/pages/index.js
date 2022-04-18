@@ -46,7 +46,7 @@ const HomePage = ({ data }) => {
 
   const AnnouncementSlider = () => {
     return (
-      <div className="w-full md:pr-32 bg-gradient-to-r from-white/80 via-white/80 to-transparent">
+      <div className="md:w-min md:pr-32 bg-gradient-to-r from-white/80 via-white/80 to-transparent">
         <div className="p-4 md:pl-12 md:w-96">
           {!isSSR && (
             <Suspense fallback={<AnnouncementLoader />}>
@@ -99,6 +99,7 @@ const HomePage = ({ data }) => {
             ""
           )
         }
+        isIndex={true}
       />
       <MobileNav isIndex={true} />
       <TopNav />

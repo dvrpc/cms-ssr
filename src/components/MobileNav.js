@@ -5,6 +5,7 @@ import Icon, { Search } from "./Icon";
 import isBrowser from "../pages/index";
 
 const MobileNav = ({ additionalLinks, isIndex }) => {
+  console.log(additionalLinks);
   return (
     <div
       className="text-white border-t xnav"
@@ -34,7 +35,12 @@ const MobileNav = ({ additionalLinks, isIndex }) => {
         </form>
         {additionalLinks && (
           <div className="border-b">
-            <span className="text-3xl">{additionalLinks.link}</span>
+            <Link
+              className="no-underline hover:underline my-12 text-3xl"
+              to={additionalLinks.href}
+            >
+              {additionalLinks.link}
+            </Link>
             {additionalLinks.links.map((item, index) => {
               return (
                 <div key={index} className="pl-4 py-4 flex-auto text-3xl">
