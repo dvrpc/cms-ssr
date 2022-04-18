@@ -1,5 +1,5 @@
 import React from "react";
-import Icon, { DvrpcMini, DvrpcWhite } from "./Icon";
+import Icon, { DvrpcMini, DvrpcWhite, Search } from "./Icon";
 import Hamburger from "../components/Hamburger";
 
 const MobileHeader = ({ alert, children, isIndex }) => {
@@ -13,6 +13,30 @@ const MobileHeader = ({ alert, children, isIndex }) => {
           <div className="flex items-center ml-8">
             <Hamburger />
           </div>
+          {!isIndex && (
+            <form
+              className="flex items-center"
+              action="https://www.dvrpc.org/Search/"
+            >
+              <div
+                className="absolute focus:w-100 pr-2 pl-4"
+                style={{ backgroundColor: "var(--color-h1)" }}
+              >
+                <div className="w-12 h-full flex absolute items-center justify-center pointer-events-none">
+                  <Icon
+                    use={Search}
+                    className="h-6 inline-block flex-shrink-0 select-none text-gray-600 z-10"
+                  />
+                </div>
+                <input
+                  name="q"
+                  placeholder="Search..."
+                  aria-label="Search"
+                  className="w-11 focus:w-full rounded-full border-0 border-none focus:m-0 focus:p-2 focus:pl-16 focus:outline-none placeholder-white focus:placeholder-gray-600 opacity-90"
+                />
+              </div>
+            </form>
+          )}
           <a href="/" className="block self-center ml-auto">
             {
               <Icon
