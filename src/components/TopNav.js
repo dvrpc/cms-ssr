@@ -19,7 +19,7 @@ const RootNav = ({ data, isMobile }) => {
 const TopNav = ({ menu }) => {
   return (
     <nav className="hidden md:block md:flex text-white bg-[color:var(--color-highlight)]">
-      <div className="container flex py-4 md:divide-x divide-white/50">
+      <div className="container flex m-auto py-4 md:divide-x divide-white/50">
         <RootNav data={rootNavArr} />
       </div>
     </nav>

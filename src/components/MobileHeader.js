@@ -19,7 +19,7 @@ const MobileHeader = ({ alert, children, isIndex }) => {
                 use={isIndex ? DvrpcWhite : DvrpcMini}
                 scale={null}
                 className="m-8 md:ml-0"
-                style={{ height: isIndex ? "50px" : "40px" }}
+                style={{ height: isIndex ? "50px" : "35px" }}
               />
             }
           </a>

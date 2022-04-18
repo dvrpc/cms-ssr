@@ -2,14 +2,12 @@ import React from "react";
 import { rootNavArr } from "../utils/rootNavArr";
 import { Link } from "gatsby";
 import Icon, { Search } from "./Icon";
-import isBrowser from "../pages/index";
 
 const MobileNav = ({ additionalLinks, isIndex }) => {
-  console.log(additionalLinks);
   return (
     <div
       className="text-white border-t xnav"
-      style={{ backgroundColor: "var(--color-h1)" }}
+      style={{ backgroundColor: "var(--color-h1)", top: "6rem" }}
     >
       <div className="xnav-wrapper px-4">
         <form
