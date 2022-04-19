@@ -1,13 +1,23 @@
 import React from "react";
 import Icon, { DvrpcMini, DvrpcWhite, Search } from "./Icon";
 import Hamburger from "../components/Hamburger";
+import { isSSR } from "../pages/index";
 
 const MobileHeader = ({ alert, children, isIndex }) => {
+  const changeColor = (event) => {
+    if (!isSSR) {
+      const color = event.target.parentElement.style.backgroundColor;
+      event.target.parentElement.style.backgroundColor = !color
+        ? "var(--color-h1)"
+        : "";
+    }
+  };
+
   return (
     <div className="md:hidden">
-      <div className="fixed z-50" style={{ height: "6rem" }}>
+      <div className="w-screen fixed z-50" style={{ height: "6rem" }}>
         <div
-          className="w-screen h-full top-0 logo-bar container md:px-8 mx-auto flex sm:justify-between text-white z-50"
+          className="h-full top-0 md:px-8 flex text-white z-50"
           style={{ backgroundColor: "var(--color-h1)" }}
         >
           <div className="flex items-center ml-8">
@@ -15,13 +25,10 @@ const MobileHeader = ({ alert, children, isIndex }) => {
           </div>
           {!isIndex && (
             <form
-              className="flex items-center"
+              className="flex items-center w-full"
               action="https://www.dvrpc.org/Search/"
             >
-              <div
-                className="absolute focus:w-100 pr-2 pl-4"
-                style={{ backgroundColor: "var(--color-h1)" }}
-              >
+              <div className="absolute w-5/6 pr-4 pl-4">
                 <div className="w-12 h-full flex absolute items-center justify-center pointer-events-none">
                   <Icon
                     use={Search}
@@ -33,6 +40,8 @@ const MobileHeader = ({ alert, children, isIndex }) => {
                   placeholder="Search..."
                   aria-label="Search"
                   className="w-11 focus:w-full rounded-full border-0 border-none focus:m-0 focus:p-2 focus:pl-16 focus:outline-none placeholder-white focus:placeholder-gray-600 opacity-90"
+                  onBlur={changeColor}
+                  onFocus={changeColor}
                 />
               </div>
             </form>
