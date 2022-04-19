@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import { rootNavArr } from "../utils/rootNavArr";
+import rootNavArr from "../utils/rootNavArr";
 
 const RootNav = ({ data, isMobile }) => {
   return data.map((item, index) => {

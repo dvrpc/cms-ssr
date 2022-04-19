@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import { graphql } from "gatsby";
 import { Helmet } from "react-helmet";
 import { useAsyncResource } from "use-async-resource";

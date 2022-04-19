@@ -1,5 +1,5 @@
 import React from "react";
-import { rootNavArr } from "../utils/rootNavArr";
+import rootNavArr from "../utils/rootNavArr";
 import { Link } from "gatsby";
 import Icon, { Search } from "./Icon";
 

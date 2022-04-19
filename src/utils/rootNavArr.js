@@ -1,4 +1,4 @@
-export const rootNavArr = [
+const rootNavArr = [
   {
     link: "About",
     href: "/About/",
@@ -32,3 +32,5 @@ export const rootNavArr = [
     href: "/GetInvolved/",
   },
 ];
+
+export default rootNavArr;
