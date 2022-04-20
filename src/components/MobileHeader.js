@@ -5,12 +5,13 @@ import { isSSR } from "../pages/index";
 
 const MobileHeader = ({ alert, children, isIndex }) => {
   const changeColor = (event) => {
-    if (!isSSR) {
-      const color = event.target.parentElement.style.backgroundColor;
-      event.target.parentElement.style.backgroundColor = !color
-        ? "var(--color-h1)"
-        : "";
+    if (isSSR) {
+      return;
     }
+    const color = event.target.parentElement.style.backgroundColor;
+    event.target.parentElement.style.backgroundColor = !color
+      ? "var(--color-h1)"
+      : "";
   };
 
   return (
