@@ -2,6 +2,7 @@ import React from "react";
 import rootNavArr from "../utils/rootNavArr";
 import { Link } from "gatsby";
 import Icon, { Search } from "./Icon";
+import { isSSR } from "../pages/index";
 
 const MobileNav = ({ additionalLinks, isIndex }) => {
   return (
@@ -31,7 +32,7 @@ const MobileNav = ({ additionalLinks, isIndex }) => {
             </div>
           )}
         </form>
-        {additionalLinks && (
+        {!isSSR && additionalLinks && (
           <div className="border-b">
             <Link
               className="no-underline hover:underline my-12 text-3xl"

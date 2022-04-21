@@ -105,16 +105,3 @@ html {
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(32, 32, 32, 0.05);
 }
-
-/* end MOBILE NAV */
-
-/* search navigation animation */
-/* #nav-search {
-  right: 0;
-  transition: all 0.5s;
-  width: 15%;
-}
-#nav-search:focus {
-  right: 100%;
-  width: 100%;
-} */

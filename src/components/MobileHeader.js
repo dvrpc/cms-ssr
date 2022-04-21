@@ -42,7 +42,7 @@ const MobileHeader = ({ alert, children, isIndex }) => {
                   name="q"
                   placeholder="Search..."
                   aria-label="Search"
-                  className="w-11 focus:w-full rounded-full border-0 border-none focus:m-0 focus:p-2 focus:pl-16 focus:outline-none placeholder-white focus:placeholder-gray-600 opacity-90"
+                  className="w-11 focus:w-full rounded-full border-0 border-none focus:m-0 focus:p-2 focus:pl-16 focus:outline-none placeholder-transparent focus:placeholder-gray-600 opacity-90"
                   onBlur={changeColor}
                   onFocus={changeColor}
                 />
