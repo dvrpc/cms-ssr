@@ -12,6 +12,8 @@ const MobileHeader = ({ alert, children, isIndex }) => {
     event.target.parentElement.style.backgroundColor = !color
       ? "var(--color-h1)"
       : "";
+    const logo = document.getElementById("mobile-logo").style.display;
+    document.getElementById("mobile-logo").style.display = !logo ? "none" : "";
   };
 
   return (
@@ -47,7 +49,7 @@ const MobileHeader = ({ alert, children, isIndex }) => {
               </div>
             </form>
           )}
-          <a href="/" className="block self-center ml-auto">
+          <a id="mobile-logo" href="/" className="block self-center ml-auto">
             {
               <Icon
                 use={isIndex ? DvrpcWhite : DvrpcMini}
