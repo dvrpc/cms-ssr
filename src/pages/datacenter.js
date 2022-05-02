@@ -4,7 +4,8 @@ import { Helmet } from "react-helmet";
 import favicon from "../images/favicon.ico";
 import LogoBar from "../components/LogoBar";
 import TopNav from "../components/TopNav";
-import I, {
+import Icon, {
+  Search,
   Bikeped,
   Housing,
   Environment,
@@ -28,14 +29,6 @@ import bgImage from "../images/datacenter.jpg";
 const NewsLoader = () => <div>Loading...</div>;
 
 const Data = ({ data }) => {
-  const theme = createTheme(
-    {
-      ...defaultTheme,
-      bgPrimary: "#0f1a3a",
-      bgImage: [bgImage],
-    },
-    { light: "#98b8c2" }
-  );
   const location = "/data";
   const title = "Data Center";
   const staffContact = {
@@ -55,7 +48,7 @@ const Data = ({ data }) => {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <Helmet>
         <html lang="en" />
         <link rel="icon" href={favicon} />
@@ -65,55 +58,21 @@ const Data = ({ data }) => {
             --color-h2: #0f1a3a;
             --color-h3: #0f1a3a;
             --bg-cover-image: url(${bgImage});
+            --height-banner: 400px;
           }`}
         </style>
-      </Helmet>
-      <GlobalStyles />
-      <header className="bg-white">
-        <LogoBar fillColor="rgb(0 120 174 / 75%)">
-          <div className="md:pb-2 mx-auto md:mr-0">
-            <form
-              className="md:mb-4 relative md:w-min"
-              style={{
-                background: `linear-gradient(
-                  to right,
-                  rgba(255, 255, 255, 0.8),
-                  rgba(255, 255, 255, 0.8) 18rem,
-                  transparent 100%
-                )`,
-              }}
-              action="https://www.dvrpc.org/Search/"
-            >
-              <div className="w-16 h-full flex absolute items-center justify-center pointer-events-none">
-                <I
-                  use="search"
-                  fillColor="rgb(0 120 174 / 90%)"
-                  className="h-6 inline-block flex-shrink-0 select-none"
-                />
-              </div>
-              <div>
-                <input
-                  name="q"
-                  placeholder="Search DVRPC"
-                  aria-label="Search"
-                  className="w-64 md:w-72 border rounded-lg m-0 p-2 md:pl-16 block bg-transparent focus:outline-none min-w-0 text-center md:text-left border-[#0078ae]/50 placeholder:text-[#0078AE]/90"
-                />
-              </div>
-            </form>
-          </div>
-        </LogoBar>
-        <div className="relative h-[50vw] md:h-[25vw]">
-          {theme.bgImage.map((bg, i) => (
-            <img
-              srcSet={theme.bgImage2x[i] && `${theme.bgImage2x[i]} 2x`}
-              src={bg}
-              alt=""
-              className="absolute left-[-50vw] w-[200vw] md:w-full md:h-full md:object-cover md:left-0"
-            />
-          ))}
-        </div>
-      </header>
-      <TopNav menu={menu} />
+      </Helmet><header className="bg-white">
+      <LogoBar />
+      <div
+        className="w-full bg-bottom h-[var(--height-banner)] bg-cover relative after:absolute after:block after:bottom-4 after:right-0 after:p-1 after:px-2 after:pl-64 after:text-gray-900 after:text-sm after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:content-[var(--content-photo-credits)]"
+        style={{
+          backgroundImage: "var(--bg-cover-image)",
+        }}
+      >
+        
+      </div>
+    </header>
+      <TopNav />
 
       <div className="bg-[#b1d0e0] text-[#040b1f]">
         <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12 p-8">
@@ -181,7 +140,8 @@ const Data = ({ data }) => {
                     <Icon
                       use={icon}
                       fillColor="#040b1f"
-                      className="mx-auto w-16 h-16 mb-2"
+                      scale={16}
+                      className="mx-auto mb-2"
                     />
                     {decodeURIComponent(category).replaceAll("+", " ")}
                   </a>
@@ -352,7 +312,7 @@ const Data = ({ data }) => {
           </div>
         </div>
       </footer>
-    </ThemeProvider>
+    </>
   );
 };
 

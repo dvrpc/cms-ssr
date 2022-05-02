@@ -52,7 +52,7 @@ const RootNav = ({ data }) => {
 
 const TopNav = ({ menu }) => {
   return (
-    <nav className="hidden md:flex text-white bg-[color:var(--color-highlight)]">
+    <nav className="hidden md:flex justify-center text-white bg-[color:var(--color-highlight)]">
       <div className="container flex py-4 md:divide-x divide-white/50">
         <RootNav data={rootNavArr} />
       </div>
