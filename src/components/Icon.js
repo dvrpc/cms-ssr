@@ -16,7 +16,7 @@ import Dvrpc from "../images/dvrpc.svg";
 import DvrpcMini from "../images/dvrpc-mini.svg";
 import Bikeped from "../images/bikeped.svg";
 import Housing from "../images/housing.svg";
-import Environment from "../images/housing.svg";
+import Environment from "../images/environment.svg";
 import Freight from "../images/freight.svg";
 import Imagery from "../images/imagery.svg";
 import Planning from "../images/planning.svg";

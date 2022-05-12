@@ -1,42 +1,76 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 26.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="highways" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 203.35 214.87" style="enable-background:new 0 0 203.35 214.87;" xml:space="preserve">
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Generator: Adobe Illustrator 26.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg
+  version="1.1"
+  id="hi"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  x="0px"
+  y="0px"
+  viewBox="0 0 213 216"
+  style="enable-background:new 0 0 213 216;"
+  xml:space="preserve"
+>
 <style type="text/css">
-	#highways .st1{fill:#040B1F;stroke:#040B1F;stroke-width:2.0001;stroke-miterlimit:10.0005;}
-	#highways .st2{fill:#040B1F;stroke:#040B1F;stroke-width:2;stroke-miterlimit:10;}
+	#hi .st0{opacity:0.85;}
+	#hi .st1{fill:#040B1F;stroke:#040B1F;stroke-width:2;stroke-miterlimit:10;}
+	#hi .st2{fill:none;}
 </style>
-<g id="Artwork_3_00000014602610454425837080000017162170242180089508_">
-	<g class="st0">
-		
-			<rect x="71.58" y="3.01" transform="matrix(0.0699 -0.9976 0.9976 0.0699 64.7611 81.4133)" class="st1" width="8.91" height="5.94"/>
-		
-			<rect x="124.88" y="1.57" transform="matrix(0.9976 -0.0699 0.0699 0.9976 -0.1085 8.9508)" class="st1" width="5.94" height="8.91"/>
-		<path class="st2" d="M155.58,79.37L143.76,1.14l-5.87,0.89l11.69,77.35h-34.14V1.59h-5.94v77.79H93.44V1.59H87.5v77.79H53.38
-			L65.07,2.03L59.2,1.14L47.38,79.37H1v25.19h13.28v19.9h21.04l6.6-22.88h2.11L27.06,213.87h6l16.97-112.29h16.35l-0.55,7.79
-			l5.92,0.42l0.58-8.21h15.18v112.29h5.94V101.58h16.06v112.29h5.94V101.58h16.09l0.58,8.21l5.92-0.42l-0.55-7.79h15.45
-			l16.97,112.29h6l-16.97-112.29h1.89l8.8,22.88h21.72v-19.9h11V79.37L155.58,79.37L155.58,79.37z M196.41,98.62h-11v19.9H173.7
-			l-8.8-22.88H37.45l-6.6,22.88H20.21v-19.9H6.93V85.31H196.4v13.31H196.41z"/>
-		
-			<rect x="126.91" y="26.99" transform="matrix(0.9976 -0.0699 0.0699 0.9976 -2.1473 9.1643)" class="st1" width="5.94" height="16.56"/>
-		
-			<rect x="129.23" y="60.03" transform="matrix(0.9976 -0.0699 0.0699 0.9976 -4.451 9.4073)" class="st1" width="5.94" height="16.56"/>
-		
-			<rect x="136.17" y="159.17" transform="matrix(0.9976 -0.0699 0.0699 0.9976 -11.364 10.1351)" class="st1" width="5.94" height="16.56"/>
-		
-			<rect x="138.49" y="192.19" transform="matrix(0.9976 -0.0699 0.0699 0.9976 -13.6663 10.3781)" class="st1" width="5.94" height="16.56"/>
-		
-			<rect x="133.86" y="126.12" transform="matrix(0.9976 -0.0699 0.0699 0.9976 -9.0594 9.8925)" class="st1" width="5.94" height="16.56"/>
-		
-			<rect x="63.41" y="65.27" transform="matrix(0.0699 -0.9976 0.9976 0.0699 -1.4001 134.9883)" class="st1" width="16.56" height="5.94"/>
-		
-			<rect x="65.71" y="32.23" transform="matrix(0.0699 -0.9976 0.9976 0.0699 33.7084 106.5504)" class="st1" width="16.56" height="5.94"/>
-		
-			<rect x="54.14" y="197.43" transform="matrix(0.0699 -0.9976 0.9976 0.0699 -141.8496 248.6661)" class="st1" width="16.56" height="5.94"/>
-		
-			<rect x="58.78" y="131.35" transform="matrix(0.0699 -0.9976 0.9976 0.0699 -71.6248 191.8291)" class="st1" width="16.56" height="5.94"/>
-		
-			<rect x="56.46" y="164.4" transform="matrix(0.0699 -0.9976 0.9976 0.0699 -106.7425 220.2543)" class="st1" width="16.56" height="5.94"/>
-	</g>
-</g>
+		<g class="st0">
+			<polygon class="st1" points="86.69,2.2 81.44,1.79 80.51,10.67 85.83,11.08 			" />
+			<polygon
+      class="st1"
+      points="133.02,10.67 132.09,1.79 126.85,2.2 127.7,11.08 			"
+    />
+			<path
+      class="st1"
+      d="M160.47,79.78L143.89,1.55l-5.16,0.89l15.74,77.35H120.3l-1.53-77.79h-5.27l0.86,77.79H98.28l0.95-77.79
+				h-5.27l-1.62,77.79H58.19L74.02,2.44l-5.16-0.89L52.18,79.78H5.76l-3.69,25.19h13.77l-2.53,19.9h22.44L44.78,102h2.17
+				L17.22,214.29h7.18L53.15,102h16.89l-0.97,7.79l6.17,0.42l0.95-8.21h15.68l-2.34,112.29h7.1L98.01,102h16.59l1.24,112.29h7.1
+				L120.73,102h16.62l0.95,8.21l6.17-0.42l-0.97-7.79h15.97l28.62,112.29h7.18L165.67,102h1.95l11.34,22.88h23.17l-2.58-19.9h11.41
+				l-3.67-25.19H160.47z M203.98,99.04h-11.32l2.41,19.9h-12.39l-11.4-22.88H40.72l-9.12,22.88H20.35l2.36-19.9H9.05l1.83-13.31
+				h191.28L203.98,99.04z"
+    />
+			<polygon
+      class="st1"
+      points="131.02,44.13 136.62,43.71 134.79,27.19 129.33,27.61 			"
+    />
+			<polygon
+      class="st1"
+      points="134.55,77.17 140.44,76.75 138.5,60.23 132.76,60.65 			"
+    />
+			<polygon
+      class="st1"
+      points="150.95,159.35 144.36,159.77 146.49,176.29 153.22,175.88 			"
+    />
+			<polygon
+      class="st1"
+      points="148.68,192.81 150.92,209.33 157.93,208.92 155.55,192.4 			"
+    />
+			<polygon
+      class="st1"
+      points="146.58,126.31 140.27,126.73 142.29,143.25 148.74,142.83 			"
+    />
+			<polygon
+      class="st1"
+      points="80.79,60.65 75.04,60.23 73.11,76.75 78.99,77.17 			"
+    />
+			<polygon
+      class="st1"
+      points="84.21,27.61 78.74,27.19 76.92,43.71 82.52,44.13 			"
+    />
+			<polygon
+      class="st1"
+      points="55.63,208.92 62.64,209.33 64.88,192.81 58.01,192.4 			"
+    />
+			<polygon
+      class="st1"
+      points="64.81,142.83 71.26,143.25 73.28,126.73 66.97,126.31 			"
+    />
+			<polygon
+      class="st1"
+      points="60.33,175.88 67.06,176.29 69.19,159.77 62.6,159.35 			"
+    />
+		</g>
+<rect id="_x3C_Slice_x3E_" class="st2" width="213" height="216" />
 </svg>

@@ -61,17 +61,16 @@ const Data = ({ data }) => {
             --height-banner: 400px;
           }`}
         </style>
-      </Helmet><header className="bg-white">
-      <LogoBar />
-      <div
-        className="w-full bg-bottom h-[var(--height-banner)] bg-cover relative after:absolute after:block after:bottom-4 after:right-0 after:p-1 after:px-2 after:pl-64 after:text-gray-900 after:text-sm after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:content-[var(--content-photo-credits)]"
-        style={{
-          backgroundImage: "var(--bg-cover-image)",
-        }}
-      >
-        
-      </div>
-    </header>
+      </Helmet>
+      <header className="bg-white">
+        <LogoBar />
+        <div
+          className="w-full bg-bottom h-[var(--height-banner)] bg-cover relative after:absolute after:block after:bottom-4 after:right-0 after:p-1 after:px-2 after:pl-64 after:text-gray-900 after:text-sm after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:content-[var(--content-photo-credits)]"
+          style={{
+            backgroundImage: "var(--bg-cover-image)",
+          }}
+        ></div>
+      </header>
       <TopNav />
 
       <div className="bg-[#b1d0e0] text-[#040b1f]">
@@ -126,7 +125,7 @@ const Data = ({ data }) => {
                 Boundaries: Region,
                 Economy: Economy,
                 "Equity+%26+Diversity": Equity,
-                Highway: Highways,
+                Roadways: Highways,
                 "Long-Range+Plan": Connections2050,
                 "Safety+%26+Health": Health,
                 Transit: Transit,
