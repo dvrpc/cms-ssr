@@ -62,7 +62,7 @@ const MobileHeader = ({ alert, children, isIndex }) => {
         </div>
       </div>
       <div
-        className="pt-16 w-full bg-bottom h-[var(--height-banner)] bg-cover relative after:absolute after:block after:bottom-4 after:right-0 after:p-1 after:px-2 after:pl-64 after:text-gray-900 after:text-sm after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:content-[var(--content-photo-credits)]"
+        className="pt-24 w-full bg-bottom object-none object-top h-[var(--height-banner)/2] bg-cover relative after:absolute after:block after:bottom-4 after:right-0 after:p-1 after:px-2 after:pl-64 after:text-gray-900 after:text-sm after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:content-[var(--content-photo-credits)]"
         style={{
           backgroundImage: "var(--bg-cover-image)",
         }}
