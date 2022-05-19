@@ -32,10 +32,13 @@ const MobileHeader = ({ alert, children, isIndex }) => {
               action="https://www.dvrpc.org/Search/"
             >
               <div className="absolute w-5/6 pr-4 pl-4">
-                <div className="w-12 h-full flex absolute items-center justify-center pointer-events-none">
+                <div
+                  className="w-12 h-full flex absolute items-center justify-center pointer-events-none"
+                  style={{ color: "var(--color-h1)" }}
+                >
                   <Icon
                     use={Search}
-                    className="h-6 inline-block flex-shrink-0 select-none text-gray-600 z-10"
+                    className="h-6 inline-block flex-shrink-0 select-none z-10"
                   />
                 </div>
                 <input
