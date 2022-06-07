@@ -10,7 +10,7 @@ export default [
     href: "https://storymaps.arcgis.com/stories/301e884493f3464696fb444a0ab57279",
     src: "https://www.dvrpc.org/img/gatsby/AR2021-placard.png",
     label: "Annual Report",
-    style: "width: 193px;",
+    style: "width: 200px;",
     new_window: true,
   },
   {
