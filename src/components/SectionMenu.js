@@ -1,5 +1,5 @@
 import React from "react";
-import Icon, { Events, Products } from "./Icon";
+import Icon, { Events, Products, Featured, Links } from "./Icon";
 
 const SectionMenu = () => {
   return (
@@ -28,7 +28,7 @@ const SectionMenu = () => {
       </div>
       <div className="h-100 px-2 flex flex-col items-center justify-center">
         <Icon
-          use={Events}
+          use={Links}
           fillColor="#ffffff"
           scale={null}
           className="h-[50px]"
@@ -39,7 +39,7 @@ const SectionMenu = () => {
       </div>
       <div className="h-100 px-2 flex flex-col items-center justify-center">
         <Icon
-          use={Events}
+          use={Featured}
           fillColor="#ffffff"
           scale={null}
           className="h-[50px]"
