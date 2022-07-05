@@ -71,18 +71,7 @@ const HomePage = ({ data }) => {
       </Helmet>
       <MobileHeader
         children={<AnnouncementSlider />}
-        alert={
-          alert.length ? (
-            <div className="text-white text-sm p-2 my-2 text-center bg-black/50">
-              <div
-                className="mx-auto container"
-                dangerouslySetInnerHTML={{ __html: alert }}
-              />
-            </div>
-          ) : (
-            ""
-          )
-        }
+        alert={alert.length ? alert : ""}
         isIndex={true}
       />
       <MobileNav isIndex={true} />

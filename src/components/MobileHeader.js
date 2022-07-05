@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Icon, { DvrpcMini, DvrpcWhite, Search } from "./Icon";
 import Hamburger from "../components/Hamburger";
 import { isSSR } from "../pages/index";
+import Modal from "./Modal";
 
 const MobileHeader = ({ alert, children, isIndex }) => {
   const changeColor = (event) => {
@@ -15,6 +16,7 @@ const MobileHeader = ({ alert, children, isIndex }) => {
     const logo = document.getElementById("mobile-logo").style.display;
     document.getElementById("mobile-logo").style.display = !logo ? "none" : "";
   };
+  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <div className="md:hidden">
@@ -26,7 +28,7 @@ const MobileHeader = ({ alert, children, isIndex }) => {
           <div className="flex items-center ml-8">
             <Hamburger />
           </div>
-          {!isIndex && (
+          {!isIndex ? (
             <form
               className="flex items-center w-full"
               action="https://www.dvrpc.org/Search/"
@@ -51,6 +53,13 @@ const MobileHeader = ({ alert, children, isIndex }) => {
                 />
               </div>
             </form>
+          ) : (
+            <button
+              className="h-12 w-12 font-bold rounded-full bg-[#c81e1d] flex justify-center items-center text-xs ring-white/50 ring-2 my-auto ml-6"
+              onClick={() => setIsVisible(true)}
+            >
+              ALERT
+            </button>
           )}
           <a id="mobile-logo" href="/" className="block self-center ml-auto">
             {
@@ -65,9 +74,10 @@ const MobileHeader = ({ alert, children, isIndex }) => {
         </div>
       </div>
       <div
-        className="pt-24 w-full bg-bottom object-none object-top h-[var(--height-banner)/2] bg-cover relative after:absolute after:block after:bottom-4 after:right-0 after:p-1 after:px-2 after:pl-64 after:text-gray-900 after:text-sm after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:content-[var(--content-photo-credits)]"
+        className="pt-24 w-full bg-center object-none object-top h-[var(--height-banner)/2] bg-cover translate-y-8 bg-no-repeat relative after:absolute after:block after:bottom-4 after:right-0 after:p-1 after:px-2 after:pl-64 after:text-gray-900 after:text-sm after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:content-[var(--content-photo-credits)]"
         style={{
           backgroundImage: "var(--bg-cover-image)",
+          backgroundSize: !isIndex ? "175%" : "",
         }}
       >
         <div className="container px-6 py-20 mx-auto">
@@ -95,6 +105,11 @@ const MobileHeader = ({ alert, children, isIndex }) => {
           {children}
         </div>
       </div>
+      <Modal
+        isVisible={isVisible}
+        AlertText={alert}
+        setIsVisible={setIsVisible}
+      />
     </div>
   );
 };
