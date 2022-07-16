@@ -5,9 +5,9 @@ const InfoLinks = () => {
   return (
     <aside
       style={{ borderImage: "linear-gradient(to left, #aaa, #fff) 1" }}
-      className="py-4 border-t-2"
+      className="border-t-2 py-4"
     >
-      <div className="grid grid-flow-col auto-cols-fr">
+      <div className="grid auto-cols-fr grid-flow-col">
         <a href="https://www.dvrpc.org/Calendar/" className="block text-center">
           <Icon use={Events} className="mx-auto h-10" fillColor="#656565" />
           Events

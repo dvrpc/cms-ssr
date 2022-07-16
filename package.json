@@ -12,7 +12,8 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "autoprefixer": "^10.4.4",
@@ -43,6 +44,8 @@
     "postcss-nested": "^5.0.6",
     "postcss-preset-env": "^7.4.3",
     "postcss-simple-vars": "^6.0.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.12",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-helmet": "^6.1.0",

@@ -57,7 +57,7 @@ exports.onCreatePage = async ({ page, actions }) => {
   deletePage(page);
   const regex = page.context.path__alias
     ? `/^${page.context.path__alias.replace(/\//g, "/")}\/?$/i`
-    : "/^\/$/";
+    : "/^/$/";
   return createPage({
     ...page,
     context: {

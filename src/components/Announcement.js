@@ -2,7 +2,7 @@ import React from "react";
 
 const Announcement = (props) => (
   <div className="h-40">
-    <h4 className="m-0 font-bold text-lg">
+    <h4 className="m-0 text-lg font-bold">
       <a className="underline" href={props.link}>
         {props.title}
       </a>
@@ -12,10 +12,10 @@ const Announcement = (props) => (
 );
 
 const AnnouncementLoader = (props) => (
-  <div className="animate-pulse h-40">
-    <h4 className="w-60 h-6 mb-4 pr-8 bg-gray-300" />
-    <p className="w-64 h-4 my-4 bg-gray-300" />
-    <p className="w-56 h-4 my-4 bg-gray-300" />
+  <div className="h-40 animate-pulse">
+    <h4 className="mb-4 h-6 w-60 bg-gray-300 pr-8" />
+    <p className="my-4 h-4 w-64 bg-gray-300" />
+    <p className="my-4 h-4 w-56 bg-gray-300" />
   </div>
 );
 

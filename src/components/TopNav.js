@@ -7,11 +7,15 @@ const rootNavArr = [
     href: "/About/",
   },
   {
-    link: "Data &amp; Products",
+    link: "Connections 2050",
+    href: "/Plan/",
+  },
+  {
+    link: "Data",
     href: "/DataProducts/",
   },
   {
-    link: "Long-Range Plan &amp; TIP",
+    link: "TIP",
     href: "/LongRangePlanAndTIP/",
   },
   {
@@ -19,11 +23,11 @@ const rootNavArr = [
     href: "/Transportation/",
   },
   {
-    link: "Land Use &amp; Environment",
+    link: "Land Uses",
     href: "/LandUseEnvironment/",
   },
   {
-    link: "Planning Assistance",
+    link: "Communities",
     href: "/Planning/",
   },
   {
@@ -39,9 +43,9 @@ const rootNavArr = [
 const RootNav = ({ data }) => {
   return data.map((item, index) => {
     return (
-      <div key={index} className="text-center px-2 md:leading-none flex-auto">
+      <div key={index} className="text-center md:leading-none">
         <Link
-          className="no-underline hover:underline"
+          className="border-b no-underline hover:border-b-[color:var(--color-default)]"
           to={item.href}
           dangerouslySetInnerHTML={{ __html: item.link }}
         />
@@ -52,10 +56,8 @@ const RootNav = ({ data }) => {
 
 const TopNav = ({ menu }) => {
   return (
-    <nav className="hidden md:flex justify-center text-white bg-[color:var(--color-highlight)]">
-      <div className="container flex py-4 md:divide-x divide-white/50">
-        <RootNav data={rootNavArr} />
-      </div>
+    <nav className="hidden flex-wrap items-end justify-end gap-4 pb-8 font-medium text-[color:var(--color-default)] md:px-4 lg:flex">
+      <RootNav data={rootNavArr} />
     </nav>
   );
 };

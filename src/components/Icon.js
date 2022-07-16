@@ -29,7 +29,7 @@ import Connections2050 from "../images/connections2050.svg";
 import Health from "../images/health.svg";
 import Transit from "../images/transit.svg";
 
-const Icon = ({ use, scale = 6, fillColor = "#0078ae", ...props }) => {
+const Icon = ({ use, scale = 5, fillColor = "#0078ae", ...props }) => {
   const Svg = use;
   return (
     <Svg

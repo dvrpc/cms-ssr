@@ -4,7 +4,6 @@ import Helmet from "react-helmet";
 import parseHtml from "../utils/parseHtml";
 
 import Header from "../components/Header";
-import TopNav from "../components/TopNav";
 import Body from "../components/Body";
 import StaffContact from "../components/StaffContact";
 import Footer from "../components/Footer";
@@ -64,7 +63,6 @@ const DrupalPage = ({
         </style>
       </Helmet>
       <Header />
-      <TopNav />
       <Body title={title} menu={navItem}>
         {parseHtml(body.processed)}
       </Body>

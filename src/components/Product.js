@@ -3,10 +3,10 @@ import React from "react";
 const Product = (props) => (
   <div
     key={props.PubId}
-    className="w-full md:w-1/2 my-4 flex items-center gap-4 pr-4"
+    className="my-4 flex w-full items-center gap-4 pr-4 md:w-1/2"
   >
     <img
-      className="border-solid border border-gray-400 bg-white w-[100.5px]"
+      className="w-[100.5px] border border-solid border-gray-400 bg-white"
       src={`https://www.dvrpc.org/asp/pubs/201px/${props.PubId}.png`}
       alt="cover"
     />
@@ -22,11 +22,11 @@ const Product = (props) => (
 );
 
 const ProductLoader = (props) => (
-  <div className="w-full md:w-1/2 flex-1 my-4 flex items-center gap-4 pr-4">
-    <div className="w-28 h-28 bg-gray-300" />
+  <div className="my-4 flex w-full flex-1 items-center gap-4 pr-4 md:w-1/2">
+    <div className="h-28 w-28 bg-gray-300" />
     <div>
-      <h4 className="w-80 h-8 m-2 bg-gray-300" />
-      <h4 className="w-64 h-8 m-2 bg-gray-300" />
+      <h4 className="m-2 h-8 w-80 bg-gray-300" />
+      <h4 className="m-2 h-8 w-64 bg-gray-300" />
     </div>
   </div>
 );

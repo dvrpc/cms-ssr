@@ -3,12 +3,9 @@ import ads from "../configs/ads";
 
 const FooterAds = () => {
   return (
-    <div className="m-4 grid md:grid-flow-col md:auto-cols-fr justify-stretch md:justify-between items-center divide-y md:divide-y-0 md:divide-x divide-[#d1d5db]">
+    <div className="justify-stretch m-4 grid items-center divide-y divide-[#d1d5db] md:auto-cols-fr md:grid-flow-col md:justify-between md:divide-y-0 md:divide-x">
       {ads.map((i) => (
-        <div
-          key={i.href}
-          className="flex justify-center py-6 md:p-0"
-        >
+        <div key={i.href} className="flex justify-center py-6 md:p-0">
           <a
             href={i.href}
             target={i.new_window ? "_blank" : "_self"}

@@ -54,9 +54,9 @@ const HomePage = ({ data }) => {
         bgStyles={{ backgroundSize: "cover" }}
         alert={
           alert.length ? (
-            <div className="text-white text-center bg-black/50">
+            <div className="bg-black/50 text-center text-white">
               <div
-                className="mx-auto container p-6 xl:px-0"
+                className="container mx-auto p-6 xl:px-0"
                 dangerouslySetInnerHTML={{ __html: alert }}
               />
             </div>
@@ -65,8 +65,8 @@ const HomePage = ({ data }) => {
           )
         }
       >
-        <div className="w-min md:pr-32 bg-gradient-to-r from-white/80 via-white/80 to-transparent">
-          <div className="p-4 md:pl-12 w-full md:w-96">
+        <div className="w-min bg-gradient-to-r from-white/80 via-white/80 to-transparent md:pr-32">
+          <div className="w-full p-4 md:w-96 md:pl-12">
             {!isSSR && (
               <Suspense fallback={<AnnouncementLoader />}>
                 <Anns dataReader={dataReader} />
@@ -81,7 +81,7 @@ const HomePage = ({ data }) => {
           <div className="container mx-8 flex-auto items-center justify-between md:flex">
             <h3>
               <a
-                className="text-3xl mr-4 text-[#296591]"
+                className="mr-4 text-3xl text-[#296591]"
                 href="https://www.dvrpc.org/Calendar/"
               >
                 Events
@@ -100,8 +100,8 @@ const HomePage = ({ data }) => {
         </div>
 
         <div className="flex justify-center bg-[#e4f5f7]">
-          <div className="container mx-8 py-4 flex flex-col md:flex-row items-center gap-12">
-            <div className="md:w-3/4 border-gray-300 border-r">
+          <div className="container mx-8 flex flex-col items-center gap-12 py-4 md:flex-row">
+            <div className="border-r border-gray-300 md:w-3/4">
               <h3 className="mb-4 text-3xl">
                 <a
                   className="text-[#296591]"

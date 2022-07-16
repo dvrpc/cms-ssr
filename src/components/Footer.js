@@ -11,11 +11,11 @@ const Footer = () => {
           <FooterAds />
         </div>
       </footer>
-      <footer className="flex justify-center text-white bg-[#3a3a3a]">
+      <footer className="flex justify-center bg-[#3a3a3a] text-white">
         <div className="container">
-          <div className="mx-4 md:mx-8 my-6 md:flex justify-between">
+          <div className="mx-4 my-6 justify-between md:mx-8 md:flex">
             <div>
-              <Link to="/" className="no-underline leading-none">
+              <Link to="/" className="leading-none no-underline">
                 <Icon use={DvrpcMini} className="h-8" fillColor="#fff" />
               </Link>
               <p>

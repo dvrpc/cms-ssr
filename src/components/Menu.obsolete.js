@@ -13,11 +13,11 @@ export default ({ data = null }) => {
 
   return nodes.length ? (
     <nav>
-      <ul className="h-full list-none md:text-right sm:text-center mb-12">
+      <ul className="mb-12 h-full list-none sm:text-center md:text-right">
         {nodes.map((node) => (
           <li key={node.href}>
             <Link
-              className={`underline block py-1 ${
+              className={`block py-1 underline ${
                 node.href.toLowerCase() === data.href.toLowerCase() &&
                 "font-bold"
               }`}

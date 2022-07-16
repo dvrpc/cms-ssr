@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Public+Sans:400,400i,700&display=swap");
-
 html {
   --color-default: #0078ae;
   --color-h1: #0078ae;
@@ -11,22 +9,22 @@ html {
   --height-banner: auto;
 }
 hr {
-  @apply border-t border-solid border-gray-400 my-8;
+  @apply my-8 border-t border-solid border-gray-400;
 }
 a {
-  @apply underline text-[color:inherit];
+  @apply text-[color:inherit] underline;
 }
 h1 {
   @apply mt-0 text-3xl font-bold text-[color:var(--color-h1)];
 }
 h2 {
-  @apply font-bold text-2xl my-4 clear-both text-[color:var(--color-h2)];
+  @apply clear-both my-4 text-2xl font-bold text-[color:var(--color-h2)];
 }
 h3 {
-  @apply font-bold text-xl my-4 clear-both text-[color:var(--color-h3)];
+  @apply clear-both my-4 text-xl font-bold text-[color:var(--color-h3)];
 }
 h4 {
-  @apply font-bold text-lg my-4;
+  @apply my-4 text-lg font-bold;
 }
 p {
   @apply my-4;
@@ -41,7 +39,7 @@ ol[type="A"] {
   list-style: upper-alpha;
 }
 ul {
-  @apply pl-10 my-4 list-disc;
+  @apply my-4 list-disc pl-10;
 }
 table {
   @apply not-italic;
@@ -60,7 +58,7 @@ td {
   @apply pl-0;
 }
 .size-medium {
-  @apply max-w-xl ml-4;
+  @apply ml-4 max-w-xl;
   max-width: 15rem;
 }
 .fright,
@@ -84,10 +82,10 @@ td {
   @apply flex flex-wrap items-start justify-around;
 }
 .group__inner-container > * {
-  @apply text-center my-8;
+  @apply my-8 text-center;
 }
 figure {
-  @apply flex flex-col justify-center items-center max-w-sm rounded border border-solid border-gray-400 p-1 mb-4 bg-white italic;
+  @apply mb-4 flex max-w-sm flex-col items-center justify-center rounded border border-solid border-gray-400 bg-white p-1 italic;
 }
 figure.table {
   @apply w-full border-none;
@@ -100,17 +98,17 @@ figcaption {
 }
 .simple,
 .simple > figure {
-  @apply rounded-none p-0 bg-transparent border-none;
+  @apply rounded-none border-none bg-transparent p-0;
 }
 .simple figcaption {
   @apply pl-0 pb-0;
 }
 img {
-  @apply max-w-full block;
+  @apply block max-w-full;
 }
 .alignfull,
 .alignwide {
-  @apply max-w-full mx-auto;
+  @apply mx-auto max-w-full;
 }
 .text-center {
   text-align: center;
@@ -128,24 +126,24 @@ img {
 .button a,
 .btn a,
 button.btn {
-  @apply inline-block no-underline text-center align-middle border-solid border-0 border-transparent py-2 px-3 rounded transition duration-150 ease-in-out hover:brightness-125;
+  @apply inline-block rounded border-0 border-solid border-transparent py-2 px-3 text-center align-middle no-underline transition duration-150 ease-in-out hover:brightness-125;
 }
 .button a,
 .btn-primary a,
 button.btn {
-  @apply text-white bg-[color:var(--color-h1)];
+  @apply bg-[color:var(--color-h1)] text-white;
 }
 details {
-  @apply border border-gray-300 bg-white my-8;
+  @apply my-8 border border-gray-300 bg-white;
 }
 details > * {
   @apply mx-4;
 }
 details > summary {
-  @apply bg-gray-200 hover:bg-gray-300 text-lg p-4 pr-14 text-left cursor-pointer outline-none border-0 border-l-2 border-b border-gray-600 block m-0 relative;
+  @apply relative m-0 block cursor-pointer border-0 border-l-2 border-b border-gray-600 bg-gray-200 p-4 pr-14 text-left text-lg outline-none hover:bg-gray-300;
 }
 details > summary::after {
-  @apply absolute text-xl top-4 right-4 content-["\2795"];
+  @apply absolute top-4 right-4 text-xl content-["\2795"];
 }
 details[open] > summary::after {
   @apply content-["\2796"];
@@ -154,14 +152,14 @@ summary::-webkit-details-marker {
   @apply hidden;
 }
 .list-group {
-  @apply bg-gray-50 rounded-sm border-0 shadow p-0 overflow-hidden mb-5;
+  @apply mb-5 overflow-hidden rounded-sm border-0 bg-gray-50 p-0 shadow;
 
   & > .footer,
   & > footer {
-    @apply -mx-4 -mb-4 py-2 px-4 bg-gray-100 text-right border-t border-gray-200 font-bold;
+    @apply -mx-4 -mb-4 border-t border-gray-200 bg-gray-100 py-2 px-4 text-right font-bold;
   }
   & > li {
-    @apply relative block py-2 px-4 -mb-px bg-gray-50 border border-gray-200;
+    @apply relative -mb-px block border border-gray-200 bg-gray-50 py-2 px-4;
   }
 }
 .list-group-heading:first-child,
@@ -173,7 +171,7 @@ summary::-webkit-details-marker {
   @apply mb-0 rounded-b-sm;
 }
 .list-group-heading {
-  @apply text-gray-700 uppercase text-sm font-bold;
+  @apply text-sm font-bold uppercase text-gray-700;
 }
 a.list-group-item {
   @apply text-gray-700;
@@ -183,14 +181,14 @@ a.list-group-item .list-group-item-heading {
 }
 a.list-group-item:focus,
 a.list-group-item:hover {
-  @apply text-gray-700 no-underline bg-gray-100;
+  @apply bg-gray-100 text-gray-700 no-underline;
 }
 .btn[disabled],
 .btn.disabled,
 .list-group-item.disabled,
 .list-group-item.disabled:focus,
 .list-group-item.disabled:hover {
-  @apply text-gray-500 bg-gray-300 cursor-not-allowed;
+  @apply cursor-not-allowed bg-gray-300 text-gray-500;
 }
 .list-group-item.disabled .list-group-item-text,
 .list-group-item.disabled:focus .list-group-item-text,
@@ -200,7 +198,7 @@ a.list-group-item:hover {
 .list-group-item.active,
 .list-group-item.active:focus,
 .list-group-item.active:hover {
-  @apply text-white z-10 border-[color:var(--color-h1)] bg-[color:var(--color-h1)];
+  @apply z-10 border-[color:var(--color-h1)] bg-[color:var(--color-h1)] text-white;
 }
 .list-group-item.active .list-group-item-text,
 .list-group-item.active:focus .list-group-item-text,
@@ -214,13 +212,13 @@ a.list-group-item:hover {
   @apply mb-1 leading-tight;
 }
 .card {
-  @apply bg-gray-50 rounded-sm border-none shadow p-4 overflow-hidden mb-4;
+  @apply mb-4 overflow-hidden rounded-sm border-none bg-gray-50 p-4 shadow;
 }
 .card > h2:first-child {
-  @apply -m-4 mb-0 py-2 px-4 text-white bg-[color:var(--color-h2)];
+  @apply -m-4 mb-0 bg-[color:var(--color-h2)] py-2 px-4 text-white;
 }
 .card > h3:first-child {
-  @apply -m-4 mb-0 py-2 px-4 text-white bg-[color:var(--color-h3)];
+  @apply -m-4 mb-0 bg-[color:var(--color-h3)] py-2 px-4 text-white;
 }
 .card > h2:first-child + *,
 .card > h3:first-child + * {
@@ -228,7 +226,7 @@ a.list-group-item:hover {
 }
 .card > .footer,
 .card > footer {
-  @apply -m-4 mt-0 py-1 px-4 bg-gray-50 text-right border-t border-gray-100 font-bold;
+  @apply -m-4 mt-0 border-t border-gray-100 bg-gray-50 py-1 px-4 text-right font-bold;
 }
 .card .list-group {
   @apply -mx-4 shadow-none;
@@ -244,19 +242,19 @@ a.list-group-item:hover {
   @apply -mb-4;
 }
 .list-group > h2:first-child {
-  @apply m-0 py-2 px-4 text-white bg-[color:var(--color-h2)];
+  @apply m-0 bg-[color:var(--color-h2)] py-2 px-4 text-white;
 }
 .list-group > h3:first-child {
-  @apply m-0 py-2 px-4 text-white bg-[color:var(--color-h3)];
+  @apply m-0 bg-[color:var(--color-h3)] py-2 px-4 text-white;
 }
 label {
-  @apply font-bold pt-4 pb-1 block;
+  @apply block pt-4 pb-1 font-bold;
 }
 input,
 .form-control,
 select,
 textarea {
-  @apply block w-full py-2 px-4 text-base leading-6 text-opacity-80 text-black bg-gray-50 bg-none border border-gray-200 rounded-sm transition-all;
+  @apply block w-full rounded-sm border border-gray-200 bg-gray-50 bg-none py-2 px-4 text-base leading-6 text-black text-opacity-80 transition-all;
 }
 .btn[disabled] {
   @apply cursor-wait;

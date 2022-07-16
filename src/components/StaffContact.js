@@ -5,8 +5,8 @@ import ConnectWithUs from "./ConnectWithUs";
 const StaffContact = ({ staffContact, title, location }) => {
   return (
     <div className="bg-gray-300">
-      <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12">
-        <div className="p-4 md:p-0 md:col-span-2 md:col-start-2 md:flex justify-between items-center max-w-[80ch]">
+      <div className="container mx-auto grid gap-12 sm:grid-cols-1 md:grid-cols-3">
+        <div className="max-w-[80ch] items-center justify-between p-4 md:col-span-2 md:col-start-2 md:flex md:p-0">
           <Avatar contact={staffContact} />
           <ConnectWithUs
             title={title}

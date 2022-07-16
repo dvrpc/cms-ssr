@@ -34,13 +34,18 @@ const ConnectWithUs = ({ title, location, fillColor = "#005780" }) => {
   ];
   return (
     <ul
-      className="flex md:justify-end font-bold p-0 md:p-4 divide-x divide-current list-none"
+      className="flex list-none divide-x divide-current p-0 font-bold md:justify-end md:p-4"
       style={{
         color: fillColor,
       }}
     >
       {items.map((i) => (
-        <li key={i.props ? i.props.href : "connect"} className="first:pl-0 px-2">{i}</li>
+        <li
+          key={i.props ? i.props.href : "connect"}
+          className="px-2 first:pl-0"
+        >
+          {i}
+        </li>
       ))}
     </ul>
   );

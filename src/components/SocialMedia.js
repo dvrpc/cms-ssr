@@ -47,7 +47,7 @@ const SocialMedia = () => {
     </A>,
   ];
   return (
-    <ul className="flex md:justify-end m-0 mb-4 p-0 md:p-4 text-[color:var(--color-default)]">
+    <ul className="m-0 hidden p-0 text-[#67abd1] md:flex md:items-end md:justify-end md:p-4">
       {items.map((i) => (
         <li key={i.props.href} className="block p-4 md:px-2 md:py-0">
           {i}

@@ -65,7 +65,7 @@ const Data = ({ data }) => {
       <header className="bg-white">
         <LogoBar />
         <div
-          className="w-full bg-bottom h-[var(--height-banner)] bg-cover relative after:absolute after:block after:bottom-4 after:right-0 after:p-1 after:px-2 after:pl-64 after:text-gray-900 after:text-sm after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:content-[var(--content-photo-credits)]"
+          className="relative h-[var(--height-banner)] w-full bg-cover bg-bottom after:absolute after:bottom-4 after:right-0 after:block after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:p-1 after:px-2 after:pl-64 after:text-sm after:text-gray-900 after:content-[var(--content-photo-credits)]"
           style={{
             backgroundImage: "var(--bg-cover-image)",
           }}
@@ -74,9 +74,9 @@ const Data = ({ data }) => {
       <TopNav />
 
       <div className="bg-[#b1d0e0] text-[#040b1f]">
-        <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12 p-8">
-          <div className="md:col-span-3 text-center">
-            <h1 className="font-bold text-4xl">
+        <div className="container mx-auto grid gap-12 p-8 sm:grid-cols-1 md:grid-cols-3">
+          <div className="text-center md:col-span-3">
+            <h1 className="text-4xl font-bold">
               Welcome to the DVRPC Data Center
             </h1>
             <p className="text-2xl">
@@ -87,23 +87,23 @@ const Data = ({ data }) => {
             <form
               action="http://data.dvrpc.org/dataset/"
               method="GET"
-              className="w-full md:w-2/3 inline-block relative"
+              className="relative inline-block w-full md:w-2/3"
             >
               <input
                 type="search"
                 name="q"
                 autoFocus
                 placeholder="SEARCH DATA CATALOG OR EXPLORE BELOW"
-                className="hidden md:block p-6 pl-20 mt-8 rounded-lg text-xl leading-none w-full outline-2 outline-[#030a18] placeholder:text-[#030a18]/90 placeholder:text-center placeholder:font-extrabold placeholder:text-lg placeholder:tracking-wider"
+                className="mt-8 hidden w-full rounded-lg p-6 pl-20 text-xl leading-none outline-2 outline-[#030a18] placeholder:text-center placeholder:text-lg placeholder:font-extrabold placeholder:tracking-wider placeholder:text-[#030a18]/90 md:block"
               />
               <input
                 type="search"
                 name="q"
                 autoFocus
                 placeholder="SEARCH DATA"
-                className="md:hidden p-6 mt-8 rounded-lg text-xl leading-none w-full outline-2 outline-[#030a18] placeholder:text-[#030a18]/90 placeholder:text-center placeholder:font-extrabold placeholder:text-lg placeholder:tracking-wider"
+                className="mt-8 w-full rounded-lg p-6 text-xl leading-none outline-2 outline-[#030a18] placeholder:text-center placeholder:text-lg placeholder:font-extrabold placeholder:tracking-wider placeholder:text-[#030a18]/90 md:hidden"
               />
-              <button className="hidden md:block text-3xl font-bold absolute left-8 top-1/2 leading-none color-[#030a18] -scale-x-100">
+              <button className="color-[#030a18] absolute left-8 top-1/2 hidden -scale-x-100 text-3xl font-bold leading-none md:block">
                 ⌕
               </button>
             </form>
@@ -111,9 +111,9 @@ const Data = ({ data }) => {
         </div>
       </div>
       <div className="bg-[#b1d0e0] text-[#040b1f]">
-        <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12 p-4 font-bold text-sm">
-          <div className="md:col-span-3 text-center">
-            <div className="md:grid grid-cols-2 md:grid-cols-7">
+        <div className="container mx-auto grid gap-12 p-4 text-sm font-bold sm:grid-cols-1 md:grid-cols-3">
+          <div className="text-center md:col-span-3">
+            <div className="grid-cols-2 md:grid md:grid-cols-7">
               {Object.entries({
                 "Bicycle+%26+Pedestrian": Bikeped,
                 "Demographics+%26+Housing": Housing,
@@ -132,7 +132,7 @@ const Data = ({ data }) => {
               }).map(([category, icon]) => (
                 <div key={category} className="my-4">
                   <a
-                    className="no-underline hover:underline uppercase"
+                    className="uppercase no-underline hover:underline"
                     href={`https://data.dvrpc.org/dataset/?category=${category}`}
                     target="_blank"
                   >
@@ -150,18 +150,18 @@ const Data = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className="bg-gray-200 color-[#030a18]">
-        <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12 p-8 pb-0">
+      <div className="color-[#030a18] bg-gray-200">
+        <div className="container mx-auto grid gap-12 p-8 pb-0 sm:grid-cols-1 md:grid-cols-3">
           <div className="md:col-span-3">
-            <h2 className="font-bold text-2xl text-center">FEATURED APPS</h2>
-            <div className="md:grid grid-cols-3 items-start justify-between mt-8 md:divide-x divide-gray-300 text-[#155575]">
+            <h2 className="text-center text-2xl font-bold">FEATURED APPS</h2>
+            <div className="mt-8 grid-cols-3 items-start justify-between divide-gray-300 text-[#155575] md:grid md:divide-x">
               {data.allMenuLinkContentMenuLinkContent.edges
                 .slice(0, 3)
                 .map(({ node }) => {
                   const id = node.link.uri.replace("internal:/", "");
                   return (
                     <div
-                      className="my-4 md:m-0 px-8 text-lg leading-tight flex items-center"
+                      className="my-4 flex items-center px-8 text-lg leading-tight md:m-0"
                       key={id}
                     >
                       <a
@@ -169,7 +169,7 @@ const Data = ({ data }) => {
                         href={`https://www.dvrpc.org/Products/${id}`}
                       >
                         <img
-                          className="float-left w-20 md:w-40 mr-4"
+                          className="float-left mr-4 w-20 md:w-40"
                           src={`https://www.dvrpc.org/asp/pubs/201px/${id}.png`}
                         />
                       </a>
@@ -185,19 +185,19 @@ const Data = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className="bg-[#eee] color-[#030a18]">
-        <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12 p-8">
+      <div className="color-[#030a18] bg-[#eee]">
+        <div className="container mx-auto grid gap-12 p-8 sm:grid-cols-1 md:grid-cols-3">
           <div className="md:col-span-3">
-            <h2 className="font-bold text-2xl text-center">WHAT'S NEW</h2>
-            <div className="md:grid grid-cols-3 items-start justify-between mt-8 md:divide-x divide-gray-300 color-[#155575]">
+            <h2 className="text-center text-2xl font-bold">WHAT'S NEW</h2>
+            <div className="color-[#155575] mt-8 grid-cols-3 items-start justify-between divide-gray-300 md:grid md:divide-x">
               {news.slice(0, 3).map(({ id, img, title }) => {
                 return (
                   <div
-                    className="my-4 md:m-0 px-8 text-lg leading-tight flex items-center"
+                    className="my-4 flex items-center px-8 text-lg leading-tight md:m-0"
                     key={id}
                   >
                     <img
-                      className="float-left flex-none w-20 md:w-32 mr-4"
+                      className="float-left mr-4 w-20 flex-none md:w-32"
                       src={img}
                     />
                     <h2>
@@ -215,12 +215,12 @@ const Data = ({ data }) => {
         </div>
       </div>
       <div className="color-[#030a18] bg-[#99c5c8]">
-        <div className="container mx-auto grid sm:grid-cols-1 md:grid-cols-3 gap-12 p-8 pb-4 md:pb-8">
-          <div className="md:col-span-3 text-center">
-            <h2 className="font-bold text-2xl">
+        <div className="container mx-auto grid gap-12 p-8 pb-4 sm:grid-cols-1 md:grid-cols-3 md:pb-8">
+          <div className="text-center md:col-span-3">
+            <h2 className="text-2xl font-bold">
               ABOUT THE GREATER PHILADELPHIA REGION
             </h2>
-            <div className="md:grid md:grid-cols-4 items-stretch justify-between text-xl mt-4 md:mt-8 md:divide-x divide-y md:divide-y-0 text-[#155575]">
+            <div className="mt-4 items-stretch justify-between divide-y text-xl text-[#155575] md:mt-8 md:grid md:grid-cols-4 md:divide-x md:divide-y-0">
               {[
                 ["5,893,110", "TOTAL POPULATION"],
                 [
@@ -245,11 +245,11 @@ const Data = ({ data }) => {
                   </>,
                 ],
               ].map(([figure, line1, line2]) => (
-                <div className="my-4 md:my-0 pt-4 md:pt-0 px-4 border-[#030a18]">
-                  <h3 className="text-3xl font-bold mb-2 text-[#030a18]">
+                <div className="my-4 border-[#030a18] px-4 pt-4 md:my-0 md:pt-0">
+                  <h3 className="mb-2 text-3xl font-bold text-[#030a18]">
                     {figure}
                   </h3>
-                  <div className="font-normal text-xl">{line1}</div>
+                  <div className="text-xl font-normal">{line1}</div>
                   {line2}
                 </div>
               ))}
@@ -263,10 +263,10 @@ const Data = ({ data }) => {
         </div>
       </footer>
 
-      <div className="flex justify-center text-center md:text-left text-[#99c5c8] bg-[#030a18]">
+      <div className="flex justify-center bg-[#030a18] text-center text-[#99c5c8] md:text-left">
         <div className="container">
-          <div className="mt-4 md:flex justify-between">
-            <footer className="md:py-4 flow-root">
+          <div className="mt-4 justify-between md:flex">
+            <footer className="flow-root md:py-4">
               <a href={`mailto:${staffContact.mail}`} className="font-bold">
                 {staffContact.field_display_name}
               </a>{" "}
@@ -280,14 +280,14 @@ const Data = ({ data }) => {
           </div>
         </div>
       </div>
-      <footer className="flex justify-center -mt-1 color-[#99c5c8] bg-[#030a18]">
+      <footer className="color-[#99c5c8] -mt-1 flex justify-center bg-[#030a18]">
         <div className="container text-center md:text-left">
-          <div className="mb-4 md:flex justify-between">
+          <div className="mb-4 justify-between md:flex">
             <div className="leading-none">
               <Link to="/" className="no-underline">
                 <Icon
                   use={DvrpcMini}
-                  className="mx-auto md:mx-0 h-8"
+                  className="mx-auto h-8 md:mx-0"
                   fillColor="#99C5C8"
                 />
               </Link>
@@ -299,7 +299,7 @@ const Data = ({ data }) => {
                 215.592.1800
               </small>
             </div>
-            <small className="mt-4 md:m-0 self-end">
+            <small className="mt-4 self-end md:m-0">
               <Link to="/Policies/">Policies</Link> |{" "}
               <a
                 href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
