@@ -4,7 +4,7 @@ import SocialMedia from "./SocialMedia";
 import TopNav from "./TopNav";
 
 const LogoBar = () => (
-  <div className="border-b-2">
+  <div>
     <div className="container mx-auto grid md:grid-cols-[auto_1fr]">
       <a href="/" className="row-span-2">
         <Icon

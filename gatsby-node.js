@@ -66,3 +66,31 @@ exports.onCreatePage = async ({ page, actions }) => {
     },
   });
 };
+
+exports.createResolvers = ({ createResolvers }) => {
+  const resolvers = {
+    menu_link_content__menu_link_content: {
+      entity: {
+        type: ["node__data_center_featured_apps"],
+        resolve: async (source, _, context) => {
+          const { entries } = await context.nodeModel.findAll({
+            type: "node__data_center_featured_apps",
+          });
+
+          return Array.from(entries).filter((node) => {
+            // source.link.uri = entity:node/[nid]
+            const [referenceType, nodeRef] = source?.link?.uri?.split(":");
+            const [entityType, nodeId] = nodeRef?.split("/");
+
+            // don't continue if source.link.uri doesn't follow pattern
+            if (referenceType !== "entity" || entityType !== "node") {
+              return false;
+            }
+            return node?.drupal_internal__nid?.toString() === nodeId;
+          });
+        },
+      },
+    },
+  };
+  createResolvers(resolvers);
+};

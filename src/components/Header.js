@@ -7,7 +7,7 @@ const Header = ({ bgStyles, alert, children }) => {
     <header className="bg-white">
       <LogoBar />
       <div
-        className="relative h-[var(--height-banner)] w-full bg-cover bg-bottom after:absolute after:bottom-4 after:right-0 after:block after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:p-1 after:px-2 after:pl-64 after:text-sm after:text-gray-900 after:content-[var(--content-photo-credits)]"
+        className="relative h-[var(--height-banner)] w-full bg-cover bg-bottom after:absolute after:bottom-0 after:right-0 after:block after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:p-1 after:px-2 after:pl-64 after:text-sm after:text-gray-900 after:content-[var(--content-photo-credits)]"
         style={{
           backgroundImage: "var(--bg-cover-image)",
           ...bgStyles,

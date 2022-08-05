@@ -3,7 +3,7 @@ import React from "react";
 const Product = (props) => (
   <div
     key={props.PubId}
-    className="my-4 flex w-full items-center gap-4 pr-4 md:w-1/2"
+    className="my-4 flex w-full items-center gap-4 pr-4"
   >
     <img
       className="w-[100.5px] border border-solid border-gray-400 bg-white"
@@ -22,7 +22,7 @@ const Product = (props) => (
 );
 
 const ProductLoader = (props) => (
-  <div className="my-4 flex w-full flex-1 items-center gap-4 pr-4 md:w-1/2">
+  <div className="my-4 flex w-full flex-1 items-center gap-4 pr-4">
     <div className="h-28 w-28 bg-gray-300" />
     <div>
       <h4 className="m-2 h-8 w-80 bg-gray-300" />
