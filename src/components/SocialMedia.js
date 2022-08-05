@@ -49,7 +49,7 @@ const SocialMedia = () => {
   return (
     <ul className="m-0 hidden p-0 text-[#67abd1] md:flex md:items-end md:justify-end md:p-4">
       {items.map((i) => (
-        <li key={i.props.href} className="block p-4 md:px-2 md:py-0">
+        <li key={i.props.href} className="block py-4 md:px-2 -mr-2 hover:text-[#0078ae]">
           {i}
         </li>
       ))}

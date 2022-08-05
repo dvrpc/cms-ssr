@@ -27,7 +27,7 @@ const rootNavArr = [
     href: "/LandUseEnvironment/",
   },
   {
-    link: "Communities",
+    link: "Planning",
     href: "/Planning/",
   },
   {
@@ -45,7 +45,7 @@ const RootNav = ({ data }) => {
     return (
       <div key={index} className="text-center md:leading-none">
         <Link
-          className="border-b no-underline hover:border-b-[color:var(--color-default)]"
+          className="pl-3 font-bold no-underline hover:underline"
           to={item.href}
           dangerouslySetInnerHTML={{ __html: item.link }}
         />
@@ -56,7 +56,7 @@ const RootNav = ({ data }) => {
 
 const TopNav = ({ menu }) => {
   return (
-    <nav className="hidden flex-wrap items-end justify-end gap-4 pb-8 font-medium text-[color:var(--color-default)] md:px-4 lg:flex">
+    <nav className="hidden flex-wrap items-end justify-end gap-3 divide-x divide-[#0078ae] pb-7 font-medium text-[color:var(--color-default)] md:px-4 lg:flex">
       <RootNav data={rootNavArr} />
     </nav>
   );

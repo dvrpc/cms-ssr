@@ -15,13 +15,13 @@ a {
   @apply text-[color:inherit] underline;
 }
 h1 {
-  @apply mt-0 text-3xl font-bold text-[color:var(--color-h1)];
+  @apply mt-0 text-4xl font-bold text-[color:var(--color-default)];
 }
 h2 {
-  @apply clear-both my-4 text-2xl font-bold text-[color:var(--color-h2)];
+  @apply clear-both my-4 text-2xl font-bold text-[color:var(--color-h2)] text-stone-600;
 }
 h3 {
-  @apply clear-both my-4 text-xl font-bold text-[color:var(--color-h3)];
+  @apply clear-both my-4 text-xl font-bold text-[color:var(--color-h3)] text-stone-400;
 }
 h4 {
   @apply my-4 text-lg font-bold;
@@ -29,8 +29,9 @@ h4 {
 p {
   @apply my-4;
 }
+article > p:first-child,
 p.lead {
-  @apply text-lg;
+  @apply text-2xl;
 }
 ol {
   @apply my-4 list-decimal;

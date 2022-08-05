@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import { useAsyncResource } from "use-async-resource";
 
 import Header from "../components/Header";
-import TopNav from "../components/TopNav";
 import Footer from "../components/Footer";
 import Announcement, { AnnouncementLoader } from "../components/Announcement";
 import Event, { EventLoader } from "../components/Event";
@@ -75,7 +74,6 @@ const HomePage = ({ data }) => {
           </div>
         </div>
       </Header>
-      <TopNav />
       <main>
         <div className="flex justify-center bg-[#bbe2f2]">
           <div className="container mx-8 flex-auto items-center justify-between md:flex">
@@ -100,56 +98,25 @@ const HomePage = ({ data }) => {
         </div>
 
         <div className="flex justify-center bg-[#e4f5f7]">
-          <div className="container mx-8 flex flex-col items-center gap-12 py-4 md:flex-row">
-            <div className="border-r border-gray-300 md:w-3/4">
-              <h3 className="mb-4 text-3xl">
-                <a
-                  className="text-[#296591]"
-                  href="https://www.dvrpc.org/Products/Search/"
+          <div className="container mx-8 flex flex-col items-center py-4 md:flex-row">
+            <h3 className="mb-4 text-3xl">
+              <a
+                className="text-[#296591]"
+                href="https://www.dvrpc.org/Products/Search/"
+              >
+                New Releases
+              </a>
+            </h3>
+            <div className="grid grid-cols-3">
+              {!isSSR && (
+                <Suspense
+                  fallback={[...Array(6)].map((_, i) => (
+                    <ProductLoader key={i} />
+                  ))}
                 >
-                  New Releases
-                </a>
-              </h3>
-              <div className="flex flex-wrap">
-                {!isSSR && (
-                  <Suspense
-                    fallback={[...Array(6)].map((_, i) => (
-                      <ProductLoader key={i} />
-                    ))}
-                  >
-                    <Products dataReader={dataReader} />
-                  </Suspense>
-                )}
-              </div>
-            </div>
-            <div className="w-full md:w-1/4">
-              <h3 className="text-3xl text-[#296591]">Quick Links</h3>
-              <ul className="my-8">
-                <li>
-                  <a href="https://www.dvrpc.org/business">
-                    Business Opportunities
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.dvrpc.org/committees/board">
-                    Board Resources
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.dvrpc.org/committees/">Committees</a>
-                </li>
-                <li>
-                  <a href="https://www.dvrpc.org/humanresources">
-                    Jobs at DVRPC
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.dvrpc.org/news">News</a>
-                </li>
-                <li>
-                  <a href="https://www.dvrpc.org/dataproducts">Data</a>
-                </li>
-              </ul>
+                  <Products dataReader={dataReader} />
+                </Suspense>
+              )}
             </div>
           </div>
         </div>
