@@ -64,7 +64,7 @@ const DrupalPage = ({
       </Helmet>
       <Header />
       <Body title={title} menu={navItem}>
-        {parseHtml(body?.processed)}
+        {parseHtml(body?.processed ?? "")}
       </Body>
       <StaffContact
         staffContact={field_staff_contact}

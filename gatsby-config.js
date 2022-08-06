@@ -42,7 +42,10 @@ module.exports = {
         disallowedLinkTypes: ["contact_message--personal", "view--view"],
         skipFileDownloads: false,
         filters: {
-          "node--page": "filter[status][value]=1",
+          "node--page":
+            process.env.GATSBY_ENV === "development"
+              ? ""
+              : "filter[status][value]=1",
         },
       },
     },
