@@ -63,6 +63,7 @@ exports.onCreatePage = async ({ page, actions }) => {
     context: {
       ...page.context,
       regex,
+      layout: !!page.context.__params
     },
   });
 };

@@ -28,7 +28,6 @@ const NewsLoader = () => <div>Loading...</div>;
 export const Head = () => {
   return (
     <>
-      <html lang="en" />
       <link rel="icon" href={favicon} />
       <style>
         {`:root {
