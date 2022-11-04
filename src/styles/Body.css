@@ -12,16 +12,16 @@ hr {
   @apply my-8 border-t border-solid border-gray-400;
 }
 a {
-  @apply text-[color:inherit] underline;
+  @apply text-inherit underline;
 }
 h1 {
   @apply mt-0 text-4xl font-bold text-[color:var(--color-default)];
 }
 h2 {
-  @apply clear-both my-4 text-2xl font-bold text-[color:var(--color-h2)] text-stone-600;
+  @apply clear-both my-4 text-2xl font-bold text-stone-600;
 }
 h3 {
-  @apply clear-both my-4 text-xl font-bold text-[color:var(--color-h3)] text-stone-400;
+  @apply clear-both my-4 text-xl font-bold text-stone-600;
 }
 h4 {
   @apply my-4 text-lg font-bold;
@@ -119,10 +119,9 @@ img {
 }
 .buttons {
   @apply flow-root;
-
-  & > div {
-    @apply float-left mr-8;
-  }
+}
+.buttons > div {
+  @apply float-left mr-8;
 }
 .button a,
 .btn a,
@@ -154,14 +153,13 @@ summary::-webkit-details-marker {
 }
 .list-group {
   @apply mb-5 overflow-hidden rounded-sm border-0 bg-gray-50 p-0 shadow;
-
-  & > .footer,
-  & > footer {
-    @apply -mx-4 -mb-4 border-t border-gray-200 bg-gray-100 py-2 px-4 text-right font-bold;
-  }
-  & > li {
-    @apply relative -mb-px block border border-gray-200 bg-gray-50 py-2 px-4;
-  }
+}
+.list-group > .footer,
+.list-group > footer {
+  @apply -mx-4 -mb-4 border-t border-gray-200 bg-gray-100 py-2 px-4 text-right font-bold;
+}
+.list-group > li {
+  @apply relative -mb-px block border border-gray-200 bg-gray-50 py-2 px-4;
 }
 .list-group-heading:first-child,
 .list-group-item:first-child {

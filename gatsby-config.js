@@ -39,8 +39,9 @@ module.exports = {
           username: process.env.DRUPAL_USER,
           password: process.env.DRUPAL_PASS,
         },
-        disallowedLinkTypes: ["contact_message--personal", "view--view"],
         skipFileDownloads: false,
+        placeholderStyleName: "thumbnail",
+        fastBuilds: true,
         filters: {
           "node--page":
             process.env.GATSBY_ENV === "development"
@@ -57,8 +58,6 @@ module.exports = {
         trackingId: "UA-9825778-1",
       },
     },
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
       options: {

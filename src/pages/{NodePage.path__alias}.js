@@ -1,12 +1,9 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import Helmet from "react-helmet";
 import parseHtml from "../utils/parseHtml";
 
-import Header from "../components/Header";
 import Body from "../components/Body";
 import StaffContact from "../components/StaffContact";
-import Footer from "../components/Footer";
 
 const themeConfig = [
   ["field_primary_color", "--color-h1"],
@@ -22,6 +19,19 @@ const themeConfig = [
           (obj) =>
             `url(${obj.localFile.childImageSharp.gatsbyImageData.images.fallback.src})`
         )
+        .reverse()
+        .join(", "),
+  ],
+  [
+    "relationships.field_banner_2x",
+    "--bg-cover-image",
+    (val) =>
+      val
+        .map(
+          (obj) =>
+            `url(${obj.localFile.childImageSharp.gatsbyImageData.images.fallback.src})`
+        )
+        .reverse()
         .join(", "),
   ],
   ["field_photo_credits", "--content-photo-credits", (val) => `"${val}"`],
@@ -34,44 +44,49 @@ const themeToCustomVars = (theme, config) => {
       const val = key
         .split(".")
         .reduce((prev, cur) => prev && prev[cur], theme);
-      return val ? `${customVar}: ${parseFunc(val)};` : null;
+      return parseFunc(val) ? `${customVar}: ${parseFunc(val)};` : null;
     })
     .join("\n");
 };
 
-const DrupalPage = ({
-  data: {
+const DrupalPage = ({ data }) => {
+  const {
+    documents,
+    images,
     navItem,
-    nodePage: {
-      body,
-      title,
-      path,
-      relationships: { field_staff_contact, field_theme },
-    },
-  },
-}) => {
+    nodePage: { body, title, path, relationships },
+  } = data;
   return (
     <>
-      <Helmet titleTemplate="%s | DVRPC">
-        <html lang="en" />
-        <title>{title}</title>
-        <meta name="description" content={body?.summary} />
-        <style>
-          {`:root {
-            ${themeToCustomVars(field_theme, themeConfig)}
-          }`}
-        </style>
-      </Helmet>
-      <Header />
       <Body title={title} menu={navItem}>
-        {parseHtml(body?.processed ?? "")}
+        {parseHtml(body?.processed ?? "", { documents, images })}
       </Body>
       <StaffContact
-        staffContact={field_staff_contact}
+        staffContact={relationships?.field_staff_contact ?? {}}
         title={title}
         location={path.alias}
       />
-      <Footer />
+    </>
+  );
+};
+
+export const Head = ({ data }) => {
+  const {
+    nodePage: {
+      body,
+      title,
+      relationships: { field_theme },
+    },
+  } = data;
+  return (
+    <>
+      <title>{title} | DVRPC</title>
+      {body.summary && <meta name="description" content={body?.summary} />}
+      <style>
+        {`:root {
+            ${themeToCustomVars(field_theme, themeConfig)}
+          }`}
+      </style>
     </>
   );
 };
@@ -100,13 +115,83 @@ export const query = graphql`
           field_third_color
           field_photo_credits
           relationships {
-            field_banner {
+            field_banner_2x {
               localFile {
                 childImageSharp {
-                  gatsbyImageData(width: 1600, height: 400, formats: [WEBP])
+                  gatsbyImageData(
+                    width: 3200
+                    height: 800
+                    quality: 100
+                    outputPixelDensities: [1]
+                    formats: [WEBP]
+                  )
                 }
               }
             }
+            field_banner {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(
+                    width: 1600
+                    height: 400
+                    quality: 100
+                    outputPixelDensities: [1]
+                    formats: [WEBP]
+                  )
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    images: allFileFile(
+      filter: {
+        filemime: {
+          in: [
+            "image/png"
+            "image/jpeg"
+            "image/gif"
+            "image/svg+xml"
+            "image/webp"
+          ]
+        }
+      }
+    ) {
+      edges {
+        node {
+          drupal_id
+          uri {
+            url
+          }
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+    }
+    documents: allFileFile(
+      filter: {
+        filemime: {
+          in: [
+            "application/pdf"
+            "application/msword"
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            "application/vnd.ms-excel"
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            "application/zip"
+          ]
+        }
+      }
+    ) {
+      edges {
+        node {
+          drupal_id
+          filename
+          localFile {
+            publicURL
           }
         }
       }
@@ -195,4 +280,7 @@ export const query = graphql`
     }
   }
 `;
+
+export const config = async () => ({ defer: true });
+
 export default DrupalPage;

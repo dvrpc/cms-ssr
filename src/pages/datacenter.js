@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { graphql, Link } from "gatsby";
-import { Helmet } from "react-helmet";
 import favicon from "../images/favicon.ico";
 import LogoBar from "../components/LogoBar";
 import Icon, {
@@ -22,11 +21,27 @@ import Icon, {
   DvrpcMini,
 } from "../components/Icon";
 import ConnectWithUs from "../components/ConnectWithUs";
-import FooterAds from "../components/FooterAds";
-import Footer from "../components/Footer";
 import bgImage from "../images/datacenter.jpg";
 
 const NewsLoader = () => <div>Loading...</div>;
+
+export const Head = () => {
+  return (
+    <>
+      <html lang="en" />
+      <link rel="icon" href={favicon} />
+      <style>
+        {`:root {
+      --color-h1: #0f1a3a;
+      --color-h2: #0f1a3a;
+      --color-h3: #0f1a3a;
+      --bg-cover-image: url(${bgImage});
+      --height-banner: 25vw;
+    }`}
+      </style>
+    </>
+  );
+};
 
 const Data = ({ data }) => {
   const location = "/data";
@@ -49,19 +64,6 @@ const Data = ({ data }) => {
 
   return (
     <>
-      <Helmet>
-        <html lang="en" />
-        <link rel="icon" href={favicon} />
-        <style>
-          {`:root {
-            --color-h1: #0f1a3a;
-            --color-h2: #0f1a3a;
-            --color-h3: #0f1a3a;
-            --bg-cover-image: url(${bgImage});
-            --height-banner: 25vw;
-          }`}
-        </style>
-      </Helmet>
       <header className="bg-white">
         <LogoBar />
         <div

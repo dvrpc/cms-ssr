@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import { graphql } from "gatsby";
-import { Helmet } from "react-helmet";
 import { useAsyncResource } from "use-async-resource";
 
 import Header from "../components/Header";
@@ -19,8 +18,21 @@ const fetchData = () =>
     r.json()
   );
 
+export const Head = () => {
+  return (
+    <>
+      <html lang="en" />
+      <title>Delaware Valley Regional Planning Commission</title>
+      <meta
+        name="description"
+        content="The Delaware Valley Regional Planning Commission is the federally designated Metropolitan Planning Organization for nine counties: Bucks, Chester, Delaware, Montgomery, and Philadelphia, Pennsylvania; and Burlington, Camden, Gloucester, and Mercer, New Jersey."
+      />
+    </>
+  );
+};
+
 const Anns = ({ dataReader }) => (
-  <CSSSlider dimensions={"w-full md:w-96 h-40"}>
+  <CSSSlider dimensions="w-full md:w-96 h-40">
     {dataReader().anns.map((d, index) => {
       return <Announcement key={d.guid["#text"]} {...d} />;
     })}
@@ -41,14 +53,6 @@ const HomePage = ({ data }) => {
   const alert = data.blockContentAlertBanner?.body?.processed ?? "";
   return (
     <>
-      <Helmet>
-        <html lang="en" />
-        <title>Delaware Valley Regional Planning Commission</title>
-        <meta
-          name="description"
-          content="The Delaware Valley Regional Planning Commission is the federally designated Metropolitan Planning Organization for nine counties: Bucks, Chester, Delaware, Montgomery, and Philadelphia, Pennsylvania; and Burlington, Camden, Gloucester, and Mercer, New Jersey."
-        />
-      </Helmet>
       <Header
         bgStyles={{ backgroundSize: "cover" }}
         alert={
