@@ -5,7 +5,7 @@ import tw, { css } from "twin.macro";
 
 import "./balloon-css.css";
 
-const styles = [
+export const styles = [
   tw`mx-4 my-8`,
   (props) => css`
     max-width: 80ch;

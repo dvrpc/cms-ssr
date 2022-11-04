@@ -13,6 +13,20 @@ exports.createPages = ({ actions, graphql }) => {
   // Query for recipe nodes to use in creating pages.
   return graphql(`
     {
+      allNodeArticle {
+        edges {
+          node {
+            drupal_id
+            path {
+              alias
+            }
+            body {
+              processed
+              summary
+            }
+          }
+        }
+      }
       allNodePage {
         edges {
           node {
@@ -54,6 +68,18 @@ exports.createPages = ({ actions, graphql }) => {
     }
 
     // Create pages for each node.
+    result.data.allNodeArticle.edges.forEach(({ node }) => {
+      node.path.alias &&
+        createPage({
+          path: node.path.alias,
+          component: template,
+          context: {
+            slug: node.path.alias,
+            regex: `/^${node.path.alias.replace(/\//g, "/")}\/?$/i`,
+          },
+        });
+    });
+    
     result.data.allNodePage.edges.forEach(({ node }) => {
       process.env.GATSBY_ENV === "development" &&
         createPage({
