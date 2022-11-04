@@ -219,7 +219,7 @@ const Data = ({ data }) => {
                       fillColor="#040b1f"
                       tw="mx-auto w-16 h-16 mb-2"
                     />
-                    {decodeURIComponent(category).replaceAll("+", " ")}
+                    {decodeURIComponent(category).replace(/\+/g, " ")}
                   </a>
                 </div>
               ))}
