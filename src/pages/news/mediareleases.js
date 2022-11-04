@@ -59,24 +59,24 @@ const MediaReleases = ({ data }) => {
                   information should be directed to the Office of Communications
                   and Engagement.
                 </p>
-                <details>
-                  <summary>2022</summary>
-                  <ul className="list-group">
-                    {data.taxonomyTermTags.relationships.node__article.map(
-                      (p) => {
-                        const [, m, day] = p.changed.split("T")[0].split("-");
-                        return (
-                          <li>
-                            <b tw="text-xl mr-4">
+                <h2>2022</h2>
+                <ul className="list-group">
+                  {data.taxonomyTermTags.relationships.node__article.map(
+                    (p) => {
+                      const [, m, day] = p.created.split("T")[0].split("-");
+                      return (
+                        <li>
+                          <div tw="flex">
+                            <div tw="text-xl mr-4 flex-shrink-0">
                               {month[m]} {day}
-                            </b>
+                            </div>
                             <a href={p.path.alias}>{p.title}</a>
-                          </li>
-                        );
-                      }
-                    )}
-                  </ul>
-                </details>
+                          </div>
+                        </li>
+                      );
+                    }
+                  )}
+                </ul>
                 <h2>
                   <a href="/news/mediareleases/archive">Archive</a>
                 </h2>
@@ -101,7 +101,7 @@ export const query = graphql`
       relationships {
         node__article {
           title
-          changed
+          created
           path {
             alias
           }
