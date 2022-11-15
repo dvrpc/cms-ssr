@@ -22,6 +22,8 @@ import Icon, {
 } from "../components/Icon";
 import ConnectWithUs from "../components/ConnectWithUs";
 import bgImage from "../images/datacenter.jpg";
+import Banner from "../components/datacenter/Banner";
+import DVRPCbg from "../images/dvrpc-transparent.png";
 
 const NewsLoader = () => <div>Loading...</div>;
 
@@ -65,17 +67,12 @@ const Data = ({ data }) => {
     <>
       <header className="bg-white">
         <LogoBar />
-        <div
-          className="relative h-[var(--height-banner)] w-full bg-cover bg-bottom after:absolute after:bottom-4 after:right-0 after:block after:bg-gradient-to-r after:from-transparent after:via-white/80 after:to-white/80 after:p-1 after:px-2 after:pl-64 after:text-sm after:text-gray-900 after:content-[var(--content-photo-credits)]"
-          style={{
-            backgroundImage: "var(--bg-cover-image)",
-          }}
-        ></div>
+        <Banner />
       </header>
-      <div className="bg-[#003866] text-white">
+      <div className="bg-[#5c4f92] text-white">
         <div className="container mx-auto grid gap-12 px-8 sm:grid-cols-1 md:grid-cols-3">
           <div className="text-center md:col-span-3">
-            <ul className="my-3 flex list-none justify-items-stretch divide-x">
+            <ul className="my-3 flex list-none justify-items-stretch">
               <li className="flex-1">
                 <Link className="no-underline hover:underline" to="/data/about">
                   About
@@ -114,46 +111,10 @@ const Data = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className="bg-[#b1d0e0] text-[#040b1f]">
-        <div className="container mx-auto grid gap-12 p-8 sm:grid-cols-1 md:grid-cols-3">
-          <div className="text-center md:col-span-3">
-            <h1 className="text-4xl font-bold text-[#0f1a3a]">
-              Welcome to the DVRPC Data Center
-            </h1>
-            <p className="text-2xl">
-              where you have access to information about the Greater
-              <br />
-              Philadelphia region at your fingertips!
-            </p>
-            <form
-              action="http://data.dvrpc.org/dataset/"
-              method="GET"
-              className="relative inline-block w-full md:w-2/3"
-            >
-              <input
-                type="search"
-                name="q"
-                autoFocus
-                placeholder="SEARCH DATA CATALOG OR EXPLORE BELOW"
-                className="mt-8 hidden w-full rounded-lg p-6 pl-20 text-xl leading-none outline-2 outline-[#030a18] placeholder:text-center placeholder:text-lg placeholder:font-bold placeholder:tracking-wider placeholder:text-[#030a18]/90 md:block"
-              />
-              <input
-                type="search"
-                name="q"
-                autoFocus
-                placeholder="SEARCH DATA"
-                className="mt-8 w-full rounded-lg p-6 text-xl leading-none outline-2 outline-[#030a18] placeholder:text-center placeholder:text-lg placeholder:font-bold placeholder:tracking-wider placeholder:text-[#030a18]/90 md:hidden"
-              />
-              <button className="color-[#030a18] absolute left-8 top-1/2 hidden -scale-x-100 text-3xl font-bold leading-none md:block">
-                ⌕
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div className="bg-[#b1d0e0] text-[#040b1f]">
+      <div className="bg-[#b1d0e0] text-[#0078ae]">
         <div className="container mx-auto grid gap-12 p-4 text-sm font-bold sm:grid-cols-1 md:grid-cols-3">
           <div className="text-center md:col-span-3">
+            <h3 className="text-left text-[#0078ae]">Browse by Topic</h3>
             <div className="grid-cols-2 md:grid md:grid-cols-7">
               {Object.entries({
                 "Bicycle+%26+Pedestrian": Bikeped,
@@ -179,7 +140,7 @@ const Data = ({ data }) => {
                   >
                     <Icon
                       use={icon}
-                      fillColor="#040b1f"
+                      fillColor="#0078ae"
                       scale={16}
                       className="mx-auto mb-2"
                     />
