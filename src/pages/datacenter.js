@@ -19,11 +19,13 @@ import Icon, {
   Health,
   Transit,
   DvrpcMini,
+  Leftarrow,
 } from "../components/Icon";
 import ConnectWithUs from "../components/ConnectWithUs";
 import bgImage from "../images/datacenter.jpg";
 import Banner from "../components/datacenter/Banner";
-import DVRPCbg from "../images/dvrpc-transparent.png";
+import AppCard from "../components/datacenter/AppCard";
+import { Rightarrow } from "../components/Icon";
 
 const NewsLoader = () => <div>Loading...</div>;
 
@@ -62,6 +64,181 @@ const Data = ({ data }) => {
         setNews(resultData.filter((r) => r.type === "New Data"));
       });
   }, []);
+
+  const testData = {
+    allMenuLinkContentMenuLinkContent: {
+      edges: [
+        {
+          node: {
+            entity: [
+              {
+                title: "Population and Employment Forecasts, 2015-2050",
+                body: {
+                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+                  aliqua. </p>`,
+                },
+                field_product_id: "WEB22016",
+                field_url: {
+                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
+                },
+              },
+            ],
+          },
+        },
+        {
+          node: {
+            entity: [
+              {
+                title: "Population and Employment Forecasts, 2015-2050",
+                body: {
+                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+                  aliqua. </p>`,
+                },
+                field_product_id: "WEB22016",
+                field_url: {
+                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
+                },
+              },
+            ],
+          },
+        },
+        {
+          node: {
+            entity: [
+              {
+                title: "Population and Employment Forecasts, 2015-2050",
+                body: {
+                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+                  aliqua. </p>`,
+                },
+                field_product_id: "WEB22016",
+                field_url: {
+                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
+                },
+              },
+            ],
+          },
+        },
+        {
+          node: {
+            entity: [
+              {
+                title: "Population and Employment Forecasts, 2015-2050",
+                body: {
+                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+                  aliqua. </p>`,
+                },
+                field_product_id: "WEB22016",
+                field_url: {
+                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
+                },
+              },
+            ],
+          },
+        },
+        {
+          node: {
+            entity: [
+              {
+                title: "Population and Employment Forecasts, 2015-2050",
+                body: {
+                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+                  aliqua. </p>`,
+                },
+                field_product_id: "WEB22016",
+                field_url: {
+                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
+                },
+              },
+            ],
+          },
+        },
+        {
+          node: {
+            entity: [
+              {
+                title: "Population and Employment Forecasts, 2015-2050",
+                body: {
+                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+                  aliqua. </p>`,
+                },
+                field_product_id: "WEB22016",
+                field_url: {
+                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
+                },
+              },
+            ],
+          },
+        },
+        {
+          node: {
+            entity: [
+              {
+                title: "Population and Employment Forecasts, 2015-2050",
+                body: {
+                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+                  aliqua. </p>`,
+                },
+                field_product_id: "WEB22016",
+                field_url: {
+                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
+                },
+              },
+            ],
+          },
+        },
+        {
+          node: {
+            entity: [
+              {
+                title: "Population and Employment Forecasts, 2015-2050",
+                body: {
+                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+                  aliqua. </p>`,
+                },
+                field_product_id: "WEB22016",
+                field_url: {
+                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
+                },
+              },
+            ],
+          },
+        },
+        {
+          node: {
+            entity: [
+              {
+                title: "Population and Employment Forecasts, 2015-2050",
+                body: {
+                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
+                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+                  aliqua. </p>`,
+                },
+                field_product_id: "WEB22016",
+                field_url: {
+                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
+                },
+              },
+            ],
+          },
+        },
+      ],
+    },
+  };
+
+  const scrollRight = (event) => {
+    const container = document.getElementById("scrollContainer");
+    console.log(container);
+    container.scrollBy(200, 0);
+  };
 
   return (
     <>
@@ -112,7 +289,7 @@ const Data = ({ data }) => {
         </div>
       </div>
       <div className="bg-[#b1d0e0] text-[#0078ae]">
-        <div className="container mx-auto grid gap-12 p-4 text-sm font-bold sm:grid-cols-1 md:grid-cols-3">
+        <div className="container mx-auto grid gap-12 p-8 text-sm font-bold sm:grid-cols-1 md:grid-cols-3">
           <div className="text-center md:col-span-3">
             <h3 className="text-left text-[#0078ae]">Browse by Topic</h3>
             <div className="grid-cols-2 md:grid md:grid-cols-7">
@@ -135,7 +312,7 @@ const Data = ({ data }) => {
                 <div key={category} className="my-4">
                   <a
                     className="uppercase no-underline hover:underline"
-                    href={`https://data.dvrpc.org/dataset/?category=${category}`}
+                    href={`https://catalog.dvrpc.org/dataset/?category=${category}`}
                     target="_blank"
                   >
                     <Icon
@@ -153,47 +330,61 @@ const Data = ({ data }) => {
         </div>
       </div>
       <div className="color-[#030a18] bg-gray-200">
-        <div className="container mx-auto p-8">
-          <h2 className="text-center text-2xl font-bold text-[#0f1a3a]">
-            FEATURED APPS
-          </h2>
-          <div className="mt-8 columns-[380px] gap-4 text-[#155575]">
-            {data.allMenuLinkContentMenuLinkContent.edges.map(({ node }) => {
-              const {
-                field_product_id: id,
-                body,
-                title,
-                field_url: url,
-              } = node.entity[0];
-              const len = 1000;
-              const text =
-                body.processed.slice(0, len) +
-                body.processed.slice(len).split(" ")[0];
-              return (
-                <div
-                  className="mx-auto mb-8 w-[380px] break-inside-avoid border-b border-gray-300 pt-2 pb-4 text-lg leading-tight"
-                  key={id}
-                >
-                  <a href={url.uri}>
-                    <img
-                      className="w-full"
-                      src={`https://www.dvrpc.org/asp/pubs/402px/${id}.png`}
-                    />
-                  </a>
-                  <h2 className="text-[#0f1a3a]">
-                    <a className="no-underline hover:underline" href={url.uri}>
-                      {title}
-                    </a>
-                  </h2>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        text === body.processed ? text : `${text}&hellip;`,
-                    }}
-                  ></div>
-                </div>
-              );
-            })}
+        <div className="container mx-auto p-8 pr-0">
+          <h3 className="text-2xl font-bold text-[#0078ae]">
+            Maps & Applications
+          </h3>
+          <div
+            id="scrollContainer"
+            className="flex min-w-full gap-4 overflow-hidden text-[#155575]"
+          >
+            {testData.allMenuLinkContentMenuLinkContent.edges.map(
+              ({ node }) => {
+                const {
+                  field_product_id: id,
+                  body,
+                  title,
+                  field_url: url,
+                } = node.entity[0];
+                const len = 1000;
+                const text =
+                  body.processed.slice(0, len) +
+                  body.processed.slice(len).split(" ")[0];
+                return <AppCard node={node} />;
+              }
+            )}
+          </div>
+          <div className="absolute flex gap-4">
+            <div
+              className="h-2 w-2"
+              onClick={() => {
+                const scrollContainer =
+                  document.getElementById("scrollContainer");
+
+                console.log(scrollContainer.scrollLeft);
+
+                scrollContainer.scrollBy({
+                  behavior: "smooth",
+                  left: (screen.width / 2) * -1,
+                });
+              }}
+            >
+              <Leftarrow />
+            </div>
+            <div
+              className="h-2 w-2"
+              onClick={() => {
+                const scrollContainer =
+                  document.getElementById("scrollContainer");
+
+                scrollContainer.scrollBy({
+                  behavior: "smooth",
+                  left: screen.width / 2,
+                });
+              }}
+            >
+              <Rightarrow />
+            </div>
           </div>
         </div>
       </div>
