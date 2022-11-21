@@ -26,6 +26,7 @@ import bgImage from "../images/datacenter.jpg";
 import Banner from "../components/datacenter/Banner";
 import AppCard from "../components/datacenter/AppCard";
 import { Rightarrow } from "../components/Icon";
+import Carousel from "../components/common/Carousel";
 
 const NewsLoader = () => <div>Loading...</div>;
 
@@ -329,15 +330,12 @@ const Data = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className="color-[#030a18] bg-gray-200">
-        <div className="container mx-auto p-8 pr-0">
+      <div className="color-[#030a18] flex flex-col bg-gray-200">
+        <div className="container mx-auto p-8">
           <h3 className="text-2xl font-bold text-[#0078ae]">
             Maps & Applications
           </h3>
-          <div
-            id="scrollContainer"
-            className="flex min-w-full gap-4 overflow-hidden text-[#155575]"
-          >
+          <Carousel>
             {testData.allMenuLinkContentMenuLinkContent.edges.map(
               ({ node }) => {
                 const {
@@ -353,39 +351,7 @@ const Data = ({ data }) => {
                 return <AppCard node={node} />;
               }
             )}
-          </div>
-          <div className="absolute flex gap-4">
-            <div
-              className="h-2 w-2"
-              onClick={() => {
-                const scrollContainer =
-                  document.getElementById("scrollContainer");
-
-                console.log(scrollContainer.scrollLeft);
-
-                scrollContainer.scrollBy({
-                  behavior: "smooth",
-                  left: (screen.width / 2) * -1,
-                });
-              }}
-            >
-              <Leftarrow />
-            </div>
-            <div
-              className="h-2 w-2"
-              onClick={() => {
-                const scrollContainer =
-                  document.getElementById("scrollContainer");
-
-                scrollContainer.scrollBy({
-                  behavior: "smooth",
-                  left: screen.width / 2,
-                });
-              }}
-            >
-              <Rightarrow />
-            </div>
-          </div>
+          </Carousel>
         </div>
       </div>
       <div className="color-[#030a18] clearfix bg-[#eee] py-4">
