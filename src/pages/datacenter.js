@@ -3,7 +3,6 @@ import { graphql, Link } from "gatsby";
 import favicon from "../images/favicon.ico";
 import LogoBar from "../components/LogoBar";
 import Icon, {
-  Search,
   Bikeped,
   Housing,
   Environment,
@@ -19,13 +18,11 @@ import Icon, {
   Health,
   Transit,
   DvrpcMini,
-  Leftarrow,
 } from "../components/Icon";
 import ConnectWithUs from "../components/ConnectWithUs";
 import bgImage from "../images/datacenter.jpg";
 import Banner from "../components/datacenter/Banner";
 import AppCard from "../components/datacenter/AppCard";
-import { Rightarrow } from "../components/Icon";
 import Carousel from "../components/common/Carousel";
 
 const NewsLoader = () => <div>Loading...</div>;
@@ -234,13 +231,7 @@ const Data = ({ data }) => {
       ],
     },
   };
-
-  const scrollRight = (event) => {
-    const container = document.getElementById("scrollContainer");
-    console.log(container);
-    container.scrollBy(200, 0);
-  };
-
+  console.log(data);
   return (
     <>
       <header className="bg-white">

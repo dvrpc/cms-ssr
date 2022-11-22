@@ -5,9 +5,10 @@ const AppCard = ({ node }) => {
   const len = 1000;
   const text =
     body.processed.slice(0, len) + body.processed.slice(len).split(" ")[0];
+
   return (
     <div
-      className="flex min-w-[30%] break-inside-avoid flex-col bg-white p-[0.25em] text-lg"
+      className="flex break-inside-avoid flex-col bg-white p-[0.25em] text-lg md:min-w-[375px]"
       key={id}
     >
       <a href={url.uri} className="h-[40%]">
