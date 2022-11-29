@@ -8,7 +8,7 @@ const AppCard = ({ node }) => {
 
   return (
     <div
-      className="flex break-inside-avoid flex-col bg-white p-[0.25em] text-lg md:min-w-[375px]"
+      className="flex md:min-w-[375px] break-inside-avoid flex-col bg-white p-[0.25em] text-lg"
       key={id}
     >
       <a href={url.uri} className="h-[40%]">

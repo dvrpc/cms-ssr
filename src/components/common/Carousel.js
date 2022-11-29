@@ -49,7 +49,7 @@ const Carousel = ({ children }) => {
       {children.length > 3 && (
         <div className="absolute flex h-full w-full items-center">
           <button
-            className="rounded-full bg-slate-200 p-2 disabled:invert"
+            className="ml-1 rounded-full bg-slate-200 p-2 disabled:invert"
             onClick={() => scroll("prev")}
             style={{ opacity: 0.85 }}
             disabled={prevDisabled}
@@ -59,7 +59,7 @@ const Carousel = ({ children }) => {
             </div>
           </button>
           <button
-            className="ml-auto rounded-full bg-slate-200 p-2 disabled:invert"
+            className="ml-auto mr-1 rounded-full bg-slate-200 p-2 disabled:invert"
             onClick={() => scroll("next")}
             style={{ opacity: 0.85 }}
             disabled={nextDisabled}
