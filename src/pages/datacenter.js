@@ -345,7 +345,7 @@ const Data = ({ data }) => {
           </Carousel>
         </div>
       </div>
-      <div className="color-[#030a18] clearfix bg-[#eee] py-4">
+      {/* <div className="color-[#030a18] clearfix bg-[#eee] py-4">
         <div className="container mx-auto">
           <h2 className="text-center text-2xl font-bold text-[#0f1a3a]">
             WHAT'S NEW
@@ -417,7 +417,7 @@ const Data = ({ data }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex justify-center bg-[#030a18] text-center text-[#99c5c8] md:text-left">
         <div className="container">
