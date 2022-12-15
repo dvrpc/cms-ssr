@@ -79,7 +79,7 @@ exports.createPages = ({ actions, graphql }) => {
           },
         });
     });
-    
+
     result.data.allNodePage.edges.forEach(({ node }) => {
       process.env.GATSBY_ENV === "development" &&
         createPage({

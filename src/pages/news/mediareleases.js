@@ -63,12 +63,12 @@ const MediaReleases = ({ data }) => {
                 <ul className="list-group">
                   {data.taxonomyTermTags.relationships.node__article.map(
                     (p) => {
-                      const [, m, day] = p.created.split("T")[0].split("-");
+                      const [, monthIndex, day] = p.created.split("T")[0].split("-");
                       return (
                         <li>
                           <div tw="flex">
                             <div tw="text-xl mr-4 flex-shrink-0">
-                              {month[m]} {day}
+                              {month[monthIndex]} {day}
                             </div>
                             <a href={p.path.alias}>{p.title}</a>
                           </div>
