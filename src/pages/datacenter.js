@@ -231,7 +231,7 @@ const Data = ({ data }) => {
       ],
     },
   };
-  console.log(data);
+
   return (
     <>
       <header className="bg-white">
@@ -327,20 +327,8 @@ const Data = ({ data }) => {
             Maps & Applications
           </h3>
           <Carousel>
-            {testData.allMenuLinkContentMenuLinkContent.edges.map(
-              ({ node }) => {
-                const {
-                  field_product_id: id,
-                  body,
-                  title,
-                  field_url: url,
-                } = node.entity[0];
-                const len = 1000;
-                const text =
-                  body.processed.slice(0, len) +
-                  body.processed.slice(len).split(" ")[0];
-                return <AppCard node={node} />;
-              }
+            {data.allMenuLinkContentMenuLinkContent.edges.map(
+              ({ node }) => <AppCard node={node} />
             )}
           </Carousel>
         </div>
