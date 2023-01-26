@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { graphql, Link } from "gatsby";
-import favicon from "../images/favicon.ico";
-import LogoBar from "../components/LogoBar";
+import favicon from "../../images/favicon.ico";
+import LogoBar from "../../components/LogoBar";
 import Icon, {
   Bikeped,
   Housing,
@@ -18,12 +18,12 @@ import Icon, {
   Health,
   Transit,
   DvrpcMini,
-} from "../components/Icon";
-import ConnectWithUs from "../components/ConnectWithUs";
-import bgImage from "../images/datacenter.jpg";
-import Banner from "../components/datacenter/Banner";
-import AppCard from "../components/datacenter/AppCard";
-import Carousel from "../components/common/Carousel";
+} from "../../components/Icon";
+import ConnectWithUs from "../../components/ConnectWithUs";
+import bgImage from "../../images/datacenter.jpg";
+import Banner from "../../components/datacenter/Banner";
+import AppCard from "../../components/datacenter/AppCard";
+import Carousel from "../../components/common/Carousel";
 
 const NewsLoader = () => <div>Loading...</div>;
 
@@ -62,175 +62,6 @@ const Data = ({ data }) => {
         setNews(resultData.filter((r) => r.type === "New Data"));
       });
   }, []);
-
-  const testData = {
-    allMenuLinkContentMenuLinkContent: {
-      edges: [
-        {
-          node: {
-            entity: [
-              {
-                title: "Population and Employment Forecasts, 2015-2050",
-                body: {
-                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-                  aliqua. </p>`,
-                },
-                field_product_id: "WEB22016",
-                field_url: {
-                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
-                },
-              },
-            ],
-          },
-        },
-        {
-          node: {
-            entity: [
-              {
-                title: "Population and Employment Forecasts, 2015-2050",
-                body: {
-                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-                  aliqua. </p>`,
-                },
-                field_product_id: "WEB22016",
-                field_url: {
-                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
-                },
-              },
-            ],
-          },
-        },
-        {
-          node: {
-            entity: [
-              {
-                title: "Population and Employment Forecasts, 2015-2050",
-                body: {
-                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-                  aliqua. </p>`,
-                },
-                field_product_id: "WEB22016",
-                field_url: {
-                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
-                },
-              },
-            ],
-          },
-        },
-        {
-          node: {
-            entity: [
-              {
-                title: "Population and Employment Forecasts, 2015-2050",
-                body: {
-                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-                  aliqua. </p>`,
-                },
-                field_product_id: "WEB22016",
-                field_url: {
-                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
-                },
-              },
-            ],
-          },
-        },
-        {
-          node: {
-            entity: [
-              {
-                title: "Population and Employment Forecasts, 2015-2050",
-                body: {
-                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-                  aliqua. </p>`,
-                },
-                field_product_id: "WEB22016",
-                field_url: {
-                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
-                },
-              },
-            ],
-          },
-        },
-        {
-          node: {
-            entity: [
-              {
-                title: "Population and Employment Forecasts, 2015-2050",
-                body: {
-                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-                  aliqua. </p>`,
-                },
-                field_product_id: "WEB22016",
-                field_url: {
-                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
-                },
-              },
-            ],
-          },
-        },
-        {
-          node: {
-            entity: [
-              {
-                title: "Population and Employment Forecasts, 2015-2050",
-                body: {
-                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-                  aliqua. </p>`,
-                },
-                field_product_id: "WEB22016",
-                field_url: {
-                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
-                },
-              },
-            ],
-          },
-        },
-        {
-          node: {
-            entity: [
-              {
-                title: "Population and Employment Forecasts, 2015-2050",
-                body: {
-                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-                  aliqua. </p>`,
-                },
-                field_product_id: "WEB22016",
-                field_url: {
-                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
-                },
-              },
-            ],
-          },
-        },
-        {
-          node: {
-            entity: [
-              {
-                title: "Population and Employment Forecasts, 2015-2050",
-                body: {
-                  processed: `<p>Lorem ipsum dolor sit amet, consectetur adipiscing 
-                  elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-                  aliqua. </p>`,
-                },
-                field_product_id: "WEB22016",
-                field_url: {
-                  uri: "https://www.dvrpc.org/webmaps/popempforecasts/",
-                },
-              },
-            ],
-          },
-        },
-      ],
-    },
-  };
 
   return (
     <>
