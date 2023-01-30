@@ -3,9 +3,9 @@ import React from "react";
 const AppCard = ({ node }) => {
   const { field_product_id: id, body, title, field_url: url } = node.entity[0];
   const len = 1000;
-  const text =
-    body.processed.slice(0, len) + body.processed.slice(len).split(" ")[0];
-
+  const text = body
+    ? body.processed.slice(0, len) + body.processed.slice(len).split(" ")[0]
+    : "";
   return (
     <div
       className="flex md:min-w-[375px] break-inside-avoid flex-col bg-white p-[0.25em] text-lg"
@@ -23,12 +23,12 @@ const AppCard = ({ node }) => {
             {title}
           </a>
         </h3>
-        <div
+        {text && <div
           className="text-slate-400"
           dangerouslySetInnerHTML={{
             __html: text === body.processed ? text : `${text}&hellip;`,
           }}
-        ></div>
+        ></div>}
       </div>
     </div>
   );
