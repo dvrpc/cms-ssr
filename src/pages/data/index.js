@@ -114,7 +114,7 @@ const Data = ({ data }) => {
       <div className="bg-[#b1d0e0] text-[#0078ae]">
         <div className="container mx-auto grid gap-12 p-8 text-sm font-bold sm:grid-cols-1 md:grid-cols-3">
           <div className="text-center md:col-span-3">
-            <h3 className="text-left text-[#0078ae]">Browse by Topic</h3>
+            <h3 className="text-left text-[#5c4f92]">Browse by Topic</h3>
             <div className="grid-cols-2 md:grid md:grid-cols-7">
               {Object.entries({
                 "Bicycle+%26+Pedestrian": Bikeped,
@@ -132,7 +132,7 @@ const Data = ({ data }) => {
                 TIP: Tip,
                 Transit: Transit,
               }).map(([category, icon]) => (
-                <div key={category} className="my-4">
+                <div key={category} className="my-4 text-[#5c4f92]">
                   <a
                     className="uppercase no-underline hover:underline"
                     href={`https://catalog.dvrpc.org/dataset/?category=${category}`}
@@ -140,7 +140,7 @@ const Data = ({ data }) => {
                   >
                     <Icon
                       use={icon}
-                      fillColor="#0078ae"
+                      fillColor="#5c4f92"
                       scale={16}
                       className="mx-auto mb-2"
                     />
