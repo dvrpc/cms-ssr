@@ -1,29 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { graphql, Link } from 'gatsby';
 import favicon from '../../images/favicon.ico';
 import LogoBar from '../../components/LogoBar';
-import Icon, {
-  Bikeped,
-  Housing,
-  Environment,
-  Freight,
-  Imagery,
-  Planning,
-  Tip,
-  Region,
-  Economy,
-  Equity,
-  Highways,
-  Connections2050,
-  Health,
-  Transit,
-  DvrpcMini,
-} from '../../components/Icon';
+import Icon, { DvrpcMini } from '../../components/Icon';
 import ConnectWithUs from '../../components/ConnectWithUs';
 import bgImage from '../../images/datacenter.jpg';
-import Banner from '../../components/datacenter/Banner';
-import AppCard from '../../components/datacenter/AppCard';
-import Carousel from '../../components/common/Carousel';
+import DVRPCbg from '../../images/dvrpc-transparent.png';
 
 const NewsLoader = () => <div>Loading...</div>;
 
@@ -44,7 +26,7 @@ export const Head = () => {
   );
 };
 
-const Data = ({ data }) => {
+const Data = () => {
   const location = '/data';
   const title = 'Data Center';
   const staffContact = {
@@ -52,105 +34,118 @@ const Data = ({ data }) => {
     field_display_name: 'Kim Korejko',
     field_title: 'Manager, Data Coordination',
   };
-  const menu = { href: location };
 
   const [apps, setApps] = useState([]);
   const [cursor, setCursor] = useState(0);
+  const [filter, setFilter] = useState('');
   useEffect(() => {
     fetch('https://www2.dvrpc.org/api/pubs/type/WEB')
       .then((response) => response.json())
       .then((resultData) => setApps(resultData));
   }, []);
 
+  const filteredApps = !filter
+    ? apps
+    : apps.filter((app) => app.Title.toLowerCase().includes(filter));
+
+  console.log(filteredApps.length, cursor);
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex flex-col">
       <header className="bg-white">
         <LogoBar />
-        <Banner />
+        <div
+          className="relative flex h-48 w-full overflow-hidden after:absolute
+          after:bottom-4 after:right-0 after:block after:bg-gradient-to-r 
+          after:from-transparent after:via-white/80 after:to-white/80 after:p-1 
+          after:px-2 after:pl-64 after:text-sm after:text-gray-900 after:content-[var(--content-photo-credits)]"
+          style={{
+            background: `linear-gradient(131deg, rgba(0, 120, 174, 1) 0%, rgba(92, 79, 146, 1) 68.5%, rgba(75, 66, 113, 1) 100%)`,
+            color: '#fff',
+          }}
+        >
+          <div className="container mx-auto my-auto flex p-8">
+            <h1 className="text-white">Maps & Applications</h1>
+          </div>
+          <img
+            className="absolute -right-[10%] -top-[30%] w-1/3"
+            src={DVRPCbg}
+          ></img>
+        </div>
       </header>
-      <div className="bg-[#5c4f92] text-white">
-        <div className="container mx-auto grid gap-12 px-8 sm:grid-cols-1 md:grid-cols-3">
-          <div className="text-center md:col-span-3">
-            <ul className="my-3 flex list-none justify-items-stretch">
-              <li className="flex-1">
-                <Link className="no-underline hover:underline" to="/data/about">
-                  About
-                </Link>
-              </li>
-              <li className="flex-1">
-                <a
-                  className="no-underline hover:underline"
-                  href="https://data.dvrpc.org/"
+      <div className="container mx-auto flex flex-wrap p-8">
+        <div className="sticky top-0 mt-[1rem] flex grow basis-1/4 flex-col self-start">
+          <label className="text-[#0078ae]">
+            Search for applications:
+            <input
+              type="search"
+              name="q"
+              autoFocus
+              className="hidden w-full rounded-lg text-xl leading-none outline-none placeholder:text-center placeholder:text-lg placeholder:font-bold placeholder:tracking-wider placeholder:text-[#030a18]/90 md:block"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+            />
+          </label>
+          <p>
+            DVRPC has developed several interactive mapping applications as part
+            of our continuing effort to support planning and improve
+            decision-making in our region. Within each application, you can view
+            geographic features, query selective data sets, create your own
+            custom map and access detailed reports about certain features. These
+            web mapping applications allow DVRPC to present geospatial
+            information to the public without the need of special GIS software.
+            DVRPC will continue to add mapping applications in the future so
+            check back frequently. For more information regarding DVRPC's full
+            GIS services or to order custom maps, contact the Office of GIS.{' '}
+          </p>
+        </div>
+        <div class="ml-16 flex grow-[999] basis-0">
+          <div className="flex flex-col divide-y divide-[#53a3c7]">
+            {!filteredApps.length && (
+              <div className="mt-[1rem] pt-8 text-gray-300">
+                No applications matching your search...
+              </div>
+            )}
+            {filteredApps.slice(0, cursor + 5).map((app) => (
+              <div className="p-4">
+                <h4 className="text-[#0078ae]">{app.Title}</h4>
+                <div className="flex space-x-4">
+                  <img
+                    src={`https://www.dvrpc.org/asp/pubs/201px/${app.PubId}.png`}
+                  ></img>
+                  <span className="text-gray-400">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </span>
+                </div>
+              </div>
+            ))}
+            {filteredApps.length > 5 && (
+              <div className="min-w-100 flex">
+                <button
+                  onClick={() => setCursor(cursor + 5)}
+                  style={{
+                    display:
+                      (cursor >= filteredApps.length ||
+                        cursor + 5 >= filteredApps.length) &&
+                      'none',
+                  }}
                 >
-                  Data Catalog
-                </a>
-              </li>
-              <li className="flex-1">
-                <Link className="no-underline hover:underline" to="/data/maps">
-                  Maps and Apps
-                </Link>
-              </li>
-              <li className="flex-1">
-                <Link
-                  className="no-underline hover:underline"
-                  to="/data/howdoi"
+                  Show More
+                </button>
+                <button
+                  onClick={() => setCursor(cursor - 5)}
+                  style={{ display: cursor <= 0 && 'none' }}
+                  className="ml-auto"
                 >
-                  How do I?
-                </Link>
-              </li>
-              <li className="flex-1">
-                <Link
-                  className="no-underline hover:underline"
-                  to="/data/stayinformed"
-                >
-                  Stay Informed
-                </Link>
-              </li>
-            </ul>
+                  Show Less
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
-
-      <div className="container mx-auto flex p-8">
-        <div className="container mx-auto p-8 pl-0">
-          DVRPC has developed several interactive mapping applications as part
-          of our continuing effort to support planning and improve
-          decision-making in our region. Within each application, you can view
-          geographic features, query selective data sets, create your own custom
-          map and access detailed reports about certain features. These web
-          mapping applications allow DVRPC to present geospatial information to
-          the public without the need of special GIS software. DVRPC will
-          continue to add mapping applications in the future so check back
-          frequently. For more information regarding DVRPC's full GIS services
-          or to order custom maps, contact the Office of GIS.{' '}
-        </div>
-        <div className="flex flex-col divide-y divide-[#53a3c7]">
-          {apps.slice(0, cursor + 5).map((app) => (
-            <div className="p-4">
-              <h4 className="text-[#0078ae]">{app.Title}</h4>
-              <div className="flex space-x-4">
-                <img
-                  src={`https://www.dvrpc.org/asp/pubs/201px/${app.PubId}.png`}
-                ></img>
-                <span className="text-gray-400">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </span>
-              </div>
-            </div>
-          ))}
-          <button
-            onClick={() => setCursor(cursor + 5)}
-            style={{ display: cursor >= apps.length && 'none' }}
-            className="mx-auto rounded-lg bg-[#5c4f92] p-2 text-white"
-          >
-            Show More
-          </button>
-        </div>
-      </div>
-
       <div className="mt-auto flex justify-center bg-[#030a18] text-center text-[#99c5c8] md:text-left">
         <div className="container">
           <div className="mt-4 justify-between md:flex">
