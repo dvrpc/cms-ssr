@@ -72,6 +72,48 @@ const Data = () => {
           ></img>
         </div>
       </header>
+      <div className="bg-[#5c4f92] text-white">
+        <div className="container mx-auto grid gap-12 px-8 sm:grid-cols-1 md:grid-cols-3">
+          <div className="text-left md:col-span-3">
+            <ul className="my-3 flex list-none px-0">
+              {/* <li className="flex-1">
+                <Link className="no-underline hover:underline" to="/data/about">
+                  About
+                </Link>
+              </li> */}
+              <li className="flex-1">
+                <a
+                  className="no-underline hover:underline"
+                  href="https://data.dvrpc.org/"
+                >
+                  Data Catalog
+                </a>
+              </li>
+              <li className="flex-1">
+                <Link className="font-bold underline hover:underline" to="/data/maps">
+                  Maps & Applications
+                </Link>
+              </li>
+              <li className="flex-1">
+                <Link
+                  className="no-underline hover:underline"
+                  to="/data/howdoi"
+                >
+                  Resource Center
+                </Link>
+              </li>
+              {/* <li className="flex-1">
+                <Link
+                  className="no-underline hover:underline"
+                  to="/data/stayinformed"
+                >
+                  Stay Informed
+                </Link>
+              </li> */}
+            </ul>
+          </div>
+        </div>
+      </div>
       <div className="container mx-auto flex flex-wrap p-8">
         <div className="sticky top-0 mt-[1rem] flex grow basis-1/4 flex-col self-start">
           <label className="text-[#0078ae]">

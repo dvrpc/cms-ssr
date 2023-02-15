@@ -37,7 +37,7 @@ export const Head = () => {
       --color-h2: #0f1a3a;
       --color-h3: #0f1a3a;
       --bg-cover-image: url(${bgImage});
-      --height-banner: 25vw;
+      --height-banner: 20vw;
     }`}
       </style>
     </>
@@ -71,13 +71,13 @@ const Data = ({ data }) => {
       </header>
       <div className="bg-[#5c4f92] text-white">
         <div className="container mx-auto grid gap-12 px-8 sm:grid-cols-1 md:grid-cols-3">
-          <div className="text-center md:col-span-3">
-            <ul className="my-3 flex list-none justify-items-stretch">
-              <li className="flex-1">
+          <div className="text-left md:col-span-3">
+            <ul className="my-3 flex list-none px-0">
+              {/* <li className="flex-1">
                 <Link className="no-underline hover:underline" to="/data/about">
                   About
                 </Link>
-              </li>
+              </li> */}
               <li className="flex-1">
                 <a
                   className="no-underline hover:underline"
@@ -88,7 +88,7 @@ const Data = ({ data }) => {
               </li>
               <li className="flex-1">
                 <Link className="no-underline hover:underline" to="/data/maps">
-                  Maps and Apps
+                  Maps & Applications
                 </Link>
               </li>
               <li className="flex-1">
@@ -96,25 +96,25 @@ const Data = ({ data }) => {
                   className="no-underline hover:underline"
                   to="/data/howdoi"
                 >
-                  How do I?
+                  Resource Center
                 </Link>
               </li>
-              <li className="flex-1">
+              {/* <li className="flex-1">
                 <Link
                   className="no-underline hover:underline"
                   to="/data/stayinformed"
                 >
                   Stay Informed
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
       </div>
-      <div className="bg-[#b1d0e0] text-[#0078ae]">
+      <div className="bg-[#def6ff] text-[#0078ae]">
         <div className="container mx-auto grid gap-12 p-8 text-sm font-bold sm:grid-cols-1 md:grid-cols-3">
           <div className="text-center md:col-span-3">
-            <h3 className="text-left text-[#5c4f92]">Browse by Topic</h3>
+            <h3 className="text-2xl text-left text-[#0078ae]">Browse by Topic</h3>
             <div className="grid-cols-2 md:grid md:grid-cols-7">
               {Object.entries({
                 "Bicycle+%26+Pedestrian": Bikeped,
@@ -132,7 +132,7 @@ const Data = ({ data }) => {
                 TIP: Tip,
                 Transit: Transit,
               }).map(([category, icon]) => (
-                <div key={category} className="my-4 text-[#5c4f92]">
+                <div key={category} className="my-4 text-[#0078ae]">
                   <a
                     className="uppercase no-underline hover:underline"
                     href={`https://catalog.dvrpc.org/dataset/?category=${category}`}
@@ -140,7 +140,7 @@ const Data = ({ data }) => {
                   >
                     <Icon
                       use={icon}
-                      fillColor="#5c4f92"
+                      fillColor="#0078ae"
                       scale={16}
                       className="mx-auto mb-2"
                     />
@@ -154,14 +154,22 @@ const Data = ({ data }) => {
       </div>
       <div className="color-[#030a18] flex flex-col bg-gray-200">
         <div className="container mx-auto p-8">
-          <h3 className="text-2xl font-bold text-[#0078ae]">
-            Maps & Applications
+          <h3 className="text-2xl font-bold text-[#0078ae] mb-0">
+            Featured Applications
           </h3>
           <Carousel>
             {data.allMenuLinkContentMenuLinkContent.edges.map(
               ({ node }) => <AppCard node={node} />
             )}
           </Carousel>
+        </div>
+      </div>
+      <div className="color-[#030a18] flex flex-col bg-gray-200">
+        <div className="container mx-auto p-8">
+          <h3 className="text-2xl font-bold text-[#0078ae]">
+            About the Data Center
+          </h3>
+          <p class="max-w-2xl">The DVRPC Data Center centralizes access to data and applications published by DVRPC for planning purposes. Watch this space for future content and enhancements as we continue to develop this site. If you have suggestions for ways to improve our Data Center, please let us know by clicking here.</p>
         </div>
       </div>
 
