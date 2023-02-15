@@ -27,8 +27,9 @@ const Banner = () => {
           <input
             type="search"
             name="q"
+            placeholder="Search datasets..."
             autoFocus
-            className="mt-8 hidden w-full rounded-lg bg-[#c6dae9] text-xl leading-none outline-none placeholder:text-center placeholder:text-lg placeholder:font-bold placeholder:tracking-wider placeholder:text-[#030a18]/90 md:block"
+            className="mt-8 hidden w-full rounded-lg bg-[#c6dae9] text-xl leading-none outline-none placeholder:italic placeholder:text-slate-400 placeholder:text-left placeholder:text-lg placeholder:tracking-wider  md:block"
           />
         </form>
       </div>
