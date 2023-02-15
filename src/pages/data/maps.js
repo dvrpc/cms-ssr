@@ -84,7 +84,7 @@ const Data = () => {
               <li className="flex-1">
                 <a
                   className="no-underline hover:underline"
-                  href="https://data.dvrpc.org/"
+                  href="https://catalog.dvrpc.org/"
                 >
                   Data Catalog
                 </a>
