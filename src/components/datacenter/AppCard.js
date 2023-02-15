@@ -8,7 +8,7 @@ const AppCard = ({ node }) => {
     : '';
   return (
     <div
-      className="flex break-inside-avoid flex-col bg-white p-[0.25em] text-lg md:min-w-[375px]"
+      className="flex break-inside-avoid flex-col bg-white p-[0.25em] md:min-w-[375px]"
       key={id}
     >
       <a href={url.uri}>
@@ -17,15 +17,17 @@ const AppCard = ({ node }) => {
           src={`https://www.dvrpc.org/asp/pubs/402px/${id}.png`}
         />
       </a>
-      <div className="divide-y divide-[#53a3c7]">
-        <h4 className="m-0 mb-[1rem] w-full px-2 text-[#0078ae]">
-          <a className="no-underline hover:underline" href={url.uri}>
-            {title}
-          </a>
-        </h4>
+      <div className="divide-y divide-slate-300 px-2">
+        <div className="min-h-[77px] mb-[1rem]">
+          <h4 className="m-0 w-full pt-3 text-lg text-[#0078ae]">
+            <a className="no-underline hover:underline" href={url.uri}>
+              {title}
+            </a>
+          </h4>
+        </div>
         {text && (
           <div
-            className="px-2 text-base text-slate-400"
+            className="text-base text-slate-400"
             dangerouslySetInnerHTML={{
               __html:
                 text === body.processed
