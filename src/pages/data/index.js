@@ -112,10 +112,10 @@ const Data = ({ data }) => {
         </div>
       </div>
       <div className="bg-[#def6ff] text-[#0078ae]">
-        <div className="container mx-auto grid gap-12 p-8 text-sm font-bold sm:grid-cols-1 md:grid-cols-3">
-          <div className="text-center md:col-span-3">
+        <div className="container mx-auto grid gap-12 p-8 text-sm font-bold sm:grid-cols-2 md:grid-cols-3">
+          <div className="text-center col-span-3">
             <h3 className="text-2xl text-left text-[#0078ae]">Browse by Topic</h3>
-            <div className="grid-cols-2 md:grid md:grid-cols-7">
+            <div className="grid pb-3 grid-cols-2 md:grid-cols-5 lg:grid-cols-7">
               {Object.entries({
                 "Bicycle+%26+Pedestrian": Bikeped,
                 Boundaries: Region,
@@ -149,6 +149,14 @@ const Data = ({ data }) => {
                 </div>
               ))}
             </div>
+            
+              <a 
+                className="font-normal no-underline hover:underline"
+                target="_blank" 
+                href="https://catalog.dvrpc.org/dataset"
+              >
+                browse all data
+              </a>
           </div>
         </div>
       </div>
@@ -169,7 +177,9 @@ const Data = ({ data }) => {
           <h3 className="text-2xl font-bold text-[#0078ae]">
             About the Data Center
           </h3>
-          <p class="max-w-2xl">The DVRPC Data Center centralizes access to data and applications published by DVRPC for planning purposes. Watch this space for future content and enhancements as we continue to develop this site. If you have suggestions for ways to improve our Data Center, please let us know by clicking here.</p>
+          <p className="max-w-2xl">
+            The DVRPC Data Center centralizes access to data and applications published by DVRPC for planning purposes. Watch this space for future content and enhancements as we continue to develop this site. If you have suggestions for ways to improve our Data Center, please let us know by clicking here.
+          </p>
         </div>
       </div>
 
