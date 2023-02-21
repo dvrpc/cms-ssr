@@ -149,16 +149,14 @@ const Data = () => {
             )}
             {filteredApps.slice(0, cursor + 5).map((app) => (
               <div className="p-4">
-                <h4 className="text-[#0078ae]">{app.Title}</h4>
+                <a className="text-[#0078ae] text-lg hover:underline no-underline my-6" href={app.Urllink}>{app.Title}</a>
                 <div className="flex space-x-4">
                   <img
+                  className='object-cover w-100'
                     src={`https://www.dvrpc.org/asp/pubs/201px/${app.Id}.png`}
                   ></img>
                   <span className="text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    {app.Abstract.slice(0, 250).trim() + '...'}
                   </span>
                 </div>
               </div>
