@@ -67,7 +67,7 @@ const Data = () => {
             <h1 className="text-white">Maps & Applications</h1>
           </div>
           <img
-            className="absolute -right-[10%] -top-[30%] w-1/3"
+            className="absolute md:-right-[10%] -right-[20%] md:-top-[30%] md:w-1/3 w-3/4"
             src={DVRPCbg}
           ></img>
         </div>
@@ -75,7 +75,7 @@ const Data = () => {
       <div className="bg-[#5c4f92] text-white">
         <div className="container mx-auto grid gap-12 px-8 sm:grid-cols-1 md:grid-cols-3">
           <div className="text-left md:col-span-3">
-            <ul className="my-3 flex list-none px-0">
+            <ul className="my-3 flex list-none px-0 md:text-base text-sm">
               {/* <li className="flex-1">
                 <Link className="no-underline hover:underline" to="/data/about">
                   About
@@ -114,15 +114,15 @@ const Data = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto flex flex-wrap p-8">
-        <div className="sticky top-0 mt-[1rem] flex grow basis-1/4 flex-col self-start">
+      <div className="container mx-auto flex flex-wrap p-8 pt-0 md:pt-8">
+        <div className="md:sticky top-0 md:mt-[1rem] flex grow basis-1/4 flex-col self-start">
           <label className="text-[#0078ae]">
             Search for applications:
             <input
               type="search"
               name="q"
               autoFocus
-              className="hidden w-full rounded-lg text-xl leading-none outline-none placeholder:text-center placeholder:text-lg placeholder:font-bold placeholder:tracking-wider placeholder:text-[#030a18]/90 md:block"
+              className="w-full rounded-lg text-xl leading-none outline-none placeholder:text-center placeholder:text-lg placeholder:font-bold placeholder:tracking-wider placeholder:text-[#030a18]/90 md:block"
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
             />
@@ -140,20 +140,20 @@ const Data = () => {
             GIS services or to order custom maps, contact the Office of GIS.{' '}
           </p>
         </div>
-        <div class="ml-16 flex grow-[999] basis-0">
-          <div className="flex flex-col divide-y divide-[#53a3c7]">
+        <div class="md:ml-16 flex md:grow-[999] md:basis-0">
+          <div className="flex flex-col md:divide-y divide-[#53a3c7] space-y-6">
             {!filteredApps.length && (
               <div className="mt-[1rem] pt-8 text-gray-300">
                 No applications matching your search...
               </div>
             )}
             {filteredApps.slice(0, cursor + 5).map((app) => (
-              <div className="p-4">
-                <a className="text-[#0078ae] text-lg hover:underline no-underline my-6" href={app.Urllink}>{app.Title}</a>
-                <div className="flex space-x-4">
+              <div className="md:p-4">
+                <a className="text-[#0078ae] text-lg hover:underline no-underline my-6 font-bold" href={app.Urllink}>{app.Title}</a>
+                <div className="flex flex-col md:flex-row md:space-x-4 md:space-y-0 space-y-4">
                   <img
-                  className='object-cover w-100'
-                    src={`https://www.dvrpc.org/asp/pubs/201px/${app.Id}.png`}
+                  className='object-cover w-100 md:w-[75%]'
+                    src={`https://www.dvrpc.org/asp/pubs/402px/${app.Id}.png`}
                   ></img>
                   <span className="text-gray-400">
                     {app.Abstract.slice(0, 250).trim() + '...'}

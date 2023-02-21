@@ -72,7 +72,7 @@ const Data = ({ data }) => {
       <div className="bg-[#5c4f92] text-white">
         <div className="container mx-auto grid gap-12 px-8 sm:grid-cols-1 md:grid-cols-3">
           <div className="text-left md:col-span-3">
-            <ul className="my-3 flex list-none px-0">
+            <ul className="my-3 flex list-none px-0 md:text-base text-sm">
               {/* <li className="flex-1">
                 <Link className="no-underline hover:underline" to="/data/about">
                   About
@@ -173,7 +173,7 @@ const Data = ({ data }) => {
         </div>
       </div>
       <div className="color-[#030a18] flex flex-col bg-gray-200">
-        <div className="container mx-auto p-8">
+        <div className="container mx-auto p-8 md:pt-8 pt-0">
           <h3 className="text-2xl font-bold text-[#0078ae]">
             About the Data Center
           </h3>
