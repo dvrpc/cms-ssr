@@ -10,7 +10,11 @@ const Carousel = ({ children }) => {
   const scroll = (key) => {
     if (carouselRef.current) {
       const direction = key === 'prev' ? -1 : 1;
-      const scrollAmount = (screen.width / 2) * direction;
+      const childElem = document.getElementById('scrollContainer').firstChild
+      const childStyle = window.getComputedStyle(childElem)
+      const scrollAmount = carouselRef.current.clientWidth === childElem.offsetWidth + (parseFloat(childStyle.marginLeft) * 2) 
+        ? (document.getElementById('scrollContainer').clientWidth) * direction
+        : (screen.width / 2) * direction;
       const scrollLeftMax =
         carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
       carouselRef.current.scrollBy({
@@ -18,6 +22,8 @@ const Carousel = ({ children }) => {
         left: scrollAmount,
       });
       const scrollDiff = scrollLeft + scrollAmount;
+      console.log()
+      
       if (scrollDiff > scrollLeftMax) {
         setScrollLeft(scrollLeftMax);
       } else if (scrollDiff < 0) {
@@ -72,7 +78,7 @@ const Carousel = ({ children }) => {
       <div
         id="scrollContainer"
         ref={carouselRef}
-        className="flex gap-4 overflow-hidden text-[#155575]"
+        className="flex overflow-hidden text-[#155575]"
       >
         {children}
       </div>
