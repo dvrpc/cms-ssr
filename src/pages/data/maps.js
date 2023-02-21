@@ -48,7 +48,6 @@ const Data = () => {
     ? apps
     : apps.filter((app) => app.Title.toLowerCase().includes(filter));
 
-  console.log(filteredApps.length, cursor);
   return (
     <div className="flex flex-col">
       <header className="bg-white">

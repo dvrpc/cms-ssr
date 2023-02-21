@@ -6,14 +6,13 @@ const Carousel = ({ children }) => {
   const [prevDisabled, setPrevDisabled] = useState(true);
   const [nextDisabled, setNextDisabled] = useState(false);
   const [scrollLeft, setScrollLeft] = useState(0);
-
   const scroll = (key) => {
     if (carouselRef.current) {
       const direction = key === 'prev' ? -1 : 1;
-      const childElem = document.getElementById('scrollContainer').firstChild
+      const childElem = carouselRef.current.firstChild
       const childStyle = window.getComputedStyle(childElem)
       const scrollAmount = carouselRef.current.clientWidth === childElem.offsetWidth + (parseFloat(childStyle.marginLeft) * 2) 
-        ? (document.getElementById('scrollContainer').clientWidth) * direction
+        ? (carouselRef.current.clientWidth) * direction
         : (screen.width / 2) * direction;
       const scrollLeftMax =
         carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
@@ -22,8 +21,6 @@ const Carousel = ({ children }) => {
         left: scrollAmount,
       });
       const scrollDiff = scrollLeft + scrollAmount;
-      console.log()
-      
       if (scrollDiff > scrollLeftMax) {
         setScrollLeft(scrollLeftMax);
       } else if (scrollDiff < 0) {
