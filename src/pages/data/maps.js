@@ -39,7 +39,7 @@ const Data = () => {
   const [cursor, setCursor] = useState(0);
   const [filter, setFilter] = useState('');
   useEffect(() => {
-    fetch('https://www2.dvrpc.org/api/pubs/type/WEB')
+    fetch('https://www.dvrpc.org/api/products?type=WEB')
       .then((response) => response.json())
       .then((resultData) => setApps(resultData));
   }, []);
@@ -152,7 +152,7 @@ const Data = () => {
                 <h4 className="text-[#0078ae]">{app.Title}</h4>
                 <div className="flex space-x-4">
                   <img
-                    src={`https://www.dvrpc.org/asp/pubs/201px/${app.PubId}.png`}
+                    src={`https://www.dvrpc.org/asp/pubs/201px/${app.Id}.png`}
                   ></img>
                   <span className="text-gray-400">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
