@@ -4,7 +4,7 @@ import DVRPCbg from "../../images/dvrpc-transparent.png";
 const Banner = () => {
   return (
     <div
-      className="relative flex h-[calc(var(--height-banner)*2.5)] md:h-[calc(var(--height-banner)*1.6)] lg:h-[calc(var(--height-banner)*1.2)] xl:h-[var(--height-banner)] w-full overflow-hidden after:absolute
+      className="relative flex h-fit-content md:h-[calc(var(--height-banner)*1.6)] lg:h-[calc(var(--height-banner)*1.2)] xl:h-[var(--height-banner)] w-full overflow-hidden after:absolute
           after:bottom-4 after:right-0 after:block after:bg-gradient-to-r 
           after:from-transparent after:via-white/80 after:to-white/80 after:p-1 
           after:px-2 after:pl-64 after:text-sm after:text-gray-900 after:content-[var(--content-photo-credits)]"
@@ -34,7 +34,7 @@ const Banner = () => {
         </form>
       </div>
       <img
-        className="absolute -right-[10%] -top-[45%] w-1/2"
+        className="absolute md:-right-[10%] -right-[40%] md:-top-[30%] md:w-1/3 "
         src={DVRPCbg}
       ></img>
     </div>
