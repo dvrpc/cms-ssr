@@ -39,7 +39,7 @@ const Data = () => {
   const [cursor, setCursor] = useState(0);
   const [filter, setFilter] = useState('');
   useEffect(() => {
-    fetch('https://www.dvrpc.org/api/products?type=WEB')
+    fetch('https://www.dvrpc.org/api/products?type=WEB&limit=999')
       .then((response) => response.json())
       .then((resultData) => setApps(resultData));
   }, []);
@@ -126,7 +126,7 @@ const Data = () => {
               onChange={(e) => setFilter(e.target.value)}
             />
           </label>
-          <p>
+          <p className='text-sm md:text-base'>
             DVRPC has developed several interactive mapping applications as part
             of our continuing effort to support planning and improve
             decision-making in our region. Within each application, you can view
@@ -151,8 +151,8 @@ const Data = () => {
                 <a className="text-[#0078ae] text-lg hover:underline no-underline my-6 font-bold" href={app.Urllink}>{app.Title}</a>
                 <div className="flex flex-col md:flex-row md:space-x-4 md:space-y-0 space-y-4">
                   <img
-                  className='object-cover w-100 md:w-[75%]'
-                    src={`https://www.dvrpc.org/asp/pubs/402px/${app.Id}.png`}
+                  className='object-cover w-[201px]'
+                    src={`https://www.dvrpc.org/asp/pubs/201px/${app.Id}.png`}
                   ></img>
                   <span className="text-gray-400">
                     {app.Abstract.slice(0, 250).trim() + '...'}
