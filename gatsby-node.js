@@ -1,3 +1,5 @@
+const path = require('path')
+
 //Add regex to GraphQL query to match URLs in the navigation JSON
 exports.onCreateNode = async ({
   node,
@@ -58,14 +60,28 @@ exports.onCreatePage = async ({ page, actions }) => {
   const regex = page.context.path__alias
     ? `/^${page.context.path__alias.replace(/\//g, "/")}\/?$/i`
     : "/^/$/";
-  return createPage({
-    ...page,
-    context: {
-      ...page.context,
-      regex,
-      layout: !!page.context.__params
-    },
-  });
+  
+  const isDataCenterPage = new RegExp('data\/?(?:[^\/]+\/?)*$').test(page.context.path__alias)
+  if (isDataCenterPage) {
+    return createPage({
+        ...page,
+        component: path.resolve(`src/pages/data/{NodePage.path__alias}.js`),
+        context: {
+          ...page.context,
+          regex,
+          layout: false
+        },
+      });
+  } else {
+    return createPage({
+      ...page,
+      context: {
+        ...page.context,
+        regex,
+        layout: !!page.context.__params
+      },
+    });
+  }
 };
 
 exports.createResolvers = ({ createResolvers }) => {
