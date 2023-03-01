@@ -156,7 +156,7 @@ const Data = () => {
                     src={`https://www.dvrpc.org/asp/pubs/201px/${app.Id}.png`}
                   ></img>
                   <span className="text-gray-400">
-                    {app.Abstract.slice(0, 250).trim() + '...'}
+                    {(app.Abstract) ? app.Abstract.slice(0, 250).trim() + '...': ''}
                   </span>
                 </div>
               </div>
