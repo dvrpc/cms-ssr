@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { graphql, Link } from 'gatsby';
-import favicon from '../../images/favicon.ico';
-import LogoBar from '../../components/LogoBar';
-import Icon, { DvrpcMini } from '../../components/Icon';
-import ConnectWithUs from '../../components/ConnectWithUs';
-import bgImage from '../../images/datacenter.jpg';
-import DVRPCbg from '../../images/dvrpc-transparent.png';
+import React, { useEffect, useRef, useState } from "react";
+import { graphql, Link } from "gatsby";
+import favicon from "../../images/favicon.ico";
+import LogoBar from "../../components/LogoBar";
+import Icon, { DvrpcMini } from "../../components/Icon";
+import ConnectWithUs from "../../components/ConnectWithUs";
+import bgImage from "../../images/datacenter.jpg";
+import DVRPCbg from "../../images/dvrpc-transparent.png";
 
 const NewsLoader = () => <div>Loading...</div>;
 
@@ -27,19 +27,19 @@ export const Head = () => {
 };
 
 const Data = () => {
-  const location = '/data';
-  const title = 'Data Center';
+  const location = "/data";
+  const title = "Data Center";
   const staffContact = {
-    mail: 'kkorejko@dvrpc.org',
-    field_display_name: 'Kim Korejko',
-    field_title: 'Manager, Data Coordination',
+    mail: "kkorejko@dvrpc.org",
+    field_display_name: "Kim Korejko",
+    field_title: "Manager, Data Coordination",
   };
 
   const [apps, setApps] = useState([]);
   const [cursor, setCursor] = useState(0);
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
   useEffect(() => {
-    fetch('https://www.dvrpc.org/api/products?type=WEB&limit=999')
+    fetch("https://www.dvrpc.org/api/products?type=WEB&limit=999")
       .then((response) => response.json())
       .then((resultData) => setApps(resultData));
   }, []);
@@ -59,14 +59,14 @@ const Data = () => {
           after:px-2 after:pl-64 after:text-sm after:text-gray-900 after:content-[var(--content-photo-credits)]"
           style={{
             background: `linear-gradient(131deg, rgba(0, 120, 174, 1) 0%, rgba(92, 79, 146, 1) 68.5%, rgba(75, 66, 113, 1) 100%)`,
-            color: '#fff',
+            color: "#fff",
           }}
         >
           <div className="container mx-auto my-auto flex p-8">
             <h1 className="text-white">Maps & Applications</h1>
           </div>
           <img
-            className="absolute md:-right-[10%] -right-[20%] md:-top-[30%] md:w-1/3 w-3/4"
+            className="absolute -right-[20%] w-3/4 md:-right-[10%] md:-top-[30%] md:w-1/3"
             src={DVRPCbg}
           ></img>
         </div>
@@ -74,7 +74,7 @@ const Data = () => {
       <div className="bg-[#5c4f92] text-white">
         <div className="container mx-auto grid gap-12 px-8 sm:grid-cols-1 md:grid-cols-3">
           <div className="text-left md:col-span-3">
-            <ul className="my-3 flex list-none px-0 md:text-base text-sm">
+            <ul className="my-3 flex list-none px-0 text-sm md:text-base">
               {/* <li className="flex-1">
                 <Link className="no-underline hover:underline" to="/data/about">
                   About
@@ -89,7 +89,10 @@ const Data = () => {
                 </a>
               </li>
               <li className="flex-1">
-                <Link className="font-bold underline hover:underline" to="/data/maps">
+                <Link
+                  className="font-bold underline hover:underline"
+                  to="/data/maps"
+                >
                   Maps & Applications
                 </Link>
               </li>
@@ -114,7 +117,7 @@ const Data = () => {
         </div>
       </div>
       <div className="container mx-auto flex flex-wrap p-8 pt-0 md:pt-8">
-        <div className="md:sticky top-0 md:mt-[1rem] flex grow basis-1/4 flex-col self-start">
+        <div className="top-0 flex grow basis-1/4 flex-col self-start md:sticky md:mt-[1rem]">
           <label className="text-[#0078ae]">
             Search for applications:
             <input
@@ -126,7 +129,7 @@ const Data = () => {
               onChange={(e) => setFilter(e.target.value)}
             />
           </label>
-          <p className='text-sm md:text-base'>
+          <p className="text-sm md:text-base">
             DVRPC has developed several interactive mapping applications as part
             of our continuing effort to support planning and improve
             decision-making in our region. Within each application, you can view
@@ -136,11 +139,11 @@ const Data = () => {
             information to the public without the need of special GIS software.
             DVRPC will continue to add mapping applications in the future so
             check back frequently. For more information regarding DVRPC's full
-            GIS services or to order custom maps, contact the Office of GIS.{' '}
+            GIS services or to order custom maps, contact the Office of GIS.{" "}
           </p>
         </div>
-        <div class="md:ml-16 flex md:grow-[999] md:basis-0">
-          <div className="flex flex-col md:divide-y divide-[#53a3c7] space-y-6">
+        <div class="flex md:ml-16 md:grow-[999] md:basis-0">
+          <div className="flex flex-col space-y-6 divide-[#53a3c7] md:divide-y">
             {!filteredApps.length && (
               <div className="mt-[1rem] pt-8 text-gray-300">
                 No applications matching your search...
@@ -148,14 +151,19 @@ const Data = () => {
             )}
             {filteredApps.slice(0, cursor + 5).map((app) => (
               <div className="md:p-4">
-                <a className="text-[#0078ae] text-lg hover:underline no-underline my-6 font-bold" href={app.Urllink}>{app.Title}</a>
-                <div className="flex flex-col md:flex-row md:space-x-4 md:space-y-0 space-y-4">
+                <a
+                  className="my-6 text-lg font-bold text-[#0078ae] no-underline hover:underline"
+                  href={app.Urllink}
+                >
+                  {app.Title}
+                </a>
+                <div className="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
                   <img
-                  className='object-cover w-[201px]'
+                    className="w-[201px] object-cover"
                     src={`https://www.dvrpc.org/asp/pubs/201px/${app.Id}.png`}
                   ></img>
                   <span className="text-gray-400">
-                    {app.Abstract.slice(0, 250).trim() + '...'}
+                    {app.Abstract?.slice(0, 250).trim() + "..."}
                   </span>
                 </div>
               </div>
@@ -168,14 +176,14 @@ const Data = () => {
                     display:
                       (cursor >= filteredApps.length ||
                         cursor + 5 >= filteredApps.length) &&
-                      'none',
+                      "none",
                   }}
                 >
                   Show More
                 </button>
                 <button
                   onClick={() => setCursor(cursor - 5)}
-                  style={{ display: cursor <= 0 && 'none' }}
+                  style={{ display: cursor <= 0 && "none" }}
                   className="ml-auto"
                 >
                   Show Less
@@ -191,7 +199,7 @@ const Data = () => {
             <footer className="flow-root md:py-4">
               <a href={`mailto:${staffContact.mail}`} className="font-bold">
                 {staffContact.field_display_name}
-              </a>{' '}
+              </a>{" "}
               <small className="text-sm">{staffContact.field_title}</small>
             </footer>
             <div className="mx-auto w-max md:mx-0">
@@ -224,7 +232,7 @@ const Data = () => {
               </small>
             </div>
             <small className="mt-4 self-end md:m-0">
-              <Link to="/Policies/">Policies</Link> |{' '}
+              <Link to="/Policies/">Policies</Link> |{" "}
               <a
                 href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
                 rel="noopener"
