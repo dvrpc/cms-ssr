@@ -149,7 +149,7 @@ const Data = () => {
             )}
             {filteredApps.slice(0, cursor + resultIncrement).map((app) => (
               <div className="md:p-4">
-                <a className="text-[#0078ae] text-lg hover:underline no-underline my-6 font-bold" href={app.Urllink}>{app.Title}</a>
+                <a className="text-[#0078ae] text-lg hover:underline no-underline my-6 font-bold" href={app.Urllink} target="_blank">{app.Title}</a>
                 <div className="flex flex-col md:flex-row md:space-x-4 md:space-y-0 space-y-4">
                   <img
                   className='object-cover w-[201px]'
