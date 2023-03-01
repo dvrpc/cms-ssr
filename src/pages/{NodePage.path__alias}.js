@@ -34,7 +34,11 @@ const themeConfig = [
         .reverse()
         .join(", "),
   ],
-  ["field_photo_credits", "--content-photo-credits", (val) => `"${val}"`],
+  [
+    "field_photo_credits",
+    "--content-photo-credits",
+    (val) => (val ? `"${val}"` : `""`),
+  ],
   ["relationships.field_banner", "--height-banner", () => "400px"],
 ];
 
@@ -81,7 +85,7 @@ export const Head = ({ data }) => {
   return (
     <>
       <title>{title} | DVRPC</title>
-      {body.summary && <meta name="description" content={body?.summary} />}
+      {body?.summary && <meta name="description" content={body?.summary} />}
       <style>
         {`:root {
             ${themeToCustomVars(field_theme, themeConfig)}

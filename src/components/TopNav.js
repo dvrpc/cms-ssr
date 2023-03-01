@@ -7,16 +7,16 @@ const rootNavArr = [
     href: "/About/",
   },
   {
-    link: "Connections 2050",
+    link: "Data Center",
+    href: "/Data/",
+  },
+  {
+    link: "Long Range Plan",
     href: "/Plan/",
   },
   {
-    link: "Data",
-    href: "/DataProducts/",
-  },
-  {
     link: "TIP",
-    href: "/LongRangePlanAndTIP/",
+    href: "/TIP/",
   },
   {
     link: "Transportation",
@@ -27,7 +27,7 @@ const rootNavArr = [
     href: "/LandUseEnvironment/",
   },
   {
-    link: "Planning",
+    link: "Planning Assistance",
     href: "/Planning/",
   },
   {
@@ -43,7 +43,7 @@ const rootNavArr = [
 const RootNav = ({ data }) => {
   return data.map((item, index) => {
     return (
-      <div key={index} className="text-center md:leading-none">
+      <div key={index} className="shrink-0 text-center md:leading-none">
         <Link
           className="pl-3 font-bold no-underline hover:underline"
           to={item.href}
@@ -56,9 +56,11 @@ const RootNav = ({ data }) => {
 
 const TopNav = ({ menu }) => {
   return (
-    <nav className="hidden flex-wrap items-end justify-end gap-3 divide-x divide-[#0078ae] pb-7 font-medium text-[color:var(--color-default)] md:px-4 lg:flex">
-      <RootNav data={rootNavArr} />
-    </nav>
+    <div className="mb-7 self-end overflow-x-auto lg:ml-auto">
+      <nav className="ml-auto hidden gap-3 divide-x divide-[#0078ae] font-medium text-[color:var(--color-default)] md:flex">
+        <RootNav data={rootNavArr} />
+      </nav>
+    </div>
   );
 };
 

@@ -15,7 +15,7 @@ a {
   @apply text-inherit underline;
 }
 h1 {
-  @apply mt-0 text-4xl font-bold text-[color:var(--color-default)];
+  @apply mt-0 text-4xl font-bold text-[color:var(--color-h1)];
 }
 h2 {
   @apply clear-both my-4 text-2xl font-bold text-stone-600;

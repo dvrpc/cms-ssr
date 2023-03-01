@@ -1,21 +1,27 @@
 export default [
-  { url: { path: "/HumanResources/" }, label: "Careers" },
   {
-    url: { path: "/Business/" },
-    label: "Business Opportunities",
+    type: "internal",
+    href: "/humanresources",
+    title: "Jobs at DVRPC",
   },
   {
-    url: { path: "/Planning/" },
-    label: "Planning Assistance Center",
+    type: "external",
+    href: "/business",
+    title: "Business Opportunities",
   },
   {
-    url: { path: "/DataProducts/" },
-    label: "Data and Products",
+    type: "external",
+    href: "/news",
+    title: "News",
   },
   {
-    url: { path: "/Transportation/" },
-    label: "Transportation",
+    type: "external",
+    href: "/committees/board",
+    title: "Board Resources",
   },
-  { url: { path: "/Policies/" }, label: "Policies" },
-  { url: { path: "/Links/" }, label: "Other Links" },
+  {
+    type: "internal",
+    href: "/committees",
+    title: "Committees",
+  },
 ];
