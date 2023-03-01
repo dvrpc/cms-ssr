@@ -38,6 +38,7 @@ const Data = () => {
   const [apps, setApps] = useState([]);
   const [cursor, setCursor] = useState(0);
   const [filter, setFilter] = useState('');
+  const resultIncrement = 10
   useEffect(() => {
     fetch('https://www.dvrpc.org/api/products?type=WEB&limit=999')
       .then((response) => response.json())
@@ -146,7 +147,7 @@ const Data = () => {
                 No applications matching your search...
               </div>
             )}
-            {filteredApps.slice(0, cursor + 5).map((app) => (
+            {filteredApps.slice(0, cursor + resultIncrement).map((app) => (
               <div className="md:p-4">
                 <a className="text-[#0078ae] text-lg hover:underline no-underline my-6 font-bold" href={app.Urllink}>{app.Title}</a>
                 <div className="flex flex-col md:flex-row md:space-x-4 md:space-y-0 space-y-4">
@@ -160,25 +161,20 @@ const Data = () => {
                 </div>
               </div>
             ))}
-            {filteredApps.length > 5 && (
-              <div className="min-w-100 flex">
+            {filteredApps.length > resultIncrement && (
+              <div className="min-w-100 flex flex-col justify-center items-center">
+                <p>Showing { (cursor + resultIncrement <= filteredApps.length) ? cursor + resultIncrement: filteredApps.length } of {filteredApps.length}</p>
                 <button
-                  onClick={() => setCursor(cursor + 5)}
+                  className='p-3 text-[#0078ae] border-solid border border-slate-300 hover:bg-slate-100'
+                  onClick={() => setCursor(cursor + resultIncrement)}
                   style={{
                     display:
                       (cursor >= filteredApps.length ||
-                        cursor + 5 >= filteredApps.length) &&
+                        cursor + resultIncrement >= filteredApps.length) &&
                       'none',
                   }}
                 >
-                  Show More
-                </button>
-                <button
-                  onClick={() => setCursor(cursor - 5)}
-                  style={{ display: cursor <= 0 && 'none' }}
-                  className="ml-auto"
-                >
-                  Show Less
+                  Load More Results
                 </button>
               </div>
             )}
