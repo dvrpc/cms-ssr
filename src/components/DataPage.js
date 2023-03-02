@@ -1,13 +1,12 @@
 import * as React from "react";
-import { graphql } from "gatsby";
-import parseHtml from "../../utils/parseHtml";
-import LogoBar from "../../components/LogoBar";
-import DVRPCbg from '../../images/dvrpc-transparent.png';
+import parseHtml from "../utils/parseHtml";
+import LogoBar from "./LogoBar";
+import DVRPCbg from '../images/dvrpc-transparent.png';
 import { Link } from "gatsby";
-import ConnectWithUs from "../../components/ConnectWithUs";
-import Icon, {DvrpcMini} from "../../components/Icon";
+import ConnectWithUs from "./ConnectWithUs";
+import Icon, {DvrpcMini} from "./Icon";
 
-const DrupalPage = ({ data }) => {
+const DataPage = ({ data }) => {
   const {
     documents,
     images,
@@ -139,88 +138,4 @@ const DrupalPage = ({ data }) => {
   );
 };
 
-export const Head = ({ data }) => {
-  const {
-    nodePage: {
-      body,
-      title,
-    },
-  } = data;
-  return (
-    <>
-      <title>{title} | DVRPC</title>
-      {body.summary && <meta name="description" content={body?.summary} />}
-    </>
-  );
-};
-
-export const query = graphql`
-  query ($id: String) {
-    nodePage(id: { eq: $id }) {
-      id
-      title
-      body {
-        processed
-        summary
-      }
-      path {
-        alias
-      }
-    }
-    images: allFileFile(
-      filter: {
-        filemime: {
-          in: [
-            "image/png"
-            "image/jpeg"
-            "image/gif"
-            "image/svg+xml"
-            "image/webp"
-          ]
-        }
-      }
-    ) {
-      edges {
-        node {
-          drupal_id
-          uri {
-            url
-          }
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
-      }
-    }
-    documents: allFileFile(
-      filter: {
-        filemime: {
-          in: [
-            "application/pdf"
-            "application/msword"
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            "application/vnd.ms-excel"
-            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            "application/zip"
-          ]
-        }
-      }
-    ) {
-      edges {
-        node {
-          drupal_id
-          filename
-          localFile {
-            publicURL
-          }
-        }
-      }
-    }
-  }
-`;
-
-export const config = async () => ({ defer: true });
-
-export default DrupalPage;
+export default DataPage;

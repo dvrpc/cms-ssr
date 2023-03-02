@@ -1,9 +1,13 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import parseHtml from "../utils/parseHtml";
+import { isMatch, matcher } from "matcher";
+import DrupalPage from "../components/DrupalPage";
+import DataPage from "../components/DataPage";
 
-import Body from "../components/Body";
-import StaffContact from "../components/StaffContact";
+const templates = {
+  "/**": DrupalPage,
+  "/data/**": DataPage,
+};
 
 const themeConfig = [
   ["field_primary_color", "--color-h1"],
@@ -53,25 +57,14 @@ const themeToCustomVars = (theme, config) => {
     .join("\n");
 };
 
-const DrupalPage = ({ data }) => {
-  const {
-    documents,
-    images,
-    navItem,
-    nodePage: { body, title, path, relationships },
-  } = data;
-  return (
-    <>
-      <Body title={title} menu={navItem}>
-        {parseHtml(body?.processed ?? "", { documents, images })}
-      </Body>
-      <StaffContact
-        staffContact={relationships?.field_staff_contact ?? {}}
-        title={title}
-        location={path.alias}
-      />
-    </>
-  );
+const resolveTemplate = (url) => {
+  const match = Object.keys(templates).filter((r) => isMatch(url, r));
+  return templates[match[0]];
+};
+
+const Page = (props) => {
+  const Template = resolveTemplate(props.path);
+  return <Template {...props} />;
 };
 
 export const Head = ({ data }) => {
@@ -152,13 +145,7 @@ export const query = graphql`
     images: allFileFile(
       filter: {
         filemime: {
-          in: [
-            "image/png"
-            "image/jpeg"
-            "image/gif"
-            "image/svg+xml"
-            "image/webp"
-          ]
+          in: ["image/png", "image/jpeg", "image/svg+xml", "image/webp"]
         }
       }
     ) {
@@ -287,4 +274,4 @@ export const query = graphql`
 
 export const config = async () => ({ defer: true });
 
-export default DrupalPage;
+export default Page;
