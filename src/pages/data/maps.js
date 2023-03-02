@@ -34,7 +34,6 @@ const Data = () => {
     field_display_name: "Chris Pollard",
     field_title: "Manager, Office of GIS",
   };
-
   const [apps, setApps] = useState([]);
   const [cursor, setCursor] = useState(0);
   const [filter, setFilter] = useState("");
@@ -263,30 +262,3 @@ const Data = () => {
 };
 
 export default Data;
-
-export const query = graphql`
-  query {
-    allMenuLinkContentMenuLinkContent(
-      filter: {
-        menu_name: { eq: "data-center-featured-apps" }
-        enabled: { eq: true }
-      }
-      sort: { fields: weight }
-    ) {
-      edges {
-        node {
-          entity {
-            title
-            body {
-              processed
-            }
-            field_product_id
-            field_url {
-              uri
-            }
-          }
-        }
-      }
-    }
-  }
-`;

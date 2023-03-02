@@ -7,7 +7,7 @@ const Event = (props) => {
   return (
     <div
       key={props.StartDate + props.Title}
-      className="flex w-full items-center gap-2 divide-x divide-blue-400 p-8 md:w-auto md:flex-1"
+      className="-ml-4 flex w-full items-center gap-2 divide-x divide-blue-400 px-4 pt-0 pb-8 md:w-auto md:flex-1"
     >
       <footer className="flex flex-col items-center">
         <p className="m-0 text-2xl leading-none">

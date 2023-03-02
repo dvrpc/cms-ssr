@@ -14,7 +14,7 @@ const Body = ({ children, title, menu }) => {
           <article>{children}</article>
         </main>
       </div>
-      <div className="flex flex-col md:order-1 md:col-span-1 md:mt-16 md:items-end">
+      <div className="flex flex-col italic md:order-1 md:col-span-1 md:mt-16 md:items-end">
         <Menu data={menu} />
         <InfoLinks />
       </div>

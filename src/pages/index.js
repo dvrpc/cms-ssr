@@ -14,14 +14,13 @@ import "../styles/Body.css";
 const isSSR = typeof window === "undefined";
 
 const fetchData = () =>
-  fetch(`https://www.dvrpc.org/asp/homepage/default2.aspx`).then((r) =>
+  fetch("https://www.dvrpc.org/asp/homepage/default2.aspx").then((r) =>
     r.json()
   );
 
 export const Head = () => {
   return (
     <>
-      <html lang="en" />
       <title>Delaware Valley Regional Planning Commission</title>
       <meta
         name="description"
@@ -59,7 +58,7 @@ const HomePage = ({ data }) => {
           alert.length ? (
             <div className="bg-black/50 text-center text-white">
               <div
-                className="container mx-auto p-6 xl:px-0"
+                className="container mx-auto py-6 px-8 text-justify"
                 dangerouslySetInnerHTML={{ __html: alert }}
               />
             </div>
@@ -80,38 +79,40 @@ const HomePage = ({ data }) => {
       </Header>
       <main>
         <div className="flex justify-center bg-[#bbe2f2]">
-          <div className="container mx-8 flex-auto items-center justify-between md:flex">
-            <h3>
+          <div className="container mx-8">
+            <h3 className="text-3xl">
               <a
-                className="mr-4 text-3xl text-[#296591]"
+                className="no-underline hover:underline text-[#296591]"
                 href="https://www.dvrpc.org/Calendar/"
               >
                 Events
               </a>
             </h3>
-            {!isSSR && (
-              <Suspense
-                fallback={[...Array(4)].map((_, i) => (
-                  <EventLoader key={i} />
-                ))}
-              >
-                <Events dataReader={dataReader} />
-              </Suspense>
-            )}
+            <div className="flex-auto items-center justify-between md:flex">
+              {!isSSR && (
+                <Suspense
+                  fallback={[...Array(4)].map((_, i) => (
+                    <EventLoader key={i} />
+                  ))}
+                >
+                  <Events dataReader={dataReader} />
+                </Suspense>
+              )}
+            </div>
           </div>
         </div>
 
         <div className="flex justify-center bg-[#e4f5f7]">
-          <div className="container mx-8 flex flex-col items-center py-4 md:flex-row">
-            <h3 className="mb-4 text-3xl">
+          <div className="container mx-8">
+            <h3 className="text-3xl">
               <a
-                className="text-[#296591]"
+                className="no-underline hover:underline text-[#296591]"
                 href="https://www.dvrpc.org/Products/Search/"
               >
                 New Releases
               </a>
             </h3>
-            <div className="grid grid-cols-3">
+            <div className="md:grid grid-cols-3 pb-8">
               {!isSSR && (
                 <Suspense
                   fallback={[...Array(6)].map((_, i) => (
