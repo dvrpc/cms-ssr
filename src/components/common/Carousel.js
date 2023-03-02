@@ -11,9 +11,7 @@ const Carousel = ({ children }) => {
       const direction = key === 'prev' ? -1 : 1;
       const childElem = carouselRef.current.firstChild
       const childStyle = window.getComputedStyle(childElem)
-      const scrollAmount = carouselRef.current.clientWidth === childElem.offsetWidth + (parseFloat(childStyle.marginLeft) * 2) 
-        ? (carouselRef.current.clientWidth) * direction
-        : (screen.width / 2) * direction;
+      const scrollAmount = (childElem.offsetWidth + (parseFloat(childStyle.marginLeft) * 2)) * direction;
       const scrollLeftMax =
         carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
       carouselRef.current.scrollBy({
@@ -49,9 +47,9 @@ const Carousel = ({ children }) => {
   }, [scrollLeft]);
 
   return (
-    <div className="relative">
+    <div className="relative -ml-1 md:-ml-2 mt-2 md:mt-0">
       {children.length > 3 && (
-        <div className="flex w-full items-center">
+        <div className="w-full items-center hidden md:flex">
           <button
             className="ml-1 rounded-full p-2 disabled:opacity-30"
             onClick={() => scroll('prev')}
@@ -75,7 +73,7 @@ const Carousel = ({ children }) => {
       <div
         id="scrollContainer"
         ref={carouselRef}
-        className="flex overflow-hidden text-[#155575]"
+        className="flex overflow-y-hidden md:overflow-hidden text-[#155575] snap-x md:snap-none"
       >
         {children}
       </div>
