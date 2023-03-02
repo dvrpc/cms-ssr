@@ -252,7 +252,7 @@ export const query = graphql`
         menu_name: { eq: "data-center-featured-apps" }
         enabled: { eq: true }
       }
-      sort: { fields: weight }
+      sort: { weight: ASC }
     ) {
       edges {
         node {

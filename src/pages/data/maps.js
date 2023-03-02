@@ -248,30 +248,3 @@ const Data = () => {
 };
 
 export default Data;
-
-export const query = graphql`
-  query {
-    allMenuLinkContentMenuLinkContent(
-      filter: {
-        menu_name: { eq: "data-center-featured-apps" }
-        enabled: { eq: true }
-      }
-      sort: { fields: weight }
-    ) {
-      edges {
-        node {
-          entity {
-            title
-            body {
-              processed
-            }
-            field_product_id
-            field_url {
-              uri
-            }
-          }
-        }
-      }
-    }
-  }
-`;
