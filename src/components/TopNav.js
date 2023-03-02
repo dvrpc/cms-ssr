@@ -56,7 +56,7 @@ const RootNav = ({ data }) => {
 
 const TopNav = ({ menu }) => {
   return (
-    <div className="mb-7 self-end overflow-x-auto lg:ml-auto">
+    <div className="mb-7 self-end overflow-x-auto overflow-y-hidden md:ml-4 lg:ml-auto">
       <nav className="ml-auto hidden gap-3 divide-x divide-[#0078ae] font-medium text-[color:var(--color-default)] md:flex">
         <RootNav data={rootNavArr} />
       </nav>
