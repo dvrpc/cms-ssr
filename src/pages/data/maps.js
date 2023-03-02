@@ -28,11 +28,11 @@ export const Head = () => {
 
 const Data = () => {
   const location = "/data";
-  const title = "Data Center";
+  const title = "Data Center - Maps and Applications";
   const staffContact = {
-    mail: "kkorejko@dvrpc.org",
-    field_display_name: "Kim Korejko",
-    field_title: "Manager, Data Coordination",
+    mail: "cpollard@dvrpc.org",
+    field_display_name: "Chris Pollard",
+    field_title: "Manager, Office of GIS",
   };
 
   const [apps, setApps] = useState([]);
@@ -97,14 +97,14 @@ const Data = () => {
                   Maps & Applications
                 </Link>
               </li>
-              <li className="flex-1">
+              {/* <li className="flex-1">
                 <Link
                   className="no-underline hover:underline"
                   to="/data/howdoi"
                 >
                   Resource Center
                 </Link>
-              </li>
+              </li> */}
               {/* <li className="flex-1">
                 <Link
                   className="no-underline hover:underline"
@@ -192,6 +192,16 @@ const Data = () => {
                   }}
                 >
                   Load More Results
+                </button>
+                <button
+                  className="mt-5 text-sm text-[#0078ae] hover:underline"
+                  id="back-to-top"
+                  onClick={() => {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                  }}
+                >
+                  back to top
                 </button>
               </div>
             )}
