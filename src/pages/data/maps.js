@@ -28,16 +28,16 @@ export const Head = () => {
 
 const Data = () => {
   const location = "/data";
-  const title = "Data Center";
+  const title = "Data Center - Maps and Applications";
   const staffContact = {
-    mail: "kkorejko@dvrpc.org",
-    field_display_name: "Kim Korejko",
-    field_title: "Manager, Data Coordination",
+    mail: "cpollard@dvrpc.org",
+    field_display_name: "Chris Pollard",
+    field_title: "Manager, Office of GIS",
   };
-
   const [apps, setApps] = useState([]);
   const [cursor, setCursor] = useState(0);
   const [filter, setFilter] = useState("");
+  const resultIncrement = 10;
   useEffect(() => {
     fetch("https://www.dvrpc.org/api/products?type=WEB&limit=999")
       .then((response) => response.json())
@@ -96,14 +96,14 @@ const Data = () => {
                   Maps & Applications
                 </Link>
               </li>
-              <li className="flex-1">
+              {/* <li className="flex-1">
                 <Link
                   className="no-underline hover:underline"
                   to="/data/howdoi"
                 >
                   Resource Center
                 </Link>
-              </li>
+              </li> */}
               {/* <li className="flex-1">
                 <Link
                   className="no-underline hover:underline"
@@ -130,16 +130,17 @@ const Data = () => {
             />
           </label>
           <p className="text-sm md:text-base">
-            DVRPC has developed several interactive mapping applications as part
-            of our continuing effort to support planning and improve
-            decision-making in our region. Within each application, you can view
-            geographic features, query selective data sets, create your own
-            custom map and access detailed reports about certain features. These
-            web mapping applications allow DVRPC to present geospatial
-            information to the public without the need of special GIS software.
-            DVRPC will continue to add mapping applications in the future so
-            check back frequently. For more information regarding DVRPC's full
-            GIS services or to order custom maps, contact the Office of GIS.{" "}
+            DVRPC develops data visualization and mapping applications to
+            enhance data-driven planning outcomes across the Greater
+            Philadelphia Region. These applications are built upon the datasets
+            found in the{" "}
+            <a
+              href="https://www.catalog.dvrpc.org/dataset"
+              title="View Data Catalog"
+            >
+              Data Catalog
+            </a>{" "}
+            and provide streamlined access to many important subjects.{" "}
           </p>
         </div>
         <div class="flex md:ml-16 md:grow-[999] md:basis-0">
@@ -149,11 +150,12 @@ const Data = () => {
                 No applications matching your search...
               </div>
             )}
-            {filteredApps.slice(0, cursor + 5).map((app) => (
+            {filteredApps.slice(0, cursor + resultIncrement).map((app) => (
               <div className="md:p-4">
                 <a
                   className="my-6 text-lg font-bold text-[#0078ae] no-underline hover:underline"
                   href={app.Urllink}
+                  target="_blank"
                 >
                   {app.Title}
                 </a>
@@ -163,30 +165,43 @@ const Data = () => {
                     src={`https://www.dvrpc.org/asp/pubs/201px/${app.Id}.png`}
                   ></img>
                   <span className="text-gray-400">
-                    {app.Abstract?.slice(0, 250).trim() + "..."}
+                    {app.Abstract
+                      ? app.Abstract.slice(0, 250).trim() + "..."
+                      : ""}
                   </span>
                 </div>
               </div>
             ))}
-            {filteredApps.length > 5 && (
-              <div className="min-w-100 flex">
+            {filteredApps.length > resultIncrement && (
+              <div className="min-w-100 flex flex-col items-center justify-center">
+                <p>
+                  Showing{" "}
+                  {cursor + resultIncrement <= filteredApps.length
+                    ? cursor + resultIncrement
+                    : filteredApps.length}{" "}
+                  of {filteredApps.length}
+                </p>
                 <button
-                  onClick={() => setCursor(cursor + 5)}
+                  className="border border-solid border-slate-300 p-3 text-[#0078ae] hover:bg-slate-100"
+                  onClick={() => setCursor(cursor + resultIncrement)}
                   style={{
                     display:
                       (cursor >= filteredApps.length ||
-                        cursor + 5 >= filteredApps.length) &&
+                        cursor + resultIncrement >= filteredApps.length) &&
                       "none",
                   }}
                 >
-                  Show More
+                  Load More Results
                 </button>
                 <button
-                  onClick={() => setCursor(cursor - 5)}
-                  style={{ display: cursor <= 0 && "none" }}
-                  className="ml-auto"
+                  className="mt-5 text-sm text-[#0078ae] hover:underline"
+                  id="back-to-top"
+                  onClick={() => {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                  }}
                 >
-                  Show Less
+                  back to top
                 </button>
               </div>
             )}
