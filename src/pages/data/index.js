@@ -91,7 +91,7 @@ const Data = ({ data }) => {
                   Maps & Applications
                 </Link>
               </li>
-              <li className="flex-1">
+              {/*<li className="flex-1">
                 <Link
                   className="no-underline hover:underline"
                   to="/data/howdoi"
@@ -99,7 +99,7 @@ const Data = ({ data }) => {
                   Resource Center
                 </Link>
               </li>
-              {/* <li className="flex-1">
+               <li className="flex-1">
                 <Link
                   className="no-underline hover:underline"
                   to="/data/stayinformed"
@@ -184,7 +184,7 @@ const Data = ({ data }) => {
             published by DVRPC for planning purposes. Watch this space for
             future content and enhancements as we continue to develop this site.
             If you have suggestions for ways to improve our Data Center, please
-            let us know by clicking here.
+            reach out at <a href="mailto:data@dvrpc.org">data@dvrpc.org</a>.
           </p>
         </div>
       </div>
