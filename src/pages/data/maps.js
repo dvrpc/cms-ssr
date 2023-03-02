@@ -130,16 +130,17 @@ const Data = () => {
             />
           </label>
           <p className="text-sm md:text-base">
-            DVRPC has developed several interactive mapping applications as part
-            of our continuing effort to support planning and improve
-            decision-making in our region. Within each application, you can view
-            geographic features, query selective data sets, create your own
-            custom map and access detailed reports about certain features. These
-            web mapping applications allow DVRPC to present geospatial
-            information to the public without the need of special GIS software.
-            DVRPC will continue to add mapping applications in the future so
-            check back frequently. For more information regarding DVRPC's full
-            GIS services or to order custom maps, contact the Office of GIS.{" "}
+            DVRPC develops data visualization and mapping applications to
+            enhance data-driven planning outcomes across the Greater
+            Philadelphia Region. These applications are built upon the datasets
+            found in the{" "}
+            <a
+              href="https://www.catalog.dvrpc.org/dataset"
+              title="View Data Catalog"
+            >
+              Data Catalog
+            </a>{" "}
+            and provide streamlined access to many important subjects.{" "}
           </p>
         </div>
         <div class="flex md:ml-16 md:grow-[999] md:basis-0">
