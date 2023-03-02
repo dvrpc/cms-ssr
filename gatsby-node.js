@@ -61,29 +61,14 @@ exports.onCreatePage = async ({ page, actions }) => {
     ? `/^${page.context.path__alias.replace(/\//g, "/")}\/?$/i`
     : "/^/$/";
 
-  const isDataCenterPage = new RegExp("^/data/?(?:[^/]+/?)*$").test(
-    page.context.path__alias
-  );
-  if (isDataCenterPage) {
-    return createPage({
-      ...page,
-      component: path.resolve(`src/pages/data/{NodePage.path__alias}.js`),
-      context: {
-        ...page.context,
-        regex,
-        layout: false,
-      },
-    });
-  } else {
-    return createPage({
-      ...page,
-      context: {
-        ...page.context,
-        regex,
-        layout: !!page.context.__params,
-      },
-    });
-  }
+  return createPage({
+    ...page,
+    context: {
+      ...page.context,
+      regex,
+      layout: !!page.context.__params,
+    },
+  });
 };
 
 exports.createResolvers = ({ createResolvers }) => {
