@@ -136,7 +136,7 @@ const Data = () => {
             Philadelphia Region. These applications are built upon the datasets
             found in the{" "}
             <a
-              href="https://www.catalog.dvrpc.org/dataset"
+              href="https://catalog.dvrpc.org/dataset"
               title="View Data Catalog"
             >
               Data Catalog
