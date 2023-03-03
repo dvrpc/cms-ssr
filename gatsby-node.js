@@ -68,7 +68,6 @@ exports.onCreatePage = async ({ page, actions }) => {
       regex,
       layout: !!page.context.__params,
     },
-    defer: true,
   });
 };
 

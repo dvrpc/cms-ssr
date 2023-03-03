@@ -19,7 +19,7 @@ const themeConfig = [
     "--bg-cover-image",
     (val) =>
       val
-        .map((obj) => `url(https://cdn.dvrpc.org${obj.uri.url})`)
+        .map((obj) => obj.uri?.url && `url(https://cdn.dvrpc.org${obj.uri?.url})`)
         .reverse()
         .join(", "),
   ],
@@ -28,7 +28,7 @@ const themeConfig = [
     "--bg-cover-image",
     (val) =>
       val
-        .map((obj) => `url(https://cdn.dvrpc.org${obj.uri.url})`)
+        .map((obj) => obj.uri?.url && `url(https://cdn.dvrpc.org${obj.uri?.url})`)
         .reverse()
         .join(", "),
   ],
