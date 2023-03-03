@@ -23,7 +23,7 @@ const rootNavArr = [
     href: "/Transportation/",
   },
   {
-    link: "Land Uses",
+    link: "Livable Communities",
     href: "/LandUseEnvironment/",
   },
   {
@@ -45,7 +45,7 @@ const RootNav = ({ data }) => {
     return (
       <div key={index} className="shrink-0 text-center md:leading-none">
         <Link
-          className="pl-3 font-bold no-underline hover:underline"
+          className="pl-2 font-bold no-underline hover:underline"
           to={item.href}
           dangerouslySetInnerHTML={{ __html: item.link }}
         />
