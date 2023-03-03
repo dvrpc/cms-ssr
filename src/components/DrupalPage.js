@@ -6,8 +6,6 @@ import StaffContact from "./StaffContact";
 
 const DrupalPage = ({ data }) => {
   const {
-    documents,
-    images,
     navItem,
     nodePage: { body, title, path, relationships },
   } = data;

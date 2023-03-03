@@ -19,10 +19,7 @@ const themeConfig = [
     "--bg-cover-image",
     (val) =>
       val
-        .map(
-          (obj) =>
-            `url(${obj.localFile.childImageSharp.gatsbyImageData.images.fallback.src})`
-        )
+        .map((obj) => `url(https://cdn.dvrpc.org${obj.uri.url})`)
         .reverse()
         .join(", "),
   ],
@@ -31,10 +28,7 @@ const themeConfig = [
     "--bg-cover-image",
     (val) =>
       val
-        .map(
-          (obj) =>
-            `url(${obj.localFile.childImageSharp.gatsbyImageData.images.fallback.src})`
-        )
+        .map((obj) => `url(https://cdn.dvrpc.org${obj.uri.url})`)
         .reverse()
         .join(", "),
   ],
@@ -113,76 +107,15 @@ export const query = graphql`
           field_photo_credits
           relationships {
             field_banner_2x {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData(
-                    width: 3200
-                    height: 800
-                    quality: 100
-                    outputPixelDensities: [1]
-                    formats: [WEBP]
-                  )
-                }
+              uri {
+                url
               }
             }
             field_banner {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData(
-                    width: 1600
-                    height: 400
-                    quality: 100
-                    outputPixelDensities: [1]
-                    formats: [WEBP]
-                  )
-                }
+              uri {
+                url
               }
             }
-          }
-        }
-      }
-    }
-    images: allFileFile(
-      filter: {
-        filemime: {
-          in: ["image/png", "image/jpeg", "image/svg+xml", "image/webp"]
-        }
-      }
-    ) {
-      edges {
-        node {
-          drupal_id
-          uri {
-            url
-          }
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
-      }
-    }
-    documents: allFileFile(
-      filter: {
-        filemime: {
-          in: [
-            "application/pdf"
-            "application/msword"
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            "application/vnd.ms-excel"
-            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            "application/zip"
-          ]
-        }
-      }
-    ) {
-      edges {
-        node {
-          drupal_id
-          filename
-          localFile {
-            publicURL
           }
         }
       }
@@ -271,7 +204,5 @@ export const query = graphql`
     }
   }
 `;
-
-export const config = async () => ({ defer: true });
 
 export default Page;

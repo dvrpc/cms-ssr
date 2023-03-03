@@ -39,8 +39,7 @@ module.exports = {
           username: process.env.DRUPAL_USER,
           password: process.env.DRUPAL_PASS,
         },
-        skipFileDownloads: false,
-        placeholderStyleName: "thumbnail",
+        skipFileDownloads: true,
         fastBuilds: true,
         filters: {
           "node--page":
@@ -51,7 +50,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-postcss",
-    "gatsby-plugin-image",
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
@@ -64,16 +62,7 @@ module.exports = {
         icon: "src/images/bug-highres.png",
       },
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "images",
-        path: "./src/images/",
-      },
-      __key: "images",
-    },
     "gatsby-plugin-react-svg",
+    "gatsby-plugin-offline",
   ],
 };

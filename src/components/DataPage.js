@@ -8,8 +8,6 @@ import Icon, { DvrpcMini } from "./Icon";
 
 const DataPage = ({ data }) => {
   const {
-    documents,
-    images,
     nodePage: { body, title },
   } = data;
 
@@ -85,7 +83,7 @@ const DataPage = ({ data }) => {
         <div className="container mx-auto flex flex-wrap p-8 pt-0 md:pt-8">
           <HtmlMapper
             html={body?.processed ?? ""}
-            data={{ documents, images }}
+            data={data}
           />
         </div>
         <div className="mt-auto flex justify-center bg-[#030a18] text-center text-[#99c5c8] md:text-left">
