@@ -56,13 +56,19 @@ module.exports = {
         trackingId: "UA-9825778-1",
       },
     },
+    "gatsby-plugin-react-svg",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
+        name: "Delaware Valley Regional Planning Commission",
+        short_name: "DVRPC",
+        start_url: "/",
+        background_color: "#fff",
+        theme_color: "#0078ae",
+        display: "standalone",
         icon: "src/images/bug-highres.png",
       },
     },
-    "gatsby-plugin-react-svg",
-    "gatsby-plugin-offline",
+    //"gatsby-plugin-offline",
   ],
 };
