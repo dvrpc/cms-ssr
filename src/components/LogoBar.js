@@ -1,6 +1,6 @@
 import React from "react";
 import Icon, { Dvrpc } from "./Icon";
-import SocialMedia from "./SocialMedia";
+import ActionButtons from "./ActionButtons";
 import TopNav from "./TopNav";
 
 const LogoBar = () => (
@@ -8,7 +8,7 @@ const LogoBar = () => (
     <a href="/" className="row-span-2">
       <Icon use={Dvrpc} scale={null} className="mx-auto my-8 h-[70.5px]" />
     </a>
-    <SocialMedia />
+    <ActionButtons />
     <TopNav />
   </div>
 );

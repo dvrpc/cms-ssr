@@ -11,8 +11,8 @@ const rootNavArr = [
     href: "/Data/",
   },
   {
-    link: "Long Range Plan",
-    href: "/Plan/",
+    link: "Products",
+    href: "/Products/Search",
   },
   {
     link: "TIP",
@@ -23,20 +23,8 @@ const rootNavArr = [
     href: "/Transportation/",
   },
   {
-    link: "Land Uses",
+    link: "Community Planning",
     href: "/LandUseEnvironment/",
-  },
-  {
-    link: "Planning Assistance",
-    href: "/Planning/",
-  },
-  {
-    link: "Commuters",
-    href: "/CommuterServices/",
-  },
-  {
-    link: "Get Involved",
-    href: "/GetInvolved/",
   },
 ];
 

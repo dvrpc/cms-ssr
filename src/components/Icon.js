@@ -28,6 +28,7 @@ import Highways from "../images/highways.svg";
 import Connections2050 from "../images/connections2050.svg";
 import Health from "../images/health.svg";
 import Transit from "../images/transit.svg";
+import C2050 from "../images/c2050_logo.svg";
 
 const Icon = ({ use, scale = 5, fillColor = "#0078ae", ...props }) => {
   const Svg = use;
@@ -72,4 +73,5 @@ export {
   Connections2050,
   Health,
   Transit,
+  C2050,
 };
