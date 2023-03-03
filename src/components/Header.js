@@ -35,7 +35,7 @@ const Header = ({ bgStyles, alert, children }) => {
             </div>
           </form>
           {children}
-          <div className="absolute bottom-0 right-0 block bg-gradient-to-r from-transparent via-white/80 to-white/80 before:leading-7 before:pr-8 pl-64 text-sm text-gray-900 before:content-[var(--content-photo-credits)]"></div>
+          <div className="absolute bottom-0 right-0 block bg-gradient-to-r from-transparent via-white/80 to-white/80 pl-64 pr-8 text-sm text-gray-900 before:leading-7 before:content-[var(--content-photo-credits)]"></div>
         </div>
       </div>
     </header>
