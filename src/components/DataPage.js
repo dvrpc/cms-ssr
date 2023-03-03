@@ -2,7 +2,7 @@ import * as React from "react";
 import HtmlMapper from "./HtmlParser";
 import LogoBar from "./LogoBar";
 import DVRPCbg from "../images/dvrpc-transparent.png";
-import { Link } from "gatsby";
+import Link from "./Link";
 import ConnectWithUs from "./ConnectWithUs";
 import Icon, { DvrpcMini } from "./Icon";
 

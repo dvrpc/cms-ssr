@@ -1,6 +1,6 @@
 import React from "react";
 import HtmlMapper from "react-html-map";
-import { Link } from "gatsby";
+import Link from "./Link";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const genericElement =

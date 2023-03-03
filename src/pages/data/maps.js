@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { graphql, Link } from "gatsby";
 import favicon from "../../images/favicon.ico";
+import Link from "../../components/Link";
 import LogoBar from "../../components/LogoBar";
 import Icon, { DvrpcMini } from "../../components/Icon";
 import ConnectWithUs from "../../components/ConnectWithUs";

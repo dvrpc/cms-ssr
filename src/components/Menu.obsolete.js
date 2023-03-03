@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import Link from "./Link";
 
 export default ({ data = null }) => {
   if (data === null) {

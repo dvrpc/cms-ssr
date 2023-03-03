@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import Link from "./Link";
 
 const Menu = () => (
   <ul className="mb-12 h-full text-center md:text-right">
