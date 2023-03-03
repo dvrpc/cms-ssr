@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { graphql } from "gatsby";
-import { useAsyncResource } from "use-async-resource";
+import useSWR from "swr";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -11,11 +11,9 @@ import CSSSlider from "../components/CSSSlider";
 
 import "../styles/Body.css";
 
-const isSSR = typeof window === "undefined";
-
-const fetchData = () =>
-  fetch("https://www.dvrpc.org/asp/homepage/default2.aspx").then((r) =>
-    r.json()
+const useData = () =>
+  useSWR("https://www.dvrpc.org/asp/homepage/default2.aspx", (...args) =>
+    fetch(...args).then((res) => res.json())
   );
 
 export const Head = () => {
@@ -30,24 +28,33 @@ export const Head = () => {
   );
 };
 
-const Anns = ({ dataReader }) => (
-  <CSSSlider dimensions="w-full md:w-96 h-40">
-    {dataReader().anns.map((d, index) => {
-      return <Announcement key={d.guid["#text"]} {...d} />;
-    })}
-  </CSSSlider>
-);
+const Anns = ({ dataReader }) =>
+  dataReader.isLoading ? (
+    <AnnouncementLoader />
+  ) : (
+    <CSSSlider dimensions="w-full md:w-96 h-40">
+      {dataReader.data.anns.map((d) => {
+        return <Announcement key={d.guid["#text"]} {...d} />;
+      })}
+    </CSSSlider>
+  );
 
 const Events = ({ dataReader }) =>
-  dataReader()
-    .events.slice(0, 4)
-    .map((d) => <Event key={d.StartDate + d.StartTime} {...d} />);
+  dataReader.isLoading
+    ? [...Array(4)].map(() => <EventLoader />)
+    : dataReader.data.events
+        .slice(0, 4)
+        .map((d) => <Event key={d.StartDate + d.StartTime} {...d} />);
 
 const Products = ({ dataReader }) =>
-  dataReader().pubs.map((d) => <Product key={d.PubId} {...d} />);
+  dataReader.isLoading ? (
+    [...Array(6)].map(() => <ProductLoader />)
+  ) : (
+    dataReader.data.pubs.map((d) => <Product key={d.PubId} {...d} />)
+  );
 
 const HomePage = ({ data }) => {
-  const [dataReader] = useAsyncResource(fetchData, []);
+  const dataReader = useData();
 
   const alert = data.blockContentAlertBanner?.body?.processed ?? "";
   return (
@@ -69,11 +76,7 @@ const HomePage = ({ data }) => {
       >
         <div className="w-min bg-gradient-to-r from-white/80 via-white/80 to-transparent md:pr-32">
           <div className="w-full p-4 md:w-96 md:pl-12">
-            {!isSSR && (
-              <Suspense fallback={<AnnouncementLoader />}>
-                <Anns dataReader={dataReader} />
-              </Suspense>
-            )}
+            <Anns dataReader={dataReader} />
           </div>
         </div>
       </Header>
@@ -82,22 +85,14 @@ const HomePage = ({ data }) => {
           <div className="container mx-8">
             <h3 className="text-3xl">
               <a
-                className="no-underline hover:underline text-[#296591]"
+                className="text-[#296591] no-underline hover:underline"
                 href="https://www.dvrpc.org/Calendar/"
               >
                 Events
               </a>
             </h3>
             <div className="flex-auto items-center justify-between md:flex">
-              {!isSSR && (
-                <Suspense
-                  fallback={[...Array(4)].map((_, i) => (
-                    <EventLoader key={i} />
-                  ))}
-                >
-                  <Events dataReader={dataReader} />
-                </Suspense>
-              )}
+              <Events dataReader={dataReader} />
             </div>
           </div>
         </div>
@@ -106,22 +101,14 @@ const HomePage = ({ data }) => {
           <div className="container mx-8">
             <h3 className="text-3xl">
               <a
-                className="no-underline hover:underline text-[#296591]"
+                className="text-[#296591] no-underline hover:underline"
                 href="https://www.dvrpc.org/Products/Search/"
               >
                 New Releases
               </a>
             </h3>
-            <div className="md:grid grid-cols-3 pb-8">
-              {!isSSR && (
-                <Suspense
-                  fallback={[...Array(6)].map((_, i) => (
-                    <ProductLoader key={i} />
-                  ))}
-                >
-                  <Products dataReader={dataReader} />
-                </Suspense>
-              )}
+            <div className="grid-cols-3 pb-8 md:grid">
+              <Products dataReader={dataReader} />
             </div>
           </div>
         </div>

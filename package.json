@@ -35,8 +35,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-html-map": "^0.1.1",
-    "tailwindcss": "^3.2.7",
-    "use-async-resource": "^2.2.2"
+    "swr": "^2.0.4",
+    "tailwindcss": "^3.2.7"
   },
   "overrides": {
     "babel-plugin-lodash": {

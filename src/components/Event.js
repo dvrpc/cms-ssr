@@ -31,12 +31,12 @@ const Event = (props) => {
 };
 
 const EventLoader = (props) => (
-  <div className="flex w-72 animate-pulse items-center gap-2 divide-x divide-blue-400 p-8 md:w-auto md:flex-1">
+  <div className="items-top flex w-72 animate-pulse gap-2 divide-x divide-blue-400 md:w-auto md:flex-1">
     <footer className="flex flex-col items-center">
-      <p className="h-8 w-10 bg-gray-200" />
+      <span className="h-8 w-10 bg-gray-200" />
       <span className="my-2 h-6 w-10 bg-gray-200" />
     </footer>
-    <h4 className="m-0 h-20 w-48 bg-gray-200 pl-2" />
+    <span className="m-0 h-16 w-48 bg-gray-200 pl-2" />
   </div>
 );
 
