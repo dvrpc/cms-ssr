@@ -21,7 +21,7 @@ const Banner = () => {
         >
           <h1 className="text-white">DVRPC Data Center</h1>
           <p>
-            data and information about the Greater Philadelphia region at your
+            Data and information about the Greater Philadelphia region at your
             fingertips!
           </p>
           <input

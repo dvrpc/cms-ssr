@@ -118,7 +118,7 @@ const Data = () => {
         </div>
       </div>
       <div className="container mx-auto flex flex-wrap p-8 pt-0 md:pt-8">
-        <div className="top-0 flex grow basis-1/4 flex-col self-start md:sticky md:mt-[1rem]">
+        <div className="top-0 flex grow basis-1/4 flex-col self-start lg:sticky lg:mt-[1rem]">
           <label className="text-[#0078ae]">
             Search for applications:
             <input
@@ -144,15 +144,15 @@ const Data = () => {
             and provide streamlined access to many important subjects.{" "}
           </p>
         </div>
-        <div class="flex md:ml-16 md:grow-[999] md:basis-0">
-          <div className="flex flex-col space-y-6 divide-[#53a3c7] md:divide-y">
+        <div class="flex lg:ml-16 lg:grow-[999] lg:basis-0">
+          <div className="flex flex-col space-y-6 divide-[#53a3c7] divide-y">
             {!filteredApps.length && (
               <div className="mt-[1rem] pt-8 text-gray-300">
                 No applications matching your search...
               </div>
             )}
             {filteredApps.slice(0, cursor + resultIncrement).map((app) => (
-              <div className="md:p-4">
+              <div className="py-4 lg:p-4">
                 <a
                   className="my-6 text-lg font-bold text-[#0078ae] no-underline hover:underline"
                   href={app.Urllink}
