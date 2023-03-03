@@ -23,7 +23,7 @@ const rootNavArr = [
     href: "/Transportation/",
   },
   {
-    link: "Community Planning",
+    link: "Livable Communities",
     href: "/LandUseEnvironment/",
   },
 ];
