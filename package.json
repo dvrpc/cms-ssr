@@ -51,5 +51,10 @@
     "sharp": "^0.31.3",
     "tailwindcss": "^3.2.7",
     "use-async-resource": "^2.2.2"
+  },
+  "overrides": {
+    "babel-plugin-lodash": {
+      "@babel/types": "~7.20.0"
+    }
   }
 }
