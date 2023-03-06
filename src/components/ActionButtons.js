@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 
 const ActionButtons = () => {
   return (
-    <div className="m-0 hidden gap-2 p-0 text-sm text-[#67abd1] md:flex md:items-end md:justify-end">
+    <div className=" col-span-2 row-span-2 m-0 hidden gap-2 p-0 text-sm text-[#67abd1] md:flex md:items-center md:justify-end lg:col-span-1 lg:row-span-1 lg:items-end ">
       <a href="/plan">
         <Icon use={C2050} scale={null} className="mr-5 h-[48px]" />
       </a>
