@@ -4,13 +4,10 @@ import DVRPCbg from "../../images/dvrpc-transparent.png";
 const Banner = () => {
   return (
     <div
-      className="relative flex h-fit-content md:h-[calc(var(--height-banner)*1.6)] lg:h-[calc(var(--height-banner)*1.2)] xl:h-[var(--height-banner)] w-full overflow-hidden after:absolute
-          after:bottom-4 after:right-0 after:block after:bg-gradient-to-r 
-          after:from-transparent after:via-white/80 after:to-white/80 after:p-1 
-          after:px-2 after:pl-64 after:text-sm after:text-gray-900 after:content-[var(--content-photo-credits)]"
+      className="h-fit-content relative flex w-full overflow-hidden text-white md:h-[calc(var(--height-banner)*1.6)] lg:h-[calc(var(--height-banner)*1.2)] xl:h-[var(--height-banner)]"
       style={{
-        background: `linear-gradient(131deg, rgba(0, 120, 174, 1) 0%, rgba(92, 79, 146, 1) 68.5%, rgba(75, 66, 113, 1) 100%)`,
-        color: "#fff",
+        background:
+          "linear-gradient(131deg, rgba(0, 120, 174, 1) 0%, rgba(92, 79, 146, 1) 68.5%, rgba(75, 66, 113, 1) 100%)",
       }}
     >
       <div className="container mx-auto flex p-8">
@@ -19,7 +16,9 @@ const Banner = () => {
           method="GET"
           className="my-auto w-full md:w-2/3 lg:w-1/2 xl:w-1/3"
         >
-          <h1 className="text-white">DVRPC Data Center</h1>
+          <h1 className="mt-0 text-4xl font-bold text-white">
+            DVRPC Data Center
+          </h1>
           <p>
             Data and information about the Greater Philadelphia region at your
             fingertips!
@@ -29,12 +28,12 @@ const Banner = () => {
             name="q"
             placeholder="Search datasets..."
             autoFocus
-            className="mt-8 w-full rounded-lg bg-[#c6dae9] text-xl leading-none outline-none placeholder:italic placeholder:text-slate-400 placeholder:text-left placeholder:text-lg placeholder:tracking-wider  block"
+            className="mt-8 block w-full rounded-lg bg-[#c6dae9] p-2 text-xl leading-none text-[color:var(--color-body)] outline-none placeholder:text-left placeholder:text-lg placeholder:italic placeholder:tracking-wider  placeholder:text-slate-400"
           />
         </form>
       </div>
       <img
-        className="absolute md:-right-[10%] -right-[40%] md:-top-[30%] md:w-1/3 "
+        className="absolute -right-[40%] md:-right-[10%] md:-top-[30%] md:w-1/3"
         src={DVRPCbg}
       ></img>
     </div>

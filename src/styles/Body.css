@@ -4,9 +4,12 @@ html {
   --color-h2: #0078ae;
   --color-h3: #0078ae;
   --color-highlight: #0078ae;
-
+  --color-body: rgb(17 24 39); /* text-gray-900 */
   --bg-cover-image: url(https://www.dvrpc.org/static/homepagebanner_2560-44e1b03151f728f813d044006d123932.jpg);
   --height-banner: auto;
+}
+main {
+  @apply text-[color:var(--color-body)];
 }
 main hr {
   @apply my-8 border-t border-solid border-gray-400;
