@@ -8,253 +8,253 @@ html {
   --bg-cover-image: url(https://www.dvrpc.org/static/homepagebanner_2560-44e1b03151f728f813d044006d123932.jpg);
   --height-banner: auto;
 }
-hr {
+main hr {
   @apply my-8 border-t border-solid border-gray-400;
 }
-a {
+main a {
   @apply text-inherit underline;
 }
-h1 {
+main h1 {
   @apply mt-0 text-4xl font-bold text-[color:var(--color-h1)];
 }
-h2 {
+main h2 {
   @apply clear-both my-4 text-2xl font-bold text-stone-600;
 }
-h3 {
+main h3 {
   @apply clear-both my-4 text-xl font-bold text-stone-600;
 }
-h4 {
+main h4 {
   @apply my-4 text-lg font-bold;
 }
-p {
+main p {
   @apply my-4;
 }
-article > p:first-child,
-p.lead {
+main article > p:first-child,
+main p.lead {
   @apply text-2xl;
 }
-ol {
+main ol {
   @apply my-4 list-decimal;
 }
-ol[type="A"] {
+main ol[type="A"] {
   list-style: upper-alpha;
 }
-ul {
+main ul {
   @apply my-4 list-disc pl-10;
 }
-table {
+main table {
   @apply not-italic;
 }
-thead {
+main thead {
   @apply align-bottom;
 }
-tbody {
+main tbody {
   @apply border-t-2 border-b-2 border-gray-300;
 }
-th,
-td {
+main th,
+main td {
   @apply border-b border-gray-300 px-2 py-1;
 }
-.list-group {
+main .list-group {
   @apply pl-0;
 }
-.size-medium {
+main .size-medium {
   @apply ml-4 max-w-xl;
   max-width: 15rem;
 }
-.fright,
-.alignright {
+main .fright,
+main .alignright {
   @apply float-right clear-right mr-0 ml-8;
 }
-.fleft,
-.alignleft {
+main .fleft,
+main .alignleft {
   @apply float-left clear-left ml-0 mr-8;
 }
-.clear-left {
+main .clear-left {
   clear: left;
 }
-.clear-right {
+main .clear-right {
   clear: right;
 }
-.clear-both {
+main .clear-both {
   clear: both;
 }
-.group__inner-container {
+main .group__inner-container {
   @apply flex flex-wrap items-start justify-around;
 }
-.group__inner-container > * {
+main .group__inner-container > * {
   @apply my-8 text-center;
 }
-figure {
+main figure {
   @apply mb-4 flex max-w-sm flex-col items-center justify-center rounded border border-solid border-gray-400 bg-white p-1 italic;
 }
-figure.table {
+main figure.table {
   @apply w-full border-none;
 }
-.alignfull > table {
+main .alignfull > table {
   @apply w-full;
 }
-figcaption {
+main figcaption {
   @apply p-2 pt-1 text-sm;
 }
-.simple,
-.simple > figure {
+main .simple,
+main .simple > figure {
   @apply rounded-none border-none bg-transparent p-0;
 }
-.simple figcaption {
+main .simple figcaption {
   @apply pl-0 pb-0;
 }
-img {
+main img {
   @apply block max-w-full;
 }
-.alignfull,
-.alignwide {
+main .alignfull,
+main .alignwide {
   @apply mx-auto max-w-full;
 }
-.text-center {
+main .text-center {
   text-align: center;
 }
-.sm {
+main .sm {
   @apply text-sm text-red-700;
 }
-.buttons {
+main .buttons {
   @apply flow-root;
 }
-.buttons > div {
+main .buttons > div {
   @apply float-left mr-8;
 }
-.button a,
-.btn a,
-button.btn {
+main .button a,
+main .btn a,
+main button.btn {
   @apply inline-block rounded border-0 border-solid border-transparent py-2 px-3 text-center align-middle no-underline transition duration-150 ease-in-out hover:brightness-125;
 }
-.button a,
-.btn-primary a,
-button.btn {
+main .button a,
+main .btn-primary a,
+main button.btn {
   @apply bg-[color:var(--color-h1)] text-white;
 }
-details {
+main details {
   @apply my-8 border border-gray-300 bg-white;
 }
-details > * {
+main details > * {
   @apply mx-4;
 }
-details > summary {
+main details > summary {
   @apply relative m-0 block cursor-pointer border-0 border-l-2 border-b border-gray-600 bg-gray-200 p-4 pr-14 text-left text-lg outline-none hover:bg-gray-300;
 }
-details > summary::after {
+main details > summary::after {
   @apply absolute top-4 right-4 text-xl content-["\2795"];
 }
-details[open] > summary::after {
+main details[open] > summary::after {
   @apply content-["\2796"];
 }
-summary::-webkit-details-marker {
+main summary::-webkit-details-marker {
   @apply hidden;
 }
-.list-group {
+main .list-group {
   @apply mb-5 overflow-hidden rounded-sm border-0 bg-gray-50 p-0 shadow;
 }
-.list-group > .footer,
-.list-group > footer {
+main .list-group > .footer,
+main .list-group > footer {
   @apply -mx-4 -mb-4 border-t border-gray-200 bg-gray-100 py-2 px-4 text-right font-bold;
 }
-.list-group > li {
+main .list-group > li {
   @apply relative -mb-px block border border-gray-200 bg-gray-50 py-2 px-4;
 }
-.list-group-heading:first-child,
-.list-group-item:first-child {
+main .list-group-heading:first-child,
+main .list-group-item:first-child {
   @apply rounded-t-sm;
 }
-.list-group-heading:last-child,
-.list-group-item:last-child {
+main .list-group-heading:last-child,
+main .list-group-item:last-child {
   @apply mb-0 rounded-b-sm;
 }
-.list-group-heading {
+main .list-group-heading {
   @apply text-sm font-bold uppercase text-gray-700;
 }
-a.list-group-item {
+main a.list-group-item {
   @apply text-gray-700;
 }
-a.list-group-item .list-group-item-heading {
+main a.list-group-item .list-group-item-heading {
   @apply text-gray-800;
 }
-a.list-group-item:focus,
-a.list-group-item:hover {
+main a.list-group-item:focus,
+main a.list-group-item:hover {
   @apply bg-gray-100 text-gray-700 no-underline;
 }
-.btn[disabled],
-.btn.disabled,
-.list-group-item.disabled,
-.list-group-item.disabled:focus,
-.list-group-item.disabled:hover {
+main .btn[disabled],
+main .btn.disabled,
+main .list-group-item.disabled,
+main .list-group-item.disabled:focus,
+main .list-group-item.disabled:hover {
   @apply cursor-not-allowed bg-gray-300 text-gray-500;
 }
-.list-group-item.disabled .list-group-item-text,
-.list-group-item.disabled:focus .list-group-item-text,
-.list-group-item.disabled:hover .list-group-item-text {
+main .list-group-item.disabled .list-group-item-text,
+main .list-group-item.disabled:focus .list-group-item-text,
+main .list-group-item.disabled:hover .list-group-item-text {
   @apply text-gray-500;
 }
-.list-group-item.active,
-.list-group-item.active:focus,
-.list-group-item.active:hover {
+main .list-group-item.active,
+main .list-group-item.active:focus,
+main .list-group-item.active:hover {
   @apply z-10 border-[color:var(--color-h1)] bg-[color:var(--color-h1)] text-white;
 }
-.list-group-item.active .list-group-item-text,
-.list-group-item.active:focus .list-group-item-text,
-.list-group-item.active:hover .list-group-item-text {
+main .list-group-item.active .list-group-item-text,
+main .list-group-item.active:focus .list-group-item-text,
+main .list-group-item.active:hover .list-group-item-text {
   @apply text-blue-300;
 }
-.list-group-item-heading {
+main .list-group-item-heading {
   @apply mt-0 mb-1;
 }
-.list-group-item-text {
+main .list-group-item-text {
   @apply mb-1 leading-tight;
 }
-.card {
+main .card {
   @apply mb-4 overflow-hidden rounded-sm border-none bg-gray-50 p-4 shadow;
 }
-.card > h2:first-child {
+main .card > h2:first-child {
   @apply -m-4 mb-0 bg-[color:var(--color-h2)] py-2 px-4 text-white;
 }
-.card > h3:first-child {
+main .card > h3:first-child {
   @apply -m-4 mb-0 bg-[color:var(--color-h3)] py-2 px-4 text-white;
 }
-.card > h2:first-child + *,
-.card > h3:first-child + * {
+main .card > h2:first-child + *,
+main .card > h3:first-child + * {
   @apply mt-0;
 }
-.card > .footer,
-.card > footer {
+main .card > .footer,
+main .card > footer {
   @apply -m-4 mt-0 border-t border-gray-100 bg-gray-50 py-1 px-4 text-right font-bold;
 }
-.card .list-group {
+main .card .list-group {
   @apply -mx-4 shadow-none;
 }
-.card .list-group > .list-group-heading,
-.card .list-group > .list-group-item {
+main .card .list-group > .list-group-heading,
+main .card .list-group > .list-group-item {
   @apply rounded-none border-l-0;
 }
-.card > :first-child + .list-group {
+main .card > :first-child + .list-group {
   @apply mt-0;
 }
-.card .list-group:last-child {
+main .card .list-group:last-child {
   @apply -mb-4;
 }
-.list-group > h2:first-child {
+main .list-group > h2:first-child {
   @apply m-0 bg-[color:var(--color-h2)] py-2 px-4 text-white;
 }
-.list-group > h3:first-child {
+main .list-group > h3:first-child {
   @apply m-0 bg-[color:var(--color-h3)] py-2 px-4 text-white;
 }
-label {
+main label {
   @apply block pt-4 pb-1 font-bold;
 }
-input,
-.form-control,
-select,
-textarea {
+main input,
+main .form-control,
+main select,
+main textarea {
   @apply block w-full rounded-sm border border-gray-200 bg-gray-50 bg-none py-2 px-4 text-base leading-6 text-black text-opacity-80 transition-all;
 }
-.btn[disabled] {
+main .btn[disabled] {
   @apply cursor-wait;
 }

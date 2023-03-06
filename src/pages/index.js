@@ -41,17 +41,15 @@ const Anns = ({ dataReader }) =>
 
 const Events = ({ dataReader }) =>
   dataReader.isLoading
-    ? [...Array(4)].map(() => <EventLoader />)
+    ? [...Array(4)].map((_, i) => <EventLoader key={i} />)
     : dataReader.data.events
         .slice(0, 4)
         .map((d) => <Event key={d.StartDate + d.StartTime} {...d} />);
 
 const Products = ({ dataReader }) =>
-  dataReader.isLoading ? (
-    [...Array(6)].map(() => <ProductLoader />)
-  ) : (
-    dataReader.data.pubs.map((d) => <Product key={d.PubId} {...d} />)
-  );
+  dataReader.isLoading
+    ? [...Array(6)].map((_, i) => <ProductLoader key={i} />)
+    : dataReader.data.pubs.map((d) => <Product key={d.PubId} {...d} />);
 
 const HomePage = ({ data }) => {
   const dataReader = useData();
