@@ -16,34 +16,34 @@ const SocialMedia = () => {
       href="https://app.e2ma.net/app2/audience/signup/1808352/1403728/"
       label="Newsletters"
     >
-      <Icon use={Mail} />
+      <Icon scale={4} use={Mail} />
     </A>,
     <A key="facebook" href="https://www.facebook.com/DVRPC" label="Facebook">
-      <Icon use={Facebook} />
+      <Icon scale={4} use={Facebook} />
     </A>,
     <A key="twitter" href="https://www.twitter.com/DVRPC" label="Twitter">
-      <Icon use={Twitter} />
+      <Icon scale={4} use={Twitter} />
     </A>,
     <A
       key="instagram"
       href="https://www.instagram.com/dvrpc/"
       label="Instagram"
     >
-      <Icon use={Instagram} />
+      <Icon scale={4} use={Instagram} />
     </A>,
     <A
       key="linkedin"
       href="http://www.linkedin.com/company/delaware-valley-regional-planning-commission"
       label="LinkedIn"
     >
-      <Icon use={Linkedin} />
+      <Icon scale={4} use={Linkedin} />
     </A>,
     <A
       key="youtube"
       href="https://www.youtube.com/channel/UCEU8UI5_iGkVypHP93b5jLA"
       label="YouTube"
     >
-      <Icon use={Youtube} />
+      <Icon scale={4} use={Youtube} />
     </A>,
   ];
   return (
@@ -51,7 +51,7 @@ const SocialMedia = () => {
       {items.map((i) => (
         <li
           key={i.props.href}
-          className="-mr-2 block py-4 hover:text-[#0078ae] md:px-3"
+          className="-mr-2 block pt-2 pb-5 hover:text-[#0078ae] md:px-3"
         >
           {i}
         </li>

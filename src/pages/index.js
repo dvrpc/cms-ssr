@@ -63,7 +63,7 @@ const HomePage = ({ data }) => {
           alert.length ? (
             <div className="bg-black/50 text-center text-white">
               <div
-                className="container mx-auto py-6 px-8 text-justify"
+                className="container mx-auto py-6 px-8 text-left"
                 dangerouslySetInnerHTML={{ __html: alert }}
               />
             </div>
@@ -80,7 +80,7 @@ const HomePage = ({ data }) => {
       </Header>
       <main>
         <div className="flex justify-center bg-[#bbe2f2]">
-          <div className="container mx-8">
+          <div className="container px-8">
             <h3 className="text-3xl">
               <a
                 className="text-[#296591] no-underline hover:underline"
@@ -96,7 +96,7 @@ const HomePage = ({ data }) => {
         </div>
 
         <div className="flex justify-center bg-[#e4f5f7]">
-          <div className="container mx-8">
+          <div className="container px-8">
             <h3 className="text-3xl">
               <a
                 className="text-[#296591] no-underline hover:underline"

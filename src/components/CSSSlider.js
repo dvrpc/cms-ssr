@@ -29,24 +29,24 @@ const CSSSlider = ({ children = [] }) => {
           </li>
         ))}
       </ul>
-      <aside className="absolute top-1/2 -left-8 z-0 box-content h-4 w-full px-8">
+      <aside className="absolute top-[3.5rem] -left-8 z-0 box-content h-4 w-full px-8">
         {children.map((_, i) => (
           <label
             key={i}
             htmlFor={`slides_${i + 1}`}
-            className="before:content absolute -top-1/2 hidden cursor-pointer p-4 shadow-inner transition-shadow before:absolute before:-top-full before:-left-full hover:shadow"
+            className="before:content absolute -top-1/2 hidden cursor-pointer p-3 shadow-inner transition-shadow before:absolute before:-top-full before:-left-full hover:shadow"
           ></label>
         ))}
         <label
           htmlFor="slides_1"
-          className="before:content absolute -top-1/2 hidden cursor-pointer p-4 shadow-inner transition-shadow before:absolute before:-top-full before:-left-full hover:shadow"
+          className="before:content absolute -top-1/2 hidden cursor-pointer p-3 shadow-inner transition-shadow before:absolute before:-top-full before:-left-full hover:shadow"
         ></label>
         <label
           htmlFor={`slides_${children.length}`}
-          className="before:content absolute -top-1/2 hidden cursor-pointer p-4 shadow-inner transition-shadow before:absolute before:-top-full before:-left-full hover:shadow"
+          className="before:content absolute -top-1/2 hidden cursor-pointer p-3 shadow-inner transition-shadow before:absolute before:-top-full before:-left-full hover:shadow"
         ></label>
       </aside>
-      <div className="absolute -bottom-2 left-1/2 z-20 mb-2.5 select-none text-center text-[0] leading-none">
+      <div className="absolute -bottom-2 z-20 mb-2.5 select-none text-center text-[0] leading-none">
         <div className="-ml-full">
           {children.map((_, i) => (
             <label
