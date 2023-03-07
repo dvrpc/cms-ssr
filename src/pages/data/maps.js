@@ -63,7 +63,9 @@ const Data = () => {
           }}
         >
           <div className="container mx-auto my-auto flex p-8">
-            <h1 className="text-white">Maps & Applications</h1>
+            <h1 className="mt-0 text-4xl font-bold text-white">
+              Maps & Applications
+            </h1>
           </div>
           <img
             className="absolute -right-[20%] w-3/4 md:-right-[10%] md:-top-[30%] md:w-1/3"
@@ -145,7 +147,7 @@ const Data = () => {
           </p>
         </div>
         <div class="flex lg:ml-16 lg:grow-[999] lg:basis-0">
-          <div className="flex flex-col space-y-6 divide-[#53a3c7] divide-y">
+          <div className="flex flex-col space-y-6 divide-y divide-[#53a3c7]">
             {!filteredApps.length && (
               <div className="mt-[1rem] pt-8 text-gray-300">
                 No applications matching your search...
