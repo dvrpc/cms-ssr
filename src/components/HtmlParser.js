@@ -44,6 +44,9 @@ const HtmlParser = ({ html, data }) => (
       a: ({ children, class: className, href, style, ...props }) => {
         if (href === undefined) return;
         href = href.replace("https://cms.dvrpc.org/", "https://cdn.dvrpc.org/");
+        if (/^\/sites\/default\/files\//.test(href)) {
+          href = "https://cdn.dvrpc.org" + href;
+        }
         //Relative URLs (with no extension) are assumed to be internal links
         if (href.startsWith("/") && href.indexOf(".") === -1) {
           return (
