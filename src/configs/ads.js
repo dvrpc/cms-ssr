@@ -17,7 +17,7 @@ export default [
     src: "https://www.dvrpc.org/img/gatsby/C2050_WebPlacard[FINAL].png",
     href: "https://www.dvrpc.org/Plan/",
     label: "Connections 2050",
-    style: { height: 125 },
+    style: { width: 200 },
   },
   {
     src: "https://www.dvrpc.org/img/gatsby/webplacard.png",
