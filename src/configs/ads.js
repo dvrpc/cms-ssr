@@ -7,10 +7,11 @@ export default [
     new_window: true,
   },
   {
-    href: "/COVID19Resources/",
-    src: "https://www.dvrpc.org/img/5545_CovidNoDVRPCLogo-01.png",
-    label: "COVID-19 Resources",
-    style: { width: 176 },
+    href: "https://storymaps.arcgis.com/stories/b1a84ab9dccd4175944132deefc93371",
+    src: "https://www.dvrpc.org/img/gatsby/7799_AR-FY22_WebPlacard_FINAL.png",
+    label: "Annual Report",
+    style: { width: 220 },
+    new_window: true,
   },
   {
     src: "https://www.dvrpc.org/img/gatsby/C2050_WebPlacard[FINAL].png",
@@ -25,9 +26,9 @@ export default [
     style: { width: 230 },
   },
   {
-    href: "/News/",
-    src: "https://www.dvrpc.org/img/gatsby/5546_DVRPCnews.png",
-    label: "DVRPC News",
-    style: { width: 176 },
+    href: "/Economic/",
+    src: "https://www.dvrpc.org/img/gatsby/1412_Economic-02.png",
+    label: "Economic Development District",
+    style: { width: 200 },
   },
 ];
