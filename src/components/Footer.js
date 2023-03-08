@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <>
       <footer className="flex justify-center bg-white">
-        <div className="container">
+        <div className="container px-8 py-8">
           <FooterAds />
         </div>
       </footer>
