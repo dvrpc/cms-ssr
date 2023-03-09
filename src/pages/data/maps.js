@@ -46,7 +46,9 @@ const Data = () => {
 
   const filteredApps = !filter
     ? apps
-    : apps.filter((app) => app.Title.toLowerCase().includes(filter));
+    : apps.filter((app) =>
+        app.Title.toLowerCase().includes(filter.toLowerCase())
+      );
 
   return (
     <div className="flex flex-col">
@@ -127,7 +129,7 @@ const Data = () => {
               type="search"
               name="q"
               autoFocus
-              className="w-full rounded-lg text-xl leading-none outline-none placeholder:text-center placeholder:text-lg placeholder:font-bold placeholder:tracking-wider placeholder:text-[#030a18]/90 md:block"
+              className="block w-full rounded-lg border border-gray-200 bg-gray-50 bg-none py-2 px-4 text-xl leading-none text-black text-opacity-80 outline-none transition-all placeholder:text-center placeholder:text-lg placeholder:font-bold placeholder:tracking-wider placeholder:text-[#030a18]/90"
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
             />
