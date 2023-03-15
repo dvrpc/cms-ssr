@@ -7,7 +7,7 @@ const Event = (props) => {
   return (
     <div
       key={props.StartDate + props.Title}
-      className="-ml-4 flex w-full items-center gap-2 divide-x divide-gray-400 px-4 pt-0 pb-8 md:w-auto md:flex-1"
+      className="-ml-4 flex w-full items-center gap-4 divide-x divide-gray-400 px-4 pt-0 pb-8 md:w-auto md:flex-1"
     >
       <footer className="flex flex-col items-center">
         <p className="m-0 text-2xl leading-none">
@@ -17,7 +17,7 @@ const Event = (props) => {
           {props.StartTime !== "00:00" && start}
         </span>
       </footer>
-      <h4 className="m-0 pl-2 font-normal leading-6">
+      <h4 className="m-0 pl-2 font-normal">
         {props.Info ? (
           <a className="underline" href={props.Info}>
             {props.Title}

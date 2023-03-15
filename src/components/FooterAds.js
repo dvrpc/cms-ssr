@@ -3,7 +3,7 @@ import ads from "../configs/ads";
 
 const FooterAds = () => {
   return (
-    <div className="-mx-4 flex flex-col items-stretch gap-y-8 divide-x divide-gray-400 md:flex-row">
+    <div className="-mx-4 flex flex-col items-stretch gap-y-8 divide-gray-400 md:flex-row md:divide-x">
       {ads.map((i) => (
         <div
           key={i.href}

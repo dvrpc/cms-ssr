@@ -7,7 +7,7 @@ const Header = ({ bgStyles, alert, children }) => {
     <header className="bg-white">
       <LogoBar />
       <div
-        className="relative h-[var(--height-banner)] w-full bg-cover bg-bottom"
+        className="relative h-[var(--height-banner)] w-full bg-cover bg-[center_75%]"
         style={{
           backgroundImage: "var(--bg-cover-image)",
           ...bgStyles,
@@ -19,7 +19,7 @@ const Header = ({ bgStyles, alert, children }) => {
             className="relative mb-4 bg-gradient-to-r from-white/80 via-white/80 to-transparent md:w-min md:pr-32"
             action="https://www.dvrpc.org/Search/"
           >
-            <div className="pointer-events-none absolute flex h-full w-12 items-center justify-center">
+            <div className="pointer-events-none absolute flex h-full w-10 items-center justify-center">
               <Icon
                 use={Search}
                 className="inline-block h-6 flex-shrink-0 select-none text-gray-600"
@@ -30,7 +30,7 @@ const Header = ({ bgStyles, alert, children }) => {
                 name="q"
                 placeholder="Search..."
                 aria-label="Search"
-                className="m-0 block w-72 min-w-0 border-0 border-none bg-transparent p-2 pl-12 placeholder-gray-600 focus:outline-none"
+                className="m-0 block w-72 min-w-0 border-0 border-none bg-transparent p-2 pl-10 md:pl-12 placeholder-gray-600 focus:outline-none"
               />
             </div>
           </form>

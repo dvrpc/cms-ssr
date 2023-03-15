@@ -9,17 +9,18 @@ input:nth-of-type(1):checked ~ aside > label:nth-of-type(0) {
   left: 0;
   right: auto;
   transform: rotate(45deg);
-  box-shadow: inset 2px -2px 0 1px rgb(156 163 175);
+  box-shadow: inset 2px -2px 0 1px rgba(0 0 0 / 0.5);
 }
-input:nth-of-type(1):checked ~ aside > label:nth-of-type(0):hover {
-  box-shadow: inset 2px -2px 0 2px rgb(156 163 175);
+input:nth-of-type(1):checked ~ aside > label:nth-of-type(0):hover,
+input:nth-of-type(1):checked ~ aside > label:nth-of-type(2):hover {
+  box-shadow: inset 2px -2px 0 2px rgba(0 0 0 / 0.5);
 }
 input:nth-of-type(1):checked ~ aside > label:nth-of-type(2) {
   display: block;
   right: 0;
   left: auto;
   transform: rotate(225deg);
-  box-shadow: inset 2px -2px 0 1px rgb(156 163 175);
+  box-shadow: inset 2px -2px 0 1px rgba(0 0 0 / 0.5);
 }
 input:nth-of-type(2):checked ~ ul li:first-of-type {
   margin-left: -100%;
@@ -32,17 +33,18 @@ input:nth-of-type(2):checked ~ aside > label:nth-of-type(1) {
   left: 0;
   right: auto;
   transform: rotate(45deg);
-  box-shadow: inset 2px -2px 0 1px rgb(156 163 175);
+  box-shadow: inset 2px -2px 0 1px rgba(0 0 0 / 0.5);
 }
-input:nth-of-type(2):checked ~ aside > label:nth-of-type(1):hover {
-  box-shadow: inset 2px -2px 0 2px rgb(156 163 175);
+input:nth-of-type(2):checked ~ aside > label:nth-of-type(1):hover,
+input:nth-of-type(2):checked ~ aside > label:nth-of-type(3):hover {
+  box-shadow: inset 2px -2px 0 2px rgba(0 0 0 / 0.5);
 }
 input:nth-of-type(2):checked ~ aside > label:nth-of-type(3) {
   display: block;
   right: 0;
   left: auto;
   transform: rotate(225deg);
-  box-shadow: inset 2px -2px 0 1px rgb(156 163 175);
+  box-shadow: inset 2px -2px 0 1px rgba(0 0 0 / 0.5);
 }
 input:nth-of-type(3):checked ~ ul li:first-of-type {
   margin-left: -200%;
@@ -55,15 +57,16 @@ input:nth-of-type(3):checked ~ aside > label:nth-of-type(2) {
   left: 0;
   right: auto;
   transform: rotate(45deg);
-  box-shadow: inset 2px -2px 0 1px rgb(156 163 175);
+  box-shadow: inset 2px -2px 0 1px rgba(0 0 0 / 0.5);
 }
-input:nth-of-type(3):checked ~ aside > label:nth-of-type(2):hover {
-  box-shadow: inset 2px -2px 0 2px rgb(156 163 175);
+input:nth-of-type(3):checked ~ aside > label:nth-of-type(2):hover,
+input:nth-of-type(3):checked ~ aside > label:nth-of-type(4):hover {
+  box-shadow: inset 2px -2px 0 2px rgba(0 0 0 / 0.5);
 }
 input:nth-of-type(3):checked ~ aside > label:nth-of-type(4) {
   display: block;
   right: 0;
   left: auto;
   transform: rotate(225deg);
-  box-shadow: inset 2px -2px 0 1px rgb(156 163 175);
+  box-shadow: inset 2px -2px 0 1px rgba(0 0 0 / 0.5);
 }

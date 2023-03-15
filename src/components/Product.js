@@ -2,14 +2,19 @@ import React from "react";
 
 const Product = (props) => (
   <div key={props.PubId} className="my-4 flex w-full items-center gap-4 pr-6">
-    <img
-      className="w-[100.5px] border border-solid border-gray-400 bg-white"
-      src={`https://www.dvrpc.org/asp/pubs/201px/${props.PubId}.png`}
-      alt="cover"
-    />
+    <a
+      className="shrink-0"
+      href={`https://www.dvrpc.org/Products/${props.PubId}`}
+    >
+      <img
+        className="w-[100.5px] border border-solid border-gray-400 bg-white"
+        src={`https://www.dvrpc.org/asp/pubs/201px/${props.PubId}.png`}
+        alt="cover"
+      />
+    </a>
     <h4 className="m-0 text-lg font-normal">
       <a
-        className="underline"
+        className="no-underline"
         href={`https://www.dvrpc.org/Products/${props.PubId}`}
       >
         {props.Title}

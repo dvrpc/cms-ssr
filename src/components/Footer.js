@@ -13,7 +13,7 @@ const Footer = () => {
           <FooterAds />
         </div>
       </footer>
-      <footer className="flex justify-center bg-[#3a3a3a] text-white">
+      <footer className="flex justify-center bg-[#3a3a3a] text-sm text-white">
         <div className="container px-8 py-4">
           <Link to="/" className="leading-none no-underline">
             <Icon use={DvrpcMini} scale={8} fillColor="#fff" />
@@ -25,7 +25,7 @@ const Footer = () => {
             <br />
             215.592.1800
           </p>
-          <div className="md:flex md:justify-between">
+          <div className="mt-2 md:flex md:justify-between">
             <ul className="m-0 list-none gap-2 divide-stone-400 p-0 md:flex md:divide-x">
               {quicklinks.map((item, i) => {
                 return (

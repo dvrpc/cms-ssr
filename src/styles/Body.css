@@ -17,9 +17,6 @@ main hr {
 main a {
   @apply text-inherit underline;
 }
-main h1 {
-  @apply mt-0 text-4xl font-bold text-[color:var(--color-h1)];
-}
 main h2 {
   @apply clear-both my-4 text-2xl font-bold text-stone-600;
 }
@@ -38,6 +35,7 @@ main p.lead {
 }
 main ol {
   @apply my-4 list-decimal;
+  list-style-position: inside;
 }
 main ol[type="A"] {
   list-style: upper-alpha;
@@ -54,9 +52,12 @@ main thead {
 main tbody {
   @apply border-t-2 border-b-2 border-gray-300;
 }
+main tr>*:first-child {
+  @apply pl-0;
+}
 main th,
 main td {
-  @apply border-b border-gray-300 px-2 py-1;
+  @apply border-b border-gray-300 px-2 py-1 text-left leading-5;
 }
 main .list-group {
   @apply pl-0;
@@ -67,7 +68,7 @@ main .size-medium {
 }
 main .fright,
 main .alignright {
-  @apply float-right clear-right mr-0 ml-8;
+  @apply float-right clear-right mr-0 ml-8 mt-2;
 }
 main .fleft,
 main .alignleft {
@@ -92,7 +93,7 @@ main figure {
   @apply mb-4 flex max-w-sm flex-col items-center justify-center rounded border border-solid border-gray-400 bg-white p-1 italic;
 }
 main figure.table {
-  @apply w-full border-none;
+  @apply w-full border-none p-0;
 }
 main .alignfull > table {
   @apply w-full;
@@ -137,19 +138,19 @@ main button.btn {
   @apply bg-[color:var(--color-h1)] text-white;
 }
 main details {
-  @apply my-8 border border-gray-300 bg-white;
+  @apply my-2 border border-gray-300 bg-white;
 }
 main details > * {
   @apply mx-4;
 }
 main details > summary {
-  @apply relative m-0 block cursor-pointer border-0 border-l-2 border-b border-gray-600 bg-gray-200 p-4 pr-14 text-left text-lg outline-none hover:bg-gray-300;
+  @apply relative m-0 block cursor-pointer border-0 bg-gray-200 p-4 pr-14 text-left text-lg outline-none hover:bg-gray-300;
 }
 main details > summary::after {
-  @apply absolute top-4 right-4 text-xl content-["\2795"];
+  @apply absolute top-4 right-4 text-3xl leading-none text-gray-500 content-["\002B"];
 }
 main details[open] > summary::after {
-  @apply content-["\2796"];
+  @apply content-["\2212"];
 }
 main summary::-webkit-details-marker {
   @apply hidden;
@@ -217,7 +218,7 @@ main .card {
   @apply mb-4 overflow-hidden rounded-sm border-none bg-gray-50 p-4 shadow;
 }
 main .card > h2:first-child {
-  @apply -m-4 mb-0 bg-[color:var(--color-h2)] py-2 px-4 text-white;
+  @apply -m-4 mb-2 bg-[color:var(--color-h2)] py-2 px-4 text-white;
 }
 main .card > h3:first-child {
   @apply -m-4 mb-0 bg-[color:var(--color-h3)] py-2 px-4 text-white;
