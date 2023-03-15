@@ -50,6 +50,12 @@ exports.createSchemaCustomization = ({ actions }) => {
         style: String
         class: String
       }
+      type Body {
+        processed: String
+      }
+      type block_content__alert_banner implements Node {
+        body: Body
+      }
     `;
   createTypes(typeDefs);
 };
