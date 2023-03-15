@@ -48,7 +48,7 @@ const rootNavArr = [
   },
   {
     link: "Livable Communities",
-    href: "/LandUseEnvironment/",
+    href: "/LivableCommunities/",
   },
   {
     link: "Planning Assistance",
