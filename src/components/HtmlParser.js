@@ -79,7 +79,7 @@ const HtmlParser = ({ html, data }) => (
       h2: genericElement("h2"),
       h3: genericElement("h3"),
       hr: emptyElement("hr"),
-      iframe: emptyElement("iframe"),
+      iframe: genericElement("iframe"),
       img: (attribs) => {
         const { children, class: className, src, style, ...attrs } = attribs;
         return (
