@@ -11,10 +11,8 @@ import CSSSlider from "../components/CSSSlider";
 
 import "../styles/Body.css";
 
-const useData = () =>
-  useSWR("https://www.dvrpc.org/asp/homepage/default2.aspx", (...args) =>
-    fetch(...args).then((res) => res.json())
-  );
+const useData = (url) =>
+  useSWR(url, (...args) => fetch(...args).then((res) => res.json()));
 
 export const Head = () => {
   return (
@@ -33,8 +31,8 @@ const Anns = ({ dataReader }) =>
     <AnnouncementLoader />
   ) : (
     <CSSSlider dimensions="w-full md:w-96 h-40">
-      {dataReader.data.anns.map((d) => {
-        return <Announcement key={d.guid["#text"]} {...d} />;
+      {dataReader.data.map((d) => {
+        return <Announcement key={d.Id} {...d} />;
       })}
     </CSSSlider>
   );
@@ -42,17 +40,21 @@ const Anns = ({ dataReader }) =>
 const Events = ({ dataReader }) =>
   dataReader.isLoading
     ? [...Array(4)].map((_, i) => <EventLoader key={i} />)
-    : dataReader.data.events
-        .slice(0, 4)
-        .map((d) => <Event key={d.StartDate + d.StartTime} {...d} />);
+    : dataReader.data.map((d) => (
+        <Event key={d.StartDate + d.StartTime} {...d} />
+      ));
 
 const Products = ({ dataReader }) =>
   dataReader.isLoading
     ? [...Array(6)].map((_, i) => <ProductLoader key={i} />)
-    : dataReader.data.pubs.map((d) => <Product key={d.PubId} {...d} />);
+    : dataReader.data.map((d) => <Product key={d.Id} {...d} />);
 
 const HomePage = ({ data }) => {
-  const dataReader = useData();
+  const annsReader = useData("https://www.dvrpc.org/api/announcements?limit=3");
+  const eventsReader = useData(
+    "https://www.dvrpc.org/asp/homepage/getCalendarItems.aspx?maxresults=4"
+  );
+  const productsReader = useData("https://www.dvrpc.org/api/products?limit=6");
 
   const alert = data.blockContentAlertBanner?.body?.processed ?? "";
   return (
@@ -74,7 +76,7 @@ const HomePage = ({ data }) => {
       >
         <div className="w-min bg-gradient-to-r from-white/80 via-white/80 to-transparent md:pr-32">
           <div className="w-full p-4 md:w-96 md:pl-12">
-            <Anns dataReader={dataReader} />
+            <Anns dataReader={annsReader} />
           </div>
         </div>
       </Header>
@@ -90,7 +92,7 @@ const HomePage = ({ data }) => {
               </a>
             </h3>
             <div className="flex-auto items-center justify-between md:flex">
-              <Events dataReader={dataReader} />
+              <Events dataReader={eventsReader} />
             </div>
           </div>
         </div>
@@ -106,7 +108,7 @@ const HomePage = ({ data }) => {
               </a>
             </h3>
             <div className="grid-cols-3 pb-8 md:grid">
-              <Products dataReader={dataReader} />
+              <Products dataReader={productsReader} />
             </div>
           </div>
         </div>
