@@ -5,7 +5,7 @@ html {
   --color-h3: #0078ae;
   --color-highlight: #0078ae;
   --color-body: rgb(17 24 39); /* text-gray-900 */
-  --bg-cover-image: url(https://www.dvrpc.org/static/homepagebanner_2560-44e1b03151f728f813d044006d123932.jpg);
+  --bg-cover-image: url(https://www.dvrpc.org/static/homepagebanner.avif);
   --height-banner: auto;
 }
 main {
@@ -52,7 +52,7 @@ main thead {
 main tbody {
   @apply border-t-2 border-b-2 border-gray-300;
 }
-main tr>*:first-child {
+main tr > *:first-child {
   @apply pl-0;
 }
 main th,
