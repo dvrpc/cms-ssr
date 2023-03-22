@@ -166,8 +166,8 @@ const Data = () => {
                 </a>
                 <div className="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
                   <img
-                    className="w-[201px] object-cover"
-                    src={`https://www.dvrpc.org/asp/pubs/201px/${app.Id}.png`}
+                    className="w-[402px] border border-gray-300 object-cover sm:max-w-[40%]"
+                    src={`https://www.dvrpc.org/asp/pubs/402px/${app.Id}.png`}
                   ></img>
                   <span className="text-gray-400">
                     {app.Abstract
