@@ -10,8 +10,6 @@ const CommitteePage = ({ serverData }) => {
     "Meeting Frequency": serverData.Meetingfreq,
   };
 
-  console.log(serverData);
-
   return (
     <Layout>
       <div className="flex flex-col space-y-2">
