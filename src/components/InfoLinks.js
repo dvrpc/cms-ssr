@@ -5,7 +5,7 @@ const InfoLinks = () => {
   return (
     <aside
       style={{ borderImage: "linear-gradient(to left, #aaa, #fff) 1" }}
-      className="border-t-2 py-4"
+      className="border-t-2 py-4 hidden sm:block"
     >
       <div className="grid auto-cols-fr grid-flow-col">
         <a href="https://www.dvrpc.org/Calendar/" className="block text-center no-underline hover:underline">
@@ -16,7 +16,7 @@ const InfoLinks = () => {
           <Icon use={News} className="mx-auto" scale={8} fillColor="#656565" />
           News
         </a>
-        <a href="https://www.dvrpc.org/Data/" className="block text-center no-underline hover:underline">
+        <a href="https://www.dvrpc.org/Products/Search/" className="block text-center no-underline hover:underline">
           <Icon use={Products} className="mx-auto" scale={8} fillColor="#656565" />
           Releases
         </a>
