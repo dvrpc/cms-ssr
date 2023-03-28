@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../../layouts";
+import { default as Layout } from "../../../layouts/MigrationLayout";
 
 const AgendaPage = ({ serverData }) => {
   const date = new Date(serverData.Meetingdate);
