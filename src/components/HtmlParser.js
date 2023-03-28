@@ -86,7 +86,11 @@ const HtmlParser = ({ html, data }) => (
           <img
             className={className}
             loading="lazy"
-            src={`https://cdn.dvrpc.org${attribs.src}`}
+            src={
+              attribs.src.startsWith("/")
+                ? `https://cdn.dvrpc.org${attribs.src}`
+                : attribs.src
+            }
             style={parseInlineStyle(style)}
             {...attrs}
           />

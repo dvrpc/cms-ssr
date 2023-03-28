@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import { isMatch, matcher } from "matcher";
 import DrupalPage from "../components/DrupalPage";
 import DataPage from "../components/DataPage";
+import HeadTemplate from "../components/HeadTemplate";
 
 const templates = {
   "/**": DrupalPage,
@@ -19,7 +20,9 @@ const themeConfig = [
     "--bg-cover-image",
     (val) =>
       val
-        .map((obj) => obj.uri?.url && `url(https://cdn.dvrpc.org${obj.uri?.url})`)
+        .map(
+          (obj) => obj.uri?.url && `url(https://cdn.dvrpc.org${obj.uri?.url})`
+        )
         .reverse()
         .join(", "),
   ],
@@ -28,7 +31,9 @@ const themeConfig = [
     "--bg-cover-image",
     (val) =>
       val
-        .map((obj) => obj.uri?.url && `url(https://cdn.dvrpc.org${obj.uri?.url})`)
+        .map(
+          (obj) => obj.uri?.url && `url(https://cdn.dvrpc.org${obj.uri?.url})`
+        )
         .reverse()
         .join(", "),
   ],
@@ -69,17 +74,11 @@ export const Head = ({ data }) => {
       relationships: { field_theme },
     },
   } = data;
-  return (
-    <>
-      <title>{title} | DVRPC</title>
-      {body?.summary && <meta name="description" content={body?.summary} />}
-      <style>
-        {`:root {
-            ${themeToCustomVars(field_theme, themeConfig)}
-          }`}
-      </style>
-    </>
-  );
+  return HeadTemplate({
+    title,
+    summary: body?.summary,
+    css: themeToCustomVars(field_theme, themeConfig),
+  });
 };
 
 export const query = graphql`
