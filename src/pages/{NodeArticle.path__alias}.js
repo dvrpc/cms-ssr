@@ -4,7 +4,6 @@ import DrupalPage from "../components/DrupalPage";
 import HeadTemplate from "../components/HeadTemplate";
 
 const Page = ({ data: { nodePage } }) => {
-  console.log(nodePage.body.processed);
   nodePage.relationships = {
     field_staff_contact: {
       field_display_name: "Alison Hastings",
