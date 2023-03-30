@@ -7,21 +7,28 @@ const SearchPage = () => {
   const querySet = query.length ? new Set(query.split(",")) : new Set();
   const keywordRef = useRef(null);
   const [products, setProducts] = useState([]);
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     (async () => {
       if (!query) return;
-      const req = await fetch(
-        `https://www.dvrpc.org/api/Products?keywords=${params}`
-      );
-      const res = await req.json();
-      setProducts(res);
+      const [products, results] = await Promise.all([
+        fetch(`https://www.dvrpc.org/api/Products?keywords=${query}`).then(
+          (res) => res.json()
+        ),
+        fetch(`https://www.dvrpc.org/api/search?q=${query}`).then((res) =>
+          res.json()
+        ),
+      ]);
+      setProducts(products);
+      setResults(results.items);
     })();
   }, [query]);
+  console.log(results);
 
   return (
-    <>
-      <div className="mb-2 overflow-hidden rounded-sm bg-white p-4">
+    <div className="p-4">
+      <div className="mb-2 overflow-hidden rounded-sm bg-white">
         <h1>Products Search</h1>
         <p>
           The DVRPC Products Database is continuously updated as reports and
@@ -31,9 +38,9 @@ const SearchPage = () => {
           published in the last year.
         </p>
       </div>
-      <hr className="mx-4" />
+      <hr />
       <form
-        className="mb-2 overflow-hidden rounded-sm bg-white p-4"
+        className="mb-2 overflow-hidden rounded-sm bg-white"
         onSubmit={(e) => {
           e.preventDefault();
           if (!querySet.has(keywordRef.current.value))
@@ -65,24 +72,35 @@ const SearchPage = () => {
             ))}
         </div>
       </form>
-      <div className="mb-2 overflow-hidden rounded-sm bg-white p-4">
-        <span className="flex space-x-2">
-          <h1>Results</h1>
-          <h3>{!products.length ? "No" : products.length} result(s) found</h3>
-        </span>
 
-        {products.length > 0 &&
-          products.map((product) => (
-            <div className="flex">
-              <img
-                src={`https://www.dvrpc.org/asp/pubs/100px/${product.Id}.png`}
-                className="w-[100px]"
-              ></img>
-              {product.Title}
-            </div>
-          ))}
+      <div className="mb-2 grid grid-cols-2 overflow-hidden rounded-sm bg-white">
+        <div>
+          <h1>DVRPC Products</h1>
+          {products.length > 0 &&
+            products.map((product) => (
+              <div className="flex max-h-min text-sm">
+                <img
+                  src={`https://www.dvrpc.org/asp/pubs/100px/${product.Id}.png`}
+                  className="h-1/2 max-w-fit object-cover"
+                ></img>
+                {product.Title}
+              </div>
+            ))}
+        </div>
+        <div>
+          <h1>All Results</h1>
+          {products.length > 0 &&
+            results.map((result) => (
+              <div className="mb-4 space-y-1">
+                <a href={result.formattedUrl} className="text-lg font-bold">
+                  {result.title}
+                </a>
+                <div dangerouslySetInnerHTML={{ __html: result.htmlSnippet }} />
+              </div>
+            ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
