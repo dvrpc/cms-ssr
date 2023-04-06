@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const StaffRow = ({ emp }) => {
   return (
@@ -17,16 +17,7 @@ const StaffRow = ({ emp }) => {
   );
 };
 
-const StaffListPage = () => {
-  const [staff, setStaff] = useState([]);
-  useEffect(() => {
-    (async () => {
-      const req = await fetch("https://www.dvrpc.org/api/staff");
-      const res = await req.json();
-      setStaff(res);
-    })();
-  }, [setStaff]);
-
+const StaffListPage = ({ serverData }) => {
   return (
     <div>
       <h1>Staff List</h1>
@@ -36,7 +27,7 @@ const StaffListPage = () => {
       </a>
       <h1>Directors</h1>
       <div>
-        {staff
+        {serverData
           .filter((emp) => emp.Sortorder)
           .map((emp) => (
             <StaffRow emp={emp} />
@@ -44,7 +35,7 @@ const StaffListPage = () => {
       </div>
       <h1>Staff</h1>
       <div>
-        {staff
+        {serverData
           .filter((emp) => !emp.Sortorder)
           .map((emp) => (
             <StaffRow emp={emp} />
@@ -55,3 +46,22 @@ const StaffListPage = () => {
 };
 
 export default StaffListPage;
+
+export async function getServerData() {
+  try {
+    const res = await fetch(`https://www.dvrpc.org/api/staff`);
+    if (!res.ok) {
+      throw new Error("Response failed");
+    }
+
+    return {
+      props: await res.json(),
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      headers: {},
+      props: {},
+    };
+  }
+}
