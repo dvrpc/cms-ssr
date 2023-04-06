@@ -6,7 +6,7 @@ html {
   --color-highlight: #0078ae;
   --color-body: rgb(17 24 39); /* text-gray-900 */
   --bg-cover-image: url(https://www.dvrpc.org/static/homepagebanner.avif);
-  --height-banner: auto;
+  --height-banner: 400px;
 }
 main {
   @apply text-[color:var(--color-body)];

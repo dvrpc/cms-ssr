@@ -34,7 +34,7 @@ const ConnectWithUs = ({ title, location, fillColor = "#005780" }) => {
   ];
   return (
     <ul
-      className="flex list-none divide-x divide-current p-0 font-bold md:justify-end md:p-4"
+      className="mt-2 flex list-none divide-x divide-current whitespace-nowrap p-0 font-bold sm:m-0 md:justify-end md:p-4"
       style={{
         color: fillColor,
       }}
