@@ -88,7 +88,7 @@ const SearchPage = () => {
         </div>
         <div>
           <h1>All Results</h1>
-          {products.length > 0 &&
+          {results.items.length > 0 &&
             results.map((result) => (
               <div className="mb-4 space-y-1">
                 <a href={result.formattedUrl} className="text-lg font-bold">
