@@ -1,5 +1,4 @@
 import React from "react";
-import { default as Layout } from "../../../layouts/MigrationLayout";
 
 const AgendaPage = ({ serverData }) => {
   const date = new Date(serverData.Meetingdate);
@@ -7,38 +6,36 @@ const AgendaPage = ({ serverData }) => {
     serverData;
 
   return (
-    <Layout>
-      <div className="flex flex-col space-y-2">
-        <h1 className="text-2xl font-bold">{serverData.Committee.Name}</h1>
-        <b>
-          {date.toLocaleDateString("en-us", {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-          })}
-        </b>
-        {Object.keys(preface).map((key) => {
-          if (preface[key]) {
-            {
-              return /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g.test(
-                preface[key]
-              ) ? (
-                <>
-                  <a href={preface[key]}>{preface[key]}</a>
-                  <br />
-                </>
-              ) : (
-                <div>{preface[key]}</div>
-              );
-            }
-          }
+    <div className="flex flex-col space-y-2">
+      <h1 className="text-2xl font-bold">{serverData.Committee.Name}</h1>
+      <b>
+        {date.toLocaleDateString("en-us", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
         })}
-        <div
-          className="prose"
-          dangerouslySetInnerHTML={{ __html: serverData.Meetingdetail }}
-        />
-      </div>
-    </Layout>
+      </b>
+      {Object.keys(preface).map((key) => {
+        if (preface[key]) {
+          {
+            return /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g.test(
+              preface[key]
+            ) ? (
+              <>
+                <a href={preface[key]}>{preface[key]}</a>
+                <br />
+              </>
+            ) : (
+              <div>{preface[key]}</div>
+            );
+          }
+        }
+      })}
+      <div
+        className="prose"
+        dangerouslySetInnerHTML={{ __html: serverData.Meetingdetail }}
+      />
+    </div>
   );
 };
 
