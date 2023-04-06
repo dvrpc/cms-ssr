@@ -24,7 +24,6 @@ const SearchPage = () => {
       setResults(results.items);
     })();
   }, [query]);
-  console.log(results);
 
   return (
     <div className="p-4">

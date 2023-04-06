@@ -1,15 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const RecentProductsPage = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    (async () => {
-      const req = await fetch("https://www.dvrpc.org/api/products");
-      const res = await req.json();
-      setProducts(res);
-    })();
-  }, [setProducts]);
-
+const RecentProductsPage = ({ serverData }) => {
   return (
     <div>
       <h1>Recent Products</h1>
@@ -27,7 +18,7 @@ const RecentProductsPage = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {serverData.map((product) => (
             <tr>
               <td>{product.Id}</td>
               <td>
@@ -48,3 +39,22 @@ const RecentProductsPage = () => {
 };
 
 export default RecentProductsPage;
+
+export async function getServerData() {
+  try {
+    const res = await fetch("https://www.dvrpc.org/api/products");
+    if (!res.ok) {
+      throw new Error("Response failed");
+    }
+
+    return {
+      props: await res.json(),
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      headers: {},
+      props: {},
+    };
+  }
+}
