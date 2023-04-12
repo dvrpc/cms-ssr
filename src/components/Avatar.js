@@ -1,12 +1,12 @@
 import React from "react";
 
-const Avatar = ({ contact }) => {
+const Avatar = ({ name, title, mail }) => {
   return (
     <footer className="flow-root">
-      <a className="block" href={`mailto:${contact.mail}`}>
-        {contact.field_display_name}
+      <a className="block" href={`mailto:${mail}`}>
+        {name}
       </a>
-      <small className="block text-sm">{contact.field_title}</small>
+      <small className="block text-sm">{title}</small>
     </footer>
   );
 };
