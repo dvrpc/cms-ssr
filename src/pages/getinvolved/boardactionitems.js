@@ -47,7 +47,9 @@ const BoardActionItemsPage = ({ serverData }) => {
           <h2>Action Items</h2>
           {serverData.map((item) => (
             <div className="my-2">
-              <a href="/">{item.Title}</a>
+              <a href={`/getinvolved/boardactionitems/${item.Id}`}>
+                {item.Title}
+              </a>
             </div>
           ))}
         </div>
