@@ -1,59 +1,13 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { isMatch, matcher } from "matcher";
-import DrupalPage from "../components/DrupalPage";
+import { isMatch } from "matcher";
+import DefaultPage from "../components/DefaultPage";
 import DataPage from "../components/DataPage";
-import HeadTemplate from "../components/HeadTemplate";
+import HeadTemplate, { themeToCustomVars } from "../components/HeadTemplate";
 
 const templates = {
-  "/**": DrupalPage,
+  "/**": DefaultPage,
   "/data/**": DataPage,
-};
-
-const themeConfig = [
-  ["field_primary_color", "--color-h1"],
-  ["field_primary_color", "--color-h2"],
-  ["field_primary_color", "--color-h3"],
-  ["field_secondary_color", "--color-highlight"],
-  [
-    "relationships.field_banner",
-    "--bg-cover-image",
-    (val) =>
-      val
-        .map(
-          (obj) => obj.uri?.url && `url(https://cdn.dvrpc.org${obj.uri?.url})`
-        )
-        .reverse()
-        .join(", "),
-  ],
-  [
-    "relationships.field_banner_2x",
-    "--bg-cover-image",
-    (val) =>
-      val
-        .map(
-          (obj) => obj.uri?.url && `url(https://cdn.dvrpc.org${obj.uri?.url})`
-        )
-        .reverse()
-        .join(", "),
-  ],
-  [
-    "field_photo_credits",
-    "--content-photo-credits",
-    (val) => (val ? `"${val}"` : `""`),
-  ],
-  ["relationships.field_banner", "--height-banner", () => "400px"],
-];
-
-const themeToCustomVars = (theme, config) => {
-  return config
-    .map(([key, customVar, parseFunc = (v) => v]) => {
-      const val = key
-        .split(".")
-        .reduce((prev, cur) => prev && prev[cur], theme);
-      return parseFunc(val) ? `${customVar}: ${parseFunc(val)};` : null;
-    })
-    .join("\n");
 };
 
 const resolveTemplate = (url) => {
@@ -61,9 +15,18 @@ const resolveTemplate = (url) => {
   return templates[match[0]];
 };
 
-const Page = (props) => {
-  const Template = resolveTemplate(props.path);
-  return <Template {...props} />;
+const Page = ({ data }) => {
+  const { nodePage, navItem } = data;
+  const Template = resolveTemplate(nodePage.path.alias);
+  return (
+    <Template
+      body={nodePage.body.processed}
+      title={nodePage.title}
+      navItem={navItem}
+      location={nodePage.path.alias}
+      staffContact={nodePage.relationships.field_staff_contact}
+    />
+  );
 };
 
 export const Head = ({ data }) => {
@@ -77,7 +40,7 @@ export const Head = ({ data }) => {
   return HeadTemplate({
     title,
     summary: body?.summary,
-    css: themeToCustomVars(field_theme, themeConfig),
+    css: themeToCustomVars(field_theme),
   });
 };
 
@@ -95,8 +58,8 @@ export const query = graphql`
       }
       relationships {
         field_staff_contact {
-          field_display_name
-          field_title
+          name: field_display_name
+          title: field_title
           mail
         }
         field_theme {
