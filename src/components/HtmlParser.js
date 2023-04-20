@@ -38,7 +38,7 @@ const parseInlineStyle = (style = "") =>
       .filter(Boolean)
   );
 
-const HtmlParser = ({ html, data }) => (
+const HtmlParser = ({ html }) => (
   <HtmlMapper html={html} acceptUnknown>
     {{
       a: ({ children, class: className, href, style, ...props }) => {
