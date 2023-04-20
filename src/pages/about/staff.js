@@ -1,9 +1,11 @@
 import React from "react";
+import Body from "../../components/Body";
+import StaffContact from "../../components/StaffContact";
 
 const StaffRow = ({ emp }) => {
   return (
-    <div className="grid grid-cols-2">
-      <span>
+    <li className="list-group-item !flex">
+      <span className="max-w-[75%]">
         <a
           className="underline"
           href={`https://www.dvrpc.org/asp/email/?${emp.Id}`}
@@ -12,36 +14,42 @@ const StaffRow = ({ emp }) => {
         </a>{" "}
         <span>{emp.Title}</span>
       </span>
-      <span>(215) 238-{emp.Ext}</span>
-    </div>
+      <span className="ml-auto">(215) 238-{emp.Ext}</span>
+    </li>
   );
 };
 
 const StaffListPage = ({ serverData }) => {
   return (
-    <div>
-      <h1>Staff List</h1>
-      <p>Contact information for staff.</p>
-      <a href="/" className="underline">
-        Current Organizational Chart
-      </a>
-      <h1>Directors</h1>
-      <div>
-        {serverData
-          .filter((emp) => emp.Sortorder)
-          .map((emp) => (
-            <StaffRow emp={emp} />
-          ))}
-      </div>
-      <h1>Staff</h1>
-      <div>
-        {serverData
-          .filter((emp) => !emp.Sortorder)
-          .map((emp) => (
-            <StaffRow emp={emp} />
-          ))}
-      </div>
-    </div>
+    <>
+      <Body title="Staff List">
+        <div className="mt-4">Contact information for staff.</div>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <a href="/" className="underline">
+              Current Organizational Chart
+            </a>
+          </li>
+        </ul>
+        <h2>Directors</h2>
+        <ul className="list-group">
+          {serverData
+            .filter((emp) => emp.Sortorder)
+            .map((emp) => (
+              <StaffRow emp={emp} />
+            ))}
+        </ul>
+        <h2>Staff</h2>
+        <ul className="list-group">
+          {serverData
+            .filter((emp) => !emp.Sortorder)
+            .map((emp) => (
+              <StaffRow emp={emp} />
+            ))}
+        </ul>
+      </Body>
+      <StaffContact />
+    </>
   );
 };
 
