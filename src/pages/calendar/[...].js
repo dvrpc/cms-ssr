@@ -14,7 +14,9 @@ const CalendarPage = ({ serverData }) => {
 export default CalendarPage;
 
 export async function getServerData(context) {
-  const today = new Date(context.params["*"]);
+  const today = !context.params["*"]
+    ? new Date()
+    : new Date(context.params["*"]);
   const firstDay = new Date(
     today.getFullYear(),
     today.getMonth(),
