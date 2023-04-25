@@ -58,7 +58,12 @@ const SearchPage = () => {
               if (!querySet.has(keywordRef.current.value))
                 querySet.add(keywordRef.current.value);
               keywordRef.current.value = "";
-              navigate(`?q=${Array.from(querySet).join(",")}`);
+              navigate(`?q=${Array.from(querySet).join(",")}`, {
+                replace: true,
+                state: {
+                  disableScrollUpdate: true,
+                },
+              });
             }}
           >
             <input
@@ -73,7 +78,12 @@ const SearchPage = () => {
                     className="mr-2 cursor-pointer rounded-full bg-[#999999] p-1 py-1 px-4 text-white"
                     onClick={() => {
                       querySet.delete(param);
-                      navigate(`?q=${Array.from(querySet).join(",")}`);
+                      navigate(`?q=${Array.from(querySet).join(",")}`, {
+                        replace: true,
+                        state: {
+                          disableScrollUpdate: true,
+                        },
+                      });
                     }}
                     type="button"
                   >
