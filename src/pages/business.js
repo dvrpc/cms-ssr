@@ -2,7 +2,7 @@ import React from "react";
 import Body from "../components/Body";
 import StaffContact from "../components/StaffContact";
 
-const BusinessPage = () => {
+const BusinessPage = ({ serverData }) => {
   return (
     <>
       <Body title="Doing Business with DVRPC">
@@ -13,6 +13,26 @@ const BusinessPage = () => {
         </p>
         <div className="card">
           <h2>Business Opportunities</h2>
+          <table className="table-auto">
+            <thead>
+              <tr className="font-bold">
+                <td>Title of Opportunity</td>
+                <td>Organization</td>
+                <td>Submission Date</td>
+              </tr>
+            </thead>
+            <tbody>
+              {serverData.map((business) => (
+                <tr>
+                  <td>{business.Title}</td>
+                  <td>{business.Organization}</td>
+                  <td>
+                    {new Date(business.SubmissionDate).toLocaleDateString()}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         <h2>Important Notices</h2>
@@ -268,3 +288,23 @@ const BusinessPage = () => {
 };
 
 export default BusinessPage;
+
+export async function getServerData() {
+  try {
+    const res = await fetch(`https://www.dvrpc.org/api/business?all=true`);
+
+    if (!res.ok) {
+      throw new Error("Response failed");
+    }
+
+    return {
+      props: await res.json(),
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      headers: {},
+      props: {},
+    };
+  }
+}
