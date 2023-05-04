@@ -1,8 +1,16 @@
 import React from "react";
-import Body from "../components/Body";
-import StaffContact from "../components/StaffContact";
+import { Link, graphql } from "gatsby";
 
-const BusinessPage = ({ serverData }) => {
+import Body from "../../components/Body";
+import StaffContact from "../../components/StaffContact";
+
+const LIMIT = 10;
+
+const BusinessPage = ({ data, serverData, location, title }) => {
+  console.log(data)
+  const { userUser } = data;
+  const params = new URL(location.href).searchParams;
+  const showAll = (params.get("all") ?? "").toLowerCase() === "true";
   return (
     <>
       <Body title="Doing Business with DVRPC">
@@ -23,15 +31,57 @@ const BusinessPage = ({ serverData }) => {
             </thead>
             <tbody>
               {serverData.map((business) => (
-                <tr>
-                  <td>{business.Title}</td>
+                <tr key={business.Id}>
+                  <td>
+                    <a href={business.Id}>{business.Title}</a>
+                  </td>
                   <td>{business.Organization}</td>
                   <td>
-                    {new Date(business.SubmissionDate).toLocaleDateString()}
+                    {business.SubmissionDate
+                      ? new Date(business.SubmissionDate).toLocaleDateString()
+                      : "rolling basis"}
                   </td>
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr>
+                <td colSpan="3">
+                  <div className="w-100 flex justify-between">
+                    <Link
+                      className="rounded-full bg-[var(--color-default)] px-4 py-2 text-white no-underline shadow-sm"
+                      to={`?all=${!showAll}`}
+                    >
+                      View {showAll ? "Current" : "All"}
+                    </Link>{" "}
+                    {showAll ? (
+                      <div className="flex gap-4">
+                        {+params.get("offset") >= LIMIT ? (
+                          <Link
+                            className="rounded-full border border-[var(--color-default)] px-4 py-2 text-[var(--color-default)] no-underline shadow-sm"
+                            to={`?all=true&offset=${
+                              +params.get("offset") - LIMIT
+                            }`}
+                          >
+                            Prev
+                          </Link>
+                        ) : null}{" "}
+                        {serverData.length === LIMIT ? (
+                          <Link
+                            className="rounded-full border border-[var(--color-default)] px-4 py-2 text-[var(--color-default)] no-underline shadow-sm"
+                            to={`?all=true&offset=${
+                              +params.get("offset") + LIMIT
+                            }`}
+                          >
+                            Next
+                          </Link>
+                        ) : null}
+                      </div>
+                    ) : null}
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
           </table>
         </div>
 
@@ -83,7 +133,7 @@ const BusinessPage = ({ serverData }) => {
           prior to a public meeting. Translation and interpretation services for
           DVRPC’s projects, products, and planning processes are available,
           generally free of charge, by calling{" "}
-          <a href="tel:1-215-592-1800">(215) 592-1800</a>. All requests will be
+          <a href="tel:2155921800">(215) 592-1800</a>. All requests will be
           accommodated to the greatest extent possible.
         </p>
         <p>
@@ -139,12 +189,12 @@ const BusinessPage = ({ serverData }) => {
           administration of this agreement.
         </p>
 
-        <ul class="list-group">
-          <li class="list-group-item">
+        <ul className="list-group">
+          <li className="list-group-item">
             <a href="files/dbe_program.pdf">
               DVRPC Disadvantaged Business Enterprise Policy
             </a>{" "}
-            <span class="sm">[0.2 MB pdf]</span>
+            <span className="sm">[0.2 MB pdf]</span>
           </li>
         </ul>
         <p>
@@ -210,7 +260,7 @@ const BusinessPage = ({ serverData }) => {
             >
               New Jersey Emerging Small Business Enterprise (ESBE) Program
             </a>{" "}
-            <span class="sm">[pdf]</span>
+            <span className="sm">[pdf]</span>
           </li>
         </ul>
         <p>
@@ -225,73 +275,89 @@ const BusinessPage = ({ serverData }) => {
 
         <h2>Sample Forms</h2>
         <h3>Budget Proposals</h3>
-        <ul class="list-group">
-          <li class="list-group-item">
+        <ul className="list-group">
+          <li className="list-group-item">
             <a href="files/DVRPC-price-proposal-consultant.xlsx">
               Consultant Contract Budget Proposal
             </a>
-            <span class="sm"> [0.1 MB xlsx]</span>
+            <span className="sm"> [0.1 MB xlsx]</span>
           </li>
-          <li class="list-group-item">
+          <li className="list-group-item">
             <a href="files/DVRPC-price-proposal-non-profit.xls">
               Non-profit Contract Budget Proposal
             </a>
-            <span class="sm"> [0.1 MB xls]</span>
+            <span className="sm"> [0.1 MB xls]</span>
           </li>
-          <li class="list-group-item">
+          <li className="list-group-item">
             <a href="files/DVRPC-price-proposal-member-government.xlsx">
               Member Government Contract Budget Proposal
             </a>
-            <span class="sm"> [0.1 MB xlsx]</span>
+            <span className="sm"> [0.1 MB xlsx]</span>
           </li>
         </ul>
         <h3>Invoice Forms</h3>
-        <ul class="list-group">
-          <li class="list-group-item">
+        <ul className="list-group">
+          <li className="list-group-item">
             <a href="files/DVRPC-Sample-Invoice-Forms-Consultant.xlsx">
               Consultant Sample Invoice Forms
             </a>
-            <span class="sm"> [0.1 MB xlsx]</span>
+            <span className="sm"> [0.1 MB xlsx]</span>
           </li>
-          <li class="list-group-item">
+          <li className="list-group-item">
             <a href="files/DVRPC-Sample-Invoice-Forms-Non-Profit.xlsx">
               Non-profit Sample Invoice Forms
             </a>
-            <span class="sm"> [0.1 MB xlsx]</span>
+            <span className="sm"> [0.1 MB xlsx]</span>
           </li>
-          <li class="list-group-item">
+          <li className="list-group-item">
             <a href="files/DVRPC-Sample-Invoice-Forms-Member-Government.xlsx">
               Member Government Sample Invoice Forms
             </a>
-            <span class="sm"> [0.1 MB xlsx]</span>
+            <span className="sm"> [0.1 MB xlsx]</span>
           </li>
         </ul>
         <h3>Articles of Agreement</h3>
-        <ul class="list-group">
-          <li class="list-group-item">
+        <ul className="list-group">
+          <li className="list-group-item">
             <a href="files/Basic-Standard-Articles-for-Subrecipients.pdf">
               Standard Articles of Agreement for Subrecipient
             </a>
-            <span class="sm"> [0.4 MB pdf]</span>
+            <span className="sm"> [0.4 MB pdf]</span>
           </li>
-          <li class="list-group-item">
+          <li className="list-group-item">
             <a href="files/Basic-Standard-Articles-for-Contractors.pdf">
               Standard Articles of Agreement for Contractors
             </a>
-            <span class="sm"> [0.4 MB pdf]</span>
+            <span className="sm"> [0.4 MB pdf]</span>
           </li>
         </ul>
       </Body>
-      <StaffContact></StaffContact>
+      <StaffContact staffContact={userUser} title={title} location={location} />
     </>
   );
 };
 
+export const query = graphql`
+  query {
+    userUser(mail: { eq: "jcrouch@dvrpc.org" }) {
+      id
+      mail
+      name: field_display_name
+      title: field_title
+    }
+  }
+`;
+
 export default BusinessPage;
 
-export async function getServerData() {
+export async function getServerData({ query }) {
   try {
-    const res = await fetch(`https://www.dvrpc.org/api/business?all=true`);
+    const params = new URLSearchParams(query);
+    const res = await fetch(
+      `https://www.dvrpc.org/api/business?all=${params.get("all")}&offset=${
+        params.get("offset") || 0
+      }`
+    );
 
     if (!res.ok) {
       throw new Error("Response failed");
