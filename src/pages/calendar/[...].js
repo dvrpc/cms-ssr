@@ -1,14 +1,23 @@
 import React from "react";
-import Calendar from "../../components/Calendar";
-import StaffContact from "../../components/StaffContact";
-import Body from "../../components/Body";
+import { Link, graphql } from "gatsby";
 
-const CalendarPage = ({ serverData }) => {
+import HeadTemplate, {
+  defaultThemeConfig,
+  themeToCustomVars,
+} from "../../components/HeadTemplate";
+import Body from "../../components/Body";
+import StaffContact from "../../components/StaffContact";
+import Calendar from "../../components/Calendar";
+
+const title = "Calendar";
+
+const CalendarPage = ({ data, serverData }) => {
+  const { userUser } = data;
   const submitForm = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
     try {
-      await fetch("https://staging.dvrpc.org/getinvolved/events/send.aspx", {
+      await fetch("https://www.dvrpc.org/getinvolved/events/send.aspx", {
         method: "POST",
         body: data,
       });
@@ -20,7 +29,7 @@ const CalendarPage = ({ serverData }) => {
 
   return (
     <>
-      <Body title="Calendar">
+      <Body title={title}>
         <div className="my-4">
           The DVRPC Meeting Calendar is updated on a frequent basis with all
           internal and external DVRPC sponsored events. DVRPC does not permit
@@ -38,7 +47,7 @@ const CalendarPage = ({ serverData }) => {
         <Calendar data={serverData} />
         <div>
           <h2>
-            <a href="/calendar/partner">Partner Events</a>
+            <Link to="/calendar/partner">Partner Events</Link>
           </h2>
           <p>
             DVRPC maintains a calendar of outside events related to the planning
@@ -176,16 +185,16 @@ const CalendarPage = ({ serverData }) => {
             Rights Restoration Act of 1987, Executive Order 12898 on
             Environmental Justice, and related nondiscrimination mandates in all
             programs and activities. DVRPC's website,{" "}
-            <a href="https://www.dvrpc.org/">www.dvrpc.org</a>, may be
-            translated into multiple languages. Publications and other public
-            documents can usually be made available in alternative languages and
-            formats, if requested. DVRPC’s public meetings are always held in
-            ADA-accessible facilities, and held in transit-accessible locations
-            whenever possible. Translation, interpretation, or other auxiliary
-            services can be provided to individuals who submit a request at
-            least seven days prior to a public meeting. Translation and
-            interpretation services for DVRPC’s projects, products, and planning
-            processes are available, generally free of charge, by calling{" "}
+            <Link to="/">www.dvrpc.org</Link>, may be translated into multiple
+            languages. Publications and other public documents can usually be
+            made available in alternative languages and formats, if requested.
+            DVRPC’s public meetings are always held in ADA-accessible
+            facilities, and held in transit-accessible locations whenever
+            possible. Translation, interpretation, or other auxiliary services
+            can be provided to individuals who submit a request at least seven
+            days prior to a public meeting. Translation and interpretation
+            services for DVRPC’s projects, products, and planning processes are
+            available, generally free of charge, by calling{" "}
             <a href="tel:1-215-592-1800">(215) 592-1800</a>. All requests will
             be accommodated to the greatest extent possible.
           </p>
@@ -201,9 +210,9 @@ const CalendarPage = ({ serverData }) => {
               Title VI Complaint Form
             </a>
             , please visit:{" "}
-            <a href="https://www.dvrpc.org/GetInvolved/TitleVI/">
+            <Link to="/getinvolved/titlevi">
               www.dvrpc.org/GetInvolved/TitleVI
-            </a>
+            </Link>
             , call <a href="tel:1-215-592-1800">(215) 592-1800</a>, or email{" "}
             <a href="mailto:public_affairs@dvrpc.org">
               public_affairs@dvrpc.org
@@ -220,15 +229,51 @@ const CalendarPage = ({ serverData }) => {
             other likeness for the purposes related to the mission of DVRPC,
             including but not limited to outreach, marketing, websites, hardcopy
             publications, other electronic forms of media, and promotion of
-            DVRPC and its various programs.{" "}
+            DVRPC and its various programs.
           </p>
         </div>
       </Body>
-      <StaffContact />
+      <StaffContact staffContact={userUser} />
     </>
   );
 };
 
+export const Head = ({ data: { nodeTheme } }) =>
+  HeadTemplate({
+    title,
+    summary:
+      "DVRPC proudly serves as a resource for the region's media, sharing information about our work to improve mobility, the environment, and quality-of-life in Greater Philadelphia.",
+    css: themeToCustomVars(nodeTheme, defaultThemeConfig),
+  });
+
+export const query = graphql`
+  query {
+    userUser(mail: { eq: "ahastings@dvrpc.org" }) {
+      id
+      mail
+      name: field_display_name
+      title: field_title
+    }
+    nodeTheme(id: { eq: "5ae19d55-9213-5cd6-8db0-74e59dc2bfa3" }) {
+      field_primary_color
+      field_secondary_color
+      field_third_color
+      field_photo_credits
+      relationships {
+        field_banner_2x {
+          uri {
+            url
+          }
+        }
+        field_banner {
+          uri {
+            url
+          }
+        }
+      }
+    }
+  }
+`;
 export default CalendarPage;
 
 export async function getServerData(context) {
