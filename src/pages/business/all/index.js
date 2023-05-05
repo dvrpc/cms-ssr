@@ -4,22 +4,33 @@ import { Link, graphql } from "gatsby";
 import HeadTemplate, {
   defaultThemeConfig,
   themeToCustomVars,
-} from "../../components/HeadTemplate";
-import BusinessView from "../../components/BusinessView";
+} from "../../../components/HeadTemplate";
+import BusinessView from "../../../components/BusinessView";
 
 const title = "Doing Business with DVRPC";
+const LIMIT = 10;
 
 const BusinessPage = (props) => (
   <BusinessView title={title} {...props}>
     <a
       className="rounded-full bg-[var(--color-default)] px-4 py-2 text-white no-underline shadow-sm"
-      href="./all"
+      href="../"
     >
-      View All
+      View Current
     </a>
+
+    <div className="flex gap-4">
+      {props.serverData.length === LIMIT ? (
+        <a
+          className="rounded-full border border-[var(--color-default)] px-4 py-2 text-[var(--color-default)] no-underline shadow-sm"
+          href={`./${LIMIT}`}
+        >
+          Next
+        </a>
+      ) : null}
+    </div>
   </BusinessView>
 );
-
 export const Head = ({ data: { nodeTheme } }) =>
   HeadTemplate({
     title,
@@ -81,7 +92,7 @@ export default BusinessPage;
 
 export async function getServerData() {
   try {
-    const res = await fetch("https://www.dvrpc.org/api/business");
+    const res = await fetch("https://www.dvrpc.org/api/business?all=true");
 
     if (!res.ok) {
       throw new Error("Response failed");

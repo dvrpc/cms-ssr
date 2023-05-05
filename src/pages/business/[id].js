@@ -3,9 +3,10 @@ import { Link, graphql } from "gatsby";
 
 import Body from "../../components/Body";
 import StaffContact from "../../components/StaffContact";
+import HeadTemplate, { defaultThemeConfig, themeToCustomVars } from "../../components/HeadTemplate";
 
 const BusinessDetailsPage = ({ data, serverData, location, title }) => {
-  const { userUser } = data;
+  const { userUser, navItem } = data;
   return (
     <>
       <Body
@@ -18,6 +19,7 @@ const BusinessDetailsPage = ({ data, serverData, location, title }) => {
             </small>
           </>
         }
+        menu={navItem}
       >
         <h2>Introduction</h2>
         <p>{serverData.Description}</p>
@@ -28,32 +30,38 @@ const BusinessDetailsPage = ({ data, serverData, location, title }) => {
         </p>
         <h2>Availability</h2>
         <table className="table-striped table">
-          <tr>
-            <td>Posting Date:</td>
-            <td>
-              <b>{new Date(serverData.StartDate).toLocaleDateString()}</b>
-            </td>
-          </tr>
-          {serverData.QuestionDate && (
+          <tbody>
             <tr>
-              <td>Submission of Inquiries by Email:</td>
+              <td>Posting Date:</td>
               <td>
-                <b>{new Date(serverData.QuestionDate).toLocaleDateString()}</b>
+                <b>{new Date(serverData.StartDate).toLocaleDateString()}</b>
               </td>
             </tr>
-          )}
-          <tr>
-            <td>Proposal Deadline:</td>
-            <td>
-              <b>
-                {serverData.SubmissionDate
-                  ? `${new Date(
-                      serverData.SubmissionDate
-                    ).toLocaleDateString()} ${serverData.SubmissionTime ?? ""}`
-                  : "rolling basis"}
-              </b>
-            </td>
-          </tr>
+            {serverData.QuestionDate && (
+              <tr>
+                <td>Submission of Inquiries by Email:</td>
+                <td>
+                  <b>
+                    {new Date(serverData.QuestionDate).toLocaleDateString()}
+                  </b>
+                </td>
+              </tr>
+            )}
+            <tr>
+              <td>Proposal Deadline:</td>
+              <td>
+                <b>
+                  {serverData.SubmissionDate
+                    ? `${new Date(
+                        serverData.SubmissionDate
+                      ).toLocaleDateString()} ${
+                        serverData.SubmissionTime ?? ""
+                      }`
+                    : "rolling basis"}
+                </b>
+              </td>
+            </tr>
+          </tbody>
         </table>
         {serverData.PDFLink ? (
           <p>
@@ -219,6 +227,14 @@ const BusinessDetailsPage = ({ data, serverData, location, title }) => {
   );
 };
 
+export const Head = ({ data: { nodeTheme } }) =>
+  HeadTemplate({
+    title: "Doing Business with DVRPC",
+    summary:
+      "Vendors can find various business opportunities posted here. DVRPC occasionally posts Requests for Proposals (RFPs) for member governments as a courtesy.",
+    css: themeToCustomVars(nodeTheme, defaultThemeConfig),
+  });
+
 export const query = graphql`
   query {
     userUser(mail: { eq: "jcrouch@dvrpc.org" }) {
@@ -227,6 +243,44 @@ export const query = graphql`
       name: field_display_name
       title: field_title
     }
+    nodeTheme(id: { eq: "0efb8b9d-ee32-58c6-897d-0a50ae2b5ac4" }) {
+      field_primary_color
+      field_secondary_color
+      field_third_color
+      field_photo_credits
+      relationships {
+        field_banner_2x {
+          uri {
+            url
+          }
+        }
+        field_banner {
+          uri {
+            url
+          }
+        }
+      }
+    }
+    navItem(href: { regex: "/business/i" }) {
+      ...navitem
+      links {
+        ...navitem
+      }
+      parent {
+        ...navitem
+        ... on NavItem {
+          links {
+            ...navitem
+          }
+        }
+      }
+    }
+  }
+  fragment navitem on NavItem {
+    href
+    link
+    style
+    class
   }
 `;
 
