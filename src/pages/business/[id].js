@@ -19,9 +19,6 @@ const BusinessDetailsPage = ({ data, serverData, location, title }) => {
           </>
         }
       >
-        <h4>
-          <Link to="/business">← back to Business Opportunities</Link>
-        </h4>
         <h2>Introduction</h2>
         <p>{serverData.Description}</p>
         <p>

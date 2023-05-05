@@ -7,7 +7,6 @@ import StaffContact from "../../components/StaffContact";
 const LIMIT = 10;
 
 const BusinessPage = ({ data, serverData, location, title }) => {
-  console.log(data)
   const { userUser } = data;
   const params = new URL(location.href).searchParams;
   const showAll = (params.get("all") ?? "").toLowerCase() === "true";
@@ -21,7 +20,7 @@ const BusinessPage = ({ data, serverData, location, title }) => {
         </p>
         <div className="card">
           <h2>Business Opportunities</h2>
-          <table className="table-auto">
+          <table className="w-full table-auto">
             <thead>
               <tr className="font-bold">
                 <td>Title of Opportunity</td>
@@ -32,8 +31,18 @@ const BusinessPage = ({ data, serverData, location, title }) => {
             <tbody>
               {serverData.map((business) => (
                 <tr key={business.Id}>
-                  <td>
-                    <a href={business.Id}>{business.Title}</a>
+                  <td className="py-2">
+                    <a className="block no-underline" href={business.Id}>
+                      {business.AddendumLink && (
+                        <span
+                          title="Additional information is available"
+                          className="float-right text-2xl leading-none text-[var(--color-h1)]"
+                        >
+                          🛈
+                        </span>
+                      )}
+                      {business.Title}
+                    </a>
                   </td>
                   <td>{business.Organization}</td>
                   <td>
