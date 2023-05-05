@@ -4,9 +4,9 @@ import { graphql } from "gatsby";
 import HeadTemplate, {
   defaultThemeConfig,
   themeToCustomVars,
-} from "../../components/HeadTemplate";
-import Body from "../../components/Body";
-import StaffContact from "../../components/StaffContact";
+} from "../../../components/HeadTemplate";
+import Body from "../../../components/Body";
+import StaffContact from "../../../components/StaffContact";
 
 const title = "DVRPC Board";
 
@@ -123,7 +123,7 @@ export const query = graphql`
         }
       }
     }
-    navItem(href: { regex: "/asp/boardlist/i" }) {
+    navItem(href: { regex: "/committees/board/list/i" }) {
       ...navitem
       links {
         ...navitem
