@@ -48,13 +48,13 @@ const BoardDetails = ({ committee }) => {
   );
 };
 
-const BoardListPage = ({ data, serverData }) => {
-  const { userUser } = data;
+const BoardListPage = ({ data, serverData, location }) => {
+  const { userUser, navItem } = data;
   const { Board, Officers } = serverData;
 
   return (
     <>
-      <Body title={title}>
+      <Body title={title} menu={navItem}>
         <div className="mt-4">
           The Board is an 18-member body having the authority and responsibility
           to make decisions affecting the entire organization as well as the
@@ -67,7 +67,7 @@ const BoardListPage = ({ data, serverData }) => {
           for the region. In addition to transportation planning for highways,
           transit, airports and freight, the agency develops plans and policies
           for other regional physical planning elements such as land use, air
-          quality, housing, water supply and water quality.{" "}
+          quality, housing, water supply and water quality.
         </div>
         <h2>Officers:</h2>
         {Officers.sort((a, b) => (a.Order > b.Order ? 1 : -1)).map(
@@ -123,6 +123,26 @@ export const query = graphql`
         }
       }
     }
+    navItem(href: { regex: "/asp/boardlist/i" }) {
+      ...navitem
+      links {
+        ...navitem
+      }
+      parent {
+        ...navitem
+        ... on NavItem {
+          links {
+            ...navitem
+          }
+        }
+      }
+    }
+  }
+  fragment navitem on NavItem {
+    href
+    link
+    style
+    class
   }
 `;
 
