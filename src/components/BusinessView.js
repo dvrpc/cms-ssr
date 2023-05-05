@@ -29,7 +29,7 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
               {serverData.map((business) => (
                 <tr key={business.Id}>
                   <td className="py-2">
-                    <a className="block no-underline" href={business.Id}>
+                    <a className="block no-underline" href={`/business/${business.Id}`}>
                       {business.AddendumLink && (
                         <span
                           title="Additional information is available"
