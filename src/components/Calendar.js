@@ -1,7 +1,7 @@
 import React from "react";
 
 const Calendar = ({ data, header }) => {
-  const renderedDate = data[0]
+  const renderedDate = data.length
     ? new Date(data[0].StartDate)
     : new Date(location.pathname.replace("/calendar/", ""));
   const previousMonth = new Date(
@@ -39,28 +39,24 @@ const Calendar = ({ data, header }) => {
                 eventDate.setHours(hoursMinutes[0], hoursMinutes[1]);
               }
               return (
-                <div className="flex items-center space-x-4">
-                  <p className="text-center">
+                <div
+                  key={event.Title + event.StartDate}
+                  className="flex items-center space-x-4"
+                >
+                  <p className="min-w-max">
                     <strong className="text-xl">
-                      {!header
-                        ? eventDate.getDate()
-                        : eventDate
-                            .toLocaleDateString("default", {
-                              month: "short",
-                              day: "numeric",
-                            })
-                            .toUpperCase()}
+                      {eventDate
+                        .toLocaleDateString("default", {
+                          month: "short",
+                          day: "numeric",
+                        })
+                        .toUpperCase()}
                     </strong>
                     <br />
                     {event.StartTime && (
-                      <span>
-                        {
-                          eventDate
-                            .toLocaleTimeString("en-us", {
-                              timeStyle: "short",
-                            })
-                            .split(" ")[0]
-                        }
+                      <span className="text-lg">
+                        {eventDate.getHours() % 12 || eventDate.getHours()}:
+                        {eventDate.getMinutes().toString().padStart(2, 0)}
                       </span>
                     )}
                   </p>

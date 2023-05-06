@@ -11,8 +11,8 @@ import Calendar from "../../components/Calendar";
 
 const title = "Calendar";
 
-const CalendarPage = ({ data, serverData }) => {
-  const { userUser } = data;
+const CalendarPage = ({ data, serverData, location }) => {
+  const { userUser, navItem } = data;
   const submitForm = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
@@ -21,7 +21,7 @@ const CalendarPage = ({ data, serverData }) => {
         method: "POST",
         body: data,
       });
-      window.location.reload();
+      if (window) window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -29,7 +29,7 @@ const CalendarPage = ({ data, serverData }) => {
 
   return (
     <>
-      <Body title={title}>
+      <Body title={title} menu={navItem}>
         <div className="my-4">
           The DVRPC Meeting Calendar is updated on a frequent basis with all
           internal and external DVRPC sponsored events. DVRPC does not permit
@@ -83,52 +83,52 @@ const CalendarPage = ({ data, serverData }) => {
             <h2>Interpretation or Accommodation Request</h2>
             <form method="POST" onSubmit={submitForm}>
               <fieldset form="interpretation-request">
-                <label for="First Name">First Name: </label>
+                <label htmlFor="First Name">First Name: </label>
                 <input
                   required
-                  class="form-control"
+                  className="form-control"
                   type="text"
                   name="First Name"
                 />
               </fieldset>
 
               <fieldset form="interpretation-request">
-                <label for="Last Name">Last Name: </label>
+                <label htmlFor="Last Name">Last Name: </label>
                 <input
                   required
-                  class="form-control"
+                  className="form-control"
                   type="text"
                   name="Last Name"
                 />
               </fieldset>
 
               <fieldset form="interpretation-request">
-                <label for="Preferred Contact">
+                <label htmlFor="Preferred Contact">
                   Preferred form of contact:{" "}
                 </label>
-                <select required class="form-control" name="Preferred Contact">
+                <select required className="form-control" name="Preferred Contact">
                   <option>Email</option>
                   <option>Phone</option>
                 </select>
               </fieldset>
 
               <fieldset form="interpretation-request">
-                <label for="Email">Email: </label>
+                <label htmlFor="Email">Email: </label>
                 <input
                   required
-                  class="form-control"
+                  className="form-control"
                   type="email"
                   name="Email"
                 />
               </fieldset>
 
               <fieldset form="interpretation-request">
-                <label for="Phone">Phone: </label>
-                <input required class="form-control" type="tel" name="Phone" />
+                <label htmlFor="Phone">Phone: </label>
+                <input required className="form-control" type="tel" name="Phone" />
               </fieldset>
 
               <fieldset form="interpretation-request">
-                <label for="Date of meeting">
+                <label htmlFor="Date of meeting">
                   Date of meeting you are requesting interpretation:{" "}
                 </label>
                 <small>
@@ -136,7 +136,7 @@ const CalendarPage = ({ data, serverData }) => {
                 </small>
                 <input
                   required
-                  class="form-control"
+                  className="form-control"
                   type="date"
                   name="Date"
                   id="date"
@@ -145,10 +145,10 @@ const CalendarPage = ({ data, serverData }) => {
               </fieldset>
 
               <fieldset form="interpretation-request">
-                <label for="Meeting Name">The name of the meeting: </label>
+                <label htmlFor="Meeting Name">The name of the meeting: </label>
                 <input
                   required
-                  class="form-control"
+                  className="form-control"
                   type="text"
                   name="Meeting Name"
                   id="meeting-name"
@@ -156,12 +156,12 @@ const CalendarPage = ({ data, serverData }) => {
               </fieldset>
 
               <fieldset form="interpretation-request">
-                <label for="Language">
+                <label htmlFor="Language">
                   Requested language or accommodation:{" "}
                 </label>
                 <input
                   required
-                  class="form-control"
+                  className="form-control"
                   type="text"
                   name="Language"
                 />
@@ -169,7 +169,7 @@ const CalendarPage = ({ data, serverData }) => {
 
               <button
                 id="submit-interpretation-request"
-                class="btn btn-primary mt-6"
+                className="btn btn-primary mt-6"
                 type="submit"
               >
                 Submit
@@ -233,7 +233,7 @@ const CalendarPage = ({ data, serverData }) => {
           </p>
         </div>
       </Body>
-      <StaffContact staffContact={userUser} />
+      <StaffContact staffContact={userUser} location={location} title={title} />
     </>
   );
 };
@@ -242,7 +242,7 @@ export const Head = ({ data: { nodeTheme } }) =>
   HeadTemplate({
     title,
     summary:
-      "DVRPC proudly serves as a resource for the region's media, sharing information about our work to improve mobility, the environment, and quality-of-life in Greater Philadelphia.",
+      "The DVRPC Meeting Calendar is updated on a frequent basis with all internal and external DVRPC sponsored events.",
     css: themeToCustomVars(nodeTheme, defaultThemeConfig),
   });
 
@@ -272,8 +272,29 @@ export const query = graphql`
         }
       }
     }
+    navItem(href: { regex: "/calendar/i" }) {
+      ...navitem
+      links {
+        ...navitem
+      }
+      parent {
+        ...navitem
+        ... on NavItem {
+          links {
+            ...navitem
+          }
+        }
+      }
+    }
+  }
+  fragment navitem on NavItem {
+    href
+    link
+    style
+    class
   }
 `;
+
 export default CalendarPage;
 
 export async function getServerData(context) {
