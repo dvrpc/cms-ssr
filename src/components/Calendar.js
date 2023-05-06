@@ -1,7 +1,7 @@
 import React from "react";
 
 const Calendar = ({ data, header }) => {
-  const renderedDate = data.length
+  const renderedDate = data?.length
     ? new Date(data[0].StartDate)
     : new Date(location.pathname.replace("/calendar/", ""));
   const previousMonth = new Date(
@@ -27,16 +27,16 @@ const Calendar = ({ data, header }) => {
             : header}
         </h2>
         <div className="divide-y">
-          {data.length === 0 ? (
+          {data?.length === 0 ? (
             <div className="flex items-center space-x-4">
               <p className="w-full text-center">No events.</p>
             </div>
           ) : (
-            data.map((event) => {
-              const eventDate = new Date(event.StartDate);
+            data?.map((event) => {
+              const [year, mon, day] = event.StartDate.split("-");
+              let [hr, min] = [null, null];
               if (event.StartTime) {
-                const hoursMinutes = event.StartTime.split(":");
-                eventDate.setHours(hoursMinutes[0], hoursMinutes[1]);
+                [hr, min] = event.StartTime.split(":");
               }
               return (
                 <div
@@ -45,18 +45,29 @@ const Calendar = ({ data, header }) => {
                 >
                   <p className="min-w-max">
                     <strong className="text-xl">
-                      {eventDate
-                        .toLocaleDateString("default", {
-                          month: "short",
-                          day: "numeric",
-                        })
-                        .toUpperCase()}
+                      {
+                        [
+                          null,
+                          "JAN",
+                          "FEB",
+                          "MAR",
+                          "APR",
+                          "MAY",
+                          "JUN",
+                          "JUL",
+                          "AUG",
+                          "SEP",
+                          "OCT",
+                          "NOV",
+                          "DEC",
+                        ][+mon]
+                      }{" "}
+                      {+day}
                     </strong>
-                    <br />
                     {event.StartTime && (
                       <span className="text-lg">
-                        {eventDate.getHours() % 12 || eventDate.getHours()}:
-                        {eventDate.getMinutes().toString().padStart(2, 0)}
+                        <br />
+                        {+hr % 12 || hr}:{min}
                       </span>
                     )}
                   </p>
