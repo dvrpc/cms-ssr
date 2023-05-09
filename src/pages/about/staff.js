@@ -1,63 +1,136 @@
 import React from "react";
+import { graphql } from "gatsby";
+
 import Body from "../../components/Body";
 import StaffContact from "../../components/StaffContact";
+import HeadTemplate, {
+  defaultThemeConfig,
+  themeToCustomVars,
+} from "../../components/HeadTemplate";
+
+const title = "Staff List";
 
 const StaffRow = ({ emp }) => {
   return (
-    <li className="list-group-item !flex">
-      <span className="max-w-[75%]">
-        <a
-          className="underline"
-          href={`https://www.dvrpc.org/asp/email/?${emp.Id}`}
-        >
-          {emp.FirstName} {emp.LastName} {emp.Suffix}
-        </a>{" "}
-        <span>{emp.Title}</span>
+    <li className="list-group-item print:!m-0 print:break-inside-avoid print:!border-0 print:!border-b print:!border-black print:!p-0">
+      <a
+        className="print:font-bold print:no-underline"
+        href={`https://www.dvrpc.org/asp/email/?${emp.Id}`}
+      >
+        {[emp.Nickname ?? emp.FirstName, emp.LastName, emp.Suffix]
+          .filter(Boolean)
+          .join(" ")}
+      </a>{" "}
+      <span className="float-right ml-4 shrink-0">
+        <span className="print:hidden">(215) 238-</span>
+        {emp.Ext}
       </span>
-      <span className="ml-auto">(215) 238-{emp.Ext}</span>
+      <span className="print:text-xs print:block">{emp.Title}</span>
     </li>
   );
 };
 
-const StaffListPage = ({ serverData }) => {
+const StaffListPage = ({ data, serverData, location }) => {
+  const { userUser, navItem } = data;
   return (
     <>
-      <Body title="Staff List">
-        <div className="mt-4">Contact information for staff.</div>
-        <ul className="list-group">
-          <li className="list-group-item">
-            <a href="/" className="underline">
-              Current Organizational Chart
-            </a>
-          </li>
-        </ul>
-        <h2>Directors</h2>
-        <ul className="list-group">
-          {serverData
-            .filter((emp) => emp.Sortorder)
-            .map((emp) => (
-              <StaffRow emp={emp} />
-            ))}
-        </ul>
-        <h2>Staff</h2>
-        <ul className="list-group">
-          {serverData
-            .filter((emp) => !emp.Sortorder)
-            .map((emp) => (
-              <StaffRow emp={emp} />
-            ))}
-        </ul>
+      <Body title={title} menu={navItem}>
+        <div className="print:columns-4 print:text-sm">
+          <div className="print:hidden">
+            <p>Contact information for staff.</p>
+            <ul className="list-group">
+              <li className="list-group-item">
+                <a href="https://www.dvrpc.org/about/staff/DVRPCOrgChart.pdf">
+                  Current Organizational Chart
+                </a>
+              </li>
+            </ul>
+          </div>
+          <h2 className="print:m-0">Directors</h2>
+          <ul className="list-group">
+            {serverData
+              .filter((emp) => emp.Sortorder)
+              .sort((a, b) => a.Sortorder - b.Sortorder)
+              .map((emp) => (
+                <StaffRow key={emp.Id} emp={emp} />
+              ))}
+          </ul>
+          <h2 className="print:m-0 print:break-before-column">Staff</h2>
+          <ul className="list-group">
+            {serverData
+              .filter((emp) => !emp.Sortorder)
+              .map((emp) => (
+                <StaffRow key={emp.Id} emp={emp} />
+              ))}
+          </ul>
+        </div>
       </Body>
-      <StaffContact />
+      <StaffContact staffContact={userUser} location={location} title={title} />
     </>
   );
 };
+
+export const Head = ({ data: { nodeTheme } }) =>
+  HeadTemplate({
+    title,
+    summary: "Contact information for staff.",
+    css: themeToCustomVars(nodeTheme, defaultThemeConfig),
+  });
+
+export const query = graphql`
+  query {
+    userUser(mail: { eq: "bwichser@dvrpc.org" }) {
+      id
+      mail
+      name: field_display_name
+      title: field_title
+    }
+    nodeTheme(id: { eq: "0efb8b9d-ee32-58c6-897d-0a50ae2b5ac4" }) {
+      field_primary_color
+      field_secondary_color
+      field_third_color
+      field_photo_credits
+      relationships {
+        field_banner_2x {
+          uri {
+            url
+          }
+        }
+        field_banner {
+          uri {
+            url
+          }
+        }
+      }
+    }
+    navItem(href: { regex: "/about/staff/i" }) {
+      ...navitem
+      links {
+        ...navitem
+      }
+      parent {
+        ...navitem
+        ... on NavItem {
+          links {
+            ...navitem
+          }
+        }
+      }
+    }
+  }
+  fragment navitem on NavItem {
+    href
+    link
+    style
+    class
+  }
+`;
 
 export default StaffListPage;
 
 export async function getServerData() {
   try {
-    const res = await fetch(`https://www.dvrpc.org/api/staff`);
+    const res = await fetch("https://www.dvrpc.org/api/staff");
     if (!res.ok) {
       throw new Error("Response failed");
     }
