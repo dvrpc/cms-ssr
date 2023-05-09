@@ -16,7 +16,7 @@ const BusinessPage = (props) => (
       className="rounded-full bg-[var(--color-default)] px-4 py-2 text-white no-underline shadow-sm"
       href="../"
     >
-      View Current
+      Current Opportunities
     </a>
 
     <div className="flex gap-4">
