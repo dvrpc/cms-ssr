@@ -81,14 +81,24 @@ export default BusinessPage;
 
 export async function getServerData() {
   try {
-    const res = await fetch("https://www.dvrpc.org/api/business");
+    const [opportunities, selectedconsultants] = await Promise.all([
+      fetch("https://www.dvrpc.org/api/business"),
+      fetch(
+        `https://www.dvrpc.org/api/business?from=${new Date(
+          new Date() - 1000 * 60 * 60 * 24 * 365
+        ).toLocaleDateString()}&to=`
+      ),
+    ]);
 
-    if (!res.ok) {
+    if (!opportunities.ok && !selectedconsultants.ok) {
       throw new Error("Response failed");
     }
 
     return {
-      props: await res.json(),
+      props: {
+        opportunities: await opportunities.json(),
+        selectedconsultants: await selectedconsultants.json(),
+      },
     };
   } catch (error) {
     return {

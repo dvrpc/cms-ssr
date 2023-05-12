@@ -5,8 +5,8 @@ import Body from "./Body";
 import StaffContact from "./StaffContact";
 
 const BusinessView = ({ children, data, serverData, location, title }) => {
-  const LIMIT = 10;
   const { userUser, navItem } = data;
+  const { opportunities, selectedconsultants } = serverData;
   return (
     <>
       <Body title="Doing Business with DVRPC" menu={navItem}>
@@ -26,10 +26,13 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
               </tr>
             </thead>
             <tbody>
-              {serverData.map((business) => (
+              {opportunities?.map((business) => (
                 <tr key={business.Id}>
                   <td className="py-2">
-                    <a className="block no-underline" href={`/business/${business.Id}`}>
+                    <a
+                      className="block no-underline"
+                      href={`/business/${business.Id}`}
+                    >
                       {business.AddendumLink && (
                         <span
                           title="Additional information is available"
@@ -53,9 +56,7 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
             <tfoot>
               <tr>
                 <td colSpan="3">
-                  <div className="w-100 flex justify-between">
-                    {children}
-                  </div>
+                  <div className="w-100 flex justify-between">{children}</div>
                 </td>
               </tr>
             </tfoot>
@@ -304,6 +305,16 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
             </a>
             <span className="sm"> [0.4 MB pdf]</span>
           </li>
+        </ul>
+        <h2>Recent Vendor Selections</h2>
+        <ul className="list-group">
+          {selectedconsultants?.map((consultant) => (
+            <li key={consultant.Title} className="list-group-item">
+              <strong>{consultant.Title}</strong>
+              <br />
+              {consultant.SelectedConsultant}
+            </li>
+          ))}
         </ul>
       </Body>
       <StaffContact staffContact={userUser} title={title} location={location} />

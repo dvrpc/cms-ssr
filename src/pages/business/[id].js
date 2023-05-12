@@ -1,9 +1,12 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 
 import Body from "../../components/Body";
 import StaffContact from "../../components/StaffContact";
-import HeadTemplate, { defaultThemeConfig, themeToCustomVars } from "../../components/HeadTemplate";
+import HeadTemplate, {
+  defaultThemeConfig,
+  themeToCustomVars,
+} from "../../components/HeadTemplate";
 
 const BusinessDetailsPage = ({ data, serverData, location, title }) => {
   const { userUser, navItem } = data;
