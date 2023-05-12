@@ -4,7 +4,7 @@ import Icon, { Search } from "./Icon";
 
 const Header = ({ bgStyles, alert, children }) => {
   return (
-    <header className="bg-white">
+    <header className="bg-white print:hidden">
       <LogoBar />
       <div
         className="relative h-[var(--height-banner)] w-full bg-cover bg-[center_75%]"
@@ -30,7 +30,7 @@ const Header = ({ bgStyles, alert, children }) => {
                 name="q"
                 placeholder="Search..."
                 aria-label="Search"
-                className="m-0 block w-72 min-w-0 border-0 border-none bg-transparent p-2 pl-10 md:pl-12 placeholder-gray-600 focus:outline-none"
+                className="m-0 block w-72 min-w-0 border-0 border-none bg-transparent p-2 pl-10 placeholder-gray-600 focus:outline-none md:pl-12"
               />
             </div>
           </form>

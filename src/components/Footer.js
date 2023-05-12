@@ -8,12 +8,12 @@ import quicklinks from "../configs/quicklinks";
 const Footer = () => {
   return (
     <>
-      <footer className="flex justify-center bg-white">
+      <footer className="flex justify-center bg-white print:hidden">
         <div className="container px-8 py-8">
           <FooterAds />
         </div>
       </footer>
-      <footer className="flex justify-center bg-[#3a3a3a] text-sm text-white">
+      <footer className="flex justify-center bg-[#3a3a3a] text-sm text-white print:hidden">
         <div className="container px-8 py-4">
           <Link to="/" className="leading-none no-underline">
             <Icon use={DvrpcMini} scale={8} fillColor="#fff" />

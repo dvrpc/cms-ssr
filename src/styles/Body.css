@@ -59,9 +59,6 @@ main th,
 main td {
   @apply border-b border-gray-300 px-2 py-1 text-left leading-5;
 }
-main .list-group {
-  @apply pl-0;
-}
 main .size-medium {
   @apply ml-4 max-w-xl;
   max-width: 15rem;
@@ -156,14 +153,14 @@ main summary::-webkit-details-marker {
   @apply hidden;
 }
 main .list-group {
-  @apply mb-5 overflow-hidden rounded-sm border-0 bg-gray-50 p-0 shadow;
+  @apply mb-5 overflow-hidden rounded-sm border-0 bg-gray-50 p-0 shadow print:!bg-transparent print:!shadow-none print:!overflow-visible;
 }
 main .list-group > .footer,
 main .list-group > footer {
   @apply -mx-4 -mb-4 border-t border-gray-200 bg-gray-100 py-2 px-4 text-right font-bold;
 }
 main .list-group > li {
-  @apply relative -mb-px block border border-gray-200 bg-gray-50 py-2 px-4;
+  @apply relative -mb-px block border border-gray-200 bg-gray-50 py-2 px-4 print:!bg-transparent;
 }
 main .list-group-heading:first-child,
 main .list-group-item:first-child {
