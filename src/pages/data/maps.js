@@ -46,8 +46,11 @@ const Data = () => {
 
   const filteredApps = !filter
     ? apps
-    : apps.filter((app) =>
-        app.Title.toLowerCase().includes(filter.toLowerCase())
+    : apps.filter(
+        (app) =>
+          app.Title.toLowerCase().includes(filter.toLowerCase()) ||
+          (app.Keywords &&
+            app.Keywords.toLowerCase().includes(filter.toLowerCase()))
       );
 
   return (
