@@ -61,25 +61,23 @@ const RegionalTrailsPage = () => {
     [-76.09405517578125, 39.49211914385648],
     [-74.32525634765625, 40.614734298694216],
   ]);
-  const spanStyle = {
-    color: "#2e5983",
-    fontWeight: "bold",
-  };
 
-  map.current?.on("mousemove", "trail-lines", function () {
+  const mouseEnter = () => {
     map.current.getCanvas().style.cursor = "pointer";
-  });
-  map.current?.on("mouseleave", "trail-lines", function () {
+  };
+  const mouseLeave = () => {
     map.current.getCanvas().style.cursor = "";
-  });
-  map.current?.on("click", "trail-lines", (e) => {
-    const props = e.features[0].properties;
-    const award = props.award.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-    setShowPopup({ ...props, lngLat: e.lngLat, award });
-  });
+  };
+  const click = (e) => {
+    if (e.features.length) {
+      const props = e.features[0].properties;
+      const award = props.award.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+      });
+      setShowPopup({ ...props, lngLat: e.lngLat, award });
+    }
+  };
 
   return (
     <>
@@ -93,6 +91,10 @@ const RegionalTrailsPage = () => {
           mapboxAccessToken="pk.eyJ1IjoibW1vbHRhIiwiYSI6ImNqZDBkMDZhYjJ6YzczNHJ4cno5eTcydnMifQ.RJNJ7s7hBfrJITOBZBdcOA"
           ref={map}
           style={{ height: "500px", width: "100%" }}
+          interactiveLayerIds={["trail-lines"]}
+          onClick={click}
+          onMouseEnter={mouseEnter}
+          onMouseLeave={mouseLeave}
         >
           <Source
             id="county"
