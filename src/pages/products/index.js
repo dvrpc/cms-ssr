@@ -7,13 +7,14 @@ import HeadTemplate, {
 } from "../../components/HeadTemplate";
 import ProductsListView from "../../components/ProductsListView";
 
-const title = "Recent Products";
+const title = "DVRPC Products";
 
-const RecentProductsPage = (props) => (
+const ProductsPage = (props) => (
   <ProductsListView {...props} title={title}>
     <p>
-      Here is a list of products released by DVRPC sorted newest-to-oldest, by
-      date the product was published.
+      DVRPC has published over one thousand reports from the 1970s to present.
+      Product abstracts and/or PDF downloads are available. You can also see a{" "}
+      <a href="/products/recent/">quick list of recent products</a> published.
     </p>
   </ProductsListView>
 );
@@ -22,7 +23,7 @@ export const Head = ({ data: { nodeTheme } }) =>
   HeadTemplate({
     title,
     summary:
-      "Here is a list of products released by DVRPC sorted newest-to-oldest, by date the product was published.",
+      "DVRPC has published over one thousand reports from the 1970s to present. Product abstracts and/or PDF downloads are available. You can also see a quick list of recent products published.",
     css: themeToCustomVars(nodeTheme, defaultThemeConfig),
   });
 
@@ -52,7 +53,7 @@ export const query = graphql`
         }
       }
     }
-    navItem(href: { regex: "/products/recent/i" }) {
+    navItem(href: { regex: "/^/products/?$/i" }) {
       ...navitem
       links {
         ...navitem
@@ -75,12 +76,16 @@ export const query = graphql`
   }
 `;
 
-export default RecentProductsPage;
+export default ProductsPage;
 
 export async function getServerData({ query }) {
   try {
     const res = await fetch(
-      "https://www.dvrpc.org/api/products?onlyFeatured=false&offset=${query.offset ?? 0}"
+      query.q
+        ? `https://www.dvrpc.org/api/products?onlyFeatured=false&keywords=${
+            query.q
+          }&offset=${query.offset ?? 0}`
+        : "https://www.dvrpc.org/api/products?onlyFeatured=false"
     );
     if (!res.ok) {
       throw new Error("Response failed");

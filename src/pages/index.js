@@ -47,7 +47,7 @@ const Events = ({ dataReader }) =>
 const Products = ({ dataReader }) =>
   dataReader.isLoading
     ? [...Array(6)].map((_, i) => <ProductLoader key={i} />)
-    : dataReader.data.map((d) => <Product key={d.Id} {...d} />);
+    : dataReader.data.map((d) => <Product type="card" key={d.Id} {...d} />);
 
 const HomePage = ({ data }) => {
   const annsReader = useData("https://www.dvrpc.org/api/announcements?limit=3");

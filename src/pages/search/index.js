@@ -5,24 +5,17 @@ import HeadTemplate, {
   defaultThemeConfig,
   themeToCustomVars,
 } from "../../components/HeadTemplate";
-import ProductsListView from "../../components/ProductsListView";
+import SearchResultsView from "../../components/SearchResultsView";
 
-const title = "Recent Products";
+const title = "DVRPC Search";
 
-const RecentProductsPage = (props) => (
-  <ProductsListView {...props} title={title}>
-    <p>
-      Here is a list of products released by DVRPC sorted newest-to-oldest, by
-      date the product was published.
-    </p>
-  </ProductsListView>
-);
+const SearchPage = (props) => <SearchResultsView title={title} {...props} />;
 
 export const Head = ({ data: { nodeTheme } }) =>
   HeadTemplate({
     title,
     summary:
-      "Here is a list of products released by DVRPC sorted newest-to-oldest, by date the product was published.",
+      "The DVRPC Products Database is continuously updated as reports and other items become available. Visitors can view publication abstracts and/or full PDF versions for over 1,000 reports from the late 1980s to present.",
     css: themeToCustomVars(nodeTheme, defaultThemeConfig),
   });
 
@@ -52,7 +45,7 @@ export const query = graphql`
         }
       }
     }
-    navItem(href: { regex: "/products/recent/i" }) {
+    navItem(href: { regex: "/search/i" }) {
       ...navitem
       links {
         ...navitem
@@ -75,12 +68,14 @@ export const query = graphql`
   }
 `;
 
-export default RecentProductsPage;
+export default SearchPage;
 
 export async function getServerData({ query }) {
   try {
     const res = await fetch(
-      "https://www.dvrpc.org/api/products?onlyFeatured=false&offset=${query.offset ?? 0}"
+      `https://www.dvrpc.org/api/search?q=${query.q ?? ""}&offset=${
+        query.offset ?? 0
+      }`
     );
     if (!res.ok) {
       throw new Error("Response failed");
