@@ -4,8 +4,10 @@ import { isMatch } from "matcher";
 import DefaultPage from "../components/DefaultPage";
 import DataPage from "../components/DataPage";
 import HeadTemplate, { themeToCustomVars } from "../components/HeadTemplate";
+import RegionalTrailsPage from "../components/RegionalTrailsPage";
 
 const templates = {
+  "/trails/regionaltrailsprogram": RegionalTrailsPage,
   "/**": DefaultPage,
   "/data/**": DataPage,
 };
