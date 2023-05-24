@@ -39,7 +39,7 @@ const Data = () => {
   const [filter, setFilter] = useState("");
   const resultIncrement = 10;
   useEffect(() => {
-    fetch("https://www.dvrpc.org/api/products?type=WEB&limit=999")
+    fetch("https://www.dvrpc.org/api/products?type=data%20center&limit=999")
       .then((response) => response.json())
       .then((resultData) => setApps(resultData));
   }, []);
