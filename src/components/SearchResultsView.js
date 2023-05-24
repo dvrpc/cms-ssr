@@ -84,17 +84,15 @@ const SearchResultsView = ({ data, serverData, location, title }) => {
               </a>
               <span>
                 {+offset + 1} &ndash;{" "}
-                {serverData.length === LIMIT
-                  ? +offset + LIMIT
-                  : serverData.length}
+                {items.length === LIMIT ? +offset + LIMIT : items.length}
               </span>
               <a
                 href={
-                  serverData.length === LIMIT
+                  items.length === LIMIT
                     ? `?q=${query}&offset=${+offset + LIMIT}`
                     : null
                 }
-                aria-disabled={serverData.length < LIMIT}
+                aria-disabled={items.length < LIMIT}
                 aria-label="Next"
                 className="aria-disabled:text-gray-400"
               >
