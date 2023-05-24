@@ -80,7 +80,7 @@ export default RecentProductsPage;
 export async function getServerData({ query }) {
   try {
     const res = await fetch(
-      "https://www.dvrpc.org/api/products?onlyFeatured=false&offset=${query.offset ?? 0}"
+      `https://www.dvrpc.org/api/products?onlyFeatured=false&offset=${query.offset ?? 0}`
     );
     if (!res.ok) {
       throw new Error("Response failed");
