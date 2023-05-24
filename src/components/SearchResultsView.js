@@ -83,11 +83,20 @@ const SearchResultsView = ({ data, serverData, location, title }) => {
                 </svg>
               </a>
               <span>
-                {+offset + 1} &ndash; {+offset + LIMIT}
+                {+offset + 1} &ndash;{" "}
+                {serverData.length === LIMIT
+                  ? +offset + LIMIT
+                  : serverData.length}
               </span>
               <a
-                href={`?q=${query}&offset=${+offset + LIMIT}`}
+                href={
+                  serverData.length === LIMIT
+                    ? `?q=${query}&offset=${+offset + LIMIT}`
+                    : null
+                }
+                aria-disabled={serverData.length < LIMIT}
                 aria-label="Next"
+                className="aria-disabled:text-gray-400"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

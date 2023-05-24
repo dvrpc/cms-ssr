@@ -45,7 +45,7 @@ export const query = graphql`
         }
       }
     }
-    navItem(href: { regex: "/search/i" }) {
+    navItem(href: { regex: "/^/search/?$/i" }) {
       ...navitem
       links {
         ...navitem
