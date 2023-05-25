@@ -262,6 +262,10 @@ const RegionalTrailsPage = ({
             </tbody>
           </table>
         </div>
+        <div className="card">
+          <h2>Other Resources</h2>
+          <a href="http://circuittrails.org/">CircuitTrails.org</a>
+        </div>
       </Body>
       <StaffContact
         staffContact={staffContact}
