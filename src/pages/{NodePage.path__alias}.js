@@ -4,8 +4,10 @@ import { isMatch } from "matcher";
 import DefaultPage from "../components/DefaultPage";
 import DataPage from "../components/DataPage";
 import HeadTemplate, { themeToCustomVars } from "../components/HeadTemplate";
+import TCDIPage from "../components/TCDIPage";
 
 const templates = {
+  "/tcdi": TCDIPage,
   "/**": DefaultPage,
   "/data/**": DataPage,
 };

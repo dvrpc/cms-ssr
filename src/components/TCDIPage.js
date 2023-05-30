@@ -1,15 +1,10 @@
 import React, { useRef, useState } from "react";
-import Body from "../components/Body";
-import HtmlParser from "../components/HtmlParser";
-import StaffContact from "../components/StaffContact";
+import Body from "./Body";
+import HtmlParser from "./HtmlParser";
+import StaffContact from "./StaffContact";
 import { Layer, Map, Popup, Source } from "react-map-gl";
 import { LngLatBounds } from "mapbox-gl";
-import {
-  featureSet,
-  data2017,
-  data2019,
-  data2021,
-} from "../components/TCDIData";
+import { featureSet, data2017, data2019, data2021 } from "./TCDIData";
 
 const boundaryLayers = [
   {
@@ -73,11 +68,12 @@ const TCDIPage = ({ body, title, navItem, location, staffContact }) => {
       setShowPopup({ ...props });
     }
   };
+  body = body.split('<hr class="separator"/>');
 
   return (
     <>
       <Body title={title} menu={navItem}>
-        <HtmlParser html={body ?? ""} />
+        <HtmlParser html={body[0] ?? ""} />
         <link
           href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
           rel="stylesheet"
@@ -280,6 +276,7 @@ const TCDIPage = ({ body, title, navItem, location, staffContact }) => {
             <a href="/">Older TCDI Projects Archive</a>
           </h2>
         </div>
+        <HtmlParser html={body[body.length - 1] ?? ""} />
       </Body>
       <StaffContact
         staffContact={staffContact}
