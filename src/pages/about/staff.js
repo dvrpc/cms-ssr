@@ -25,7 +25,7 @@ const StaffRow = ({ emp }) => {
         <span className="print:hidden">(215) 238-</span>
         {emp.Ext}
       </span>
-      <span className="print:text-xs print:block">{emp.Title}</span>
+      <span className="print:block print:text-xs">{emp.Title}</span>
     </li>
   );
 };
@@ -46,6 +46,32 @@ const StaffListPage = ({ data, serverData, location }) => {
               </li>
             </ul>
           </div>
+          <h2 className="hidden print:m-0 print:block">
+            {new Date().toLocaleDateString("en-us", {
+              month: "long",
+              year: "numeric",
+            })}
+          </h2>
+          <ul className="list-group hidden print:block">
+            <StaffRow emp={{ FirstName: "DVRPC", Ext: "215-592-1800" }} />
+            <StaffRow
+              emp={{ FirstName: "ACP Security", Ext: "215-351-2403" }}
+            />
+            <StaffRow
+              emp={{ FirstName: "Garage Security", Ext: "215-351-2404" }}
+            />
+            <StaffRow emp={{ FirstName: "Admin Room", Ext: "2904" }} />
+            <StaffRow emp={{ FirstName: "Bucks Room", Ext: "2909" }} />
+            <StaffRow emp={{ FirstName: "Burlington Room", Ext: "2804" }} />
+            <StaffRow emp={{ FirstName: "Camden Room", Ext: "2807" }} />
+            <StaffRow emp={{ FirstName: "Chester Room", Ext: "2802" }} />
+            <StaffRow emp={{ FirstName: "Delaware Room", Ext: "2801" }} />
+            <StaffRow emp={{ FirstName: "Gloucester Room", Ext: "2806" }} />
+            <StaffRow emp={{ FirstName: "Mercer Room", Ext: "2805" }} />
+            <StaffRow emp={{ FirstName: "Montgomery Room", Ext: "2803" }} />
+            <StaffRow emp={{ FirstName: "Philadelphia Room", Ext: "2808" }} />
+            <StaffRow emp={{ FirstName: "Phone Room", Ext: "2928" }} />
+          </ul>
           <h2 className="print:m-0">Directors</h2>
           <ul className="list-group">
             {serverData
