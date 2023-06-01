@@ -3,10 +3,18 @@ import Body from "../../components/Body";
 import StaffContact from "../../components/StaffContact";
 
 const PPTFApplicationPage = () => {
-  const submitForm = (event) => {
+  const submitForm = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
-    console.log(data);
+    try {
+      await fetch("https://staging.dvrpc.org/asp/pptfapplication/save.aspx", {
+        method: "POST",
+        body: data,
+      });
+      if (window) window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -27,7 +35,7 @@ const PPTFApplicationPage = () => {
           constantly endeavor to engage the region's municipal and county
           governments through a variety of specific programs.
         </p>
-        <form onSubmit={submitForm}>
+        <form method="POST" onSubmit={submitForm}>
           <fieldset>
             <label>
               <div>
