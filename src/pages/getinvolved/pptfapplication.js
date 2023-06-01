@@ -42,7 +42,7 @@ const PPTFApplicationPage = () => {
                 Name<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="name" required="" />
+                <input type="text" name="name" required />
               </div>
             </label>
             <label>
@@ -50,7 +50,7 @@ const PPTFApplicationPage = () => {
                 Email<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="email" required="" />
+                <input type="text" name="email" required />
               </div>
             </label>
             <label>
@@ -58,7 +58,7 @@ const PPTFApplicationPage = () => {
                 Home Address<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="address" required="" />
+                <input type="text" name="address" required />
               </div>
             </label>
             <label>
@@ -66,7 +66,7 @@ const PPTFApplicationPage = () => {
                 City<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="city" required="" />
+                <input type="text" name="city" required />
               </div>
             </label>
             <label>
@@ -74,7 +74,7 @@ const PPTFApplicationPage = () => {
                 Zip<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="zip" required="" />
+                <input type="text" name="zip" required />
               </div>
             </label>
             <label>
@@ -82,7 +82,7 @@ const PPTFApplicationPage = () => {
                 County<span className="sm">*</span>
               </div>
               <div>
-                <select name="county" id="county" required="">
+                <select name="county" id="county" required>
                   <option disabled selected hidden>
                     Select...
                   </option>
@@ -112,7 +112,7 @@ const PPTFApplicationPage = () => {
                 <input
                   type="text"
                   name="phone"
-                  required=""
+                  required
                   pattern="^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
                 />
               </div>
@@ -122,7 +122,7 @@ const PPTFApplicationPage = () => {
                 Occupation<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="occupation" required="" />
+                <input type="text" name="occupation" required />
               </div>
             </label>
           </fieldset>
@@ -135,7 +135,7 @@ const PPTFApplicationPage = () => {
               New Jersey)?<span className="sm">*</span>
             </p>
             <label className="pt-0">
-              <input type="text" name="resident" required="" />
+              <input type="text" name="resident" required />
             </label>
           </fieldset>
 
@@ -267,7 +267,7 @@ const PPTFApplicationPage = () => {
                 First Reference Name<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="ref1_name" required="" />
+                <input type="text" name="ref1_name" required />
               </div>
             </label>
             <label>
@@ -275,7 +275,7 @@ const PPTFApplicationPage = () => {
                 Title<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="ref1_title" required="" />
+                <input type="text" name="ref1_title" required />
               </div>
             </label>
             <label>
@@ -283,7 +283,7 @@ const PPTFApplicationPage = () => {
                 Affiliation<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="ref1_aff" required="" />
+                <input type="text" name="ref1_aff" required />
               </div>
             </label>
             <label>
@@ -294,7 +294,7 @@ const PPTFApplicationPage = () => {
                 <input
                   type="text"
                   name="ref1_phone"
-                  required=""
+                  required
                   pattern="^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
                 />
               </div>
@@ -302,7 +302,7 @@ const PPTFApplicationPage = () => {
             <label>
               <div>Email</div>
               <div>
-                <input type="text" name="ref1_email" required="" />
+                <input type="text" name="ref1_email" required />
               </div>
             </label>
             <label>
@@ -310,7 +310,7 @@ const PPTFApplicationPage = () => {
                 Second Reference Name<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="ref2_name" required="" />
+                <input type="text" name="ref2_name" required />
               </div>
             </label>
             <label>
@@ -318,7 +318,7 @@ const PPTFApplicationPage = () => {
                 Title<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="ref2_title" required="" />
+                <input type="text" name="ref2_title" required />
               </div>
             </label>
             <label>
@@ -326,7 +326,7 @@ const PPTFApplicationPage = () => {
                 Affiliation<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="ref2_aff" required="" />
+                <input type="text" name="ref2_aff" required />
               </div>
             </label>
             <label>
@@ -334,13 +334,13 @@ const PPTFApplicationPage = () => {
                 Phone<span className="sm">*</span>
               </div>
               <div>
-                <input type="text" name="ref2_phone" required="" />
+                <input type="text" name="ref2_phone" required />
               </div>
             </label>
             <label>
               <div>Email</div>
               <div>
-                <input type="text" name="ref2_email" required="" />
+                <input type="text" name="ref2_email" required />
               </div>
             </label>
           </fieldset>
@@ -368,7 +368,7 @@ const PPTFApplicationPage = () => {
                 process?
               </li>
             </ul>
-            <textarea name="statement" id="statement" required=""></textarea>
+            <textarea name="statement" id="statement" required></textarea>
           </fieldset>
 
           <fieldset>
