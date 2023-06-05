@@ -7,11 +7,10 @@ export default [
     new_window: true,
   },
   {
-    href: "https://storymaps.arcgis.com/stories/b1a84ab9dccd4175944132deefc93371",
-    src: "https://www.dvrpc.org/img/gatsby/7799_AR-FY22_WebPlacard_FINAL.png",
-    label: "Annual Report",
-    style: { width: 220 },
-    new_window: true,
+    href: "https://www.dvrpc.org/trackingprogress/",
+    src: "https://www.dvrpc.org/img/tracking_progress.png",
+    label: "Tracking Progress",
+    style: { width: 201 },
   },
   {
     src: "https://www.dvrpc.org/img/gatsby/C2050_WebPlacard[FINAL].png",
