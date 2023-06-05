@@ -13,14 +13,17 @@ const ProductsListView = ({ children, data, serverData, location, title }) => {
 
   useEffect(() => window.document.querySelector("h1").scrollIntoView(), []);
 
-  const highlight = (str) => {
-    if (!str) return "";
-    return query
+  const highlight = (text, keywords) => {
+    if (!text || !keywords) {
+      return text;
+    }
+    return keywords
       .split(" ")
+      .filter((word) => word.trim())
       .reduce(
-        (prev, cur) =>
-          prev.replace(new RegExp(`(${cur})`, "gi"), `<strong>$1</strong>`),
-        str
+        (current, word) =>
+          current.replace(new RegExp(`(${word})`, "i"), "<strong>$1</strong>"),
+        text
       );
   };
 
@@ -50,8 +53,8 @@ const ProductsListView = ({ children, data, serverData, location, title }) => {
             <Product
               key={product.Id}
               {...product}
-              Title={highlight(trunc(product.Title))}
-              Abstract={highlight(trunc(product.Abstract))}
+              Title={highlight(trunc(product.Title), query)}
+              Abstract={highlight(trunc(product.Abstract), query)}
             />
           ))}
 
