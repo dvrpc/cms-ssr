@@ -35,6 +35,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-html-map": "^0.1.1",
+    "react-medium-image-zoom": "^5.1.6",
+    "swiper": "^9.3.2",
     "swr": "^2.0.4",
     "tailwindcss": "^3.2.7"
   },
