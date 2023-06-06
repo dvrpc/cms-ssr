@@ -1,6 +1,7 @@
 import React from "react";
 import HtmlMapper from "react-html-map";
 import Link from "./Link";
+import PlanCarousel from "../components/PlanCarousel";
 
 const genericElement =
   (elementType) =>
@@ -74,7 +75,15 @@ const HtmlParser = ({ html }) => (
       br: emptyElement("br"),
       div: genericElement("div"),
       em: genericElement("em"),
-      figure: genericElement("figure"),
+      figure: (attribs) => {
+        const elem = attribs.class;
+        const elemMap = {
+          "plan-carousel": <PlanCarousel />,
+        };
+        return elemMap[elem]
+          ? elemMap[elem]
+          : genericElement("figure")(attribs);
+      },
       form: genericElement("form"),
       h2: genericElement("h2"),
       h3: genericElement("h3"),
