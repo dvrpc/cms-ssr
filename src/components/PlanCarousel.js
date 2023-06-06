@@ -23,22 +23,22 @@ const PlanCarousel = () => {
         "--swiper-pagination-color": "#939598",
       }}
     >
-      <SwiperSlide className="p-12">
+      <SwiperSlide className="p-12 pt-0">
         <Zoom>
           <img src={Community} />
         </Zoom>
       </SwiperSlide>
-      <SwiperSlide className="p-12">
+      <SwiperSlide className="p-12 pt-0">
         <Zoom>
           <img src={Economy} />
         </Zoom>
       </SwiperSlide>
-      <SwiperSlide className="p-12">
+      <SwiperSlide className="p-12 pt-0">
         <Zoom>
           <img src={Environment} />
         </Zoom>
       </SwiperSlide>
-      <SwiperSlide className="p-12">
+      <SwiperSlide className="p-12 pt-0">
         <Zoom>
           <img src={Infrastructure} />
         </Zoom>
