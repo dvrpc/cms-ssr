@@ -44,9 +44,9 @@ const Product = (props) =>
       >
         <HtmlParser html={props.Title} />
       </a>
-      <p>
+      <div>
         <HtmlParser html={props.Abstract} />
-      </p>
+      </div>
       <p>
         <a
           className="font-bold text-[color:var(--color-h1)] no-underline hover:underline"

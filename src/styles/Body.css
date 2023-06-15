@@ -126,13 +126,15 @@ main .buttons > div {
 }
 main .button a,
 main .btn a,
-main button.btn {
-  @apply inline-block rounded border-0 border-solid border-transparent py-2 px-3 text-center align-middle no-underline transition duration-150 ease-in-out hover:brightness-125;
+main button.btn,
+main a.btn {
+  @apply inline-block rounded border-2 border-solid border-[color:var(--color-default)] p-2 text-center align-middle text-[color:var(--color-default)] no-underline transition duration-150 ease-in-out hover:brightness-125;
 }
 main .button a,
 main .btn-primary a,
-main button.btn {
-  @apply bg-[color:var(--color-h1)] text-white;
+main button.btn-primary,
+main a.btn-primary {
+  @apply border-[color:var(--color-h1)] bg-[color:var(--color-h1)] text-white;
 }
 main details {
   @apply my-2 border border-gray-300 bg-white;
@@ -153,7 +155,7 @@ main summary::-webkit-details-marker {
   @apply hidden;
 }
 main .list-group {
-  @apply mb-5 overflow-hidden rounded-sm border-0 bg-gray-50 p-0 shadow print:!bg-transparent print:!shadow-none print:!overflow-visible;
+  @apply mb-5 overflow-hidden rounded-sm border-0 bg-gray-50 p-0 shadow print:!overflow-visible print:!bg-transparent print:!shadow-none;
 }
 main .list-group > .footer,
 main .list-group > footer {
