@@ -45,7 +45,11 @@ const BusinessDetailsPage = ({ data, serverData, location, title }) => {
                 <td>Submission of Inquiries by Email:</td>
                 <td>
                   <b>
-                    {new Date(serverData.QuestionDate).toLocaleDateString()}
+                    {new Date(serverData.QuestionDate).toLocaleDateString()} by{" "}
+                    {new Date(serverData.QuestionDate).toLocaleTimeString(
+                      "en-us",
+                      { timeStyle: "short" }
+                    )}
                   </b>
                 </td>
               </tr>
@@ -57,9 +61,9 @@ const BusinessDetailsPage = ({ data, serverData, location, title }) => {
                   {serverData.SubmissionDate
                     ? `${new Date(
                         serverData.SubmissionDate
-                      ).toLocaleDateString()} ${
-                        serverData.SubmissionTime ?? ""
-                      }`
+                      ).toLocaleDateString()} by ${new Date(
+                        serverData.SubmissionDate
+                      ).toLocaleTimeString("en-us", { timeStyle: "short" })}`
                     : "rolling basis"}
                 </b>
               </td>

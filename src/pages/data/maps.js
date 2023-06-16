@@ -6,8 +6,14 @@ import Icon, { DvrpcMini } from "../../components/Icon";
 import ConnectWithUs from "../../components/ConnectWithUs";
 import bgImage from "../../images/datacenter.jpg";
 import DVRPCbg from "../../images/dvrpc-transparent.png";
+import HtmlParser from "../../components/HtmlParser";
 
-const NewsLoader = () => <div>Loading...</div>;
+const trunc = (str) => {
+  if (!str) return "";
+  return str.length > 250
+    ? `${str.substring(0, 250)}${str.substring(250).split(" ")[0]}…`
+    : str;
+};
 
 export const Head = () => {
   return (
@@ -39,7 +45,7 @@ const Data = () => {
   const [filter, setFilter] = useState("");
   const resultIncrement = 10;
   useEffect(() => {
-    fetch("https://www.dvrpc.org/api/products?type=WEB&limit=999")
+    fetch("https://www.dvrpc.org/api/products?type=data%20center&limit=999")
       .then((response) => response.json())
       .then((resultData) => setApps(resultData));
   }, []);
@@ -173,9 +179,7 @@ const Data = () => {
                     src={`https://www.dvrpc.org/asp/pubs/402px/${app.Id}.png`}
                   ></img>
                   <span className="text-gray-400">
-                    {app.Abstract
-                      ? app.Abstract.slice(0, 250).trim() + "..."
-                      : ""}
+                    <HtmlParser html={trunc(app.Abstract)} />
                   </span>
                 </div>
               </div>
