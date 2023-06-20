@@ -170,7 +170,7 @@ const Data = ({ data }) => {
           </h3>
           <Carousel>
             {data.allMenuLinkContentMenuLinkContent.edges.map(({ node }) => (
-              <AppCard node={node} />
+              <AppCard key={node.field_product_id} node={node} />
             ))}
           </Carousel>
         </div>
