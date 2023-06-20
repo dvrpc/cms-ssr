@@ -80,7 +80,7 @@ const HomePage = ({ data }) => {
           <div className="container px-8">
             <h3 className="text-3xl">
               <a
-                className="text-[#296591] no-underline hover:underline"
+                className="text-[#296591]"
                 href="https://www.dvrpc.org/Calendar/"
               >
                 Events
@@ -96,10 +96,10 @@ const HomePage = ({ data }) => {
           <div className="container px-8">
             <h3 className="text-3xl">
               <a
-                className="text-[#296591] no-underline hover:underline"
+                className="text-[#296591]"
                 href="https://www.dvrpc.org/Products/Search/"
               >
-                New Releases
+                Products
               </a>
             </h3>
             <div className="grid-cols-3 pb-8 md:grid">
