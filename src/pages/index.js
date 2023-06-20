@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import useSWR from "swr";
+import useData from "../components/common/useData";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -11,20 +11,15 @@ import CSSSlider from "../components/CSSSlider";
 
 import "../styles/Body.css";
 
-const useData = (url) =>
-  useSWR(url, (...args) => fetch(...args).then((res) => res.json()));
-
-export const Head = () => {
-  return (
-    <>
-      <title>Delaware Valley Regional Planning Commission</title>
-      <meta
-        name="description"
-        content="The Delaware Valley Regional Planning Commission is the federally designated Metropolitan Planning Organization for nine counties: Bucks, Chester, Delaware, Montgomery, and Philadelphia, Pennsylvania; and Burlington, Camden, Gloucester, and Mercer, New Jersey."
-      />
-    </>
-  );
-};
+export const Head = () => (
+  <>
+    <title>Delaware Valley Regional Planning Commission</title>
+    <meta
+      name="description"
+      content="The Delaware Valley Regional Planning Commission is the federally designated Metropolitan Planning Organization for nine counties: Bucks, Chester, Delaware, Montgomery, and Philadelphia, Pennsylvania; and Burlington, Camden, Gloucester, and Mercer, New Jersey."
+    />
+  </>
+);
 
 const Anns = ({ dataReader }) =>
   dataReader.isLoading ? (
