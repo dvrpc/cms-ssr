@@ -34,14 +34,19 @@ main p.lead {
   @apply text-2xl;
 }
 main ol {
-  @apply my-4 list-decimal;
-  list-style-position: inside;
+  @apply my-4 list-decimal pl-4;
 }
 main ol[type="A"] {
   list-style: upper-alpha;
 }
 main ul {
-  @apply my-4 list-disc pl-10;
+  @apply my-4 list-disc pl-4;
+}
+main dl {
+  @apply grid grid-cols-[max-content_1fr] gap-2;
+}
+main dt {
+  @apply font-bold;
 }
 main table {
   @apply not-italic;

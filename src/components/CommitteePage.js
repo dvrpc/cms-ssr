@@ -26,61 +26,58 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
           </div>
         ) : (
           <>
+            <h3>Information</h3>
             <dl>
               {Object.entries({
-                Chair: data.Chair,
+                "Chair(s)": data.Chair,
                 "Vice-Chair": data.Vicechair,
                 Coordinator: data.Coordinator,
                 "Assistant Coordinator": data.Asstcoordinator,
                 "Meeting Frequency": data.Meetingfreq,
-              }).map(
-                ([key, val]) =>
-                  val && (
-                    <React.Fragment key={key}>
-                      <dt className="inline-block font-bold">{key}:</dt>{" "}
-                      <dd className="inline">{val}</dd>
-                    </React.Fragment>
-                  )
-              )}
+              })
+                .filter(([key, val]) => !!val)
+                .map(([key, val]) => (
+                  <React.Fragment key={key}>
+                    <dt>{key}:</dt> <dd>{val}</dd>
+                  </React.Fragment>
+                ))}
             </dl>
             <small>
               Minutes are draft until approved by the committee members.
             </small>
-            <div>
-              <h3 className="text-lg font-bold">Meetings</h3>
-              <table className="table-auto">
-                <tbody>
-                  {data?.Agendas?.map((agenda) => {
-                    const date = new Date(agenda.Meetingdate);
-                    return (
-                      <tr key={agenda.Id}>
-                        <td>
-                          <b>
-                            {date.toLocaleString("en-US", { month: "short" })}
-                          </b>{" "}
-                          {date.toLocaleString("en-US", { year: "numeric" })}
-                        </td>
-                        <td>
-                          <div className="flex gap-2 divide-x underline">
-                            <a
-                              href={`/committees/${data.Shortname}/${agenda.Id}`}
-                            >
-                              Agenda
-                            </a>
-                            {agenda.Minutes && (
-                              <a href={agenda.Minutes}>Meeting/Highlights</a>
-                            )}
-                            {agenda.Presentations && (
-                              <a href={agenda.Presentations}>Presentations</a>
-                            )}
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+            <h3 className="text-lg font-bold">Meetings</h3>
+            <table className="table-auto">
+              <tbody>
+                {data?.Agendas?.map((agenda) => {
+                  const date = new Date(agenda.Meetingdate);
+                  return (
+                    <tr key={agenda.Id}>
+                      <td>
+                        <b>
+                          {date.toLocaleString("en-US", { month: "short" })}
+                        </b>{" "}
+                        {date.toLocaleString("en-US", { year: "numeric" })}
+                      </td>
+                      <td>
+                        <div className="flex gap-2 divide-x underline">
+                          <a
+                            href={`/committees/${data.Shortname}/${agenda.Id}`}
+                          >
+                            Agenda
+                          </a>
+                          {agenda.Minutes && (
+                            <a href={agenda.Minutes}>Meeting/Highlights</a>
+                          )}
+                          {agenda.Presentations && (
+                            <a href={agenda.Presentations}>Presentations</a>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </>
         )}
       </Body>
