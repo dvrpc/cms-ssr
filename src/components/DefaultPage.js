@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import HtmlParser from "./HtmlParser";
 import Body from "./Body";
@@ -19,21 +20,21 @@ const DefaultPage = ({ body, title, navItem, location, staffContact }) => {
   );
 };
 
-DefaultPage.propTypes = {
-  body: "",
-  title: "",
-  navItem: {
-    href: "",
-    link: "",
-    links: [],
-    parent: Object,
-  },
-  location: "",
-  staffContact: {
-    name: "",
-    title: "",
-    mail: "",
-  },
+DefaultPage.props = {
+  body: PropTypes.string,
+  title: PropTypes.string,
+  navItem: PropTypes.shape({
+    href: PropTypes.string,
+    link: PropTypes.string,
+    links: PropTypes.arrayOf(PropTypes.object),
+    parent: PropTypes.object,
+  }),
+  location: PropTypes.string,
+  staffContact: PropTypes.shape({
+    name: PropTypes.string,
+    title: PropTypes.string,
+    mail: PropTypes.string,
+  }),
 };
 
 export default DefaultPage;
