@@ -1,29 +1,28 @@
 import React from "react";
 
-const Event = (props) => {
-  const [, mon, day] = props.StartDate.split("-");
-  const hour = +props.StartTime.substring(0, 2);
-  const start = (hour > 12 ? hour - 12 : hour) + props.StartTime.substring(2);
+const Event = ({ StartDate, StartTime, Title, Info }) => {
+  StartTime = StartTime ?? "00:00";
+  const [, mon, day] = StartDate.split("-");
+  const hour = +StartTime.substring(0, 2);
+  const start = (hour > 12 ? hour - 12 : hour) + StartTime.substring(2);
   return (
     <div
-      key={props.StartDate + props.Title}
+      key={StartDate + Title}
       className="-ml-4 flex w-full items-center gap-4 divide-x divide-gray-400 px-4 pt-0 pb-8 md:w-auto md:flex-1"
     >
       <footer className="flex flex-col items-center">
         <p className="m-0 text-2xl leading-none">
           {+mon}/{+day}
         </p>
-        <span className="m-0 ml-auto">
-          {props.StartTime !== "00:00" && start}
-        </span>
+        <span className="m-0 ml-auto">{StartTime !== "00:00" && start}</span>
       </footer>
       <h4 className="m-0 pl-2 font-normal">
-        {props.Info ? (
-          <a className="underline" href={props.Info}>
-            {props.Title}
+        {Info ? (
+          <a className="underline" href={Info}>
+            {Title}
           </a>
         ) : (
-          props.Title
+          Title
         )}
       </h4>
     </div>
