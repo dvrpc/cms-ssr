@@ -52,13 +52,14 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
                   const date = new Date(agenda.Meetingdate);
                   return (
                     <tr key={agenda.Id}>
-                      <td>
+                      <td className="align-top">
                         <b>
                           {date.toLocaleString("en-US", { month: "short" })}
                         </b>{" "}
                         {date.toLocaleString("en-US", { year: "numeric" })}
                       </td>
                       <td>
+                        {agenda.Title ? <em>{agenda.Title}</em> : null}
                         <div className="flex gap-2 divide-x underline">
                           <a
                             href={`/committees/${data.Shortname}/${agenda.Id}`}
