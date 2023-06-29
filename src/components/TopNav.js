@@ -36,7 +36,7 @@ const rootNavArr = [
   },
   {
     link: "Long-&#8203;Range Plan &amp; TIP",
-    href: "/LongRangePlanAndTIP/",
+    href: "/PlanAndTIP/",
   },
   {
     link: "Transportation",
