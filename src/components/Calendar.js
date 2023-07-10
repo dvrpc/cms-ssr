@@ -1,17 +1,34 @@
 import React from "react";
 
+const months = [
+  null,
+  "JAN",
+  "FEB",
+  "MAR",
+  "APR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AUG",
+  "SEP",
+  "OCT",
+  "NOV",
+  "DEC",
+];
+
 const Calendar = ({ data, header }) => {
-  const renderedDate = data?.length
-    ? new Date(data[0].StartDate)
-    : new Date(location.pathname.replace("/calendar/", ""));
+  const currentMonth =
+    location.pathname.length > 10 // "/calendar/"
+      ? new Date(location.pathname.replace("/calendar/", ""))
+      : new Date();
   const previousMonth = new Date(
-    renderedDate.getFullYear(),
-    renderedDate.getMonth() - 1,
+    currentMonth.getFullYear(),
+    currentMonth.getMonth() - 1,
     1
   );
   const nextMonth = new Date(
-    renderedDate.getFullYear(),
-    renderedDate.getMonth() + 1,
+    currentMonth.getFullYear(),
+    currentMonth.getMonth() + 1,
     1
   );
 
@@ -20,7 +37,7 @@ const Calendar = ({ data, header }) => {
       <div className="card">
         <h2>
           {!header
-            ? renderedDate.toLocaleDateString("default", {
+            ? currentMonth.toLocaleDateString("default", {
                 month: "long",
                 year: "numeric",
               })
@@ -33,7 +50,8 @@ const Calendar = ({ data, header }) => {
             </div>
           ) : (
             data?.map((event) => {
-              const [year, mon, day] = event.StartDate.split("-");
+              const [, mon, day] = event.StartDate.split("-");
+              const [, endMon, endDay] = (event.EndDate ?? "").split("-");
               let [hr, min] = [null, null];
               if (event.StartTime) {
                 [hr, min] = event.StartTime.split(":");
@@ -45,30 +63,21 @@ const Calendar = ({ data, header }) => {
                 >
                   <p className="min-w-max">
                     <strong className="text-xl">
-                      {
-                        [
-                          null,
-                          "JAN",
-                          "FEB",
-                          "MAR",
-                          "APR",
-                          "MAY",
-                          "JUN",
-                          "JUL",
-                          "AUG",
-                          "SEP",
-                          "OCT",
-                          "NOV",
-                          "DEC",
-                        ][+mon]
-                      }{" "}
-                      {+day}
+                      {months[+mon]} {+day}
                     </strong>
-                    {event.StartTime && (
-                      <span className="text-lg">
+                    {event.EndDate !== event.StartDate ? (
+                      <strong className="text-xl">
+                        &ndash;
                         <br />
-                        {+hr % 12 || hr}:{min}
-                      </span>
+                        {months[+endMon]} {+endDay}
+                      </strong>
+                    ) : (
+                      event.StartTime && (
+                        <span className="text-lg">
+                          <br />
+                          {+hr % 12 || hr}:{min}
+                        </span>
+                      )
                     )}
                   </p>
                   <p>
@@ -80,12 +89,10 @@ const Calendar = ({ data, header }) => {
                       event.Title
                     )}
                     {event.Location && (
-                      <>
+                      <span className="italic text-gray-400">
                         <br />
-                        <span className="italic text-gray-400">
-                          {event.Location}
-                        </span>
-                      </>
+                        {event.Location}
+                      </span>
                     )}
                   </p>
                 </div>
