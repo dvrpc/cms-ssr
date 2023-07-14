@@ -16,7 +16,7 @@ const months = [
   "DEC",
 ];
 
-const Calendar = ({ data, header }) => {
+const Calendar = ({ data, header, location }) => {
   const currentMonth =
     location.pathname.length > 10 // "/calendar/"
       ? new Date(location.pathname.replace("/calendar/", ""))

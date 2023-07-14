@@ -44,7 +44,7 @@ const CalendarPage = ({ data, serverData, location }) => {
           or entering a meeting already in progress, the attendee consents to be
           recorded.
         </div>
-        <Calendar data={serverData} />
+        <Calendar data={serverData} location={location} />
         <div>
           <h2>
             <Link to="/calendar/partner">Partner Events</Link>
@@ -106,7 +106,11 @@ const CalendarPage = ({ data, serverData, location }) => {
                 <label htmlFor="Preferred Contact">
                   Preferred form of contact:{" "}
                 </label>
-                <select required className="form-control" name="Preferred Contact">
+                <select
+                  required
+                  className="form-control"
+                  name="Preferred Contact"
+                >
                   <option>Email</option>
                   <option>Phone</option>
                 </select>
@@ -124,7 +128,12 @@ const CalendarPage = ({ data, serverData, location }) => {
 
               <fieldset form="interpretation-request">
                 <label htmlFor="Phone">Phone: </label>
-                <input required className="form-control" type="tel" name="Phone" />
+                <input
+                  required
+                  className="form-control"
+                  type="tel"
+                  name="Phone"
+                />
               </fieldset>
 
               <fieldset form="interpretation-request">

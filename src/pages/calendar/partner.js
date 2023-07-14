@@ -23,7 +23,7 @@ const PartnerEventsPage = ({ data, serverData, location }) => {
           <a href="mailto:public_affairs@dvrpc.org">public_affairs@dvrpc.org</a>
           .
         </p>
-        <Calendar header="Upcoming" data={serverData} />
+        <Calendar header="Upcoming" data={serverData} location={location} />
       </Body>
       <StaffContact staffContact={userUser} location={location} title={title} />
     </>
