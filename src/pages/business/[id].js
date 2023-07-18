@@ -122,7 +122,7 @@ const BusinessDetailsPage = ({ data, serverData, location, title }) => {
         <p>
           <a
             href={`mailto:${serverData.ContactEmail}?subject=${serverData.Title}`}
-            className="rounded-full border border-[var(--color-default)] px-4 py-2 text-[var(--color-default)] no-underline shadow-sm"
+            className="rounded-full bg-[var(--color-default)] px-4 py-2 text-white no-underline shadow-sm"
           >
             Email Questions
           </a>
