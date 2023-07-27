@@ -266,3 +266,72 @@ main textarea {
 main .btn[disabled] {
   @apply cursor-wait;
 }
+main input[type="checkbox"] {
+  appearance: none;
+  background-color: white;
+  margin: 0;
+  color: currentColor;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 0.1rem solid currentColor;
+  border-radius: 0.15em;
+  display: inline-block;
+  vertical-align: text-bottom;
+  padding: 0;
+  position: relative;
+}
+main input[type="checkbox"]:checked::before {
+  content: "";
+  width: 0.75rem;
+  height: 0.75rem;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  box-shadow: inset 1em 1em var(--color-default);
+  background-color: CanvasText;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+form label[for] {
+  overflow: visible;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+form
+  label:has(+ input[required], + select[required], + textarea[required]):after {
+  content: " *";
+  color: var(--color-default);
+  font-size: 0.8em;
+  vertical-align: text-top;
+}
+form
+  label:has(
+    + input[required],
+    + select[required],
+    + textarea[required]
+  ):before {
+  position: absolute;
+  left: 100%;
+  content: "Required";
+  background: buttonface;
+  color: buttontext;
+  padding: 0.1rem 0.3rem;
+  margin-left: 0.5rem;
+  font-weight: normal;
+  font-size: 0.8rem;
+  opacity: 0;
+  outline: 1px solid rgba(0, 0, 0, 0.4);
+  visibility: hidden;
+  transition: all 0.4s ease 0.4s;
+  border-radius: 0.125rem;
+}
+form
+  label:has(
+    + input[required],
+    + select[required],
+    + textarea[required]
+  ):hover:before {
+  opacity: 1;
+  visibility: visible;
+}
