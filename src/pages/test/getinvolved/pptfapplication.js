@@ -16,36 +16,38 @@ const PPTFApplicationPage = ({ data, location }) => {
   return (
     <>
       <Body title={title} menu={navItem}>
-        <p>
-          By applying to become a member of the Task Force, you understand that
-          you will be working alongside other region residents to work with
-          DVRPC to establish a diverse and engaged body to address the region's
-          planning and public participation practices throughout DVRPC’s
-          nine-county region. This application is an opportunity for you to
-          share with us your personal experience living in the region and with
-          planning projects. We take a holistic approach to selecting task force
-          members. We are interested in hearing your thoughts about your
-          communities future and transportation needs, regardless of your
-          experience with transportation or planning projects.
-        </p>
-        <p>
-          The Public Participation Task Force membership provides ongoing
-          opportunities for interested residents of DVRPC’s nine-county region
-          (Bucks, Chester, Delaware, Montgomery, and Philadelphia in
-          Pennsylvania; and Camden, Burlington, Gloucester, and Mercer in New
-          Jersey) to learn more about the regional planning and decision-making
-          process from DVRPC staff and to share their thoughts on how DVRPC can
-          improve its engagement process.{" "}
-          <strong>
-            Elected officials are not eligible to serve as at-large members of
-            the Task Force
-          </strong>{" "}
-          due to the Task Force’s mission of engaging residents who do not
-          already play a role in the planning process. As an elected official,
-          you may actively participate in other DVRPC plans and programs, and
-          the Commission continues to engage with the region's municipal and
-          county governments through various specific programs.
-        </p>
+        <div>
+          <p>
+            The Public Participation Task Force membership provides ongoing
+            opportunities for interested residents of DVRPC’s nine-county region
+            (Bucks, Chester, Delaware, Montgomery, and Philadelphia in
+            Pennsylvania; and Camden, Burlington, Gloucester, and Mercer in New
+            Jersey) to learn more about the regional planning and
+            decision-making process from DVRPC staff and to share their thoughts
+            on how DVRPC can improve its engagement process.
+          </p>
+          <p>
+            By applying to become a member of the Task Force, you understand
+            that you will be working alongside other region residents to work
+            with DVRPC to establish a diverse and engaged body to address the
+            region's planning and public participation practices throughout
+            DVRPC’s nine-county region. This application is an opportunity for
+            you to share with us your personal experience living in the region
+            and with planning projects. We take a holistic approach to selecting
+            task force members. We are interested in hearing your thoughts about
+            your communities future and transportation needs, regardless of your
+            experience with transportation or planning projects.
+          </p>
+          <p>
+            Due to the Task Force’s mission of engaging residents who do not
+            already play a role in the planning process elected officials are
+            not eligible to serve as at-large members of the Task Force. The
+            Commission provides a range of other opportunities to engage with
+            the region's municipal and county governments. If you are an elected
+            official, the Commission welcomes your participation in its other
+            plans, programs, and task forces.
+          </p>
+        </div>
         <h2>About You</h2>
         <form
           action="https://www2.dvrpc.org/asp/pptfapplication/save23.aspx"
@@ -74,6 +76,10 @@ const PPTFApplicationPage = ({ data, location }) => {
             <option>Montgomery</option>
             <option>Philadelphia</option>
           </select>
+          <label htmlFor="mailing">
+            Mailing Address (if different from above)
+          </label>
+          <input type="text" name="mailing" id="mailing" />
           <label htmlFor="phone">Preferred Phone Number</label>
           <input type="phone" name="phone" id="phone" required />
           <label htmlFor="occupation">Occupation</label>
@@ -85,8 +91,8 @@ const PPTFApplicationPage = ({ data, location }) => {
             <option></option>
             <option>Less than one year</option>
             <option>1-5 years</option>
-            <option>5 -10 years</option>
-            <option>10-20 years</option>
+            <option>6-10 years</option>
+            <option>11-20 years</option>
             <option>Over 20 years</option>
           </select>
           <label htmlFor="referral">
@@ -94,26 +100,23 @@ const PPTFApplicationPage = ({ data, location }) => {
           </label>
           <select name="referral" id="referral" required>
             <option></option>
-            <option>DVRPC Social</option>
-            <option>DVRPC Email</option>
-            <option>Other org social or email (please specify)</option>
+            <option>DVRPC’s social media or newsletter</option>
+            <option>Other organization’s social media</option>
+            <option>Other organization’s newsletter (please specify)</option>
             <option>Word of mouth (please specify)</option>
             <option>Other (please specify)</option>
           </select>
           <input
-            placeholder="Other/Word of Mouth (please specify)"
+            placeholder="Other Organization/Word of Mouth (please specify)"
             name="referral_other"
           />
           <h3>Experience and Interest</h3>
           <p>
             List any experience from the past five years that you feel supports
-            your application to become a Task Force member.{" "}
-            <em>
-              (Examples of this experience include working on community
-              organizations, boards, agencies, volunteer groups, school groups,
-              and part-time or seasonal work such as poll worker, library aide,
-              PTA, etc.)
-            </em>
+            your application to become a Task Force member. Examples of this
+            experience include working on community organizations, boards,
+            agencies, volunteer groups, school groups, and part-time or seasonal
+            work such as poll worker, library aide, PTA, etc.
           </p>
           <fieldset className="card">
             <label htmlFor="exp1_org">Organization 1</label>
@@ -201,7 +204,7 @@ const PPTFApplicationPage = ({ data, location }) => {
           <label>
             Check off your areas of experience. Experience is defined as
             academic, personal experience, paid work, and/or volunteer
-            experience in the topic area. Select all that apply.
+            experience in the topic area. (Select all that apply.)
           </label>
           <div className="flex flex-col">
             <label className="pt-1 font-normal">
@@ -304,8 +307,8 @@ const PPTFApplicationPage = ({ data, location }) => {
             placeholder="Other (please specify)"
           />
           <label>
-            Check off areas you would like to learn more about. Select all that
-            apply.
+            Check off areas you would like to learn more about. (Select all that
+            apply.)
           </label>
           <div className="flex flex-col">
             <label className="pt-1 font-normal">
@@ -427,7 +430,7 @@ const PPTFApplicationPage = ({ data, location }) => {
             <option>75 to 84 years</option>
             <option>85 years and over</option>
           </select>
-          <label htmlFor="race">Race. Select all that apply.</label>
+          <label htmlFor="race">Race (Select all that apply.)</label>
           <div className="flex flex-col">
             <label className="pt-1 font-normal">
               <input
@@ -436,8 +439,7 @@ const PPTFApplicationPage = ({ data, location }) => {
                 value="Hispanic, Latino, or Spanish"
               />{" "}
               Hispanic, Latino, or Spanish origin (Mexican, Puerto Rican, Cuban,
-              Salvadorian, Dominican, Colombian, Guatemalan, Spaniard, etc.):
-              please specify
+              Salvadorian, Dominican, Colombian, Guatemalan, Spaniard, etc.)
             </label>
             <label className="pt-1 font-normal">
               <input
@@ -446,12 +448,11 @@ const PPTFApplicationPage = ({ data, location }) => {
                 value="Black or African American"
               />{" "}
               Black or African American (Jamaican, Haitian, Nigerian, Ethiopian,
-              Somali, etc.): please specify
+              Somali, etc.)
             </label>
             <label className="pt-1 font-normal">
               <input type="checkbox" name="race" value="Asian" /> Asian
-              (Chinese, Vietnamese, Korean, Hmong, Pakistani, Indian, etc.):
-              please specify
+              (Chinese, Vietnamese, Korean, Hmong, Pakistani, Indian, etc.)
             </label>
             <label className="pt-1 font-normal">
               <input
@@ -460,7 +461,21 @@ const PPTFApplicationPage = ({ data, location }) => {
                 value="Native Hawaiian or Pacific Islander"
               />{" "}
               Native Hawaiian or Pacific Islander (Chamorro, Samoan, Tongan
-              etc.): please specify
+              etc.)
+            </label>
+            <label className="pt-1 font-normal">
+              <input type="checkbox" name="race" value="White non-Hispanic" />{" "}
+              White non-Hispanic (German, Irish, English, Italian, French,
+              Polish, etc.)
+            </label>
+            <label className="pt-1 font-normal">
+              <input
+                type="checkbox"
+                name="race"
+                value="Middle Eastern or North African"
+              />{" "}
+              Middle Eastern or North African (Syria, Egypt, Lebanon, Morocco,
+              Sudan, Yemen, Iran, Turkey, Kurd, etc.)
             </label>
             <label className="pt-1 font-normal">
               <input
@@ -470,20 +485,6 @@ const PPTFApplicationPage = ({ data, location }) => {
               />{" "}
               Native American or Alaska Native: please specify enrolled or
               principal tribe
-            </label>
-            <label className="pt-1 font-normal">
-              <input type="checkbox" name="race" value="White non-Hispanic" />{" "}
-              White non-Hispanic (German, Irish, English, Italian, French,
-              Polish, etc. ): please specify
-            </label>
-            <label className="pt-1 font-normal">
-              <input
-                type="checkbox"
-                name="race"
-                value="Middle Eastern or North African"
-              />{" "}
-              Middle Eastern or North African (Syria, Egypt, Lebanon, Morocco,
-              Sudan, Yemen, Iran, Turkey, Kurd, etc. ): please specify
             </label>
             <label className="pt-1 font-normal">
               <input type="checkbox" name="race" value="Other" /> Other: please
@@ -500,7 +501,7 @@ const PPTFApplicationPage = ({ data, location }) => {
             <option></option>
             <option>She/Her</option>
             <option>He/Him</option>
-            <option>Them/Their</option>
+            <option>Them/They</option>
             <option>Other (please specify)</option>
           </select>
           <input
@@ -517,7 +518,9 @@ const PPTFApplicationPage = ({ data, location }) => {
             <option>No</option>
             <option>Prefer not to answer</option>
           </select>
-          <label htmlFor="additional">Anything else to share with us?</label>
+          <h3>
+            <label htmlFor="additional">Anything else to share with us?</label>
+          </h3>
           <textarea name="additional" id="additional"></textarea>
           <p>
             To submit your application, click the Apply button below.
@@ -528,7 +531,7 @@ const PPTFApplicationPage = ({ data, location }) => {
           <p>
             If you do not receive a confirmation email after submitting your
             application, check your spam folder and/or contact Shoshana Akins,
-            manager of the PPTF, at{" "}
+            Manager of Public Participation, at{" "}
             <a href="mailto:sakins@dvrpc.org">sakins@dvrpc.org</a> or
             215.238.2817.
           </p>
