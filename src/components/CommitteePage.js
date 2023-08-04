@@ -72,6 +72,9 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
                           {agenda.Presentations && (
                             <a href={agenda.Presentations}>Presentations</a>
                           )}
+                          {agenda.Comments && (
+                            <a href={agenda.Comments}>Comments</a>
+                          )}
                           {agenda.Recording && (
                             <a href={agenda.Recording}>Recording</a>
                           )}
