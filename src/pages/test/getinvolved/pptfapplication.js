@@ -101,15 +101,12 @@ const PPTFApplicationPage = ({ data, location }) => {
           <select name="referral" id="referral" required>
             <option></option>
             <option>DVRPC’s social media or newsletter</option>
-            <option>Other organization’s social media</option>
+            <option>Other organization’s social media (please specify)</option>
             <option>Other organization’s newsletter (please specify)</option>
             <option>Word of mouth (please specify)</option>
             <option>Other (please specify)</option>
           </select>
-          <input
-            placeholder="Other Organization/Word of Mouth (please specify)"
-            name="referral_other"
-          />
+          <input placeholder="Please specify" name="referral_other" />
           <h3>Experience and Interest</h3>
           <p>
             List any experience from the past five years that you feel supports
@@ -419,7 +416,7 @@ const PPTFApplicationPage = ({ data, location }) => {
           <label htmlFor="age">Age</label>
           <select name="age" id="age" required>
             <option></option>
-            <option>Under 19</option>
+            <option>17 to 19 years</option>
             <option>20 to 24 years</option>
             <option>25 to 34 years</option>
             <option>35 to 44 years</option>
@@ -430,7 +427,7 @@ const PPTFApplicationPage = ({ data, location }) => {
             <option>75 to 84 years</option>
             <option>85 years and over</option>
           </select>
-          <label htmlFor="race">Race (Select all that apply.)</label>
+          <label htmlFor="race">Race/Ethnicity (Select all that apply.)</label>
           <div className="flex flex-col">
             <label className="pt-1 font-normal">
               <input
@@ -486,16 +483,13 @@ const PPTFApplicationPage = ({ data, location }) => {
               Native American or Alaska Native: please specify enrolled or
               principal tribe
             </label>
+            <input type="text" name="race_other" placeholder="Please specify" />
             <label className="pt-1 font-normal">
               <input type="checkbox" name="race" value="Other" /> Other: please
               specify
             </label>
           </div>
-          <input
-            type="text"
-            name="race_other"
-            placeholder="Race Details (please specify)"
-          />
+          <input type="text" name="race_other" placeholder="Please specify" />
           <label htmlFor="pronouns">Preferred Pronouns</label>
           <select name="pronouns" id="pronouns">
             <option></option>
@@ -519,7 +513,9 @@ const PPTFApplicationPage = ({ data, location }) => {
             <option>Prefer not to answer</option>
           </select>
           <h3>
-            <label htmlFor="additional">Anything else to share with us?</label>
+            <label htmlFor="additional">
+              Is there anything else you would like to share with us?
+            </label>
           </h3>
           <textarea name="additional" id="additional"></textarea>
           <p>
@@ -530,7 +526,7 @@ const PPTFApplicationPage = ({ data, location }) => {
           </p>
           <p>
             If you do not receive a confirmation email after submitting your
-            application, check your spam folder and/or contact Shoshana Akins,
+            application, check your spam folder or contact Shoshana Akins,
             Manager of Public Participation, at{" "}
             <a href="mailto:sakins@dvrpc.org">sakins@dvrpc.org</a> or
             215.238.2817.
