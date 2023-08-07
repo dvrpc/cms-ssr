@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import favicon from "../../images/favicon.ico";
+import React, { useEffect, useState } from "react";
+import { graphql } from "gatsby";
 import Link from "../../components/Link";
 import LogoBar from "../../components/LogoBar";
 import Icon, { DvrpcMini } from "../../components/Icon";
@@ -7,6 +7,7 @@ import ConnectWithUs from "../../components/ConnectWithUs";
 import bgImage from "../../images/datacenter.jpg";
 import DVRPCbg from "../../images/dvrpc-transparent.png";
 import HtmlParser from "../../components/HtmlParser";
+import HeadTemplate from "../../components/HeadTemplate";
 
 const trunc = (str) => {
   if (!str) return "";
@@ -15,31 +16,9 @@ const trunc = (str) => {
     : str;
 };
 
-export const Head = () => {
-  return (
-    <>
-      <link rel="icon" href={favicon} />
-      <style>
-        {`:root {
-      --color-h1: #0f1a3a;
-      --color-h2: #0f1a3a;
-      --color-h3: #0f1a3a;
-      --bg-cover-image: url(${bgImage});
-      --height-banner: 25vw;
-    }`}
-      </style>
-    </>
-  );
-};
+const title = "Data Center - Maps and Applications";
 
-const Data = () => {
-  const location = "/data";
-  const title = "Data Center - Maps and Applications";
-  const staffContact = {
-    mail: "cpollard@dvrpc.org",
-    field_display_name: "Chris Pollard",
-    field_title: "Manager, Office of GIS",
-  };
+const Data = ({ data: { userUser: staffContact }, location }) => {
   const [apps, setApps] = useState([]);
   const [cursor, setCursor] = useState(0);
   const [filter, setFilter] = useState("");
@@ -225,14 +204,14 @@ const Data = () => {
           <div className="mt-4 justify-between md:flex">
             <footer className="flow-root md:py-4">
               <a href={`mailto:${staffContact.mail}`} className="font-bold">
-                {staffContact.field_display_name}
+                {staffContact.name}
               </a>{" "}
-              <small className="text-sm">{staffContact.field_title}</small>
+              <small className="text-sm">{staffContact.title}</small>
             </footer>
             <div className="mx-auto w-max md:mx-0">
               <ConnectWithUs
                 title={title}
-                location={`https://www.dvrpc.org${location}`}
+                location={`https://www.dvrpc.org${location.pathname}`}
                 fillColor="#99c5c8"
               />
             </div>
@@ -273,5 +252,50 @@ const Data = () => {
     </div>
   );
 };
+
+export const Head = () =>
+  HeadTemplate({
+    title,
+    summary:
+      "The DVRPC Data Center centralizes access to data and applications published by DVRPC for planning purposes. Watch this space for future content and enhancements as we continue to develop this site.",
+    css: `:root {
+      --color-h1: #0f1a3a;
+      --color-h2: #0f1a3a;
+      --color-h3: #0f1a3a;
+      --bg-cover-image: url(${bgImage});
+      --height-banner: 20vw;
+    }`,
+  });
+
+export const query = graphql`
+  query {
+    userUser(mail: { eq: "mruane@dvrpc.org" }) {
+      id
+      mail
+      name: field_display_name
+      title: field_title
+    }
+    navItem(href: { regex: "/data/maps/i" }) {
+      ...navitem
+      links {
+        ...navitem
+      }
+      parent {
+        ...navitem
+        ... on NavItem {
+          links {
+            ...navitem
+          }
+        }
+      }
+    }
+  }
+  fragment navitem on NavItem {
+    href
+    link
+    style
+    class
+  }
+`;
 
 export default Data;

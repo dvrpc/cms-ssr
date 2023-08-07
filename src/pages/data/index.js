@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { graphql, Link } from "gatsby";
-import favicon from "../../images/favicon.ico";
 import LogoBar from "../../components/LogoBar";
 import Icon, {
   Bikeped,
@@ -24,45 +23,16 @@ import bgImage from "../../images/datacenter.jpg";
 import Banner from "../../components/datacenter/Banner";
 import AppCard from "../../components/datacenter/AppCard";
 import Carousel from "../../components/common/Carousel";
+import HeadTemplate from "../../components/HeadTemplate";
 
 const NewsLoader = () => <div>Loading...</div>;
+const title = "Data Center";
 
-export const Head = () => {
-  return (
-    <>
-      <link rel="icon" href={favicon} />
-      <style>
-        {`:root {
-      --color-h1: #0f1a3a;
-      --color-h2: #0f1a3a;
-      --color-h3: #0f1a3a;
-      --bg-cover-image: url(${bgImage});
-      --height-banner: 20vw;
-    }`}
-      </style>
-    </>
-  );
-};
-
-const Data = ({ data }) => {
-  const location = "/data";
-  const title = "Data Center";
-  const staffContact = {
-    mail: "kkorejko@dvrpc.org",
-    field_display_name: "Kim Korejko",
-    field_title: "Manager, Data Coordination",
-  };
-  const menu = { href: location };
-
-  const [news, setNews] = useState([]);
-  useEffect(() => {
-    fetch("https://alpha.dvrpc.org/news/getTop18")
-      .then((response) => response.json())
-      .then((resultData) => {
-        setNews(resultData.filter((r) => r.type === "New Data"));
-      });
-  }, []);
-
+const Data = ({
+  data: { allMenuLinkContentMenuLinkContent, userUser: staffContact },
+  location,
+  serverData
+}) => {
   return (
     <>
       <header className="bg-white">
@@ -169,7 +139,7 @@ const Data = ({ data }) => {
             Featured Applications
           </h3>
           <Carousel>
-            {data.allMenuLinkContentMenuLinkContent.edges.map(({ node }) => (
+            {allMenuLinkContentMenuLinkContent.edges.map(({ node }) => (
               <AppCard key={node.field_product_id} node={node} />
             ))}
           </Carousel>
@@ -195,14 +165,14 @@ const Data = ({ data }) => {
           <div className="mt-4 justify-between md:flex">
             <footer className="flow-root md:py-4">
               <a href={`mailto:${staffContact.mail}`} className="font-bold">
-                {staffContact.field_display_name}
+                {staffContact.name}
               </a>{" "}
-              <small className="text-sm">{staffContact.field_title}</small>
+              <small className="text-sm">{staffContact.title}</small>
             </footer>
             <div className="mx-auto w-max md:mx-0">
               <ConnectWithUs
                 title={title}
-                location={`https://www.dvrpc.org${location}`}
+                location={location.pathname}
                 fillColor="#99c5c8"
               />
             </div>
@@ -244,10 +214,28 @@ const Data = ({ data }) => {
   );
 };
 
-export default Data;
+export const Head = () =>
+  HeadTemplate({
+    title,
+    summary:
+      "The DVRPC Data Center centralizes access to data and applications published by DVRPC for planning purposes. Watch this space for future content and enhancements as we continue to develop this site.",
+    css: `:root {
+      --color-h1: #0f1a3a;
+      --color-h2: #0f1a3a;
+      --color-h3: #0f1a3a;
+      --bg-cover-image: url(${bgImage});
+      --height-banner: 20vw;
+    }`,
+  });
 
 export const query = graphql`
   query {
+    userUser(mail: { eq: "mruane@dvrpc.org" }) {
+      id
+      mail
+      name: field_display_name
+      title: field_title
+    }
     allMenuLinkContentMenuLinkContent(
       filter: {
         menu_name: { eq: "data-center-featured-apps" }
@@ -270,5 +258,49 @@ export const query = graphql`
         }
       }
     }
+    navItem(href: { regex: "/data/i" }) {
+      ...navitem
+      links {
+        ...navitem
+      }
+      parent {
+        ...navitem
+        ... on NavItem {
+          links {
+            ...navitem
+          }
+        }
+      }
+    }
+  }
+  fragment navitem on NavItem {
+    href
+    link
+    style
+    class
   }
 `;
+
+export default Data;
+
+export async function getServerData() {
+  try {
+    const res = await fetch(`https://alpha.dvrpc.org/news/getTop18`);
+
+    if (!res.ok) {
+      throw new Error("Response failed");
+    }
+
+    const data = await res.json();
+
+    return {
+      props: data.filter((r) => r.type === "New Data"),
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      headers: {},
+      props: {},
+    };
+  }
+}
