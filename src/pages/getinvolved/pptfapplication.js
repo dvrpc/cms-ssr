@@ -80,7 +80,7 @@ const PPTFApplicationPage = ({ data, location }) => {
             Mailing Address (if different from above)
           </label>
           <input type="text" name="mailing" id="mailing" />
-          <label htmlFor="phone">Preferred Phone Number</label>
+          <label htmlFor="phone">Phone Number</label>
           <input type="phone" name="phone" id="phone" required />
           <label htmlFor="occupation">Occupation</label>
           <input type="text" name="occupation" id="occupation" required />
@@ -128,9 +128,11 @@ const PPTFApplicationPage = ({ data, location }) => {
                 <input type="text" name="exp1_state" id="exp1_state" />
               </div>
             </div>
-            <label htmlFor="exp1_date">Relevant Dates</label>
+            <label htmlFor="exp1_date">Start Date to end date</label>
             <input type="text" name="exp1_date" id="exp1_date" />
-            <label htmlFor="exp1_description">Description of your work</label>
+            <label htmlFor="exp1_description">
+              Brief description of your role
+            </label>
             <input type="text" name="exp1_description" id="exp1_description" />
           </fieldset>
           <fieldset className="card">
@@ -146,9 +148,11 @@ const PPTFApplicationPage = ({ data, location }) => {
                 <input type="text" name="exp2_state" id="exp2_state" />
               </div>
             </div>
-            <label htmlFor="exp2_date">Relevant Dates</label>
+            <label htmlFor="exp2_date">Start Date to end date</label>
             <input type="text" name="exp2_date" id="exp2_date" />
-            <label htmlFor="exp2_description">Description of your work</label>
+            <label htmlFor="exp2_description">
+              Brief description of your role
+            </label>
             <input type="text" name="exp2_description" id="exp2_description" />
           </fieldset>
           <fieldset className="card">
@@ -164,9 +168,11 @@ const PPTFApplicationPage = ({ data, location }) => {
                 <input type="text" name="exp3_state" id="exp3_state" />
               </div>
             </div>
-            <label htmlFor="exp3_date">Relevant Dates</label>
+            <label htmlFor="exp3_date">Start Date to end date</label>
             <input type="text" name="exp3_date" id="exp3_date" />
-            <label htmlFor="exp3_description">Description of your work</label>
+            <label htmlFor="exp3_description">
+              Brief description of your role
+            </label>
             <input type="text" name="exp3_description" id="exp3_description" />
           </fieldset>
           <h3>Statements of Interest</h3>
@@ -178,8 +184,8 @@ const PPTFApplicationPage = ({ data, location }) => {
             PPTF, please answer the questions below with short responses.
           </p>
           <label htmlFor="interest">
-            1. What interests you in being a part of the regional planning
-            process? (150-word max)
+            1. Why are you interested in being a member of this task force?
+            (150-word max)
           </label>
           <textarea
             name="interest"
@@ -188,20 +194,19 @@ const PPTFApplicationPage = ({ data, location }) => {
             required
           ></textarea>
           <label htmlFor="contributions">
-            2. What specific contributions do you hope to make if chosen to join
-            the task force? (150-word max)
+            2. How would you contribute to the task force if selected? (150-word
+            max)
           </label>
           <textarea name="contributions" id="contributions" required></textarea>
           <label htmlFor="topics">
-            3. What community topics concern you would you like to discuss in
-            the task force? Why do you feel that this community topic is
-            important? (150-word max)
+            3. What concerns or topics would you like to discuss in the task
+            force? Why? (150-word max)
           </label>
           <textarea name="topics" id="topics" required></textarea>
           <label>
-            Check off your areas of experience. Experience is defined as
-            academic, personal experience, paid work, and/or volunteer
-            experience in the topic area. (Select all that apply.)
+            Check off your areas of experience. Experience includes academic,
+            personal experience, paid work, and/or volunteer experience in the
+            topic area. (Select all that apply.)
           </label>
           <div className="flex flex-col">
             <label className="pt-1 font-normal">
@@ -256,9 +261,9 @@ const PPTFApplicationPage = ({ data, location }) => {
               <input
                 type="checkbox"
                 name="expertise"
-                value="Incident Management/First responders"
+                value="Incident Management and First Responder"
               />{" "}
-              Incident Management/First responders
+              Incident Management and First Responder
             </label>
             <label className="pt-1 font-normal">
               <input
@@ -360,9 +365,9 @@ const PPTFApplicationPage = ({ data, location }) => {
               <input
                 type="checkbox"
                 name="learn"
-                value="Incident Management/First responders"
+                value="Incident Management and First Responder"
               />{" "}
-              Incident Management/First responders
+              Incident Management and First Responder
             </label>
             <label className="pt-1 font-normal">
               <input
@@ -471,8 +476,8 @@ const PPTFApplicationPage = ({ data, location }) => {
                 name="race"
                 value="Middle Eastern or North African"
               />{" "}
-              Middle Eastern or North African (Syria, Egypt, Lebanon, Morocco,
-              Sudan, Yemen, Iran, Turkey, Kurd, etc.)
+              Middle Eastern or North African (Syrian, Yemeni, Turkish,
+              Egyptian, Moroccan, Sudanese, etc.)
             </label>
             <label className="pt-1 font-normal">
               <input
