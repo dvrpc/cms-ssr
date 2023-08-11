@@ -4,9 +4,9 @@ import { graphql } from "gatsby";
 import HeadTemplate, {
   defaultThemeConfig,
   themeToCustomVars,
-} from "../../../components/HeadTemplate";
-import Body from "../../../components/Body";
-import StaffContact from "../../../components/StaffContact";
+} from "../../components/HeadTemplate";
+import Body from "../../components/Body";
+import StaffContact from "../../components/StaffContact";
 
 const title = "Public Participation Task Force Application";
 
