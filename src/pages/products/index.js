@@ -13,8 +13,7 @@ const ProductsPage = (props) => (
   <ProductsListView {...props} title={title}>
     <p>
       DVRPC has published over one thousand reports from the 1970s to present.
-      Product abstracts and/or PDF downloads are available. You can also see a{" "}
-      <a href="/products/recent/">quick list of recent products</a> published.
+      Product abstracts and/or PDF downloads are available.
     </p>
   </ProductsListView>
 );

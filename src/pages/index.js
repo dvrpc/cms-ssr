@@ -97,7 +97,7 @@ const HomePage = ({ data }) => {
             <h3 className="text-3xl">
               <a
                 className="text-[#296591]"
-                href="https://www.dvrpc.org/Products/Search/"
+                href="https://www.dvrpc.org/Products/"
               >
                 Products
               </a>

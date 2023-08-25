@@ -16,7 +16,7 @@ const InfoLinks = () => {
           <Icon use={News} className="mx-auto" scale={8} fillColor="#656565" />
           News
         </a>
-        <a href="https://www.dvrpc.org/Products/Search/" className="block text-center no-underline hover:underline">
+        <a href="https://www.dvrpc.org/Products/" className="block text-center no-underline hover:underline">
           <Icon use={Products} className="mx-auto" scale={8} fillColor="#656565" />
           Releases
         </a>
