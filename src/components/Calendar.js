@@ -82,7 +82,12 @@ const Calendar = ({ data, header, location }) => {
                   </p>
                   <p>
                     {event.Info ? (
-                      <a className="underline" href={event.Info}>
+                      <a
+                        rel="noreferrer"
+                        target="_blank"
+                        className="underline"
+                        href={event.Info}
+                      >
                         {event.Title}
                       </a>
                     ) : (
