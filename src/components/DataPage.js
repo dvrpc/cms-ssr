@@ -81,10 +81,7 @@ const DataPage = ({ data }) => {
           </div>
         </div>
         <div className="container mx-auto flex flex-wrap p-8 pt-0 md:pt-8">
-          <HtmlMapper
-            html={body?.processed ?? ""}
-            data={data}
-          />
+          <HtmlMapper html={body?.processed ?? ""} data={data} />
         </div>
         <div className="mt-auto flex justify-center bg-[#030a18] text-center text-[#99c5c8] md:text-left">
           <div className="container">

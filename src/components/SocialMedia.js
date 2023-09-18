@@ -47,7 +47,7 @@ const SocialMedia = () => {
     </A>,
   ];
   return (
-    <ul className="m-0 hidden p-0 text-[#67abd1] xl:flex md:items-end md:justify-end">
+    <ul className="m-0 hidden p-0 text-[#67abd1] md:items-end md:justify-end xl:flex">
       {items.map((i) => (
         <li
           key={i.props.href}

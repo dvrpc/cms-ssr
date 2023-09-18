@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export const defaultThemeConfig = [
   ["field_primary_color", "--color-h1"],
   ["field_primary_color", "--color-h2"],

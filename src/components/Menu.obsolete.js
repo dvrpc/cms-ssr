@@ -13,7 +13,7 @@ export default ({ data = null }) => {
 
   return nodes.length ? (
     <nav>
-      <ul className="sm:mb-12 h-full list-none sm:text-center md:text-right">
+      <ul className="h-full list-none sm:mb-12 sm:text-center md:text-right">
         {nodes.map((node) => (
           <li key={node.href}>
             <Link

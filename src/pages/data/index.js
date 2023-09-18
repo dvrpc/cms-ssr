@@ -31,7 +31,7 @@ const title = "Data Center";
 const Data = ({
   data: { allMenuLinkContentMenuLinkContent, userUser: staffContact },
   location,
-  serverData
+  serverData,
 }) => {
   return (
     <>

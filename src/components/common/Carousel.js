@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Leftarrow, Rightarrow } from '../Icon';
+import React, { useEffect, useRef, useState } from "react";
+import { Leftarrow, Rightarrow } from "../Icon";
 
 const Carousel = ({ children }) => {
   const carouselRef = useRef(null);
@@ -8,14 +8,16 @@ const Carousel = ({ children }) => {
   const [scrollLeft, setScrollLeft] = useState(0);
   const scroll = (key) => {
     if (carouselRef.current) {
-      const direction = key === 'prev' ? -1 : 1;
-      const childElem = carouselRef.current.firstChild
-      const childStyle = window.getComputedStyle(childElem)
-      const scrollAmount = (childElem.offsetWidth + (parseFloat(childStyle.marginLeft) * 2)) * direction;
+      const direction = key === "prev" ? -1 : 1;
+      const childElem = carouselRef.current.firstChild;
+      const childStyle = window.getComputedStyle(childElem);
+      const scrollAmount =
+        (childElem.offsetWidth + parseFloat(childStyle.marginLeft) * 2) *
+        direction;
       const scrollLeftMax =
         carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
       carouselRef.current.scrollBy({
-        behavior: 'smooth',
+        behavior: "smooth",
         left: scrollAmount,
       });
       const scrollDiff = scrollLeft + scrollAmount;
@@ -47,12 +49,12 @@ const Carousel = ({ children }) => {
   }, [scrollLeft]);
 
   return (
-    <div className="relative -ml-1 md:-ml-2 mt-2 md:mt-0">
+    <div className="relative -ml-1 mt-2 md:-ml-2 md:mt-0">
       {children.length > 3 && (
-        <div className="w-full items-center hidden md:flex">
+        <div className="hidden w-full items-center md:flex">
           <button
             className="ml-1 rounded-full p-2 disabled:opacity-30"
-            onClick={() => scroll('prev')}
+            onClick={() => scroll("prev")}
             disabled={prevDisabled}
           >
             <div className="flex h-2 w-2 items-center">
@@ -61,7 +63,7 @@ const Carousel = ({ children }) => {
           </button>
           <button
             className="ml-auto mr-1 rounded-full p-2 disabled:opacity-30"
-            onClick={() => scroll('next')}
+            onClick={() => scroll("next")}
             disabled={nextDisabled}
           >
             <div className="flex h-2 w-2 items-center">
@@ -73,7 +75,7 @@ const Carousel = ({ children }) => {
       <div
         id="scrollContainer"
         ref={carouselRef}
-        className="flex overflow-y-hidden md:overflow-hidden text-[#155575] snap-x md:snap-none"
+        className="flex snap-x overflow-y-hidden text-[#155575] md:snap-none md:overflow-hidden"
       >
         {children}
       </div>
