@@ -110,6 +110,36 @@ main .simple > figure {
 main .simple figcaption {
   @apply pl-0 pb-0;
 }
+main .gallery {
+  @apply max-w-full border-none bg-gray-200 p-2;
+}
+main .blocks-gallery-grid {
+  @apply m-0 grid list-none flex-wrap gap-2 p-0;
+}
+main .columns-2 .blocks-gallery-grid {
+  @apply grid-cols-2;
+}
+main .columns-3 .blocks-gallery-grid {
+  @apply grid-cols-3;
+}
+main .columns-4 .blocks-gallery-grid {
+  @apply grid-cols-4;
+}
+main .blocks-gallery-item {
+  @apply flex justify-center;
+}
+main .columns-2 .blocks-gallery-item:nth-of-type(2n + 1):last-of-type {
+  @apply col-span-2;
+}
+main .columns-3 .blocks-gallery-item:nth-of-type(3n + 1):last-of-type {
+  @apply col-span-3;
+}
+main .columns-4 .blocks-gallery-item:nth-of-type(4n + 1):last-of-type {
+  @apply col-span-4;
+}
+main .blocks-gallery-item figure {
+  @apply p-4 text-center;
+}
 main img {
   @apply block max-w-full;
 }
