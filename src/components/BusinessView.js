@@ -10,6 +10,62 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
   return (
     <>
       <Body title="Doing Business with DVRPC" menu={navItem}>
+        <br />
+        <div className="card">
+          <h2>Coming soon a new eProcurement solution...</h2>
+          <p className="italic">
+            Dear Valued Vendors, the DVRPC will be transitioning to a new
+            eProcurement solution (OpenGov) for publishing solicitations, and
+            receiving vendor responses.{" "}
+            <a href="https://procurement.opengov.com/signup">
+              Register your account early
+            </a>{" "}
+            to begin receiving email notiﬁcations for the DVRPC’s Bid/RFP
+            opportunities. Registration is 100% free for vendors!
+          </p>
+          <p>
+            The Delaware Valley Regional Planning Commission has partnered with
+            OpenGov and is excited to announce our transition to a fully
+            automated, web-based electronic bidding and vendor management
+            system. Our new e-Procurement Portal will allow interested parties
+            to do the following:
+            <ul className="ml-4">
+              <li>
+                Register to bid and receive notifications of future
+                opportunities in the e-Procurement Portal by selecting Subscribe
+                to create an account.
+              </li>
+              <li>
+                Follow updates to existing solicitations by ﬁnding the
+                solicitation and clicking the Follow button. This will allow all
+                interested parties to receive amendments and addenda
+                automatically.
+              </li>
+              <li>
+                Submit questions and receive answers for open solicitations.
+              </li>
+              <li>
+                Guide vendors through the process of responding electronically
+                to RFPs, bids, etc. to ensure submissions have been accurately
+                completed.
+              </li>
+              <li>
+                Ultimately, be your one location for all bid opportunities
+                issued by the DVRPC.
+              </li>
+            </ul>
+            To get started, click{" "}
+            <a href="https://procurement.opengov.com/signup">here</a> to sign
+            up. You’ll receive an email to activate your account. For more
+            information about how to register, please see our{" "}
+            <a href="http://help.procurement.opengov.com/en/articles/2482165-vendor-registration">
+              help file here
+            </a>
+            .
+            <br />
+            <br /> THERE IS NO COST FOR VENDORS TO REGISTER WITH OpenGov.
+          </p>
+        </div>
         <p>
           Vendors can find various business opportunities posted here. DVRPC
           occasionally posts Requests for Proposals (RFPs) for member
