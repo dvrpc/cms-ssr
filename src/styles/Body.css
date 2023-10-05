@@ -103,10 +103,6 @@ main .alignfull > table {
 main figcaption {
   @apply p-2 pt-1 text-sm;
 }
-main .simple,
-main .simple > figure {
-  @apply rounded-none border-none bg-transparent p-0;
-}
 main .simple figcaption {
   @apply pl-0 pb-0;
 }
@@ -139,6 +135,10 @@ main .columns-4 .blocks-gallery-item:nth-of-type(4n + 1):last-of-type {
 }
 main .blocks-gallery-item figure {
   @apply p-4 text-center;
+}
+main .simple,
+main .simple figure {
+  @apply rounded-none border-none bg-transparent p-0;
 }
 main img {
   @apply block max-w-full;
