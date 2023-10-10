@@ -14,14 +14,14 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
         <div className="card">
           <h2>Coming soon a new eProcurement solution...</h2>
           <p className="italic">
-            Dear Valued Vendors, the DVRPC will be transitioning to a new
+            Dear Valued Contractors, the DVRPC will be transitioning to a new
             eProcurement solution (OpenGov) for publishing solicitations, and
             receiving vendor responses.{" "}
             <a href="https://procurement.opengov.com/signup">
               Register your account early
             </a>{" "}
             to begin receiving email notiﬁcations for the DVRPC’s Bid/RFP
-            opportunities. Registration is 100% free for vendors!
+            opportunities. Registration is 100% free for contractors!
           </p>
           <p>
             The Delaware Valley Regional Planning Commission has partnered with
@@ -45,9 +45,9 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
                 Submit questions and receive answers for open solicitations.
               </li>
               <li>
-                Guide vendors through the process of responding electronically
-                to RFPs, bids, etc. to ensure submissions have been accurately
-                completed.
+                Guide contractors through the process of responding
+                electronically to RFPs, bids, etc. to ensure submissions have
+                been accurately completed.
               </li>
               <li>
                 Ultimately, be your one location for all bid opportunities
@@ -63,7 +63,7 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
             </a>
             .
             <br />
-            <br /> THERE IS NO COST FOR VENDORS TO REGISTER WITH OpenGov.
+            <br /> THERE IS NO COST FOR CONTRACTORS TO REGISTER WITH OpenGov.
           </p>
         </div>
         <p>
