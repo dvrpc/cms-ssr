@@ -10,8 +10,8 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
   return (
     <>
       <Body title="Doing Business with DVRPC" menu={navItem}>
-        <br />
-        <div className="card">
+        {/*<br />
+         <div className="card">
           <h2>Coming soon a new eProcurement solution...</h2>
           <p className="italic">
             Dear Valued Contractors, the DVRPC will be transitioning to a new
@@ -65,15 +65,15 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
             <br />
             <br /> THERE IS NO COST FOR CONTRACTORS TO REGISTER WITH OpenGov.
           </p>
-        </div>
+        </div> */}
         <p>
           Vendors can find various business opportunities posted here. DVRPC
           occasionally posts Requests for Proposals (RFPs) for member
           governments as a courtesy.
         </p>
-        <div className="card">
-          <h2>Business Opportunities</h2>
-          <table className="w-full table-auto">
+        {/* <div className="card">*/}
+        <h2>Business Opportunities</h2>
+        {/* <table className="w-full table-auto">
             <thead>
               <tr className="font-bold">
                 <td>Title of Opportunity</td>
@@ -117,7 +117,20 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
               </tr>
             </tfoot>
           </table>
-        </div>
+        </div> */}
+
+        <iframe
+          className="focus:outline-none [&>*]:bg-white"
+          style={{
+            width: "100%",
+            height: "60vh",
+            border: "none",
+          }}
+          src="
+https://procurement.opengov.com/portal/embed/dvrpc/project-list?departmentId=all&status=all"
+        >
+          <p>Your browser does not support iframes.</p>
+        </iframe>
 
         <h2>Important Notices</h2>
         <p>
