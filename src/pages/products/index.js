@@ -1,22 +1,54 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, navigate } from "gatsby";
 
 import HeadTemplate, {
   defaultThemeConfig,
   themeToCustomVars,
 } from "../../components/HeadTemplate";
 import ProductsListView from "../../components/ProductsListView";
+import Pager, { PagerProvider } from "../../components/Pager";
+import Product from "../../components/Product";
+import Body from "../../components/Body";
 
 const title = "DVRPC Products";
 
-const ProductsPage = (props) => (
-  <ProductsListView {...props} title={title}>
-    <p>
-      DVRPC has published over one thousand reports from the 1970s to present.
-      Product abstracts and/or PDF downloads are available.
-    </p>
-  </ProductsListView>
-);
+const ProductsPage = (props) => {
+  const query = new URLSearchParams(location.search).get("q") ?? "";
+  const offset = new URLSearchParams(location.search).get("offset") ?? 0;
+  const currentPage = offset > 0 ? Math.ceil(offset / 10) : 1;
+  const provider = new PagerProvider(
+    (pageNumber) =>
+      navigate(`?q=${query}&offset=${provider.itemsPerPage * pageNumber}`),
+    currentPage,
+  );
+
+  return (
+    <Body title={title} menu={props.data.navItem}>
+      <form action="/products/" className="my-2">
+        <input
+          placeholder="Search by keyword"
+          name="q"
+          type="search"
+          defaultValue={query}
+          className="appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+        />
+      </form>
+      <Pager provider={provider}>
+        {props.serverData
+          .sort((a, b) => new Date(b.DateLive) - new Date(a.DateLive))
+          .map((product) => (
+            <Product
+              key={product.Id}
+              {...product}
+              Query={query}
+              Title={product.Title}
+              Abstract={product.Abstract}
+            />
+          ))}
+      </Pager>
+    </Body>
+  );
+};
 
 export const Head = ({ data: { nodeTheme } }) =>
   HeadTemplate({
