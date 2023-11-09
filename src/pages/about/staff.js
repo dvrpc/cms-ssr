@@ -105,7 +105,7 @@ export const Head = ({ data: { nodeTheme } }) =>
 
 export const query = graphql`
   query {
-    userUser(mail: { eq: "bwichser@dvrpc.org" }) {
+    userUser(mail: { eq: "psmith@dvrpc.org" }) {
       id
       mail
       name: field_display_name
