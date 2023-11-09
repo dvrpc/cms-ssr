@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql, Link } from "gatsby";
 
 import Body from "../../components/Body";
 import HeadTemplate from "../../components/HeadTemplate";
 import StaffContact from "../../components/StaffContact";
+import Pager, { PagerProvider } from "../../components/Pager";
 
 const title = "Media Releases";
 
@@ -75,14 +76,24 @@ const Article = ({ node }) => (
 
 const DrupalPage = ({ data, path }) => {
   const { allNodeArticle, userUser, navItem } = data;
+  const provider = new PagerProvider(
+    allNodeArticle.edges,
+    (pageNumber) =>
+      allNodeArticle.edges.slice(
+        pageNumber * provider.itemsPerPage - provider.itemsPerPage,
+        pageNumber * provider.itemsPerPage
+      ),
+    1,
+    5
+  );
+
   return (
     <>
       <Body title={title} menu={navItem}>
-        <ul className="list-group">
-          {allNodeArticle.edges.map((props) => (
-            <Article key={props.node.id} {...props} />
-          ))}
-        </ul>
+        <Pager
+          provider={provider}
+          renderItem={(props) => <Article key={props.node.id} {...props} />}
+        />
       </Body>
       <StaffContact
         staffContact={userUser}

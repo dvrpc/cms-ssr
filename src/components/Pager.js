@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { cloneElement, useState } from "react";
 import PropTypes from "prop-types";
-import Product from "./Product";
 
 const range = (start, stop, step) =>
   Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
 
 class PagerProvider {
-  constructor(jump, current = 1, itemsPerPage = 10, maxData = 1359) {
+  constructor(
+    data,
+    jump,
+    current = 1,
+    itemsPerPage = 10,
+    maxData = data.length
+  ) {
+    this.data = data;
     this.jump = jump;
     this.current = current;
     this.itemsPerPage = itemsPerPage;
@@ -14,14 +20,20 @@ class PagerProvider {
   }
 }
 
-const PageRange = ({ currentPage, maxPage, jump, setCurrentPage }) => {
+const PageRange = ({
+  currentPage,
+  maxPage,
+  jump,
+  setCurrentPage,
+  setRenderedData,
+}) => {
   let renderedRange = null;
   let start = true;
   let end = false;
   if (currentPage < 5) {
     start = true;
     end = false;
-    renderedRange = range(1, 5, 1);
+    renderedRange = range(1, maxPage < 5 ? maxPage : 5, 1);
   } else if (currentPage >= 5 && currentPage <= maxPage - 4) {
     start = false;
     end = false;
@@ -39,7 +51,7 @@ const PageRange = ({ currentPage, maxPage, jump, setCurrentPage }) => {
           <button
             onClick={() =>
               setCurrentPage((curr) => {
-                jump(0);
+                setRenderedData(jump(0));
                 return 1;
               })
             }
@@ -55,7 +67,7 @@ const PageRange = ({ currentPage, maxPage, jump, setCurrentPage }) => {
           className="mx-1 disabled:h-9 disabled:w-9 disabled:rounded-full disabled:bg-[color:var(--color-default)] disabled:text-white"
           onClick={() => {
             setCurrentPage(() => {
-              jump(num);
+              setRenderedData(jump(num));
               return num;
             });
           }}
@@ -63,13 +75,13 @@ const PageRange = ({ currentPage, maxPage, jump, setCurrentPage }) => {
           {num}
         </button>
       ))}
-      {!end && (
+      {maxPage > 5 && !end && (
         <>
           ...
           <button
             onClick={() =>
               setCurrentPage(() => {
-                jump(maxPage);
+                setRenderedData(jump(maxPage));
                 return maxPage;
               })
             }
@@ -83,20 +95,24 @@ const PageRange = ({ currentPage, maxPage, jump, setCurrentPage }) => {
 };
 
 const Pager = (props) => {
-  const { jump, current, itemsPerPage, maxData } = props.provider;
-  const maxPage = Math.ceil(maxData / itemsPerPage);
+  const { data, jump, current, itemsPerPage, maxData } = props.provider;
+  const { renderItem } = props;
+  const [renderedData, setRenderedData] = useState([...data]);
   const [currentPage, setCurrentPage] = useState(current);
+  const maxPage = Math.ceil(maxData / itemsPerPage);
 
   return (
     <>
-      {props.children}
+      {data.length === itemsPerPage
+        ? data.map((item) => renderItem(item))
+        : renderedData.slice(0, itemsPerPage).map((item) => renderItem(item))}
       <div className="my-6 flex justify-around font-bold text-[color:var(--color-default)]">
         <button
           className="disabled:text-gray-300"
           disabled={currentPage === 0 || currentPage === 1}
           onClick={() =>
             setCurrentPage((curr) => {
-              jump(curr - 1);
+              setRenderedData(jump(curr - 1));
               return curr - 1;
             })
           }
@@ -115,13 +131,15 @@ const Pager = (props) => {
           maxPage={maxPage}
           jump={jump}
           setCurrentPage={setCurrentPage}
+          setRenderedData={setRenderedData}
+          data={renderedData}
         />
         <button
           className="disabled:text-gray-300"
           disabled={currentPage === maxPage}
           onClick={() => {
             setCurrentPage((curr) => {
-              jump(curr + 1);
+              setRenderedData(jump(curr + 1));
               return curr + 1;
             });
           }}
@@ -141,7 +159,7 @@ const Pager = (props) => {
 };
 
 Pager.propTypes = {
-  provider: PropTypes.instanceOf(PagerProvider),
+  provider: PropTypes.instanceOf(PagerProvider).isRequired,
 };
 
 export default Pager;
