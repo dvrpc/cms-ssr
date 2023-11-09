@@ -103,9 +103,11 @@ const Pager = (props) => {
 
   return (
     <>
-      {data.length === itemsPerPage
-        ? data.map((item) => renderItem(item))
-        : renderedData.slice(0, itemsPerPage).map((item) => renderItem(item))}
+      {renderItem
+        ? data.length === itemsPerPage
+          ? data.map((item) => renderItem(item))
+          : renderedData.slice(0, itemsPerPage).map((item) => renderItem(item))
+        : data.map((item) => <div>{item}</div>)}
       <div className="my-6 flex justify-around font-bold text-[color:var(--color-default)]">
         <button
           className="disabled:text-gray-300"
@@ -160,6 +162,7 @@ const Pager = (props) => {
 
 Pager.propTypes = {
   provider: PropTypes.instanceOf(PagerProvider).isRequired,
+  renderItem: PropTypes.func,
 };
 
 export default Pager;
