@@ -11,11 +11,11 @@ const highlight = (text, keywords) => {
     .reduce(
       (current, word) =>
         current.replace(new RegExp(`(${word})`, "i"), "<strong>$1</strong>"),
-      text,
+      text
     );
 };
 
-const trunc = (str) => {
+export const trunc = (str) => {
   if (!str) return "";
   return str.length > 400
     ? `${str.substring(0, 400)}${str.substring(400).split(" ")[0]}…`

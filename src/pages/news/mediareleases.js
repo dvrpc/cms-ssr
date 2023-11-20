@@ -5,6 +5,7 @@ import Body from "../../components/Body";
 import HeadTemplate from "../../components/HeadTemplate";
 import StaffContact from "../../components/StaffContact";
 import Pager, { PagerProvider } from "../../components/Pager";
+import { trunc } from "../../components/Product";
 
 const title = "Media Releases";
 
@@ -55,7 +56,7 @@ const themeToCustomVars = (theme, config) => {
 };
 
 const Article = ({ node }) => (
-  <li className="list-group-item">
+  <li className="list-none">
     <div className="pb-6">
       <div className="text-sm text-gray-500">
         {new Date(node.created)
@@ -67,9 +68,36 @@ const Article = ({ node }) => (
           .toUpperCase()}
       </div>
 
-      <Link className="text-xl no-underline" to={node.path.alias}>
+      <Link
+        className="text-xl font-bold text-[#03688D] no-underline"
+        to={node.path.alias}
+      >
         {node.title}
       </Link>
+      {node.relationships && (
+        <p className="m-0 text-[#7A7A7A]">
+          {node.relationships.field_tags.map((tag) => (
+            <span>{tag.name}</span>
+          ))}
+        </p>
+      )}
+      <p>{node.body && node.body.summary}</p>
+      <p>
+        <Link
+          className="flex font-bold text-[#03688D] no-underline"
+          to={node.path.alias}
+        >
+          Read More
+          <span className="my-auto mx-2 h-5 w-5 rounded-full bg-[#03688D] text-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-full w-full scale-50 fill-current"
+            >
+              <path d="m5 3 3-3 12 12L8 24l-3-3 9-9z" />
+            </svg>
+          </span>
+        </Link>
+      </p>
     </div>
   </li>
 );
@@ -131,6 +159,17 @@ export const query = graphql`
             alias
           }
           created
+          relationships {
+            field_image {
+              url
+            }
+            field_tags {
+              name
+            }
+          }
+          body {
+            summary
+          }
         }
       }
     }
