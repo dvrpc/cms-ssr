@@ -5,7 +5,7 @@ import HeadTemplate, {
   defaultThemeConfig,
   themeToCustomVars,
 } from "../../components/HeadTemplate";
-import Pager, { PagerProvider } from "../../components/Pager";
+import Pager from "../../components/Pager";
 import Product from "../../components/Product";
 import Body from "../../components/Body";
 
@@ -15,16 +15,6 @@ const ProductsPage = (props) => {
   const query = new URLSearchParams(location.search).get("q") ?? "";
   const offset = new URLSearchParams(location.search).get("offset") ?? 0;
   const currentPage = offset > 0 ? Math.ceil(offset / 10) : 1;
-  const provider = new PagerProvider(
-    props.serverData.sort(
-      (a, b) => new Date(b.DateLive) - new Date(a.DateLive)
-    ),
-    (pageNumber) =>
-      navigate(`?q=${query}&offset=${provider.itemsPerPage * pageNumber}`),
-    currentPage,
-    10,
-    1356
-  );
 
   return (
     <Body title={title} menu={props.data.navItem}>
@@ -38,7 +28,15 @@ const ProductsPage = (props) => {
         />
       </form>
       <Pager
-        provider={provider}
+        items={props.serverData.sort(
+          (a, b) => new Date(b.DateLive) - new Date(a.DateLive)
+        )}
+        onPageChange={(pageNumber) =>
+          navigate(`?q=${query}&offset=${10 * pageNumber}`)
+        }
+        currentPage={currentPage}
+        itemsPerPage={10}
+        maxData={1356}
         renderItem={(product) => (
           <Product
             key={product.Id}
