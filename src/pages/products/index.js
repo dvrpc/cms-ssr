@@ -32,7 +32,7 @@ const ProductsPage = (props) => {
           (a, b) => new Date(b.DateLive) - new Date(a.DateLive)
         )}
         onPageChange={(pageNumber) =>
-          navigate(`?q=${query}&offset=${10 * pageNumber}`)
+          (window.location.href = `?q=${query}&offset=${10 * pageNumber}`)
         }
         currentPage={currentPage}
         itemsPerPage={10}

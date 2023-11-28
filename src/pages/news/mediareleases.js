@@ -6,6 +6,8 @@ import HeadTemplate from "../../components/HeadTemplate";
 import StaffContact from "../../components/StaffContact";
 import Pager, { PagerProvider } from "../../components/Pager";
 import { trunc } from "../../components/Product";
+import useDebounce from "../../components/useDebounce";
+import HtmlParser from "../../components/HtmlParser";
 
 const title = "Media Releases";
 
@@ -76,12 +78,21 @@ const Article = ({ node }) => (
       </Link>
       {node.relationships && (
         <p className="m-0 text-[#7A7A7A]">
-          {node.relationships.field_tags.map((tag) => (
-            <span>{tag.name}</span>
+          {node.relationships.field_tags.map((tag, idx) => (
+            <span>
+              {tag.name}
+              {idx !== node.relationships.field_tags.length - 1 && ", "}
+            </span>
           ))}
         </p>
       )}
-      <p>{node.body && node.body.summary}</p>
+      <p>
+        {node.body && node.body.summary.length ? (
+          node.body.summary
+        ) : (
+          <HtmlParser html={trunc(node.body.processed)} />
+        )}
+      </p>
       <p>
         <Link
           className="flex font-bold text-[#03688D] no-underline"
@@ -106,18 +117,24 @@ const DrupalPage = ({ data, path }) => {
   const { allNodeArticle, userUser, navItem, allTaxonomyTermTags } = data;
   const [articles, setArticles] = useState(allNodeArticle.edges);
   const [filters, setFilters] = useState(new Set());
+  const [input, setInput] = useState("");
+  const debounceInput = useDebounce(input);
 
   useEffect(() => {
+    let articlesCopy = [...allNodeArticle.edges];
     if (filters.size !== 0)
-      setArticles(
-        articles.filter((article) =>
-          article.node.relationships.field_tags.some((item) =>
-            filters.has(item.name)
-          )
+      articlesCopy = articlesCopy.filter((article) =>
+        article.node.relationships.field_tags.some((item) =>
+          filters.has(item.name)
         )
       );
-    else setArticles(allNodeArticle.edges);
-  }, [filters]);
+    if (debounceInput.length)
+      articlesCopy = articlesCopy.filter((article) =>
+        article.node.title.toLowerCase().includes(debounceInput.toLowerCase())
+      );
+
+    setArticles(articlesCopy);
+  }, [filters, debounceInput, allNodeArticle, setArticles]);
 
   return (
     <>
@@ -128,10 +145,7 @@ const DrupalPage = ({ data, path }) => {
               <Pager
                 items={articles}
                 onPageChange={(pageNumber) =>
-                  articles.slice(
-                    pageNumber * provider.itemsPerPage - provider.itemsPerPage,
-                    pageNumber * provider.itemsPerPage
-                  )
+                  articles.slice(pageNumber * 5 - 5, pageNumber * 5)
                 }
                 itemsPerPage={5}
                 renderItem={(props) => (
@@ -147,16 +161,28 @@ const DrupalPage = ({ data, path }) => {
               class=" w-full appearance-none border py-2 px-3 leading-tight focus:outline-none"
               type="text"
               placeholder="Search news stories..."
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
             ></input>
             <span className="flex">
               <h3 className="py-4 text-lg font-bold">FILTER RESULTS</h3>
-              <button className="ml-auto text-[#03688D]">clear all</button>
+              <button
+                className="ml-auto text-[#03688D]"
+                onClick={() => {
+                  document
+                    .querySelectorAll("input[type=checkbox]")
+                    .forEach((el) => (el.checked = false));
+                  setFilters(new Set());
+                }}
+              >
+                clear all
+              </button>
             </span>
             <p className="font-bold">Topic</p>
             {allTaxonomyTermTags.edges.map((tag) => (
-              <label className="block">
+              <label key={tag.node.name} className="flex items-center">
                 <input
-                  className="pr-2"
+                  className="mr-2"
                   type="checkbox"
                   value={tag.node.name}
                   onChange={(event) => {
@@ -172,7 +198,7 @@ const DrupalPage = ({ data, path }) => {
             ))}
           </div>
           <div className="w-full bg-[#EFF0F2] p-4 [&>*]:my-2">
-            <h3 className="text-lg font-bold">MEDIA</h3>
+            <h3 className="!mt-0 text-lg font-bold">MEDIA</h3>
             <p className="font-bold">Resources</p>
             <hr className="!m-0 border border-[#CDCDCD]" />
             <p>
@@ -241,6 +267,7 @@ export const query = graphql`
           }
           body {
             summary
+            processed
           }
         }
       }
