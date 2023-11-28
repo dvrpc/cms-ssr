@@ -1,4 +1,4 @@
-import React, { cloneElement, useState } from "react";
+import React, { cloneElement, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 const range = (start, stop, step) =>
@@ -9,7 +9,7 @@ const PageRange = ({
   maxPage,
   onPageChange,
   setPage,
-  setRenderedData,
+  setRenderedItems,
 }) => {
   let renderedRange = null;
   let start = true;
@@ -34,8 +34,8 @@ const PageRange = ({
         <>
           <button
             onClick={() =>
-              setPage((curr) => {
-                setRenderedData(onPageChange(0));
+              setPage(() => {
+                setRenderedItems(onPageChange(0));
                 return 1;
               })
             }
@@ -51,7 +51,7 @@ const PageRange = ({
           className="mx-1 disabled:h-9 disabled:w-9 disabled:rounded-full disabled:bg-[color:var(--color-default)] disabled:text-white"
           onClick={() => {
             setPage(() => {
-              setRenderedData(onPageChange(num));
+              setRenderedItems(onPageChange(num));
               return num;
             });
           }}
@@ -65,7 +65,7 @@ const PageRange = ({
           <button
             onClick={() =>
               setPage(() => {
-                setRenderedData(onPageChange(maxPage));
+                setRenderedItems(onPageChange(maxPage));
                 return maxPage;
               })
             }
@@ -86,24 +86,29 @@ const Pager = ({
   maxData = items.length,
   renderItem,
 }) => {
-  const [renderedData, setRenderedData] = useState([...items]);
   const [page, setPage] = useState(currentPage);
+  const [renderedItems, setRenderedItems] = useState([...items]);
   const maxPage = Math.ceil(maxData / itemsPerPage);
+  const firstRender = useRef(true);
+
+  // redirect back to first page when filtering client-side
+  useEffect(() => {
+    if (firstRender.current) firstRender.current = false;
+    else if (!firstRender.current && currentPage === 1) setPage(1);
+  }, [items, firstRender]);
 
   return (
     <>
-      {renderItem
-        ? items.length === itemsPerPage
-          ? items.map((item) => renderItem(item))
-          : renderedData.slice(0, itemsPerPage).map((item) => renderItem(item))
-        : items.map((item) => <div>{item}</div>)}
+      {renderItem && items.length <= itemsPerPage
+        ? items.map((item) => renderItem(item))
+        : renderedItems.slice(0, itemsPerPage).map((item) => renderItem(item))}
       <div className="my-6 flex justify-around font-bold text-[color:var(--color-default)]">
         <button
           className="disabled:text-gray-300"
           disabled={page === 0 || page === 1}
           onClick={() =>
             setPage((curr) => {
-              setRenderedData(onPageChange(curr - 1));
+              setRenderedItems(onPageChange(curr - 1));
               return curr - 1;
             })
           }
@@ -122,15 +127,15 @@ const Pager = ({
           maxPage={maxPage}
           onPageChange={onPageChange}
           setPage={setPage}
-          setRenderedData={setRenderedData}
-          data={renderedData}
+          setRenderedItems={setRenderedItems}
+          data={items}
         />
         <button
           className="disabled:text-gray-300"
           disabled={page === maxPage}
           onClick={() => {
             setPage((curr) => {
-              setRenderedData(onPageChange(curr + 1));
+              setRenderedItems(onPageChange(curr + 1));
               return curr + 1;
             });
           }}
@@ -159,18 +164,3 @@ Pager.propTypes = {
 };
 
 export default Pager;
-// class PagerProvider {
-//   constructor(
-//     data,
-//     onPageChange,
-//     current = 1,
-//     itemsPerPage = 10,
-//     maxData = data.length
-//   ) {
-//     this.data = data;
-//     this.onPageChange = onPageChange;
-//     this.current = current;
-//     this.itemsPerPage = itemsPerPage;
-//     this.maxData = maxData;
-//   }
-// }
