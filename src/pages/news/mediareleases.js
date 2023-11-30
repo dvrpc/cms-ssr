@@ -7,6 +7,8 @@ import Pager from "../../components/Pager";
 import { trunc } from "../../components/Product";
 import useDebounce from "../../components/useDebounce";
 import HtmlParser from "../../components/HtmlParser";
+import useQueryParamArray from "../../components/useQueryParamArray";
+import { filter } from "lodash";
 
 const title = "Media Releases";
 
@@ -121,18 +123,18 @@ const Article = ({ node }) => (
 );
 
 const DrupalPage = ({ data, path }) => {
-  const { allNodeArticle, userUser, navItem, allTaxonomyTermTags } = data;
+  const { allNodeArticle, userUser, allTaxonomyTermTags } = data;
   const [articles, setArticles] = useState(allNodeArticle.edges);
-  const [filters, setFilters] = useState(new Set());
   const [input, setInput] = useState("");
   const debounceInput = useDebounce(input);
+  const { params, setParams } = useQueryParamArray("filters");
 
   useEffect(() => {
     let articlesCopy = [...allNodeArticle.edges];
-    if (filters.size !== 0)
+    if (params.size !== 0)
       articlesCopy = articlesCopy.filter((article) =>
         article.node.relationships.field_tags.some((item) =>
-          filters.has(item.name)
+          params.has(item.name)
         )
       );
     if (debounceInput.length)
@@ -141,7 +143,7 @@ const DrupalPage = ({ data, path }) => {
       );
 
     setArticles(articlesCopy);
-  }, [filters, debounceInput, allNodeArticle, setArticles]);
+  }, [params, debounceInput, allNodeArticle, setArticles]);
 
   return (
     <>
@@ -149,6 +151,24 @@ const DrupalPage = ({ data, path }) => {
         <div className="px-4 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:mt-4 md:p-0">
           <main className="max-w-[80ch] print:max-w-full">
             <article>
+              <p className="m-0 flex h-min">
+                {Array.from(params).map((param) => (
+                  <button
+                    className="mr-2 mb-4 flex items-center font-bold text-[#B66216]"
+                    onClick={() => {
+                      setParams((prev) => {
+                        prev.delete(param);
+                        return new Set(prev);
+                      });
+                    }}
+                  >
+                    {param}{" "}
+                    <div className="mx-1  flex h-3 w-3 items-center justify-center rounded-full bg-[#B66216] text-sm text-white">
+                      &times;
+                    </div>
+                  </button>
+                ))}
+              </p>
               <Pager
                 items={articles}
                 onPageChange={(pageNumber) =>
@@ -179,7 +199,7 @@ const DrupalPage = ({ data, path }) => {
                   document
                     .querySelectorAll("input[type=checkbox]")
                     .forEach((el) => (el.checked = false));
-                  setFilters(new Set());
+                  setParams(new Set());
                 }}
               >
                 clear all
@@ -193,12 +213,13 @@ const DrupalPage = ({ data, path }) => {
                   type="checkbox"
                   value={tag.node.name}
                   onChange={(event) => {
-                    setFilters((prev) => {
+                    setParams((prev) => {
                       if (event.target.checked) prev.add(event.target.value);
                       else prev.delete(event.target.value);
                       return new Set(prev);
                     });
                   }}
+                  checked={params.size && params.has(tag.node.name)}
                 ></input>
                 {tag.node.name}
               </label>
@@ -255,7 +276,7 @@ export const Head = ({ data: { nodeTheme } }) =>
   });
 
 export const query = graphql`
-  query ($regex: String!, $limit: Int, $skip: Int) {
+  query ($limit: Int, $skip: Int) {
     allNodeArticle(sort: { created: DESC }, limit: $limit, skip: $skip) {
       edges {
         node {
@@ -294,88 +315,6 @@ export const query = graphql`
       mail
       field_display_name
       field_title
-    }
-    navItem(href: { regex: $regex }) {
-      href
-      link
-      style
-      class
-      links {
-        href
-        link
-        style
-        class
-      }
-      parent {
-        ... on NavItem {
-          href
-          link
-          style
-          class
-          links {
-            href
-            link
-            style
-            class
-          }
-          parent {
-            ... on NavItem {
-              href
-              link
-              style
-              class
-              links {
-                href
-                link
-                style
-                class
-              }
-              parent {
-                ... on NavItem {
-                  href
-                  link
-                  style
-                  class
-                  links {
-                    href
-                    link
-                    style
-                    class
-                  }
-                  parent {
-                    ... on NavItem {
-                      href
-                      link
-                      style
-                      class
-                      links {
-                        href
-                        link
-                        style
-                        class
-                      }
-                      parent {
-                        ... on NavItem {
-                          href
-                          link
-                          style
-                          class
-                          links {
-                            href
-                            link
-                            style
-                            class
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
     }
     nodeTheme(id: { eq: "35c6397c-3d7c-5b57-9255-aedb0586ad90" }) {
       field_primary_color
