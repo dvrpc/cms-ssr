@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { graphql, Link } from "gatsby";
 
-import Body from "../../components/Body";
 import HeadTemplate from "../../components/HeadTemplate";
 import StaffContact from "../../components/StaffContact";
-import Pager, { PagerProvider } from "../../components/Pager";
+import Pager from "../../components/Pager";
 import { trunc } from "../../components/Product";
 import useDebounce from "../../components/useDebounce";
 import HtmlParser from "../../components/HtmlParser";
@@ -69,13 +68,13 @@ const Article = ({ node }) => (
           })
           .toUpperCase()}
       </div>
-
       <Link
         className="text-xl font-bold text-[#03688D] no-underline"
         to={node.path.alias}
       >
         {node.title}
       </Link>
+
       {node.relationships && (
         <p className="m-0 text-[#7A7A7A]">
           {node.relationships.field_tags.map((tag, idx) => (
@@ -86,7 +85,15 @@ const Article = ({ node }) => (
           ))}
         </p>
       )}
+
       <p>
+        {node.relationships.field_image && (
+          <img
+            className="float-right border border-2 p-0.5 md:w-1/4"
+            src={node.relationships.field_image.url}
+            alt={node.field_image.alt}
+          />
+        )}
         {node.body && node.body.summary.length ? (
           node.body.summary
         ) : (
@@ -264,6 +271,9 @@ export const query = graphql`
             field_tags {
               name
             }
+          }
+          field_image {
+            alt
           }
           body {
             summary
