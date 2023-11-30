@@ -55,7 +55,7 @@ const Page = ({ data: { nodePage } }) => {
         <div className="flex flex-col space-y-4 p-4 print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-6 md:items-end md:p-0">
           <div className="w-full bg-[#EFF0F2] p-4 [&>*]:my-2">
             <h3 className="!mt-0 text-lg font-bold">RELATED</h3>
-            {nodePage.field_stories.length && (
+            {nodePage.field_stories.length > 0 && (
               <>
                 <p className="font-bold">Stories</p>
                 <hr className="!m-0 border border-[#CDCDCD]" />
@@ -71,7 +71,7 @@ const Page = ({ data: { nodePage } }) => {
                 </p>
               </>
             )}
-            {nodePage.field_products.length && (
+            {nodePage.field_products.length > 0 && (
               <>
                 <p className="font-bold">Products</p>
                 <hr className="!m-0 border border-[#CDCDCD]" />
@@ -87,7 +87,7 @@ const Page = ({ data: { nodePage } }) => {
                 </p>
               </>
             )}
-            {nodePage.field_data_sets.length && (
+            {nodePage.field_data_sets.length > 0 && (
               <>
                 <p className="font-bold">Data Sets</p>
                 <hr className="!m-0 border border-[#CDCDCD]" />
@@ -103,7 +103,7 @@ const Page = ({ data: { nodePage } }) => {
                 </p>
               </>
             )}
-            {nodePage.field_dvrpc_webpages.length && (
+            {nodePage.field_dvrpc_webpages.length > 0 && (
               <>
                 <p className="font-bold">DVRPC Webpages</p>
                 <hr className="!m-0 border border-[#CDCDCD]" />
@@ -119,7 +119,7 @@ const Page = ({ data: { nodePage } }) => {
                 </p>
               </>
             )}
-            {nodePage.field_websites.length && (
+            {nodePage.field_websites.length > 0 && (
               <>
                 <p className="font-bold">Websites</p>
                 <hr className="!m-0 border border-[#CDCDCD]" />
