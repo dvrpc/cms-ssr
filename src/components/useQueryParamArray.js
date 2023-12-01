@@ -8,7 +8,7 @@ const useQueryParamArray = (paramName) => {
     if (params.size !== 0) {
       let path = `?${paramName}=`;
       Array.from(params).map((param, idx, arr) => {
-        path += `${param}`;
+        path += `${param.replace(" ", "-")}`;
         if (idx != arr.length - 1) path += ",";
       });
       window.history.replaceState(null, null, path);
@@ -22,6 +22,7 @@ const useQueryParamArray = (paramName) => {
     const urlParams = new URLSearchParams(location.search);
     if (urlParams.size !== 0) {
       const urlArr = urlParams.get(paramName).split(",");
+      urlArr.map((param) => param.replace("-", " "));
       setParams(new Set(urlArr));
     }
   }, []);
