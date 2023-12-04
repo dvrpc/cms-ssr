@@ -21,8 +21,8 @@ const useQueryParamArray = (paramName) => {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     if (urlParams.size !== 0) {
-      const urlArr = urlParams.get(paramName).split(",");
-      urlArr.map((param) => param.replace("-", " "));
+      let urlArr = urlParams.get(paramName).split(",");
+      urlArr = urlArr.map((param) => param.replace("-", " "));
       setParams(new Set(urlArr));
     }
   }, []);

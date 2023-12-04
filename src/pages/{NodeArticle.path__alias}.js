@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import HeadTemplate, { themeToCustomVars } from "../components/HeadTemplate";
 import StaffContact from "../components/StaffContact";
 import HtmlParser from "../components/HtmlParser";
+import { Link } from "gatsby";
 
 const Page = ({ data: { nodePage } }) => {
   const { body, title, path, relationships } = nodePage;
@@ -33,19 +34,28 @@ const Page = ({ data: { nodePage } }) => {
                     </blockquote>
                   )}
                 </p>
-                <img
-                  className="border border-2 p-0.5"
-                  src={relationships.field_image.url}
-                />
+                {relationships.field_image && (
+                  <img
+                    className="border border-2 p-0.5"
+                    src={relationships.field_image.url}
+                  />
+                )}
               </div>
               <HtmlParser html={body.processed ?? ""} />
               {nodePage.relationships && (
                 <p className="m-0 text-[#7A7A7A]">
                   {relationships.field_tags.map((tag, idx) => (
-                    <span>
-                      {tag.name}
+                    <>
+                      <Link
+                        to={`/news/mediareleases/?filters=${tag.name.replace(
+                          " ",
+                          "-"
+                        )}`}
+                      >
+                        {tag.name}
+                      </Link>
                       {idx !== relationships.field_tags.length - 1 && ", "}
-                    </span>
+                    </>
                   ))}
                 </p>
               )}
