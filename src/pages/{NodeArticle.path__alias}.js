@@ -4,44 +4,61 @@ import HeadTemplate, { themeToCustomVars } from "../components/HeadTemplate";
 import StaffContact from "../components/StaffContact";
 import HtmlParser from "../components/HtmlParser";
 import { Link } from "gatsby";
+import NewsRoomInfo from "../components/NewsRoomInfo";
+
+const BackButton = () => (
+  <Link
+    className="flex font-bold text-[#03688D] no-underline"
+    to="/news/mediareleases"
+  >
+    <span className="my-auto mr-2 h-5 w-5 rounded-full bg-[#03688D] text-white">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-full w-full scale-50 fill-current"
+      >
+        <path d="m17 0 3 3-10 9 10 9-3 3L5 12z" />
+      </svg>
+    </span>
+    Back to News Page
+  </Link>
+);
 
 const Page = ({ data: { nodePage } }) => {
   const { body, title, path, relationships } = nodePage;
 
   return (
     <>
-      <div className="container mx-auto my-4 grid gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:grid-cols-4">
-        <div className="px-4 pt-0 print:p-0 md:col-span-3 md:col-start-2 md:row-start-2 md:p-0">
+      <div className="container mx-auto my-4 grid gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:w-4/5 md:grid-cols-3">
+        <div className="px-4 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:p-0">
           <div className="flex w-full">
-            <h1 className="max-w-[80ch] px-4 text-4xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-1 md:col-start-2 md:p-0">
+            <h1 className="w-full text-3xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-1 md:col-start-2 md:max-w-[80ch] md:p-0 md:px-4 md:text-4xl">
               {title}
             </h1>
           </div>
           <main className="mt-4">
             <article className="border-b-2">
-              <div className="flex">
-                <p className="mt-auto mb-0">
-                  <p className="w-full text-sm text-[#595959]">
-                    {new Date(nodePage.created).toLocaleDateString("en-US", {
-                      month: "long",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
-                  </p>
-                  {body.summary && (
-                    <blockquote className="flex-1 border-l-8 border-[#91BEDC] border-opacity-[.45] pl-2 italic md:mr-4">
-                      {body.summary}
-                    </blockquote>
-                  )}
-                </p>
+              <div>
                 {relationships.field_image && (
                   <img
-                    className="border border-2 p-0.5"
+                    className="h-full border border-2 object-contain p-0.5 md:float-right md:m-4 md:mt-0 md:h-64"
                     src={relationships.field_image.url}
                   />
                 )}
+                <p className="w-full text-sm text-[#595959]">
+                  {new Date(nodePage.created).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </p>
+
+                {body.summary && (
+                  <blockquote className="border-l-8 border-[#91BEDC] border-opacity-[.45] pl-2 italic md:w-full">
+                    {body.summary}
+                  </blockquote>
+                )}
+                <HtmlParser html={body.processed ?? ""} />
               </div>
-              <HtmlParser html={body.processed ?? ""} />
               {nodePage.relationships && (
                 <p className="m-0 text-[#7A7A7A]">
                   {relationships.field_tags.map((tag, idx) => (
@@ -51,6 +68,7 @@ const Page = ({ data: { nodePage } }) => {
                           " ",
                           "-"
                         )}`}
+                        className="no-underline hover:underline"
                       >
                         {tag.name}
                       </Link>
@@ -60,9 +78,13 @@ const Page = ({ data: { nodePage } }) => {
                 </p>
               )}
             </article>
+            <p className="hidden md:block">
+              <BackButton />
+            </p>
           </main>
         </div>
-        <div className="flex flex-col space-y-4 p-4 print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-6 md:items-end md:p-0">
+        <div className="md:fle space-y-4 p-4 print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-4 md:flex-col md:items-end md:p-0">
+          <BackButton />
           <div className="w-full bg-[#EFF0F2] p-4 [&>*]:my-2">
             <h3 className="!mt-0 text-lg font-bold">RELATED</h3>
             {nodePage.field_stories.length > 0 && (
@@ -146,38 +168,13 @@ const Page = ({ data: { nodePage } }) => {
               </>
             )}
           </div>
-          <div className="w-full bg-[#EFF0F2] p-4 [&>*]:my-2">
-            <h3 className="!mt-0 text-lg font-bold">MEDIA</h3>
-            <p className="font-bold">Resources</p>
-            <hr className="!m-0 border border-[#CDCDCD]" />
-            <p>
-              <a
-                className="text-[#03688D] hover:underline"
-                href="https://www.dvrpc.org/photosandlogos/pdf/dvrpc_logoguidelines.pdf"
-              >
-                DVRPC Logos and Guidelines
-              </a>
-              <br />
-              <a
-                className="text-[#03688D] hover:underline"
-                href="https://www.dvrpc.org/photosandlogos/"
-              >
-                Executive Director and Headshots
-              </a>
-            </p>
-            <p className="font-bold">Contact</p>
-            <hr className="!m-0 border border-[#CDCDCD]" />
-            <p className="my-2">
-              Elise Turner:{" "}
-              <a
-                className="text-[#03688D] hover:underline"
-                href="mailto:eturner@dvrpc.org"
-              >
-                eturner@dvrpc.org
-              </a>
-            </p>
+          <div className="hidden md:block">
+            <NewsRoomInfo />
           </div>
         </div>
+      </div>
+      <div className="block w-full md:hidden">
+        <NewsRoomInfo />
       </div>
       <StaffContact title={title} location={path.alias} />
     </>

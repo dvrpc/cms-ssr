@@ -8,7 +8,7 @@ import { trunc } from "../../components/Product";
 import useDebounce from "../../components/useDebounce";
 import HtmlParser from "../../components/HtmlParser";
 import useQueryParamArray from "../../components/useQueryParamArray";
-import { filter } from "lodash";
+import NewsRoomInfo from "../../components/NewsRoomInfo";
 
 const title = "Media Releases";
 
@@ -59,67 +59,129 @@ const themeToCustomVars = (theme, config) => {
 };
 
 const Article = ({ node }) => (
-  <li className="list-none">
-    <div className="pb-6">
-      <div className="text-sm text-gray-500">
-        {new Date(node.created)
-          .toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          })
-          .toUpperCase()}
-      </div>
-      <Link
-        className="text-xl font-bold text-[#03688D] no-underline"
-        to={node.path.alias}
-      >
-        {node.title}
-      </Link>
+  <li className="mb-4 list-none border-b-[3px] md:py-4">
+    <div className="text-sm text-gray-500">
+      {new Date(node.created)
+        .toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        })
+        .toUpperCase()}
+    </div>
 
-      {node.relationships && (
-        <p className="m-0 text-[#7A7A7A]">
-          {node.relationships.field_tags.map((tag, idx) => (
-            <span>
-              {tag.name}
-              {idx !== node.relationships.field_tags.length - 1 && ", "}
-            </span>
-          ))}
-        </p>
-      )}
-
-      <p>
-        {node.relationships.field_image && (
-          <img
-            className="float-right border border-2 p-0.5 md:w-1/4"
-            src={node.relationships.field_image.url}
-            alt={node.field_image.alt}
-          />
-        )}
-        {node.body && node.body.summary.length ? (
-          node.body.summary
-        ) : (
-          <HtmlParser html={trunc(node.body.processed)} />
-        )}
-      </p>
-      <p>
+    <div className="flex flex-col-reverse md:block">
+      <p className="mb-0">
         <Link
-          className="flex font-bold text-[#03688D] no-underline"
+          className="text-xl font-bold text-[#03688D] no-underline"
           to={node.path.alias}
         >
-          Read More
-          <span className="my-auto mx-2 h-5 w-5 rounded-full bg-[#03688D] text-white">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-full w-full scale-50 fill-current"
-            >
-              <path d="m5 3 3-3 12 12L8 24l-3-3 9-9z" />
-            </svg>
-          </span>
+          {node.title}
         </Link>
+
+        {node.relationships && (
+          <p className="m-0 text-[#7A7A7A]">
+            {node.relationships.field_tags.map((tag, idx) => (
+              <>
+                <Link
+                  to={`/news/mediareleases/?filters=${tag.name.replace(
+                    " ",
+                    "-"
+                  )}`}
+                  className="no-underline hover:underline"
+                >
+                  {tag.name}
+                </Link>
+                {idx !== node.relationships.field_tags.length - 1 && ", "}
+              </>
+            ))}
+          </p>
+        )}
       </p>
+      {node.relationships.field_image && (
+        <img
+          className="h-48 w-full border border-2 object-cover p-0.5 md:float-right md:ml-4 md:w-72"
+          src={node.relationships.field_image.url}
+          alt={node.field_image.alt}
+        />
+      )}
     </div>
+
+    <p>
+      {node.body && node.body.summary.length ? (
+        node.body.summary
+      ) : (
+        <HtmlParser html={trunc(node.body.processed)} />
+      )}
+    </p>
+    <p>
+      <Link
+        className="flex font-bold text-[#03688D] no-underline"
+        to={node.path.alias}
+      >
+        Read More
+        <span className="my-auto mx-2 h-5 w-5 rounded-full bg-[#03688D] text-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-full w-full scale-50 fill-current"
+          >
+            <path d="m5 3 3-3 12 12L8 24l-3-3 9-9z" />
+          </svg>
+        </span>
+      </Link>
+    </p>
   </li>
+);
+
+const SidebarContent = ({
+  allTaxonomyTermTags,
+  input,
+  params,
+  setParams,
+  setInput,
+}) => (
+  <div className="w-full p-4">
+    <input
+      class="w-full appearance-none border py-2 px-3 leading-tight focus:outline-none"
+      type="text"
+      placeholder="Search news stories..."
+      value={input}
+      onChange={(event) => setInput(event.target.value)}
+    ></input>
+    <span className="flex">
+      <h3 className="py-4 text-lg font-bold">FILTER RESULTS</h3>
+      <button
+        className="ml-auto text-[#03688D]"
+        onClick={() => {
+          document
+            .querySelectorAll("input[type=checkbox]")
+            .forEach((el) => (el.checked = false));
+          setParams(new Set());
+        }}
+      >
+        clear all
+      </button>
+    </span>
+    <p className="font-bold">Topic</p>
+    {allTaxonomyTermTags.edges.map((tag) => (
+      <label key={tag.node.name} className="flex items-center">
+        <input
+          className="mr-2"
+          type="checkbox"
+          value={tag.node.name}
+          onChange={(event) => {
+            setParams((prev) => {
+              if (event.target.checked) prev.add(event.target.value);
+              else prev.delete(event.target.value);
+              return new Set(prev);
+            });
+          }}
+          checked={params.size && params.has(tag.node.name)}
+        ></input>
+        {tag.node.name}
+      </label>
+    ))}
+  </div>
 );
 
 const DrupalPage = ({ data, path }) => {
@@ -145,9 +207,15 @@ const DrupalPage = ({ data, path }) => {
     setArticles(articlesCopy);
   }, [params, debounceInput, allNodeArticle, setArticles]);
 
+  const toggleModal = (event) => {
+    event.preventDefault();
+    document.getElementById("modal-background").classList.toggle("hidden");
+    document.getElementById("modal").classList.toggle("hidden");
+  };
+
   return (
     <>
-      <div className="container mx-auto my-4 grid gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:grid-cols-3">
+      <div className="container mx-auto flex flex-col-reverse gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:my-4 md:grid md:w-4/5 md:grid-cols-3">
         <div className="px-4 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:mt-4 md:p-0">
           <main className="max-w-[80ch] print:max-w-full">
             <article>
@@ -182,87 +250,70 @@ const DrupalPage = ({ data, path }) => {
             </article>
           </main>
         </div>
-        <div className="flex flex-col space-y-4 p-4 print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-4 md:items-end md:p-0">
-          <div className="w-full bg-[#EFF0F2] p-4">
+
+        <div className="block md:hidden">
+          <p className="mb-4 bg-[#EFF0F2] p-4">
             <input
-              class=" w-full appearance-none border py-2 px-3 leading-tight focus:outline-none"
+              class="w-full appearance-none border border-2 border-[#707070] py-2 px-3 leading-tight focus:outline-none"
               type="text"
               placeholder="Search news stories..."
               value={input}
               onChange={(event) => setInput(event.target.value)}
             ></input>
-            <span className="flex">
-              <h3 className="py-4 text-lg font-bold">FILTER RESULTS</h3>
-              <button
-                className="ml-auto text-[#03688D]"
-                onClick={() => {
-                  document
-                    .querySelectorAll("input[type=checkbox]")
-                    .forEach((el) => (el.checked = false));
-                  setParams(new Set());
-                }}
-              >
-                clear all
-              </button>
-            </span>
-            <p className="font-bold">Topic</p>
-            {allTaxonomyTermTags.edges.map((tag) => (
-              <label key={tag.node.name} className="flex items-center">
-                <input
-                  className="mr-2"
-                  type="checkbox"
-                  value={tag.node.name}
-                  onChange={(event) => {
-                    setParams((prev) => {
-                      if (event.target.checked) prev.add(event.target.value);
-                      else prev.delete(event.target.value);
-                      return new Set(prev);
-                    });
-                  }}
-                  checked={params.size && params.has(tag.node.name)}
-                ></input>
-                {tag.node.name}
-              </label>
-            ))}
-          </div>
-          <div className="w-full bg-[#EFF0F2] p-4 [&>*]:my-2">
-            <h3 className="!mt-0 text-lg font-bold">MEDIA</h3>
-            <p className="font-bold">Resources</p>
-            <hr className="!m-0 border border-[#CDCDCD]" />
-            <p>
-              <a
-                className="text-[#03688D] hover:underline"
-                href="https://www.dvrpc.org/photosandlogos/pdf/dvrpc_logoguidelines.pdf"
-              >
-                DVRPC Logos and Guidelines
-              </a>
-              <br />
-              <a
-                className="text-[#03688D] hover:underline"
-                href="https://www.dvrpc.org/photosandlogos/"
-              >
-                Executive Director and Headshots
-              </a>
-            </p>
-            <p className="font-bold">Contact</p>
-            <hr className="!m-0 border border-[#CDCDCD]" />
-            <p className="my-2">
-              Elise Turner:{" "}
-              <a
-                className="text-[#03688D] hover:underline"
-                href="mailto:eturner@dvrpc.org"
-              >
-                eturner@dvrpc.org
-              </a>
-            </p>
+
+            <button
+              className="my-4 w-full rounded-lg border-2 border-[#707070] p-3 font-bold text-[#03688D] hover:bg-[]"
+              onClick={toggleModal}
+            >
+              FILTER RESULTS
+            </button>
+          </p>
+          <div
+            id="modal-background"
+            className="fixed inset-0 hidden bg-black bg-opacity-75 transition-opacity"
+          ></div>
+          <div
+            id="modal"
+            className="fixed inset-0 z-10 hidden w-screen overflow-y-auto"
+          >
+            <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+              <div className="relative transform bg-[#EFF0F2] p-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <button
+                  className="absolute -right-3 -top-2 z-[999] mx-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#03688D] text-xl text-white"
+                  onClick={toggleModal}
+                >
+                  &times;
+                </button>
+                <SidebarContent
+                  allTaxonomyTermTags={allTaxonomyTermTags}
+                  input={input}
+                  params={params}
+                  setInput={setInput}
+                  setParams={setParams}
+                />
+              </div>
+            </div>
           </div>
         </div>
+
+        <div className="hidden space-y-4 p-4 print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-4 md:flex md:flex-col md:items-end md:p-0">
+          <div className="w-full bg-[#EFF0F2]">
+            <SidebarContent
+              allTaxonomyTermTags={allTaxonomyTermTags}
+              input={input}
+              params={params}
+              setInput={setInput}
+              setParams={setParams}
+            />
+          </div>
+
+          <NewsRoomInfo />
+        </div>
       </div>
-      <StaffContact
-        staffContact={userUser}
-        title={title}
-        location={path.alias}
-      />
+      <div className="block w-full md:hidden">
+        <NewsRoomInfo />
+      </div>
+      <StaffContact title={title} location={path.alias} />
     </>
   );
 };
