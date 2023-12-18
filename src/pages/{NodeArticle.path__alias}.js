@@ -31,7 +31,7 @@ const Page = ({ data: { nodePage } }) => {
       <div className="container mx-auto my-4 grid gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:w-4/5 md:grid-cols-3">
         <div className="px-4 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:p-0">
           <div className="flex w-full">
-            <h1 className="w-full text-3xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-1 md:col-start-2 md:max-w-[80ch] md:p-0 md:px-4 md:text-4xl">
+            <h1 className="w-full text-3xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-1 md:col-start-2 md:max-w-[80ch] md:p-0 md:text-4xl">
               {title}
             </h1>
           </div>

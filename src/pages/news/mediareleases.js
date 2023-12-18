@@ -58,80 +58,90 @@ const themeToCustomVars = (theme, config) => {
     .join("\n");
 };
 
-const Article = ({ node }) => (
-  <li className="mb-4 list-none border-b-[3px] md:py-4">
-    <div className="text-sm text-gray-500">
-      {new Date(node.created)
-        .toLocaleDateString("en-US", {
-          month: "short",
+const Article = ({ node }) => {
+  return (
+    <li className="mb-6 list-none border-b-[1px] border-[#CDCDCD] md:py-2">
+      <div className="text-[#595959]">
+        {new Date(node.created).toLocaleDateString("en-US", {
+          month: "long",
           day: "numeric",
           year: "numeric",
-        })
-        .toUpperCase()}
-    </div>
+        })}
+      </div>
 
-    <div className="flex flex-col-reverse md:block">
-      <p className="mb-0">
+      <div className="flex flex-col md:block">
+        {node.relationships.field_image && (
+          <img
+            className="my-2 h-48 w-full border border-2 object-cover p-0.5 md:float-right md:my-0 md:ml-2 md:mb-2 md:w-72"
+            src={node.relationships.field_image.url}
+            alt={node.field_image.alt}
+          />
+        )}
+        <p className="my-1">
+          <Link
+            className="text-2xl font-bold leading-6 text-[#03688D] no-underline hover:underline md:leading-7"
+            to={node.path.alias}
+          >
+            {node.title}
+          </Link>
+
+          {node.relationships && (
+            <p
+              className="mb-0.5 mt-0.5 text-sm text-[#7A7A7A] md:mt-1 md:mb-3"
+              style={{ fontFamily: "Roboto Condensed" }}
+            >
+              {node.relationships.field_categories.map((ctg, idx) => (
+                <>
+                  <Link
+                    to={`/news/mediareleases/?filters=${ctg.name
+                      .replace(/\s/g, "-")
+                      .replace(/\&/g, "and")}`}
+                    className="no-underline hover:underline"
+                  >
+                    {ctg.name}
+                  </Link>
+                  {idx !== node.relationships.field_categories.length - 1 &&
+                    ", "}
+                </>
+              ))}
+              {node.relationships.field_tags.map((tag, idx) => (
+                <>
+                  {node.relationships.field_categories.length > 0 && ", "}
+                  <span>{tag.name}</span>
+                  {idx !== node.relationships.field_tags.length - 1 && ", "}
+                </>
+              ))}
+            </p>
+          )}
+        </p>
+      </div>
+
+      <div className="my-2 md:my-1">
+        {node.body && node.body.summary.length ? (
+          node.body.summary
+        ) : (
+          <HtmlParser html={trunc(node.body.processed)} />
+        )}
+      </div>
+      <p className="mt-2 mb-6 md:my-2.5 md:mb-0">
         <Link
-          className="text-xl font-bold text-[#03688D] no-underline"
+          className="flex font-bold text-[#03688D] no-underline hover:underline"
           to={node.path.alias}
         >
-          {node.title}
+          Read More
+          <span className="my-auto mx-2 h-5 w-5 rounded-full bg-[#03688D] text-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-full w-full scale-50 fill-current"
+            >
+              <path d="m5 3 3-3 12 12L8 24l-3-3 9-9z" />
+            </svg>
+          </span>
         </Link>
-
-        {node.relationships && (
-          <p className="m-0 text-[#7A7A7A]">
-            {node.relationships.field_tags.map((tag, idx) => (
-              <>
-                <Link
-                  to={`/news/mediareleases/?filters=${tag.name.replace(
-                    " ",
-                    "-"
-                  )}`}
-                  className="no-underline hover:underline"
-                >
-                  {tag.name}
-                </Link>
-                {idx !== node.relationships.field_tags.length - 1 && ", "}
-              </>
-            ))}
-          </p>
-        )}
       </p>
-      {node.relationships.field_image && (
-        <img
-          className="h-48 w-full border border-2 object-cover p-0.5 md:float-right md:ml-4 md:w-72"
-          src={node.relationships.field_image.url}
-          alt={node.field_image.alt}
-        />
-      )}
-    </div>
-
-    <p>
-      {node.body && node.body.summary.length ? (
-        node.body.summary
-      ) : (
-        <HtmlParser html={trunc(node.body.processed)} />
-      )}
-    </p>
-    <p>
-      <Link
-        className="flex font-bold text-[#03688D] no-underline"
-        to={node.path.alias}
-      >
-        Read More
-        <span className="my-auto mx-2 h-5 w-5 rounded-full bg-[#03688D] text-white">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-full w-full scale-50 fill-current"
-          >
-            <path d="m5 3 3-3 12 12L8 24l-3-3 9-9z" />
-          </svg>
-        </span>
-      </Link>
-    </p>
-  </li>
-);
+    </li>
+  );
+};
 
 const SidebarContent = ({
   allTaxonomyTermTags,
@@ -140,7 +150,7 @@ const SidebarContent = ({
   setParams,
   setInput,
 }) => (
-  <div className="w-full p-4">
+  <div className="w-full md:p-4">
     <input
       class="w-full appearance-none border py-2 px-3 leading-tight focus:outline-none"
       type="text"
@@ -149,7 +159,7 @@ const SidebarContent = ({
       onChange={(event) => setInput(event.target.value)}
     ></input>
     <span className="flex">
-      <h3 className="py-4 text-lg font-bold">FILTER RESULTS</h3>
+      <h3 className="py-4 text-lg font-bold tracking-wider">FILTER RESULTS</h3>
       <button
         className="ml-auto text-[#03688D]"
         onClick={() => {
@@ -166,7 +176,7 @@ const SidebarContent = ({
     {allTaxonomyTermTags.edges.map((tag) => (
       <label key={tag.node.name} className="flex items-center">
         <input
-          className="mr-2"
+          className="mr-2 accent-[#03688D]"
           type="checkbox"
           value={tag.node.name}
           onChange={(event) => {
@@ -185,7 +195,12 @@ const SidebarContent = ({
 );
 
 const DrupalPage = ({ data, path }) => {
-  const { allNodeArticle, userUser, allTaxonomyTermTags } = data;
+  const {
+    allNodeArticle,
+    userUser,
+    allTaxonomyTermTags,
+    allTaxonomyTermCategories,
+  } = data;
   const [articles, setArticles] = useState(allNodeArticle.edges);
   const [input, setInput] = useState("");
   const debounceInput = useDebounce(input);
@@ -195,7 +210,7 @@ const DrupalPage = ({ data, path }) => {
     let articlesCopy = [...allNodeArticle.edges];
     if (params.size !== 0)
       articlesCopy = articlesCopy.filter((article) =>
-        article.node.relationships.field_tags.some((item) =>
+        article.node.relationships.field_categories.some((item) =>
           params.has(item.name)
         )
       );
@@ -216,7 +231,7 @@ const DrupalPage = ({ data, path }) => {
   return (
     <>
       <div className="container mx-auto flex flex-col-reverse gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:my-4 md:grid md:w-4/5 md:grid-cols-3">
-        <div className="px-4 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:mt-4 md:p-0">
+        <div className="px-7 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:mt-4 md:p-0">
           <main className="max-w-[80ch] print:max-w-full">
             <article>
               <p className="m-0 flex h-min">
@@ -231,7 +246,7 @@ const DrupalPage = ({ data, path }) => {
                     }}
                   >
                     {param}{" "}
-                    <div className="mx-1  flex h-3 w-3 items-center justify-center rounded-full bg-[#B66216] text-sm text-white">
+                    <div className="mx-2 flex h-5 w-5 items-center justify-center rounded-full bg-[#B66216] text-white">
                       &times;
                     </div>
                   </button>
@@ -252,9 +267,9 @@ const DrupalPage = ({ data, path }) => {
         </div>
 
         <div className="block md:hidden">
-          <p className="mb-4 bg-[#EFF0F2] p-4">
+          <p className="mb-4 bg-[#EFF0F2] p-4 px-8">
             <input
-              class="w-full appearance-none border border-2 border-[#707070] py-2 px-3 leading-tight focus:outline-none"
+              class="border-1 my-2 w-full appearance-none border border-[#707070] py-2 px-3 leading-tight focus:outline-none"
               type="text"
               placeholder="Search news stories..."
               value={input}
@@ -262,7 +277,7 @@ const DrupalPage = ({ data, path }) => {
             ></input>
 
             <button
-              className="my-4 w-full rounded-lg border-2 border-[#707070] p-3 font-bold text-[#03688D] hover:bg-[]"
+              className="my-2 w-full rounded-lg border border-[#707070] p-2 font-bold tracking-wider text-[#03688D] hover:bg-[]"
               onClick={toggleModal}
             >
               FILTER RESULTS
@@ -285,7 +300,7 @@ const DrupalPage = ({ data, path }) => {
                   &times;
                 </button>
                 <SidebarContent
-                  allTaxonomyTermTags={allTaxonomyTermTags}
+                  allTaxonomyTermTags={allTaxonomyTermCategories}
                   input={input}
                   params={params}
                   setInput={setInput}
@@ -299,7 +314,7 @@ const DrupalPage = ({ data, path }) => {
         <div className="hidden space-y-4 p-4 print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-4 md:flex md:flex-col md:items-end md:p-0">
           <div className="w-full bg-[#EFF0F2]">
             <SidebarContent
-              allTaxonomyTermTags={allTaxonomyTermTags}
+              allTaxonomyTermTags={allTaxonomyTermCategories}
               input={input}
               params={params}
               setInput={setInput}
@@ -343,6 +358,9 @@ export const query = graphql`
             field_tags {
               name
             }
+            field_categories {
+              name
+            }
           }
           field_image {
             alt
@@ -350,6 +368,18 @@ export const query = graphql`
           body {
             summary
             processed
+          }
+        }
+      }
+    }
+    allTaxonomyTermCategories {
+      edges {
+        node {
+          name
+          relationships {
+            node__article {
+              id
+            }
           }
         }
       }

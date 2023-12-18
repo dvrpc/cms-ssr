@@ -48,7 +48,7 @@ const PageRange = ({
       {renderedRange.map((num) => (
         <button
           disabled={num === currentPage}
-          className="mx-1 disabled:h-9 disabled:w-9 disabled:rounded-full disabled:bg-[color:var(--color-default)] disabled:text-white"
+          className="mx-1 disabled:h-9 disabled:w-9 disabled:rounded-full disabled:bg-[#03688D] disabled:text-white"
           onClick={() => {
             setPage(() => {
               setRenderedItems(onPageChange(num));
@@ -102,9 +102,9 @@ const Pager = ({
       {renderItem && items.length <= itemsPerPage
         ? items.map((item) => renderItem(item))
         : renderedItems.slice(0, itemsPerPage).map((item) => renderItem(item))}
-      <div className="my-6 flex justify-around font-bold text-[color:var(--color-default)]">
+      <div className="my-6 mx-auto flex justify-around font-bold text-[#03688D] md:w-1/2">
         <button
-          className="disabled:text-gray-300"
+          className="disabled:text-gray-300 md:mr-4"
           disabled={page === 0 || page === 1}
           onClick={() =>
             setPage((curr) => {
@@ -131,7 +131,7 @@ const Pager = ({
           data={items}
         />
         <button
-          className="disabled:text-gray-300"
+          className="disabled:text-gray-300 md:ml-4"
           disabled={page === maxPage}
           onClick={() => {
             setPage((curr) => {
