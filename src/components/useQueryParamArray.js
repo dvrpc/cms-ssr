@@ -8,7 +8,9 @@ const useQueryParamArray = (paramName) => {
     if (params.size !== 0) {
       let path = `?${paramName}=`;
       Array.from(params).map((param, idx, arr) => {
-        path += `${param.replace(" ", "-")}`;
+        param = param.replaceAll("&", "and");
+        param = param.replaceAll(" ", "-");
+        path += `${param}`;
         if (idx != arr.length - 1) path += ",";
       });
       window.history.replaceState(null, null, path);
@@ -22,7 +24,11 @@ const useQueryParamArray = (paramName) => {
     const urlParams = new URLSearchParams(location.search);
     if (urlParams.size !== 0) {
       let urlArr = urlParams.get(paramName).split(",");
-      urlArr = urlArr.map((param) => param.replace("-", " "));
+      urlArr = urlArr.map((param) => {
+        param = param.replaceAll("and", "&");
+        param = param.replaceAll("-", " ");
+        return param;
+      });
       setParams(new Set(urlArr));
     }
   }, []);
