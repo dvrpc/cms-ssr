@@ -13,7 +13,7 @@ const useQueryParamArray = (paramName) => {
         path += `${param}`;
         if (idx != arr.length - 1) path += ",";
       });
-      window.history.replaceState(null, null, path);
+      window.history.replaceState(null, null, location.pathname + path);
     } else if (!firstRender.current && params.size === 0)
       window.history.replaceState(null, "", location.pathname);
 
@@ -31,7 +31,7 @@ const useQueryParamArray = (paramName) => {
       });
       setParams(new Set(urlArr));
     }
-  }, []);
+  }, [location.search]);
 
   return { params, setParams };
 };

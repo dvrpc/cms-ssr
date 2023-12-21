@@ -94,7 +94,10 @@ const Pager = ({
   // redirect back to first page when filtering client-side
   useEffect(() => {
     if (firstRender.current) firstRender.current = false;
-    else if (!firstRender.current && currentPage === 1) setPage(1);
+    else if (!firstRender.current && currentPage === 1) {
+      setPage(1);
+      setRenderedItems([...items]);
+    }
   }, [items, firstRender]);
 
   return (
