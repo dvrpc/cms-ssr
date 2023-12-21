@@ -11,6 +11,7 @@ import NewsRoomInfo from "../../components/newsroom/NewsRoomInfo";
 import LogoBar from "../../components/LogoBar";
 import Icon, { Search } from "../../components/Icon";
 import NewsHeader from "../../images/NewsHeader.jpg";
+import Footer from "../../components/Footer";
 
 const title = "Media Releases";
 
@@ -358,6 +359,7 @@ const DrupalPage = ({ data, path }) => {
       <div className="block w-full md:hidden">
         <NewsRoomInfo />
       </div>
+      <Footer />
     </>
   );
 };
