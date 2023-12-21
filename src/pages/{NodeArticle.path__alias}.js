@@ -14,10 +14,10 @@ const BackButton = () => (
     className="flex font-bold text-[#03688D] no-underline"
     to="/news/mediareleases"
   >
-    <span className="my-auto mr-2 flex h-5 w-5 rounded-full bg-[#03688D] text-white">
+    <span className="my-auto mr-2 flex h-5 w-5 rounded-full bg-[#03688D] font-bold text-white">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-full w-full scale-50 fill-current"
+        className="-ml-[0.1rem] h-full w-full scale-50 fill-current"
       >
         <path d="m17 0 3 3-10 9 10 9-3 3L5 12z" />
       </svg>
@@ -28,6 +28,10 @@ const BackButton = () => (
 
 const Page = ({ data: { nodePage }, location }) => {
   const { body, title, path, relationships } = nodePage;
+
+  const onShareThisClick = () => {
+    document.getElementById("mobile-share").classList.toggle("hidden");
+  };
 
   return (
     <>
@@ -60,11 +64,17 @@ const Page = ({ data: { nodePage }, location }) => {
           </div>
         </div>
       </header>
-      <button className="absolute -mt-10 ml-7 rounded-lg border border-[#C6E6F8] p-1 px-3 text-[#C6E6F8] md:hidden">
+      <button
+        className="absolute -mt-11 ml-7 rounded-lg border border-[#C6E6F8] p-1 px-3 text-[#C6E6F8] md:hidden"
+        onClick={onShareThisClick}
+      >
         Share this story
       </button>
       <div className="container mx-auto my-4 grid gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:w-4/5 md:grid-cols-3">
         <div className="px-7 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:p-0 md:px-7">
+          <div id="mobile-share" className="mb-2 -mt-2 hidden md:hidden">
+            <SharePage location={location} title={title} />
+          </div>
           <div className="flex w-full">
             <h1 className="w-full text-3xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-1 md:col-start-2 md:w-[80%] md:max-w-[80ch] md:p-0 md:text-4xl">
               {title}
@@ -116,9 +126,9 @@ const Page = ({ data: { nodePage }, location }) => {
                 </p>
               )}
             </article>
-            <p className="hidden md:block">
+            <span className="mt-4 hidden md:block">
               <BackButton />
-            </p>
+            </span>
           </main>
         </div>
         <div className="md:fle space-y-4 p-4 px-7 print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-4 md:flex-col md:items-end md:p-0 md:px-0">

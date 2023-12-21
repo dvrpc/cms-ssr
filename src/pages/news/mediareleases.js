@@ -352,7 +352,6 @@ const DrupalPage = ({ data, path }) => {
               setParams={setParams}
             />
           </div>
-
           <NewsRoomInfo />
         </div>
       </div>
