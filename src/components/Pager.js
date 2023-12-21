@@ -135,7 +135,7 @@ const Pager = ({
         />
         <button
           className="disabled:text-gray-300 md:ml-4"
-          disabled={page === maxPage}
+          disabled={page === maxPage || !renderedItems.length}
           onClick={() => {
             setPage((curr) => {
               setRenderedItems(onPageChange(curr + 1));
