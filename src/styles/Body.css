@@ -365,3 +365,47 @@ form
   opacity: 1;
   visibility: visible;
 }
+
+.pullquote {
+  border: 0px;
+  min-width: 100%;
+  font-style: normal;
+}
+
+.pullquote > blockquote {
+  border-color: #91bedc;
+  border-top-width: 1.6px;
+  border-bottom-width: 1.6px;
+  border-right-width: 0px;
+  border-left-width: 0px;
+  border-radius: 0px;
+}
+
+.pullquote > blockquote > p {
+  margin: 0px;
+  width: 80%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 2rem;
+  line-height: 2.5rem; /* 24px */
+  font-weight: 300;
+}
+
+.pullquote > blockquote::before {
+  background-color: white;
+  color: #91bedc;
+  content: "❛❛";
+  font-size: 2.5rem;
+  margin-top: -0.25rem;
+  line-height: 1.25rem;
+  position: absolute;
+  padding-right: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .pullquote > blockquote > p {
+    width: 100%;
+    font-size: 1.5rem;
+    line-height: 1.5rem; /* 24px */
+  }
+}

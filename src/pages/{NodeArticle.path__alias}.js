@@ -8,6 +8,7 @@ import SharePage from "../components/newsroom/SharePage";
 import LogoBar from "../components/LogoBar";
 import Icon, { Search } from "../components/Icon";
 import ArticleHeader from "../images/ArticleHeader.jpg";
+import Footer from "../components/Footer";
 
 const BackButton = () => (
   <Link
@@ -224,6 +225,7 @@ const Page = ({ data: { nodePage }, location }) => {
       <div className="block w-full md:hidden">
         <NewsRoomInfo />
       </div>
+      <Footer />
     </>
   );
 };
