@@ -63,7 +63,7 @@ const themeToCustomVars = (theme, config) => {
 
 const Article = ({ node }) => {
   return (
-    <li className="mb-6 list-none border-b-[1px] border-[#CDCDCD] md:py-2">
+    <li className="mb-6 list-none border-b-[1px] border-[#CDCDCD] md:pb-2">
       <div className="text-[#595959]">
         {new Date(node.created).toLocaleDateString("en-US", {
           month: "long",
@@ -393,7 +393,12 @@ export const Head = ({ data: { nodeTheme } }) =>
 
 export const query = graphql`
   query ($limit: Int, $skip: Int) {
-    allNodeArticle(sort: { created: DESC }, limit: $limit, skip: $skip) {
+    allNodeArticle(
+      filter: { status: { eq: true } }
+      sort: { created: DESC }
+      limit: $limit
+      skip: $skip
+    ) {
       edges {
         node {
           title
