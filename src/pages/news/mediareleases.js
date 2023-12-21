@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { graphql, Link } from "gatsby";
 
 import HeadTemplate from "../../components/HeadTemplate";
-import StaffContact from "../../components/StaffContact";
 import Pager from "../../components/Pager";
 import { trunc } from "../../components/Product";
 import useDebounce from "../../components/useDebounce";
 import HtmlParser from "../../components/HtmlParser";
 import useQueryParamArray from "../../components/useQueryParamArray";
-import NewsRoomInfo from "../../components/NewsRoomInfo";
+import NewsRoomInfo from "../../components/newsroom/NewsRoomInfo";
+import LogoBar from "../../components/LogoBar";
+import Icon, { Search } from "../../components/Icon";
+import NewsHeader from "../../images/NewsHeader.jpg";
 
 const title = "Media Releases";
 
@@ -72,7 +74,7 @@ const Article = ({ node }) => {
       <div className="flex flex-col md:block">
         {node.relationships.field_image && (
           <img
-            className="my-2 h-48 w-full border border-2 object-cover p-0.5 md:float-right md:my-0 md:ml-2 md:mb-2 md:w-72"
+            className="my-2 h-48 w-full border border-2 object-cover p-0.5 md:float-right md:my-0 md:ml-3 md:mb-2 md:w-72"
             src={node.relationships.field_image.url}
             alt={node.field_image.alt}
           />
@@ -125,7 +127,7 @@ const Article = ({ node }) => {
       </div>
       <p className="mt-2 mb-6 md:my-2.5 md:mb-0">
         <Link
-          className="flex font-bold text-[#03688D] no-underline hover:underline"
+          className="flex font-bold text-[#03688D] no-underline hover:underline md:mb-2"
           to={node.path.alias}
         >
           Read More
@@ -230,6 +232,35 @@ const DrupalPage = ({ data, path }) => {
 
   return (
     <>
+      <header className="bg-white print:hidden">
+        <LogoBar />
+        <div
+          className="relative h-[250px] w-full bg-cover bg-center bg-no-repeat md:h-[400px]"
+          style={{ backgroundImage: `url(${NewsHeader})` }}
+        >
+          <div className="container mx-auto p-8 md:px-0">
+            <form
+              className="relative mb-4 bg-gradient-to-r from-white/80 via-white/80 to-transparent md:w-min md:pr-32"
+              action="https://www.dvrpc.org/Search/"
+            >
+              <div className="pointer-events-none absolute flex h-full w-10 items-center justify-center">
+                <Icon
+                  use={Search}
+                  className="inline-block h-6 flex-shrink-0 select-none text-gray-600"
+                />
+              </div>
+              <div>
+                <input
+                  name="q"
+                  placeholder="Search..."
+                  aria-label="Search"
+                  className="m-0 block w-72 min-w-0 border-0 border-none bg-transparent p-2 pl-10 placeholder-gray-600 focus:outline-none md:pl-12"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </header>
       <div className="container mx-auto flex flex-col-reverse gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:my-4 md:grid md:w-4/5 md:grid-cols-3">
         <div className="px-7 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:mt-4 md:p-0">
           <main className="max-w-[80ch] print:max-w-full">
@@ -328,7 +359,6 @@ const DrupalPage = ({ data, path }) => {
       <div className="block w-full md:hidden">
         <NewsRoomInfo />
       </div>
-      <StaffContact title={title} location={path.alias} />
     </>
   );
 };
