@@ -109,20 +109,23 @@ const Page = ({ data: { nodePage }, location }) => {
                 <HtmlParser html={body.processed ?? ""} />
               </div>
               {nodePage.relationships && (
-                <p className="m-0 text-[#7A7A7A]">
-                  {relationships.field_tags.map((tag, idx) => (
-                    <div style={{ fontFamily: "Roboto Condensed" }}>
+                <p
+                  className="m-0 text-[#7A7A7A]"
+                  style={{ fontFamily: "Roboto Condensed" }}
+                >
+                  {relationships.field_categories.map((tag, idx) => (
+                    <>
                       <Link
-                        to={`/news/mediareleases/?filters=${tag.name.replace(
-                          " ",
-                          "-"
-                        )}`}
+                        to={`/news/mediareleases/?filters=${tag.name
+                          .replace(/\s/g, "-")
+                          .replace(/\&/g, "and")}`}
                         className="no-underline hover:underline"
                       >
                         {tag.name}
                       </Link>
-                      {idx !== relationships.field_tags.length - 1 && ", "}
-                    </div>
+                      {idx !== relationships.field_categories.length - 1 &&
+                        ", "}
+                    </>
                   ))}
                 </p>
               )}
@@ -260,6 +263,9 @@ export const query = graphql`
           url
         }
         field_tags {
+          name
+        }
+        field_categories {
           name
         }
       }
