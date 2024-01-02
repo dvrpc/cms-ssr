@@ -35,8 +35,8 @@ const PPTFApplicationPage = ({ data, location }) => {
             you to share with us your personal experience living in the region
             and with planning projects. We take a holistic approach to selecting
             task force members. We are interested in hearing your thoughts about
-            your communities future and transportation needs, regardless of your
-            experience with transportation or planning projects.
+            your community’s transportation and planning needs, regardless of
+            your experience with transportation or planning projects.
           </p>
           <p>
             Due to the Task Force’s mission of engaging residents who do not
@@ -531,13 +531,85 @@ const PPTFApplicationPage = ({ data, location }) => {
           </p>
           <p>
             If you do not receive a confirmation email after submitting your
-            application, check your spam folder or contact Shoshana Akins,
-            Manager of Public Participation, at{" "}
-            <a href="mailto:sakins@dvrpc.org">sakins@dvrpc.org</a> or
-            215.238.2817.
+            application, check your spam folder or contact Wideleine Desir,
+            Public Participation Planner at{" "}
+            <a href="mailto:wdesir@dvrpc.org">wdesir@dvrpc.org</a> or
+            215-238-2853
           </p>
           <button className="btn btn-primary">Apply</button>
+          <p>
+            All information contained in the applications received will be kept
+            confidential.
+          </p>
         </form>
+        <p className="font-bold">
+          The application period for the 2024 Public Participation Task Force
+          has closed. Your application for the Public Participation Task Force
+          will be reviewed during the selection process for the 2025 Public
+          Participation Task Force. Thank you for your interest!
+        </p>
+        <h3>Having trouble with the online application portal?</h3>
+        <p>Click on the button below to download the application.</p>
+        <p>
+          Return completed applications via email to Wideleine Desir, Public
+          Participation Planner at wdesir@dvrpc.org or via postal service to{" "}
+        </p>
+        <p>
+          Delaware Valley Regional Planning Commission
+          <br />
+          Attn: Wideleine Desir
+          <br />
+          190 N Independence Mall West, 8th floor
+          <br />
+          Philadelphia, PA 19106
+          <br />
+        </p>
+        <a
+          className="btn btn-primary"
+          href="https://www.dvrpc.org/getinvolved/publicparticipationtaskforce/pptf_application.docx"
+        >
+          Download Application
+        </a>
+        <hr />
+        <div className="font-bold italic">
+          <p>
+            The Delaware Valley Regional Planning Commission (DVRPC) fully
+            complies with Title VI of the Civil Rights Act of 1964, the Civil
+            Rights Restoration Act of 1987, Executive Order 12898 on
+            Environmental Justice, and related nondiscrimination mandates in all
+            programs and activities. DVRPC's website, www.dvrpc.org, may be
+            translated into multiple languages.
+          </p>
+          <p>
+            Publications and other public documents can usually be made
+            available in alternative languages and formats if requested. DVRPC’s
+            public meetings are always held in ADA-accessible facilities, and
+            held in transit-accessible locations whenever possible. Translation,
+            interpretation, or other auxiliary services can be provided to
+            individuals who submit a request at least seven days prior to a
+            public meeting. Translation and interpretation services for DVRPC’s
+            projects, products, and planning processes are available, generally
+            free of charge, by calling (215) 592-1800. All requests will be
+            accommodated to the greatest extent possible.
+          </p>
+          <p>
+            Any person who believes they have been aggrieved by an unlawful
+            discriminatory practice by DVRPC under Title VI has a right to file
+            a formal complaint. Any such complaint must be in writing and filed
+            with DVRPC's Title VI Compliance Manager and/or the appropriate
+            state or federal agency within 180 days of the alleged
+            discriminatory occurrence. For more information on DVRPC's Title VI
+            program or to obtain a Title VI Complaint Form please visit{" "}
+            <a href="https://www.dvrpc.org/GetInvolved/TitleVI">
+              www.dvrpc.org/GetInvolved/TitleVI
+            </a>{" "}
+            or email{" "}
+            <a href="mailto:public_affairs@dvrpc.org">
+              public_affairs@dvrpc.org
+            </a>
+            .
+          </p>
+        </div>
       </Body>
       <StaffContact staffContact={userUser} location={location} title={title} />
     </>
