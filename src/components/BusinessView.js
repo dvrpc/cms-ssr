@@ -10,8 +10,7 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
   return (
     <>
       <Body title="Doing Business with DVRPC" menu={navItem}>
-        {/*<br />
-         <div className="card">
+        {/*<div className="card">
           <h2>Coming soon a new eProcurement solution...</h2>
           <p className="italic">
             Dear Valued Contractors, the DVRPC will be transitioning to a new
@@ -66,14 +65,65 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
             <br /> THERE IS NO COST FOR CONTRACTORS TO REGISTER WITH OpenGov.
           </p>
         </div> */}
-        <p>
+        {/* <p>
           Vendors can find various business opportunities posted here. DVRPC
           occasionally posts Requests for Proposals (RFPs) for member
           governments as a courtesy.
+        </p> */}
+        <p>
+          DVRPC has partnered with OpenGov and is excited to announce our
+          transition from a paper-based competitive solicitation process to a
+          fully automated, web-based e-Procurement portal and vendor management
+          system. Below are the solicitations currently advertised and the
+          corresponding closing dates for each. OpenGov will allow interested
+          parties to do the following:
         </p>
-        {/* <div className="card">*/}
-        <h2>Business Opportunities</h2>
-        {/* <table className="w-full table-auto">
+        <ul>
+          <li>
+            Register to participate in solicitation opportunities and receive
+            notifications of future opportunities by selecting “Subscribe” to
+            create an account.
+          </li>
+          <li>
+            Receive updates to existing solicitations by finding the specific
+            solicitation and clicking the “Follow” button. This will allow all
+            interested parties to receive notifications and related addenda
+            automatically.
+          </li>
+          <li>Submit questions and receive answers for open solicitations.</li>
+          <li>
+            Guide vendors through the process of responding electronically to
+            solicitations to ensure submissions have been accurately completed.
+          </li>
+        </ul>
+        <p>
+          To get started, click{" "}
+          <a href="https://procurement.opengov.com/signup">here</a> to sign up.
+          You’ll receive an email to activate your account. For more information
+          about how to register, please see our{" "}
+          <a href="http://help.procurement.opengov.com/en/articles/2482165-vendor-registration">
+            help file here
+          </a>
+          .
+        </p>
+        <b>THERE IS NO COST FOR VENDORS TO REGISTER WITH OpenGov.</b>
+        <iframe
+          className="focus:outline-none [&>*]:bg-white"
+          style={{
+            width: "100%",
+            height: "60vh",
+            border: "none",
+            marginTop: "1rem",
+            marginBottom: "1.5rem",
+          }}
+          src="
+https://procurement.opengov.com/portal/embed/dvrpc/project-list?departmentId=all&status=all"
+        >
+          <p>Your browser does not support iframes.</p>
+        </iframe>
+        <div className="card">
+          <h2>TCDI Opportunities (not posted to OpenGov)</h2>
+          <table className="w-full table-auto">
             <thead>
               <tr className="font-bold">
                 <td>Title of Opportunity</td>
@@ -117,23 +167,10 @@ const BusinessView = ({ children, data, serverData, location, title }) => {
               </tr>
             </tfoot>
           </table>
-        </div> */}
-
-        <iframe
-          className="focus:outline-none [&>*]:bg-white"
-          style={{
-            width: "100%",
-            height: "60vh",
-            border: "none",
-          }}
-          src="
-https://procurement.opengov.com/portal/embed/dvrpc/project-list?departmentId=all&status=all"
-        >
-          <p>Your browser does not support iframes.</p>
-        </iframe>
+        </div>
 
         <h2>Important Notices</h2>
-        <p>
+        {/* <p>
           DVRPC sincerely appreciates your interest in projects sponsored by the
           Commission and thanks all participants for their involvement and
           submittals. Please continue to visit this webpage to view future
@@ -148,16 +185,16 @@ https://procurement.opengov.com/portal/embed/dvrpc/project-list?departmentId=all
           changes are made or clarifications are provided, it will be reflected
           by "Additional information is available" notice under the title of the
           Opportunity.
-        </p>
+        </p> */}
         <p>
           DVRPC considers any information submitted directly to the Commission
-          through a notice of Opportunity announcement to be confidential and
-          proprietary under its Access to Records Policy (available at:{" "}
+          through a competitive solicitation to be confidential and proprietary
+          under its Access to Records Policy (available at:{" "}
           <a href="https://www.dvrpc.org/policies/">www.dvrpc.org/Policies</a>).
           While DVRPC does not make such information public, unsuccessful
           respondents may request a debrief meeting to discuss their submission
-          and subsequent evaluation by contacting the Contracts Manager,{" "}
-          <a href="mailto:jcrouch@dvrpc.org">jcrouch@dvrpc.org</a>.
+          and subsequent evaluation by contacting the Procurement and Contracts
+          Manager, <a href="mailto:jcrouch@dvrpc.org">jcrouch@dvrpc.org</a>.
         </p>
 
         <h2>Title VI Statement</h2>
