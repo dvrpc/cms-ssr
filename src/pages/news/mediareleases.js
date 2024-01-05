@@ -109,7 +109,7 @@ export const query = graphql`
       skip: $skip
       filter: {
         relationships: {
-          field_tags: { elemMatch: { name: { eq: "Media Release" } } }
+          field_tags: { elemMatch: { name: { eq: "Press Release" } } }
         }
       }
     ) {
