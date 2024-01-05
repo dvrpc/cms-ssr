@@ -13,7 +13,7 @@ import Icon, { Search } from "../../components/Icon";
 import NewsHeader from "../../images/NewsHeader.jpg";
 import Footer from "../../components/Footer";
 
-const title = "Media Releases";
+const title = "Press Releases";
 
 const themeConfig = [
   ["field_primary_color", "--color-h1"],
@@ -93,23 +93,8 @@ const Article = ({ node }) => {
               className="mb-0.5 mt-0.5 text-sm text-[#7A7A7A] md:mt-1 md:mb-3"
               style={{ fontFamily: "Roboto Condensed" }}
             >
-              {node.relationships.field_categories.map((ctg, idx) => (
-                <>
-                  <Link
-                    to={`/news/mediareleases/?filters=${ctg.name
-                      .replace(/\s/g, "-")
-                      .replace(/\&/g, "and")}`}
-                    className="no-underline hover:underline"
-                  >
-                    {ctg.name}
-                  </Link>
-                  {idx !== node.relationships.field_categories.length - 1 &&
-                    ", "}
-                </>
-              ))}
               {node.relationships.field_tags.map((tag, idx) => (
                 <>
-                  {node.relationships.field_categories.length > 0 && ", "}
                   <span>{tag.name}</span>
                   {idx !== node.relationships.field_tags.length - 1 && ", "}
                 </>
