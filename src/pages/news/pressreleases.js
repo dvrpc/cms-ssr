@@ -61,7 +61,7 @@ const themeToCustomVars = (theme, config) => {
     .join("\n");
 };
 
-const Article = ({ node }) => {
+const Article = ({ node, tags, setTags }) => {
   return (
     <li className="mb-6 list-none border-b-[1px] border-[#CDCDCD] md:pb-2">
       <div className="text-[#595959]">
@@ -95,7 +95,18 @@ const Article = ({ node }) => {
             >
               {node.relationships.field_tags.map((tag, idx) => (
                 <>
-                  <span>{tag.name}</span>
+                  <button
+                    className="hover:underline"
+                    onClick={() =>
+                      setTags((prev) => {
+                        if (!tags.has(tag.name)) prev.add(tag.name);
+                        else prev.delete(tag.name);
+                        return new Set(prev);
+                      })
+                    }
+                  >
+                    {tag.name}
+                  </button>
                   {idx !== node.relationships.field_tags.length - 1 && ", "}
                 </>
               ))}
@@ -134,8 +145,8 @@ const Article = ({ node }) => {
 const SidebarContent = ({
   allTaxonomyTermTags,
   input,
-  params,
-  setParams,
+  categories,
+  setCategories,
   setInput,
 }) => (
   <div className="w-full md:p-4">
@@ -154,7 +165,7 @@ const SidebarContent = ({
           document
             .querySelectorAll("input[type=checkbox]")
             .forEach((el) => (el.checked = false));
-          setParams(new Set());
+          setCategories(new Set());
         }}
       >
         clear all
@@ -168,13 +179,13 @@ const SidebarContent = ({
           type="checkbox"
           value={tag.node.name}
           onChange={(event) => {
-            setParams((prev) => {
+            setCategories((prev) => {
               if (event.target.checked) prev.add(event.target.value);
               else prev.delete(event.target.value);
               return new Set(prev);
             });
           }}
-          checked={params.size && params.has(tag.node.name)}
+          checked={categories.size && categories.has(tag.node.name)}
         ></input>
         {tag.node.name}
       </label>
@@ -182,33 +193,41 @@ const SidebarContent = ({
   </div>
 );
 
-const DrupalPage = ({ data, path }) => {
-  const {
-    allNodeArticle,
-    userUser,
-    allTaxonomyTermTags,
-    allTaxonomyTermCategories,
-  } = data;
+const DrupalPage = ({ data }) => {
+  const { allNodeArticle, allTaxonomyTermCategories } = data;
   const [articles, setArticles] = useState(allNodeArticle.edges);
   const [input, setInput] = useState("");
   const debounceInput = useDebounce(input);
-  const { params, setParams } = useQueryParamArray("filters");
+  const [categories, setCategories] = useState(new Set());
+  const [tags, setTags] = useState(new Set());
+  useQueryParamArray([
+    { paramName: "categories", params: categories, setParams: setCategories },
+    { paramName: "tags", params: tags, setParams: setTags },
+  ]);
 
   useEffect(() => {
     let articlesCopy = [...allNodeArticle.edges];
-    if (params.size !== 0)
+    if (categories.size !== 0)
       articlesCopy = articlesCopy.filter((article) =>
         article.node.relationships.field_categories.some((item) =>
-          params.has(item.name)
+          categories.has(item.name)
         )
       );
+
+    if (tags.size !== 0)
+      articlesCopy = articlesCopy.filter((article) =>
+        article.node.relationships.field_tags.some((item) =>
+          tags.has(item.name)
+        )
+      );
+
     if (debounceInput.length)
       articlesCopy = articlesCopy.filter((article) =>
         article.node.title.toLowerCase().includes(debounceInput.toLowerCase())
       );
 
     setArticles(articlesCopy);
-  }, [params, debounceInput, allNodeArticle, setArticles]);
+  }, [categories, tags, debounceInput, allNodeArticle, setArticles]);
 
   const toggleModal = (event) => {
     event.preventDefault();
@@ -252,11 +271,27 @@ const DrupalPage = ({ data, path }) => {
           <main className="max-w-[80ch] print:max-w-full">
             <article>
               <p className="m-0 flex h-min">
-                {Array.from(params).map((param) => (
+                {Array.from(categories).map((param) => (
                   <button
                     className="mr-2 mb-4 flex items-center font-bold text-[#B66216]"
                     onClick={() => {
-                      setParams((prev) => {
+                      setCategories((prev) => {
+                        prev.delete(param);
+                        return new Set(prev);
+                      });
+                    }}
+                  >
+                    {param}{" "}
+                    <div className="mx-2 flex h-5 w-5 items-center justify-center rounded-full bg-[#B66216] text-white">
+                      &times;
+                    </div>
+                  </button>
+                ))}
+                {Array.from(tags).map((param) => (
+                  <button
+                    className="mr-2 mb-4 flex items-center font-bold text-[#B66216]"
+                    onClick={() => {
+                      setTags((prev) => {
                         prev.delete(param);
                         return new Set(prev);
                       });
@@ -295,7 +330,12 @@ const DrupalPage = ({ data, path }) => {
                 }
                 itemsPerPage={5}
                 renderItem={(props) => (
-                  <Article key={props.node.id} {...props} />
+                  <Article
+                    key={props.node.id}
+                    {...props}
+                    tags={tags}
+                    setTags={setTags}
+                  />
                 )}
               />
             </article>
@@ -338,9 +378,9 @@ const DrupalPage = ({ data, path }) => {
                 <SidebarContent
                   allTaxonomyTermTags={allTaxonomyTermCategories}
                   input={input}
-                  params={params}
                   setInput={setInput}
-                  setParams={setParams}
+                  categories={categories}
+                  setCategories={setCategories}
                 />
               </div>
             </div>
@@ -352,9 +392,9 @@ const DrupalPage = ({ data, path }) => {
             <SidebarContent
               allTaxonomyTermTags={allTaxonomyTermCategories}
               input={input}
-              params={params}
               setInput={setInput}
-              setParams={setParams}
+              categories={categories}
+              setCategories={setCategories}
             />
           </div>
           <NewsRoomInfo />

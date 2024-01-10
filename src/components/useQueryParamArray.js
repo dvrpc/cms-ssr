@@ -1,39 +1,34 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 
-const useQueryParamArray = (paramName) => {
-  const [params, setParams] = useState(new Set());
-  const firstRender = useRef(true);
-
-  useEffect(() => {
-    if (params.size !== 0) {
-      let path = `?${paramName}=`;
-      Array.from(params).map((param, idx, arr) => {
-        param = param.replaceAll("&", "and");
-        param = param.replaceAll(" ", "-");
-        path += `${param}`;
-        if (idx != arr.length - 1) path += ",";
-      });
-      window.history.replaceState(null, null, location.pathname + path);
-    } else if (!firstRender.current && params.size === 0)
-      window.history.replaceState(null, "", location.pathname);
-
-    firstRender.current = false;
-  }, [params, firstRender]);
-
+const useQueryParamArray = (params) => {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    if (urlParams.size !== 0) {
-      let urlArr = urlParams.get(paramName).split(",");
-      urlArr = urlArr.map((param) => {
-        param = param.replaceAll("and", "&");
-        param = param.replaceAll("-", " ");
-        return param;
-      });
-      setParams(new Set(urlArr));
-    }
-  }, [location.search]);
+    params.map((item) => {
+      if (urlParams.has(item.paramName)) {
+        let arr = urlParams.get(item.paramName).split(",");
+        arr = arr.map((val) => val.replaceAll("and", "&").replaceAll("-", " "));
+        item.setParams(new Set([...arr]));
+      }
+    });
+  }, []);
 
-  return { params, setParams };
+  useEffect(() => {
+    let path = "";
+    params.map((item) => {
+      const { paramName, params, setParams } = item;
+      if (params.size !== 0) {
+        if (!path.length) path = `?${paramName}=`;
+        else path += `&${paramName}=`;
+        Array.from(params).map((param, idx, arr) => {
+          param = param.replaceAll("&", "and");
+          param = param.replaceAll(" ", "-");
+          path += param;
+          if (idx !== arr.length - 1) path += ",";
+        });
+      }
+    });
+    window.history.replaceState(null, null, location.pathname + path);
+  }, [params]);
 };
 
 export default useQueryParamArray;
