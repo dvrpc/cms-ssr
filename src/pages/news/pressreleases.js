@@ -88,6 +88,11 @@ const Article = ({ node, tags, setTags }) => {
             {node.title}
           </Link>
 
+          <p className="m-0 italic text-[#595959]">
+            by {node.relationships.uid.field_display_name},{" "}
+            {node.relationships.uid.field_title}
+          </p>
+
           {node.relationships && (
             <p
               className="mb-0.5 mt-0.5 text-sm text-[#7A7A7A] md:mt-1 md:mb-3"
@@ -462,6 +467,10 @@ export const query = graphql`
             }
             field_categories {
               name
+            }
+            uid {
+              field_display_name
+              field_title
             }
           }
           field_image {
