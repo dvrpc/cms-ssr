@@ -75,7 +75,7 @@ const Article = ({ node, tags, setTags }) => {
       <div className="flex flex-col md:block">
         {node.relationships.field_image && (
           <img
-            className="my-2 h-48 w-full border border-2 object-cover p-0.5 md:float-right md:my-0 md:ml-3 md:mb-2 md:w-72"
+            className="my-2 w-full border border-2 p-0.5 md:float-right md:my-0 md:ml-3 md:mb-2 md:w-72"
             src={node.relationships.field_image.url}
             alt={node.field_image.alt}
           />
@@ -148,50 +148,72 @@ const SidebarContent = ({
   categories,
   setCategories,
   setInput,
-}) => (
-  <div className="w-full md:p-4">
-    <input
-      class="w-full appearance-none border py-2 px-3 leading-tight focus:outline-none"
-      type="text"
-      placeholder="Search news stories..."
-      value={input}
-      onChange={(event) => setInput(event.target.value)}
-    ></input>
-    <span className="flex">
-      <h3 className="py-4 text-lg font-bold tracking-wider">FILTER RESULTS</h3>
-      <button
-        className="ml-auto text-[#03688D]"
-        onClick={() => {
-          document
-            .querySelectorAll("input[type=checkbox]")
-            .forEach((el) => (el.checked = false));
-          setCategories(new Set());
-        }}
-      >
-        clear all
-      </button>
-    </span>
-    <p className="font-bold">Topic</p>
-    {allTaxonomyTermTags.edges.map((tag) => (
-      <label key={tag.node.name} className="flex items-center">
-        <input
-          className="mr-2 accent-[#03688D]"
-          type="checkbox"
-          value={tag.node.name}
-          onChange={(event) => {
-            setCategories((prev) => {
-              if (event.target.checked) prev.add(event.target.value);
-              else prev.delete(event.target.value);
-              return new Set(prev);
-            });
+}) => {
+  const categoryMap = new Set([
+    "Bicycle & Pedestrian",
+    "Climate & Energy",
+    "Health & Safety",
+    "Economy",
+    "Environment",
+    "Freight & Aviation",
+    "Livable Communities",
+    "Long-Range Plan",
+    "Transit",
+    "Transportation",
+    "Commission",
+  ]);
+
+  return (
+    <div className="w-full md:p-4">
+      <input
+        class="w-full appearance-none border py-2 px-3 leading-tight focus:outline-none"
+        type="text"
+        placeholder="Search news stories..."
+        value={input}
+        onChange={(event) => setInput(event.target.value)}
+      ></input>
+      <span className="flex">
+        <h3 className="py-4 text-lg font-bold tracking-wider">
+          FILTER RESULTS
+        </h3>
+        <button
+          className="ml-auto text-[#03688D]"
+          onClick={() => {
+            document
+              .querySelectorAll("input[type=checkbox]")
+              .forEach((el) => (el.checked = false));
+            setCategories(new Set());
           }}
-          checked={categories.size && categories.has(tag.node.name)}
-        ></input>
-        {tag.node.name}
-      </label>
-    ))}
-  </div>
-);
+        >
+          clear all
+        </button>
+      </span>
+      <p className="font-bold">Topic</p>
+      {allTaxonomyTermTags.edges.map((tag) => (
+        <>
+          {categoryMap.has(tag.node.name) && (
+            <label key={tag.node.name} className="flex items-center">
+              <input
+                className="mr-2 accent-[#03688D]"
+                type="checkbox"
+                value={tag.node.name}
+                onChange={(event) => {
+                  setCategories((prev) => {
+                    if (event.target.checked) prev.add(event.target.value);
+                    else prev.delete(event.target.value);
+                    return new Set(prev);
+                  });
+                }}
+                checked={categories.size && categories.has(tag.node.name)}
+              ></input>
+              {tag.node.name}
+            </label>
+          )}
+        </>
+      ))}
+    </div>
+  );
+};
 
 const DrupalPage = ({ data }) => {
   const { allNodeArticle, allTaxonomyTermCategories } = data;
