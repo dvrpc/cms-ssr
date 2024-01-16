@@ -116,7 +116,7 @@ const Page = ({ data: { nodePage }, location }) => {
                   {relationships.field_categories.map((tag, idx) => (
                     <>
                       <Link
-                        to={`/news/mediareleases/?filters=${tag.name
+                        to={`/news/pressreleases/?categories=${tag.name
                           .replace(/\s/g, "-")
                           .replace(/\&/g, "and")}`}
                         className="no-underline hover:underline"
