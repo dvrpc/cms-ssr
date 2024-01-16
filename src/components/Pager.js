@@ -35,7 +35,7 @@ const PageRange = ({
           <button
             onClick={() =>
               setPage(() => {
-                setRenderedItems(onPageChange(0));
+                setRenderedItems(onPageChange(1));
                 return 1;
               })
             }
