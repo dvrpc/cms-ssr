@@ -1,8 +1,32 @@
 import React from "react";
 import HtmlParser from "./HtmlParser";
 
-const Product = (props) =>
-  props.type === "card" ? (
+const highlight = (text, keywords) => {
+  if (!text || !keywords) {
+    return text;
+  }
+  return keywords
+    .split(" ")
+    .filter((word) => word.trim())
+    .reduce(
+      (current, word) =>
+        current.replace(new RegExp(`(${word})`, "i"), "<strong>$1</strong>"),
+      text
+    );
+};
+
+export const trunc = (str) => {
+  if (!str) return "";
+  return str.length > 400
+    ? `${str.substring(0, 400)}${str.substring(400).split(" ")[0]}…`
+    : str;
+};
+
+const Product = (props) => {
+  const title = highlight(trunc(props.Title), props.Query);
+  const abstract = highlight(trunc(props.Abstract), props.Query);
+
+  return props.type === "card" ? (
     <div key={props.Id} className="my-4 flex w-full items-center gap-4 pr-6">
       <a
         className="shrink-0"
@@ -19,7 +43,7 @@ const Product = (props) =>
           className="no-underline"
           href={`https://www.dvrpc.org/Products/${props.Id}`}
         >
-          {props.Title}
+          {title}
         </a>
       </h4>
     </div>
@@ -35,17 +59,17 @@ const Product = (props) =>
       </p>
       <img
         src={`https://www.dvrpc.org/asp/pubs/402px/${props.Id}.png`}
-        alt={props.Title}
+        alt={title}
         className="float-right m-4 mt-0 w-[201px] border border-gray-300"
       />
       <a
         href={`https://www.dvrpc.org/products/${props.Id}`}
         className="text-2xl text-[color:var(--color-h1)] no-underline"
       >
-        <HtmlParser html={props.Title} />
+        <HtmlParser html={title} />
       </a>
       <div>
-        <HtmlParser html={props.Abstract} />
+        <HtmlParser html={abstract} />
       </div>
       <p>
         <a
@@ -65,6 +89,7 @@ const Product = (props) =>
       </p>
     </div>
   );
+};
 
 const ProductLoader = (props) => (
   <div className="my-4 grid w-full grid-cols-[100.5px_1fr] gap-4 pr-12">

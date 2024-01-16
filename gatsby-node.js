@@ -1,6 +1,11 @@
 const path = require("path");
 
-const doNotWrapLayout = ["Index", "/data/", "/data/maps/"];
+const doNotWrapLayout = [
+  "Index",
+  "/data/",
+  "/data/maps/",
+  "/news/pressreleases/",
+];
 
 //Add regex to GraphQL query to match URLs in the navigation JSON
 exports.onCreateNode = async ({
@@ -69,12 +74,21 @@ exports.onCreatePage = async ({ page, actions }) => {
     ? `/^${page.context.path__alias.replace(/\//g, "/")}\/?$/i`
     : `/^${page.path.replace(/\//g, "/")}\/?$/i`;
 
+  const isNewsArticle =
+    page.component.match(/([^\/]+$)/)[0] === "{NodeArticle.path__alias}.js";
+
+  const wrapLayout =
+    isNewsArticle ||
+    doNotWrapLayout.includes(page.internalComponentName.slice(9))
+      ? false
+      : true;
+
   return createPage({
     ...page,
     context: {
       ...page.context,
       regex,
-      layout: !doNotWrapLayout.includes(page.internalComponentName.slice(9)),
+      layout: wrapLayout,
     },
   });
 };
