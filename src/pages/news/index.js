@@ -15,52 +15,6 @@ import Footer from "../../components/Footer";
 
 const title = "Press Releases";
 
-const themeConfig = [
-  ["field_primary_color", "--color-h1"],
-  ["field_primary_color", "--color-h2"],
-  ["field_primary_color", "--color-h3"],
-  ["field_secondary_color", "--color-highlight"],
-  [
-    "relationships.field_banner",
-    "--bg-cover-image",
-    (val) =>
-      val
-        .map(
-          (obj) => obj.uri?.url && `url(https://cdn.dvrpc.org${obj.uri?.url})`
-        )
-        .reverse()
-        .join(", "),
-  ],
-  [
-    "relationships.field_banner_2x",
-    "--bg-cover-image",
-    (val) =>
-      val
-        .map(
-          (obj) => obj.uri?.url && `url(https://cdn.dvrpc.org${obj.uri?.url})`
-        )
-        .reverse()
-        .join(", "),
-  ],
-  [
-    "field_photo_credits",
-    "--content-photo-credits",
-    (val) => (val ? `"${val}"` : `""`),
-  ],
-  ["relationships.field_banner", "--height-banner", () => "400px"],
-];
-
-const themeToCustomVars = (theme, config) => {
-  return config
-    .map(([key, customVar, parseFunc = (v) => v]) => {
-      const val = key
-        .split(".")
-        .reduce((prev, cur) => prev && prev[cur], theme);
-      return parseFunc(val) ? `${customVar}: ${parseFunc(val)};` : null;
-    })
-    .join("\n");
-};
-
 const Article = ({ node, tags, setTags }) => {
   return (
     <li className="mb-6 list-none border-b-[1px] border-[#CDCDCD] md:pb-2">
@@ -440,7 +394,6 @@ export const Head = ({ data: { nodeTheme } }) =>
     title,
     summary:
       "DVRPC proudly serves as a resource for the region's media, sharing information about our work to improve mobility, the environment, and quality-of-life in Greater Philadelphia.",
-    css: themeToCustomVars(nodeTheme, themeConfig),
   });
 
 export const query = graphql`
@@ -499,30 +452,6 @@ export const query = graphql`
       edges {
         node {
           name
-        }
-      }
-    }
-    userUser(mail: { eq: "ahastings@dvrpc.org" }) {
-      id
-      mail
-      field_display_name
-      field_title
-    }
-    nodeTheme(id: { eq: "35c6397c-3d7c-5b57-9255-aedb0586ad90" }) {
-      field_primary_color
-      field_secondary_color
-      field_third_color
-      field_photo_credits
-      relationships {
-        field_banner_2x {
-          uri {
-            url
-          }
-        }
-        field_banner {
-          uri {
-            url
-          }
         }
       }
     }

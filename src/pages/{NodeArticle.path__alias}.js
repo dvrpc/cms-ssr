@@ -11,10 +11,7 @@ import ArticleHeader from "../images/ArticleHeader.jpg";
 import Footer from "../components/Footer";
 
 const BackButton = () => (
-  <Link
-    className="flex font-bold text-[#03688D] no-underline"
-    to="/news/mediareleases"
-  >
+  <Link className="flex font-bold text-[#03688D] no-underline" to="/news/">
     <span className="my-auto mr-2 flex h-5 w-5 rounded-full bg-[#03688D] font-bold text-white">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -236,12 +233,10 @@ const Page = ({ data: { nodePage }, location }) => {
 export const Head = ({ data }) => {
   const {
     nodePage: { body, title },
-    nodeTheme,
   } = data;
   return HeadTemplate({
     title,
     summary: body?.summary,
-    css: themeToCustomVars(nodeTheme),
   });
 };
 
@@ -298,29 +293,6 @@ export const query = graphql`
       parent {
         ...navitem
       }
-    }
-    nodeTheme(title: { eq: "News" }) {
-      field_primary_color
-      field_secondary_color
-      field_third_color
-      field_photo_credits
-      relationships {
-        field_banner_2x {
-          uri {
-            url
-          }
-        }
-        field_banner {
-          uri {
-            url
-          }
-        }
-      }
-    }
-    staffContact: userUser(mail: { eq: "ahastings@dvrpc.org" }) {
-      name: field_display_name
-      title: field_title
-      mail
     }
   }
 
