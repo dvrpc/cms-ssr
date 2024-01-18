@@ -26,6 +26,7 @@ const BackButton = () => (
 
 const Page = ({ data: { nodePage }, location }) => {
   const { body, title, path, relationships } = nodePage;
+  console.log(nodePage);
 
   const onShareThisClick = () => {
     document.getElementById("mobile-share").classList.toggle("hidden");
@@ -79,11 +80,12 @@ const Page = ({ data: { nodePage }, location }) => {
               <h1 className="w-full text-3xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-1 md:col-start-2 md:p-0 md:text-4xl min-[1415px]:w-[80%]">
                 {title}
               </h1>
-
-              <p className="m-0 w-full italic text-[#595959]">
-                by {relationships.uid.field_display_name},{" "}
-                {relationships.uid.field_title}
-              </p>
+              {relationships.uid.field_display_name && (
+                <p className="m-0 w-full italic text-[#595959]">
+                  by {relationships.uid.field_display_name},{" "}
+                  {relationships.uid.field_title}
+                </p>
+              )}
             </div>
 
             <span className="mt-auto hidden md:block min-[1300px]:ml-auto">
@@ -94,10 +96,13 @@ const Page = ({ data: { nodePage }, location }) => {
             <article className="border-b-2">
               <div>
                 {relationships.field_image && (
-                  <img
-                    className="h-full border border-2 object-contain p-0.5 md:mr-0 md:mt-0 min-[1415px]:float-right min-[1415px]:m-5 min-[1415px]:h-64"
-                    src={relationships.field_image.url}
-                  />
+                  <figure className="h-full border-0 object-contain p-0.5 max-[1415px]:min-w-full md:mr-0 md:mt-0 min-[1415px]:float-right min-[1415px]:m-5">
+                    <img
+                      className="h-full border border-2 object-contain"
+                      src={relationships.field_image.url}
+                    />
+                    <figcaption>{nodePage.field_image.title}</figcaption>
+                  </figure>
                 )}
 
                 <p className="w-full text-[#595959]">
@@ -297,6 +302,10 @@ export const query = graphql`
       field_websites {
         title
         uri
+      }
+      field_image {
+        title
+        alt
       }
     }
     navItem(href: { regex: "/news/i" }) {
