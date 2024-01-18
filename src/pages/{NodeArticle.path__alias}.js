@@ -62,22 +62,31 @@ const Page = ({ data: { nodePage }, location }) => {
           </div>
         </div>
       </header>
-      <button
-        className="absolute -mt-11 ml-7 rounded-lg border border-[#C6E6F8] p-1 px-3 text-[#C6E6F8] md:hidden"
-        onClick={onShareThisClick}
-      >
-        Share this story
-      </button>
+
       <div className="container mx-auto my-4 grid gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:w-4/5 md:grid-cols-3">
+        <button
+          className="absolute -mt-16 ml-7 rounded-lg border border-[#C6E6F8] p-1 px-3 text-[#C6E6F8] md:hidden"
+          onClick={onShareThisClick}
+        >
+          Share this story
+        </button>
         <div className="px-7 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:p-0 md:px-7">
           <div id="mobile-share" className="mb-2 -mt-2 hidden md:hidden">
             <SharePage location={location} title={title} />
           </div>
-          <div className="flex w-full">
-            <h1 className="w-full text-3xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-1 md:col-start-2 md:w-[80%] md:max-w-[80ch] md:p-0 md:text-4xl">
-              {title}
-            </h1>
-            <span className="mt-auto ml-auto hidden md:block">
+          <div className="flex w-full max-[1300px]:flex-col">
+            <div>
+              <h1 className="w-full text-3xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-1 md:col-start-2 md:p-0 md:text-4xl min-[1415px]:w-[80%]">
+                {title}
+              </h1>
+
+              <p className="m-0 w-full italic text-[#595959]">
+                by {relationships.uid.field_display_name},{" "}
+                {relationships.uid.field_title}
+              </p>
+            </div>
+
+            <span className="mt-auto hidden md:block min-[1300px]:ml-auto">
               <SharePage location={location} title={title} />
             </span>
           </div>
@@ -86,10 +95,11 @@ const Page = ({ data: { nodePage }, location }) => {
               <div>
                 {relationships.field_image && (
                   <img
-                    className="h-full border border-2 object-contain p-0.5 md:float-right md:m-5 md:mr-0 md:mt-0 md:h-64"
+                    className="h-full border border-2 object-contain p-0.5 md:mr-0 md:mt-0 min-[1415px]:float-right min-[1415px]:m-5 min-[1415px]:h-64"
                     src={relationships.field_image.url}
                   />
                 )}
+
                 <p className="w-full text-[#595959]">
                   {new Date(nodePage.created).toLocaleDateString("en-US", {
                     month: "long",
@@ -262,6 +272,10 @@ export const query = graphql`
         }
         field_categories {
           name
+        }
+        uid {
+          field_display_name
+          field_title
         }
       }
       field_data_sets {
