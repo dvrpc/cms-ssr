@@ -9,9 +9,13 @@ import LogoBar from "../components/LogoBar";
 import Icon, { Search } from "../components/Icon";
 import BannerArticle from "../images/banner-article.jpg";
 import Footer from "../components/Footer";
+import StaffContact from "../components/StaffContact";
 
 const BackButton = () => (
-  <Link className="flex font-bold text-[#03688D] no-underline" to="/news/">
+  <Link
+    className="flex font-bold text-[#03688D] no-underline hover:underline"
+    to="/news/"
+  >
     <span className="my-auto mr-2 flex h-5 w-5 rounded-full bg-[#03688D] font-bold text-white">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -24,9 +28,8 @@ const BackButton = () => (
   </Link>
 );
 
-const Page = ({ data: { nodePage }, location }) => {
+const Page = ({ data: { nodePage, userUser }, location }) => {
   const { body, title, path, relationships } = nodePage;
-  console.log(nodePage);
 
   const onShareThisClick = () => {
     document.getElementById("mobile-share").classList.toggle("hidden");
@@ -77,7 +80,7 @@ const Page = ({ data: { nodePage }, location }) => {
           </div>
           <div className="flex w-full max-[1300px]:flex-col">
             <div>
-              <h1 className="w-full text-3xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-1 md:col-start-2 md:p-0 md:text-4xl min-[1415px]:w-[80%]">
+              <h1 className="w-full text-3xl font-bold text-[#03688d] print:max-w-full print:p-0 md:col-span-1 md:col-start-2 md:p-0 min-[1415px]:w-[80%]">
                 {title}
               </h1>
               {relationships.uid.field_display_name && (
@@ -93,12 +96,12 @@ const Page = ({ data: { nodePage }, location }) => {
             </span>
           </div>
           <main className="mt-4">
-            <article className="border-b-2">
+            <article className="border-b-[1px] border-[#CDCDCD]">
               <div>
                 {relationships.field_image && (
                   <figure className="h-full border-0 object-contain p-0.5 max-[1415px]:min-w-full md:mr-0 md:mt-0 min-[1415px]:float-right min-[1415px]:m-5">
                     <img
-                      className="h-full border border-2 object-contain"
+                      className="h-full border-2 border object-contain"
                       src={relationships.field_image.url}
                     />
                     <figcaption>{nodePage.field_image.title}</figcaption>
@@ -114,7 +117,7 @@ const Page = ({ data: { nodePage }, location }) => {
                 </p>
 
                 {body.summary && (
-                  <blockquote className="border-[#91BEDC] border-opacity-[.45] text-lg italic leading-6 md:w-full md:border-l-8 md:pl-3">
+                  <blockquote className="border-[#91BEDC] border-opacity-[.45] italic leading-6 md:w-full md:border-l-8 md:pl-3">
                     {body.summary}
                   </blockquote>
                 )}
@@ -122,7 +125,7 @@ const Page = ({ data: { nodePage }, location }) => {
               </div>
               {nodePage.relationships && (
                 <p
-                  className="m-0 text-[#7A7A7A]"
+                  className="m-0 text-sm text-[#7A7A7A]"
                   style={{ fontFamily: "Roboto Condensed" }}
                 >
                   {relationships.field_categories.map((tag, idx) => (
@@ -142,15 +145,15 @@ const Page = ({ data: { nodePage }, location }) => {
                 </p>
               )}
             </article>
-            <span className="mt-4 hidden md:block">
+            <span className="mt-6 hidden md:block">
               <BackButton />
             </span>
           </main>
         </div>
-        <div className="md:fle space-y-4 p-4 px-7 print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-4 md:flex-col md:items-end md:p-0 md:px-0">
+        <div className="space-y-4 p-4 px-7 print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-4 md:flex-col md:items-end md:p-0 md:px-0">
           <BackButton />
           <div className="w-full bg-[#EFF0F2] p-4">
-            <h3 className="text-lg font-bold">RELATED</h3>
+            <h3 className="text-lg font-bold md:mb-2">RELATED</h3>
             {nodePage.field_stories.length > 0 && (
               <>
                 <p className="mt-2 mb-1 font-bold">Stories</p>
@@ -160,6 +163,7 @@ const Page = ({ data: { nodePage }, location }) => {
                     <a
                       className="block text-[#03688D] hover:underline"
                       href={story.uri}
+                      target="_blank"
                     >
                       {story.title}
                     </a>
@@ -176,6 +180,7 @@ const Page = ({ data: { nodePage }, location }) => {
                     <a
                       className="block text-[#03688D] hover:underline"
                       href={product.uri}
+                      target="_blank"
                     >
                       {product.title}
                     </a>
@@ -192,6 +197,7 @@ const Page = ({ data: { nodePage }, location }) => {
                     <a
                       className="block text-[#03688D] hover:underline"
                       href={set.uri}
+                      target="_blank"
                     >
                       {set.title}
                     </a>
@@ -208,6 +214,7 @@ const Page = ({ data: { nodePage }, location }) => {
                     <a
                       className="block text-[#03688D] hover:underline"
                       href={page.uri}
+                      target="_blank"
                     >
                       {page.title}
                     </a>
@@ -224,6 +231,7 @@ const Page = ({ data: { nodePage }, location }) => {
                     <a
                       className="block text-[#03688D] hover:underline"
                       href={page.uri}
+                      target="_blank"
                     >
                       {page.title}
                     </a>
@@ -240,6 +248,7 @@ const Page = ({ data: { nodePage }, location }) => {
       <div className="block w-full md:hidden">
         <NewsRoomInfo />
       </div>
+      <StaffContact staffContact={userUser} title={userUser.title} />
       <Footer />
     </>
   );
@@ -316,6 +325,13 @@ export const query = graphql`
       parent {
         ...navitem
       }
+    }
+
+    userUser(mail: { eq: "eturner@dvrpc.org" }) {
+      id
+      mail
+      name: field_display_name
+      title: field_title
     }
   }
 

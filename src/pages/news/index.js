@@ -12,6 +12,7 @@ import LogoBar from "../../components/LogoBar";
 import Icon, { Search } from "../../components/Icon";
 import BannerNews from "../../images/banner-news.jpg";
 import Footer from "../../components/Footer";
+import StaffContact from "../../components/StaffContact";
 
 const title = "DVRPC News";
 
@@ -28,11 +29,13 @@ const Article = ({ node, tags, setTags }) => {
 
       <div className="flex flex-col md:block">
         {node.relationships.field_image && (
-          <img
-            className="my-2 w-full border border-2 p-0.5 md:float-right md:my-0 md:ml-3 md:mb-2 md:w-72"
-            src={node.relationships.field_image.url}
-            alt={node.field_image.alt}
-          />
+          <Link to={node.path.alias}>
+            <img
+              className="my-2 w-full border border-[#C2C2C2] p-0.5 md:float-right md:my-0 md:ml-3 md:mb-2 md:w-72"
+              src={node.relationships.field_image.url}
+              alt={node.field_image.alt}
+            />
+          </Link>
         )}
         <p className="my-1">
           <Link
@@ -42,10 +45,12 @@ const Article = ({ node, tags, setTags }) => {
             {node.title}
           </Link>
 
-          <p className="m-0 italic text-[#595959]">
-            by {node.relationships.uid.field_display_name},{" "}
-            {node.relationships.uid.field_title}
-          </p>
+          {node.relationships.uid.field_display_name && (
+            <p className="m-0 text-[16px] italic text-[#595959]">
+              by {node.relationships.uid.field_display_name},{" "}
+              {node.relationships.uid.field_title}
+            </p>
+          )}
 
           {node.relationships && (
             <p
@@ -125,7 +130,7 @@ const SidebarContent = ({
   return (
     <div className="w-full md:p-4">
       <input
-        class="w-full appearance-none border py-2 px-3 leading-tight focus:outline-none"
+        class="w-full appearance-none border border-[#C2C2C2] py-2 px-3 leading-tight focus:outline-none"
         type="text"
         placeholder="Search news stories..."
         value={input}
@@ -147,7 +152,7 @@ const SidebarContent = ({
           clear all
         </button>
       </span>
-      <p className="font-bold">Topic</p>
+      <p className="font-medium">Topic</p>
       {allTaxonomyTermTags.edges.map((tag) => (
         <>
           {categoryMap.has(tag.node.name) && (
@@ -175,7 +180,7 @@ const SidebarContent = ({
 };
 
 const DrupalPage = ({ data }) => {
-  const { allNodeArticle, allTaxonomyTermCategories } = data;
+  const { allNodeArticle, allTaxonomyTermCategories, userUser } = data;
   const [articles, setArticles] = useState(allNodeArticle.edges);
   const [input, setInput] = useState("");
   const debounceInput = useDebounce(input);
@@ -386,6 +391,7 @@ const DrupalPage = ({ data }) => {
       <div className="block w-full md:hidden">
         <NewsRoomInfo />
       </div>
+      <StaffContact staffContact={userUser} title={userUser.title} />
       <Footer />
     </>
   );
@@ -456,6 +462,12 @@ export const query = graphql`
           name
         }
       }
+    }
+    userUser(mail: { eq: "eturner@dvrpc.org" }) {
+      id
+      mail
+      name: field_display_name
+      title: field_title
     }
   }
 `;
