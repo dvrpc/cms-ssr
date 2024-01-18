@@ -10,10 +10,10 @@ import useQueryParamArray from "../../components/useQueryParamArray";
 import NewsRoomInfo from "../../components/newsroom/NewsRoomInfo";
 import LogoBar from "../../components/LogoBar";
 import Icon, { Search } from "../../components/Icon";
-import NewsHeader from "../../images/NewsHeader.jpg";
+import BannerNews from "../../images/banner-news.jpg";
 import Footer from "../../components/Footer";
 
-const title = "Press Releases";
+const title = "DVRPC News";
 
 const Article = ({ node, tags, setTags }) => {
   return (
@@ -222,7 +222,7 @@ const DrupalPage = ({ data }) => {
         <LogoBar />
         <div
           className="relative h-[250px] w-full bg-cover bg-center bg-no-repeat md:h-[400px]"
-          style={{ backgroundImage: `url(${NewsHeader})` }}
+          style={{ backgroundImage: `url(${BannerNews})` }}
         >
           <div className="container mx-auto p-8 md:px-0">
             <form

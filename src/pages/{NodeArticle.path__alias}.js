@@ -7,7 +7,7 @@ import NewsRoomInfo from "../components/newsroom/NewsRoomInfo";
 import SharePage from "../components/newsroom/SharePage";
 import LogoBar from "../components/LogoBar";
 import Icon, { Search } from "../components/Icon";
-import ArticleHeader from "../images/ArticleHeader.jpg";
+import BannerArticle from "../images/banner-article.jpg";
 import Footer from "../components/Footer";
 
 const BackButton = () => (
@@ -37,7 +37,7 @@ const Page = ({ data: { nodePage }, location }) => {
         <LogoBar />
         <div
           className="relative h-[200px] w-full bg-cover bg-center md:h-[250px]"
-          style={{ backgroundImage: `url(${ArticleHeader})` }}
+          style={{ backgroundImage: `url(${BannerArticle})` }}
         >
           <div className="container mx-auto p-8">
             <form
