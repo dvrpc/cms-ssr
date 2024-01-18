@@ -306,9 +306,11 @@ const DrupalPage = ({ data }) => {
 
               <Pager
                 items={articles}
-                onPageChange={(pageNumber) =>
-                  articles.slice(pageNumber * 5 - 5, pageNumber * 5)
-                }
+                onPageChange={(pageNumber) => {
+                  const parent = document.querySelector("main");
+                  window.scroll({ top: parent.offsetTop, behavior: "smooth" });
+                  return articles.slice(pageNumber * 5 - 5, pageNumber * 5);
+                }}
                 itemsPerPage={5}
                 renderItem={(props) => (
                   <Article
