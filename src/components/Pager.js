@@ -90,6 +90,7 @@ const Pager = ({
   const [renderedItems, setRenderedItems] = useState([...items]);
   const maxPage = Math.ceil(maxData / itemsPerPage);
   const firstRender = useRef(true);
+  const pageLoad = useRef(false);
 
   // redirect back to first page when filtering client-side
   useEffect(() => {
@@ -98,7 +99,14 @@ const Pager = ({
       setPage(1);
       setRenderedItems([...items]);
     }
-  }, [items, firstRender]);
+  }, [page, items, firstRender]);
+
+  useEffect(() => {
+    if (pageLoad.current && page !== currentPage) {
+      setPage(currentPage);
+      setRenderedItems(onPageChange(currentPage));
+    } else pageLoad.current = true;
+  }, [currentPage, setRenderedItems, onPageChange, pageLoad]);
 
   return (
     <>

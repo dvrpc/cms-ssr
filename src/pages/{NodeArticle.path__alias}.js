@@ -1,5 +1,5 @@
 import * as React from "react";
-import { graphql } from "gatsby";
+import { graphql, navigate } from "gatsby";
 import HeadTemplate, { themeToCustomVars } from "../components/HeadTemplate";
 import HtmlParser from "../components/HtmlParser";
 import { Link } from "gatsby";
@@ -11,22 +11,24 @@ import BannerArticle from "../images/banner-article.jpg";
 import Footer from "../components/Footer";
 import StaffContact from "../components/StaffContact";
 
-const BackButton = () => (
-  <Link
-    className="flex font-bold text-[#03688D] no-underline hover:underline"
-    to="/news/"
-  >
-    <span className="my-auto mr-2 flex h-5 w-5 rounded-full bg-[#03688D] font-bold text-white">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="-ml-[0.1rem] h-full w-full scale-50 fill-current"
-      >
-        <path d="m17 0 3 3-10 9 10 9-3 3L5 12z" />
-      </svg>
-    </span>
-    Back to News Page
-  </Link>
-);
+const BackButton = () => {
+  return (
+    <button
+      className="flex font-bold text-[#03688D] no-underline hover:underline"
+      onClick={() => navigate(-1)}
+    >
+      <span className="my-auto mr-2 flex h-5 w-5 rounded-full bg-[#03688D] font-bold text-white">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="-ml-[0.1rem] h-full w-full scale-50 fill-current"
+        >
+          <path d="m17 0 3 3-10 9 10 9-3 3L5 12z" />
+        </svg>
+      </span>
+      Back to News Page
+    </button>
+  );
+};
 
 const Page = ({ data: { nodePage, userUser }, location }) => {
   const { body, title, path, relationships } = nodePage;

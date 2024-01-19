@@ -16,7 +16,7 @@ import StaffContact from "../../components/StaffContact";
 
 const title = "DVRPC News";
 
-const Article = ({ node, tags, setTags }) => {
+const Article = ({ node, tags, setTags, setPageNumber }) => {
   return (
     <li className="mb-6 list-none border-b-[1px] border-[#CDCDCD] md:pb-2">
       <div className="text-[#595959]">
@@ -61,13 +61,14 @@ const Article = ({ node, tags, setTags }) => {
                 <>
                   <button
                     className="hover:underline"
-                    onClick={() =>
+                    onClick={() => {
                       setTags((prev) => {
                         if (!tags.has(tag.name)) prev.add(tag.name);
                         else prev.delete(tag.name);
                         return new Set(prev);
-                      })
-                    }
+                      });
+                      setPageNumber(new Set([1]));
+                    }}
                   >
                     {tag.name}
                   </button>
@@ -112,6 +113,7 @@ const SidebarContent = ({
   categories,
   setCategories,
   setInput,
+  setPageNumber,
 }) => {
   const categoryMap = new Set([
     "Bicycle & Pedestrian",
@@ -147,6 +149,7 @@ const SidebarContent = ({
               .querySelectorAll("input[type=checkbox]")
               .forEach((el) => (el.checked = false));
             setCategories(new Set());
+            setPageNumber(new Set([1]));
           }}
         >
           clear all
@@ -167,6 +170,7 @@ const SidebarContent = ({
                     else prev.delete(event.target.value);
                     return new Set(prev);
                   });
+                  setPageNumber(new Set([1]));
                 }}
                 checked={categories.size && categories.has(tag.node.name)}
               ></input>
@@ -186,9 +190,11 @@ const DrupalPage = ({ data }) => {
   const debounceInput = useDebounce(input);
   const [categories, setCategories] = useState(new Set());
   const [tags, setTags] = useState(new Set());
+  const [pageNumber, setPageNumber] = useState(new Set([1]));
   useQueryParamArray([
     { paramName: "categories", params: categories, setParams: setCategories },
     { paramName: "tags", params: tags, setParams: setTags },
+    { paramName: "page", params: pageNumber, setParams: setPageNumber },
   ]);
 
   useEffect(() => {
@@ -265,6 +271,7 @@ const DrupalPage = ({ data }) => {
                         prev.delete(param);
                         return new Set(prev);
                       });
+                      setPageNumber(new Set([1]));
                     }}
                   >
                     {param}{" "}
@@ -281,6 +288,7 @@ const DrupalPage = ({ data }) => {
                         prev.delete(param);
                         return new Set(prev);
                       });
+                      setPageNumber(new Set([1]));
                     }}
                   >
                     {param}{" "}
@@ -310,10 +318,12 @@ const DrupalPage = ({ data }) => {
               )}
 
               <Pager
+                currentPage={[...pageNumber][0]}
                 items={articles}
                 onPageChange={(pageNumber) => {
                   const parent = document.querySelector("main");
                   window.scroll({ top: parent.offsetTop, behavior: "smooth" });
+                  setPageNumber(new Set([pageNumber]));
                   return articles.slice(pageNumber * 5 - 5, pageNumber * 5);
                 }}
                 itemsPerPage={5}
@@ -323,6 +333,7 @@ const DrupalPage = ({ data }) => {
                     {...props}
                     tags={tags}
                     setTags={setTags}
+                    setPageNumber={setPageNumber}
                   />
                 )}
               />
@@ -369,6 +380,7 @@ const DrupalPage = ({ data }) => {
                   setInput={setInput}
                   categories={categories}
                   setCategories={setCategories}
+                  setPageNumber={setPageNumber}
                 />
               </div>
             </div>
@@ -383,6 +395,7 @@ const DrupalPage = ({ data }) => {
               setInput={setInput}
               categories={categories}
               setCategories={setCategories}
+              setPageNumber={setPageNumber}
             />
           </div>
           <NewsRoomInfo />

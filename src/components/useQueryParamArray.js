@@ -6,7 +6,12 @@ const useQueryParamArray = (params) => {
     params.map((item) => {
       if (urlParams.has(item.paramName)) {
         let arr = urlParams.get(item.paramName).split(",");
-        arr = arr.map((val) => val.replaceAll("and", "&").replaceAll("-", " "));
+        arr = arr.map((val) => {
+          const isInt = parseInt(val);
+          if (isNaN(isInt))
+            return val.replaceAll("and", "&").replaceAll("-", " ");
+          else return isInt;
+        });
         item.setParams(new Set([...arr]));
       }
     });
@@ -20,7 +25,7 @@ const useQueryParamArray = (params) => {
         if (!path.length) path = `?${paramName}=`;
         else path += `&${paramName}=`;
         Array.from(params).map((param, idx, arr) => {
-          param = param.replaceAll("&", "and");
+          param = param.toString().replaceAll("&", "and");
           param = param.replaceAll(" ", "-");
           path += param;
           if (idx !== arr.length - 1) path += ",";
