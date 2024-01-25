@@ -383,11 +383,11 @@ form
 
 .pullquote > blockquote > p {
   margin: 0px;
-  width: 80%;
+  width: 100%;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  font-size: 2rem;
-  line-height: 2.5rem; /* 24px */
+  font-size: 27px;
+  line-height: 32px; /* 24px */
   font-weight: 300;
 }
 

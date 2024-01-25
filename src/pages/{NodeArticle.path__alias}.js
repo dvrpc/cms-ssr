@@ -103,10 +103,15 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
                 {relationships.field_image && (
                   <figure className="h-full border-0 object-contain p-0.5 max-[1415px]:min-w-full md:mr-0 md:mt-0 min-[1415px]:float-right min-[1415px]:m-5">
                     <img
-                      className="h-full border-2 border object-contain"
+                      className="h-full border border-[#C2C2C2] object-contain p-0.5"
                       src={relationships.field_image.url}
                     />
-                    <figcaption>{nodePage.field_image.title}</figcaption>
+                    <figcaption
+                      className="text-[14px] leading-[16px] text-[#7A7A7A]"
+                      style={{ fontFamily: "Roboto Condensed" }}
+                    >
+                      {nodePage.field_image.title}
+                    </figcaption>
                   </figure>
                 )}
 
@@ -119,7 +124,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
                 </p>
 
                 {body.summary && (
-                  <blockquote className="border-[#91BEDC] border-opacity-[.45] italic leading-6 md:w-full md:border-l-8 md:pl-3">
+                  <blockquote className="border-[#91BEDC] border-opacity-[.45] italic leading-[1.4rem] md:w-full md:border-l-8 md:pl-3">
                     {body.summary}
                   </blockquote>
                 )}
