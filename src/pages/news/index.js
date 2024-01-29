@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { graphql, Link } from "gatsby";
 
 import HeadTemplate from "../../components/HeadTemplate";
@@ -16,9 +16,32 @@ import StaffContact from "../../components/StaffContact";
 
 const title = "DVRPC News";
 
-const Article = ({ node, tags, setTags, setPageNumber }) => {
+const Article = ({
+  node,
+  categories,
+  tags,
+  input,
+  setTags,
+  setPageNumber,
+  lastDateHeader,
+}) => {
+  const month = new Date(node.created).getMonth();
+  const prevMonth = lastDateHeader.current;
+  const isFirstArticle = useRef(prevMonth === null);
+  lastDateHeader.current = month;
+  const render = categories.size === 0 && tags.size === 0 && !input.length;
+
   return (
     <li className="mb-6 list-none border-b-[1px] border-[#CDCDCD] md:pb-2">
+      {render &&
+        (lastDateHeader.current !== prevMonth || isFirstArticle.current) && (
+          <h1 className="text-[27px] font-bold text-[#B66216]">
+            {new Date(node.created).toLocaleDateString("en-US", {
+              month: "long",
+              year: "numeric",
+            })}
+          </h1>
+        )}
       <div className="text-[#595959]">
         {new Date(node.created).toLocaleDateString("en-US", {
           month: "long",
@@ -26,7 +49,6 @@ const Article = ({ node, tags, setTags, setPageNumber }) => {
           year: "numeric",
         })}
       </div>
-
       <div className="flex flex-col md:block">
         {node.relationships.field_image && (
           <Link to={node.path.alias}>
@@ -79,7 +101,6 @@ const Article = ({ node, tags, setTags, setPageNumber }) => {
           )}
         </p>
       </div>
-
       <div className="my-2 md:my-1">
         {node.body && node.body.summary.length ? (
           node.body.summary
@@ -196,6 +217,8 @@ const DrupalPage = ({ data }) => {
     { paramName: "tags", params: tags, setParams: setTags },
     { paramName: "page", params: pageNumber, setParams: setPageNumber },
   ]);
+  const lastDateHeader = useRef(null);
+  const firstRender = useRef(true);
 
   useEffect(() => {
     let articlesCopy = [...allNodeArticle.edges];
@@ -219,7 +242,20 @@ const DrupalPage = ({ data }) => {
       );
 
     setArticles(articlesCopy);
-  }, [categories, tags, debounceInput, allNodeArticle, setArticles]);
+  }, [
+    pageNumber,
+    categories,
+    tags,
+    debounceInput,
+    allNodeArticle,
+    setArticles,
+    setPageNumber,
+  ]);
+
+  useEffect(() => {
+    if (!firstRender.current) setPageNumber(new Set([1]));
+    firstRender.current = false;
+  }, [debounceInput, firstRender, setPageNumber]);
 
   const toggleModal = (event) => {
     event.preventDefault();
@@ -331,9 +367,12 @@ const DrupalPage = ({ data }) => {
                   <Article
                     key={props.node.id}
                     {...props}
+                    categories={categories}
                     tags={tags}
+                    input={debounceInput}
                     setTags={setTags}
                     setPageNumber={setPageNumber}
+                    lastDateHeader={lastDateHeader}
                   />
                 )}
               />
@@ -341,6 +380,7 @@ const DrupalPage = ({ data }) => {
           </main>
         </div>
 
+        {/* start mobile modal for filtering */}
         <div className="block md:hidden">
           <p className="mb-4 bg-[#EFF0F2] p-4 px-8">
             <input
@@ -386,7 +426,7 @@ const DrupalPage = ({ data }) => {
             </div>
           </div>
         </div>
-
+        {/* end mobile modal for filtering */}
         <div className="hidden space-y-4 p-4 print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-4 md:flex md:flex-col md:items-end md:p-0">
           <div className="w-full bg-[#EFF0F2]">
             <SidebarContent
