@@ -40,7 +40,7 @@ const StaffListPage = ({ data, serverData, location }) => {
             <p>Contact information for staff.</p>
             <ul className="list-group">
               <li className="list-group-item">
-                <a href="https://www.dvrpc.org/about/staff/DVRPCOrgChart.pdf">
+                <a href="https://idnryib36jqh.objectstorage.us-ashburn-1.oci.customer-oci.com/p/CRSJ63CubnhBU9YppzcOZJuiALo2cVZsKVCBEEc_zt2UkPrQJaVId3Q5G2iQfiMB/n/idnryib36jqh/b/web-static-content/o/stafflist/dvrpcorgchart.pdf">
                   Current Organizational Chart
                 </a>
               </li>
