@@ -76,7 +76,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
         >
           Share this story
         </button>
-        <div className="px-7 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:p-0 md:px-7">
+        <div className="px-7 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:mt-3 md:p-0 md:px-7">
           <div id="mobile-share" className="mb-2 -mt-2 hidden md:hidden">
             <SharePage location={location} title={title} />
           </div>
@@ -86,7 +86,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
                 {title}
               </h1>
               {relationships.uid.field_display_name && (
-                <p className="m-0 w-full italic text-[#595959]">
+                <p className="m-0 w-full text-[16px] italic text-[#595959]">
                   by {relationships.uid.field_display_name},{" "}
                   {relationships.uid.field_title}
                 </p>
@@ -115,7 +115,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
                   </figure>
                 )}
 
-                <p className="w-full text-[#595959]">
+                <p className="w-full text-[16px] text-[#595959]">
                   {new Date(nodePage.created).toLocaleDateString("en-US", {
                     month: "long",
                     day: "numeric",
@@ -124,7 +124,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
                 </p>
 
                 {body.summary && (
-                  <blockquote className="border-[#91BEDC] border-opacity-[.45] italic leading-[1.4rem] md:w-full md:border-l-8 md:pl-3">
+                  <blockquote className="border-[#91BEDC] border-opacity-[.45] text-[20px] italic leading-[1.4rem] md:w-full md:border-l-8 md:pl-3">
                     {body.summary}
                   </blockquote>
                 )}
@@ -152,7 +152,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
                 </p>
               )}
             </article>
-            <span className="mt-6 hidden md:block">
+            <span className="mt-6 mb-3 hidden md:block">
               <BackButton />
             </span>
           </main>
@@ -255,7 +255,13 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
       <div className="block w-full md:hidden">
         <NewsRoomInfo />
       </div>
-      <StaffContact staffContact={userUser} title={userUser.title} />
+      <div className="hidden md:block">
+        <StaffContact
+          staffContact={userUser}
+          title={title}
+          location={location.pathname}
+        />
+      </div>
       <Footer />
     </>
   );

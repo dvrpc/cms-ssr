@@ -35,14 +35,14 @@ const Article = ({
     <li className="mb-6 list-none border-b-[1px] border-[#CDCDCD] md:pb-2">
       {render &&
         (lastDateHeader.current !== prevMonth || isFirstArticle.current) && (
-          <h1 className="text-[27px] font-bold text-[#B66216]">
+          <h1 className="mb-2 text-[27px] font-bold text-[#B66216]">
             {new Date(node.created).toLocaleDateString("en-US", {
               month: "long",
               year: "numeric",
             })}
           </h1>
         )}
-      <div className="text-[#595959]">
+      <div className="text-[16px] text-[#595959]">
         {new Date(node.created).toLocaleDateString("en-US", {
           month: "long",
           day: "numeric",
@@ -61,7 +61,7 @@ const Article = ({
         )}
         <p className="my-1">
           <Link
-            className="text-2xl font-bold leading-6 text-[#03688D] no-underline hover:underline md:leading-7"
+            className="text-[25px] font-bold leading-6 text-[#03688D] no-underline hover:underline md:leading-[30px]"
             to={node.path.alias}
           >
             {node.title}
@@ -268,7 +268,7 @@ const DrupalPage = ({ data }) => {
       <header className="bg-white print:hidden">
         <LogoBar />
         <div
-          className="relative h-[250px] w-full bg-cover bg-center bg-no-repeat md:h-[400px]"
+          className="relative h-[250px] w-full bg-cover bg-center bg-no-repeat md:h-[400px] min-[3840px]:h-[700px]"
           style={{ backgroundImage: `url(${BannerNews})` }}
         >
           <div className="container mx-auto p-8 md:px-0">
@@ -407,7 +407,7 @@ const DrupalPage = ({ data }) => {
             className="fixed inset-0 z-10 hidden w-screen overflow-y-auto"
           >
             <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
-              <div className="relative transform bg-[#EFF0F2] p-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+              <div className="relative w-full transform bg-[#EFF0F2] p-4 text-left shadow-xl transition-all sm:my-8">
                 <button
                   className="absolute -right-3 -top-2 z-[999] mx-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#03688D] text-xl text-white"
                   onClick={toggleModal}
@@ -444,7 +444,9 @@ const DrupalPage = ({ data }) => {
       <div className="block w-full md:hidden">
         <NewsRoomInfo />
       </div>
-      <StaffContact staffContact={userUser} title={userUser.title} />
+      <div className="hidden md:block">
+        <StaffContact staffContact={userUser} />
+      </div>
       <Footer />
     </>
   );

@@ -9,14 +9,14 @@ export default function NewsRoomInfo() {
       <p className="md:my-2">
         <a
           className="text-[#03688D] hover:underline"
-          href="https://www.dvrpc.org/photosandlogos/pdf/dvrpc_logoguidelines.pdf"
+          href="https://www.dvrpc.org/photosandlogos/"
         >
           DVRPC Logos and Guidelines
         </a>
         <br />
         <a
           className="text-[#03688D] hover:underline"
-          href="https://www.dvrpc.org/photosandlogos/"
+          href="https://www.dvrpc.org/photosandlogos/#executivedirector"
         >
           Executive Director and Headshots
         </a>
