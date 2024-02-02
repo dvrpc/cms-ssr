@@ -16,7 +16,7 @@ const Header = ({ bgStyles, alert, children }) => {
         {alert}
         <div className="container mx-auto p-8">
           <form
-            className="relative mb-4 bg-gradient-to-r from-white/80 via-white/80 to-transparent md:w-min md:pr-32"
+            className="relative mb-4 bg-gradient-to-r from-white/90 via-white/90 to-transparent md:w-min md:pr-32"
             action="https://www.dvrpc.org/Search/"
           >
             <div className="pointer-events-none absolute flex h-full w-10 items-center justify-center">

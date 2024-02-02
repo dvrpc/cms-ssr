@@ -1,13 +1,36 @@
+import { Link } from "gatsby";
 import React from "react";
 
 const Announcement = (props) => (
-  <div className="h-40">
-    <h4 className="m-0 text-lg font-bold">
-      <a className="underline" href={props.Link}>
-        {props.Title}
-      </a>
-    </h4>
+  <div className="h-32">
+    {!props.relationships && (
+      <h4 className="m0 text-lg font-bold">
+        <a className="underline" href={props.Link}>
+          {props.Title}
+        </a>
+      </h4>
+    )}
     <p className="mt-2">{props.Description}</p>
+    {props.relationships && (
+      <>
+        <div className="flex">
+          <img
+            className="h-20 w-20 border border-[#C2C2C2] object-cover p-[0.05rem]"
+            src={props.relationships.field_image.url}
+          />
+          <div className="ml-2 mb-auto">
+            <h4 className="m-0 text-lg font-bold">
+              <a className="underline" href={props.Link}>
+                {props.Title}
+              </a>
+            </h4>
+            <Link className="underline" to={props.Link}>
+              Read More
+            </Link>
+          </div>
+        </div>
+      </>
+    )}
   </div>
 );
 
