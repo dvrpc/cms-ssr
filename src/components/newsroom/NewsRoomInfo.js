@@ -18,7 +18,7 @@ export default function NewsRoomInfo() {
           className="text-[#03688D] hover:underline"
           href="https://www.dvrpc.org/photosandlogos/#executivedirector"
         >
-          Executive Director and Headshots
+          Executive Director Bio & Headshots
         </a>
       </p>
       <div className="mt-2 font-medium md:my-2 md:mt-0">Contact</div>
