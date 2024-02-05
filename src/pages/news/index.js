@@ -445,11 +445,7 @@ const DrupalPage = ({ data }) => {
         <NewsRoomInfo />
       </div>
       <div className="hidden md:block">
-        <StaffContact
-          title={title}
-          location={location.pathname}
-          staffContact={userUser}
-        />
+        <StaffContact title={title} staffContact={userUser} />
       </div>
       <Footer />
     </>
