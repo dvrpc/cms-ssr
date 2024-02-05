@@ -15,7 +15,7 @@ const BackButton = () => {
   return (
     <button
       className="flex font-bold text-[#03688D] no-underline hover:underline"
-      onClick={() => navigate(-1)}
+      onClick={() => (history.state ? navigate(-1) : navigate("/news"))}
     >
       <span className="my-auto mr-2 flex h-5 w-5 rounded-full bg-[#03688D] font-bold text-white">
         <svg
@@ -78,7 +78,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
         </button>
         <div className="px-7 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:mt-3 md:p-0 md:px-7">
           <div id="mobile-share" className="mb-2 -mt-2 hidden md:hidden">
-            <SharePage location={location} title={title} />
+            <SharePage location={location.pathname} title={title} />
           </div>
           <div className="flex w-full max-[1300px]:flex-col">
             <div>
@@ -94,7 +94,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
             </div>
 
             <span className="mt-auto hidden md:block min-[1300px]:ml-auto">
-              <SharePage location={location} title={title} />
+              <SharePage location={location.pathname} title={title} />
             </span>
           </div>
           <main className="mt-4">
@@ -256,11 +256,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
         <NewsRoomInfo />
       </div>
       <div className="hidden md:block">
-        <StaffContact
-          staffContact={userUser}
-          title={title}
-          location={location.pathname}
-        />
+        <StaffContact staffContact={userUser} />
       </div>
       <Footer />
     </>

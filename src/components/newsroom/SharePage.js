@@ -2,6 +2,7 @@ import React from "react";
 import A from "../A";
 
 export default function SharePage({ location, title }) {
+  location = `https://www.dvrpc.org${location}`;
   return (
     <>
       <span className="ml-1 hidden md:block">Share this story</span>
