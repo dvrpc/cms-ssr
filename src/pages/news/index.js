@@ -219,6 +219,7 @@ const DrupalPage = ({ data }) => {
   ]);
   const lastDateHeader = useRef(null);
   const firstRender = useRef(true);
+  let pathname = typeof window !== "undefined" ? window.location.pathname : "";
 
   useEffect(() => {
     let articlesCopy = [...allNodeArticle.edges];
@@ -445,7 +446,11 @@ const DrupalPage = ({ data }) => {
         <NewsRoomInfo />
       </div>
       <div className="hidden md:block">
-        <StaffContact title={title} staffContact={userUser} />
+        <StaffContact
+          title={title}
+          staffContact={userUser}
+          location={pathname}
+        />
       </div>
       <Footer />
     </>

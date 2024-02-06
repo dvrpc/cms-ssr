@@ -15,7 +15,7 @@ const BackButton = () => {
   return (
     <button
       className="flex font-bold text-[#03688D] no-underline hover:underline"
-      onClick={() => navigate("/news")}
+      onClick={() => (history.state ? navigate(-1) : navigate("/news"))}
     >
       <span className="my-auto mr-2 flex h-5 w-5 rounded-full bg-[#03688D] font-bold text-white">
         <svg
