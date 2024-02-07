@@ -99,8 +99,15 @@ const HomePage = ({ data }) => {
           )
         }
       >
-        <div className="rounded-bl-lg bg-gradient-to-r from-white/90 via-white/90 to-transparent md:w-96">
-          <div className="relative mx-auto p-4">
+        <div
+          className=" rounded-bl-lg md:w-2/5"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(255,255,255,0.9) 80%, rgba(0,0,0,0) 100%)",
+          }}
+        >
+          <div className="relative mx-auto py-4 pl-8">
+            <h3 className="text-3xl font-bold text-[#296591]">News</h3>
             <Anns dataReader={annsReader} articles={articles} />
             <div className="absolute right-10 z-[999] hidden items-center md:bottom-[1.35rem] md:block">
               <Link
