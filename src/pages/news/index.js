@@ -269,7 +269,7 @@ const DrupalPage = ({ data }) => {
       <header className="bg-white print:hidden">
         <LogoBar />
         <div
-          className="relative h-[250px] w-full bg-cover bg-center bg-no-repeat md:h-[400px] min-[3840px]:h-[700px]"
+          className="relative h-[250px] w-full bg-cover bg-bottom bg-no-repeat md:h-[400px] min-[3840px]:h-[700px]"
           style={{ backgroundImage: `url(${BannerNews})` }}
         >
           <div className="container mx-auto p-8 md:px-0">
