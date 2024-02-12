@@ -82,7 +82,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
           </div>
           <div className="flex w-full max-[1300px]:flex-col">
             <div>
-              <h1 className="w-full text-3xl font-bold text-[#03688d] print:max-w-full print:p-0 md:col-span-1 md:col-start-2 md:p-0 min-[1415px]:w-[80%]">
+              <h1 className="w-full text-3xl font-bold text-[#03688d] print:max-w-full print:p-0 md:col-span-1 md:col-start-2 md:p-0">
                 {title}
               </h1>
               {relationships.uid.field_display_name && (
@@ -101,7 +101,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
             <article className="border-b-[1px] border-[#CDCDCD]">
               <div>
                 {relationships.field_image && (
-                  <figure className="h-full border-0 object-contain p-0.5 max-[1415px]:min-w-full md:mr-0 md:mt-0 min-[1415px]:float-right min-[1415px]:m-5">
+                  <figure className="h-full border-0 object-contain p-0.5 max-[1415px]:min-w-full md:mr-0 md:mt-0 min-[1415px]:float-right min-[1415px]:m-5 min-[1415px]:mr-5">
                     <img
                       className="h-full border border-[#C2C2C2] object-contain p-0.5"
                       src={relationships.field_image.url}
@@ -152,7 +152,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
                 </p>
               )}
             </article>
-            <span className="mt-6 mb-3 hidden md:block">
+            <span className="mt-6 hidden md:block">
               <BackButton />
             </span>
           </main>
@@ -251,12 +251,6 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
             <NewsRoomInfo />
           </div>
         </div>
-      </div>
-      <div className="block w-full md:hidden">
-        <NewsRoomInfo />
-      </div>
-      <div className="hidden md:block">
-        <StaffContact staffContact={userUser} />
       </div>
       <Footer />
     </>
