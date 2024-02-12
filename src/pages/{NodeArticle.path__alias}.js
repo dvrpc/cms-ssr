@@ -101,9 +101,9 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
             <article className="border-b-[1px] border-[#CDCDCD]">
               <div>
                 {relationships.field_image && (
-                  <figure className="h-full border-0 object-contain p-0.5 max-[1415px]:min-w-full md:mr-0 md:mt-0 min-[1415px]:float-right min-[1415px]:m-5 min-[1415px]:mr-5">
+                  <figure className="h-full border-0 object-contain p-0.5 max-[1415px]:min-w-full md:mr-0 md:mt-0 min-[1415px]:float-right min-[1415px]:m-5 min-[1415px]:mr-0">
                     <img
-                      className="h-full border border-[#C2C2C2] object-contain p-0.5"
+                      className="border border-[#C2C2C2] object-contain p-0.5 md:h-full"
                       src={relationships.field_image.url}
                     />
                     <figcaption

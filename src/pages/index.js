@@ -130,7 +130,7 @@ const HomePage = ({ data }) => {
       </Header>
       <main>
         <div className="flex justify-center bg-[#bbe2f2]">
-          <div className="container px-8">
+          <div className="container px-8 md:pb-8">
             <h3 className="text-3xl">
               <a
                 className="text-[#296591]"
