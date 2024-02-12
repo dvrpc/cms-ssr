@@ -1,11 +1,6 @@
 const path = require("path");
 
-const doNotWrapLayout = [
-  "Index",
-  "/data/",
-  "/data/maps/",
-  "/news/",
-];
+const doNotWrapLayout = ["Index", "/data/", "/data/maps/", "/news/"];
 
 //Add regex to GraphQL query to match URLs in the navigation JSON
 exports.onCreateNode = async ({
@@ -119,4 +114,12 @@ exports.createResolvers = ({ createResolvers }) => {
     },
   };
   createResolvers(resolvers);
+};
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
+    },
+  });
 };
