@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import React from "react";
 
 const Announcement = (props) => (
-  <div className="h-32">
+  <div className="h-32 md:w-3/5">
     {!props.relationships && (
       <h4 className="m0 text-lg font-bold">
         <a className="underline" href={props.Link}>

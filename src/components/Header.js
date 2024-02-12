@@ -7,7 +7,7 @@ const Header = ({ bgStyles, alert, children }) => {
     <header className="bg-white print:hidden">
       <LogoBar />
       <div
-        className="relative h-[var(--height-banner)] w-full bg-cover bg-[center_75%]"
+        className="relative flex h-[var(--height-banner)] w-full items-center bg-cover bg-[center_75%]"
         style={{
           backgroundImage: "var(--bg-cover-image)",
           ...bgStyles,

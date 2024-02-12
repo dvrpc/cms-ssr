@@ -415,3 +415,19 @@ form
     text-align: left;
   }
 }
+
+.homeSwiper > .swiper-pagination > .swiper-pagination-bullet {
+  background-color: transparent !important;
+  border: solid 1px;
+  border-color: #05688d;
+  opacity: 1;
+}
+
+.homeSwiper > .swiper-pagination > .swiper-pagination-bullet:hover {
+  transform: scale(1.2);
+}
+
+.homeSwiper > .swiper-pagination > .swiper-pagination-bullet-active {
+  background-color: #05688d !important;
+  border: none;
+}
