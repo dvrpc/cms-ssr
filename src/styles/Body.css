@@ -421,6 +421,8 @@ form
   border: solid 1px;
   border-color: #05688d;
   opacity: 1;
+  height: 10px;
+  width: 10px;
 }
 
 .homeSwiper > .swiper-pagination > .swiper-pagination-bullet:hover {
@@ -430,4 +432,10 @@ form
 .homeSwiper > .swiper-pagination > .swiper-pagination-bullet-active {
   background-color: #05688d !important;
   border: none;
+}
+
+@media (max-width: 640px) {
+  .homeSwiper > .swiper-pagination {
+    text-align: left;
+  }
 }

@@ -8,16 +8,16 @@ const Event = ({ StartDate, StartTime, Title, Info }) => {
   return (
     <div
       key={StartDate + Title}
-      className="-ml-4 flex flex-col border-0 border-[#91BEDC] px-4 pt-0 pb-8 md:h-24 md:w-1/4 md:border-r [&:last-child]:border-r-0"
+      className="-ml-4 flex flex-col border-0 border-[#91BEDC] px-4 pt-0 pb-4 md:h-20 md:w-1/4 md:border-r md:pb-8 [&:last-child]:border-r-0"
     >
-      <footer className="flex w-min">
+      <footer className="flex w-min leading-[24px] md:text-[18px]">
         <p className="m-0">
           {+mon}/{+day}
         </p>
         <span className="px-1">|</span>
         <span className="m-0">{StartTime !== "00:00" && start}</span>
       </footer>
-      <p className="m-0 w-fit font-bold">
+      <p className="m-0 w-fit font-medium md:text-[20px] md:leading-[26px]">
         {Info ? (
           <a className="underline" href={Info}>
             {Title}

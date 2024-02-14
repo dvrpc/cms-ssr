@@ -100,16 +100,16 @@ const HomePage = ({ data }) => {
         }
       >
         <div
-          className=" rounded-bl-lg md:w-2/5"
+          className="rounded-bl-xl md:w-2/5"
           style={{
             background:
-              "linear-gradient(90deg, rgba(255,255,255,0.9) 80%, rgba(0,0,0,0) 100%)",
+              "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 75%, rgba(255,255,255,0) 100%)",
           }}
         >
           <div className="relative mx-auto py-4 pl-8">
-            <h3 className="text-3xl font-bold text-[#296591]">News</h3>
+            <h3 className="mb-1 text-[33px] font-bold text-[#296591]">News</h3>
             <Anns dataReader={annsReader} articles={articles} />
-            <div className="absolute right-10 z-[999] hidden items-center md:bottom-[1.35rem] md:block">
+            <div className="absolute right-0 bottom-[1.35rem] z-[999] items-center md:right-10 md:block">
               <Link
                 className="flex font-bold text-[#05688D] no-underline hover:underline"
                 to="/news"
