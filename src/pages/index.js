@@ -26,36 +26,6 @@ export const Head = () => (
   </>
 );
 
-const Anns = ({ dataReader, articles }) =>
-  dataReader.isLoading ? (
-    <AnnouncementLoader />
-  ) : (
-    <Swiper
-      pagination={{
-        clickable: true,
-      }}
-      autoplay={{
-        delay: 5000,
-        disableOnInteraction: false,
-      }}
-      modules={[Autoplay, Navigation, Pagination]}
-      className="homeSwiper"
-      style={{
-        "--swiper-pagination-color": "#05688D",
-      }}
-    >
-      {[...articles, ...dataReader.data]
-        .sort((a, b) => new Date(b.Pubdate) - new Date(a.Pubdate))
-        .map((d) => {
-          return (
-            <SwiperSlide>
-              <Announcement key={d.Id} {...d} />
-            </SwiperSlide>
-          );
-        })}
-    </Swiper>
-  );
-
 const Events = ({ dataReader }) =>
   dataReader.isLoading
     ? [...Array(4)].map((_, i) => <EventLoader key={i} />)
@@ -69,18 +39,15 @@ const Products = ({ dataReader }) =>
     : dataReader.data.map((d) => <Product type="card" key={d.Id} {...d} />);
 
 const HomePage = ({ data }) => {
-  const {
-    allNodeArticle: { edges },
-  } = data;
-  const annsReader = useData("https://www.dvrpc.org/api/announcements?limit=3");
+  const { allNodeArticle, allNodeAnnouncement } = data;
   const eventsReader = useData(
     "https://www.dvrpc.org/asp/homepage/getCalendarItems.aspx?maxresults=4"
   );
   const productsReader = useData("https://www.dvrpc.org/api/products?limit=6");
   const alert = data.blockContentAlertBanner?.body?.processed ?? "";
-  const articles = Array.from(edges, ({ node }) => {
-    return { ...node, Link: node.path.alias };
-  });
+  const anns = [...allNodeArticle.nodes, ...allNodeAnnouncement.nodes].sort(
+    (a, b) => new Date(b.created) - new Date(a.created)
+  );
 
   return (
     <>
@@ -108,7 +75,28 @@ const HomePage = ({ data }) => {
         >
           <div className="relative mx-auto py-4 pl-8">
             <h3 className="mb-1 text-[33px] font-bold text-[#296591]">News</h3>
-            <Anns dataReader={annsReader} articles={articles} />
+            <Swiper
+              pagination={{
+                clickable: true,
+              }}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay, Navigation, Pagination]}
+              className="homeSwiper"
+              style={{
+                "--swiper-pagination-color": "#05688D",
+              }}
+            >
+              {anns.map((d) => {
+                return (
+                  <SwiperSlide>
+                    <Announcement key={d.id} {...d} />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
             <div className="absolute right-0 bottom-[1.35rem] z-[999] items-center md:right-10 md:block">
               <Link
                 className="flex font-bold text-[#05688D] no-underline hover:underline"
@@ -169,30 +157,37 @@ const HomePage = ({ data }) => {
 export default HomePage;
 
 export const query = graphql`
-  query {
+  {
     blockContentAlertBanner {
       body {
         processed
       }
     }
-    allNodeArticle(
-      filter: { promote: { eq: true } }
-      limit: 3
-      sort: { created: DESC }
-    ) {
-      edges {
-        node {
-          Id: id
-          Title: title
-          Pubdate: created
-          path {
-            alias
+    allNodeArticle(filter: { promote: { eq: true } }) {
+      nodes {
+        id
+        title
+        created
+        path {
+          alias
+        }
+        relationships {
+          field_image {
+            url
           }
-          relationships {
-            field_image {
-              url
-            }
-          }
+        }
+      }
+    }
+    allNodeAnnouncement(filter: { promote: { eq: true } }) {
+      nodes {
+        id
+        title
+        created
+        body {
+          processed
+        }
+        path: field_url {
+          alias: uri
         }
       }
     }

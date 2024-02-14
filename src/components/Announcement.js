@@ -5,12 +5,12 @@ const Announcement = (props) => (
   <div className="mb-[22px] h-40 md:h-32 md:w-5/6">
     {!props.relationships && (
       <h4 className="m0 font-bold md:text-[20px] md:leading-[25px]">
-        <a className="underline" href={props.Link}>
-          {props.Title}
+        <a className="underline" href={props.path.alias}>
+          {props.title}
         </a>
       </h4>
     )}
-    <p className="md:text-[18px] md:leading-[22px]">{props.Description}</p>
+    <p className="md:text-[18px] md:leading-[22px]">{props.body?.processed}</p>
     {props.relationships && (
       <>
         <div className="flex">
@@ -20,13 +20,13 @@ const Announcement = (props) => (
           />
           <div className="mb-auto md:ml-2">
             <h4 className="m-0 font-bold leading-tight md:text-[20px] md:leading-[25px]">
-              <a className="underline" href={props.Link}>
-                {props.Title}
+              <a className="underline" href={props.path.alias}>
+                {props.title}
               </a>
             </h4>
             <Link
               className="text-[18px] leading-[22px] underline"
-              to={props.Link}
+              to={props.path.alias}
             >
               Read More
             </Link>
