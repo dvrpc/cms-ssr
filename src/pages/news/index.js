@@ -299,7 +299,7 @@ const DrupalPage = ({ data }) => {
         <div className="px-7 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:mt-4 md:p-0">
           <main className="max-w-[80ch] print:max-w-full">
             <article>
-              <p className="m-0 flex h-min">
+              <p className="m-0 flex h-min flex-col md:flex-row md:flex-wrap">
                 {Array.from(categories).map((param) => (
                   <button
                     className="mr-2 mb-4 flex items-center font-bold text-[#B66216]"
