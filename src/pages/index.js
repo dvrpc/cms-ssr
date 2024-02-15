@@ -73,8 +73,10 @@ const HomePage = ({ data }) => {
               "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 75%, rgba(255,255,255,0) 100%)",
           }}
         >
-          <div className="relative mx-auto py-4 pl-8">
-            <h3 className="mb-1 text-[33px] font-bold text-[#296591]">News</h3>
+          <div className="relative mx-auto py-4 pb-6 pl-8 md:pb-0">
+            <h3 className="mb-1 text-2xl font-bold text-[#296591] md:text-[33px]">
+              News
+            </h3>
             <Swiper
               pagination={{
                 clickable: true,
@@ -97,7 +99,7 @@ const HomePage = ({ data }) => {
                 );
               })}
             </Swiper>
-            <div className="absolute right-0 bottom-[1.35rem] z-[999] items-center md:right-10 md:block">
+            <div className="absolute bottom-2 z-[999] items-center md:bottom-1.5 md:right-10 md:block">
               <Link
                 className="flex font-bold text-[#05688D] no-underline hover:underline"
                 to="/news"
