@@ -93,7 +93,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
               )}
             </div>
 
-            <span className="mt-auto hidden md:block min-[1300px]:ml-auto">
+            <span className="mt-auto hidden md:block md:p-[25px] min-[1300px]:ml-auto">
               <SharePage location={location.pathname} title={title} />
             </span>
           </div>

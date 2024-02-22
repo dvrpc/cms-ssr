@@ -12,7 +12,8 @@ import LogoBar from "../../components/LogoBar";
 import Icon, { Search } from "../../components/Icon";
 import BannerNews from "../../images/banner-news.jpg";
 import Footer from "../../components/Footer";
-import StaffContact from "../../components/StaffContact";
+import Avatar from "../../components/Avatar";
+import ConnectWithUs from "../../components/ConnectWithUs";
 
 const title = "DVRPC News";
 
@@ -53,7 +54,7 @@ const Article = ({
         {node.relationships.field_image && (
           <Link to={node.path.alias}>
             <img
-              className="my-2 w-full border border-[#C2C2C2] p-0.5 md:float-right md:my-0 md:ml-3 md:mb-2 md:w-72"
+              className="my-2 w-full border border-[#C2C2C2] p-0.5 md:float-right md:my-0 md:ml-4 md:mb-3 md:w-72"
               src={node.relationships.field_image.url}
               alt={node.field_image.alt}
             />
@@ -446,11 +447,17 @@ const DrupalPage = ({ data }) => {
         <NewsRoomInfo />
       </div>
       <div className="hidden md:block">
-        <StaffContact
-          title={title}
-          staffContact={userUser}
-          location={pathname}
-        />
+        <div className="bg-gray-300 print:hidden">
+          <div className="container mx-auto flex flex-col-reverse gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:my-4 md:grid md:w-4/5 md:grid-cols-3">
+            <div className="max-w-[80ch] items-center justify-between p-4 md:col-span-2 md:col-start-2 md:flex md:p-0">
+              <Avatar {...userUser} />
+              <ConnectWithUs
+                title={title}
+                location={`https://www.dvrpc.org${pathname}`}
+              />
+            </div>
+          </div>
+        </div>
       </div>
       <Footer />
     </>
