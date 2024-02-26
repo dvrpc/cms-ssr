@@ -76,7 +76,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
         >
           Share this story
         </button>
-        <div className="px-7 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:mt-3 md:px-7 md:pl-0">
+        <div className="px-7 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:mt-3 md:px-8 md:pl-0">
           <div id="mobile-share" className="mb-2 -mt-2 hidden md:hidden">
             <SharePage location={location.pathname} title={title} />
           </div>
@@ -93,7 +93,7 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
               )}
             </div>
 
-            <span className="mt-auto hidden md:block md:p-[25px] min-[1300px]:ml-auto">
+            <span className="hidden md:block md:pl-[25px] min-[1300px]:ml-auto">
               <SharePage location={location.pathname} title={title} />
             </span>
           </div>

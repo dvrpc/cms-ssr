@@ -298,7 +298,7 @@ const DrupalPage = ({ data }) => {
       </header>
       <div className="container mx-auto flex flex-col-reverse gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:my-4 md:grid md:w-4/5 md:grid-cols-3">
         <div className="px-7 pt-0 print:p-0 md:col-span-2 md:col-start-2 md:row-start-2 md:mt-4 md:p-0">
-          <main className="max-w-[80ch] print:max-w-full">
+          <main className="print:max-w-full md:pr-8">
             <article>
               <p className="m-0 flex h-min flex-col md:flex-row md:flex-wrap">
                 {Array.from(categories).map((param) => (

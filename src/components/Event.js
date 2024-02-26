@@ -8,7 +8,7 @@ const Event = ({ StartDate, StartTime, Title, Info }) => {
   return (
     <div
       key={StartDate + Title}
-      className="-ml-4 flex flex-col border-0 border-[#91BEDC] px-4 pt-0 pb-4 md:h-20 md:w-1/4 md:border-r md:pb-8 [&:last-child]:border-r-0"
+      className="flex h-full flex-col border-0 border-[#91BEDC] py-4 pt-0 md:border-r md:px-4 md:py-0 [&:last-child]:border-r-0"
     >
       <footer className="flex w-min leading-[24px] md:text-[18px]">
         <p className="m-0">

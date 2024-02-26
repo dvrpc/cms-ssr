@@ -2,12 +2,14 @@ import React from "react";
 import LogoBar from "./LogoBar";
 import Icon, { Search } from "./Icon";
 
-const Header = ({ bgStyles, alert, children }) => {
+const Header = ({ bgStyles, alert, children, center = false }) => {
   return (
     <header className="bg-white print:hidden">
       <LogoBar />
       <div
-        className="relative flex h-[var(--height-banner)] w-full items-center bg-cover bg-[center_75%]"
+        className={`relative flex h-[var(--height-banner)] ${
+          center && "items-center"
+        } w-full bg-cover bg-[center_75%]`}
         style={{
           backgroundImage: "var(--bg-cover-image)",
           ...bgStyles,

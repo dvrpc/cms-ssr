@@ -52,6 +52,7 @@ const HomePage = ({ data }) => {
   return (
     <>
       <Header
+        center
         bgStyles={{ backgroundSize: "cover" }}
         alert={
           alert.length ? (
@@ -74,7 +75,7 @@ const HomePage = ({ data }) => {
           }}
         >
           <div className="relative mx-auto py-4 pb-6 pl-8 md:pb-0">
-            <h3 className="mb-1.5 text-2xl font-bold text-[#296591] md:text-[33px]">
+            <h3 className="mb-[3px] text-2xl font-bold text-[#296591] md:text-[33px]">
               News
             </h3>
             <Swiper
@@ -129,7 +130,8 @@ const HomePage = ({ data }) => {
                 Events
               </a>
             </h3>
-            <div className="flex-auto items-center justify-between md:flex">
+            {/* className="min-h-fit flex-auto items-center justify-between md:flex" */}
+            <div className="flex flex-col md:-ml-4 md:grid md:grid-cols-4">
               <Events dataReader={eventsReader} />
             </div>
           </div>
