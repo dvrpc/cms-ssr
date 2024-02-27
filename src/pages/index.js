@@ -167,7 +167,7 @@ export const query = graphql`
         processed
       }
     }
-    allNodeArticle(filter: { promote: { eq: true } }) {
+    allNodeArticle(filter: { promote: { eq: true }, status: { eq: true } }) {
       nodes {
         id
         title
@@ -182,7 +182,7 @@ export const query = graphql`
         }
       }
     }
-    allNodeAnnouncement(filter: { promote: { eq: true } }) {
+    allNodeAnnouncement(filter: { promote: { eq: true }, status: { eq: true } }) {
       nodes {
         id
         title

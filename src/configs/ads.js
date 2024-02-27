@@ -7,10 +7,10 @@ export default [
     new_window: true,
   },
   {
-    href: "https://www.dvrpc.org/trackingprogress/",
-    src: "https://www.dvrpc.org/img/tracking_progress.png",
-    label: "Tracking Progress",
-    style: { width: 201 },
+    href: "https://www.dvrpc.org/annualreport/",
+    src: "https://www.dvrpc.org/img/gatsby/9326_1650_placard.png",
+    label: "Annual Report",
+    style: { width: 200 },
   },
   {
     src: "https://www.dvrpc.org/img/gatsby/C2050_WebPlacard[FINAL].png",
