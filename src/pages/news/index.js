@@ -33,7 +33,7 @@ const Article = ({
   const render = categories.size === 0 && tags.size === 0 && !input.length;
 
   return (
-    <li className="mb-6 list-none border-b-[1px] border-[#CDCDCD] md:pb-2">
+    <div className="mb-6 flow-root list-none border-b-[1px] border-[#CDCDCD] md:pb-2">
       {render &&
         (lastDateHeader.current !== prevMonth || isFirstArticle.current) && (
           <h1 className="mb-2 text-[27px] font-bold text-[#B66216]">
@@ -125,7 +125,7 @@ const Article = ({
           </span>
         </Link>
       </p>
-    </li>
+    </div>
   );
 };
 
