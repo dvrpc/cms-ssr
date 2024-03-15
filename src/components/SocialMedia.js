@@ -21,9 +21,6 @@ const SocialMedia = () => {
     <A key="facebook" href="https://www.facebook.com/DVRPC" label="Facebook">
       <Icon scale={4} use={Facebook} />
     </A>,
-    <A key="twitter" href="https://www.twitter.com/DVRPC" label="Twitter">
-      <Icon scale={4} use={Twitter} />
-    </A>,
     <A
       key="instagram"
       href="https://www.instagram.com/dvrpc/"
@@ -45,11 +42,20 @@ const SocialMedia = () => {
     >
       <Icon scale={4} use={Youtube} />
     </A>,
+    <A
+      id="twitter-header-icon"
+      key="twitter"
+      href="https://www.twitter.com/DVRPC"
+      label="Twitter"
+    >
+      <Icon scale={3.75} use={Twitter} />
+    </A>,
   ];
   return (
     <ul className="m-0 hidden p-0 text-[#67abd1] md:items-end md:justify-end xl:flex">
       {items.map((i) => (
         <li
+          id={i.props.id && i.props.id}
           key={i.props.href}
           className="-mr-2 block pt-2 pb-5 hover:text-[#0078ae] md:px-3"
         >

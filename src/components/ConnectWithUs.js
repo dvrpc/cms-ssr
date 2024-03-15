@@ -18,18 +18,18 @@ const ConnectWithUs = ({ title, location, fillColor = "#005780" }) => {
       <Icon use={Facebook} />
     </A>,
     <A
-      key="twitter"
-      href={`https://twitter.com/intent/tweet?text=${title}&via=DVRPC&url=${location}`}
-      aria-label="Twitter"
-    >
-      <Icon use={Twitter} />
-    </A>,
-    <A
       key="linkedin"
       href={`https://www.linkedin.com/shareArticle?mini=true&url=${location}&amp;title=${title}`}
       aria-label="LinkedIn"
     >
       <Icon use={Linkedin} />
+    </A>,
+    <A
+      key="twitter"
+      href={`https://twitter.com/intent/tweet?text=${title}&via=DVRPC&url=${location}`}
+      aria-label="Twitter"
+    >
+      <Icon use={Twitter} />
     </A>,
   ];
   return (
