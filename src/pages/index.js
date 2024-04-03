@@ -182,7 +182,9 @@ export const query = graphql`
         }
       }
     }
-    allNodeAnnouncement(filter: { promote: { eq: true }, status: { eq: true } }) {
+    allNodeAnnouncement(
+      filter: { promote: { eq: true }, status: { eq: true } }
+    ) {
       nodes {
         id
         title
