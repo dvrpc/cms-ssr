@@ -56,9 +56,9 @@ const HomePage = ({ data }) => {
         bgStyles={{ backgroundSize: "cover" }}
         alert={
           alert.length ? (
-            <div className="bg-black/50 text-center text-white">
+            <div className="bg-[#e00000] text-lg font-bold text-white">
               <div
-                className="container mx-auto py-6 px-8 text-left"
+                className="container mx-auto py-2 px-8"
                 dangerouslySetInnerHTML={{ __html: alert }}
               />
             </div>

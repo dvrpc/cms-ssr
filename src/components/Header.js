@@ -6,6 +6,7 @@ const Header = ({ bgStyles, alert, children, center = false }) => {
   return (
     <header className="bg-white print:hidden">
       <LogoBar />
+      {alert}
       <div
         className={`relative flex h-[var(--height-banner)] ${
           center && "items-center"
@@ -15,7 +16,6 @@ const Header = ({ bgStyles, alert, children, center = false }) => {
           ...bgStyles,
         }}
       >
-        {alert}
         <div className="container mx-auto p-8">
           <form
             className="relative mb-4 bg-gradient-to-r from-white/90 via-white/90 to-transparent md:w-min md:pr-32"
