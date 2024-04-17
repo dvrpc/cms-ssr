@@ -6,36 +6,36 @@ export default ({ data = null }) => {
     data = { href: "", links: null };
   }
 
-  let nodes = data.parent ? data.parent.links : [];
-  let parent = data.parent ?? data;
+  let nodes = [];
+  const parents = new Set();
+
+  if (data.parent) {
+    nodes = data.parent.links;
+    parents.add(data.parent);
+  }
   if (data.links) {
     nodes = data.links;
-    parent = data;
+    parents.add(data);
   }
 
   return nodes.length ? (
-    <nav>
-      <ul className="h-full list-none sm:mb-12 sm:text-center md:text-right">
-        {parent && (
-          <li className="relative">
+    <nav className="max-w-sm xl:min-w-[20rem] 2xl:min-w-[24rem]">
+      <ul className="flex h-full list-none flex-col sm:mb-12 sm:text-center md:text-right">
+        {[...parents].map((parent) => (
+          <li
+            className="relative mb-1 border border-gray-300 bg-gray-200 py-0.5 px-2 font-bold no-underline after:absolute after:left-full after:-my-1 after:h-0 after:w-0 after:border-[1rem] after:border-r-transparent after:border-t-transparent after:border-b-transparent hover:underline"
+            key={parent.href}
+          >
             <Link
-              className="inline-block py-1 mr-5 font-bold no-underline hover:underline"
               to={parent.href}
               dangerouslySetInnerHTML={{ __html: parent.link }}
             ></Link>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              className="ml-1 inline-block mb-2.5 h-3.5 absolute right-0 bottom-0"
-            >
-              <path d="M233 407c13 12 33 12 46 0l192-192a32 32 0 0 0-46-46L256 339 87 169a32 32 0 0 0-46 46l192 192z" />
-            </svg>
           </li>
-        )}
+        ))}
         {nodes.map((node) => (
           <li key={node.href}>
             <Link
-              className={`block py-1 no-underline hover:underline ${
+              className={`block border-b bg-gray-100 px-2 py-1 no-underline hover:underline ${
                 node.href.toLowerCase() === data.href.toLowerCase() &&
                 "font-bold"
               }`}
