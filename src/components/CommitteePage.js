@@ -85,7 +85,7 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
             </table>
             {archive.length && (
               <details>
-                <summary>Archive</summary>
+                <summary>Past Meetings</summary>
                 <table className="ml-0 mr-0 w-full table-auto">
                   <tbody>{archive.map(renderRow)}</tbody>
                 </table>
