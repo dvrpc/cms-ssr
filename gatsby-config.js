@@ -46,6 +46,7 @@ module.exports = {
             process.env.GATSBY_ENV === "development"
               ? ""
               : "filter[status][value]=1",
+          "node--article": "include=field_tags",
         },
       },
     },
