@@ -37,6 +37,14 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
     document.getElementById("mobile-share").classList.toggle("hidden");
   };
 
+  const related = {
+    Stories: nodePage.field_stories,
+    Products: nodePage.field_products,
+    "Data Sets": nodePage.field_data_sets,
+    "DVRPC Webpages": nodePage.field_dvrpc_webpages,
+    "Web Sites": nodePage.field_websites,
+  };
+
   return (
     <>
       <header className="bg-white print:hidden">
@@ -161,90 +169,26 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
           <BackButton />
           <div className="w-full bg-[#EFF0F2] p-4">
             <h3 className="text-lg font-bold md:mb-2">RELATED</h3>
-            {nodePage.field_stories.length > 0 && (
-              <>
-                <p className="mt-2 mb-1 font-bold">Stories</p>
-                <hr className="!m-0 border-[#CDCDCD]" />
-                <p className="my-2">
-                  {nodePage.field_stories.map((story) => (
-                    <a
-                      className="block text-[#03688D] hover:underline"
-                      href={story.uri}
-                      target="_blank"
-                    >
-                      {story.title}
-                    </a>
-                  ))}
-                </p>
-              </>
-            )}
-            {nodePage.field_products.length > 0 && (
-              <>
-                <p className="mb-1 font-bold">Products</p>
-                <hr className="!m-0 border-[#CDCDCD]" />
-                <p className="my-2">
-                  {nodePage.field_products.map((product) => (
-                    <a
-                      className="block text-[#03688D] hover:underline"
-                      href={product.uri}
-                      target="_blank"
-                    >
-                      {product.title}
-                    </a>
-                  ))}
-                </p>
-              </>
-            )}
-            {nodePage.field_data_sets.length > 0 && (
-              <>
-                <p className="mb-1 font-bold">Data Sets</p>
-                <hr className="!m-0 border-[#CDCDCD]" />
-                <p className="my-2">
-                  {nodePage.field_data_sets.map((set) => (
-                    <a
-                      className="block text-[#03688D] hover:underline"
-                      href={set.uri}
-                      target="_blank"
-                    >
-                      {set.title}
-                    </a>
-                  ))}
-                </p>
-              </>
-            )}
-            {nodePage.field_dvrpc_webpages.length > 0 && (
-              <>
-                <p className="mb-1 font-bold">DVRPC Webpages</p>
-                <hr className="!m-0 border-[#CDCDCD]" />
-                <p className="my-2">
-                  {nodePage.field_dvrpc_webpages.map((page) => (
-                    <a
-                      className="block text-[#03688D] hover:underline"
-                      href={page.uri}
-                      target="_blank"
-                    >
-                      {page.title}
-                    </a>
-                  ))}
-                </p>
-              </>
-            )}
-            {nodePage.field_websites.length > 0 && (
-              <>
-                <p className="mb-1 font-bold">Websites</p>
-                <hr className="!m-0 border-[#CDCDCD]" />
-                <p className="my-2">
-                  {nodePage.field_websites.map((page) => (
-                    <a
-                      className="block text-[#03688D] hover:underline"
-                      href={page.uri}
-                      target="_blank"
-                    >
-                      {page.title}
-                    </a>
-                  ))}
-                </p>
-              </>
+            {Object.entries(related).map(
+              ([sectionName, data]) =>
+                data?.length > 0 && (
+                  <>
+                    <p className="mt-2 mb-1 font-bold">{sectionName}</p>
+                    <hr className="!m-0 border-[#CDCDCD]" />
+                    <p className="my-2">
+                      {data.map((item) => (
+                        <a
+                          className="block text-[#03688D] hover:underline"
+                          href={item.uri}
+                          target="_blank"
+                          key={item.uri}
+                        >
+                          {item.title}
+                        </a>
+                      ))}
+                    </p>
+                  </>
+                )
             )}
           </div>
           <div className="hidden md:block">
