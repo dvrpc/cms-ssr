@@ -1,50 +1,62 @@
 import React from "react";
 import Link from "./Link";
 
-export default ({ data = null }) => {
-  if (data === null) {
-    data = { href: "", links: null };
+const activeClassName =
+  "active relative font-bold text-black after:absolute after:left-full after:-rotate-45 after:scale-75 after:not-italic after:text-[#d1d1d1] after:content-['◢']";
+
+const MenuItem = ({ node, activeMenuItem, className }) => {
+  if (node === undefined) return;
+  const menuItems =
+    node.links?.map((child) => {
+      if (activeMenuItem && child.href === activeMenuItem.props.node.href) {
+        return (
+          <MenuItem
+            key={activeMenuItem.props.node.href}
+            {...activeMenuItem.props}
+            className={activeClassName}
+          />
+        );
+      }
+      return <MenuItem key={child.href} node={child} />;
+    }) ?? [];
+
+  return (
+    <li>
+      <Link className={className} to={node.href}>
+        {node.link}
+      </Link>
+      {menuItems.length ? <ul>{menuItems}</ul> : null}
+    </li>
+  );
+};
+
+export default ({ data }) => {
+  if (data === undefined) return null;
+  const activeNode = <MenuItem node={data} className={activeClassName} />;
+  let parentNode;
+  if (activeNode.props.node.parent) {
+    parentNode = (
+      <MenuItem
+        node={activeNode.props.node.parent}
+        activeMenuItem={activeNode}
+      />
+    );
+
+    while (parentNode.props.node.parent) {
+      parentNode = (
+        <MenuItem
+          node={parentNode.props.node.parent}
+          activeMenuItem={parentNode}
+        />
+      );
+    }
+  } else {
+    parentNode = activeNode;
   }
 
-  let nodes = [];
-  const parents = new Set();
-
-  if (data.parent) {
-    nodes = data.parent.links;
-    parents.add(data.parent);
-  }
-  if (data.links) {
-    nodes = data.links;
-    parents.add(data);
-  }
-
-  return nodes.length ? (
-    <nav className="max-w-sm xl:min-w-[20rem] 2xl:min-w-[24rem]">
-      <ul className="flex h-full list-none flex-col sm:mb-12 sm:text-center md:text-right">
-        {[...parents].map((parent) => (
-          <li
-            className="relative mb-1 border border-gray-300 bg-gray-200 py-0.5 px-2 font-bold no-underline after:absolute after:left-full after:-my-1 after:h-0 after:w-0 after:border-[1rem] after:border-r-transparent after:border-t-transparent after:border-b-transparent hover:underline"
-            key={parent.href}
-          >
-            <Link
-              to={parent.href}
-              dangerouslySetInnerHTML={{ __html: parent.link }}
-            ></Link>
-          </li>
-        ))}
-        {nodes.map((node) => (
-          <li key={node.href}>
-            <Link
-              className={`block border-b bg-gray-100 px-2 py-1 no-underline hover:underline ${
-                node.href.toLowerCase() === data.href.toLowerCase() &&
-                "font-bold"
-              }`}
-              to={node.href}
-              dangerouslySetInnerHTML={{ __html: node.link }}
-            ></Link>
-          </li>
-        ))}
-      </ul>
+  return (
+    <nav className="text-right text-xl [&_.active+ul>li]:py-0.5 [&_.active+ul]:mb-1 [&_.active+ul]:text-black [&_ul_ul]:text-lg [&_ul_ul]:text-[#6E6E6E] [&_ul_ul_ul]:text-base [&_ul_ul_ul_ul]:text-sm">
+      <ul>{parentNode}</ul>
     </nav>
-  ) : null;
+  );
 };
