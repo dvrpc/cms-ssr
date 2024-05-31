@@ -7,7 +7,7 @@ import Icon, {
 } from "../../components/Icon";
 import HeadTemplate from "../../components/HeadTemplate";
 import Body from "../../components/Body";
-
+import bgImage from "../../images/homepagebanner_2560.jpg"
 
 
 const title = "Major Regional Project Intake";
@@ -20,6 +20,14 @@ const mrpForm = ({
   data: { userUser: staffContact },
   location,
 }) => {
+
+  const helperToggle = (e) => {
+    console.log(e.currentTarget)
+    let helper = e.currentTarget.dataset.helper
+    const elem = document.getElementById(helper)
+    elem.classList.toggle("hidden")
+  }
+
   return (
     <>
      <div className="container mx-auto my-4 grid gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:grid-cols-3">
@@ -30,6 +38,7 @@ const mrpForm = ({
         <main className="max-w-[80ch] print:max-w-full">
           <p>Any introduction text that team feels appropriate/helpful</p>
           <form class="max-w-sm ">
+            <h3 class="mb-0 mt-5">Applicant Information</h3>
             <div class="mb-2">
               <label for="sponsor" class={labelClass}>Project Sponsor</label>
               <input type="text" id="sponsor" placeholder=" " pattern=".{2,}" class={inputClass} required />
@@ -39,10 +48,15 @@ const mrpForm = ({
             </div>
             <div class="mb-2">
               <label for="applicant" class={labelClass}>Applicant Name</label>
-              <input type="text" id="applicant" class={inputClass} required />
+              <input type="text" id="applicant" placeholder=" " pattern=".{2,}" class={inputClass} required />
             </div>
             <div class="mb-2">
-              <label for="state" class={labelClass}>Location of Project</label>
+              <label for="email" class={labelClass}>Email Address</label>
+              <input type="email" id="email" placeholder="name@gmail.com" pattern=".{2,}" class={inputClass} required />
+            </div>
+            <h3 class="mb-0 mt-5">Project Details</h3>
+            <div class="mb-2">
+              <label for="state" class={labelClass}>Project Location</label>
               <select id="state" placeholder="Select state(s)" class={inputClass}>
                 <option value="" disabled selected hidden>Select state(s)</option>
                 <option value="PA">Pennsylvania</option>
@@ -57,7 +71,7 @@ const mrpForm = ({
                 required
                 onChange={(e) => {
                   const mrpinput = document.getElementById("mrp-id-group")
-                  if(e.target.value = 'yes'){
+                  if(e.target.value == 'yes'){
                     mrpinput.classList.remove("hidden")
                   } else {
                     mrpinput.classList.add("hidden")
@@ -72,10 +86,87 @@ const mrpForm = ({
               <label for="mrp_id" class={labelClass}>MRP ID</label>
               <input type="text" id="mrp_id" class={inputClass}  />
             </div>
-            <div>
-              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload file</label>
-              <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file"/>
-              <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">A profile picture is useful to confirm your are logged into your account</div>
+            <div class="mb-2">
+              <label for="existing_tip" class={labelClass}>Are there TIP projects associated with this project?</label>
+              <select id="existing_tip" 
+                class={inputClass} 
+                required
+                onChange={(e) => {
+                  const mrpinput = document.getElementById("tip-id-group")
+                  if(e.target.value == 'yes'){
+                    mrpinput.classList.remove("hidden")
+                  } else {
+                    mrpinput.classList.add("hidden")
+                  }
+                }}>
+                <option value="yes">Yes</option>
+                <option value="no" selected>No</option>
+                <option value="unsure">Unsure</option>
+              </select>
+            </div>
+            <div id="tip-id-group" class="mb-2 hidden">
+              <label for="tip_id" class={labelClass}>MPMS (PA) or DB numbers (NJ) of associated projects.</label>
+              <input type="text" id="tip_id" class={inputClass}  />
+            </div>
+            <div class="mb-2">
+              <label for="title" class={labelClass}>Proposed Project Title</label>
+              <input type="text" id="title" placeholder=" " pattern=".{2,}" class={inputClass} required />
+            </div>
+            <div class="mb-2">
+              <label for="route_id" class={labelClass}>Facility or Route Name and Number</label>
+              <input type="text" id="route_id" placeholder=" " pattern=".{2,}" class={inputClass} required />
+            </div>
+            <div class="mb-2">
+              <label for="extent" class={labelClass}>Project boundaries </label>
+                <a onClick={helperToggle} data-helper="extent-helper" class="mt-4 float-right cursor-pointer">
+                  <svg class="w-5 h-5 text-gray-800 dark:text-white" 
+                    aria-hidden="true" 
+                     
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.529 9.988a2.502 2.502 0 1 1 5 .191A2.441 2.441 0 0 1 12 12.582V14m-.01 3.008H12M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                  </svg>
+                </a>
+              <p id="extent-helper" class="text-xs font-normal text-gray-500 dark:text-gray-400 hidden">At which routes or other landmarks does the project start and terminate (terminus intersections/ PA road segments/ distance from known intersection)? If corridor is known but specific elements like ADA access is not, please provide corridor. Note: a project must be mappable in order to be modeled, evaluated, and receive funding, but can remain on the unfunded Vision Plan if no location is available.</p>
+              <input type="text" id="extent" placeholder=" "  class={inputClass}  />
+            </div>
+            {/* <div class="mb-2">
+              <label for="counties" class={labelClass}>County - WIP</label>
+              <input type="text" id="counties" placeholder=" " pattern=".{2,}" class={inputClass} required />
+            </div> */}
+            <div class="mb-2">
+              <label for="bridge_work" class={labelClass}>Does this project include work to one or more bridges?</label>
+              <select id="bridge_work" 
+                class={inputClass} 
+                required
+                onChange={(e) => {
+                  const mrpinput = document.getElementById("bridge-id-group")
+                  if(e.target.value == 'yes'){
+                    mrpinput.classList.remove("hidden")
+                  } else {
+                    mrpinput.classList.add("hidden")
+                  }
+                }}>
+                <option value="yes">Yes</option>
+                <option value="no" selected>No</option>
+              </select>
+            </div>
+            <div id="bridge-id-group" class="mb-2 hidden">
+              <label for="bridge_id" class={labelClass}>List all relevant Bridge Keys (PA)/Structure Numbers (NJ)</label>
+              <input type="text" id="bridge_id" class={inputClass} placeholder="47695,47701"  />
+            </div>
+            <div class="mb-2">
+              <label for="scope" class={labelClass}>Project Scope</label>
+              <textarea id="scope" placeholder="Briefly describe the improvements to be made to the listed facility if funds are allocated. This description should be kept short for inclusion in the Plan document(s)." pattern=".{2,}" rows="8" class={inputClass} required />
+            </div>
+            <div class="mb-2">
+              <label for="need" class={labelClass}>Project Need</label>
+              <textarea id="need" placeholder="Briefly describe the problem the project is intended to address. The need should be factual, quantifiable, establish evidence of current or future transportation problems, and justify commitment of funding this project and impacts to the environment." pattern=".{2,}" rows="8" class={inputClass} required />
+            </div>
+            {/* file loader */ }
+            <div class="mb-2">
+              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="documentation_file">Upload file</label>
+              <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="documentation_file" id="documentation_file" type="file"/>
+              <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="documentation_file_help">File type must be a PDF or ZIP file</div>
 
             </div>
             
