@@ -5,7 +5,7 @@ const activeClassName =
   "active relative font-bold text-black after:absolute after:left-full after:-rotate-45 after:scale-75 after:not-italic after:text-[#d1d1d1] after:content-['◢']";
 
 const MenuItem = ({ node, activeMenuItem, className }) => {
-  if (node === undefined) return;
+  if (!node) return;
   const menuItems =
     node.links?.map((child) => {
       if (activeMenuItem && child.href === activeMenuItem.props.node.href) {
@@ -34,7 +34,7 @@ export default ({ data }) => {
   if (data === undefined) return null;
   const activeNode = <MenuItem node={data} className={activeClassName} />;
   let parentNode;
-  if (activeNode.props.node.parent) {
+  if (activeNode.props.node?.parent) {
     parentNode = (
       <MenuItem
         node={activeNode.props.node.parent}
