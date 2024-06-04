@@ -1,4 +1,5 @@
 {
+  "sheetID": "somegooglesheet",
   "name": "Municipal Bridge Intake",
   "sections": [
     {
@@ -31,7 +32,7 @@
       "title": "Project Details",
       "fields": [
         {
-          "type": "select",
+          "type": "multiselect",
           "name": "county",
           "label": "Project Location",
           "required": true,
@@ -56,13 +57,22 @@
           "options": ["yes", "no", "unsure"]
         },
         {
-          "type": "text",
+          "type": "multiselect",
           "name": "mrp_id",
-          "label": "MRP ID",
+          "label": "Existing MRP ID",
           "required": true,
           "condition": {
             "field": "existing_mrp",
             "value": "yes"
+          },
+          "fetchOptions": {
+            "url": "https://services1.arcgis.com/LWtWv6q6BJyKidj8/ArcGIS/rest/services/MRP2050/FeatureServer/2/query?where=1=1&outFields=MRP_ID,FACILITY&f=json",
+            "method": "GET",
+            "valueField": "attributes.MRP_ID", 
+            "labelField": ["attributes.MRP_ID", "attributes.FACILITY"],
+            "labelSeparator": " - ",
+            "target": "features"
+
           }
         },
         {
@@ -87,6 +97,42 @@
           "name": "title",
           "label": "Proposed Project Title",
           "required": true
+        },
+        {
+          "type": "multiselect",
+          "name": "project_subcat",
+          "label": "Project Subcategory",
+          "required": true,
+          "options": [
+            "R1.01 - Interstate Roadway Preservation & Modernization",
+            "R1.02 - Non-Interstate Roadway Preservation & Modernization",
+            "R1.03 - Local Federal Aid Roadways",
+            "R2.01 - Interstate Bridge Preservation",
+            "R2.02 - Non-Interstate Bridge Preservation",
+            "R2.03 - Bridge Removal",
+            "R2.04 - Local Bridges",
+            "R3.01 - Substantive Safety Infrastructure",
+            "R3.02 - Incident Management",
+            "R4.01 - Accessibility Improvements",
+            "R4.02 - Intersection Improvements",
+            "R4.03 - Transportation Systems Management and Operations (TSMO)",
+            "R4.04 - Vehicle Technology",
+            "R5.01 - Major Road Network Expansion",
+            "R5.02 - Minor Road Network Expansion",
+            "R5.03 - Additionally Funded Road Network Expansion",
+            "R6.01 - Bicycle and Pedestrian Network Expansion",
+            "R6.02 - Off-Road Trail Resurfacing & Reconstruction",
+            "R6.03 - Community Connections",
+            "R6.04 - Environmental Mitigation & Resiliency",
+            "R6.05 - Travel Demand Management",
+            "R6.06 - Rail Improvements",
+            "R6.07 - Regional Programs",
+            "T1 - Transit Preservation & Modernization",
+            "T2 - Transit Operational Improvements",
+            "T3 - Transit System Expansion",
+            "T4 - Transit Other"
+          ],
+          "helperText": "Select roadway project subcategories or transit categories that reflect the scope of the project (check all that apply). <a target='_blank' href='https://drive.google.com/file/d/1w5WYDPaWYf1URXI1FNYQoCL0NMc24KEC/view'>See full category descriptions.</a>"
         },
         {
           "type": "text",
@@ -115,7 +161,7 @@
           "required": true,
           "placeholder": "47695,47701",
           "condition": {
-            "field": "existing_tip",
+            "field": "bridge_work",
             "value": "yes"
           }
         },
@@ -126,31 +172,13 @@
           "required": true,
           "rows": 8,
           "placeholder": "Briefly describe the improvements to be made to the listed facility if funds are allocated. This description should be kept short for inclusion in the Plan document(s)."
-        }
-      ]
-    },
-    {
-      "title": "Additional Information",
-      "fields": [
+        },
         {
           "type": "file",
           "name": "attachment",
           "label": "Attachment",
-          "required": false,
-          "condition": {
-            "field": "inquiry_type",
-            "value": "Support"
-          }
-        },
-        {
-          "type": "multiselect",
-          "name": "dynamic_multiselect",
-          "label": "Dynamic Multi-Select",
-          "required": true,
-          "fetchOptions": {
-            "url": "https://api.example.com/options",
-            "method": "GET"
-          }
+          "allowMultiple": true,
+          "required": false
         }
       ]
     }

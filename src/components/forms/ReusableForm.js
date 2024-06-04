@@ -10,9 +10,9 @@ const ReusableForm = ({ formConfig}) => {
   const [dynamicOptions, setDynamicOptions] = useState({});
   const [helperText, setHelperText] = useState(null);
   const [validationErrors, setValidationErrors] = useState({});
+  const [selectedFiles, setSelectedFiles] = useState({});
 
   useEffect(() => {
-    // Fetch options for fields that require dynamic data
     formConfig.sections.forEach(section => {
       section.fields.forEach(field => {
         if (field.fetchOptions) {
@@ -22,15 +22,28 @@ const ReusableForm = ({ formConfig}) => {
     });
   }, [formConfig]);
 
+  const getFieldFromDotNotation = (obj, dotNotation) => {
+    return dotNotation.split('.').reduce((acc, key) => acc[key], obj);
+  };
+
+  const assembleLabel = (option, labelFieldAssembly, separator = ' ') => {
+    return labelFieldAssembly.map(field => getFieldFromDotNotation(option, field)).join(separator);
+  };
+
   const fetchOptions = async (field) => {
     try {
       const response = await fetch(field.fetchOptions.url, {
         method: field.fetchOptions.method
       });
       const data = await response.json();
+
+      const options = data[field.fetchOptions.target].map(option => ({
+        value: getFieldFromDotNotation(option, field.fetchOptions.valueField),
+        label: assembleLabel(option, field.fetchOptions.labelField, field.fetchOptions.labelSeparator)
+      }));
       setDynamicOptions(prevOptions => ({
         ...prevOptions,
-        [field.name]: data.options.map(option => ({ value: option, label: option })) // Adjust the path to match your API response structure
+        [field.name]: options
       }));
     } catch (error) {
       console.error('Error fetching options:', error);
@@ -39,10 +52,22 @@ const ReusableForm = ({ formConfig}) => {
 
   const handleChange = (event) => {
     const { name, value, files } = event.target;
-    setFormData({
-      ...formData,
-      [name]: files ? files[0] : value
-    });
+    if (files) {
+      const fileArray = Array.from(files);
+      setFormData(prevData => ({
+        ...prevData,
+        [name]: prevData[name] ? [...prevData[name], ...fileArray] : fileArray
+      }));
+      setSelectedFiles(prevFiles => ({
+        ...prevFiles,
+        [name]: prevFiles[name] ? [...prevFiles[name], ...fileArray] : fileArray
+      }));
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
   };
 
   const handleMultiSelectChange = (selectedOptions, name) => {
@@ -102,7 +127,7 @@ const ReusableForm = ({ formConfig}) => {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/submit-form', {
+      const response = await fetch(formConfig.endpoint, {
         method: 'POST',
         body: formDataToSend
       });
@@ -147,7 +172,7 @@ const ReusableForm = ({ formConfig}) => {
         isFieldVisible(field) && (
           <div key={field.name} className="flex flex-col">
             <label className="mb-2 font-semibold flex items-center">
-              {field.label}:
+              {field.label}
               {field.helperText && (
                 <div onClick={() => toggleHelperText(field.helperText)}>
                   <InfoIcon />
@@ -155,7 +180,7 @@ const ReusableForm = ({ formConfig}) => {
               )}
             </label>
             {helperText === field.helperText && (
-              <p className="mb-2 text-sm text-gray-600">{field.helperText}</p>
+              <p className="mb-2 text-sm text-gray-600"> <div dangerouslySetInnerHTML={{__html: field.helperText}}/></p>
             )}
             {validationErrors[field.name] && (
               <p className="mb-2 text-sm text-red-600">{validationErrors[field.name]}</p>
@@ -185,6 +210,27 @@ const ReusableForm = ({ formConfig}) => {
                   ))}
                 </select>
               )
+            ): field.type === 'multiselect' ? (
+              field.fetchOptions ? (
+                <Select
+                  name={field.name}
+                  onChange={(selectedOptions) => handleMultiSelectChange(selectedOptions, field.name)}
+                  options={dynamicOptions[field.name]}
+                  isMulti
+                  required={field.required}
+                  className="w-full"
+                />
+              ) : (
+                <Select
+                  name={field.name}
+                  value={formData[field.name] ? formData[field.name].map(option => ({ value: option, label: option })) : []}
+                  onChange={(selectedOptions) => handleMultiSelectChange(selectedOptions, field.name)}
+                  options={field.options.map(option => ({ value: option, label: option }))}
+                  isMulti
+                  required={field.required}
+                  className="w-full"
+                />
+              )
             ) : field.type === 'textarea' ? (
               <textarea
                 name={field.name}
@@ -197,13 +243,22 @@ const ReusableForm = ({ formConfig}) => {
                 className={`p-2 border rounded ${validationErrors[field.name] ? 'border-red-600' : 'border-gray-300'}`}
               ></textarea>
             ) : field.type === 'file' ? (
-              <input
-                type="file"
-                name={field.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={`p-2 border rounded ${validationErrors[field.name] ? 'border-red-600' : 'border-gray-300'}`}
-              />
+              <>
+                <input
+                  type="file"
+                  name={field.name}
+                  onChange={handleChange}
+                  multiple={field.allowMultiple}
+                  className="p-2 border rounded"
+                />
+                {selectedFiles[field.name] && (
+                  <ul className="mt-2">
+                    {selectedFiles[field.name].map((file, index) => (
+                      <li key={index} className="text-sm text-gray-700">{file.name}</li>
+                    ))}
+                  </ul>
+                )}
+              </>
             ) : (
               <input
                 type={field.type}
@@ -211,6 +266,7 @@ const ReusableForm = ({ formConfig}) => {
                 value={formData[field.name] || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                placeholder={field.placeholder}
                 required={field.required}
                 className={`p-2 border rounded ${validationErrors[field.name] ? 'border-red-600' : 'border-gray-300'}`}
               />
