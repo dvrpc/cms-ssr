@@ -1,0 +1,158 @@
+{
+  "name": "Municipal Bridge Intake",
+  "sections": [
+    {
+      "title": "Applicant Information",
+      "fields": [
+        {
+          "type": "text",
+          "name": "sponsor",
+          "label": "Project Sponsor",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "applicant",
+          "label": "Applicant Name",
+          "required": true
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "Email Address",
+          "placeholder": "name@gmail.com",
+          "required": true,
+          "validationPattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+          "validationWarning": "Please enter a valid email address."
+        }
+      ]
+    },
+    {
+      "title": "Project Details",
+      "fields": [
+        {
+          "type": "select",
+          "name": "county",
+          "label": "Project Location",
+          "required": true,
+          "options": [
+            "Bucks",
+            "Chester",
+            "Delaware",
+            "Montgomery",
+            "Philadelphia",
+            "Burlington",
+            "Camden",
+            "Gloucester",
+            "Mercer"
+          ],
+          "helperText": "What county(s) is the project located within?"
+        },
+        {
+          "type": "select",
+          "name": "existing_mrp",
+          "label": "Is your project an existing Major Regional Project (MRP) per the current DVRPC Long-Range Plan?",
+          "required": true,
+          "options": ["yes", "no", "unsure"]
+        },
+        {
+          "type": "text",
+          "name": "mrp_id",
+          "label": "MRP ID",
+          "required": true,
+          "condition": {
+            "field": "existing_mrp",
+            "value": "yes"
+          }
+        },
+        {
+          "type": "select",
+          "name": "existing_tip",
+          "label": "Are there TIP projects associated with this project?",
+          "required": true,
+          "options": ["yes", "no", "unsure"]
+        },
+        {
+          "type": "text",
+          "name": "tip_id",
+          "label": "MPMS (PA) or DB numbers (NJ) of associated projects.",
+          "required": true,
+          "condition": {
+            "field": "existing_tip",
+            "value": "yes"
+          }
+        },
+        {
+          "type": "text",
+          "name": "title",
+          "label": "Proposed Project Title",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "route_id",
+          "label": "Facility or Route Name and Number",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "extent",
+          "label": "Project Boundaries",
+          "required": true,
+          "helperText": "At which routes or other landmarks does the project start and terminate (terminus intersections/ PA road segments/ distance from known intersection)? If corridor is known but specific elements like ADA access is not, please provide corridor. Note: a project must be mappable in order to be modeled, evaluated, and receive funding, but can remain on the unfunded Vision Plan if no location is available."
+        },
+        {
+          "type": "select",
+          "name": "bridge_work",
+          "label": "Does this project include work to one or more bridges?",
+          "required": true,
+          "options": ["yes", "no"]
+        },
+        {
+          "type": "text",
+          "name": "bridge_id",
+          "label": "List all relevant Bridge Keys (PA)/Structure Numbers (NJ)",
+          "required": true,
+          "placeholder": "47695,47701",
+          "condition": {
+            "field": "existing_tip",
+            "value": "yes"
+          }
+        },
+        {
+          "type": "textarea",
+          "name": "scope",
+          "label": "Project Scope",
+          "required": true,
+          "rows": 8,
+          "placeholder": "Briefly describe the improvements to be made to the listed facility if funds are allocated. This description should be kept short for inclusion in the Plan document(s)."
+        }
+      ]
+    },
+    {
+      "title": "Additional Information",
+      "fields": [
+        {
+          "type": "file",
+          "name": "attachment",
+          "label": "Attachment",
+          "required": false,
+          "condition": {
+            "field": "inquiry_type",
+            "value": "Support"
+          }
+        },
+        {
+          "type": "multiselect",
+          "name": "dynamic_multiselect",
+          "label": "Dynamic Multi-Select",
+          "required": true,
+          "fetchOptions": {
+            "url": "https://api.example.com/options",
+            "method": "GET"
+          }
+        }
+      ]
+    }
+  ]
+}
