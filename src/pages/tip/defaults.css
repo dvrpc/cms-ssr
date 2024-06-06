@@ -1,0 +1,29 @@
+a {
+  text-decoration: underline !important;
+}
+
+.data-table-extensions-filter > .icon {
+  display: none !important;
+}
+
+.card {
+  background-color: #fdfeff;
+  border-radius: 2px;
+  border: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08), 0 2px 5px 0 rgba(0, 0, 0, 0.06);
+  padding: 18px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.mycard-header {
+  padding: 0.5rem 1rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.mycard-body {
+  flex: 1 1 auto;
+  padding: 1rem 1rem;
+}
