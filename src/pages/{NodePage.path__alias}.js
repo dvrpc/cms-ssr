@@ -3,7 +3,6 @@ import { graphql } from "gatsby";
 import { isMatch } from "matcher";
 import CommitteePage from "../components/CommitteePage";
 import DefaultPage from "../components/DefaultPage";
-import DataPage from "../components/DataPage";
 import HeadTemplate, { themeToCustomVars } from "../components/HeadTemplate";
 
 const templates = {
@@ -84,79 +83,35 @@ export const query = graphql`
       }
     }
     navItem(href: { regex: $regex }) {
+      ...nestednavitem
+    }
+  }
+  fragment navitem on NavItem {
+    href
+    link
+    style
+    class
+    links {
       href
       link
       style
       class
-      links {
-        href
-        link
-        style
-        class
-      }
-      parent {
-        ... on NavItem {
-          href
-          link
-          style
-          class
-          links {
-            href
-            link
-            style
-            class
-          }
-          parent {
-            ... on NavItem {
-              href
-              link
-              style
-              class
-              links {
-                href
-                link
-                style
-                class
-              }
-              parent {
-                ... on NavItem {
-                  href
-                  link
-                  style
-                  class
-                  links {
-                    href
-                    link
-                    style
-                    class
-                  }
-                  parent {
-                    ... on NavItem {
-                      href
-                      link
-                      style
-                      class
-                      links {
-                        href
-                        link
-                        style
-                        class
-                      }
-                      parent {
-                        ... on NavItem {
-                          href
-                          link
-                          style
-                          class
-                          links {
-                            href
-                            link
-                            style
-                            class
-                          }
-                        }
-                      }
-                    }
+    }
+  }
+  fragment nestednavitem on NavItem {
+    ...navitem
+    parent {
+      ... on NavItem {
+        ...navitem
+        parent {
+          ... on NavItem {
+            ...navitem
+            parent {
+              ... on NavItem {
+                ...navitem
+                parent {
+                  ... on NavItem {
+                    ...navitem
                   }
                 }
               }

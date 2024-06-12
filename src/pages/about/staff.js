@@ -130,25 +130,8 @@ export const query = graphql`
       }
     }
     navItem(href: { regex: "/about/staff/i" }) {
-      ...navitem
-      links {
-        ...navitem
-      }
-      parent {
-        ...navitem
-        ... on NavItem {
-          links {
-            ...navitem
-          }
-        }
-      }
+      ...nestednavitem
     }
-  }
-  fragment navitem on NavItem {
-    href
-    link
-    style
-    class
   }
 `;
 

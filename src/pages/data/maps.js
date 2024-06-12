@@ -276,25 +276,8 @@ export const query = graphql`
       title: field_title
     }
     navItem(href: { regex: "/data/maps/i" }) {
-      ...navitem
-      links {
-        ...navitem
-      }
-      parent {
-        ...navitem
-        ... on NavItem {
-          links {
-            ...navitem
-          }
-        }
-      }
+      ...nestednavitem
     }
-  }
-  fragment navitem on NavItem {
-    href
-    link
-    style
-    class
   }
 `;
 

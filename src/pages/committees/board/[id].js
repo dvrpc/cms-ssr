@@ -64,28 +64,9 @@ export const query = graphql`
         }
       }
     }
-    allNavItem(filter: { href: { regex: "/committees/.*/" } }) {
-      nodes {
-        ...navitem
-        links {
-          ...navitem
-        }
-        parent {
-          ...navitem
-          ... on NavItem {
-            links {
-              ...navitem
-            }
-          }
-        }
-      }
+    navItem(href: { regex: "/committees/.*/" }) {
+      ...nestednavitem
     }
-  }
-  fragment navitem on NavItem {
-    href
-    link
-    style
-    class
   }
 `;
 

@@ -80,12 +80,6 @@ export const query = graphql`
       }
     }
   }
-  fragment navitem on NavItem {
-    href
-    link
-    style
-    class
-  }
 `;
 
 export default BusinessPage;

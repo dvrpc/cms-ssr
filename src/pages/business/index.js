@@ -55,25 +55,8 @@ export const query = graphql`
       }
     }
     navItem(href: { regex: "/business/i" }) {
-      ...navitem
-      links {
-        ...navitem
-      }
-      parent {
-        ...navitem
-        ... on NavItem {
-          links {
-            ...navitem
-          }
-        }
-      }
+      ...nestednavitem
     }
-  }
-  fragment navitem on NavItem {
-    href
-    link
-    style
-    class
   }
 `;
 

@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "./Link";
 
-const activeClassName =
-  "active relative font-bold text-black after:absolute after:left-full after:-rotate-45 after:scale-75 after:not-italic after:text-[#d1d1d1] after:content-['◢']";
+const activeClassName = "active text-black";
 
-const MenuItem = ({ node, activeMenuItem, className }) => {
+const MenuItem = ({ activeMenuItem, canonicalUrl, className, node }) => {
   if (!node) return;
+
   const menuItems =
     node.links?.map((child) => {
       if (activeMenuItem && child.href === activeMenuItem.props.node.href) {
@@ -22,7 +22,14 @@ const MenuItem = ({ node, activeMenuItem, className }) => {
 
   return (
     <li>
-      <Link className={className} to={node.href}>
+      <Link
+        to={node.href}
+        className={
+          node.href === canonicalUrl
+            ? `relative font-bold after:absolute after:left-full after:-rotate-45 after:scale-75 after:not-italic after:text-[#d1d1d1] after:content-['◢'] ${className}`
+            : className
+        }
+      >
         {node.link}
       </Link>
       {menuItems.length ? <ul>{menuItems}</ul> : null}
@@ -32,7 +39,15 @@ const MenuItem = ({ node, activeMenuItem, className }) => {
 
 export default ({ data }) => {
   if (data === undefined) return null;
-  const activeNode = <MenuItem node={data} className={activeClassName} />;
+
+  const canonicalUrl = data.href;
+  const activeNode = (
+    <MenuItem
+      canonicalUrl={canonicalUrl}
+      node={data}
+      className={activeClassName}
+    />
+  );
   let parentNode;
   if (activeNode.props.node?.parent) {
     parentNode = (
@@ -55,7 +70,7 @@ export default ({ data }) => {
   }
 
   return (
-    <nav className="text-right text-xl [&_.active+ul>li]:py-0.5 [&_.active+ul]:mb-1 [&_.active+ul]:text-black [&_ul_ul]:text-lg [&_ul_ul]:text-[#6E6E6E] [&_ul_ul_ul]:text-base [&_ul_ul_ul_ul]:text-sm">
+    <nav className="mb-4 text-right text-lg leading-none [&_.active+ul]:text-black [&_li]:py-0.5 [&_ul_ul]:pt-1 [&_ul_ul]:text-base [&_ul_ul]:text-[#6e6e6e] [&_ul_ul_ul]:text-sm [&_ul_ul_ul_ul]:text-xs">
       <ul>{parentNode}</ul>
     </nav>
   );

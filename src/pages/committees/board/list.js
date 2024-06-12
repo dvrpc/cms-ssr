@@ -124,25 +124,8 @@ export const query = graphql`
       }
     }
     navItem(href: { regex: "/committees/board/list/i" }) {
-      ...navitem
-      links {
-        ...navitem
-      }
-      parent {
-        ...navitem
-        ... on NavItem {
-          links {
-            ...navitem
-          }
-        }
-      }
+      ...nestednavitem
     }
-  }
-  fragment navitem on NavItem {
-    href
-    link
-    style
-    class
   }
 `;
 

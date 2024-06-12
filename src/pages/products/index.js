@@ -52,26 +52,6 @@ export const query = graphql`
         }
       }
     }
-    navItem(href: { regex: "/^/products/?$/i" }) {
-      ...navitem
-      links {
-        ...navitem
-      }
-      parent {
-        ...navitem
-        ... on NavItem {
-          links {
-            ...navitem
-          }
-        }
-      }
-    }
-  }
-  fragment navitem on NavItem {
-    href
-    link
-    style
-    class
   }
 `;
 

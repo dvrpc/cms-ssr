@@ -265,28 +265,14 @@ export const query = graphql`
       }
     }
     navItem(href: { regex: "/news/i" }) {
-      ...navitem
-      links {
-        ...navitem
-      }
-      parent {
-        ...navitem
-      }
+      ...nestednavitem
     }
-
     userUser(mail: { eq: "eturner@dvrpc.org" }) {
       id
       mail
       name: field_display_name
       title: field_title
     }
-  }
-
-  fragment navitem on NavItem {
-    href
-    link
-    style
-    class
   }
 `;
 
