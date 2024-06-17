@@ -38,7 +38,7 @@ const MenuItem = ({ activeMenuItem, canonicalUrl, className, node }) => {
 };
 
 export default ({ data }) => {
-  if (data === undefined) return null;
+  if (!data) return null;
 
   const canonicalUrl = data.href;
   const activeNode = (
