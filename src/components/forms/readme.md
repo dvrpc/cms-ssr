@@ -71,55 +71,6 @@ Sure, here are the options for `formConfig`, `section`, and `field` as tables in
 | `values`   | array   | An array of values to compare.                                           |
 | `notEmpty` | boolean | Whether the field should be visible if the condition field is not empty. |
 
-### FormConfig
-
-- `endpoint` (string): The URL where the form data will be submitted.
-- `showProgressIndicator` (string): The type of progress indicator to show (`"vertical"` or `"horizontal"`).
-- `sectionHighlightColor` (string): The highlight color for the current section in the progress bar.
-- `sections` (array): An array of section objects.
-
-### Section
-
-Each section object has the following properties:
-
-- `title` (string): The title of the section.
-- `fields` (array): An array of field objects.
-
-### Field
-
-Each field object has the following properties:
-
-- `name` (string): The unique name of the field.
-- `label` (string): The label text for the field.
-- `type` (string): The type of the field (e.g., `"text"`, `"select"`, `"textarea"`, `"file"`, `"multitext"`, `"table"`, `"description"`).
-- `required` (boolean): Whether the field is required.
-- `placeholder` (string): The placeholder text for the field (optional).
-- `helperText` (string): Additional helper text for the field (optional).
-- `validationPattern` (string): The regex pattern for validating the field input (optional).
-- `validationWarning` (string): The warning message to display if validation fails (optional).
-- `options` (array): An array of options for select fields (optional).
-- `fetchOptions` (object): Configuration for dynamically fetching options (optional).
-  - `url` (string): The URL to fetch options from.
-  - `method` (string): The HTTP method to use for fetching options (`"GET"` or `"POST"`).
-  - `target` (string): The key in the response data that contains the options.
-  - `valueField` (string): The field in the response data to use as the option value.
-  - `labelField` (array): An array of fields in the response data to use for the option label.
-  - `labelSeparator` (string): The separator to use between label fields (optional).
-- `allowMultiple` (boolean): Whether multiple files can be selected (for file fields).
-- `maxSize` (number): The maximum file size allowed (for file fields).
-- `allowedTypes` (array): An array of allowed file types (for file fields).
-- `table` (string): The name of the table this field is part of (for table fields).
-- `labelName` (string): The label name for table headers.
-- `valueName` (string): The value name for table headers.
-- `units` (string): The units for table values.
-- `summary` (string): The summary text for table totals.
-- `rows` (number): The number of rows for textarea fields.
-- `condition` (object): Condition to determine if the field should be visible (optional).
-  - `field` (string): The field name to check.
-  - `value` (string): The value to compare.
-  - `values` (array): An array of values to compare.
-  - `notEmpty` (boolean): Whether the field should be visible if the condition field is not empty.
-
 ## Examples
 
 ### Example Configuration
