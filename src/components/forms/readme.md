@@ -165,7 +165,3 @@ Fields can dynamically fetch options from an API using the `fetchOptions` proper
 ```
 
 In this example, the field will fetch options from the specified URL and use the `id` field as the value and the `name` field as the label for each option.
-
----
-
-This is a basic outline to help you get started with documenting your `ReusableForm` component. You can expand on this by providing more detailed examples, explanations, and any other relevant information specific to your use case.
