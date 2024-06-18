@@ -1,16 +1,12 @@
 {
   "sheetID": "somegooglesheet",
-  "name": "Municipal Bridge Intake",
+  "name": "Major Regional Projects",
+  "endpoint": "http://127.0.0.1:8000/submit-form",
+  "showProgressIndicator": "horizontal",
   "sections": [
     {
       "title": "Applicant Information",
       "fields": [
-        {
-          "type": "text",
-          "name": "sponsor",
-          "label": "Project Sponsor",
-          "required": true
-        },
         {
           "type": "text",
           "name": "applicant",
@@ -25,11 +21,25 @@
           "required": true,
           "validationPattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
           "validationWarning": "Please enter a valid email address."
+        },
+        {
+          "type": "text",
+          "name": "sponsor",
+          "label": "Project Sponsor",
+          "required": true,
+          "helperText": "Organization responsible for project management of candidate project."
+        },
+        {
+          "type": "text",
+          "name": "title",
+          "label": "Proposed Project Title",
+          "required": true,
+          "helperText": "Short title using primary facility/ies and purpose or application. Refer to Connections 2050 project list for examples."
         }
       ]
     },
     {
-      "title": "Project Details",
+      "title": "Project Overview",
       "fields": [
         {
           "type": "multiselect",
@@ -47,17 +57,55 @@
             "Gloucester",
             "Mercer"
           ],
-          "helperText": "What county(s) is the project located within?"
+          "helperText": "Select all counties relevant for project location. Percent allocation of relevant funds for each county selected will be split evenly."
         },
+        {
+          "type": "textarea",
+          "name": "scope",
+          "label": "Project Scope",
+          "required": true,
+          "rows": 8,
+          "placeholder": "Briefly describe the improvements to be made to the listed facility if funds are allocated. This description should be kept short for inclusion in the Plan document(s)."
+        },
+        {
+          "type": "textarea",
+          "name": "need",
+          "label": "Project Need",
+          "required": true,
+          "rows": 8,
+          "placeholder": "Describe the problem the project is intended to address. The need should be factual, quantifiable, establish evidence of current or future transportation problems, and justify commitment of funding this project and impacts to the environment."
+        },
+        {
+          "type": "text",
+          "name": "route_id",
+          "label": "Facility or Route Name and Number",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "extent",
+          "label": "Project Boundaries",
+          "required": false,
+          "helperText": "At which routes or other landmarks does the project start and terminate (terminus intersections/ PA road segments/ distance from known intersection)? If corridor is known but specific elements like ADA access is not, please provide corridor. Note: a project must be mappable in order to be modeled, evaluated, and receive funding, but can remain on the unfunded Vision Plan if no location is available."
+        }
+      ]
+    },
+    {
+      "title": "Project Details",
+      "fields": [
         {
           "type": "select",
           "name": "existing_mrp",
           "label": "Is your project an existing Major Regional Project (MRP) per the current DVRPC Long-Range Plan?",
           "required": true,
-          "options": ["yes", "no", "unsure"]
+          "options": [
+            "yes",
+            "no",
+            "unsure"
+          ]
         },
         {
-          "type": "multiselect",
+          "type": "select",
           "name": "mrp_id",
           "label": "Existing MRP ID",
           "required": true,
@@ -68,11 +116,13 @@
           "fetchOptions": {
             "url": "https://services1.arcgis.com/LWtWv6q6BJyKidj8/ArcGIS/rest/services/MRP2050/FeatureServer/2/query?where=1=1&outFields=MRP_ID,FACILITY&f=json",
             "method": "GET",
-            "valueField": "attributes.MRP_ID", 
-            "labelField": ["attributes.MRP_ID", "attributes.FACILITY"],
+            "valueField": "attributes.MRP_ID",
+            "labelField": [
+              "attributes.MRP_ID",
+              "attributes.FACILITY"
+            ],
             "labelSeparator": " - ",
             "target": "features"
-
           }
         },
         {
@@ -80,23 +130,43 @@
           "name": "existing_tip",
           "label": "Are there TIP projects associated with this project?",
           "required": true,
-          "options": ["yes", "no", "unsure"]
+          "options": [
+            "yes",
+            "no",
+            "unsure"
+          ]
         },
         {
-          "type": "text",
+          "type": "multitext",
           "name": "tip_id",
           "label": "MPMS (PA) or DB numbers (NJ) of associated projects.",
           "required": true,
+          "placeholder": "Type individual project number and hit enter",
           "condition": {
             "field": "existing_tip",
             "value": "yes"
           }
         },
         {
-          "type": "text",
-          "name": "title",
-          "label": "Proposed Project Title",
-          "required": true
+          "type": "select",
+          "name": "bridge_work",
+          "label": "Does this project include work to one or more bridges?",
+          "required": true,
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        {
+          "type": "multitext",
+          "name": "bridge_id",
+          "label": "List all relevant Bridge Keys (PA)/Structure Numbers (NJ)",
+          "required": true,
+          "placeholder": "Type individual bridge ID number and hit enter",
+          "condition": {
+            "field": "bridge_work",
+            "value": "yes"
+          }
         },
         {
           "type": "multiselect",
@@ -129,58 +199,357 @@
             "R6.07 - Regional Programs",
             "T1 - Transit Preservation & Modernization",
             "T2 - Transit Operational Improvements",
-            "T3 - Transit System Expansion",
-            "T4 - Transit Other"
+            "T3 - Transit System Expansion"
           ],
           "helperText": "Select roadway project subcategories or transit categories that reflect the scope of the project (check all that apply). <a target='_blank' href='https://drive.google.com/file/d/1w5WYDPaWYf1URXI1FNYQoCL0NMc24KEC/view'>See full category descriptions.</a>"
         },
         {
+          "name": "r1",
+          "label": "R1 - Pavement Preservation & Modernization",
+          "value": 0,
+          "type": "number",
+          "table": "cat_share",
+          "required": true,
+          "condition": {
+            "field": "project_subcat",
+            "values": [
+              "R1.01 - Interstate Roadway Preservation & Modernization", 
+              "R1.02 - Non-Interstate Roadway Preservation & Modernization",
+              "R1.03 - Local Federal Aid Roadways"
+            ]
+          }
+        },
+        {
+          "name": "r2",
+          "label": "R2 - Bridge Preservation",
+          "value": 0,
+          "type": "number",
+          "table": "cat_share",
+          "required": true,
+          "condition": {
+            "field": "project_subcat",
+            "values": [
+              "R2.01 - Interstate Bridge Preservation",
+              "R2.02 - Non-Interstate Bridge Preservation",
+              "R2.03 - Bridge Removal",
+              "R2.04 - Local Bridges"
+            ]
+          }
+        },
+        {
+          "name": "r3",
+          "label": "R3 - Substantive Safety",
+          "value": 0,
+          "type": "number",
+          "table": "cat_share",
+          "required": true,
+          "condition": {
+            "field": "project_subcat",
+            "values": [
+              "R3.01 - Substantive Safety Infrastructure",
+              "R3.02 - Incident Management"
+            ]
+          }
+        },
+        {
+          "name": "r4",
+          "label": "R4 - Mobility Operational Improvements",
+          "value": 0,
+          "type": "number",
+          "table": "cat_share",
+          "required": true,
+          "condition": {
+            "field": "project_subcat",
+            "values": [
+              "R4.01 - Accessibility Improvements",
+              "R4.02 - Intersection Improvements",
+              "R4.03 - Transportation Systems Management and Operations (TSMO)",
+              "R4.04 - Vehicle Technology"
+            ]
+          }
+        },
+        {
+          "name": "r5",
+          "label": "R5 - Roadway Expansion",
+          "value": 0,
+          "type": "number",
+          "table": "cat_share",
+          "required": true,
+          "condition": {
+            "field": "project_subcat",
+            "values": [
+              "R5.01 - Major Road Network Expansion",
+              "R5.02 - Minor Road Network Expansion",
+              "R5.03 - Additionally Funded Road Network Expansion"
+            ]
+          }
+        },
+        {
+          "name": "r6",
+          "label": "R6 - Green Transportation",
+          "value": 0,
+          "type": "number",
+          "table": "cat_share",
+          "required": true,
+          "condition": {
+            "field": "project_subcat",
+            "values": [
+              "R6.01 - Bicycle and Pedestrian Network Expansion",
+              "R6.02 - Off-Road Trail Resurfacing & Reconstruction",
+              "R6.03 - Community Connections",
+              "R6.04 - Environmental Mitigation & Resiliency",
+              "R6.05 - Travel Demand Management",
+              "R6.06 - Rail Improvements",
+              "R6.07 - Regional Programs"
+            ]
+          }
+        },
+        {
+          "name": "t1",
+          "label": "T1 - Transit Preservation & Modernization",
+          "value": 0,
+          "type": "number",
+          "table": "cat_share",
+          "required": true,
+          "condition": {
+            "field": "project_subcat",
+            "value": "T1 - Transit Preservation & Modernization"
+          }
+        },
+        {
+          "name": "t2",
+          "label": "T2 - Transit Operational Improvements",
+          "value": 0,
+          "type": "number",
+          "table": "cat_share",
+          "required": true,
+          "condition": {
+            "field": "project_subcat",
+            "value": "T2 - Transit Operational Improvements"
+          }
+        },
+        {
+          "name": "t3",
+          "label": "T3 - Transit System Expansion",
+          "value": 0,
+          "type": "number",
+          "table": "cat_share",
+          "required": true,
+          "condition": {
+            "field": "project_subcat",
+            "value": "T3 - Transit System Expansion"
+          }
+        },
+        {
+          "name": "cat_share",
+          "type": "table",
+          "label": "Funding distribution among primary project categories",
+          "helperText": "Enter the approximate percent of funds dedicated to each primary category. Note: every category must have >0% if a subcategory from within is selected in the previous question. All portions must add to 100%. Roadway projects subject to validation by DOTs.",
+          "labelName": "Category",
+          "valueName": "Share of Project (%)",
+          "condition": {
+            "field": "project_subcat",
+            "notEmpty": true
+          },
+          "validSum": 100,
+          "summary": "Total"
+        }
+      ]
+    },
+    {
+      "title": "Project Cost",
+      "fields": [
+        {
           "type": "text",
-          "name": "route_id",
-          "label": "Facility or Route Name and Number",
-          "required": true
+          "name": "project_cost",
+          "label": "List the total cost of the project in millions of dollars, (including all phases and any funds already allocated or spent).",
+          "required": true,
+          "validationPattern": "^-?\\d+(\\.\\d+)?$",
+          "validationWarning": "Enter a valid number.",
+          "helperText": "Note the new MRP threshold of $40 million, except for R5 projects in the second two Plan Periods, which can be any cost."
         },
         {
           "type": "text",
-          "name": "extent",
-          "label": "Project Boundaries",
+          "name": "base_year",
+          "label": "What year was the cost of this project estimated?",
           "required": true,
-          "helperText": "At which routes or other landmarks does the project start and terminate (terminus intersections/ PA road segments/ distance from known intersection)? If corridor is known but specific elements like ADA access is not, please provide corridor. Note: a project must be mappable in order to be modeled, evaluated, and receive funding, but can remain on the unfunded Vision Plan if no location is available."
+          "validationPattern": "^(19[7-9]\\d|20[0-2]\\d|2030)$",
+          "validationWarning":"Enter a valid year",
+          "placeholder": "2023"
+        },
+        {
+          "type": "text",
+          "name": "external_funding",
+          "label": "List any funding source and amount (in millions of dollars) that is not federal, state, or local funding. Examples include private development, philanthropic, external authority."
+        },
+        {
+          "type": "multiselect",
+          "name": "timeperiod",
+          "label": "Indicate the time period(s) for construction based on project readiness (select all that apply). Fiscal constraint discussions may change final programming.",
+          "required": true,
+          "options":[
+            "PA 2026-2030", "PA 2031-2036", "PA 2037-2045", "PA 2046-2050",
+            "NJ 2026-2029", "NJ 2030-2035", "NJ 2036-2045", "NJ 2046-2050"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Project Impacts",
+      "fields": [
+        {
+          "type": "multiselect",
+          "name": "traffic_impact",
+          "label": "Will your project impact existing traffic movements by involving any of these activities (select all that apply)?",
+          "options":[
+            "Creating a new roadway or combining road lanes",
+            "Removing an existing vehicular travel lane",
+            "Adding new traffic movement(s) at an interchange",
+            "Extending an existing transit line",
+            "Creating a new fixed route transit service",
+            "Increasing/adding parking at a transit station",
+            "Significant changes to transit service levels",
+            "Coordinating Traffic Signals",
+            "Adding a traffic signal at an unsignalized location"
+          ]
+        },
+        {
+          "type": "textarea",
+          "name": "traffic_impact_note",
+          "label": "Provide additional details for the expected traffic impacts",
+          "required": true,
+          "placeholder": "For example, if adding/removing a lane, please specify how many. Or, for a roadway extension, what road, how far, and what is the extent?",
+          "condition": {
+            "field": "traffic_impact",
+            "notEmpty": true
+          }
+        },
+        {
+          "type": "text",
+          "name": "signalize_location",
+          "label": "Identify the location where new traffic signal(s) will be added.",
+          "required":true,
+          "condition": {
+            "field": "traffic_impact",
+            "value": "Adding a traffic signal at an unsignalized location"
+          }
         },
         {
           "type": "select",
-          "name": "bridge_work",
-          "label": "Does this project include work to one or more bridges?",
-          "required": true,
-          "options": ["yes", "no"]
+          "name": "safety_strategies",
+          "label": "Have any substantive strategies been identified for this project as part of design?",
+          "helperText": "If yes, documentation is required in project engineering. See <a href='https://highways.dot.gov/safety/proven-safety-countermeasures' target='_blank'>FHWA's Safety Countermeasure here</a>.",
+          "options": [
+            "yes",
+            "no",
+            "unsure"
+          ]
         },
         {
-          "type": "text",
-          "name": "bridge_id",
-          "label": "List all relevant Bridge Keys (PA)/Structure Numbers (NJ)",
-          "required": true,
-          "placeholder": "47695,47701",
+          "type": "multiselect",
+          "name": "green_design",
+          "label": "Have any Green Design elements been identified for this project as part of design (select all that apply)?",
+          "helperText": "Documentation required in project engineering for any selected elements.",
+          "options": [
+            "Vegetated medians/curb bump outs (more than just grass)",
+            "Naturalized stormwater basins",
+            "Other non-Green Stormwater Infrastructure solutions to address a documented flooding issue",
+            "Use of pervious pavement",
+            "Enhanced habitat connectivity or wildlife crossings",
+            "Other"
+          ]
+        },
+        {
+          "type": "select",
+          "name": "community_engagement",
+          "label": "Has there been, or will there be, community engagement related to this project that has or can be documented?",
+          "options": [
+            "yes",
+            "no",
+            "unsure"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Project Documentation",
+      "fields": [
+        {
+          "type": "textarea",
+          "name": "route_alignment",
+          "label": "What is the proposed alignment of the proposed new route?",
+          "placeholder": "Specify preferred transit route alignment from starting point to endpoint. Provide the name and number of the preferred alternative. Please upload geospatial data with attachments if available.",
+          "required":true,
           "condition": {
-            "field": "bridge_work",
-            "value": "yes"
+            "field": "project_subcat",
+            "value": "T3 - Transit System Expansion"
           }
         },
         {
           "type": "textarea",
-          "name": "scope",
-          "label": "Project Scope",
-          "required": true,
-          "rows": 8,
-          "placeholder": "Briefly describe the improvements to be made to the listed facility if funds are allocated. This description should be kept short for inclusion in the Plan document(s)."
+          "name": "station_locations",
+          "label": "How many stations will be built along this new route? Where will they be located? What are costs for using different fare zones?",
+          "placeholder": "Specific locations of new stations along new route alignment, including the fare zone each station is located in. Please upload geospatial data with attachments if available.",
+          "required":true,
+          "condition": {
+            "field": "project_subcat",
+            "value": "T3 - Transit System Expansion"
+          }
+        },
+        {
+          "type": "description",
+          "name": "att_desc",
+          "text": "<br/><i>Additional project documentation provided as attachments is required for project evaluation. Based on the project details provided in this application the following documentation items should attached using the file attachment dialog below.</i><br><br><b>Geospatial (GIS) Location</b>: Include shapefiles, drawings, or sketches to assist with mapping the project for conformity analysis and project evaluation. Note: a project must be mappable in order to be modeled, evaluated, and receive funding, but can remain on the unfunded Vision Plan if no location is available."
+        },
+        {
+          "type": "description",
+          "name": "t3_requirement",
+          "text": "<b>Transit Expansion/Improvements</b>: Please include relevant geospatial data for proposed alignment and station locations. Time table accounting for travel time between stations and dwell time at each station in seconds or mark no change if project is on an existing line with expected travel time changes (GTFS if available). Additional documentation on station parking and headways.",
+          "condition": {
+            "field": "project_subcat",
+            "values": ["T2 - Transit Operational Improvements","T3 - Transit System Expansion"]
+          }
+        },
+        {
+          "type": "description",
+          "name": "ss_requirement",
+          "text": "<b>Substantive Safety Countermeasures</b>: provide engineering and design documentation.",
+          "condition": {
+            "field": "safety_strategies",
+            "value": "yes"
+          }
+        },
+        {
+          "type": "description",
+          "name": "gd_requirement",
+          "text": "<b>Green Design Elements</b>: provide engineering and design documentation.",
+          "condition": {
+            "field": "green_design",
+            "notEmpty": true
+          }
+        },
+        {
+          "type": "description",
+          "name": "ce_requirement",
+          "text": "<b>Community Engagement</b>: documentation of previous or planned engagement is required if a project has more potential burdens than benefits to EJ populations. See Project Evaluation Criteria for additional information.",
+          "condition": {
+            "field": "community_engagement",
+            "value": "yes"
+          }
         },
         {
           "type": "file",
-          "name": "attachment",
-          "label": "Attachment",
+          "name": "attachments",
+          "label": "Attachment(s)",
           "allowMultiple": true,
-          "required": false
+          "required": true,
+          "fileHelper": "Max file size: 50MB. Allowed types: .pdf, .zip",
+          "maxSize": 52428800,
+          "allowedTypes": ["application/pdf", "application/zip","application/x-zip-compressed"]
+
         }
       ]
     }
+    
   ]
 }
