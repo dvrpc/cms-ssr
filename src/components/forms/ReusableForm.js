@@ -332,9 +332,8 @@ const ReusableForm = ({ formConfig }) => {
 
   const handleNextSection = (event) => {
     event.preventDefault();
-    const errors = 0
-    //const errors = validateSectionFields();
-    console.log(Object.keys(errors).length);
+    // const errors = 0
+    const errors = validateSectionFields();
     if (Object.keys(errors).length === 0) {
       if (currentSectionIndex < formConfig.sections.length - 1) {
         setCurrentSectionIndex(currentSectionIndex + 1);
