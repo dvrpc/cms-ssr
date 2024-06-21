@@ -19,7 +19,7 @@ const bridgeIntake = ({
   data,
   location
 }) => {
-  const { userUser, navItem } = data;
+  const { userUser, nav } = data;
   return (
     <>
     <div className="container mx-auto my-4 grid gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:grid-cols-3">
@@ -30,7 +30,7 @@ const bridgeIntake = ({
         <ReusableForm formConfig={formConfig} />
       </div>
       <div className="flex flex-col p-4 italic print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-4 md:items-end md:p-0">
-        <Menu data={navItem} />
+        <Menu data={nav} />
         {/* <InfoLinks /> */}
       </div>
     </div>
@@ -86,21 +86,21 @@ export const query = graphql`
       }
     }
     navItem(href: { regex: "/mbrp/i" }) {
-      ...navitem
+      ...nav
       links {
-        ...navitem
+        ...nav
       }
       parent {
-        ...navitem
+        ...nav
         ... on NavItem {
           links {
-            ...navitem
+            ...nav
           }
         }
       }
     }
   }
-  fragment navitem on NavItem {
+  fragment nav on NavItem {
     href
     link
     style
