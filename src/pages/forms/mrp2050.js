@@ -34,16 +34,8 @@ const MRPIntakeForm = ({
         </div>
         <div className="flex flex-col p-4 italic print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-4 md:items-end md:p-0">
           <Menu data={navItem} />
-          {/* <InfoLinks /> */}
         </div>
       </div>
-      {/* <Body title={title} menu={navItem}>
-        <div className="container mx-auto my-4 grid gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:grid-cols-3">
-          <div className="px-4 pt-0 print:p-0 md:col-span-3 md:col-start-1 md:row-start-2 md:p-0">
-            <ReusableForm formConfig={formConfig} />
-          </div>
-        </div>
-      </Body> */}
       <StaffContact staffContact={userUser} location={location} title={title} />
       </>
     );
@@ -54,7 +46,13 @@ const MRPIntakeForm = ({
       title,
       summary:
         "Major Regional Projects",
-      css: themeToCustomVars(nodeTheme, defaultThemeConfig),
+      css: `
+        --color-h1: #433C59;
+        --color-h2: #433C59;
+        --color-h3: #433C59;
+        --color-highlight: #433C59;
+        --bg-cover-image: ${bgImage};
+        --height-banner: 20vw;`,
     });
   
   
