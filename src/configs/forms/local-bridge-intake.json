@@ -1,0 +1,344 @@
+{
+  "sheetID": "somegooglesheet",
+  "name": "Municipal Bridge Intake",
+  "endpoint": "http://127.0.0.1:8000/submit-form",
+  "showProgressIndicator": "horizontal",
+  "sections": [
+    {
+      "title": "Applicant Information",
+      "fields": [
+        {
+          "type": "text",
+          "name": "sponsor",
+          "label": "Project Sponsor",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "applicant",
+          "label": "Applicant Name",
+          "required": true
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "Email Address",
+          "placeholder": "name@gmail.com",
+          "required": true,
+          "validationPattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+          "validationWarning": "Please enter a valid email address."
+        }
+      ]
+    },
+    {
+      "title": "Project Overview",
+      "fields": [
+        {
+          "type": "multiselect",
+          "name": "county",
+          "label": "Project Location",
+          "required": true,
+          "options": [
+            "Bucks",
+            "Chester",
+            "Delaware",
+            "Montgomery",
+            "Philadelphia",
+            "Burlington",
+            "Camden",
+            "Gloucester",
+            "Mercer"
+          ],
+          "helperText": "What county(s) is the project located within?"
+        },
+        {
+          "type": "text",
+          "name": "route_id",
+          "label": "Route Name and Number or Structure #(s)",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "municipality",
+          "label": "Municipality(ies)",
+          "required": true
+        },
+        {
+          "type": "textarea",
+          "name": "purpose",
+          "label": "Summarize Your Project's Purpose",
+          "required": true,
+          "rows": 10,
+          "placeholder": "What is the desired result from this project? For example, will it improve the condition of a bridge, achieve LOS D or better at the intersection, eliminate crashes, etc. Your statement should allow for a reasonable range of alternatives (e.g. rehab or replace bridge). In many cases, the purpose can be stated in a single sentence. If a project has several distinct purposes, each purpose should be individually listed. The purpose statement should not be a laundry list of all the potential benefits of building a project, nor should it list every possible purpose that could conceivably apply to the project."
+        },
+        {
+          "type": "textarea",
+          "name": "need",
+          "label": "Summarize Your Project's Need",
+          "required": true,
+          "rows": 8,
+          "placeholder": "Project What problem will your project address? For example, a poor condition bridge. The need should be factual, quantifiable, establish evidence of current or future transportation problems, and justify commitment of funding this project and impacts to the environment. E.g., If we don't address this bridge's poor condition, then XXX."
+        },
+        {
+          "type": "textarea",
+          "name": "scope",
+          "label": "Summarize Your Project's Scope",
+          "required": true,
+          "rows": 8,
+          "placeholder": "What Funds Will Provide for."
+        },
+        {
+          "type": "select",
+          "name": "business_partner",
+          "label": "Is your municipality a PennDOT ECMS & RAS Registered Business Partner",
+          "required": true,
+          "options": ["yes", "no"],
+          "helperText": "This is required in order to request reimbursement. More information is available here <a href='https://www.penndot.pa.gov/Doing-Business/Pages/ConstructionContractor-Registration.aspx' target='_blank'>PennDOT ECMS & RAS Registered Business Partner</a>."
+        }
+      ]
+    },
+    {
+      "title": "Cost Estimates and Project Schedule",
+      "fields": [
+        {
+          "name": "cost",
+          "label": "Cost Estimates for base year of 2025",
+          "type": "table",
+          "labelName": "Project phase",
+          "valueName": "Cost (2025 $)",
+          "units": "$"
+        },
+        {
+          "name": "pe_cost",
+          "label": "Preliminary Engineering",
+          "value": 0,
+          "type": "number",
+          "table": "cost"
+        },
+        {
+          "name": "fd_cost",
+          "label": "Final Design",
+          "value": 0,
+          "type": "number",
+          "table": "cost"
+        },
+        {
+          "name": "util_cost",
+          "label": "Utility",
+          "value": 0,
+          "type": "number",
+          "table": "cost"
+        },
+        {
+          "name": "row_cost",
+          "label": "Right-of-way",
+          "value": 0,
+          "type": "number",
+          "table": "cost"
+        },
+        {
+          "name": "con_cost",
+          "label": "Construction",
+          "value": 0,
+          "type": "number",
+          "table": "cost"
+        }
+      ]
+    },
+    {
+      "title": "Reference of Proposed Project in Planning and Budget Documents",
+      "fields": [
+        {
+          "type": "description",
+          "name": "ref_intro",
+          "text": "In order to be eligible for funding, a bridge must be listed on the \"Bridge Bill\" (\"Highway-Railroad and Highway Bridge Capital Budget Supplemental Act\") that is part of a final approved PA Capital Budget (see the Municipal Bridge Retro-Reimbursement Program website for an archived list of budget documents).<br/><br/>The program cannot accept bridges listed in a PA Bridge Bill that is \"pending approval.\""
+        },
+        {
+          "type": "select",
+          "name": "bridge_bill",
+          "label": "Which Bridge Bill/Capital Budget (“Highway-Railroad and Highway Bridge Capital Budget Supplemental Act”) is your bridge listed on?",
+          "required": true,
+          "options": [
+            "1982-83 Budget (Amended in 1990)", 
+            "1982-83 Budget",
+            "1991-92 Budget",
+            "1993-94 Budget",
+            "1994-97 Budget",
+            "1999-2000 Budget",
+            "2002-2003 Budget",
+            "2004-2005 Budget",
+            "2005-2006 Budget",
+            "2008-2009 Budget",
+            "2014-2015 Budget",
+            "2022 Budget"
+          ] 
+        },
+        {
+          "type": "text",
+          "name": "bill_ref",
+          "label": "Please indicate the Section Number and PDF page number where your bridge appears in the Capital Budget you checked above.",
+          "required": true
+        },
+        {
+          "type": "multiselect",
+          "name": "plans",
+          "label": "Is the proposed project referenced or supported in any existing planning document(s) from the list below?",
+          "required": false,
+          "options": [
+            "Long-Range Plan",
+            "Planning study",
+            "Master Plan",
+            "Multi-municipal/Regional Plan",
+            "Road Safety Scan",
+            "Road Safety Audit (RSA)",
+            "Other..."
+          ]
+        },
+        {
+          "type": "text",
+          "name": "plan_name",
+          "label": "Please list the name of the plan and the year published for documents noted above.",
+          "required": false,
+          "condition": {
+            "field": "plans",
+            "notEmpty": true
+          }
+        }
+      ]
+    },
+    {
+      "title": "Project Details",
+      "fields": [
+        {
+          "type": "select",
+          "name": "asset_impact",
+          "label": "Please choose one of the two statements below that best reflects your proposed asset improvement (bridge, road, transit, or other asset types):",
+          "required": true,
+          "options": [
+            "The project will bring the asset from a poor condition into a good state of repair.", 
+            "The project will extend the useful life of a facility/asset that is currently not in poor condition."
+          ] 
+        },
+        {
+          "type": "multiselect",
+          "name": "safety_strats",
+          "label": "Will the project implement any of the following safety strategies? Select all that apply.",
+          "required": false,
+          "options": [
+            "Roundabouts",
+            "Variable speed limits",
+            "Sequential Dynamic Chevrons for horizontal curves",
+            "Centerline rumble strips",
+            "Pedestrian hybrid beacons",
+            "Walkways (including trails, sidewalks, sidepaths, etc.)",
+            "Speed safety cameras - Fixed and P2P",
+            "Install median cable barriers on rural four-lane (or more) freeways",
+            "Pavement friction management at ramps and horizontal curves",          
+            "Medians and ped refuge islands in urban and suburban areas",
+            "Reduce/decrease lane width",
+            "Corridor access management",
+            "Dedicated left-turn lanes at intersections",
+            "Install a traffic signal or convert to all-way stop control",
+            "Advance yield or stop markings and signs",
+            "Intersection lighting",
+            "High visibility crosswalks",
+            "Rectangular rapid flashing beacons (RRFB)",
+            "Systemic application of multiple low cost countermeasures at stop controlled intersections - rural locations",
+            "In-lane warning pavement markings for horizontal curves",
+            "Traffic Calming - vertical deflection strategies (including speed humps, raised pedestrian crosswalks, etc.)",
+            "Wider edge lines",
+            "Road diets",
+            "Bicycle lanes",
+            "Install a \"Vehicles Entering When Flashing\" system",
+            "Install intersection conflict warning system",
+            "Reduce posted speed limit/mean speed",
+            "Shoulder rumble strips",
+            "Extend yellow change intervals",
+            "Dedicated right-turn lanes at intersections",
+            "Speed safety cameras - Mobile unit",
+            "Leading pedestrian interval",
+            "Chevron signs and curve signs",
+            "Safety edge",
+            "Backplates with retroreflective borders",
+            "Systemic application of multiple low cost countermeasures at stop controlled intersections - suburban and urban locations",
+            "Pavement friction management at intersections",
+            "Traffic calming (general, if specific details are not known)",
+            "Install red-light indicator lights"
+          ]
+        },
+        {
+          "type": "multiselect",
+          "name": "mobility",
+          "label": "Will your project impact existing traffic movements by involving any of these activities? Select all that apply",
+          "required": false,
+          "options": [
+            "Adding an additional vehicular through travel lane",
+            "Removing an existing vehicular travel lane",
+            "Adding new traffic movement(s) at an interchange",
+            "Roadway extension or new roadway"
+          ]
+        },
+        {
+          "type": "text",
+          "name": "mobility_detail",
+          "label": "Please provide additional detail for your response in the question above. For example, if adding/removing a lane, please specify how many. Or, for a roadway extension, what road, how far, and what is the extent?",
+          "required": false,
+          "condition": {
+            "field": "mobility",
+            "notEmpty": true
+          }
+        },
+        {
+          "type": "select",
+          "name": "signal",
+          "label": "Will your project involve adding a traffic signal at a location that is currently not signalized? ",
+          "required": true,
+          "options": ["yes", "no"] 
+        },
+        {
+          "type": "text",
+          "name": "signal_detail",
+          "label": "Please identify the location where the new signal will be added.",
+          "required": false,
+          "condition": {
+            "field": "traffic_signal",
+            "value": "yes"
+          }
+        },
+        {
+          "type": "multiselect",
+          "name": "green_design",
+          "label": "Will the project include any of the following Green Design elements?",
+          "required": false,
+          "options": [
+            "Bioswales/rain gardens",
+            "Tree trenches",
+            "Vegetated medians/curb bump outs (more than just grass)",
+            "Naturalized stormwater basins",
+            "Other non-Green Stormwater Infrastructure solutions to address a documented flooding issue",
+            "Use of pervious pavement",
+            "Enhanced habitat connectivity or wildlife crossings"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Supporting Documentation",
+      "fields": [
+        {
+          "type": "description",
+          "name": "attachment_desc",
+          "text": "The bridge project must include a letter of support from the County Planning Director with the application. Please attach using this link.<br/><br/>Please also attach any appropriate support documentation, such as, but not limited to Resolutions of Support; approved documents from decision-making groups such as Executive Committees or Boards of Trustees; approved documents from other official decision-making bodies; etc. that will help support your project's inclusion into the TIP.<br/><br/>Please also attach any appropriate GIS files, maps, etc. that will help support your project's inclusion into the TIP."
+        },
+        {
+          "type": "file",
+          "name": "attachments",
+          "label": "Attach files",
+          "allowMultiple": true,
+          "required": true
+        }
+      ]
+    }
+  
+  ]
+}
