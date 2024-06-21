@@ -32,10 +32,7 @@ const FilePill = ({ file, onRemove }) => (
 );
 
 const ReusableForm = ({ formConfig }) => {
-  const [formData, setFormData] = useState(() => {
-    const savedData = localStorage.getItem("formData");
-    return savedData ? JSON.parse(savedData) : {};
-  });
+  const [formData, setFormData] = useState({});
   const [status, setStatus] = useState("");
   const [dynamicOptions, setDynamicOptions] = useState({});
   const [helperText, setHelperText] = useState(null);
@@ -49,7 +46,22 @@ const ReusableForm = ({ formConfig }) => {
   const [transactionComplete, setTransactionComplete] = useState(false)
 
   useEffect(() => {
-    localStorage.setItem("formData", JSON.stringify(formData));
+    if (typeof window !== "undefined") {
+      const savedData = window.localStorage.getItem("formData");
+      if (savedData) {
+        setFormData(JSON.parse(savedData));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        window.localStorage.setItem("formData", JSON.stringify(formData));
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }, [formData]);
 
   useEffect(() => {
