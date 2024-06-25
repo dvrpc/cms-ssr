@@ -238,10 +238,16 @@ const DrupalPage = ({ data }) => {
         )
       );
 
-    if (debounceInput.length)
-      articlesCopy = articlesCopy.filter((article) =>
-        article.node.title.toLowerCase().includes(debounceInput.toLowerCase())
+    if (debounceInput.length) {
+      const regex = new RegExp(debounceInput, "gi");
+      articlesCopy = articlesCopy.filter(
+        (article) =>
+          article.node.title
+            .toLowerCase()
+            .includes(debounceInput.toLowerCase()) ||
+          Boolean(article.node.body.processed.match(regex))
       );
+    }
 
     setArticles(articlesCopy);
   }, [
