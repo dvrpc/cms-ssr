@@ -1,12 +1,17 @@
 {
   "sheetID": "somegooglesheet",
   "name": "Major Regional Projects",
-  "endpoint": "http://127.0.0.1:8000/submit-form",
+  "endpoint": "https://cloud.dvrpc.org/api/project-intake/v1/submit-form",
   "showProgressIndicator": "horizontal",
   "sections": [
     {
       "title": "Applicant Information",
       "fields": [
+        {
+          "type": "hidden",
+          "name": "source",
+          "value": "mrp2050"
+        },
         {
           "type": "text",
           "name": "applicant",
@@ -34,7 +39,8 @@
           "name": "title",
           "label": "Proposed Project Title",
           "required": true,
-          "helperText": "Short title using primary facility/ies and purpose or application. Refer to Connections 2050 project list for examples."
+          "placeholder": "Short title using primary facility/ies and purpose or application. ",
+          "helperText": "Refer to Connections 2050 project list for examples."
         }
       ]
     },
@@ -46,6 +52,7 @@
           "name": "county",
           "label": "Project Location",
           "required": true,
+          "placeholder": "Select all that apply...",
           "options": [
             "Bucks",
             "Chester",
@@ -86,7 +93,7 @@
           "name": "extent",
           "label": "Project Boundaries",
           "required": false,
-          "helperText": "At which routes or other landmarks does the project start and terminate (terminus intersections/ PA road segments/ distance from known intersection)? If corridor is known but specific elements like ADA access is not, please provide corridor. Note: a project must be mappable in order to be modeled, evaluated, and receive funding, but can remain on the unfunded Vision Plan if no location is available."
+          "helperText": "Where does the project start and end? Please provide specific details such as the starting and terminating routes, intersections, road segments, or distances from known intersections. If the project corridor is known but specific elements like ADA access are not, please still provide the corridor information. Note: For a project to be modeled, evaluated, and considered for funding, it must be mappable. However, if no location is available, it can remain on the unfunded Vision Plan. Ex: along Highland Avenue between 4th St and 9th St;  I-95 and Columbus Boulevard between Chestnut and Walnut streets, extending from Front Street to the Delaware River."
         }
       ]
     },
@@ -141,7 +148,7 @@
           "name": "tip_id",
           "label": "MPMS (PA) or DB numbers (NJ) of associated projects.",
           "required": true,
-          "placeholder": "Type individual project number and hit enter",
+          "placeholder": "Type individual project number and press enter",
           "condition": {
             "field": "existing_tip",
             "value": "yes"
@@ -162,7 +169,7 @@
           "name": "bridge_id",
           "label": "List all relevant Bridge Keys (PA)/Structure Numbers (NJ)",
           "required": true,
-          "placeholder": "Type individual bridge ID number and hit enter",
+          "placeholder": "Type individual bridge ID number and press enter",
           "condition": {
             "field": "bridge_work",
             "value": "yes"
@@ -201,7 +208,7 @@
             "T2 - Transit Operational Improvements",
             "T3 - Transit System Expansion"
           ],
-          "helperText": "Select roadway project subcategories or transit categories that reflect the scope of the project (check all that apply). <a target='_blank' href='https://drive.google.com/file/d/1w5WYDPaWYf1URXI1FNYQoCL0NMc24KEC/view'>See full category descriptions.</a>"
+          "helperText": "Select roadway project subcategories or transit categories that reflect the scope of the project (check all that apply). <a target='_blank' href='https://www.dvrpc.org/reports/23128.pdf'>See full category descriptions (page 53, table C-1).</a>"
         },
         {
           "name": "r1",
@@ -210,6 +217,8 @@
           "type": "number",
           "table": "cat_share",
           "required": true,
+          "validationPattern": "^[1-9]\\d*$",
+          "validationWarning": "Funding distribution value can not 0.",
           "condition": {
             "field": "project_subcat",
             "values": [
@@ -226,6 +235,8 @@
           "type": "number",
           "table": "cat_share",
           "required": true,
+          "validationPattern": "^[1-9]\\d*$",
+          "validationWarning": "Funding distribution value can not 0.",
           "condition": {
             "field": "project_subcat",
             "values": [
@@ -243,6 +254,8 @@
           "type": "number",
           "table": "cat_share",
           "required": true,
+          "validationPattern": "^[1-9]\\d*$",
+          "validationWarning": "Funding distribution value can not 0.",
           "condition": {
             "field": "project_subcat",
             "values": [
@@ -258,6 +271,8 @@
           "type": "number",
           "table": "cat_share",
           "required": true,
+          "validationPattern": "^[1-9]\\d*$",
+          "validationWarning": "Funding distribution value can not 0.",
           "condition": {
             "field": "project_subcat",
             "values": [
@@ -275,6 +290,8 @@
           "type": "number",
           "table": "cat_share",
           "required": true,
+          "validationPattern": "^[1-9]\\d*$",
+          "validationWarning": "Funding distribution value can not 0.",
           "condition": {
             "field": "project_subcat",
             "values": [
@@ -291,6 +308,8 @@
           "type": "number",
           "table": "cat_share",
           "required": true,
+          "validationPattern": "^[1-9]\\d*$",
+          "validationWarning": "Funding distribution value can not 0.",
           "condition": {
             "field": "project_subcat",
             "values": [
@@ -311,6 +330,8 @@
           "type": "number",
           "table": "cat_share",
           "required": true,
+          "validationPattern": "^[1-9]\\d*$",
+          "validationWarning": "Funding distribution value can not 0.",
           "condition": {
             "field": "project_subcat",
             "value": "T1 - Transit Preservation & Modernization"
@@ -323,6 +344,8 @@
           "type": "number",
           "table": "cat_share",
           "required": true,
+          "validationPattern": "^[1-9]\\d*$",
+          "validationWarning": "Funding distribution value can not 0.",
           "condition": {
             "field": "project_subcat",
             "value": "T2 - Transit Operational Improvements"
@@ -335,6 +358,8 @@
           "type": "number",
           "table": "cat_share",
           "required": true,
+          "validationPattern": "^[1-9]\\d*$",
+          "validationWarning": "Funding distribution value can not 0.",
           "condition": {
             "field": "project_subcat",
             "value": "T3 - Transit System Expansion"
@@ -344,7 +369,7 @@
           "name": "cat_share",
           "type": "table",
           "label": "Funding distribution among primary project categories",
-          "helperText": "Enter the approximate percent of funds dedicated to each primary category. Note: every category must have >0% if a subcategory from within is selected in the previous question. All portions must add to 100%. Roadway projects subject to validation by DOTs.",
+          "helperText": "Enter the approximate percentage of funds allocated to each primary category. Note: If a subcategory was selected in the previous question, the corresponding primary category must have >0%. Ensure the total allocation sums to 100%. Roadway projects are subject to validation by DOTs. ",
           "labelName": "Category",
           "valueName": "Share of Project (%)",
           "condition": {
@@ -366,7 +391,7 @@
           "required": true,
           "validationPattern": "^-?\\d+(\\.\\d+)?$",
           "validationWarning": "Enter a valid number.",
-          "helperText": "Note the new MRP threshold of $40 million, except for R5 projects in the second two Plan Periods, which can be any cost."
+          "helperText": "Note the new MRP threshold of $40 million, except for R5 projects in the second two Plan Periods, which can be any cost. <br> Please note the new MRP threshold of $40 million, except for R5 Roadway System Expansion projects in the second and third Plan Periods, which can be of any cost.<br><br>R5.01<br>Large-scale projects that will have a significant impact on regional travel. These include addition of new through lanes by widening, extending, or building new limited access highways of any length; creating new interchanges between highways (Highway Performance Monitoring System [HPMS] functional classes 1 or 2) and arterials; widening, extending, or building new principal arterials (HPMS functional classes 3 or 4) for more than three lane miles; or adding additional capacity for flex lanes or part-time shoulder use to existing facilities.<br><br>R5.02<br>Network expansion projects that do not rise to the level of Major Regional Project but will have a significant impact on regional travel. These projects are generally less than three lane miles in length on minor arterial, collector, or local roads."
         },
         {
           "type": "text",
@@ -400,7 +425,7 @@
         {
           "type": "multiselect",
           "name": "traffic_impact",
-          "label": "Will your project impact existing traffic movements by involving any of these activities (select all that apply)?",
+          "label": "Will your project impact existing traffic movements by involving any of these activities? (Select all that apply)?",
           "options":[
             "Creating a new roadway or combining road lanes",
             "Removing an existing vehicular travel lane",
@@ -418,7 +443,7 @@
           "name": "traffic_impact_note",
           "label": "Provide additional details for the expected traffic impacts",
           "required": true,
-          "placeholder": "For example, if adding/removing a lane, please specify how many. Or, for a roadway extension, what road, how far, and what is the extent?",
+          "placeholder": "For example, if a lane is being added or removed, specify how many. For a roadway extension, indicate which road, the distance, and the extent of the extension in lane miles where applicable. Be specific about the number of additional parking spaces, or fixed transit stations added. Detail transit service level changes.",
           "condition": {
             "field": "traffic_impact",
             "notEmpty": true
@@ -429,6 +454,7 @@
           "name": "signalize_location",
           "label": "Identify the location where new traffic signal(s) will be added.",
           "required":true,
+          "placeholder": "Ex: Intersections of State St and Carroll St, Perry St and Allen Pl., Southard and Perry St",
           "condition": {
             "field": "traffic_impact",
             "value": "Adding a traffic signal at an unsignalized location"
@@ -437,7 +463,7 @@
         {
           "type": "select",
           "name": "safety_strategies",
-          "label": "Have any substantive strategies been identified for this project as part of design?",
+          "label": "Have any substantive safety strategies been identified for this project as part of design phase?",
           "helperText": "If yes, documentation is required in project engineering. See <a href='https://highways.dot.gov/safety/proven-safety-countermeasures' target='_blank'>FHWA's Safety Countermeasure here</a>.",
           "options": [
             "yes",
@@ -462,7 +488,7 @@
         {
           "type": "select",
           "name": "community_engagement",
-          "label": "Has there been, or will there be, community engagement related to this project that has or can be documented?",
+          "label": "Has there been any community engagement related to this project that has been documented? Is there project-related community engagement planned?",
           "options": [
             "yes",
             "no",
@@ -477,8 +503,8 @@
         {
           "type": "textarea",
           "name": "route_alignment",
-          "label": "What is the proposed alignment of the proposed new route?",
-          "placeholder": "Specify preferred transit route alignment from starting point to endpoint. Provide the name and number of the preferred alternative. Please upload geospatial data with attachments if available.",
+          "label": "What is the proposed alignment of the new transit route?",
+          "placeholder": "Specify the preferred transit route alignment from the starting point to the endpoint. Include the name and number of the preferred alternative. If available, please upload the GIS layer.",
           "required":true,
           "condition": {
             "field": "project_subcat",
@@ -531,7 +557,7 @@
         {
           "type": "description",
           "name": "ce_requirement",
-          "text": "<b>Community Engagement</b>: documentation of previous or planned engagement is required if a project has more potential burdens than benefits to EJ populations. See Project Evaluation Criteria for additional information.",
+          "text": "<b>Community Engagement</b>: documentation of previous or planned engagement is required if a project has more potential burdens than benefits to EJ populations. See <a target='_blank' href='https://www.dvrpc.org/reports/23128.pdf'>Project Evaluation Criteria</a> for additional information.",
           "condition": {
             "field": "community_engagement",
             "value": "yes"
