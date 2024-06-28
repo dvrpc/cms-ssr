@@ -48,7 +48,7 @@ const ReusableForm = ({ formConfig }) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedData = window.localStorage.getItem("formData");
-      if (savedData.length > 2) {
+      if (savedData && savedData.length > 2) {
         setFormData(JSON.parse(savedData));
       } 
       
