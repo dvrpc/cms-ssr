@@ -48,11 +48,25 @@ const ReusableForm = ({ formConfig }) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedData = window.localStorage.getItem("formData");
-      if (savedData) {
+      if (savedData.length > 2) {
         setFormData(JSON.parse(savedData));
-      }
+      } 
+      
+      // Initialize formData with default values for hidden fields
+      formConfig.sections.forEach((section) => {
+        section.fields.forEach((field) => {
+          if (field.type === "hidden") {
+            setFormData((prevData) => ({
+              ...prevData,
+              [field.name]: field.value,
+            }));
+          }
+        });
+      });
+      
+
     }
-  }, []);
+  }, [formConfig]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -203,10 +217,15 @@ const ReusableForm = ({ formConfig }) => {
   const handleBlur = (event) => {
     const { name, value } = event.target;
     const error = validateField(name, value);
-    setValidationErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: error,
-    }));
+    setValidationErrors((prevErrors) => {
+      const newErrors = { ...prevErrors };
+      if (error) {
+        newErrors[name] = error;
+      } else {
+        delete newErrors[name];
+      }
+      return newErrors;
+    });
   };
 
   const validateSectionFields = () => {
@@ -232,7 +251,7 @@ const ReusableForm = ({ formConfig }) => {
           if (field.validSum !== tableSum) {
             errors[
               field.name
-            ] = `Inputs add up to ${field.validSum}. Current total: ${tableSum}`;
+            ] = `Inputs must add up to ${field.validSum}. Current total: ${tableSum}`;
           }
         }
       }
@@ -373,8 +392,24 @@ const ReusableForm = ({ formConfig }) => {
   };
 
   const handleClearData = () => {
-    localStorage.removeItem("formData");
-    setFormData({});
+    // Clear formData except hidden fields
+    let newFormData = {};
+    formConfig.sections.forEach((section) => {
+      section.fields.forEach((field) => {
+        if (field.type === "hidden") {
+          newFormData[field.name] = field.value;
+        }
+      });
+    });
+    setFormData(newFormData);
+    
+    // Clear selectedFiles
+    setSelectedFiles({});
+    
+    // Reset local storage
+    window.localStorage.removeItem("formData");
+  
+    // Reset other states
     setIsReviewMode(false);
     setTransactionComplete(false);
     setCurrentSectionIndex(0);
@@ -561,6 +596,7 @@ const ReusableForm = ({ formConfig }) => {
               <h2 className="flex items-center justify-between text-xl font-bold">
                 {formConfig.sections[currentSectionIndex].title}
                 <button
+                  type="button"
                   onClick={handleClearData}
                   className="text-sm font-light text-rose-800 hover:text-rose-600"
                 >
@@ -574,7 +610,7 @@ const ReusableForm = ({ formConfig }) => {
                       key={field.name}
                       className={`${!field.table ? "flex flex-col" : ""}`}
                     >
-                      {field.type !== "description" && !field.table ? (
+                      {field.type !== "description" && field.type !== "hidden" && !field.table ? (
                         <label className="mt-2 mb-2 flex items-center font-semibold">
                           {field.label}
                           {field.helperText && (
@@ -598,7 +634,7 @@ const ReusableForm = ({ formConfig }) => {
                           />
                         </p>
                       )}
-                      {validationErrors[field.name] && (
+                      {validationErrors[field.name] && !field.table && (
                         <p className="mb-2 text-sm text-red-600">
                           {validationErrors[field.name]}
                         </p>
@@ -619,26 +655,40 @@ const ReusableForm = ({ formConfig }) => {
                                   f.table === field.name && isFieldVisible(f)
                               )
                               .map((rowField, index) => (
-                                <tr
-                                  key={index}
-                                  className="border-b dark:border-gray-700 dark:bg-gray-800"
-                                >
-                                  <td className="py-4">{rowField.label}</td>
-                                  <td className="py-4 text-right">
-                                    {<b>{field.units}</b> || ""}
-                                    <input
-                                      type="number"
-                                      name={rowField.name}
-                                      value={formData[rowField.name]}
-                                      onChange={handleChange}
-                                      className={`rounded border p-2 text-right ${
-                                        validationErrors[field.name]
-                                          ? "border-red-600"
-                                          : "border-gray-300"
-                                      }`}
-                                    />
-                                  </td>
-                                </tr>
+                                <>
+                                  <tr
+                                    key={index}
+                                    className="border-b dark:border-gray-700 dark:bg-gray-800"
+                                  >
+                                    <td className="py-4">{rowField.label}
+                                      {validationErrors[rowField.name] && (
+                                        <tr key={`error-${index}`}>
+                                          <td colSpan="2">
+                                            <p className="text-sm text-red-600 text-right">
+                                              {validationErrors[rowField.name]}
+                                            </p>
+                                          </td>
+                                        </tr>
+                                      )}
+                                    </td>
+                                    <td className="py-4 text-right">
+                                      {<b>{field.units}</b> || ""}
+                                      <input
+                                        type="number"
+                                        name={rowField.name}
+                                        value={formData[rowField.name]}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        className={`rounded border p-2 text-right ${
+                                          validationErrors[field.name]
+                                            ? "border-red-600"
+                                            : "border-gray-300"
+                                        }`}
+                                      />
+                                    </td>
+                                  </tr>
+                                  
+                                </>
                               ))}
                             <tr className="border-b dark:border-gray-700 dark:bg-gray-800">
                               <td className="py-4">
@@ -654,7 +704,13 @@ const ReusableForm = ({ formConfig }) => {
                       ) : (
                         !field.table && (
                           <>
-                            {field.type === "select" ? (
+                            {field.type === "hidden" ? (
+                              <input
+                                type="hidden"
+                                name={field.name}
+                                value={formData[field.name] || ""}
+                              />
+                            ) : field.type === "select" ? (
                               field.fetchOptions ? (
                                 <Select
                                   name={field.name}
@@ -737,6 +793,7 @@ const ReusableForm = ({ formConfig }) => {
                                       "multi"
                                     )
                                   }
+                                  placeholder={field.placeholder || "Select..."}
                                   options={field.options.map((option) => ({
                                     value: option,
                                     label: option,
@@ -768,6 +825,7 @@ const ReusableForm = ({ formConfig }) => {
                                   type="file"
                                   name={field.name}
                                   onChange={handleChange}
+                                  required={field.required}
                                   multiple={field.allowMultiple}
                                   className="rounded border p-2"
                                 />
