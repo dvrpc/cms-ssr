@@ -13,6 +13,11 @@
           "value": "mrp2050"
         },
         {
+          "type": "description",
+          "name": "overview",
+          "text": "Counties, in coordination with DOTs and Transit agencies, are invited to <b>submit candidate Major Regional Projects</b> for consideration to be listed in the <em>Update: Connections 2050 Long-Range Plan</em>. Major Regional Projects are those that are estimated to cost <b>>= $40 million</b>. All existing funded and aspirational projects must be resubmitted via this form to be considered for the next Plan, unless funds are obligated or programmed to construction in the first 4 years of the TIP. Candidate projects will be accepted <b>from July 1 through August 31, 2024</b>. Projects are entered individually, and should be submitted on a rolling basis as details are available to allow for modeling and evaluation. After submission, the platform will provide a copy of your entry. Please print/save for your records. Contact <a href='mailto:jdavis@dvrpc.org' class='underline'>Jackie Davis (jdavis@dvrpc.org)</a> or <a href='mailto:abey@dvrpc.org' class='underline'>Amani Bey (abey@dvrpc.org)</a> for questions."
+        },
+        {
           "type": "text",
           "name": "applicant",
           "label": "Applicant Name",
@@ -93,7 +98,7 @@
           "name": "extent",
           "label": "Project Boundaries",
           "required": false,
-          "helperText": "Where does the project start and end? Please provide specific details such as the starting and terminating routes, intersections, road segments, or distances from known intersections. If the project corridor is known but specific elements like ADA access are not, please still provide the corridor information. Note: For a project to be modeled, evaluated, and considered for funding, it must be mappable. However, if no location is available, it can remain on the unfunded Vision Plan. Ex: along Highland Avenue between 4th St and 9th St;  I-95 and Columbus Boulevard between Chestnut and Walnut streets, extending from Front Street to the Delaware River."
+          "helperText": "Include specific details about its starting point and terminus. Identify the exact route, intersection, or landmark where the project begins and ends, using street names, route numbers, or distances from known intersections. Mention significant intermediate points and features like ADA access if known. Describe the project corridor comprehensively, even if some elements are unspecified. For example, a project might start at the intersection of Highland Avenue and 4th Street and terminate at Highland Avenue and 9th Street, or start at I-95 at Chestnut Street and terminate at Columbus Boulevard at Walnut Street, extending from Front Street to the Delaware River. <b>Projects must be mappable to be modeled, evaluated, and considered for funding; otherwise, they will be placed on the Unfunded Plan.</b>"
         }
       ]
     },
@@ -180,6 +185,7 @@
           "name": "project_subcat",
           "label": "Project Subcategory",
           "required": true,
+          "placeholder": "Select all that apply...",
           "options": [
             "R1.01 - Interstate Roadway Preservation & Modernization",
             "R1.02 - Non-Interstate Roadway Preservation & Modernization",
@@ -208,7 +214,7 @@
             "T2 - Transit Operational Improvements",
             "T3 - Transit System Expansion"
           ],
-          "helperText": "Select roadway project subcategories or transit categories that reflect the scope of the project (check all that apply). <a target='_blank' href='https://www.dvrpc.org/reports/23128.pdf'>See full category descriptions (page 53, table C-1).</a>"
+          "helperText": "Select roadway project subcategories or transit categories that reflect the scope of the project (check all that apply). <a target='_blank' href='https://www.dvrpc.org/reports/23128.pdf' class='underline'>See full category descriptions (page 53, table C-1).</a>"
         },
         {
           "name": "r1",
@@ -389,8 +395,9 @@
           "name": "project_cost",
           "label": "List the total cost of the project in millions of dollars, (including all phases and any funds already allocated or spent).",
           "required": true,
+          "placeholder": "$40,500,000 is written as \"40.5\"",
           "validationPattern": "^-?\\d+(\\.\\d+)?$",
-          "validationWarning": "Enter a valid number.",
+          "validationWarning": "Enter a valid number. Units are in Millions.",
           "helperText": "Note the new MRP threshold of $40 million, except for R5 projects in the second two Plan Periods, which can be any cost. <br> Please note the new MRP threshold of $40 million, except for R5 Roadway System Expansion projects in the second and third Plan Periods, which can be of any cost.<br><br>R5.01<br>Large-scale projects that will have a significant impact on regional travel. These include addition of new through lanes by widening, extending, or building new limited access highways of any length; creating new interchanges between highways (Highway Performance Monitoring System [HPMS] functional classes 1 or 2) and arterials; widening, extending, or building new principal arterials (HPMS functional classes 3 or 4) for more than three lane miles; or adding additional capacity for flex lanes or part-time shoulder use to existing facilities.<br><br>R5.02<br>Network expansion projects that do not rise to the level of Major Regional Project but will have a significant impact on regional travel. These projects are generally less than three lane miles in length on minor arterial, collector, or local roads."
         },
         {
@@ -464,7 +471,7 @@
           "type": "select",
           "name": "safety_strategies",
           "label": "Have any substantive safety strategies been identified for this project as part of design phase?",
-          "helperText": "If yes, documentation is required in project engineering. See <a href='https://highways.dot.gov/safety/proven-safety-countermeasures' target='_blank'>FHWA's Safety Countermeasure here</a>.",
+          "helperText": "If yes, documentation is required in project engineering. See <a href='https://highways.dot.gov/safety/proven-safety-countermeasures' target='_blank' class='underline'>FHWA's Safety Countermeasure here</a>.",
           "options": [
             "yes",
             "no",
@@ -566,11 +573,11 @@
         {
           "type": "file",
           "name": "attachments",
-          "label": "Attachment(s)",
+          "label": "Attachment(s) - PDF or ZIP",
           "allowMultiple": true,
           "required": true,
-          "fileHelper": "Max file size: 50MB. Allowed types: .pdf, .zip",
-          "maxSize": 52428800,
+          "fileHelper": "Max file size: 18MB. Allowed types: .pdf, .zip",
+          "maxSize": 18874368,
           "allowedTypes": ["application/pdf", "application/zip","application/x-zip-compressed"]
 
         }

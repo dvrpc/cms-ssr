@@ -43,7 +43,9 @@ const ReusableForm = ({ formConfig }) => {
   const [isReviewMode, setIsReviewMode] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitResult, setSubmitResult] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [transactionComplete, setTransactionComplete] = useState(false)
+  const [projectID, setProjectID] = useState("");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -144,18 +146,20 @@ const ReusableForm = ({ formConfig }) => {
         (f) => f.name === name
       );
 
-      // Validate file size and type
+      // Calculate the total size of all selected files
+      const totalSize = fileArray.reduce((sum, file) => sum + file.size, 0);
+
+      // Validate total file size and type
       const invalidFiles = fileArray.filter(
         (file) =>
-          (fieldConfig.maxSize && file.size > fieldConfig.maxSize) ||
           (fieldConfig.allowedTypes &&
             !fieldConfig.allowedTypes.includes(file.type))
       );
 
-      if (invalidFiles.length > 0) {
+      if (invalidFiles.length > 0 || (fieldConfig.maxSize && totalSize > fieldConfig.maxSize)) {
         setValidationErrors((prevErrors) => ({
           ...prevErrors,
-          [name]: `Some files are too large or of invalid type. Max size: ${
+          [name]: `Some files are too large or of invalid type. Max total size: ${
             fieldConfig.maxSize / (1024 * 1024)
           }MB, allowed types: ${fieldConfig.allowedTypes.join(", ")}`,
         }));
@@ -410,6 +414,7 @@ const ReusableForm = ({ formConfig }) => {
     window.localStorage.removeItem("formData");
   
     // Reset other states
+    setProjectID("");
     setIsReviewMode(false);
     setTransactionComplete(false);
     setCurrentSectionIndex(0);
@@ -441,6 +446,15 @@ const ReusableForm = ({ formConfig }) => {
     return (
       <div className="space-y-4 rounded-lg bg-gray-100 p-4">
         <h2 className="text-xl font-bold">Review Your {transactionComplete ? "Submission" : "Form" }</h2>
+        {transactionComplete && projectID && (
+          <>
+          {console.log(projectID)}
+          <div>
+            <p className="text-lg">Submission ID: {projectID}</p>
+          </div>
+          </>
+          
+        )}
         {formConfig.sections.map((section, sectionIndex) => (
           <div key={sectionIndex}>
             <h3 className="text-lg font-semibold">{section.title}</h3>
@@ -448,7 +462,8 @@ const ReusableForm = ({ formConfig }) => {
               <>
                 {isFieldVisible(field) &&
                   field.type !== "description" &&
-                  field.type !== "table" && (
+                  field.type !== "table" && 
+                  field.type !== "hidden" && (
                     <div key={field.name} className="mb-4">
                       <label className="block font-semibold">
                         {field.label}
@@ -508,6 +523,9 @@ const ReusableForm = ({ formConfig }) => {
     );
   };
 
+  const toggleAccordion = () => {
+    setIsOpen(!isOpen);
+  };
   
   const renderSubmissionDialog = () => {
     if (isSubmitting) {
@@ -527,10 +545,10 @@ const ReusableForm = ({ formConfig }) => {
             {submitResult.success ? (
               <div>
                 <h2 className="text-xl font-bold">Success</h2>
-                <p>Your form was submitted successfully!</p>
+                <p>Your application was submitted successfully!</p>
                 <button
                   type="button"
-                  onClick={() => {setSubmitResult(null); setTransactionComplete(true)}}
+                  onClick={() => {setProjectID(submitResult.data.id); setSubmitResult(null); setTransactionComplete(true);}}
                   className="mt-4 px-4 py-2 bg-green-600 text-white rounded"
                 >
                   OK
@@ -539,7 +557,17 @@ const ReusableForm = ({ formConfig }) => {
             ) : (
               <div>
                 <h2 className="text-xl font-bold text-red-600">Error</h2>
-                <p>{submitResult.message}</p>
+                <p>
+                  There was an issue submitting your application. Please try again. If this issue persists, please contact data@dvrpc.org and provide the detailed error message below.<br/>
+                  <button onClick={toggleAccordion} className="text-blue-500 underline ml-2">
+                    {isOpen ? 'Hide Details' : 'Show Details'}
+                  </button>
+                </p>
+                {isOpen && (
+                  <div className="bg-red-100 p-4 mt-2 rounded">
+                    <p>{submitResult.message}</p>
+                  </div>
+                )}
                 <button
                   type="button"
                   onClick={() => setSubmitResult(null)}
@@ -721,6 +749,11 @@ const ReusableForm = ({ formConfig }) => {
                                       "select"
                                     )
                                   }
+                                  value={
+                                    dynamicOptions[field.name]
+                                      ? dynamicOptions[field.name].find(option => option.value === formData[field.name]) || null
+                                      : null
+                                  }
                                   options={dynamicOptions[field.name]}
                                   className={`w-full ${
                                     validationErrors[field.name]
@@ -768,6 +801,14 @@ const ReusableForm = ({ formConfig }) => {
                                       field.name,
                                       "multi"
                                     )
+                                  }
+                                  value={
+                                    formData[field.name]
+                                      ? formData[field.name].map((value) => ({
+                                          value: value,
+                                          label: dynamicOptions[field.name].find((option) => option.value === value)?.label || value
+                                        }))
+                                      : []
                                   }
                                   options={dynamicOptions[field.name]}
                                   onBlur={handleBlur}
@@ -831,7 +872,7 @@ const ReusableForm = ({ formConfig }) => {
                                 />
                                 {field.fileHelper && (
                                   <p className="text-sm text-gray-600">
-                                    {field.helperText}
+                                    {field.fileHelper}
                                   </p>
                                 )}
                                 {selectedFiles[field.name] && (

@@ -14,7 +14,7 @@ import HeadTemplate, {
 import ReusableForm from '../../components/forms/ReusableForm';
 import formConfig from '../../configs/forms/mrp2050.json';
 
-const bgImage = "url(https://cdn.dvrpc.org/sites/default/files/2022-02/2050BannerLOGO_big-04.png), url(https://cdn.dvrpc.org/sites/default/files/2022-02/2050BannerBG_big-04.jpg)"
+const bgImage = "url(https://cms.dvrpc.org/sites/default/files/2024-06/UPDATE-C2050-white_logobig_0.png), url(https://cdn.dvrpc.org/sites/default/files/2022-02/2050BannerBG_big-04.jpg)"
 const title = "Major Regional Project Intake";
 
 
@@ -64,7 +64,7 @@ const MRPIntakeForm = ({
         name: field_display_name
         title: field_title
       }
-      nodeTheme(id: { eq: "0efb8b9d-ee32-58c6-897d-0a50ae2b5ac4" }) {
+      nodeTheme(id: { eq: "5fb5d7e3-d7ce-4b26-91cd-17a4ed14460d" }) {
         field_primary_color
         field_secondary_color
         field_third_color
