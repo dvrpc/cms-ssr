@@ -1,15 +1,13 @@
 import React from 'react';
 import { graphql, Link } from "gatsby";
 import Menu from "../../components/Menu.obsolete";
+import InfoLinks from '../../components/InfoLinks';
 
 import StaffContact from '../../components/StaffContact';
 import HeadTemplate, {
   defaultThemeConfig,
   themeToCustomVars,
 } from "../../components/HeadTemplate";
-
-
-// import bgImage from "../../images/homepagebanner_2560.jpg"
 
 import ReusableForm from '../../components/forms/ReusableForm';
 import formConfig from '../../configs/forms/mrp2050.json';
@@ -22,7 +20,7 @@ const MRPIntakeForm = ({
     data,
     location
   }) => {
-    const { userUser, nav } = data;
+    const { userUser, navItem } = data;
     return (
       <>
       <div className="container mx-auto my-4 grid gap-x-12 print:block print:!max-w-full print:text-black sm:grid-cols-1 md:grid-cols-3">
@@ -33,7 +31,8 @@ const MRPIntakeForm = ({
           <ReusableForm formConfig={formConfig} />
         </div>
         <div className="flex flex-col p-4 italic print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-4 md:items-end md:p-0">
-          <Menu data={nav} />
+          <Menu data={navItem} />
+          <InfoLinks />
         </div>
       </div>
       <StaffContact staffContact={userUser} location={location} title={title} />
@@ -46,13 +45,7 @@ const MRPIntakeForm = ({
       title,
       summary:
         "Major Regional Projects",
-      css: `
-        --color-h1: #433C59;
-        --color-h2: #433C59;
-        --color-h3: #433C59;
-        --color-highlight: #433C59;
-        --bg-cover-image: ${bgImage};
-        --height-banner: 20vw;`,
+      css: themeToCustomVars(nodeTheme, defaultThemeConfig),
     });
   
   
@@ -64,7 +57,7 @@ const MRPIntakeForm = ({
         name: field_display_name
         title: field_title
       }
-      nodeTheme(id: { eq: "5fb5d7e3-d7ce-4b26-91cd-17a4ed14460d" }) {
+      nodeTheme(id: { eq: "b806b0f0-5e4c-5b9a-9d9e-efece9e24031" }) {
         field_primary_color
         field_secondary_color
         field_third_color
@@ -82,19 +75,8 @@ const MRPIntakeForm = ({
           }
         }
       }
-      navItem(href: { eq: "/plan/" }) {
-        ...navitem
-        links {
-          ...navitem
-        }
-        parent {
-          ...navitem
-          ... on NavItem {
-            links {
-              ...navitem
-            }
-          }
-        }
+      navItem(href: { regex: "/plan/i" }) {
+        ...nestednavitem
       }
     }
   `;
