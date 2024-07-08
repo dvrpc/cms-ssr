@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Chart } from "chart.js/auto";
 import { utils } from "xlsx";
 
 const BubbleChart = ({ workbook, geography }) => {
-  if (Chart.getChart("bubble")) Chart.getChart("bubble").destroy();
-
   var dvrpcWorksheet = workbook.Sheets["dvrpc"];
   var dvrpc_data = utils.sheet_to_json(dvrpcWorksheet, { header: 1 });
   dvrpc_data = dvrpc_data.filter((row) => parseInt(row[4])).slice(0, -2);
@@ -32,87 +30,95 @@ const BubbleChart = ({ workbook, geography }) => {
     72: "#AA272599",
   };
 
-  var maxRadius = Math.max(...dvrpc_data.map((row) => row[4]));
-  new Chart("bubble", {
-    type: "bubble",
-    data: {
-      labels: dvrpc_data.map((row) => row[1]),
-      datasets: [
-        {
-          label: "null",
-          data: dvrpc_data.map((row) => ({
-            x: (row[2] * 100).toFixed(1),
-            y: (row[3] * 100).toFixed(1),
-            r: Math.round((row[4] / maxRadius) * 55),
-            category: row[0],
-          })),
-          backgroundColor: "transparent",
-          borderColor: "grey",
-          borderDash: [10],
+  const chartRef = useRef();
+
+  useEffect(() => {
+    if (chartRef && chartRef.current) {
+      if (Chart.getChart("bubble")) Chart.getChart("bubble").destroy();
+      var maxRadius = Math.max(...dvrpc_data.map((row) => row[4]));
+      new Chart(chartRef.current, {
+        type: "bubble",
+        data: {
+          labels: dvrpc_data.map((row) => row[1]),
+          datasets: [
+            {
+              label: "null",
+              data: dvrpc_data.map((row) => ({
+                x: (row[2] * 100).toFixed(1),
+                y: (row[3] * 100).toFixed(1),
+                r: Math.round((row[4] / maxRadius) * 55),
+                category: row[0],
+              })),
+              backgroundColor: "transparent",
+              borderColor: "grey",
+              borderDash: [10],
+            },
+            {
+              label: "null",
+              data: raw_data.map((row) => ({
+                x: (row[2] * 100).toFixed(1),
+                y: (row[3] * 100).toFixed(1),
+                r: Math.round((row[4] / maxRadius) * 55),
+                category: row[0],
+              })),
+            },
+          ],
         },
-        {
-          label: "null",
-          data: raw_data.map((row) => ({
-            x: (row[2] * 100).toFixed(1),
-            y: (row[3] * 100).toFixed(1),
-            r: Math.round((row[4] / maxRadius) * 55),
-            category: row[0],
-          })),
-        },
-      ],
-    },
-    options: {
-      animation: false,
-      scales: {
-        x: {
-          title: {
-            display: true,
-            text: "Automation Risk",
-          },
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Telework Capacity",
-          },
-        },
-      },
-      maintainAspectRatio: false,
-      layout: {
-        autoPadding: false,
-      },
-      plugins: {
-        legend: {
-          display: false,
-        },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              const row = dvrpc_data.filter(
-                (row) => row[1] === context.label
-              )[0];
-              const total = `Employment: ${row[4].toLocaleString()}`;
-              const lq = `LQ: ${row[5]}`;
-              const naics = `NAICS Code: ${row[0]}`;
-              const automation = `Automation Weight: ${row[2].toLocaleString(
-                undefined,
-                { style: "percent", minimumFractionDigits: 1 }
-              )}`;
-              const telework = `Telework Score: ${row[3].toLocaleString(
-                undefined,
-                { style: "percent", minimumFractionDigits: 1 }
-              )}`;
-              return [total, lq, naics, automation, telework];
+        options: {
+          animation: false,
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: "Automation Risk",
+              },
+            },
+            y: {
+              title: {
+                display: true,
+                text: "Telework Capacity",
+              },
             },
           },
+          maintainAspectRatio: false,
+          layout: {
+            autoPadding: false,
+          },
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  const row = dvrpc_data.filter(
+                    (row) => row[1] === context.label
+                  )[0];
+                  const total = `Employment: ${row[4].toLocaleString()}`;
+                  const lq = `LQ: ${row[5]}`;
+                  const naics = `NAICS Code: ${row[0]}`;
+                  const automation = `Automation Weight: ${row[2].toLocaleString(
+                    undefined,
+                    { style: "percent", minimumFractionDigits: 1 }
+                  )}`;
+                  const telework = `Telework Score: ${row[3].toLocaleString(
+                    undefined,
+                    { style: "percent", minimumFractionDigits: 1 }
+                  )}`;
+                  return [total, lq, naics, automation, telework];
+                },
+              },
+            },
+          },
+          backgroundColor: function (context) {
+            return colors[context.raw.category];
+          },
         },
-      },
-      backgroundColor: function (context) {
-        return colors[context.raw.category];
-      },
-    },
-  });
-  return <canvas id="bubble"></canvas>;
+      });
+    }
+  }, [geography, chartRef]);
+
+  return <canvas ref={chartRef} id="bubble"></canvas>;
 };
 
 export default BubbleChart;
