@@ -2,24 +2,25 @@ import React, { useEffect, useRef, useState } from "react";
 import { readFile } from "xlsx";
 import BubbleChart from "../../../components/ceds/BubbleChart";
 import BarChart from "../../../components/ceds/BarChart";
+import Stats from "../../../components/ceds/Stats";
+
+export const regionsMap = {
+  undefined: "Greater Philadelphia",
+  ATL: "Atlanta",
+  BAL: "Baltimore",
+  BOS: "Boston",
+  CHI: "Chicago",
+  DAL: "Dallas",
+  LAX: "Los Angeles",
+  NYC: "New York",
+  PIT: "Pittsburgh",
+  WAS: "Washington",
+};
 
 const WorkForceAnalysis = () => {
   const [geography, setGeography] = useState("ATL");
   const [activeChart, setActiveChart] = useState("total");
   const [workbook, setWorkBook] = useState();
-
-  const regionsMap = {
-    undefined: "Greater Philadelphia",
-    ATL: "Atlanta",
-    BAL: "Baltimore",
-    BOS: "Boston",
-    CHI: "Chicago",
-    DAL: "Dallas",
-    LAX: "Los Angeles",
-    NYC: "New York",
-    PIT: "Pittsburgh",
-    WAS: "Washington",
-  };
 
   useEffect(() => {
     (async () => {
@@ -70,11 +71,18 @@ const WorkForceAnalysis = () => {
       </select>
 
       {workbook && (
-        <BarChart
-          workbook={workbook}
-          geography={geography}
-          activeChart={activeChart}
-        ></BarChart>
+        <>
+          <Stats
+            workbook={workbook}
+            geography={geography}
+            activeChart={activeChart}
+          />
+          <BarChart
+            workbook={workbook}
+            geography={geography}
+            activeChart={activeChart}
+          ></BarChart>
+        </>
       )}
     </>
   );
