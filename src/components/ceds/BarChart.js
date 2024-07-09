@@ -1,24 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { Chart } from "chart.js/auto";
 import { utils } from "xlsx";
+import { regionsMap } from "../../pages/economic/ceds/workforceanalysis";
 
 const BarChart = ({ workbook, geography, activeChart }) => {
-  var worksheet = workbook.Sheets["summary"];
+  const worksheet = workbook.Sheets["summary"];
   var raw_data = utils.sheet_to_json(worksheet, { header: 1 });
   raw_data = raw_data.slice(1);
-
-  var regionsMap = {
-    undefined: "Greater Philadelphia",
-    ATL: "Atlanta",
-    BAL: "Baltimore",
-    BOS: "Boston",
-    CHI: "Chicago",
-    DAL: "Dallas",
-    LAX: "Los Angeles",
-    NYC: "New York",
-    PIT: "Pittsburgh",
-    WAS: "Washington",
-  };
 
   const totalOptions = {
     type: "bar",
