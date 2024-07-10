@@ -3,19 +3,7 @@ import { readFile } from "xlsx";
 import BubbleChart from "../../../components/ceds/BubbleChart";
 import BarChart from "../../../components/ceds/BarChart";
 import Stats from "../../../components/ceds/Stats";
-
-export const regionsMap = {
-  undefined: "Greater Philadelphia",
-  ATL: "Atlanta",
-  BAL: "Baltimore",
-  BOS: "Boston",
-  CHI: "Chicago",
-  DAL: "Dallas",
-  LAX: "Los Angeles",
-  NYC: "New York",
-  PIT: "Pittsburgh",
-  WAS: "Washington",
-};
+import regionsMap from "../../../configs/regionsMap";
 
 const WorkForceAnalysis = () => {
   const [geography, setGeography] = useState("ATL");
