@@ -208,6 +208,23 @@ export const Head = ({ data }) => {
   return HeadTemplate({
     title,
     summary: body?.summary,
+    css: `
+      article img {
+        object-fit: contain;
+        padding: 0.125rem;
+        border-width: 1px;
+        border-color: #c2c2c2;
+      }
+      
+      .image > figure {
+        display: table;
+      }
+
+      .image > figure > figcaption {
+        display: table-caption;
+        caption-side: bottom; 
+        padding: 0px;
+      }`,
   });
 };
 
