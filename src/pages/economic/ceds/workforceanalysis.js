@@ -19,9 +19,10 @@ const WorkForceAnalysis = () => {
   }, [setWorkBook]);
 
   return (
-    <>
-      <div>
+    <div className="container mx-auto px-8 md:grid-cols-[auto_1fr]">
+      <div className="ml-[1.4rem] mb-2 flex items-center font-bold">
         <h3>Greater Philadelphia</h3>
+        <h3 className="mx-2">vs.</h3>
         <select
           id="geography"
           autoComplete="off"
@@ -35,11 +36,15 @@ const WorkForceAnalysis = () => {
               </option>
             ))}
         </select>
+        <span className="ml-10 mr-1 rounded-full border-2 border-[grey] p-2" />
+        <h3 className="mr-4 text-sm text-[grey]">Greater Philadelphia</h3>
+        <span className="mr-1 rounded-full bg-[grey] p-2" />
+        <h3 className="text-sm text-[grey]">Peer Region</h3>
       </div>
 
       {workbook && (
         <>
-          <div className="chart-container">
+          <div className="chart-container h-[60vh]">
             <BubbleChart
               workbook={workbook}
               geography={geography}
@@ -72,7 +77,7 @@ const WorkForceAnalysis = () => {
           ></BarChart>
         </>
       )}
-    </>
+    </div>
   );
 };
 
