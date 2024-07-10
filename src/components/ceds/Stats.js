@@ -1,6 +1,6 @@
 import React from "react";
 import { utils } from "xlsx";
-import { regionsMap } from "../../pages/economic/ceds/workforceanalysis";
+import regionsMap from "../../configs/regionsMap";
 
 const Stats = ({ workbook, geography, activeChart }) => {
   const scoreHex = {
