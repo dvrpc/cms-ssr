@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Chart } from "chart.js/auto";
 import { utils } from "xlsx";
-import { regionsMap } from "../../pages/economic/ceds/workforceanalysis";
+import regionsMap from "../../configs/regionsMap";
 
 const BarChart = ({ workbook, geography, activeChart }) => {
   const worksheet = workbook.Sheets["summary"];
