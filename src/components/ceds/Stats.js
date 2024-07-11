@@ -35,11 +35,11 @@ const Stats = ({ workbook, geography, activeChart }) => {
   dvrpcSectors = dvrpcSectors.filter((row) => row[6] === "competitive");
 
   return (
-    <>
-      <div className="flex divide-x">
-        <div>
-          <h2>Greater Philadelphia</h2>
-          <h2 className="m-0 mr-[0.5rem] inline text-[2.5rem] text-[#2b1956]">
+    <div className="mb-8 flex w-[80%]">
+      <div className="mr-auto border-r-2 border-[#707070]">
+        <h2 className="text-lg font-bold">Greater Philadelphia</h2>
+        <div className="flex items-center md:w-4/5">
+          <h2 className="m-0 mr-[0.5rem] inline text-[2.5rem] font-bold text-[#2b1956]">
             {regionTotal}
           </h2>
           <span>
@@ -56,59 +56,67 @@ const Stats = ({ workbook, geography, activeChart }) => {
               <>of competitive employment has low telework capacity.</>
             )}
           </span>
-          <p className="underline">
-            {activeChart === "total" && (
-              <>Share of Regional Employment by Competitive Sector</>
-            )}
-            {activeChart === "automation" && (
-              <>Automation Risk by Competitive Sector</>
-            )}
-            {activeChart === "telework" && (
-              <>Telework Capacity by Competitive Sector</>
-            )}
-          </p>
-          <div>
-            {activeChart === "total" &&
-              dvrpcSectors.map((row) => (
-                <div className="flex">
-                  <h2 className="font-bold text-[#662d91]">
-                    {(row[4] / dvrpcTotalPercent).toLocaleString(undefined, {
-                      style: "percent",
-                      minimumFractionDigits: 1,
-                    })}
-                  </h2>
-                  <h4>{row[1]}</h4>
-                </div>
-              ))}
-            {activeChart === "automation" &&
-              dvrpcSectors.map((row) => (
-                <div className="flex">
-                  <h2 className="font-bold" style={{ color: scoreHex[row[8]] }}>
-                    {row[2].toLocaleString(undefined, {
-                      style: "percent",
-                      minimumFractionDigits: 1,
-                    })}
-                  </h2>
-                  <h4>{row[1]}</h4>
-                </div>
-              ))}
-            {activeChart === "telework" &&
-              dvrpcSectors.map((row) => (
-                <div className="flex">
-                  <h2 className="font-bold" style={{ color: scoreHex[row[9]] }}>
-                    {row[3].toLocaleString(undefined, {
-                      style: "percent",
-                      minimumFractionDigits: 1,
-                    })}
-                  </h2>
-                  <h4>{row[1]}</h4>
-                </div>
-              ))}
-          </div>
         </div>
-        <div>
-          <h2>{regionsMap[geography]}</h2>
-          <h2 className="m-0 mr-[0.5rem] inline text-[2.5rem] text-[#2b1956]">
+        <p className="mb-2 font-bold">
+          {activeChart === "total" && (
+            <>Share of Regional Employment by Competitive Sector</>
+          )}
+          {activeChart === "automation" && (
+            <>Automation Risk by Competitive Sector</>
+          )}
+          {activeChart === "telework" && (
+            <>Telework Capacity by Competitive Sector</>
+          )}
+        </p>
+        <div className="grid grid-cols-8">
+          {activeChart === "total" &&
+            dvrpcSectors.map((row) => (
+              <>
+                <h2 className="text-lg font-bold text-[#662d91]">
+                  {(row[4] / dvrpcTotalPercent).toLocaleString(undefined, {
+                    style: "percent",
+                    minimumFractionDigits: 1,
+                  })}
+                </h2>
+                <h4 className="col-span-7">{row[1]}</h4>
+              </>
+            ))}
+          {activeChart === "automation" &&
+            dvrpcSectors.map((row) => (
+              <>
+                <h2
+                  className="text-lg font-bold"
+                  style={{ color: scoreHex[row[8]] }}
+                >
+                  {row[2].toLocaleString(undefined, {
+                    style: "percent",
+                    minimumFractionDigits: 1,
+                  })}
+                </h2>
+                <h4 className="col-span-7">{row[1]}</h4>
+              </>
+            ))}
+          {activeChart === "telework" &&
+            dvrpcSectors.map((row) => (
+              <>
+                <h2
+                  className="text-lg font-bold"
+                  style={{ color: scoreHex[row[9]] }}
+                >
+                  {row[3].toLocaleString(undefined, {
+                    style: "percent",
+                    minimumFractionDigits: 1,
+                  })}
+                </h2>
+                <h4 className="col-span-7">{row[1]}</h4>
+              </>
+            ))}
+        </div>
+      </div>
+      <div className="ml-auto">
+        <h2 className="text-lg font-bold">{regionsMap[geography]}</h2>
+        <div className="flex items-center md:w-4/5">
+          <h2 className="m-0 mr-[0.5rem] inline text-[2.5rem] font-bold text-[#2b1956]">
             {geoTotalPercent}
           </h2>
           <span>
@@ -125,58 +133,64 @@ const Stats = ({ workbook, geography, activeChart }) => {
               <>of competitive employment has low telework capacity.</>
             )}
           </span>
-          <p className="underline">
-            {activeChart === "total" && (
-              <>Share of Regional Employment by Competitive Sector</>
-            )}
-            {activeChart === "automation" && (
-              <>Automation Risk by Competitive Sector</>
-            )}
-            {activeChart === "telework" && (
-              <>Telework Capacity by Competitive Sector</>
-            )}
-          </p>
-          <div>
-            {activeChart === "total" &&
-              dvrpcSectors.map((row) => (
-                <div className="flex">
-                  <h2 className="font-bold text-[#662d91]">
-                    {(row[4] / geoTotal).toLocaleString(undefined, {
-                      style: "percent",
-                      minimumFractionDigits: 1,
-                    })}
-                  </h2>
-                  <h4>{row[1]}</h4>
-                </div>
-              ))}
-            {activeChart === "automation" &&
-              geoSectors.map((row) => (
-                <div className="flex">
-                  <h2 className="font-bold" style={{ color: scoreHex[row[8]] }}>
-                    {row[2].toLocaleString(undefined, {
-                      style: "percent",
-                      minimumFractionDigits: 1,
-                    })}
-                  </h2>
-                  <h4>{row[1]}</h4>
-                </div>
-              ))}
-            {activeChart === "telework" &&
-              geoSectors.map((row) => (
-                <div className="flex">
-                  <h2 className="font-bold" style={{ color: scoreHex[row[9]] }}>
-                    {row[3].toLocaleString(undefined, {
-                      style: "percent",
-                      minimumFractionDigits: 1,
-                    })}
-                  </h2>
-                  <h4>{row[1]}</h4>
-                </div>
-              ))}
-          </div>
+        </div>
+        <p className="mb-2 font-bold">
+          {activeChart === "total" && (
+            <>Share of Regional Employment by Competitive Sector</>
+          )}
+          {activeChart === "automation" && (
+            <>Automation Risk by Competitive Sector</>
+          )}
+          {activeChart === "telework" && (
+            <>Telework Capacity by Competitive Sector</>
+          )}
+        </p>
+        <div className="grid grid-cols-8">
+          {activeChart === "total" &&
+            dvrpcSectors.map((row) => (
+              <>
+                <h2 className="text-lg font-bold text-[#662d91]">
+                  {(row[4] / geoTotal).toLocaleString(undefined, {
+                    style: "percent",
+                    minimumFractionDigits: 1,
+                  })}
+                </h2>
+                <h4 className="col-span-7">{row[1]}</h4>
+              </>
+            ))}
+          {activeChart === "automation" &&
+            geoSectors.map((row) => (
+              <>
+                <h2
+                  className="text-lg font-bold"
+                  style={{ color: scoreHex[row[8]] }}
+                >
+                  {row[2].toLocaleString(undefined, {
+                    style: "percent",
+                    minimumFractionDigits: 1,
+                  })}
+                </h2>
+                <h4 className="col-span-7">{row[1]}</h4>
+              </>
+            ))}
+          {activeChart === "telework" &&
+            geoSectors.map((row) => (
+              <>
+                <h2
+                  className="text-lg font-bold"
+                  style={{ color: scoreHex[row[9]] }}
+                >
+                  {row[3].toLocaleString(undefined, {
+                    style: "percent",
+                    minimumFractionDigits: 1,
+                  })}
+                </h2>
+                <h4 className="col-span-7">{row[1]}</h4>
+              </>
+            ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
