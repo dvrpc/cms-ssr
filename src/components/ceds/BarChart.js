@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Chart } from "chart.js/auto";
+import { Chart, Legend } from "chart.js/auto";
 import { utils } from "xlsx";
 import regionsMap from "../../configs/regionsMap";
 
@@ -43,6 +43,10 @@ const BarChart = ({ workbook, geography, activeChart }) => {
         },
       },
       plugins: {
+        legend: {
+          display: true,
+          align: "end",
+        },
         autocolors: {
           mode: "label",
         },
@@ -63,7 +67,19 @@ const BarChart = ({ workbook, geography, activeChart }) => {
         },
       },
     },
+    plugins: [
+      {
+        beforeInit: function (chart, args, options) {
+          const originalFit = chart.legend.fit;
+          chart.legend.fit = function fit() {
+            originalFit.bind(chart.legend)();
+            this.height += 15;
+          };
+        },
+      },
+    ],
   };
+
   const automationOptions = {
     type: "bar",
     data: {
@@ -104,6 +120,10 @@ const BarChart = ({ workbook, geography, activeChart }) => {
     options: {
       animation: false,
       plugins: {
+        legend: {
+          display: true,
+          align: "end",
+        },
         tooltip: {
           callbacks: {
             label: function (context) {
@@ -139,6 +159,17 @@ const BarChart = ({ workbook, geography, activeChart }) => {
         autoPadding: false,
       },
     },
+    plugins: [
+      {
+        beforeInit: function (chart, args, options) {
+          const originalFit = chart.legend.fit;
+          chart.legend.fit = function fit() {
+            originalFit.bind(chart.legend)();
+            this.height += 15;
+          };
+        },
+      },
+    ],
   };
   const teleworkOptions = {
     type: "bar",
@@ -180,6 +211,10 @@ const BarChart = ({ workbook, geography, activeChart }) => {
     options: {
       animation: false,
       plugins: {
+        legend: {
+          display: true,
+          align: "end",
+        },
         tooltip: {
           callbacks: {
             label: function (context) {
@@ -215,6 +250,17 @@ const BarChart = ({ workbook, geography, activeChart }) => {
         autoPadding: false,
       },
     },
+    plugins: [
+      {
+        beforeInit: function (chart, args, options) {
+          const originalFit = chart.legend.fit;
+          chart.legend.fit = function fit() {
+            originalFit.bind(chart.legend)();
+            this.height += 15;
+          };
+        },
+      },
+    ],
   };
 
   const totalRef = useRef();
@@ -249,25 +295,31 @@ const BarChart = ({ workbook, geography, activeChart }) => {
   return (
     <>
       {activeChart === "total" && (
-        <div class="total chart">
-          <h3>Competitive Sector Employment Share of Total Employment</h3>
-          <div class="chart-container">
+        <div class="total chart h-full">
+          <h3 className="absolute text-lg font-bold">
+            Competitive Sector Employment Share of Total Employment
+          </h3>
+          <div class="chart-container h-full">
             <canvas ref={totalRef} id="total"></canvas>
           </div>
         </div>
       )}
       {activeChart === "automation" && (
-        <div class="automation chart">
-          <h3>Competitive Sector Employment by Automation Risk</h3>
-          <div class="chart-container">
+        <div class="automation chart h-full ">
+          <h3 className="absolute text-lg font-bold">
+            Competitive Sector Employment by Automation Risk
+          </h3>
+          <div class="chart-container mt-4 h-full">
             <canvas ref={automationRef} id="automation"></canvas>
           </div>
         </div>
       )}
       {activeChart === "telework" && (
-        <div class="telework chart">
-          <h3>Competitive Sector Employment by Telework Capacity</h3>
-          <div class="chart-container">
+        <div class="telework chart h-full">
+          <h3 className="absolute text-lg font-bold">
+            Competitive Sector Employment by Telework Capacity
+          </h3>
+          <div class="chart-container mt-4 h-full">
             <canvas ref={teleworkRef} id="telework"></canvas>
           </div>
         </div>
