@@ -1,6 +1,12 @@
 const path = require("path");
 
-const doNotWrapLayout = ["Index", "/data/", "/data/maps/", "/news/"];
+const doNotWrapLayout = [
+  "Index",
+  "/data/",
+  "/data/maps/",
+  "/news/",
+  "/economic/ceds/workforceanalysis/",
+];
 
 //Add regex to GraphQL query to match URLs in the navigation JSON
 exports.onCreateNode = async ({
