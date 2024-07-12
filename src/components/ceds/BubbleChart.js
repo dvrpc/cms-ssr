@@ -3,10 +3,11 @@ import { Chart } from "chart.js/auto";
 import { utils } from "xlsx";
 
 const BubbleChart = ({ workbook, geography }) => {
-  var dvrpcWorksheet = workbook.Sheets["dvrpc"];
+  const dvrpcWorksheet = workbook.Sheets["dvrpc"];
   var dvrpc_data = utils.sheet_to_json(dvrpcWorksheet, { header: 1 });
   dvrpc_data = dvrpc_data.filter((row) => parseInt(row[4])).slice(0, -2);
-  var worksheet = workbook.Sheets[geography];
+
+  const worksheet = workbook.Sheets[geography];
   var raw_data = utils.sheet_to_json(worksheet, { header: 1 });
   raw_data = raw_data.filter((row) => parseInt(row[4]));
 
@@ -21,12 +22,12 @@ const BubbleChart = ({ workbook, geography }) => {
     62: "#27255E99",
     22: "#4D318999",
     31: "#9D83BC99",
-    42: "#A8449999",
-    81: "#66318C99",
+    42: "#A75BA499",
+    81: "#806FAC99",
     71: "#6566AE99",
-    23: "#454DA199",
+    23: "#5D744C99",
     48: "#D11F4599",
-    44: "#D21C8B99",
+    44: "#EBA65199",
     72: "#AA272599",
   };
 
@@ -42,7 +43,7 @@ const BubbleChart = ({ workbook, geography }) => {
           labels: dvrpc_data.map((row) => row[1]),
           datasets: [
             {
-              label: "null",
+              labels: dvrpc_data.map((row) => row[1]),
               data: dvrpc_data.map((row) => ({
                 x: (row[2] * 100).toFixed(1),
                 y: (row[3] * 100).toFixed(1),
@@ -50,17 +51,17 @@ const BubbleChart = ({ workbook, geography }) => {
                 category: row[0],
               })),
               backgroundColor: "transparent",
-              borderColor: "grey",
-              borderDash: [10],
+              set: "dvrpc",
             },
             {
-              label: "null",
+              labels: raw_data.map((row) => row[1]),
               data: raw_data.map((row) => ({
                 x: (row[2] * 100).toFixed(1),
                 y: (row[3] * 100).toFixed(1),
                 r: Math.round((row[4] / maxRadius) * 55),
                 category: row[0],
               })),
+              set: "raw",
             },
           ],
         },
@@ -91,8 +92,11 @@ const BubbleChart = ({ workbook, geography }) => {
             tooltip: {
               callbacks: {
                 label: function (context) {
-                  const row = dvrpc_data.filter(
-                    (row) => row[1] === context.label
+                  const data =
+                    context.dataset.set === "dvrpc" ? dvrpc_data : raw_data;
+                  const row = data.filter(
+                    (row) =>
+                      row[1] === context.dataset.labels[context.dataIndex]
                   )[0];
                   const total = `Employment: ${row[4].toLocaleString()}`;
                   const lq = `LQ: ${row[5]}`;
@@ -112,6 +116,11 @@ const BubbleChart = ({ workbook, geography }) => {
           },
           backgroundColor: function (context) {
             return colors[context.raw.category];
+          },
+          borderColor: function (context) {
+            if (context.dataset.set === "dvrpc")
+              return colors[context.raw.category];
+            else return "transparent";
           },
         },
       });

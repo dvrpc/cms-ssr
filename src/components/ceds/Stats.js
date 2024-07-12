@@ -6,14 +6,15 @@ const Stats = ({ workbook, geography, activeChart }) => {
   const scoreHex = {
     low: "#662d91",
     medium: "#F7941D",
-    high: "#ED5565",
+    high: "#ED5537",
   };
+  const activeChartStat = { total: 1, automation: 2, telework: 5 };
   var worksheet = workbook.Sheets["summary"];
   var raw_data = utils.sheet_to_json(worksheet, { header: 1 });
   raw_data = raw_data.slice(1);
   var regionTotal = raw_data
-    .filter((row) => row[0] === "Greater Philadelphia")[0][1]
-    .toLocaleString(undefined, {
+    .filter((row) => row[0] === "Greater Philadelphia")[0]
+    [activeChartStat[activeChart]].toLocaleString(undefined, {
       style: "percent",
       minimumFractionDigits: 1,
     });
@@ -23,8 +24,8 @@ const Stats = ({ workbook, geography, activeChart }) => {
   const geoTotal = geoSectors[21][4];
   geoSectors = geoSectors.filter((row) => row[6] === "competitive");
   const geoTotalPercent = raw_data
-    .filter((row) => row[0] === regionsMap[geography])[0][1]
-    .toLocaleString(undefined, {
+    .filter((row) => row[0] === regionsMap[geography])[0]
+    [activeChartStat[activeChart]].toLocaleString(undefined, {
       style: "percent",
       minimumFractionDigits: 1,
     });
@@ -35,40 +36,34 @@ const Stats = ({ workbook, geography, activeChart }) => {
   dvrpcSectors = dvrpcSectors.filter((row) => row[6] === "competitive");
 
   return (
-    <div className="mb-8 flex w-[80%]">
-      <div className="mr-auto border-r-2 border-[#707070]">
+    <div className="mb-8 flex gap-10 md:w-[80%] min-[1535px]:w-[65%]">
+      <div className="border-r border-[#707070]">
         <h2 className="text-lg font-bold">Greater Philadelphia</h2>
-        <div className="flex items-center md:w-4/5">
-          <h2 className="m-0 mr-[0.5rem] inline text-[2.5rem] font-bold text-[#2b1956]">
+        <div className="flex flex-col md:w-4/5 min-[1280px]:flex-row min-[1280px]:items-center">
+          <h2 className="m-0 mr-4 inline text-[2.5rem] font-bold text-[#2b1956]">
             {regionTotal}
           </h2>
-          <span>
+          <div className="min-[1280px]:leading-4">
             {activeChart === "total" && (
               <>
                 of regional employment is in <span>{dvrpcSectors.length}</span>{" "}
-                competitive sectors.
+                HPIs.
               </>
             )}
             {activeChart === "automation" && (
-              <>of competitive employment is at low risk of automation.</>
+              <>of HPI employment is at low risk of automation.</>
             )}
             {activeChart === "telework" && (
-              <>of competitive employment has low telework capacity.</>
+              <>of HPI employment has low telework capacity.</>
             )}
-          </span>
+          </div>
         </div>
         <p className="mb-2 font-bold">
-          {activeChart === "total" && (
-            <>Share of Regional Employment by Competitive Sector</>
-          )}
-          {activeChart === "automation" && (
-            <>Automation Risk by Competitive Sector</>
-          )}
-          {activeChart === "telework" && (
-            <>Telework Capacity by Competitive Sector</>
-          )}
+          {activeChart === "total" && <>Share of Regional Employment by HPI</>}
+          {activeChart === "automation" && <>Automation Risk by HPI</>}
+          {activeChart === "telework" && <>Telework Capacity by HPI</>}
         </p>
-        <div className="grid grid-cols-8">
+        <div className="grid-cols-8 min-[1280px]:grid">
           {activeChart === "total" &&
             dvrpcSectors.map((row) => (
               <>
@@ -78,7 +73,9 @@ const Stats = ({ workbook, geography, activeChart }) => {
                     minimumFractionDigits: 1,
                   })}
                 </h2>
-                <h4 className="col-span-7">{row[1]}</h4>
+                <h4 className="col-span-7 my-auto min-[1280px]:ml-2">
+                  {row[1]}
+                </h4>
               </>
             ))}
           {activeChart === "automation" &&
@@ -93,7 +90,9 @@ const Stats = ({ workbook, geography, activeChart }) => {
                     minimumFractionDigits: 1,
                   })}
                 </h2>
-                <h4 className="col-span-7">{row[1]}</h4>
+                <h4 className="col-span-7 my-auto min-[1280px]:ml-2">
+                  {row[1]}
+                </h4>
               </>
             ))}
           {activeChart === "telework" &&
@@ -108,44 +107,38 @@ const Stats = ({ workbook, geography, activeChart }) => {
                     minimumFractionDigits: 1,
                   })}
                 </h2>
-                <h4 className="col-span-7">{row[1]}</h4>
+                <h4 className="col-span-7 my-auto md:ml-2">{row[1]}</h4>
               </>
             ))}
         </div>
       </div>
-      <div className="ml-auto">
+      <div className="min-[1280px]:ml-auto">
         <h2 className="text-lg font-bold">{regionsMap[geography]}</h2>
-        <div className="flex items-center md:w-4/5">
-          <h2 className="m-0 mr-[0.5rem] inline text-[2.5rem] font-bold text-[#2b1956]">
+        <div className="flex flex-col md:w-4/5 min-[1280px]:flex-row min-[1280px]:items-center">
+          <h2 className="m-0 mr-4 inline text-[2.5rem] font-bold text-[#2b1956]">
             {geoTotalPercent}
           </h2>
-          <span>
+          <div className="min-[1280px]:leading-4">
             {activeChart === "total" && (
               <>
                 of regional employment is in <span>{geoSectors.length}</span>{" "}
-                competitive sectors.
+                HPIs.
               </>
             )}
             {activeChart === "automation" && (
-              <>of competitive employment is at low risk of automation.</>
+              <>of HPI employment is at low risk of automation.</>
             )}
             {activeChart === "telework" && (
-              <>of competitive employment has low telework capacity.</>
+              <>of HPI employment has low telework capacity.</>
             )}
-          </span>
+          </div>
         </div>
         <p className="mb-2 font-bold">
-          {activeChart === "total" && (
-            <>Share of Regional Employment by Competitive Sector</>
-          )}
-          {activeChart === "automation" && (
-            <>Automation Risk by Competitive Sector</>
-          )}
-          {activeChart === "telework" && (
-            <>Telework Capacity by Competitive Sector</>
-          )}
+          {activeChart === "total" && <>Share of Regional Employment by HPI</>}
+          {activeChart === "automation" && <>Automation Risk by HPI</>}
+          {activeChart === "telework" && <>Telework Capacity by HPI</>}
         </p>
-        <div className="grid grid-cols-8">
+        <div className="grid-cols-8 min-[1280px]:grid">
           {activeChart === "total" &&
             dvrpcSectors.map((row) => (
               <>
@@ -155,7 +148,9 @@ const Stats = ({ workbook, geography, activeChart }) => {
                     minimumFractionDigits: 1,
                   })}
                 </h2>
-                <h4 className="col-span-7">{row[1]}</h4>
+                <h4 className="col-span-7 my-auto min-[1280px]:ml-2">
+                  {row[1]}
+                </h4>
               </>
             ))}
           {activeChart === "automation" &&
@@ -170,7 +165,9 @@ const Stats = ({ workbook, geography, activeChart }) => {
                     minimumFractionDigits: 1,
                   })}
                 </h2>
-                <h4 className="col-span-7">{row[1]}</h4>
+                <h4 className="col-span-7 my-auto min-[1280px]:ml-2">
+                  {row[1]}
+                </h4>
               </>
             ))}
           {activeChart === "telework" &&
@@ -185,7 +182,9 @@ const Stats = ({ workbook, geography, activeChart }) => {
                     minimumFractionDigits: 1,
                   })}
                 </h2>
-                <h4 className="col-span-7">{row[1]}</h4>
+                <h4 className="col-span-7 my-auto min-[1280px]:ml-2">
+                  {row[1]}
+                </h4>
               </>
             ))}
         </div>
