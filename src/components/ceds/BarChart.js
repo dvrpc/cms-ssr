@@ -21,7 +21,7 @@ const BarChart = ({ workbook, geography, activeChart }) => {
               ? "#662D91"
               : "#662D9170";
           },
-          label: "Percentage of Employment in Competitive Sectors",
+          label: "Percentage of Employment in HPIs",
         },
       ],
     },
@@ -46,6 +46,13 @@ const BarChart = ({ workbook, geography, activeChart }) => {
         legend: {
           display: true,
           align: "end",
+          labels: {
+            font: {
+              size: 16,
+              weight: "bold",
+              family: "Roboto",
+            },
+          },
         },
         autocolors: {
           mode: "label",
@@ -91,8 +98,8 @@ const BarChart = ({ workbook, geography, activeChart }) => {
           backgroundColor: function (context) {
             return regionsMap[Object.keys(regionsMap)[context.dataIndex]] ===
               regionsMap[geography] || context.dataIndex === 0
-              ? "#ED5565"
-              : "#ED556570";
+              ? "#ed5537"
+              : "#ed553770";
           },
         },
         {
@@ -123,6 +130,13 @@ const BarChart = ({ workbook, geography, activeChart }) => {
         legend: {
           display: true,
           align: "end",
+          labels: {
+            font: {
+              size: 16,
+              weight: "bold",
+              family: "Roboto",
+            },
+          },
         },
         tooltip: {
           callbacks: {
@@ -182,8 +196,8 @@ const BarChart = ({ workbook, geography, activeChart }) => {
           backgroundColor: function (context) {
             return regionsMap[Object.keys(regionsMap)[context.dataIndex]] ===
               regionsMap[geography] || context.dataIndex === 0
-              ? "#ED5565"
-              : "#ED556570";
+              ? "#ed5537"
+              : "#ed553770";
           },
         },
         {
@@ -214,6 +228,13 @@ const BarChart = ({ workbook, geography, activeChart }) => {
         legend: {
           display: true,
           align: "end",
+          labels: {
+            font: {
+              size: 16,
+              weight: "bold",
+              family: "Roboto",
+            },
+          },
         },
         tooltip: {
           callbacks: {
@@ -296,8 +317,8 @@ const BarChart = ({ workbook, geography, activeChart }) => {
     <>
       {activeChart === "total" && (
         <div class="total chart h-full">
-          <h3 className="absolute text-lg font-bold">
-            Competitive Sector Employment Share of Total Employment
+          <h3 className="text-lg font-bold min-[1280px]:absolute">
+            HPI Employment Share of Total Employment
           </h3>
           <div class="chart-container h-full">
             <canvas ref={totalRef} id="total"></canvas>
@@ -306,8 +327,8 @@ const BarChart = ({ workbook, geography, activeChart }) => {
       )}
       {activeChart === "automation" && (
         <div class="automation chart h-full ">
-          <h3 className="absolute text-lg font-bold">
-            Competitive Sector Employment by Automation Risk
+          <h3 className="text-lg font-bold min-[1280px]:absolute">
+            HPI Employment by Automation Risk
           </h3>
           <div class="chart-container mt-4 h-full">
             <canvas ref={automationRef} id="automation"></canvas>
@@ -316,8 +337,8 @@ const BarChart = ({ workbook, geography, activeChart }) => {
       )}
       {activeChart === "telework" && (
         <div class="telework chart h-full">
-          <h3 className="absolute text-lg font-bold">
-            Competitive Sector Employment by Telework Capacity
+          <h3 className="text-lg font-bold min-[1280px]:absolute">
+            HPI Employment by Telework Capacity
           </h3>
           <div class="chart-container mt-4 h-full">
             <canvas ref={teleworkRef} id="telework"></canvas>
