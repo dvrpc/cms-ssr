@@ -8,5 +8,5 @@ export default {
   LAX: "Los Angeles",
   NYC: "New York",
   PIT: "Pittsburgh",
-  WAS: "Washington",
+  WAS: "Washington, D.C.",
 };
