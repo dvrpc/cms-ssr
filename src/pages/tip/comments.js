@@ -5,7 +5,8 @@ import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 
-const CommentViewer = ({ serverData }) => {
+const CommentViewer = () => {
+  const { data } = response;
   const columns = [
     {
       name: "ID",
@@ -35,7 +36,7 @@ const CommentViewer = ({ serverData }) => {
   ];
   const tableData = {
     columns,
-    data: serverData.data,
+    data: data,
   };
 
   return (
@@ -63,17 +64,3 @@ const CommentViewer = ({ serverData }) => {
 };
 
 export default CommentViewer;
-
-export async function getServerData({ params, query }) {
-  try {
-    return {
-      props: response,
-    };
-  } catch (error) {
-    return {
-      status: 500,
-      headers: {},
-      props: {},
-    };
-  }
-}
