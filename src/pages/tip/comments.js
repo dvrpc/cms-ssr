@@ -1,5 +1,5 @@
 import React, { useState, render } from "react";
-import response from "./NJTIPcommentResponse.json";
+import response from "./PATIPcommentResponse.json";
 import "./defaults.css";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
