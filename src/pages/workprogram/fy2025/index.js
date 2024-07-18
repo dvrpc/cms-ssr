@@ -112,7 +112,7 @@ export default WorkProgramPage;
 export async function getServerData() {
   try {
     const res = await fetch(
-      "https://apps.dvrpc.org/ords/workprogram25new/workprogram/projects?showlive=T"
+      "https://apps.dvrpc.org/ords/workprogram25new/workprogram/liveProjectsForWeb"
     );
     if (!res.ok) {
       throw new Error("Response failed");
