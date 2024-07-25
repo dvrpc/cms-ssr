@@ -1,20 +1,17 @@
 import React, { useEffect, useRef } from "react";
-import { Chart, Legend } from "chart.js/auto";
-import { utils } from "xlsx";
+import { Chart } from "chart.js/auto";
 import regionsMap from "../../configs/regionsMap";
 
 const BarChart = ({ workbook, geography, activeChart }) => {
-  const worksheet = workbook.Sheets["summary"];
-  var raw_data = utils.sheet_to_json(worksheet, { header: 1 });
-  raw_data = raw_data.slice(1);
+  const raw_data = workbook["summary"];
 
   const totalOptions = {
     type: "bar",
     data: {
-      labels: raw_data.map((row) => row[0]),
+      labels: raw_data.map((row) => row["Region"]),
       datasets: [
         {
-          data: raw_data.map((row) => row[1] * 100),
+          data: raw_data.map((row) => row["Competitive Employment"] * 100),
           backgroundColor: function (context) {
             return regionsMap[Object.keys(regionsMap)[context.dataIndex]] ===
               regionsMap[geography] || context.dataIndex === 0
@@ -60,14 +57,15 @@ const BarChart = ({ workbook, geography, activeChart }) => {
         tooltip: {
           callbacks: {
             label: function (context) {
-              var row = raw_data.filter((row) => row[0] === context.label)[0];
-              var val = `Competitive Employment: ${row[1].toLocaleString(
-                undefined,
-                {
-                  style: "percent",
-                  minimumFractionDigits: 1,
-                }
-              )}`;
+              var row = raw_data.filter(
+                (row) => row["Region"] === context.label
+              )[0];
+              var val = `Competitive Employment: ${row[
+                "Competitive Employment"
+              ].toLocaleString(undefined, {
+                style: "percent",
+                minimumFractionDigits: 1,
+              })}`;
               return [val];
             },
           },
@@ -90,11 +88,11 @@ const BarChart = ({ workbook, geography, activeChart }) => {
   const automationOptions = {
     type: "bar",
     data: {
-      labels: raw_data.map((row) => row[0]),
+      labels: raw_data.map((row) => row["Region"]),
       datasets: [
         {
           label: "High Automation",
-          data: raw_data.map((row) => row[4] * 100),
+          data: raw_data.map((row) => row["High Automation"] * 100),
           backgroundColor: function (context) {
             return regionsMap[Object.keys(regionsMap)[context.dataIndex]] ===
               regionsMap[geography] || context.dataIndex === 0
@@ -104,7 +102,7 @@ const BarChart = ({ workbook, geography, activeChart }) => {
         },
         {
           label: "Medium Automation",
-          data: raw_data.map((row) => row[3] * 100),
+          data: raw_data.map((row) => row["Medium Automation"] * 100),
           backgroundColor: function (context) {
             return regionsMap[Object.keys(regionsMap)[context.dataIndex]] ===
               regionsMap[geography] || context.dataIndex === 0
@@ -114,7 +112,7 @@ const BarChart = ({ workbook, geography, activeChart }) => {
         },
         {
           label: "Low Automation",
-          data: raw_data.map((row) => row[2] * 100),
+          data: raw_data.map((row) => row["Low Automation"] * 100),
           backgroundColor: function (context) {
             return regionsMap[Object.keys(regionsMap)[context.dataIndex]] ===
               regionsMap[geography] || context.dataIndex === 0
@@ -188,11 +186,11 @@ const BarChart = ({ workbook, geography, activeChart }) => {
   const teleworkOptions = {
     type: "bar",
     data: {
-      labels: raw_data.map((row) => row[0]),
+      labels: raw_data.map((row) => row["Region"]),
       datasets: [
         {
           label: "High Telework",
-          data: raw_data.map((row) => row[7] * 100),
+          data: raw_data.map((row) => row["High Telework"] * 100),
           backgroundColor: function (context) {
             return regionsMap[Object.keys(regionsMap)[context.dataIndex]] ===
               regionsMap[geography] || context.dataIndex === 0
@@ -202,7 +200,7 @@ const BarChart = ({ workbook, geography, activeChart }) => {
         },
         {
           label: "Medium Telework",
-          data: raw_data.map((row) => row[6] * 100),
+          data: raw_data.map((row) => row["Medium Telework"] * 100),
           backgroundColor: function (context) {
             return regionsMap[Object.keys(regionsMap)[context.dataIndex]] ===
               regionsMap[geography] || context.dataIndex === 0
@@ -212,7 +210,7 @@ const BarChart = ({ workbook, geography, activeChart }) => {
         },
         {
           label: "Low Telework",
-          data: raw_data.map((row) => row[5] * 100),
+          data: raw_data.map((row) => row["Low Telework"] * 100),
           backgroundColor: function (context) {
             return regionsMap[Object.keys(regionsMap)[context.dataIndex]] ===
               regionsMap[geography] || context.dataIndex === 0
