@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { readFile } from "xlsx";
+import React, { useState } from "react";
 import BubbleChart from "../../../components/ceds/BubbleChart";
 import BarChart from "../../../components/ceds/BarChart";
 import Stats from "../../../components/ceds/Stats";
@@ -16,6 +15,7 @@ import LogoBar from "../../../components/LogoBar";
 import Banner from "../../../images/cedsheader.jpg";
 import Icon, { Search } from "../../../components/Icon";
 import Footer from "../../../components/Footer";
+import workbook from "./data.json";
 
 const title = "Workforce Analysis";
 
@@ -23,15 +23,6 @@ const WorkForceAnalysis = ({ data, location }) => {
   const { userUser } = data;
   const [geography, setGeography] = useState("ATL");
   const [activeChart, setActiveChart] = useState("total");
-  const [workbook, setWorkBook] = useState();
-
-  useEffect(() => {
-    (async () => {
-      var url = "https://dvrpc.org/economic/ceds/regions.xlsx";
-      var file = await (await fetch(url)).arrayBuffer();
-      setWorkBook(readFile(file));
-    })();
-  }, [setWorkBook]);
 
   const toggleModal = (event) => {
     event.preventDefault();
@@ -292,8 +283,9 @@ const WorkForceAnalysis = ({ data, location }) => {
                     onChange={(e) => setGeography(e.target.value)}
                     value={geography}
                   >
-                    {workbook &&
-                      workbook.SheetNames.slice(2, -2).map((name) => (
+                    {Object.keys(workbook)
+                      .slice(2, -2)
+                      .map((name) => (
                         <option key={name} value={name}>
                           {regionsMap[name]}
                         </option>
