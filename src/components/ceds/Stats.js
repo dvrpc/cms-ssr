@@ -1,5 +1,4 @@
 import React from "react";
-import { utils } from "xlsx";
 import regionsMap from "../../configs/regionsMap";
 
 const Stats = ({ workbook, geography, activeChart }) => {
@@ -8,32 +7,36 @@ const Stats = ({ workbook, geography, activeChart }) => {
     medium: "#F7941D",
     high: "#ED5537",
   };
-  const activeChartStat = { total: 1, automation: 2, telework: 5 };
-  var worksheet = workbook.Sheets["summary"];
-  var raw_data = utils.sheet_to_json(worksheet, { header: 1 });
-  raw_data = raw_data.slice(1);
-  var regionTotal = raw_data
-    .filter((row) => row[0] === "Greater Philadelphia")[0]
+  const activeChartStat = {
+    total: "Competitive Employment",
+    automation: "Low Automation",
+    telework: "Low Telework",
+  };
+  const worksheet = workbook["summary"];
+  var regionTotal = worksheet
+    .filter((row) => row["Region"] === "Greater Philadelphia")[0]
     [activeChartStat[activeChart]].toLocaleString(undefined, {
       style: "percent",
       minimumFractionDigits: 1,
     });
 
-  const geoWorksheet = workbook.Sheets[geography];
-  var geoSectors = utils.sheet_to_json(geoWorksheet, { header: 1 });
-  const geoTotal = geoSectors[21][4];
-  geoSectors = geoSectors.filter((row) => row[6] === "competitive");
-  const geoTotalPercent = raw_data
-    .filter((row) => row[0] === regionsMap[geography])[0]
+  const geoWorksheet = workbook[geography];
+  const geoTotal = geoWorksheet[19][geography];
+  const geoSectors = geoWorksheet.filter(
+    (row) => row["comp"] === "competitive"
+  );
+  const geoTotalPercent = worksheet
+    .filter((row) => row["Region"] === regionsMap[geography])[0]
     [activeChartStat[activeChart]].toLocaleString(undefined, {
       style: "percent",
       minimumFractionDigits: 1,
     });
 
-  const dvrpcWorksheet = workbook.Sheets["dvrpc"];
-  var dvrpcSectors = utils.sheet_to_json(dvrpcWorksheet, { header: 1 });
-  const dvrpcTotalPercent = dvrpcSectors[21][4];
-  dvrpcSectors = dvrpcSectors.filter((row) => row[6] === "competitive");
+  const dvrpcWorksheet = workbook["dvrpc"];
+  const dvrpcTotalPercent = dvrpcWorksheet[19]["DVRPC"];
+  const dvrpcSectors = dvrpcWorksheet.filter(
+    (row) => row["comp"] === "competitive"
+  );
 
   return (
     <div className="mb-8 flex gap-10 md:w-[80%] min-[1535px]:w-[65%]">
@@ -68,13 +71,16 @@ const Stats = ({ workbook, geography, activeChart }) => {
             dvrpcSectors.map((row) => (
               <>
                 <h2 className="text-lg font-bold text-[#662d91]">
-                  {(row[4] / dvrpcTotalPercent).toLocaleString(undefined, {
-                    style: "percent",
-                    minimumFractionDigits: 1,
-                  })}
+                  {(row["DVRPC"] / dvrpcTotalPercent).toLocaleString(
+                    undefined,
+                    {
+                      style: "percent",
+                      minimumFractionDigits: 1,
+                    }
+                  )}
                 </h2>
                 <h4 className="col-span-7 my-auto min-[1280px]:ml-2">
-                  {row[1]}
+                  {row["Sector"]}
                 </h4>
               </>
             ))}
@@ -83,15 +89,15 @@ const Stats = ({ workbook, geography, activeChart }) => {
               <>
                 <h2
                   className="text-lg font-bold"
-                  style={{ color: scoreHex[row[8]] }}
+                  style={{ color: scoreHex[row["aut"]] }}
                 >
-                  {row[2].toLocaleString(undefined, {
+                  {row["automation_weight"].toLocaleString(undefined, {
                     style: "percent",
                     minimumFractionDigits: 1,
                   })}
                 </h2>
                 <h4 className="col-span-7 my-auto min-[1280px]:ml-2">
-                  {row[1]}
+                  {row["Sector"]}
                 </h4>
               </>
             ))}
@@ -100,14 +106,14 @@ const Stats = ({ workbook, geography, activeChart }) => {
               <>
                 <h2
                   className="text-lg font-bold"
-                  style={{ color: scoreHex[row[9]] }}
+                  style={{ color: scoreHex[row["tel"]] }}
                 >
-                  {row[3].toLocaleString(undefined, {
+                  {row["telework_score"].toLocaleString(undefined, {
                     style: "percent",
                     minimumFractionDigits: 1,
                   })}
                 </h2>
-                <h4 className="col-span-7 my-auto md:ml-2">{row[1]}</h4>
+                <h4 className="col-span-7 my-auto md:ml-2">{row["Sector"]}</h4>
               </>
             ))}
         </div>
@@ -140,16 +146,16 @@ const Stats = ({ workbook, geography, activeChart }) => {
         </p>
         <div className="grid-cols-8 min-[1280px]:grid">
           {activeChart === "total" &&
-            dvrpcSectors.map((row) => (
+            geoSectors.map((row) => (
               <>
                 <h2 className="text-lg font-bold text-[#662d91]">
-                  {(row[4] / geoTotal).toLocaleString(undefined, {
+                  {(row[geography] / geoTotal).toLocaleString(undefined, {
                     style: "percent",
                     minimumFractionDigits: 1,
                   })}
                 </h2>
                 <h4 className="col-span-7 my-auto min-[1280px]:ml-2">
-                  {row[1]}
+                  {row["Sector"]}
                 </h4>
               </>
             ))}
@@ -158,15 +164,15 @@ const Stats = ({ workbook, geography, activeChart }) => {
               <>
                 <h2
                   className="text-lg font-bold"
-                  style={{ color: scoreHex[row[8]] }}
+                  style={{ color: scoreHex[row["aut"]] }}
                 >
-                  {row[2].toLocaleString(undefined, {
+                  {row["automation_weight"].toLocaleString(undefined, {
                     style: "percent",
                     minimumFractionDigits: 1,
                   })}
                 </h2>
                 <h4 className="col-span-7 my-auto min-[1280px]:ml-2">
-                  {row[1]}
+                  {row["Sector"]}
                 </h4>
               </>
             ))}
@@ -175,15 +181,15 @@ const Stats = ({ workbook, geography, activeChart }) => {
               <>
                 <h2
                   className="text-lg font-bold"
-                  style={{ color: scoreHex[row[9]] }}
+                  style={{ color: scoreHex[row["tel"]] }}
                 >
-                  {row[3].toLocaleString(undefined, {
+                  {row["telework_score"].toLocaleString(undefined, {
                     style: "percent",
                     minimumFractionDigits: 1,
                   })}
                 </h2>
                 <h4 className="col-span-7 my-auto min-[1280px]:ml-2">
-                  {row[1]}
+                  {row["Sector"]}
                 </h4>
               </>
             ))}

@@ -1,15 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Chart } from "chart.js/auto";
-import { utils } from "xlsx";
 
 const BubbleChart = ({ workbook, geography }) => {
-  const dvrpcWorksheet = workbook.Sheets["dvrpc"];
-  var dvrpc_data = utils.sheet_to_json(dvrpcWorksheet, { header: 1 });
-  dvrpc_data = dvrpc_data.filter((row) => parseInt(row[4])).slice(0, -2);
-
-  const worksheet = workbook.Sheets[geography];
-  var raw_data = utils.sheet_to_json(worksheet, { header: 1 });
-  raw_data = raw_data.filter((row) => parseInt(row[4]));
+  const dvrpcWorksheet = workbook["dvrpc"];
+  const worksheet = workbook[geography];
 
   var colors = {
     51: "#989A9B99",
@@ -36,30 +30,30 @@ const BubbleChart = ({ workbook, geography }) => {
   useEffect(() => {
     if (chartRef && chartRef.current) {
       if (Chart.getChart("bubble")) Chart.getChart("bubble").destroy();
-      var maxRadius = Math.max(...dvrpc_data.map((row) => row[4]));
+      var maxRadius = 515666;
       new Chart(chartRef.current, {
         type: "bubble",
         data: {
-          labels: dvrpc_data.map((row) => row[1]),
+          labels: dvrpcWorksheet.map((row) => row["Sector"]),
           datasets: [
             {
-              labels: dvrpc_data.map((row) => row[1]),
-              data: dvrpc_data.map((row) => ({
-                x: (row[2] * 100).toFixed(1),
-                y: (row[3] * 100).toFixed(1),
-                r: Math.round((row[4] / maxRadius) * 55),
-                category: row[0],
+              labels: dvrpcWorksheet.map((row) => row["Sector"]),
+              data: dvrpcWorksheet.map((row) => ({
+                x: (row["automation_weight"] * 100).toFixed(1),
+                y: (row["telework_score"] * 100).toFixed(1),
+                r: Math.round((row["DVRPC"] / maxRadius) * 55),
+                category: row["naics"],
               })),
               backgroundColor: "transparent",
               set: "dvrpc",
             },
             {
-              labels: raw_data.map((row) => row[1]),
-              data: raw_data.map((row) => ({
-                x: (row[2] * 100).toFixed(1),
-                y: (row[3] * 100).toFixed(1),
-                r: Math.round((row[4] / maxRadius) * 55),
-                category: row[0],
+              labels: worksheet.map((row) => row["Sector"]),
+              data: worksheet.map((row) => ({
+                x: (row["automation_weight"] * 100).toFixed(1),
+                y: (row["telework_score"] * 100).toFixed(1),
+                r: Math.round((row[geography] / maxRadius) * 55),
+                category: row["naics"],
               })),
               set: "raw",
             },
@@ -93,22 +87,37 @@ const BubbleChart = ({ workbook, geography }) => {
               callbacks: {
                 label: function (context) {
                   const data =
-                    context.dataset.set === "dvrpc" ? dvrpc_data : raw_data;
+                    context.dataset.set === "dvrpc"
+                      ? dvrpcWorksheet
+                      : worksheet;
                   const row = data.filter(
                     (row) =>
-                      row[1] === context.dataset.labels[context.dataIndex]
+                      row["Sector"] ===
+                      context.dataset.labels[context.dataIndex]
                   )[0];
-                  const total = `Employment: ${row[4].toLocaleString()}`;
-                  const lq = `LQ: ${row[5]}`;
-                  const naics = `NAICS Code: ${row[0]}`;
-                  const automation = `Automation Weight: ${row[2].toLocaleString(
-                    undefined,
-                    { style: "percent", minimumFractionDigits: 1 }
-                  )}`;
-                  const telework = `Telework Score: ${row[3].toLocaleString(
-                    undefined,
-                    { style: "percent", minimumFractionDigits: 1 }
-                  )}`;
+                  const total = `Employment: ${row[
+                    context.dataset.set === "dvrpc" ? "DVRPC" : geography
+                  ].toLocaleString()}`;
+                  const lq = `LQ: ${
+                    row[
+                      context.dataset.set === "dvrpc"
+                        ? "DVRPC_LQ"
+                        : geography + "_LQ"
+                    ]
+                  }`;
+                  const naics = `NAICS Code: ${row["naics"]}`;
+                  const automation = `Automation Weight: ${row[
+                    "automation_weight"
+                  ].toLocaleString(undefined, {
+                    style: "percent",
+                    minimumFractionDigits: 1,
+                  })}`;
+                  const telework = `Telework Score: ${row[
+                    "telework_score"
+                  ].toLocaleString(undefined, {
+                    style: "percent",
+                    minimumFractionDigits: 1,
+                  })}`;
                   return [total, lq, naics, automation, telework];
                 },
               },
