@@ -10,7 +10,7 @@ import HeadTemplate, {
 } from "../../components/HeadTemplate";
 
 import ReusableForm from '../../components/forms/ReusableForm';
-import formConfig from '../../configs/forms/local-bridge-intake.json';
+import formConfig from '../../configs/forms/mbrp2024.json';
 
 const title = "PA Municipal Bridge Retro-Reimbursement Candidate Project Application";
 
@@ -49,13 +49,9 @@ const bridgeIntake = ({
 export const Head = ({ data: { nodeTheme } }) =>
   HeadTemplate({
     title,
-    summary: "PA Municipal Bridge Program",
-    css: `
-    --color-h1: #0f1a3a;
-    --color-h2: #0f1a3a;
-    --color-h3: #0f1a3a;
-    --bg-cover-image: url(https://cdn.dvrpc.org/sites/default/files/2022-01/1632_Dowlin-BeforeAfter.jpg);
-    --height-banner: 20vw;`,
+    summary:
+      "Municipal Bridge Replacement Program",
+    css: themeToCustomVars(nodeTheme, defaultThemeConfig),
   });
 
 
@@ -67,7 +63,7 @@ export const query = graphql`
       name: field_display_name
       title: field_title
     }
-    nodeTheme(id: { eq: "0efb8b9d-ee32-58c6-897d-0a50ae2b5ac4" }) {
+    nodeTheme(id: { eq: "da8ece79-7d0b-5f61-9f26-5be730e8f197" }) {
       field_primary_color
       field_secondary_color
       field_third_color

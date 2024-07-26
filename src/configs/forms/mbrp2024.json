@@ -1,12 +1,17 @@
 {
   "sheetID": "somegooglesheet",
   "name": "Municipal Bridge Intake",
-  "endpoint": "http://127.0.0.1:8000/submit-form",
+  "endpoint": "http://127.0.0.1:8080/submit-form",
   "showProgressIndicator": "horizontal",
   "sections": [
     {
       "title": "Applicant Information",
       "fields": [
+        {
+          "type": "hidden",
+          "name": "source",
+          "value": "mbrp2024"
+        },
         {
           "type": "text",
           "name": "sponsor",
@@ -42,12 +47,7 @@
             "Bucks",
             "Chester",
             "Delaware",
-            "Montgomery",
-            "Philadelphia",
-            "Burlington",
-            "Camden",
-            "Gloucester",
-            "Mercer"
+            "Montgomery"
           ],
           "helperText": "What county(s) is the project located within?"
         },
@@ -77,7 +77,7 @@
           "label": "Summarize Your Project's Need",
           "required": true,
           "rows": 8,
-          "placeholder": "Project What problem will your project address? For example, a poor condition bridge. The need should be factual, quantifiable, establish evidence of current or future transportation problems, and justify commitment of funding this project and impacts to the environment. E.g., If we don't address this bridge's poor condition, then XXX."
+          "placeholder": "What problem will your project address? For example, a poor condition bridge. The need should be factual, quantifiable, establish evidence of current or future transportation problems, and justify commitment of funding this project and impacts to the environment. E.g., If we don't address this bridge's poor condition, then XXX."
         },
         {
           "type": "textarea",
@@ -93,7 +93,7 @@
           "label": "Is your municipality a PennDOT ECMS & RAS Registered Business Partner",
           "required": true,
           "options": ["yes", "no"],
-          "helperText": "This is required in order to request reimbursement. More information is available here <a href='https://www.penndot.pa.gov/Doing-Business/Pages/ConstructionContractor-Registration.aspx' target='_blank'>PennDOT ECMS & RAS Registered Business Partner</a>."
+          "helperText": "This is required in order to request reimbursement. More information is available here <a href='https://www.penndot.pa.gov/Doing-Business/Pages/ConstructionContractor-Registration.aspx' class='underline' target='_blank'>PennDOT ECMS & RAS Registered Business Partner</a>."
         }
       ]
     },
@@ -102,9 +102,9 @@
       "fields": [
         {
           "name": "cost",
-          "label": "Cost Estimates for base year of 2025",
+          "label": "Cost Estimates for Base Year of 2025",
           "type": "table",
-          "labelName": "Project phase",
+          "labelName": "Project Phase",
           "valueName": "Cost (2025 $)",
           "units": "$"
         },
@@ -151,7 +151,7 @@
         {
           "type": "description",
           "name": "ref_intro",
-          "text": "In order to be eligible for funding, a bridge must be listed on the \"Bridge Bill\" (\"Highway-Railroad and Highway Bridge Capital Budget Supplemental Act\") that is part of a final approved PA Capital Budget (see the Municipal Bridge Retro-Reimbursement Program website for an archived list of budget documents).<br/><br/>The program cannot accept bridges listed in a PA Bridge Bill that is \"pending approval.\""
+          "text": "In order to be eligible for funding, a bridge must be listed on the \"Bridge Bill\" (\"Highway-Railroad and Highway Bridge Capital Budget Supplemental Act\") that is part of a final approved PA Capital Budget (<a href='https://www.dvrpc.org/mbrp/' class='underline' target='_blank'>see the Municipal Bridge Retro-Reimbursement Program website for an archived list of budget documents</a>).<br/><br/>The program cannot accept bridges listed in a PA Bridge Bill that is \"pending approval.\""
         },
         {
           "type": "select",
@@ -175,8 +175,15 @@
         },
         {
           "type": "text",
-          "name": "bill_ref",
-          "label": "Please indicate the Section Number and PDF page number where your bridge appears in the Capital Budget you checked above.",
+          "name": "bill_section_num",
+          "label": "Please indicate the Section Number where your bridge appears in the Capital Budget you checked above.",
+          "required": true,
+          "placeholder": "eg. 12.a.i"
+        },
+        {
+          "type": "text",
+          "name": "bill_page_num",
+          "label": "Please indicate the PDF page number where your bridge appears in the Capital Budget you checked above.",
           "required": true
         },
         {
@@ -218,6 +225,51 @@
             "The project will bring the asset from a poor condition into a good state of repair.", 
             "The project will extend the useful life of a facility/asset that is currently not in poor condition."
           ] 
+        },
+        {
+          "type": "multiselect",
+          "name": "mobility",
+          "label": "Will your project impact existing traffic movements by involving any of these activities? Select all that apply",
+          "required": true,
+          "options": [
+            "Adding an additional vehicular through travel lane",
+            "Removing an existing vehicular travel lane",
+            "Adding new traffic movement(s) at an interchange",
+            "Roadway extension or new roadway",
+            "Not applicable"
+          ]
+        },
+        {
+          "type": "text",
+          "name": "mobility_detail",
+          "label": "Please provide additional detail for your response in the question above. For example, if adding/removing a lane, please specify how many. Or, for a roadway extension, what road, how far, and what is the extent?",
+          "required": false,
+          "condition": {
+            "field": "mobility",
+            "values": [
+              "Adding an additional vehicular through travel lane",
+              "Removing an existing vehicular travel lane",
+              "Adding new traffic movement(s) at an interchange",
+              "Roadway extension or new roadway"
+            ]
+          }
+        },
+        {
+          "type": "select",
+          "name": "signal",
+          "label": "Will your project involve adding a traffic signal at a location that is currently not signalized?",
+          "required": true,
+          "options": ["yes", "no"] 
+        },
+        {
+          "type": "text",
+          "name": "signal_detail",
+          "label": "Please identify the location where the new signal will be added.",
+          "required": false,
+          "condition": {
+            "field": "signal",
+            "value": "yes"
+          }
         },
         {
           "type": "multiselect",
@@ -263,47 +315,9 @@
             "Systemic application of multiple low cost countermeasures at stop controlled intersections - suburban and urban locations",
             "Pavement friction management at intersections",
             "Traffic calming (general, if specific details are not known)",
-            "Install red-light indicator lights"
+            "Install red-light indicator lights",
+            "Not applicable"
           ]
-        },
-        {
-          "type": "multiselect",
-          "name": "mobility",
-          "label": "Will your project impact existing traffic movements by involving any of these activities? Select all that apply",
-          "required": false,
-          "options": [
-            "Adding an additional vehicular through travel lane",
-            "Removing an existing vehicular travel lane",
-            "Adding new traffic movement(s) at an interchange",
-            "Roadway extension or new roadway"
-          ]
-        },
-        {
-          "type": "text",
-          "name": "mobility_detail",
-          "label": "Please provide additional detail for your response in the question above. For example, if adding/removing a lane, please specify how many. Or, for a roadway extension, what road, how far, and what is the extent?",
-          "required": false,
-          "condition": {
-            "field": "mobility",
-            "notEmpty": true
-          }
-        },
-        {
-          "type": "select",
-          "name": "signal",
-          "label": "Will your project involve adding a traffic signal at a location that is currently not signalized? ",
-          "required": true,
-          "options": ["yes", "no"] 
-        },
-        {
-          "type": "text",
-          "name": "signal_detail",
-          "label": "Please identify the location where the new signal will be added.",
-          "required": false,
-          "condition": {
-            "field": "traffic_signal",
-            "value": "yes"
-          }
         },
         {
           "type": "multiselect",
@@ -317,7 +331,8 @@
             "Naturalized stormwater basins",
             "Other non-Green Stormwater Infrastructure solutions to address a documented flooding issue",
             "Use of pervious pavement",
-            "Enhanced habitat connectivity or wildlife crossings"
+            "Enhanced habitat connectivity or wildlife crossings",
+            "Not applicaple"
           ]
         }
       ]
