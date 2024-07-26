@@ -1,7 +1,6 @@
 {
-  "sheetID": "somegooglesheet",
   "name": "Municipal Bridge Intake",
-  "endpoint": "http://127.0.0.1:8080/submit-form",
+  "endpoint": "https://cloud.dvrpc.org/api/project-intake/v1/submit-form",
   "showProgressIndicator": "horizontal",
   "sections": [
     {
