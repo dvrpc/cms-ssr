@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import response from "./PATIPcommentResponse.json";
 import "./defaults.css";
 import DataTable from "react-data-table-component";
-import DataTableExtensions from "react-data-table-component-extensions";
-import "react-data-table-component-extensions/dist/index.css";
 import { graphql } from "gatsby";
 import HeadTemplate, {
   defaultThemeConfig,
@@ -12,64 +10,97 @@ import HeadTemplate, {
 import Avatar from "../../components/Avatar";
 import ConnectWithUs from "../../components/ConnectWithUs";
 
+const Highlight = ({ input, data }) => (
+  <div
+    dangerouslySetInnerHTML={{
+      __html: input
+        ? data.replace(
+            new RegExp(input, "gi"),
+            (match) => `<span class="bg-yellow-400 text-black">${match}</span>`
+          )
+        : data,
+    }}
+  />
+);
+
 const title = "TIP Comments";
 
-const CommentViewer = ({ data }) => {
+const CommentViewer = ({ data, location }) => {
+  const [input, setInput] = useState("");
+  const comments = response.data;
+  const [filteredComments, setFilteredComments] = useState([...comments]);
   const { userUser } = data;
-  const { data: comments } = response;
+
+  const onChange = (e) => {
+    setInput(e.target.value);
+    const filter = e.target.value.toLowerCase();
+    setFilteredComments([]);
+    let filteredComments = [...comments];
+    filteredComments = filteredComments.filter(
+      (item) =>
+        item.commentid.includes(filter) ||
+        item.commentor.toLowerCase().includes(filter) ||
+        item.AGENCY.toLowerCase().includes(filter) ||
+        item.MPMS.toLowerCase().includes(filter) ||
+        item.comment.toLowerCase().includes(filter) ||
+        item.Responses.toLowerCase().includes(filter)
+    );
+    setFilteredComments(filteredComments);
+  };
+
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.commentid,
+      cell: (row) => <Highlight data={row.commentid} input={input} />,
       sortable: true,
     },
     {
       name: "Commentor",
-      selector: (row) => row.commentor,
+      cell: (row) => <Highlight data={row.commentor} input={input} />,
       sortable: true,
     },
     {
       name: "Agency",
-      selector: (row) => row.AGENCY,
+      cell: (row) => <Highlight data={row.AGENCY} input={input} />,
       sortable: true,
     },
     {
       name: "PDF",
-      selector: (row) => row.FILELINK2,
+      cell: (row) => <Highlight data={row.FILELINK2} input={input} />,
       sortable: true,
     },
     {
       name: "TIP Projects",
-      cell: (row) => <div dangerouslySetInnerHTML={{ __html: row.MPMS }} />,
+      cell: (row) => <Highlight data={row.MPMS} input={input} />,
       sortable: true,
     },
   ];
+
   const tableData = {
     columns,
-    data: comments,
+    data: filteredComments,
   };
 
   return (
     <>
-      <div className="container mx-auto mb-8 px-8 md:grid-cols-[auto_1fr]">
-        <DataTableExtensions print={false} export={false} {...tableData}>
-          <DataTable
-            pagination
-            expandableRows
-            expandableRowsComponent={({ data }) => (
-              <div className="flex divide-x">
-                <div
-                  className="w-1/2"
-                  dangerouslySetInnerHTML={{ __html: data.comment }}
-                />
-                <div
-                  className="w-1/2"
-                  dangerouslySetInnerHTML={{ __html: data.Responses }}
-                />
-              </div>
-            )}
-          ></DataTable>
-        </DataTableExtensions>
+      <div className="container mx-auto mb-8 px-8 py-4 md:grid-cols-[auto_1fr]">
+        <input
+          className="py- 1 rounded border px-2 outline-none"
+          placeholder="Filter Data"
+          value={input}
+          onChange={onChange}
+        />
+        <DataTable
+          {...tableData}
+          pagination
+          expandableRows
+          expandableRowsComponent={({ data }) => (
+            <div className="flex divide-x">
+              <Highlight data={data.comment} input={input} />
+              <Highlight data={data.Responses} input={input} />
+            </div>
+          )}
+        ></DataTable>
       </div>
       <div className="bg-gray-300 print:hidden">
         <div className="container mx-auto px-8 md:grid-cols-[auto_1fr]">
