@@ -68,11 +68,9 @@ const CommentViewer = ({ data, location }) => {
       name: "PDF",
       cell: (row) => <Highlight data={row.FILELINK2} input={input} />,
       sortable: true,
-    },
-    {
-      name: "TIP Projects",
-      cell: (row) => <Highlight data={row.MPMS} input={input} />,
-      sortable: true,
+      sortFunction: (a, b) =>
+        (a.FILELINK2 === "") - (b.FILELINK2 === "") ||
+        a.FILELINK2 - b.FILELINK2,
     },
   ];
 
@@ -81,6 +79,9 @@ const CommentViewer = ({ data, location }) => {
     data: filteredComments,
   };
 
+  comments.map(
+    (comment) => comment.FILELINK2 && console.log(comment.FILELINK2)
+  );
   return (
     <>
       <div className="container mx-auto mb-8 px-8 py-4 md:grid-cols-[auto_1fr]">
@@ -95,7 +96,7 @@ const CommentViewer = ({ data, location }) => {
           pagination
           expandableRows
           expandableRowsComponent={({ data }) => (
-            <div className="flex divide-x">
+            <div className="flex flex-row divide-x [&>*]:basis-1/2">
               <Highlight data={data.comment} input={input} />
               <Highlight data={data.Responses} input={input} />
             </div>
