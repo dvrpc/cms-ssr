@@ -23,7 +23,7 @@ const Highlight = ({ input, data }) => (
   />
 );
 
-const title = "TIP Comments";
+const title = "Draft FY2025 TIP for Pennsylvania Public Comments and Responses";
 
 const CommentViewer = ({ data, location }) => {
   const [input, setInput] = useState("");
@@ -54,16 +54,23 @@ const CommentViewer = ({ data, location }) => {
       cell: (row) => <Highlight data={row.commentid} input={input} />,
       sortable: true,
       maxWidth: "10%",
+      sortFunction: (a, b) => a.commentid - b.commentid,
     },
     {
       name: "Commentor",
       cell: (row) => <Highlight data={row.commentor} input={input} />,
       sortable: true,
+      sortFunction: (a, b) =>
+        (a.commentor === "") - (b.commentor === "") ||
+        a.AGENCY.toLowerCase().localeCompare(b.commentor.toLowerCase()),
     },
     {
       name: "Commentor Agency",
       cell: (row) => <Highlight data={row.AGENCY} input={input} />,
       sortable: true,
+      sortFunction: (a, b) =>
+        (a.AGENCY === "") - (b.AGENCY === "") ||
+        a.AGENCY.toLowerCase().localeCompare(b.AGENCY.toLowerCase()),
     },
     {
       name: "PDF",
@@ -78,6 +85,8 @@ const CommentViewer = ({ data, location }) => {
       name: "MPMS #",
       cell: (row) => <Highlight data={row.MPMS} input={input} />,
       sortable: true,
+      sortFunction: (a, b) =>
+        (a.MPMS === "") - (b.MPMS === "") || a.MPMS - b.MPMS,
     },
   ];
 
@@ -101,9 +110,7 @@ const CommentViewer = ({ data, location }) => {
           comments on and stay informed about transportation planning and
           programming decisions. By incorporating local information, residents'
           lived experiences, and subject matter expertise, plans are more
-          implementable, beneficial, and sustainable. To view all Public
-          Comments and Responses to the FY2025 TIP for Pennsylvania please click
-          here.
+          implementable, beneficial, and sustainable.
         </p>
         <input
           className="py- 1 rounded border px-2 outline-none"
