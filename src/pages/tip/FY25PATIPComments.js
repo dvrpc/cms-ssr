@@ -114,7 +114,7 @@ const CommentViewer = ({ data, location }) => {
         </p>
         <input
           className="py- 1 rounded border px-2 outline-none"
-          placeholder="Filter Data"
+          placeholder="Filter Comments"
           value={input}
           onChange={onChange}
         />
