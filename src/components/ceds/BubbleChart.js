@@ -34,7 +34,7 @@ const BubbleChart = ({ workbook, geography }) => {
       new Chart(chartRef.current, {
         type: "bubble",
         data: {
-          labels: dvrpcWorksheet.map((row) => row["Sector"]),
+          labels: null,
           datasets: [
             {
               labels: dvrpcWorksheet.map((row) => row["Sector"]),
@@ -93,7 +93,8 @@ const BubbleChart = ({ workbook, geography }) => {
                       context.dataset.labels[context.dataIndex]
                   )[0];
                   const keys = Object.keys(row);
-                  let { naics, automation_weight, telework_score } = row;
+                  let { naics, automation_weight, telework_score, Sector } =
+                    row;
                   const total = `Employment: ${row[keys[4].toLocaleString()]}`;
                   const lq = `LQ: ${row[keys[5]]}`;
                   naics = `NAICS Code: ${naics}`;
@@ -109,7 +110,14 @@ const BubbleChart = ({ workbook, geography }) => {
                     style: "percent",
                     minimumFractionDigits: 1,
                   })}`;
-                  return [total, lq, naics, automation_weight, telework_score];
+                  return [
+                    Sector,
+                    total,
+                    lq,
+                    naics,
+                    automation_weight,
+                    telework_score,
+                  ];
                 },
               },
             },

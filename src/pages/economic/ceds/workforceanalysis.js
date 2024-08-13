@@ -66,12 +66,12 @@ const WorkForceAnalysis = ({ data, location }) => {
           <div className="px-8 py-4 text-[#666666]">
             <p>
               Recent world events have expedited the advancement of digital
-              technologies, and digitalization of the economy, altering where
-              and how we work (telework), as well as produce and distribute
-              goods and services (automation). Increased and rapid
-              digitalization of the economy has implications for everything from
-              regional housing markets and land use decisions, to unemployment
-              rates and supply chains.
+              technologies and digitalization of the economy, altering where and
+              how we work (telework), as well as produce and distribute goods
+              and services (automation). Increased and rapid digitalization of
+              the economy has implications for everything from regional housing
+              markets and land use decisions, to unemployment rates and supply
+              chains.
             </p>
             <p className="mt-4">
               However, digitalization has advanced at differing degrees between
@@ -80,15 +80,16 @@ const WorkForceAnalysis = ({ data, location }) => {
               digital adoption at the sector-level. These scores were then used
               to chart the state of digitalization of Greater Philadelphia’s
               economy, as well as the economies of nine peer regions, by
-              focusing on the HPIs within each region.
+              focusing on the High-Performance Industries (HPI) within each
+              region.
             </p>
             <div className="grid grid-cols-2 gap-10">
               <div>
                 <p className="mt-4 font-bold">The Peer Regions</p>
                 <p>
                   Nine peer regions were chosen based on geographic location,
-                  distribution, and similarities, and capped at nine to keep the
-                  entire analysis effort limited to a total of ten regions,
+                  distribution, and similarities. It was capped at nine to keep
+                  the entire analysis effort limited to a total of ten regions,
                   including Greater Philadelphia.
                 </p>
                 <p className="my-4">
@@ -102,21 +103,36 @@ const WorkForceAnalysis = ({ data, location }) => {
                   across the US: the Midwest (Chicago), Southeast (Atlanta),
                   West (Dallas), and West Coast (Los Angeles).
                 </p>
-                <p className="font-bold">Automation Risk Methodology</p>
+                <p className="mt-4 font-bold">High-Performance Industries</p>
                 <p>
-                  The Oxford Martin School’s publication, The Future of
-                  Employment, sought to quantify the degree to which specific
-                  occupations are susceptible to computerization. The analysis
-                  was done utilizing data from the U.S. Department of Labor’s
-                  online platform, O*NET Resource Center. Sector-level risk was
-                  calculated by determining the occupational employment
-                  composition of each sector, and then multiplying each
-                  occupation’s automation risk by its percentage of total
-                  employment within each subsector. The values were then summed
-                  to calculate its automation risk by sector.
+                  For the purposes of this analysis, HPIs are those industries
+                  for which the location quotient (LQ), in terms of total
+                  employment, is 1.25 or higher. LQ is calculated by dividing
+                  the region's total industry-level employment by the nation's
+                  total industry-level employment. An LQ of 1.0 indicates that a
+                  specific industry is equally represented in the region as it
+                  is nationally, and an LQ less than 1.0 indicates that the
+                  industry is less represented regionally than nationally.
+                  Conversely, an LQ greater than 1.0 indicates that an industry
+                  has a greater share of total employment at the regional level
+                  than the national level.
                 </p>
               </div>
               <div>
+                <p className="mt-4 font-bold">Automation Risk Methodology</p>
+                <p>
+                  The Oxford Martin School’s publication,{" "}
+                  <i>The Future of Employment</i>, sought to quantify the degree
+                  to which specific occupations are susceptible to
+                  computerization. The analysis was done utilizing data from the
+                  U.S. Department of Labor’s online platform, O*NET Resource
+                  Center. Sector-level risk was calculated by determining the
+                  occupational employment composition of each sector, and then
+                  multiplying each occupation’s automation risk by its
+                  percentage of total employment within each subsector. The
+                  values were then summed to calculate its automation risk by
+                  sector.
+                </p>
                 <p className="mt-4 font-bold">Telework Capacity Methodology</p>
                 <p>
                   Released in November 2022, the U.S. Bureau of Labor
@@ -245,7 +261,7 @@ const WorkForceAnalysis = ({ data, location }) => {
           </div>
           <div className="max-[428px]:hidden">
             <p className="mb-4 text-[1.5rem] leading-[2rem]">
-              Digitally-enabled telework and automation have significant
+              Digitally enabled telework and automation have significant
               implications for the future of the workforce, and the region's
               economy. Since telework capacity and automation risk differ from
               one industry to the next, it is important to understand the
@@ -253,7 +269,7 @@ const WorkForceAnalysis = ({ data, location }) => {
               anticipate the future impacts of these forces.
             </p>
             <h2 className="text-[1.5rem] font-bold leading-[2rem] text-[#2b1956]">
-              Identifying High Performance Industries
+              Identifying High-Performance Industries
             </h2>
             <p className="mb-6">
               In the bubble chart below, toggle between peer regions to
@@ -261,9 +277,8 @@ const WorkForceAnalysis = ({ data, location }) => {
               total employment within each industry, differs from one region to
               the next. This chart can be used to determine which industries are
               of particular importance to the overall health of the regional
-              economy, and considered to be a High Performance Industry (HPI)
-              for that region. For the purposes of this analysis, HPIs are those
-              industries for which the location quotient (LQ) is 1.25 or higher.
+              economy, and considered to be a High-Performance Industry (HPI)
+              for that region.
             </p>
             <div className="mb-2 flex flex-col text-lg font-bold md:mt-0 md:flex-row md:items-center">
               <div className="flex items-center">
@@ -333,15 +348,15 @@ const WorkForceAnalysis = ({ data, location }) => {
               Regions reliant on HPIs with higher telework capacity may need to
               adopt policies aimed at talent retention and quality of life
               improvements to offset the potentially negative impacts of remote
-              work. Conversely, region’s where automation risk is higher among
+              work. Conversely, regions where automation risk is higher among
               HPIs may face increased challenges related to the reskilling and
               upskilling of a displaced workforce.
             </p>
             <p className="my-2">
-              Toggle between the bar charts below to compare Greater
-              Philadelphia’s economy, in terms of employment, automation risk,
-              and telework capacity within each HPI, to that of the nine peer
-              regions.
+              Use the drop-down button to toggle between the bar charts below
+              and to compare Greater Philadelphia’s economy, in terms of
+              employment, automation risk, and telework capacity within each
+              HPI, to that of the nine peer regions.
             </p>
             <div className="relative w-fit">
               <svg
