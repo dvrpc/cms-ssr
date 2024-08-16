@@ -127,7 +127,12 @@ const BubbleChart = ({ workbook, geography }) => {
           },
           borderColor: function (context) {
             if (context.dataset.set === "dvrpc")
-              return colors[context.raw.category];
+              return colors[context.raw.category]
+                ? colors[context.raw.category].substring(
+                    0,
+                    colors[context.raw.category].length - 2
+                  )
+                : null;
             else return "transparent";
           },
         },
