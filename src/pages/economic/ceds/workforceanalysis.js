@@ -30,6 +30,26 @@ const WorkForceAnalysis = ({ data, location }) => {
     document.getElementById("modal").classList.toggle("hidden");
   };
 
+  const legend = {
+    "Accommodation and Food Services": "#AA2725",
+    "Administrative and Support and Waste Management and Remediation Services":
+      "#F36F31",
+    "Arts, Entertainment, and Recreation": "#6566AE",
+    Construction: "#5D744C",
+    "Educational Services": "#4B7436",
+    "Finance and Insurance": "#F89521",
+    "Health Care and Social Assistance": "#27255E",
+    Information: "#989A9B",
+    Manufacturing: "#9D83BC",
+    "Other Services (except Public Administration)": "#806FAC",
+    "Professional, Scientific, and Technical Services": "#8CBC73",
+    "Real Estate and Rental and Leasing": "#EA5637",
+    "Retail Trade": "#EBA651",
+    "Transportation and Warehousing": "#D11F45",
+    Utilities: "#4D3189",
+    "Wholesale Trade": "#A75BA4",
+  };
+
   return (
     <>
       <header className="bg-white print:hidden">
@@ -281,45 +301,43 @@ const WorkForceAnalysis = ({ data, location }) => {
               for that region.
             </p>
             <div className="mb-2 flex flex-col text-lg font-bold md:mt-0 md:flex-row md:items-center">
-              <div className="flex items-center">
-                <h3>Greater Philadelphia</h3>
-                <h3 className="mx-1">vs.</h3>
-                <div className="relative">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="absolute top-[20%] right-1 z-10 h-7 w-7 rotate-[270deg] scale-75 rounded-full bg-[#EB983E] fill-current p-[0.18rem] pr-2 text-white"
-                  >
-                    <path d="m17 0 3 3-10 9 10 9-3 3L5 12z" />
-                  </svg>
-                  <select
-                    className="workforce-select relative z-20 w-[11.5rem] rounded-md border border-[#707070] bg-transparent p-2"
-                    id="geography"
-                    autoComplete="off"
-                    onChange={(e) => setGeography(e.target.value)}
-                    value={geography}
-                  >
-                    {Object.keys(workbook)
-                      .slice(2, -2)
-                      .map((name) => (
-                        <option key={name} value={name}>
-                          {regionsMap[name]}
-                        </option>
-                      ))}
-                  </select>
-                </div>
+              <h3>Greater Philadelphia</h3>
+              <h3 className="mx-1">vs.</h3>
+              <div className="relative">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="absolute top-[20%] right-1 z-10 h-7 w-7 rotate-[270deg] scale-75 rounded-full bg-[#EB983E] fill-current p-[0.18rem] pr-2 text-white"
+                >
+                  <path d="m17 0 3 3-10 9 10 9-3 3L5 12z" />
+                </svg>
+                <select
+                  className="workforce-select relative z-20 w-[11.5rem] rounded-md border border-[#707070] bg-transparent p-2"
+                  id="geography"
+                  autoComplete="off"
+                  onChange={(e) => setGeography(e.target.value)}
+                  value={geography}
+                >
+                  {Object.keys(workbook)
+                    .slice(2, -2)
+                    .map((name) => (
+                      <option key={name} value={name}>
+                        {regionsMap[name]}
+                      </option>
+                    ))}
+                </select>
               </div>
-              <span className="mt-4 flex items-center md:mt-0">
-                <span className="mr-1 rounded-full border-2 border-[grey] p-2 md:ml-10" />
-                <h3 className="mr-4 text-sm text-[grey]">
-                  Greater Philadelphia
-                </h3>
-                <span className="mr-1 rounded-full bg-[grey] p-2" />
-                <h3 className="mr-4 text-sm text-[grey]">Peer Region</h3>
-                <h3 className="text-sm font-medium italic text-[grey]">
-                  Bubble size is based on total employment
-                </h3>
-              </span>
             </div>
+            {/* <div className="mt-4 flex flex-col flex-wrap md:mt-0">
+              {Object.keys(legend).map((key) => (
+                <div className="flex items-center">
+                  <span
+                    className="mx-1 h-2 w-2 rounded-full"
+                    style={{ backgroundColor: legend[key] }}
+                  />
+                  <span className="text-sm">{key}</span>
+                </div>
+              ))}
+            </div> */}
 
             {workbook && (
               <>

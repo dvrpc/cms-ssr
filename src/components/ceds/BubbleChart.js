@@ -85,6 +85,9 @@ const BubbleChart = ({ workbook, geography }) => {
             },
             tooltip: {
               callbacks: {
+                title: function (context) {
+                  return context[0].dataset.labels[context[0].dataIndex];
+                },
                 label: function (context) {
                   const data = { raw: worksheet, dvrpc: dvrpcWorksheet };
                   const row = data[context.dataset.set].filter(
@@ -93,9 +96,8 @@ const BubbleChart = ({ workbook, geography }) => {
                       context.dataset.labels[context.dataIndex]
                   )[0];
                   const keys = Object.keys(row);
-                  let { naics, automation_weight, telework_score, Sector } =
-                    row;
-                  const total = `Employment: ${row[keys[4].toLocaleString()]}`;
+                  let { naics, automation_weight, telework_score } = row;
+                  const total = `Employment: ${row[keys[4]].toLocaleString()}`;
                   const lq = `LQ: ${row[keys[5]]}`;
                   naics = `NAICS Code: ${naics}`;
                   automation_weight = `Automation Weight: ${row[
@@ -110,16 +112,16 @@ const BubbleChart = ({ workbook, geography }) => {
                     style: "percent",
                     minimumFractionDigits: 1,
                   })}`;
-                  return [
-                    Sector,
-                    total,
-                    lq,
-                    naics,
-                    automation_weight,
-                    telework_score,
-                  ];
+                  return [total, lq, naics, automation_weight, telework_score];
                 },
               },
+              titleFont: {
+                size: 14,
+              },
+              bodyFont: {
+                size: 14,
+              },
+              bodySpacing: 6,
             },
           },
           backgroundColor: function (context) {
