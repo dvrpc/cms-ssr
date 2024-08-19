@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Chart } from "chart.js/auto";
+import { generateBodyText, getOrCreateTooltip } from "./Tooltip";
+import regionsMap from "../../configs/regionsMap";
 
 const BubbleChart = ({ workbook, geography }) => {
   const dvrpcWorksheet = workbook["dvrpc"];
@@ -84,44 +86,84 @@ const BubbleChart = ({ workbook, geography }) => {
               display: false,
             },
             tooltip: {
-              callbacks: {
-                title: function (context) {
-                  return context[0].dataset.labels[context[0].dataIndex];
-                },
-                label: function (context) {
-                  const data = { raw: worksheet, dvrpc: dvrpcWorksheet };
-                  const row = data[context.dataset.set].filter(
-                    (row) =>
-                      row["Sector"] ===
-                      context.dataset.labels[context.dataIndex]
+              enabled: false,
+              external: function (context) {
+                const { chart, tooltip } = context;
+                const tooltipEl = getOrCreateTooltip(chart);
+
+                if (tooltip.opacity === 0) {
+                  tooltipEl.style.opacity = 0;
+                  return;
+                }
+
+                const data = { raw: worksheet, dvrpc: dvrpcWorksheet };
+                const items = tooltip.dataPoints.map((item) => {
+                  const { dataIndex, dataset } = item;
+                  const row = data[dataset.set].filter(
+                    (row) => row["Sector"] === dataset.labels[dataIndex]
                   )[0];
+                  const geo =
+                    dataset.set === "dvrpc"
+                      ? "Greater Philadelphia"
+                      : regionsMap[geography];
                   const keys = Object.keys(row);
-                  let { naics, automation_weight, telework_score } = row;
-                  const total = `Employment: ${row[keys[4]].toLocaleString()}`;
-                  const lq = `LQ: ${row[keys[5]]}`;
-                  naics = `NAICS Code: ${naics}`;
-                  automation_weight = `Automation Weight: ${row[
-                    "automation_weight"
-                  ].toLocaleString(undefined, {
-                    style: "percent",
-                    minimumFractionDigits: 1,
-                  })}`;
-                  telework_score = `Telework Score: ${row[
-                    "telework_score"
-                  ].toLocaleString(undefined, {
-                    style: "percent",
-                    minimumFractionDigits: 1,
-                  })}`;
-                  return [total, lq, naics, automation_weight, telework_score];
-                },
+                  let { naics, automation_weight, telework_score, Sector } =
+                    row;
+                  const total = row[keys[4]].toLocaleString();
+                  const lq = row[keys[5]];
+                  automation_weight = row["automation_weight"].toLocaleString(
+                    undefined,
+                    {
+                      style: "percent",
+                      minimumFractionDigits: 1,
+                    }
+                  );
+                  telework_score = row["telework_score"].toLocaleString(
+                    undefined,
+                    {
+                      style: "percent",
+                      minimumFractionDigits: 1,
+                    }
+                  );
+
+                  return [
+                    item.element.options,
+                    geo,
+                    Sector,
+                    total,
+                    lq,
+                    naics,
+                    automation_weight,
+                    telework_score,
+                  ];
+                });
+
+                // Set Text
+                if (tooltip.body) {
+                  const tableRoot = tooltipEl.querySelector("table");
+                  // Remove old children
+                  while (tableRoot.firstChild) {
+                    tableRoot.firstChild.remove();
+                  }
+                  items.map((fields) =>
+                    generateBodyText(fields, tableRoot, tooltip)
+                  );
+                }
+
+                const { offsetLeft: positionX, offsetTop: positionY } =
+                  chart.canvas;
+
+                // Display, position, and set styles for font
+                tooltipEl.style.opacity = 1;
+                tooltipEl.style.left = positionX + tooltip.caretX + "px";
+                tooltipEl.style.top = positionY + tooltip.caretY + "px";
+                tooltipEl.style.font = tooltip.options.bodyFont.string;
+                tooltipEl.style.padding =
+                  tooltip.options.padding +
+                  "px " +
+                  tooltip.options.padding +
+                  "px";
               },
-              titleFont: {
-                size: 14,
-              },
-              bodyFont: {
-                size: 14,
-              },
-              bodySpacing: 6,
             },
           },
           backgroundColor: function (context) {
