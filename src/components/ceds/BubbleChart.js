@@ -87,6 +87,7 @@ const BubbleChart = ({ workbook, geography }) => {
             },
             tooltip: {
               enabled: false,
+              padding: 12,
               external: function (context) {
                 const { chart, tooltip } = context;
                 const tooltipEl = getOrCreateTooltip(chart);
