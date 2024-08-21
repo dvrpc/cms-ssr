@@ -10,8 +10,8 @@ const BubbleChart = ({ workbook, geography }) => {
   var colors = {
     51: "#989A9B99",
     61: "#4B743699",
-    54: "#74985F99",
-    55: "#8CBC7399",
+    54: "#6E895899",
+    55: "#326CA899",
     52: "#F8952199",
     56: "#F36F3199",
     53: "#EA563799",
@@ -62,6 +62,7 @@ const BubbleChart = ({ workbook, geography }) => {
           ],
         },
         options: {
+          borderWidth: 1.5,
           animation: false,
           scales: {
             x: {

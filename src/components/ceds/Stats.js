@@ -40,7 +40,7 @@ const Stats = ({ workbook, geography, activeChart }) => {
 
   return (
     <div className="mb-8 flex gap-10 md:w-[80%] min-[1535px]:w-[65%]">
-      <div className="border-r border-[#707070]">
+      <div className="min-w-[48%] border-r border-[#707070]">
         <h2 className="text-lg font-bold">Greater Philadelphia</h2>
         <div className="flex flex-col md:w-4/5 min-[1280px]:flex-row min-[1280px]:items-center">
           <h2 className="m-0 mr-4 inline text-[2.5rem] font-bold text-[#2b1956]">
@@ -110,12 +110,14 @@ const Stats = ({ workbook, geography, activeChart }) => {
                     minimumFractionDigits: 1,
                   })}
                 </h2>
-                <h4 className="col-span-7 my-auto md:ml-2">{row["Sector"]}</h4>
+                <h4 className="col-span-7 my-auto min-[1280px]:ml-2">
+                  {row["Sector"]}
+                </h4>
               </>
             ))}
         </div>
       </div>
-      <div className="min-[1280px]:ml-auto">
+      <div>
         <h2 className="text-lg font-bold">{regionsMap[geography]}</h2>
         <div className="flex flex-col md:w-4/5 min-[1280px]:flex-row min-[1280px]:items-center">
           <h2 className="m-0 mr-4 inline text-[2.5rem] font-bold text-[#2b1956]">
