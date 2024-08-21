@@ -16,6 +16,8 @@ import Banner from "../../../images/cedsheader.jpg";
 import Icon, { Search } from "../../../components/Icon";
 import Footer from "../../../components/Footer";
 import workbook from "./data.json";
+import Dropdown from "../../../components/Dropdown";
+import ArrowIcon from "../../../components/Icons/ArrowIcon";
 
 const title = "Workforce Analysis";
 
@@ -28,26 +30,6 @@ const WorkForceAnalysis = ({ data, location }) => {
     event.preventDefault();
     document.getElementById("modal-background").classList.toggle("hidden");
     document.getElementById("modal").classList.toggle("hidden");
-  };
-
-  const legend = {
-    "Accommodation and Food Services": "#AA2725",
-    "Administrative and Support and Waste Management and Remediation Services":
-      "#F36F31",
-    "Arts, Entertainment, and Recreation": "#6566AE",
-    Construction: "#5D744C",
-    "Educational Services": "#4B7436",
-    "Finance and Insurance": "#F89521",
-    "Health Care and Social Assistance": "#27255E",
-    Information: "#989A9B",
-    Manufacturing: "#9D83BC",
-    "Other Services (except Public Administration)": "#806FAC",
-    "Professional, Scientific, and Technical Services": "#8CBC73",
-    "Real Estate and Rental and Leasing": "#EA5637",
-    "Retail Trade": "#EBA651",
-    "Transportation and Warehousing": "#D11F45",
-    Utilities: "#4D3189",
-    "Wholesale Trade": "#A75BA4",
   };
 
   return (
@@ -189,24 +171,24 @@ const WorkForceAnalysis = ({ data, location }) => {
         </Modal>
         <div className="container mx-auto mb-8 px-8 md:grid-cols-[auto_1fr]">
           <Link
-            className="mb-4 flex font-bold text-[#646464] no-underline hover:underline"
+            className="mb-4 flex w-fit items-center gap-1 justify-self-start font-bold text-[#646464] no-underline hover:underline"
             to="/economic/workforce/"
           >
-            <span className="my-auto mr-2 flex h-5 w-5 rounded-full bg-[#646464] font-bold text-white">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="-ml-[0.1rem] h-full w-full scale-50 fill-current"
-              >
-                <path d="m17 0 3 3-10 9 10 9-3 3L5 12z" />
-              </svg>
-            </span>
+            <ArrowIcon
+              orientation="left"
+              backgroundColor="#646464"
+              arrowColor="white"
+            />
             Back to Workforce Development
           </Link>
           <div className="flex flex-col text-[#662d91] md:flex-row md:items-center">
             <h1 className="mt-1 mb-2 max-w-[80ch] text-4xl font-bold print:max-w-full print:p-0 md:col-span-2 md:col-start-2 md:p-0">
               Comparing Regional Economies: Workforce Automation and Telework
             </h1>
-            <button className="flex font-bold md:ml-8" onClick={toggleModal}>
+            <button
+              className="my-auto flex font-bold md:ml-8"
+              onClick={toggleModal}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0,0,256,256"
@@ -303,41 +285,19 @@ const WorkForceAnalysis = ({ data, location }) => {
             <div className="mb-2 flex flex-col text-lg font-bold md:mt-0 md:flex-row md:items-center">
               <h3>Greater Philadelphia</h3>
               <h3 className="mx-1">vs.</h3>
-              <div className="relative">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="absolute top-[20%] right-1 z-10 h-7 w-7 rotate-[270deg] scale-75 rounded-full bg-[#EB983E] fill-current p-[0.18rem] pr-2 text-white"
-                >
-                  <path d="m17 0 3 3-10 9 10 9-3 3L5 12z" />
-                </svg>
-                <select
-                  className="workforce-select relative z-20 w-[11.5rem] rounded-md border border-[#707070] bg-transparent p-2"
-                  id="geography"
-                  autoComplete="off"
-                  onChange={(e) => setGeography(e.target.value)}
-                  value={geography}
-                >
-                  {Object.keys(workbook)
-                    .slice(2, -2)
-                    .map((name) => (
-                      <option key={name} value={name}>
-                        {regionsMap[name]}
-                      </option>
-                    ))}
-                </select>
-              </div>
+              <Dropdown
+                color={"#EB983E"}
+                selected={geography}
+                onChange={setGeography}
+                options={Object.keys(workbook)
+                  .slice(2, -2)
+                  .map((name) => (
+                    <option key={name} value={name}>
+                      {regionsMap[name]}
+                    </option>
+                  ))}
+              />
             </div>
-            {/* <div className="mt-4 flex flex-col flex-wrap md:mt-0">
-              {Object.keys(legend).map((key) => (
-                <div className="flex items-center">
-                  <span
-                    className="mx-1 h-2 w-2 rounded-full"
-                    style={{ backgroundColor: legend[key] }}
-                  />
-                  <span className="text-sm">{key}</span>
-                </div>
-              ))}
-            </div> */}
 
             {workbook && (
               <>
@@ -376,25 +336,16 @@ const WorkForceAnalysis = ({ data, location }) => {
               employment, automation risk, and telework capacity within each
               HPI, to that of the nine peer regions.
             </p>
-            <div className="relative w-fit">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="absolute top-[27%] right-1 z-10 h-7 w-7 rotate-[270deg] scale-75 rounded-full bg-[#EB983E] fill-current p-[0.18rem] pr-2 text-white"
-              >
-                <path d="m17 0 3 3-10 9 10 9-3 3L5 12z" />
-              </svg>
-              <select
-                className="workforce-select relative z-20 my-2 w-32 rounded-md border border-[#707070] bg-transparent p-2 font-bold"
-                id="chart-toggle"
-                autoComplete="off"
-                onChange={(e) => setActiveChart(e.target.value)}
-                defaultValue={"total"}
-              >
-                <option value="total">Total</option>
-                <option value="automation">Automation</option>
-                <option value="telework">Telework</option>
-              </select>
-            </div>
+
+            <Dropdown
+              color={"#EB983E"}
+              onChange={setActiveChart}
+              defaultValue={"total"}
+            >
+              <option value="total">Total</option>
+              <option value="automation">Automation</option>
+              <option value="telework">Telework</option>
+            </Dropdown>
 
             {workbook && (
               <>

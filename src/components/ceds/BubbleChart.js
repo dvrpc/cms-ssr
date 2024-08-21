@@ -186,7 +186,50 @@ const BubbleChart = ({ workbook, geography }) => {
     }
   }, [geography, chartRef]);
 
-  return <canvas ref={chartRef} id="bubble"></canvas>;
+  return (
+    <>
+      <div className="absolute w-64">
+        <Legend />
+      </div>
+      <canvas ref={chartRef} id="bubble"></canvas>
+    </>
+  );
 };
 
 export default BubbleChart;
+
+const Legend = () => {
+  const sectors = {
+    "Accommodation and Food Services": "#AA2725",
+    "Administrative and Support and Waste Management and Remediation Services":
+      "#F36F31",
+    "Arts, Entertainment, and Recreation": "#6566AE",
+    Construction: "#5D744C",
+    "Educational Services": "#4B7436",
+    "Finance and Insurance": "#F89521",
+    "Health Care and Social Assistance": "#27255E",
+    Information: "#989A9B",
+    Manufacturing: "#9D83BC",
+    "Other Services (except Public Administration)": "#806FAC",
+    "Professional, Scientific, and Technical Services": "#8CBC73",
+    "Real Estate and Rental and Leasing": "#EA5637",
+    "Retail Trade": "#EBA651",
+    "Transportation and Warehousing": "#D11F45",
+    Utilities: "#4D3189",
+    "Wholesale Trade": "#A75BA4",
+  };
+
+  return (
+    <div className="mt-4 flex flex-col bg-red-500 p-2 opacity-[0.8] md:mt-0">
+      {Object.keys(sectors).map((key) => (
+        <div className="flex">
+          <span
+            className="mx-1 h-4 w-4"
+            style={{ backgroundColor: sectors[key] }}
+          />
+          <span className="text-sm">{key}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
