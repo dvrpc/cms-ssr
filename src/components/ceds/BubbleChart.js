@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Chart } from "chart.js/auto";
 import { generateBodyText, getOrCreateTooltip } from "./Tooltip";
 import regionsMap from "../../configs/regionsMap";
+import ArrowIcon from "../Icons/ArrowIcon";
+import CloseIcon from "../Icons/CloseIcon";
 
 const BubbleChart = ({ workbook, geography }) => {
   const dvrpcWorksheet = workbook["dvrpc"];
@@ -25,6 +27,8 @@ const BubbleChart = ({ workbook, geography }) => {
     48: "#D11F4599",
     44: "#EBA65199",
     72: "#AA272599",
+    11: "#D4508799",
+    12: "#A0519599",
   };
 
   const chartRef = useRef();
@@ -187,22 +191,26 @@ const BubbleChart = ({ workbook, geography }) => {
   }, [geography, chartRef]);
 
   return (
-    <>
-      <div className="absolute w-64">
+    <div className="relative h-full">
+      <div className="absolute right-5 top-5">
         <Legend />
       </div>
-      <canvas ref={chartRef} id="bubble"></canvas>
-    </>
+      <div className="h-full">
+        <canvas ref={chartRef} id="bubble"></canvas>
+      </div>
+    </div>
   );
 };
 
 export default BubbleChart;
 
 const Legend = () => {
+  const [expanded, setExpanded] = useState(false);
   const sectors = {
     "Accommodation and Food Services": "#AA2725",
     "Administrative and Support and Waste Management and Remediation Services":
       "#F36F31",
+    "Agriculture, Forestry, Fishing and Hunting": "#D45087",
     "Arts, Entertainment, and Recreation": "#6566AE",
     Construction: "#5D744C",
     "Educational Services": "#4B7436",
@@ -210,8 +218,10 @@ const Legend = () => {
     "Health Care and Social Assistance": "#27255E",
     Information: "#989A9B",
     Manufacturing: "#9D83BC",
+    "Management of Companies and Enterprises": "#125FB2",
+    "Mining, Quarrying, and Oil and Gas Extraction": "#A05195",
     "Other Services (except Public Administration)": "#806FAC",
-    "Professional, Scientific, and Technical Services": "#8CBC73",
+    "Professional, Scientific, and Technical Services": "#6E8958",
     "Real Estate and Rental and Leasing": "#EA5637",
     "Retail Trade": "#EBA651",
     "Transportation and Warehousing": "#D11F45",
@@ -220,16 +230,35 @@ const Legend = () => {
   };
 
   return (
-    <div className="mt-4 flex flex-col bg-red-500 p-2 opacity-[0.8] md:mt-0">
-      {Object.keys(sectors).map((key) => (
-        <div className="flex">
-          <span
-            className="mx-1 h-4 w-4"
-            style={{ backgroundColor: sectors[key] }}
-          />
-          <span className="text-sm">{key}</span>
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="flex flex-col rounded-sm border-2 border-[#E5E5E5] bg-white p-2 text-[#666666] opacity-[0.9] shadow-sm md:mt-0">
+        <button
+          className="flex items-center gap-1 font-bold"
+          onClick={() => setExpanded(!expanded)}
+          style={{
+            marginLeft: !expanded && "auto",
+            marginRight: expanded && "auto",
+          }}
+        >
+          Legend
+          {!expanded && <ArrowIcon height="26px" />}
+          {expanded && <CloseIcon height="26px" strokeColor="#646464" />}
+        </button>
+        <ul
+          className="mt-1 w-64"
+          style={{ display: expanded ? "block" : "none" }}
+        >
+          {Object.keys(sectors).map((key) => (
+            <li className="my-1 flex items-start">
+              <span
+                className="mr-1 h-4 w-4 shrink-0 opacity-[0.8]"
+                style={{ backgroundColor: sectors[key] }}
+              />
+              <span className="text-sm">{key}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };

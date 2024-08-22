@@ -18,6 +18,7 @@ import Footer from "../../../components/Footer";
 import workbook from "./data.json";
 import Dropdown from "../../../components/Dropdown";
 import ArrowIcon from "../../../components/Icons/ArrowIcon";
+import InfoIcon from "../../../components/Icons/InfoIcon";
 
 const title = "Workforce Analysis";
 
@@ -107,6 +108,51 @@ const WorkForceAnalysis = ({ data, location }) => {
                 </p>
                 <p className="mt-4 font-bold">High-Performance Industries</p>
                 <p>
+                  The{" "}
+                  <a href="https://www.census.gov/naics/" target="_blank">
+                    North American Industry Classification System
+                  </a>{" "}
+                  (NAICS) identifies 20 distinct industry sectors that comprise
+                  the national and regional economies, and assigns them a unique
+                  NAICS code. Of those, 19 are included in this analysis:
+                </p>
+                <p className="my-2">
+                  <ul className="list-disc [&>*]:ml-8">
+                    <li>11: Agriculture, Forestry, Fishing and Hunting</li>
+                    <li>12: Mining, Quarrying, and Oil and Gas Extraction</li>
+                    <li>22: Utilities</li>
+                    <li>23: Construction</li>
+                    <li>31-33: Manufacturing</li>
+                    <li>42: Wholesale Trade</li>
+                    <li>44-45: Retail Trade</li>
+                    <li>48-49: Transportation and Warehousing</li>
+                    <li>51: Information</li>
+                    <li>52: Finance and Insurance</li>
+                    <li>53: Real Estate and Rental and Leasing</li>
+                    <li>
+                      55: Professional, Scientific, and Technical Services
+                    </li>
+                    <li>
+                      56: Administrative and Support and Waste Management and
+                      Remediation Services
+                    </li>
+                    <li>61: Educational Services</li>
+                    <li>62: Health Care and Social Assistance</li>
+                    <li>71: Arts, Entertainment, and Recreation</li>
+                    <li>72: Accommodation and Food Services</li>
+                    <li>81: Other Services (except Public Administration)</li>
+                  </ul>
+                </p>
+                <p>
+                  Please note that NAICS code 92: Public Administration was not
+                  included as this analysis focuses entirely on the private
+                  sector. Additionally, NAICS codes 11: Agriculture, Forestry,
+                  Fishing and Hunting; and 12: Mining, Quarrying, and Oil and
+                  Gas Extraction are not plotted in the bubble chart because
+                  total employment in both sectors is de minimis across all
+                  regions included in this analysis.{" "}
+                </p>
+                <p className="my-4">
                   For the purposes of this analysis, HPIs are those industries
                   for which the location quotient (LQ), in terms of total
                   employment, is 1.25 or higher. LQ is calculated by dividing
@@ -178,6 +224,7 @@ const WorkForceAnalysis = ({ data, location }) => {
               orientation="left"
               backgroundColor="#646464"
               arrowColor="white"
+              height="28px"
             />
             Back to Workforce Development
           </Link>
@@ -186,36 +233,10 @@ const WorkForceAnalysis = ({ data, location }) => {
               Comparing Regional Economies: Workforce Automation and Telework
             </h1>
             <button
-              className="my-auto flex font-bold md:ml-8"
+              className="my-auto flex gap-1 font-bold md:ml-8"
               onClick={toggleModal}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0,0,256,256"
-                width="26px"
-                height="26px"
-                className="mr-2"
-              >
-                <g
-                  fill="#60368c"
-                  fill-rule="nonzero"
-                  stroke="none"
-                  stroke-width="1"
-                  stroke-linecap="butt"
-                  stroke-linejoin="miter"
-                  stroke-miterlimit="10"
-                  stroke-dasharray=""
-                  stroke-dashoffset="0"
-                  font-family="none"
-                  font-weight="none"
-                  font-size="none"
-                  text-anchor="none"
-                >
-                  <g transform="scale(9.84615,9.84615)">
-                    <path d="M13,1.1875c-6.52344,0 -11.8125,5.28906 -11.8125,11.8125c0,6.52344 5.28906,11.8125 11.8125,11.8125c6.52344,0 11.8125,-5.28906 11.8125,-11.8125c0,-6.52344 -5.28906,-11.8125 -11.8125,-11.8125zM15.46094,19.49609c-0.60937,0.23828 -1.09375,0.42188 -1.45703,0.54688c-0.36328,0.125 -0.78125,0.1875 -1.26172,0.1875c-0.73437,0 -1.30859,-0.17969 -1.71875,-0.53906c-0.40625,-0.35547 -0.60937,-0.8125 -0.60937,-1.36719c0,-0.21484 0.01563,-0.43359 0.04688,-0.65625c0.02734,-0.22656 0.07813,-0.47656 0.14453,-0.76172l0.76172,-2.6875c0.06641,-0.25781 0.125,-0.5 0.17188,-0.73047c0.04688,-0.23047 0.06641,-0.44141 0.06641,-0.63281c0,-0.33984 -0.07031,-0.58203 -0.21094,-0.71484c-0.14453,-0.13672 -0.41406,-0.20312 -0.8125,-0.20312c-0.19531,0 -0.39844,0.03125 -0.60547,0.08984c-0.20703,0.0625 -0.38281,0.12109 -0.53125,0.17578l0.20313,-0.82812c0.49609,-0.20312 0.97266,-0.375 1.42969,-0.51953c0.45313,-0.14453 0.88672,-0.21875 1.28906,-0.21875c0.73047,0 1.29688,0.17969 1.69141,0.53125c0.39453,0.35156 0.59375,0.8125 0.59375,1.375c0,0.11719 -0.01172,0.32422 -0.03906,0.61719c-0.02734,0.29297 -0.07812,0.5625 -0.15234,0.8125l-0.75781,2.67969c-0.0625,0.21484 -0.11719,0.46094 -0.16797,0.73438c-0.04687,0.27344 -0.07031,0.48438 -0.07031,0.625c0,0.35547 0.07813,0.60156 0.23828,0.73047c0.15625,0.12891 0.43359,0.19141 0.82813,0.19141c0.18359,0 0.39063,-0.03125 0.625,-0.09375c0.23047,-0.06641 0.39844,-0.12109 0.50391,-0.17187zM15.32422,8.61719c-0.35156,0.32813 -0.77734,0.49219 -1.27344,0.49219c-0.49609,0 -0.92578,-0.16406 -1.28125,-0.49219c-0.35547,-0.32812 -0.53125,-0.72656 -0.53125,-1.19141c0,-0.46484 0.17969,-0.86719 0.53125,-1.19922c0.35547,-0.33203 0.78516,-0.49609 1.28125,-0.49609c0.49609,0 0.92188,0.16406 1.27344,0.49609c0.35547,0.33203 0.53125,0.73438 0.53125,1.19922c0,0.46484 -0.17578,0.86328 -0.53125,1.19141z"></path>
-                  </g>
-                </g>
-              </svg>
+              <InfoIcon backgroundColor="#60368c" height="28px" />
               About
             </button>
           </div>
@@ -310,6 +331,14 @@ const WorkForceAnalysis = ({ data, location }) => {
               </>
             )}
           </div>
+          <p className="text-sm italic text-[#666666]">
+            Carl Benedict Frey and Michael Osborne. “The Future of Employment:
+            How susceptible are jobs to computerisation?” Oxford Martin School.
+            September 2013; US Bureau of Labor Statistics. Occupational
+            Requirements Survey. 2023; US Bureau of Labor Statistics.
+            Occupational and Employment Wage Statistics. 2022; and US Census
+            Bureau. North American Industry Classification System. 2022.
+          </p>
         </div>
         <div
           className="pt-10 max-[428px]:hidden"
@@ -354,7 +383,7 @@ const WorkForceAnalysis = ({ data, location }) => {
                   geography={geography}
                   activeChart={activeChart}
                 />
-                <div className="h-[60vh]">
+                <div className="inline-block h-[60vh]">
                   <BarChart
                     workbook={workbook}
                     geography={geography}

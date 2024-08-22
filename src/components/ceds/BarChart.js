@@ -314,14 +314,22 @@ const BarChart = ({ workbook, geography, activeChart }) => {
   return (
     <>
       {activeChart === "total" && (
-        <div class="total chart h-full">
-          <h3 className="text-lg font-bold min-[1280px]:absolute">
-            HPI Employment Share of Total Employment
-          </h3>
-          <div class="chart-container h-full">
-            <canvas ref={totalRef} id="total"></canvas>
+        <>
+          <div class="total chart h-full">
+            <h3 className="text-lg font-bold min-[1280px]:absolute">
+              HPI Employment Share of Total Employment
+            </h3>
+            <div class="chart-container h-full">
+              <canvas ref={totalRef} id="total"></canvas>
+            </div>
+            <p className="text-sm italic text-[#666666]">
+              US Bureau of Labor Statistics. Occupational Requirements Survey.
+              2023; US Bureau of Labor Statistics. Occupational and Employment
+              Wage Statistics. 2022; and US Census Bureau. North American
+              Industry Classification System. 2022.
+            </p>
           </div>
-        </div>
+        </>
       )}
       {activeChart === "automation" && (
         <div class="automation chart h-full ">
@@ -331,6 +339,13 @@ const BarChart = ({ workbook, geography, activeChart }) => {
           <div class="chart-container mt-4 h-full">
             <canvas ref={automationRef} id="automation"></canvas>
           </div>
+          <p className="text-sm italic text-[#666666]">
+            Carl Benedict Frey and Michael Osborne. “The Future of Employment:
+            How susceptible are jobs to computerisation?” Oxford Martin School.
+            September 2013; US Bureau of Labor Statistics. Occupational and
+            Employment Wage Statistics. 2022; and US Census Bureau. North
+            American Industry Classification System. 2022.
+          </p>
         </div>
       )}
       {activeChart === "telework" && (
@@ -341,6 +356,12 @@ const BarChart = ({ workbook, geography, activeChart }) => {
           <div class="chart-container mt-4 h-full">
             <canvas ref={teleworkRef} id="telework"></canvas>
           </div>
+          <p className="text-sm italic text-[#666666]">
+            US Bureau of Labor Statistics. Occupational Requirements Survey.
+            2023; US Bureau of Labor Statistics. Occupational and Employment
+            Wage Statistics. 2022; and US Census Bureau. North American Industry
+            Classification System. 2022.
+          </p>
         </div>
       )}
     </>

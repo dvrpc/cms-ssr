@@ -11,7 +11,7 @@ export const getOrCreateTooltip = (chart) => {
     tooltipEl.style.position = "absolute";
     tooltipEl.style.transform = "translate(-50%, 0)";
     tooltipEl.style.transition = "all .1s ease";
-    tooltipEl.style.maxWidth = "225px";
+    tooltipEl.style.width = "225px";
 
     const table = document.createElement("table");
     table.style.margin = "0 0 0.3rem 0";
