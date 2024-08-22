@@ -10,8 +10,13 @@ const Dropdown = ({
 }) => {
   return (
     <div className="relative w-min">
-      <div className={`absolute right-1 top-[10%]`}>
-        <ArrowIcon backgroundColor={color} arrowColor="white" />
+      <div className="absolute right-1 top-[15%]">
+        <ArrowIcon
+          backgroundColor={color}
+          arrowColor="white"
+          orientation="down"
+          height="30px"
+        />
       </div>
       <select
         className="workforce-select relative z-20 w-[11.5rem] rounded-md border border-[#707070] bg-transparent p-1 text-lg font-bold"

@@ -1,9 +1,11 @@
 import React from "react";
+import CenteredIcon from "./CenteredIcon";
 
 const ArrowIcon = ({
   orientation = "down",
   backgroundColor = "",
   arrowColor = "",
+  height,
 }) => {
   const orientationMap = {
     down: "270deg",
@@ -13,18 +15,23 @@ const ArrowIcon = ({
   };
 
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className={`h-8 w-8 rotate-[${orientationMap[orientation]}] -ml-[0.3rem] scale-75 rounded-full fill-current pt-[0.1rem] pr-[0.2rem]`}
+    <div
       style={{
-        borderColor: backgroundColor ? backgroundColor : "#808080",
-        borderWidth: "4px",
-        backgroundColor: backgroundColor ? backgroundColor : "#ffffff",
-        color: arrowColor ? arrowColor : "#808080",
+        transform: `rotate(${orientationMap[orientation]})`,
       }}
     >
-      <path d="m17 0 3 3-10 9 10 9-3 3L5 12z" />
-    </svg>
+      <CenteredIcon
+        height={height}
+        strokeColor={arrowColor}
+        backgroundColor={backgroundColor}
+      >
+        <path
+          d="m17 0 3 3-10 9 10 9-3 3L5 12z"
+          transform="translate(16, 19.5)"
+          fill={arrowColor ? arrowColor : "#646464"}
+        />
+      </CenteredIcon>
+    </div>
   );
 };
 
