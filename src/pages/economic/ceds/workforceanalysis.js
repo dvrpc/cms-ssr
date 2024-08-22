@@ -19,6 +19,7 @@ import workbook from "./data.json";
 import Dropdown from "../../../components/Dropdown";
 import ArrowIcon from "../../../components/Icons/ArrowIcon";
 import InfoIcon from "../../../components/Icons/InfoIcon";
+import PeerRegionMap from "../../../images/peerregionmap.svg";
 
 const title = "Workforce Analysis";
 
@@ -86,6 +87,7 @@ const WorkForceAnalysis = ({ data, location }) => {
               focusing on the High-Performance Industries (HPI) within each
               region.
             </p>
+
             <div className="grid grid-cols-2 gap-10">
               <div>
                 <p className="mt-4 font-bold">The Peer Regions</p>
@@ -106,6 +108,9 @@ const WorkForceAnalysis = ({ data, location }) => {
                   across the US: the Midwest (Chicago), Southeast (Atlanta),
                   West (Dallas), and West Coast (Los Angeles).
                 </p>
+                <div className="my-2 flex justify-center">
+                  <PeerRegionMap height="100%" />
+                </div>
                 <p className="mt-4 font-bold">High-Performance Industries</p>
                 <p>
                   The{" "}
