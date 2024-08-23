@@ -151,24 +151,26 @@ const WorkForceAnalysis = ({ data, location }) => {
                 <p>
                   Please note that NAICS code 92: Public Administration was not
                   included as this analysis focuses entirely on the private
-                  sector. Additionally, NAICS codes 11: Agriculture, Forestry,
-                  Fishing and Hunting; and 12: Mining, Quarrying, and Oil and
-                  Gas Extraction are not plotted in the bubble chart because
-                  total employment in both sectors is de minimis across all
-                  regions included in this analysis.{" "}
+                  sector.
                 </p>
                 <p className="my-4">
                   For the purposes of this analysis, HPIs are those industries
                   for which the location quotient (LQ), in terms of total
-                  employment, is 1.25 or higher. LQ is calculated by dividing
-                  the region's total industry-level employment by the nation's
-                  total industry-level employment. An LQ of 1.0 indicates that a
-                  specific industry is equally represented in the region as it
-                  is nationally, and an LQ less than 1.0 indicates that the
-                  industry is less represented regionally than nationally.
-                  Conversely, an LQ greater than 1.0 indicates that an industry
-                  has a greater share of total employment at the regional level
-                  than the national level.
+                  employment, is 1.25 or higher. The formula used to calculate
+                  the LQ for each industry is:
+                </p>
+                <p className="my-4">
+                  LQ = ((Total Regional Employment in Industry X / Total
+                  Regional Employment) / (Total National Employment in Industry
+                  X / Total National Employment))
+                </p>
+                <p>
+                  An LQ of 1.0 indicates that a specific industry is equally
+                  represented in the region as it is nationally, and an LQ less
+                  than 1.0 indicates that the industry is less represented
+                  regionally than nationally. Conversely, an LQ greater than 1.0
+                  indicates that an industry has a greater share of total
+                  employment at the regional level than the national level.
                 </p>
               </div>
               <div>
@@ -336,7 +338,6 @@ const WorkForceAnalysis = ({ data, location }) => {
               </span>
             </div>
 
-
             {workbook && (
               <>
                 <div className="-ml-[1.4rem] h-[60vh]">
@@ -349,12 +350,13 @@ const WorkForceAnalysis = ({ data, location }) => {
             )}
           </div>
           <p className="text-sm italic text-[#666666]">
-            Sources: Carl Benedict Frey and Michael Osborne. “The Future of Employment:
-            How susceptible are jobs to computerisation?” Oxford Martin School.
-            September 2013; US Bureau of Labor Statistics. Occupational
-            Requirements Survey. 2023; US Bureau of Labor Statistics.
-            Occupational and Employment Wage Statistics. 2022; and US Census
-            Bureau. North American Industry Classification System. 2022.
+            Sources: Carl Benedict Frey and Michael Osborne. “The Future of
+            Employment: How susceptible are jobs to computerisation?” Oxford
+            Martin School. September 2013; US Bureau of Labor Statistics.
+            Occupational Requirements Survey. 2023; US Bureau of Labor
+            Statistics. Occupational and Employment Wage Statistics. 2022; and
+            US Census Bureau. North American Industry Classification System.
+            2022.
           </p>
         </div>
         <div
