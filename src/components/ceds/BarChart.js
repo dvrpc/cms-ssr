@@ -323,7 +323,7 @@ const BarChart = ({ workbook, geography, activeChart }) => {
               <canvas ref={totalRef} id="total"></canvas>
             </div>
             <p className="text-sm italic text-[#666666]">
-              US Bureau of Labor Statistics. Occupational Requirements Survey.
+              Sources: US Bureau of Labor Statistics. Occupational Requirements Survey.
               2023; US Bureau of Labor Statistics. Occupational and Employment
               Wage Statistics. 2022; and US Census Bureau. North American
               Industry Classification System. 2022.
@@ -340,7 +340,7 @@ const BarChart = ({ workbook, geography, activeChart }) => {
             <canvas ref={automationRef} id="automation"></canvas>
           </div>
           <p className="text-sm italic text-[#666666]">
-            Carl Benedict Frey and Michael Osborne. “The Future of Employment:
+            Sources: Carl Benedict Frey and Michael Osborne. “The Future of Employment:
             How susceptible are jobs to computerisation?” Oxford Martin School.
             September 2013; US Bureau of Labor Statistics. Occupational and
             Employment Wage Statistics. 2022; and US Census Bureau. North
@@ -357,7 +357,7 @@ const BarChart = ({ workbook, geography, activeChart }) => {
             <canvas ref={teleworkRef} id="telework"></canvas>
           </div>
           <p className="text-sm italic text-[#666666]">
-            US Bureau of Labor Statistics. Occupational Requirements Survey.
+            Sources: US Bureau of Labor Statistics. Occupational Requirements Survey.
             2023; US Bureau of Labor Statistics. Occupational and Employment
             Wage Statistics. 2022; and US Census Bureau. North American Industry
             Classification System. 2022.

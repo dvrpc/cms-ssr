@@ -323,7 +323,19 @@ const WorkForceAnalysis = ({ data, location }) => {
                     </option>
                   ))}
               />
+              <span className="mt-4 flex items-center md:mt-0">
+                <span className="mr-1 rounded-full border-2 border-[grey] p-2 md:ml-10" />
+                <h3 className="mr-4 text-sm text-[grey]">
+                  Greater Philadelphia
+                </h3>
+                <span className="mr-1 rounded-full bg-[grey] p-2" />
+                <h3 className="mr-4 text-sm text-[grey]">Peer Region</h3>
+                <h3 className="text-sm font-medium italic text-[grey]">
+                  Bubble size is based on total employment
+                </h3>
+              </span>
             </div>
+
 
             {workbook && (
               <>
@@ -337,7 +349,7 @@ const WorkForceAnalysis = ({ data, location }) => {
             )}
           </div>
           <p className="text-sm italic text-[#666666]">
-            Carl Benedict Frey and Michael Osborne. “The Future of Employment:
+            Sources: Carl Benedict Frey and Michael Osborne. “The Future of Employment:
             How susceptible are jobs to computerisation?” Oxford Martin School.
             September 2013; US Bureau of Labor Statistics. Occupational
             Requirements Survey. 2023; US Bureau of Labor Statistics.
