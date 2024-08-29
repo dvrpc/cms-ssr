@@ -135,8 +135,9 @@ const WorkForceAnalysis = ({ data, location }) => {
                     <li>52: Finance and Insurance</li>
                     <li>53: Real Estate and Rental and Leasing</li>
                     <li>
-                      55: Professional, Scientific, and Technical Services
+                      54: Professional, Scientific, and Technical Services
                     </li>
+                    <li>55: Management of Companies and Enterprises</li>
                     <li>
                       56: Administrative and Support and Waste Management and
                       Remediation Services
@@ -307,8 +308,9 @@ const WorkForceAnalysis = ({ data, location }) => {
               total employment within each industry, differs from one region to
               the next. This chart can be used to determine which industries are
               of particular importance to the overall health of the regional
-              economy, and considered to be a High-Performance Industry (HPI)
-              for that region.
+              economy, and considered to be a High-Performance Industry (HPI,
+              those industries with a location quotient of 1.25 or higher) for
+              that region.
             </p>
             <div className="mb-2 flex flex-col text-lg font-bold md:mt-0 md:flex-row md:items-center">
               <h3>Greater Philadelphia</h3>
