@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
 
 import HeadTemplate, {
@@ -34,14 +34,20 @@ const AgendaPage = ({ data, serverData, location, name }) => {
   )[0];
 
   data.navItem.href = "";
-  data.navItem.parent.links = [
-    { link: title, href: `/committees/${name}` },
-    ...data.navItem.parent.links,
-  ];
+  const navItem = {
+    ...data.navItem,
+    parent: {
+      ...data.navItem.parent,
+      links: [
+        { link: title, href: `/committees/${name}` },
+        ...data.navItem.parent.links,
+      ],
+    },
+  };
 
   return (
     <>
-      <Body title={title} menu={data.navItem}>
+      <Body title={title} menu={navItem}>
         {Title ? <h2>{Title}</h2> : null}
         <p>
           {Meetingtime},{" "}
