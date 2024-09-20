@@ -323,10 +323,9 @@ const BarChart = ({ workbook, geography, activeChart }) => {
               <canvas ref={totalRef} id="total"></canvas>
             </div>
             <p className="text-sm italic text-[#666666]">
-              Sources: US Bureau of Labor Statistics. Occupational Requirements Survey.
-              2023; US Bureau of Labor Statistics. Occupational and Employment
-              Wage Statistics. 2022; and US Census Bureau. North American
-              Industry Classification System. 2022.
+              Sources: US Bureau of Labor Statistics. Occupational and
+              Employment Wage Statistics. 2022; and US Census Bureau. North
+              American Industry Classification System. 2022.
             </p>
           </div>
         </>
@@ -340,11 +339,17 @@ const BarChart = ({ workbook, geography, activeChart }) => {
             <canvas ref={automationRef} id="automation"></canvas>
           </div>
           <p className="text-sm italic text-[#666666]">
-            Sources: Carl Benedict Frey and Michael Osborne. “The Future of Employment:
-            How susceptible are jobs to computerisation?” Oxford Martin School.
-            September 2013; US Bureau of Labor Statistics. Occupational and
-            Employment Wage Statistics. 2022; and US Census Bureau. North
-            American Industry Classification System. 2022.
+            Sources: National Center for O*NET Development. Work Context —
+            Degree of Automation. O*NET OnLine.{" "}
+            <a
+              href="https://www.onetonline.org/find/descriptor/result/4.C.3.b.2"
+              target="_blank"
+            >
+              www.onetonline.org/find/descriptor/result/4.C.3.b.2.
+            </a>{" "}
+            US Bureau of Labor Statistics. Occupational and Employment Wage
+            Statistics. 2022; and US Census Bureau. North American Industry
+            Classification System. 2022.
           </p>
         </div>
       )}
@@ -357,8 +362,8 @@ const BarChart = ({ workbook, geography, activeChart }) => {
             <canvas ref={teleworkRef} id="telework"></canvas>
           </div>
           <p className="text-sm italic text-[#666666]">
-            Sources: US Bureau of Labor Statistics. Occupational Requirements Survey.
-            2023; US Bureau of Labor Statistics. Occupational and Employment
+            Sources: US Bureau of Labor Statistics. Business Response Survey.
+            2022; US Bureau of Labor Statistics. Occupational and Employment
             Wage Statistics. 2022; and US Census Bureau. North American Industry
             Classification System. 2022.
           </p>

@@ -182,7 +182,16 @@ const WorkForceAnalysis = ({ data, location }) => {
                   to which specific occupations are susceptible to
                   computerization. The analysis was done utilizing data from the
                   U.S. Department of Labor’s online platform, O*NET Resource
-                  Center. Sector-level risk was calculated by determining the
+                  Center which assigns an automation score to every occupation.
+                  However, not all occupations had a raw automation score, but
+                  every occupation was placed into one of three automation
+                  categories: high, medium, low. For occupations that did not
+                  have a raw score, an automation score was imputed by using the
+                  average automation score for the Standard Occupational
+                  Classification category that the occupation belonged to.
+                </p>
+                <p>
+                  Sector-level risk was then calculated by determining the
                   occupational employment composition of each sector, and then
                   multiplying each occupation’s automation risk by its
                   percentage of total employment within each subsector. The
@@ -352,13 +361,18 @@ const WorkForceAnalysis = ({ data, location }) => {
             )}
           </div>
           <p className="text-sm italic text-[#666666]">
-            Sources: Carl Benedict Frey and Michael Osborne. “The Future of
-            Employment: How susceptible are jobs to computerisation?” Oxford
-            Martin School. September 2013; US Bureau of Labor Statistics.
-            Occupational Requirements Survey. 2023; US Bureau of Labor
-            Statistics. Occupational and Employment Wage Statistics. 2022; and
-            US Census Bureau. North American Industry Classification System.
-            2022.
+            Sources: National Center for O*NET Development. Work Context —
+            Degree of Automation. O*NET OnLine.{" "}
+            <a
+              href="https://www.onetonline.org/find/descriptor/result/4.C.3.b.2"
+              target="_blank"
+            >
+              www.onetonline.org/find/descriptor/result/4.C.3.b.2.
+            </a>{" "}
+            2020. US Bureau of Labor Statistics. Business Response Survey. 2022;
+            US Bureau of Labor Statistics. Occupational and Employment Wage
+            Statistics. 2022; and US Census Bureau. North American Industry
+            Classification System. 2022.
           </p>
         </div>
         <div
