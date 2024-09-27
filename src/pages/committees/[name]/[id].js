@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
 
 import HeadTemplate, {
@@ -9,7 +9,7 @@ import Body from "../../../components/Body";
 import HtmlParser from "../../../components/HtmlParser";
 import StaffContact from "../../../components/StaffContact";
 
-const AgendaPage = ({ data, serverData, location }) => {
+const AgendaPage = ({ data, serverData, location, name }) => {
   const {
     Address1,
     Address2,
@@ -32,9 +32,18 @@ const AgendaPage = ({ data, serverData, location }) => {
   const nodePage = data.allNodePage.nodes.filter(
     (node) => node.path.alias.indexOf(CommitteeId.toLowerCase()) > -1
   )[0];
-  const navItem = data.allNavItem.nodes.filter(
-    (node) => node.href.toLowerCase().indexOf(CommitteeId.toLowerCase()) > -1
-  )[0];
+
+  data.navItem.href = "";
+  const navItem = {
+    ...data.navItem,
+    parent: {
+      ...data.navItem.parent,
+      links: [
+        { link: title, href: `/committees/${name}` },
+        ...data.navItem.parent.links,
+      ],
+    },
+  };
 
   return (
     <>
