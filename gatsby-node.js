@@ -47,7 +47,7 @@ exports.onCreateNode = async ({
 };
 
 //Add optional fields to GraphQL
-exports.createSchemaCustomization = ({ actions }) => {
+exports.createSchemaCustomization = ({actions }) => {
   const { createTypes } = actions;
   const typeDefs = `
       type nav implements Node {
@@ -91,6 +91,40 @@ exports.onCreatePage = async ({ page, actions }) => {
       regex,
       layout: wrapLayout,
     },
+  });
+};
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+
+  // Example: Querying data to create dynamic pages
+  const result = await graphql(`
+    query {
+      allPaCoastalMunicipalitiesJson {
+        nodes {
+          slug
+          name
+        }
+      }
+    }
+  `);
+
+  if (result.errors) {
+    throw result.errors;
+  }
+
+  const municipalities = result.data.allPaCoastalMunicipalitiesJson.nodes;
+  const wrapLayout = true;
+
+  municipalities.forEach((municipality) => {
+    createPage({
+      path: `/resiliency/municipal-snapshots/${municipality.slug}/`,
+      component: path.resolve(`./src/templates/coastal-snapshot.js`),
+      context: {
+        slug: municipality.slug,
+        layout: wrapLayout,
+      },
+    });
   });
 };
 

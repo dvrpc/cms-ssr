@@ -70,6 +70,13 @@ module.exports = {
         icon: "src/images/bug-highres.png",
       },
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: "src/data/",  // Path to your JSON files
+      },
+    },
+    "gatsby-transformer-json",
     //"gatsby-plugin-offline",
   ],
 };
