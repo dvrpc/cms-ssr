@@ -138,7 +138,7 @@ const SviTable = ({ data }) => {
   );
 };
 
-const TableBuilder = ({ location, data }) => {
+const TableBuilder = ({ locale, data }) => {
   return (
     <table style={{ borderCollapse: "collapse", width: "100%" }}>
       <thead>
@@ -166,7 +166,7 @@ const TableBuilder = ({ location, data }) => {
             className="text-center"
             style={{ border: "1px solid #ddd", padding: "8px" }}
           >
-            Total in {location}
+            Total in {locale}
           </th>
           <th
             className="text-center"
@@ -273,7 +273,8 @@ const processDataForChart = (data, labels) => {
     ],
   };
 };
-export const filterByGeoid = (data, geoid) => {
+
+const filterByGeoid = (data, geoid) => {
   return data.filter((item) => item.geoid === geoid);
 };
 
@@ -516,7 +517,7 @@ const MunicipalityPage = ({ data }) => {
           </nav>
         </div>
       </div>
-      <StaffContact staffContact={userUser} location={location} title={title} />
+      <StaffContact staffContact={userUser} title={title} />
     </>
   );
 };
