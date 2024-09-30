@@ -14,8 +14,12 @@ const Event = ({ StartDate, StartTime, Title, Info }) => {
         <p className="m-0">
           {+mon}/{+day}
         </p>
-        <span className="px-1">|</span>
-        <span className="m-0">{StartTime !== "00:00" && start}</span>
+        {StartTime !== "00:00" ? (
+          <>
+            <span className="px-1">|</span>
+            <span className="m-0">{start}</span>
+          </>
+        ) : null}
       </footer>
       <p className="m-0 w-fit font-medium md:text-[20px] md:leading-[26px]">
         {Info ? (
