@@ -2,10 +2,12 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import Zoom from "react-medium-image-zoom";
-import Community from "../images/plan-community.png";
-import Economy from "../images/plan-economy.png";
-import Environment from "../images/plan-environment.png";
-import Infrastructure from "../images/plan-infrastructure.png";
+import Cover from "../images/1-cover.png";
+import Transportation from "../images/2-transportation.png";
+import Energy from "../images/3-energy.png";
+import Environment from "../images/4-environment.png";
+import Communities from "../images/5-communities.png";
+import Economy from "../images/6-Economy.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -25,22 +27,35 @@ const PlanCarousel = () => {
     >
       <SwiperSlide className="p-12 pt-0">
         <Zoom>
-          <img src={Community} />
+          <img src={Cover} alt="DVRPC Long Range Plan cover page" />
         </Zoom>
       </SwiperSlide>
       <SwiperSlide className="p-12 pt-0">
         <Zoom>
-          <img src={Economy} />
+          <img
+            src={Transportation}
+            alt="DVRPC Long Range Plan transportation page"
+          />
         </Zoom>
       </SwiperSlide>
       <SwiperSlide className="p-12 pt-0">
         <Zoom>
-          <img src={Environment} />
+          <img src={Energy} alt="DVRPC Long Range Plan energy page" />
         </Zoom>
       </SwiperSlide>
       <SwiperSlide className="p-12 pt-0">
         <Zoom>
-          <img src={Infrastructure} />
+          <img src={Environment} alt="DVRPC Long Range Plan environment page" />
+        </Zoom>
+      </SwiperSlide>
+      <SwiperSlide className="p-12 pt-0">
+        <Zoom>
+          <img src={Communities} alt="DVRPC Long Range Plan communities page" />
+        </Zoom>
+      </SwiperSlide>
+      <SwiperSlide className="p-12 pt-0">
+        <Zoom>
+          <img src={Economy} alt="DVRPC Long Range Plan economy page" />
         </Zoom>
       </SwiperSlide>
     </Swiper>
