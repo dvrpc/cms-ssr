@@ -7,7 +7,7 @@ import Transportation from "../images/2-transportation.png";
 import Energy from "../images/3-energy.png";
 import Environment from "../images/4-environment.png";
 import Communities from "../images/5-communities.png";
-import Economy from "../images/6-Economy.png";
+import Economy from "../images/6-economy.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
