@@ -1,6 +1,6 @@
 {
   "name": "PA TIP Bridge Off-System",
-  "endpoint": "http://127.0.0.1:8000/submit-form",
+  "endpoint": "https://cloud.dvrpc.org/api/project-intake/v1/submit-form",
   "showProgressIndicator": "horizontal",
   "sections": [
     {
