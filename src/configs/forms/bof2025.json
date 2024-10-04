@@ -92,12 +92,7 @@
           "name": "ownership",
           "label": "Bridge Ownership",
           "required": true,
-          "options": [
-            "State",
-            "Local",
-            "Other",
-            "Unknown"
-          ]
+          "options": ["State", "Local", "Other", "Unknown"]
         },
         {
           "type": "textarea",
@@ -188,17 +183,26 @@
             "Multi-municipal/Regional Plan",
             "Road Safety Scan",
             "Road Safety Audit (RSA)",
-            "Other..."
+            "Other...",
+            "No"
           ]
         },
         {
           "type": "text",
           "name": "plan_name",
           "label": "Please list the name of the plan and the year published for documents noted above.",
-          "required": false,
+          "required": true,
           "condition": {
             "field": "plans",
-            "notEmpty": true
+            "values": [
+              "Long-Range Plan",
+              "Planning study",
+              "Master Plan",
+              "Multi-municipal/Regional Plan",
+              "Road Safety Scan",
+              "Road Safety Audit (RSA)",
+              "Other..."
+            ]
           }
         }
       ]
@@ -212,9 +216,9 @@
           "label": "Please choose one of the two statements below that best reflects your proposed asset improvement (bridge, road, transit, or other asset types):",
           "required": true,
           "options": [
-            "The project will bring the asset from a poor condition into a good state of repair.", 
+            "The project will bring the asset from a poor condition into a good state of repair.",
             "The project will extend the useful life of a facility/asset that is currently not in poor condition."
-          ] 
+          ]
         },
         {
           "type": "multiselect",
@@ -230,7 +234,7 @@
             "Walkways (including trails, sidewalks, sidepaths, etc.)",
             "Speed safety cameras - Fixed and P2P",
             "Install median cable barriers on rural four-lane (or more) freeways",
-            "Pavement friction management at ramps and horizontal curves",          
+            "Pavement friction management at ramps and horizontal curves",
             "Medians and ped refuge islands in urban and suburban areas",
             "Reduce/decrease lane width",
             "Corridor access management",
@@ -297,7 +301,7 @@
           "name": "signal",
           "label": "Will your project involve adding a traffic signal at a location that is currently not signalized?",
           "required": true,
-          "options": ["yes", "no"] 
+          "options": ["yes", "no"]
         },
         {
           "type": "text",
@@ -309,7 +313,7 @@
             "value": "yes"
           }
         },
-        
+
         {
           "type": "multiselect",
           "name": "green_design",
@@ -344,10 +348,13 @@
           "required": true,
           "fileHelper": "Max file size: 18MB. Allowed types: .pdf, .zip",
           "maxSize": 18874368,
-          "allowedTypes": ["application/pdf", "application/zip","application/x-zip-compressed"]
+          "allowedTypes": [
+            "application/pdf",
+            "application/zip",
+            "application/x-zip-compressed"
+          ]
         }
       ]
     }
-  
   ]
 }
