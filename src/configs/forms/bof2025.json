@@ -135,35 +135,35 @@
           "name": "pe_cost",
           "label": "Preliminary Engineering",
           "value": 0,
-          "type": "number",
+          "type": "currency",
           "table": "cost"
         },
         {
           "name": "fd_cost",
           "label": "Final Design",
           "value": 0,
-          "type": "number",
+          "type": "currency",
           "table": "cost"
         },
         {
           "name": "util_cost",
           "label": "Utility",
           "value": 0,
-          "type": "number",
+          "type": "currency",
           "table": "cost"
         },
         {
           "name": "row_cost",
           "label": "Right-of-way",
           "value": 0,
-          "type": "number",
+          "type": "currency",
           "table": "cost"
         },
         {
           "name": "con_cost",
           "label": "Construction",
           "value": 0,
-          "type": "number",
+          "type": "currency",
           "table": "cost"
         }
       ]
@@ -176,6 +176,7 @@
           "name": "plans",
           "label": "Is the proposed project referenced or supported in any existing planning document(s) from the list below?",
           "required": false,
+          "fullHeight": true,
           "options": [
             "Long-Range Plan",
             "Planning study",
@@ -184,7 +185,7 @@
             "Road Safety Scan",
             "Road Safety Audit (RSA)",
             "Other...",
-            "No"
+            "Not Applicable"
           ]
         },
         {

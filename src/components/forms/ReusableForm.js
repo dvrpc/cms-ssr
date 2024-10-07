@@ -4,6 +4,7 @@ import InfoIcon from "../../components/forms/InfoIcon.js";
 import SectionProgressIndicator from "./SectionProgressIndicator";
 import HorizontalProgressBar from "./HorizontalProgressBar.js";
 import MultiTextInput from "./MultiTextInput";
+import CurrencyInput from "react-currency-input-field";
 
 const FilePill = ({ file, onRemove }) => (
   <div className="mr-2 mb-2 inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
@@ -44,7 +45,7 @@ const ReusableForm = ({ formConfig }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitResult, setSubmitResult] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [transactionComplete, setTransactionComplete] = useState(false)
+  const [transactionComplete, setTransactionComplete] = useState(false);
   const [projectID, setProjectID] = useState("");
 
   useEffect(() => {
@@ -52,8 +53,8 @@ const ReusableForm = ({ formConfig }) => {
       const savedData = window.localStorage.getItem("formData");
       if (savedData && savedData.length > 2) {
         setFormData(JSON.parse(savedData));
-      } 
-      
+      }
+
       // Initialize formData with default values for hidden fields
       formConfig.sections.forEach((section) => {
         section.fields.forEach((field) => {
@@ -65,8 +66,6 @@ const ReusableForm = ({ formConfig }) => {
           }
         });
       });
-      
-
     }
   }, [formConfig]);
 
@@ -152,11 +151,14 @@ const ReusableForm = ({ formConfig }) => {
       // Validate total file size and type
       const invalidFiles = fileArray.filter(
         (file) =>
-          (fieldConfig.allowedTypes &&
-            !fieldConfig.allowedTypes.includes(file.type))
+          fieldConfig.allowedTypes &&
+          !fieldConfig.allowedTypes.includes(file.type)
       );
 
-      if (invalidFiles.length > 0 || (fieldConfig.maxSize && totalSize > fieldConfig.maxSize)) {
+      if (
+        invalidFiles.length > 0 ||
+        (fieldConfig.maxSize && totalSize > fieldConfig.maxSize)
+      ) {
         setValidationErrors((prevErrors) => ({
           ...prevErrors,
           [name]: `Some files are too large or of invalid type. Max total size: ${
@@ -367,6 +369,7 @@ const ReusableForm = ({ formConfig }) => {
 
   const handleNextSection = (event) => {
     event.preventDefault();
+    document.getElementById("reusable-form").scrollIntoView();
     // const errors = 0
     const errors = validateSectionFields();
     if (Object.keys(errors).length === 0) {
@@ -378,6 +381,7 @@ const ReusableForm = ({ formConfig }) => {
 
   const handlePrevSection = (event) => {
     event.preventDefault();
+    document.getElementById("reusable-form").scrollIntoView();
     if (currentSectionIndex > 0) {
       setCurrentSectionIndex(currentSectionIndex - 1);
     }
@@ -406,13 +410,13 @@ const ReusableForm = ({ formConfig }) => {
       });
     });
     setFormData(newFormData);
-    
+
     // Clear selectedFiles
     setSelectedFiles({});
-    
+
     // Reset local storage
     window.localStorage.removeItem("formData");
-  
+
     // Reset other states
     setProjectID("");
     setIsReviewMode(false);
@@ -445,15 +449,16 @@ const ReusableForm = ({ formConfig }) => {
   const renderReview = () => {
     return (
       <div className="space-y-4 rounded-lg bg-gray-100 p-4">
-        <h2 className="text-xl font-bold">Review Your {transactionComplete ? "Submission" : "Form" }</h2>
+        <h2 className="text-xl font-bold">
+          Review Your {transactionComplete ? "Submission" : "Form"}
+        </h2>
         {transactionComplete && projectID && (
           <>
-          {console.log(projectID)}
-          <div>
-            <p className="text-lg">Submission ID: {projectID}</p>
-          </div>
+            {console.log(projectID)}
+            <div>
+              <p className="text-lg">Submission ID: {projectID}</p>
+            </div>
           </>
-          
         )}
         {formConfig.sections.map((section, sectionIndex) => (
           <div key={sectionIndex}>
@@ -462,7 +467,7 @@ const ReusableForm = ({ formConfig }) => {
               <>
                 {isFieldVisible(field) &&
                   field.type !== "description" &&
-                  field.type !== "table" && 
+                  field.type !== "table" &&
                   field.type !== "hidden" && (
                     <div key={field.name} className="mb-4">
                       <label className="block font-semibold">
@@ -491,17 +496,17 @@ const ReusableForm = ({ formConfig }) => {
         ))}
         {transactionComplete ? (
           <>
-          <div className="mt-4 flex justify-between">
-            <button
-              type="button"
-              onClick={handleClearData}
-              className="rounded bg-gray-600 px-4 py-2 text-white"
-            >
-              Create New Submission
-            </button>
-          </div>
+            <div className="mt-4 flex justify-between">
+              <button
+                type="button"
+                onClick={handleClearData}
+                className="rounded bg-gray-600 px-4 py-2 text-white"
+              >
+                Create New Submission
+              </button>
+            </div>
           </>
-        ): (
+        ) : (
           <div className="mt-4 flex justify-between">
             <button
               type="button"
@@ -517,7 +522,7 @@ const ReusableForm = ({ formConfig }) => {
             >
               Submit
             </button>
-          </div>        
+          </div>
         )}
       </div>
     );
@@ -526,12 +531,12 @@ const ReusableForm = ({ formConfig }) => {
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
-  
+
   const renderSubmissionDialog = () => {
     if (isSubmitting) {
       return (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50">
-          <div className="bg-white p-4 rounded-lg shadow-lg">
+          <div className="rounded-lg bg-white p-4 shadow-lg">
             <p>Submitting...</p>
           </div>
         </div>
@@ -541,15 +546,19 @@ const ReusableForm = ({ formConfig }) => {
     if (submitResult) {
       return (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50">
-          <div className="bg-white p-4 rounded-lg shadow-lg">
+          <div className="rounded-lg bg-white p-4 shadow-lg">
             {submitResult.success ? (
               <div>
                 <h2 className="text-xl font-bold">Success</h2>
                 <p>Your application was submitted successfully!</p>
                 <button
                   type="button"
-                  onClick={() => {setProjectID(submitResult.data.id); setSubmitResult(null); setTransactionComplete(true);}}
-                  className="mt-4 px-4 py-2 bg-green-600 text-white rounded"
+                  onClick={() => {
+                    setProjectID(submitResult.data.id);
+                    setSubmitResult(null);
+                    setTransactionComplete(true);
+                  }}
+                  className="mt-4 rounded bg-green-600 px-4 py-2 text-white"
                 >
                   OK
                 </button>
@@ -558,20 +567,26 @@ const ReusableForm = ({ formConfig }) => {
               <div>
                 <h2 className="text-xl font-bold text-red-600">Error</h2>
                 <p>
-                  There was an issue submitting your application. Please try again. If this issue persists, please contact data@dvrpc.org and provide the detailed error message below.<br/>
-                  <button onClick={toggleAccordion} className="text-blue-500 underline ml-2">
-                    {isOpen ? 'Hide Details' : 'Show Details'}
+                  There was an issue submitting your application. Please try
+                  again. If this issue persists, please contact data@dvrpc.org
+                  and provide the detailed error message below.
+                  <br />
+                  <button
+                    onClick={toggleAccordion}
+                    className="ml-2 text-blue-500 underline"
+                  >
+                    {isOpen ? "Hide Details" : "Show Details"}
                   </button>
                 </p>
                 {isOpen && (
-                  <div className="bg-red-100 p-4 mt-2 rounded">
+                  <div className="mt-2 rounded bg-red-100 p-4">
                     <p>{submitResult.message}</p>
                   </div>
                 )}
                 <button
                   type="button"
                   onClick={() => setSubmitResult(null)}
-                  className="mt-4 px-4 py-2 bg-red-600 text-white rounded"
+                  className="mt-4 rounded bg-red-600 px-4 py-2 text-white"
                 >
                   OK
                 </button>
@@ -584,7 +599,6 @@ const ReusableForm = ({ formConfig }) => {
 
     return null;
   };
-  
 
   return (
     <div className="flex grid sm:grid-cols-1 md:grid-cols-3">
@@ -614,6 +628,7 @@ const ReusableForm = ({ formConfig }) => {
         }
       >
         <form
+          id="reusable-form"
           onSubmit={handleSubmit}
           className="space-y-4 rounded-lg bg-gray-100 p-4"
         >
@@ -638,7 +653,9 @@ const ReusableForm = ({ formConfig }) => {
                       key={field.name}
                       className={`${!field.table ? "flex flex-col" : ""}`}
                     >
-                      {field.type !== "description" && field.type !== "hidden" && !field.table ? (
+                      {field.type !== "description" &&
+                      field.type !== "hidden" &&
+                      !field.table ? (
                         <label className="mt-2 mb-2 flex items-center font-semibold">
                           {field.label}
                           {field.helperText && (
@@ -688,11 +705,12 @@ const ReusableForm = ({ formConfig }) => {
                                     key={index}
                                     className="border-b dark:border-gray-700 dark:bg-gray-800"
                                   >
-                                    <td className="py-4">{rowField.label}
+                                    <td className="py-4">
+                                      {rowField.label}
                                       {validationErrors[rowField.name] && (
                                         <tr key={`error-${index}`}>
                                           <td colSpan="2">
-                                            <p className="text-sm text-red-600 text-right">
+                                            <p className="text-right text-sm text-red-600">
                                               {validationErrors[rowField.name]}
                                             </p>
                                           </td>
@@ -701,21 +719,41 @@ const ReusableForm = ({ formConfig }) => {
                                     </td>
                                     <td className="py-4 text-right">
                                       {<b>{field.units}</b> || ""}
-                                      <input
-                                        type="number"
-                                        name={rowField.name}
-                                        value={formData[rowField.name]}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        className={`rounded border p-2 text-right ${
-                                          validationErrors[field.name]
-                                            ? "border-red-600"
-                                            : "border-gray-300"
-                                        }`}
-                                      />
+                                      {rowField.type === "currency" ? (
+                                        <CurrencyInput
+                                          name={rowField.name}
+                                          value={formData[rowField.name]}
+                                          onValueChange={(
+                                            value,
+                                            name,
+                                            values
+                                          ) =>
+                                            handleChange({
+                                              target: { value, name, values },
+                                            })
+                                          }
+                                          className={`rounded border p-2 text-right ${
+                                            validationErrors[field.name]
+                                              ? "border-red-600"
+                                              : "border-gray-300"
+                                          }`}
+                                        />
+                                      ) : (
+                                        <input
+                                          type="number"
+                                          name={rowField.name}
+                                          value={formData[rowField.name]}
+                                          onChange={handleChange}
+                                          onBlur={handleBlur}
+                                          className={`rounded border p-2 text-right ${
+                                            validationErrors[field.name]
+                                              ? "border-red-600"
+                                              : "border-gray-300"
+                                          }`}
+                                        />
+                                      )}
                                     </td>
                                   </tr>
-                                  
                                 </>
                               ))}
                             <tr className="border-b dark:border-gray-700 dark:bg-gray-800">
@@ -724,7 +762,7 @@ const ReusableForm = ({ formConfig }) => {
                               </td>
                               <td className="py-4 pr-4 text-right">
                                 {<b>{field.units}</b> || ""}
-                                {tableSums[field.name] || 0}
+                                {tableSums[field.name].toLocaleString() || 0}
                               </td>
                             </tr>
                           </tbody>
@@ -751,7 +789,11 @@ const ReusableForm = ({ formConfig }) => {
                                   }
                                   value={
                                     dynamicOptions[field.name]
-                                      ? dynamicOptions[field.name].find(option => option.value === formData[field.name]) || null
+                                      ? dynamicOptions[field.name].find(
+                                          (option) =>
+                                            option.value ===
+                                            formData[field.name]
+                                        ) || null
                                       : null
                                   }
                                   options={dynamicOptions[field.name]}
@@ -760,6 +802,15 @@ const ReusableForm = ({ formConfig }) => {
                                       ? "border-red-600"
                                       : "border-gray-300"
                                   }`}
+                                  styles={
+                                    field.fullHeight && {
+                                      menuList: (baseStyles) => ({
+                                        ...baseStyles,
+                                        maxHeight: null,
+                                        minHeight: "100%",
+                                      }),
+                                    }
+                                  }
                                 />
                               ) : (
                                 <Select
@@ -789,6 +840,15 @@ const ReusableForm = ({ formConfig }) => {
                                       ? "border-red-600"
                                       : "border-gray-300"
                                   }`}
+                                  styles={
+                                    field.fullHeight && {
+                                      menuList: (baseStyles) => ({
+                                        ...baseStyles,
+                                        maxHeight: null,
+                                        minHeight: "100%",
+                                      }),
+                                    }
+                                  }
                                 />
                               )
                             ) : field.type === "multiselect" ? (
@@ -806,7 +866,10 @@ const ReusableForm = ({ formConfig }) => {
                                     formData[field.name]
                                       ? formData[field.name].map((value) => ({
                                           value: value,
-                                          label: dynamicOptions[field.name].find((option) => option.value === value)?.label || value
+                                          label:
+                                            dynamicOptions[field.name].find(
+                                              (option) => option.value === value
+                                            )?.label || value,
                                         }))
                                       : []
                                   }
@@ -815,6 +878,15 @@ const ReusableForm = ({ formConfig }) => {
                                   isMulti
                                   required={field.required}
                                   className="w-full"
+                                  styles={
+                                    field.fullHeight && {
+                                      menuList: (baseStyles) => ({
+                                        ...baseStyles,
+                                        maxHeight: null,
+                                        minHeight: "100%",
+                                      }),
+                                    }
+                                  }
                                 />
                               ) : (
                                 <Select
@@ -843,6 +915,15 @@ const ReusableForm = ({ formConfig }) => {
                                   isMulti
                                   required={field.required}
                                   className="w-full"
+                                  styles={
+                                    field.fullHeight && {
+                                      menuList: (baseStyles) => ({
+                                        ...baseStyles,
+                                        maxHeight: null,
+                                        minHeight: "100%",
+                                      }),
+                                    }
+                                  }
                                 />
                               )
                             ) : field.type === "textarea" ? (
@@ -969,7 +1050,7 @@ const ReusableForm = ({ formConfig }) => {
                       className="rounded bg-green-600 px-4 py-2 text-white"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? 'Processing...' : 'Submit'}
+                      {isSubmitting ? "Processing..." : "Submit"}
                     </button>
                   </>
                 )}
