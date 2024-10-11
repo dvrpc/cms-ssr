@@ -657,7 +657,7 @@ const ReusableForm = ({ formConfig }) => {
                       field.type !== "hidden" &&
                       !field.table ? (
                         <label className="mt-2 mb-2 flex items-center font-semibold">
-                          {field.label}
+                          <div dangerouslySetInnerHTML={{__html:field.label }}/>
                           {field.helperText && (
                             <div
                               onClick={() => toggleHelperText(field.helperText)}
