@@ -1,0 +1,375 @@
+{
+  "name": "NJ TIP FY26",
+  "endpoint": "",
+  "showProgressIndicator": "horizontal",
+  "sections": [
+    {
+      "title": "First, please provide some general information about the project.",
+      "fields": [
+        {
+          "type": "hidden",
+          "name": "source",
+          "value": "NJTIPCAN"
+        },
+        {
+          "type": "textarea",
+          "name": "project_desc",
+          "label": "Project Description",
+          "required": true,
+          "rows": 5
+        },
+        {
+          "type": "text",
+          "name": "sponsor",
+          "label": "Project Sponsor",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "name",
+          "label": "Applicant Name",
+          "required": true
+        },
+        {
+          "type": "select",
+          "name": "county",
+          "label": "County",
+          "required": true,
+          "options": ["Burlington", "Camden", "Gloucester", "Mercer", "Various"]
+        },
+        {
+          "type": "text",
+          "name": "municipality",
+          "label": "Municipality(ies)",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "title",
+          "label": "Proposed Project Title",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "route",
+          "label": "Route Name and Number or Structure #(s)",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "limits",
+          "label": "Limits and mileposts of  <a href='https://www.environment.fhwa.dot.gov/legislation/nepa/guidance_project_termini.aspx' class='underline' target='_blank'>logical termini</a>",
+          "required": false
+        },
+        {
+          "type": "text",
+          "name": "stbgp",
+          "label": "STBGP Urban Area",
+          "required": false,
+          "helperText": "Please identify which Urban Area your project is located in. The project location must be 100% in the Philadelphia or Trenton Urban Area. Click on [link TBD] to to check. If you have multiple locations (such as traffic signals or ADA ramps), please provide a list of each location in excel and a map showing these locations for DVRPC, NJDOT, and FHWA-NJ to verify that they are all within the Philadelphia or Trenton Urban Area."
+        },
+        {
+          "type": "select",
+          "name": "status",
+          "label": "Please choose the option below that best describes the status of this project candidate",
+          "required": false,
+          "options": [
+            "Has completed Concept Development or Local Concept Development",
+            "Is currently in Concept Development or Local Concept Development",
+            "Concept Development or Local Concept Development starting soon",
+            "Anticipates a CED (Categorical Exclusion Document)",
+            "None of the above"
+          ]
+        },
+        {
+          "type": "text",
+          "name": "cd_lcd",
+          "label": "If you answered \"Is currently in Concept Development or Local Concept Development\" or \"Concept Development or Local Concept Development starting soon\" above, please indicate when CD or LCD is expected to be completed.",
+          "required": false,
+          "condition": {
+            "field": "status",
+            "values": [
+              "Is currently in Concept Development or Local Concept Development",
+              "Concept Development or Local Concept Development starting soon"
+            ]
+          }
+        },
+        {
+          "type": "textarea",
+          "name": "purpose",
+          "label": "Summarize Your Project's Purpose",
+          "required": true,
+          "rows": 8,
+          "placeholder": "What is the desired result from this project? For example, will it eliminate a deficient status of a bridge, achieve LOS D or better at the intersection, eliminate crashes, etc. Your statement should allow for a reasonable range of alternatives (e.g. rehab or replace bridge). In many cases, the purpose can be stated in a single sentence. If a project has several distinct purposes, each purpose should be individually listed. The purpose statement should not be a laundry list of all the potential benefits of building a project, nor should it list every possible purpose that could conceivably apply to the project."
+        },
+        {
+          "type": "textarea",
+          "name": "scope",
+          "label": "Summarize Your Project's Scope",
+          "required": true,
+          "rows": 8,
+          "placeholder": "What Funds Will Provide for."
+        },
+        {
+          "type": "select",
+          "name": "priority",
+          "label": "What is the sponsor’s priority for this project of all project applications submitted to DVRPC? A \"1\" indicates that the project is the sponsor’s highest priority.",
+          "required": false,
+          "options": ["1", "2", "3"]
+        }
+      ]
+    },
+    {
+      "title": "Cost Estimates and Project Schedule",
+      "fields": [
+        {
+          "name": "cost",
+          "label": "Next, please provide cost estimates for the base year of 2024 according to each phase.",
+          "type": "table",
+          "labelName": "Project Phase",
+          "valueName": "Cost (2025 $)",
+          "units": "$"
+        },
+        {
+          "name": "pe_cost",
+          "label": "Preliminary Engineering",
+          "value": 0,
+          "type": "currency",
+          "table": "cost"
+        },
+        {
+          "name": "fd_cost",
+          "label": "Final Design",
+          "value": 0,
+          "type": "currency",
+          "table": "cost"
+        },
+        {
+          "name": "util_cost",
+          "label": "Utility",
+          "value": 0,
+          "type": "currency",
+          "table": "cost"
+        },
+        {
+          "name": "row_cost",
+          "label": "Right-of-way",
+          "value": 0,
+          "type": "currency",
+          "table": "cost"
+        },
+        {
+          "name": "con_cost",
+          "label": "Construction",
+          "value": 0,
+          "type": "currency",
+          "table": "cost"
+        }
+      ]
+    },
+    {
+      "title": "Reference of Proposed Project in Planning Documents",
+      "fields": [
+        {
+          "type": "select",
+          "name": "mrp_lrp",
+          "label": "Is your project an existing Major Regional Project (MRP) per the DVRPC Long-Range Plan?",
+          "required": false,
+          "options": ["Yes", "No"]
+        },
+        {
+          "type": "text",
+          "name": "mrp_lrp_detail",
+          "label": "If yes, please provide details such as Facility name.",
+          "required": false,
+          "condition": {
+            "field": "mrp_lrp",
+            "value": "Yes"
+          }
+        },
+        {
+          "type": "select",
+          "name": "mrp_lrp_thresh",
+          "label": "If no, does this project meet the threshold of an MRP, currently $40M?",
+          "required": false,
+          "options": ["Yes", "No"],
+          "condition": {
+            "field": "mrp_lrp",
+            "value": "No"
+          }
+        },
+        {
+          "type": "multiselect",
+          "name": "plan",
+          "label": "Is the proposed project referenced or supported in any existing planning document(s) from the list below?",
+          "required": false,
+          "options": [
+            "Long-Range Plan",
+            "Planning study",
+            "Master Plan",
+            "Multi-municipal/Regional Plan",
+            "Road Safety Scan",
+            "Road Safety Audit (RSA)",
+            "None of the above"
+          ]
+        },
+        {
+          "type": "textarea",
+          "name": "plan_detail",
+          "label": "Please list the name of the plan and the year published for documents noted above.",
+          "required": false,
+          "rows": 8
+        }
+      ]
+    },
+    {
+      "title": "Project Details",
+      "fields": [
+        {
+          "type": "select",
+          "name": "asset_impact",
+          "label": "Please choose one of the two statements below that best reflects your proposed asset improvement (bridge, road, transit, or other asset types):",
+          "required": true,
+          "options": [
+            "The project will bring the asset from a poor condition into a good state of repair.",
+            "The project will extend the useful life of a facility/asset that is currently not in poor condition."
+          ]
+        },
+        {
+          "type": "multiselect",
+          "name": "safety_strats",
+          "label": "Will the project implement any of the following safety strategies? Select all that apply.",
+          "required": false,
+          "options": [
+            "Roundabouts",
+            "Variable speed limits",
+            "Sequential Dynamic Chevrons for horizontal curves",
+            "Centerline rumble strips",
+            "Pedestrian hybrid beacons",
+            "Walkways (including trails, sidewalks, sidepaths, etc.)",
+            "Speed safety cameras - Fixed and P2P",
+            "Install median cable barriers on rural four-lane (or more) freeways",
+            "Pavement friction management at ramps and horizontal curves",
+            "Medians and ped refuge islands in urban and suburban areas",
+            "Reduce/decrease lane width",
+            "Corridor access management",
+            "Dedicated left-turn lanes at intersections",
+            "Install a traffic signal or convert to all-way stop control",
+            "Advance yield or stop markings and signs",
+            "Intersection lighting",
+            "High visibility crosswalks",
+            "Rectangular rapid flashing beacons (RRFB)",
+            "Systemic application of multiple low cost countermeasures at stop controlled intersections - rural locations",
+            "In-lane warning pavement markings for horizontal curves",
+            "Traffic Calming - vertical deflection strategies (including speed humps, raised pedestrian crosswalks, etc.)",
+            "Wider edge lines",
+            "Road diets",
+            "Bicycle lanes",
+            "Install a \"Vehicles Entering When Flashing\" system",
+            "Install intersection conflict warning system",
+            "Reduce posted speed limit/mean speed",
+            "Shoulder rumble strips",
+            "Extend yellow change intervals",
+            "Dedicated right-turn lanes at intersections",
+            "Speed safety cameras - Mobile unit",
+            "Leading pedestrian interval",
+            "Chevron signs and curve signs",
+            "Safety edge",
+            "Backplates with retroreflective borders",
+            "Systemic application of multiple low cost countermeasures at stop controlled intersections - suburban and urban locations",
+            "Pavement friction management at intersections",
+            "Traffic calming (general, if specific details are not known)",
+            "Install red-light indicator lights",
+            "Not applicable"
+          ]
+        },
+        {
+          "type": "multiselect",
+          "name": "mobility",
+          "label": "Will your project impact existing traffic movements by involving any of these activities? Select all that apply",
+          "required": true,
+          "options": [
+            "Adding an additional vehicular through travel lane",
+            "Removing an existing vehicular travel lane",
+            "Adding new traffic movement(s) at an interchange",
+            "Roadway extension or new roadway",
+            "Not applicable"
+          ]
+        },
+        {
+          "type": "text",
+          "name": "mobility_detail",
+          "label": "Please provide additional detail for your response in the question above. For example, if adding/removing a lane, please specify how many. Or, for a roadway extension, what road, how far, and what is the extent?",
+          "required": true,
+          "condition": {
+            "field": "mobility",
+            "values": [
+              "Adding an additional vehicular through travel lane",
+              "Removing an existing vehicular travel lane",
+              "Adding new traffic movement(s) at an interchange",
+              "Roadway extension or new roadway"
+            ]
+          }
+        },
+        {
+          "type": "select",
+          "name": "signal",
+          "label": "Will your project involve adding a traffic signal at a location that is currently not signalized?",
+          "required": true,
+          "options": ["yes", "no"]
+        },
+        {
+          "type": "text",
+          "name": "signal_detail",
+          "label": "Please identify the location where the new signal will be added.",
+          "required": false,
+          "condition": {
+            "field": "signal",
+            "value": "yes"
+          }
+        },
+
+        {
+          "type": "multiselect",
+          "name": "green_design",
+          "label": "Will the project include any of the following Green Design elements?",
+          "required": false,
+          "options": [
+            "Bioswales/rain gardens",
+            "Tree trenches",
+            "Vegetated medians/curb bump outs (more than just grass)",
+            "Naturalized stormwater basins",
+            "Other non-Green Stormwater Infrastructure solutions to address a documented flooding issue",
+            "Use of pervious pavement",
+            "Enhanced habitat connectivity or wildlife crossings",
+            "Not applicaple"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Supporting Documentation",
+      "fields": [
+        {
+          "type": "description",
+          "name": "attachment_desc",
+          "text": "Please attach any appropriate support documentation, such as, but not limited to Resolutions of Support; approved documents from decision-making groups such as Executive Committees or Boards of Trustees; approved documents from other official decision-making bodies; etc. that will help support your project's inclusion into the TIP.<br><br>Please also attach any appropriate GIS files, maps, etc. that will help support your project's inclusion into the TIP."
+        },
+        {
+          "type": "file",
+          "name": "attachments",
+          "label": "Attachment(s) - PDF or ZIP",
+          "allowMultiple": true,
+          "required": true,
+          "fileHelper": "Max file size: 18MB. Allowed types: .pdf, .zip",
+          "maxSize": 18874368,
+          "allowedTypes": [
+            "application/pdf",
+            "application/zip",
+            "application/x-zip-compressed"
+          ]
+        }
+      ]
+    }
+  ]
+}
