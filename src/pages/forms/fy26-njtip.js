@@ -14,7 +14,7 @@ import formConfig from "../../configs/forms/fy26-njtip.json";
 
 const bgImage =
   "url(https://cms.dvrpc.org/sites/default/files/2024-06/UPDATE-C2050-white_logobig_0.png), url(https://cdn.dvrpc.org/sites/default/files/2022-02/2050BannerBG_big-04.jpg)";
-const title = "NJ TIP FY26";
+const title = "Draft FY2026-2029 TIP for NJ";
 
 const NJTIPIntakeForm = ({ data, location }) => {
   const { userUser, navItem } = data;
@@ -40,13 +40,13 @@ const NJTIPIntakeForm = ({ data, location }) => {
 export const Head = ({ data: { nodeTheme } }) =>
   HeadTemplate({
     title,
-    summary: "2026 NJ TIP Intake",
+    summary: "Draft FY2026-2029 TIP for NJ",
     css: themeToCustomVars(nodeTheme, defaultThemeConfig),
   });
 
 export const query = graphql`
   query {
-    userUser(mail: { eq: "jbuerk@dvrpc.org" }) {
+    userUser(mail: { eq: "rmurphy@dvrpc.org" }) {
       id
       mail
       name: field_display_name
@@ -77,5 +77,3 @@ export const query = graphql`
 `;
 
 export default NJTIPIntakeForm;
-
-
