@@ -9,7 +9,7 @@
         {
           "type": "hidden",
           "name": "source",
-          "value": "NJTIPCAN"
+          "value": "fy26-njtip"
         },
         {
           "type": "text",
@@ -169,7 +169,7 @@
           "name": "mrp_lrp",
           "label": "Is your project an existing Major Regional Project (MRP) per the DVRPC Long-Range Plan?",
           "required": false,
-          "options": ["Yes", "No", "No applicable"]
+          "options": ["Yes", "No", "Not applicable"]
         },
         {
           "type": "text",
@@ -212,7 +212,17 @@
           "name": "plan_detail",
           "label": "Please list the name of the plan and the year published for documents noted above.",
           "required": false,
-          "rows": 8
+          "condition": {
+            "field": "plan",
+            "values": [
+              "Long-Range Plan",
+              "Planning study",
+              "Master Plan",
+              "Multi-municipal/Regional Plan",
+              "Road Safety Scan",
+              "Road Safety Audit (RSA)"
+            ]
+          }
         }
       ]
     },

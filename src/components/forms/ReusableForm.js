@@ -471,7 +471,7 @@ const ReusableForm = ({ formConfig }) => {
                   field.type !== "hidden" && (
                     <div key={field.name} className="mb-4">
                       <label className="block font-semibold">
-                        {field.label}
+                        <div dangerouslySetInnerHTML={{__html:field.label }}/>
                       </label>
                       <div>
                         {field.type === "file" && selectedFiles[field.name] ? (
