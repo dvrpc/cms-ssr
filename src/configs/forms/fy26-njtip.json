@@ -59,7 +59,7 @@
           "name": "stbgp",
           "label": "STBGP Urban Area",
           "required": true,
-          "helperText": "Please identify which Urban Area your project is located in. The project location must be 100% in the Philadelphia or Trenton Urban Area. Click on <a href='https://www.dvrpc.org/tip/nj/map/' target='_blank'>https://www.dvrpc.org/tip/nj/<wbr>map/</a> to check. Make sure to select \"Layers\" in the upper left hand corner drop down and turn on the Urbanized Areas layer. If you have multiple locations (such as traffic signals or ADA ramps), please provide a list of each location in excel and a map showing these locations for DVRPC, NJDOT, and FHWA-NJ to verify that they are all within the Philadelphia or Trenton Urban Area.<br>",
+          "helperText": "Please identify which Urban Area your project is located in. The project location must be 100% in the Philadelphia or Trenton Urban Area. Click on <a href='https://www.dvrpc.org/tip/nj/map/' target='_blank'>https://www.dvrpc.org/tip/nj/<wbr>map/</a> to check. Make sure to select \"Layers\" in the upper left hand corner drop down and turn on the Urban Areas layer. If you have multiple locations (such as traffic signals or ADA ramps), please provide a list of each location in excel and a map showing these locations for DVRPC, NJDOT, and FHWA-NJ to verify that they are all within the Philadelphia or Trenton Urban Area.<br>",
           "options": ["Philadelphia UA", "Trenton UA"]
         },
         {
