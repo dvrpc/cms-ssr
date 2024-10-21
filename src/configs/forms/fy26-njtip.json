@@ -59,7 +59,7 @@
           "name": "stbgp",
           "label": "STBGP Urban Area",
           "required": true,
-          "helperText": "Please identify which Urban Area your project is located in. The project location must be 100% in the Philadelphia or Trenton Urban Area. Click on [link TBD] to to check. If you have multiple locations (such as traffic signals or ADA ramps), please provide a list of each location in excel and a map showing these locations for DVRPC, NJDOT, and FHWA-NJ to verify that they are all within the Philadelphia or Trenton Urban Area.",
+          "helperText": "Please identify which Urban Area your project is located in. The project location must be 100% in the Philadelphia or Trenton Urban Area. Click on <a href='https://www.dvrpc.org/tip/nj/map/' target='_blank'>https://www.dvrpc.org/tip/nj/<wbr>map/</a> to check. Make sure to select \"Layers\" in the upper left hand corner drop down and turn on the Urbanized Areas layer. If you have multiple locations (such as traffic signals or ADA ramps), please provide a list of each location in excel and a map showing these locations for DVRPC, NJDOT, and FHWA-NJ to verify that they are all within the Philadelphia or Trenton Urban Area.<br>",
           "options": ["Philadelphia UA", "Trenton UA"]
         },
         {
@@ -94,6 +94,14 @@
           "label": "Summarize Your Project's Purpose",
           "required": true,
           "rows": 8,
+          "placeholder": "What is the desired result from this project? For example, will it eliminate a deficient status of a bridge, achieve LOS D or better at the intersection, eliminate crashes, etc. Your statement should allow for a reasonable range of alternatives (e.g. rehab or replace bridge). In many cases, the purpose can be stated in a single sentence. If a project has several distinct purposes, each purpose should be individually listed. The purpose statement should not be a laundry list of all the potential benefits of building a project, nor should it list every possible purpose that could conceivably apply to the project."
+        },
+        {
+          "type": "textarea",
+          "name": "need",
+          "label": "Summarize Your Project's Need",
+          "required": true,
+          "rows": 8,
           "placeholder": "What problem will your project address? For example, a poor condition bridge. The need should be factual, quantifiable, establish evidence of current or future transportation problems, and justify commitment of funding this project and impacts to the environment. E.g., If we don’t address this bridge’s poor condition, then XXX."
         },
         {
@@ -102,7 +110,7 @@
           "label": "Summarize Your Project's Scope",
           "required": true,
           "rows": 8,
-          "placeholder": "What Funds Will Provide for."
+          "placeholder": "Summarize Your Project's Scope/Provide a Brief Project Description"
         },
         {
           "type": "select",
