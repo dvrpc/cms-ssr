@@ -16,6 +16,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@iframe-resizer/react": "^5.3.2",
     "autoprefixer": "^10.4.13",
     "chart.js": "^4.4.3",
     "chartjs-plugin-autocolors": "^0.2.2",

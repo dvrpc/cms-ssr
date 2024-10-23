@@ -2,6 +2,7 @@ import React from "react";
 import HtmlMapper from "react-html-map";
 import Link from "./Link";
 import PlanCarousel from "../components/PlanCarousel";
+import IframeResizer from "@iframe-resizer/react";
 
 const genericElement =
   (elementType) =>
@@ -88,7 +89,16 @@ const HtmlParser = ({ html }) => (
       h2: genericElement("h2"),
       h3: genericElement("h3"),
       hr: emptyElement("hr"),
-      iframe: genericElement("iframe"),
+      iframe: (attribs) => {
+        return (
+          <IframeResizer
+            license="GPLv3"
+            src={src}
+            style={{ width: "100%", height: "100vh" }}
+            waitForLoad
+          />
+        );
+      },
       img: (attribs) => {
         const { children, class: className, src, style, ...attrs } = attribs;
         return (
