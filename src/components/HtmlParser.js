@@ -93,7 +93,7 @@ const HtmlParser = ({ html }) => (
         return (
           <IframeResizer
             license="GPLv3"
-            src={src}
+            src={attribs.src}
             style={{ width: "100%", height: "100vh" }}
             waitForLoad
           />
