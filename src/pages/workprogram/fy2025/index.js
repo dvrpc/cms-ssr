@@ -53,13 +53,15 @@ const WorkProgramPage = ({
           ))}
         </select>
         <ul className="list-group">
-          {filteredData.map((project) => (
-            <li key={project.proid} className="list-group-item">
-              <Link to={`/workprogram/fy2025/${project.proid}`}>
-                {project.proid}: {project.proname}
-              </Link>
-            </li>
-          ))}
+          {filteredData
+            .sort((a, b) => a.proid > b.proid)
+            .map((project) => (
+              <li key={project.proid} className="list-group-item">
+                <Link to={`/workprogram/fy2025/${project.proid}`}>
+                  {project.proid}: {project.proname}
+                </Link>
+              </li>
+            ))}
         </ul>
       </Body>
       <StaffContact staffContact={userUser} location={location} title={title} />
