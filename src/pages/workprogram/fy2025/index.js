@@ -18,9 +18,14 @@ const WorkProgramPage = ({
     "DVRPC Program Area Descriptions"
   );
 
-  const filteredData = serverData
-    .sort((a, b) => a.proid > b.proid)
-    .filter((project) => project.subsectiontitle === activeFilter);
+  const filteredData = [...serverData]
+    .filter((project) => project.subsectiontitle === activeFilter)
+    .sort((a, b) =>
+      a.proid.localeCompare(b.proid, undefined, {
+        numeric: true,
+        sensitivity: "base",
+      })
+    );
 
   return (
     <>
