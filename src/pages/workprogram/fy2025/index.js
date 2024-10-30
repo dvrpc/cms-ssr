@@ -18,9 +18,9 @@ const WorkProgramPage = ({
     "DVRPC Program Area Descriptions"
   );
 
-  const filteredData = serverData.filter(
-    (project) => project.subsectiontitle === activeFilter
-  );
+  const filteredData = serverData
+    .sort((a, b) => a.proid > b.proid)
+    .filter((project) => project.subsectiontitle === activeFilter);
 
   return (
     <>
@@ -53,15 +53,13 @@ const WorkProgramPage = ({
           ))}
         </select>
         <ul className="list-group">
-          {filteredData
-            .sort((a, b) => a.proid > b.proid)
-            .map((project) => (
-              <li key={project.proid} className="list-group-item">
-                <Link to={`/workprogram/fy2025/${project.proid}`}>
-                  {project.proid}: {project.proname}
-                </Link>
-              </li>
-            ))}
+          {filteredData.map((project) => (
+            <li key={project.proid} className="list-group-item">
+              <Link to={`/workprogram/fy2025/${project.proid}`}>
+                {project.proid}: {project.proname}
+              </Link>
+            </li>
+          ))}
         </ul>
       </Body>
       <StaffContact staffContact={userUser} location={location} title={title} />
