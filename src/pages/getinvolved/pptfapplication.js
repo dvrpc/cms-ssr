@@ -531,9 +531,9 @@ const PPTFApplicationPage = ({ data, location }) => {
           </p>
           <p>
             If you do not receive a confirmation email after submitting your
-            application, check your spam folder or contact Wideleine Desir,
+            application, check your spam folder or contact Shoshana Akins,
             Public Participation Planner at{" "}
-            <a href="mailto:wdesir@dvrpc.org">wdesir@dvrpc.org</a> or
+            <a href="mailto:sakins@dvrpc.org">sakins@dvrpc.org</a> or
             215-238-2853
           </p>
           <button className="btn btn-primary">Apply</button>
@@ -551,13 +551,13 @@ const PPTFApplicationPage = ({ data, location }) => {
         <h3>Having trouble with the online application portal?</h3>
         <p>Click on the button below to download the application.</p>
         <p>
-          Return completed applications via email to Wideleine Desir, Public
-          Participation Planner at wdesir@dvrpc.org or via postal service to{" "}
+          Return completed applications via email to Shoshana Akins, Public
+          Participation Manager at sakins@dvrpc.org or via postal service to{" "}
         </p>
         <p>
           Delaware Valley Regional Planning Commission
           <br />
-          Attn: Wideleine Desir
+          Attn: Shoshana Akins 
           <br />
           190 N Independence Mall West, 8th floor
           <br />
