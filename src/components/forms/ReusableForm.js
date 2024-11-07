@@ -34,6 +34,65 @@ const FilePill = ({ file, onRemove, disabled = false }) => (
   </div>
 );
 
+const PrintableForm = ({ formConfig, formData }) => {
+  return (
+    <div className="printable-form">
+      {formConfig.sections.map((section, sectionIndex) => (
+        <div key={sectionIndex} className="mb-4">
+          <h3 className="mb-2 text-lg font-semibold">{section.title}</h3>
+          {section.fields.map((field, fieldIndex) => (
+            <div key={fieldIndex} className="mb-4">
+              {field.type !== "hidden" && (
+                <label className="mb-1 block font-semibold">
+                  {field.label}
+                </label>
+              )}
+              {field.type === "select" && field.options ? (
+                <div>
+                  {field.options.map((option, optionIndex) => (
+                    <div key={optionIndex} className="mb-1 flex items-center">
+                      <input
+                        type="radio"
+                        name={field.name}
+                        value={option}
+                        readOnly
+                        className="mr-2"
+                      />
+                      <label>{option}</label>
+                    </div>
+                  ))}
+                </div>
+              ) : field.type === "multiselect" && field.options ? (
+                <div>
+                  {field.options.map((option, optionIndex) => (
+                    <div key={optionIndex} className="mb-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        name={field.name}
+                        value={option}
+                        readOnly
+                        className="mr-2"
+                      />
+                      <label>{option}</label>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <input
+                  type={field.type}
+                  name={field.name}
+                  readOnly
+                  className="block w-full rounded border p-2"
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const ReusableForm = ({ formConfig }) => {
   const [formData, setFormData] = useState({});
   const [status, setStatus] = useState("");
@@ -49,6 +108,7 @@ const ReusableForm = ({ formConfig }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [transactionComplete, setTransactionComplete] = useState(false);
   const [projectID, setProjectID] = useState("");
+  const [isPrintable, setIsPrintable] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -104,6 +164,14 @@ const ReusableForm = ({ formConfig }) => {
 
     updateTableSums();
   }, [formData, formConfig, currentSectionIndex]);
+
+  const handlePrint = () => {
+    setIsPrintable(true);
+    setTimeout(() => {
+      window.print();
+      setIsPrintable(false);
+    }, 500);
+  };
 
   const getFieldFromDotNotation = (obj, dotNotation) => {
     return dotNotation.split(".").reduce((acc, key) => acc[key], obj);
@@ -620,463 +688,504 @@ const ReusableForm = ({ formConfig }) => {
   };
 
   return (
-    <div className="flex grid sm:grid-cols-1 md:grid-cols-3">
-      {formConfig.showProgressIndicator === "vertical" && (
-        <div className="m-4 md:col-span-1 md:col-start-1 md:row-start-2">
-          <SectionProgressIndicator
-            sections={formConfig.sections}
-            currentSectionIndex={currentSectionIndex}
-          />
-        </div>
-      )}
-      {formConfig.showProgressIndicator === "horizontal" && (
-        <div className="my-4 md:col-span-3 md:col-start-1 md:row-start-1">
-          <HorizontalProgressBar
-            sections={formConfig.sections}
-            currentSectionIndex={currentSectionIndex}
-            highlightColor={formConfig.sectionHighlightColor}
-          />
-        </div>
-      )}
-      <div
-        className={
-          formConfig.showProgressIndicator === "vertical" ||
-          !formConfig.showProgressIndicator
-            ? "m-4 md:col-span-2 md:col-start-2 md:row-start-2"
-            : "mt-4 md:col-span-3 md:col-start-1 md:row-start-2"
-        }
-      >
-        <form
-          id="reusable-form"
-          onSubmit={handleSubmit}
-          className="space-y-4 rounded-lg bg-gray-100 p-4"
-        >
-          {isReviewMode || transactionComplete ? (
-            renderReview()
-          ) : (
-            <>
-              <h2 className="flex items-center justify-between text-xl font-bold">
-                {formConfig.sections[currentSectionIndex].title}
-                <button
-                  type="button"
-                  onClick={handleClearData}
-                  className="text-sm font-light text-rose-800 hover:text-rose-600"
-                >
-                  Reset Form
-                </button>
-              </h2>
-              {formConfig.sections[currentSectionIndex].fields.map(
-                (field) =>
-                  isFieldVisible(field) && (
-                    <div
-                      key={field.name}
-                      className={`${!field.table ? "flex flex-col" : ""}`}
-                    >
-                      {field.type !== "description" &&
-                      field.type !== "hidden" &&
-                      !field.table ? (
-                        <label className="mt-2 mb-2 flex items-center font-semibold">
-                          <div
-                            dangerouslySetInnerHTML={{ __html: field.label }}
-                          />
-                          {field.helperText && (
-                            <div
-                              onClick={() => toggleHelperText(field.helperText)}
-                            >
-                              <InfoIcon />
-                            </div>
-                          )}
-                        </label>
-                      ) : (
-                        <></>
-                      )}
-                      {helperText === field.helperText && (
-                        <p className="mb-2 text-sm text-gray-600">
-                          {" "}
-                          <span
-                            dangerouslySetInnerHTML={{
-                              __html: field.helperText,
-                            }}
-                          />
-                        </p>
-                      )}
-                      {validationErrors[field.name] && !field.table && (
-                        <p className="mb-2 text-sm text-red-600">
-                          {validationErrors[field.name]}
-                        </p>
-                      )}
-                      {field.type === "table" ? (
-                        <table className="table-auto">
-                          <thead>
-                            <tr>
-                              <th className="text-left">{field.labelName}</th>
-                              <th className="text-right">{field.valueName}</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {formConfig.sections
-                              .flatMap((section) => section.fields)
-                              .filter(
-                                (f) =>
-                                  f.table === field.name && isFieldVisible(f)
-                              )
-                              .map((rowField, index) => (
-                                <>
-                                  <tr
-                                    key={index}
-                                    className="border-b dark:border-gray-700 dark:bg-gray-800"
-                                  >
-                                    <td className="py-4">
-                                      {rowField.label}
-                                      {validationErrors[rowField.name] && (
-                                        <tr key={`error-${index}`}>
-                                          <td colSpan="2">
-                                            <p className="text-right text-sm text-red-600">
-                                              {validationErrors[rowField.name]}
-                                            </p>
-                                          </td>
-                                        </tr>
-                                      )}
-                                    </td>
-                                    <td className="py-4 text-right">
-                                      {<b>{field.units}</b> || ""}
-                                      {rowField.type === "currency" ? (
-                                        <CurrencyInput
-                                          name={rowField.name}
-                                          value={formData[rowField.name]}
-                                          onValueChange={(
-                                            value,
-                                            name,
-                                            values
-                                          ) =>
-                                            handleChange({
-                                              target: { value, name, values },
-                                            })
-                                          }
-                                          className={`rounded border p-2 text-right ${
-                                            validationErrors[field.name]
-                                              ? "border-red-600"
-                                              : "border-gray-300"
-                                          }`}
-                                        />
-                                      ) : (
-                                        <input
-                                          type="number"
-                                          name={rowField.name}
-                                          value={formData[rowField.name]}
-                                          onChange={handleChange}
-                                          onBlur={handleBlur}
-                                          className={`rounded border p-2 text-right ${
-                                            validationErrors[field.name]
-                                              ? "border-red-600"
-                                              : "border-gray-300"
-                                          }`}
-                                        />
-                                      )}
-                                    </td>
-                                  </tr>
-                                </>
-                              ))}
-                            <tr className="border-b dark:border-gray-700 dark:bg-gray-800">
-                              <td className="py-4">
-                                <b>{field.summary}</b>
-                              </td>
-                              <td className="py-4 pr-4 text-right">
-                                {<b>{field.units}</b> || ""}
-                                {tableSums[field.name].toLocaleString() || 0}
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      ) : (
-                        !field.table && (
-                          <>
-                            {field.type === "hidden" ? (
-                              <input
-                                type="hidden"
-                                name={field.name}
-                                value={formData[field.name] || ""}
-                              />
-                            ) : field.type === "select" ? (
-                              field.fetchOptions ? (
-                                <Select
-                                  name={field.name}
-                                  onChange={(selectedOptions) =>
-                                    handleMultiSelectChange(
-                                      selectedOptions,
-                                      field.name,
-                                      "select"
-                                    )
-                                  }
-                                  value={
-                                    dynamicOptions[field.name]
-                                      ? dynamicOptions[field.name].find(
-                                          (option) =>
-                                            option.value ===
-                                            formData[field.name]
-                                        ) || null
-                                      : null
-                                  }
-                                  options={dynamicOptions[field.name]}
-                                  className={`w-full ${
-                                    validationErrors[field.name]
-                                      ? "border-red-600"
-                                      : "border-gray-300"
-                                  }`}
-                                  styles={
-                                    field.fullHeight && {
-                                      menuList: (baseStyles) => ({
-                                        ...baseStyles,
-                                        maxHeight: null,
-                                        minHeight: "100%",
-                                      }),
-                                    }
-                                  }
-                                />
-                              ) : (
-                                <Select
-                                  name={field.name}
-                                  value={
-                                    formData[field.name]
-                                      ? {
-                                          value: formData[field.name],
-                                          label: formData[field.name],
-                                        }
-                                      : ""
-                                  }
-                                  onChange={(selectedOptions) =>
-                                    handleMultiSelectChange(
-                                      selectedOptions,
-                                      field.name,
-                                      "select"
-                                    )
-                                  }
-                                  required={field.required}
-                                  options={field.options.map((option) => ({
-                                    value: option,
-                                    label: option,
-                                  }))}
-                                  className={`w-full ${
-                                    validationErrors[field.name]
-                                      ? "border-red-600"
-                                      : "border-gray-300"
-                                  }`}
-                                  styles={
-                                    field.fullHeight && {
-                                      menuList: (baseStyles) => ({
-                                        ...baseStyles,
-                                        maxHeight: null,
-                                        minHeight: "100%",
-                                      }),
-                                    }
-                                  }
-                                />
-                              )
-                            ) : field.type === "multiselect" ? (
-                              field.fetchOptions ? (
-                                <Select
-                                  name={field.name}
-                                  onChange={(selectedOptions) =>
-                                    handleMultiSelectChange(
-                                      selectedOptions,
-                                      field.name,
-                                      "multi"
-                                    )
-                                  }
-                                  value={
-                                    formData[field.name]
-                                      ? formData[field.name].map((value) => ({
-                                          value: value,
-                                          label:
-                                            dynamicOptions[field.name].find(
-                                              (option) => option.value === value
-                                            )?.label || value,
-                                        }))
-                                      : []
-                                  }
-                                  options={dynamicOptions[field.name]}
-                                  onBlur={handleBlur}
-                                  isMulti
-                                  required={field.required}
-                                  className="w-full"
-                                  styles={
-                                    field.fullHeight && {
-                                      menuList: (baseStyles) => ({
-                                        ...baseStyles,
-                                        maxHeight: null,
-                                        minHeight: "100%",
-                                      }),
-                                    }
-                                  }
-                                />
-                              ) : (
-                                <Select
-                                  name={field.name}
-                                  value={
-                                    formData[field.name]
-                                      ? formData[field.name].map((option) => ({
-                                          value: option,
-                                          label: option,
-                                        }))
-                                      : []
-                                  }
-                                  onChange={(selectedOptions) =>
-                                    handleMultiSelectChange(
-                                      selectedOptions,
-                                      field.name,
-                                      "multi"
-                                    )
-                                  }
-                                  placeholder={field.placeholder || "Select..."}
-                                  options={field.options.map((option) => ({
-                                    value: option,
-                                    label: option,
-                                  }))}
-                                  onBlur={handleBlur}
-                                  isMulti
-                                  required={field.required}
-                                  className="w-full"
-                                  styles={
-                                    field.fullHeight && {
-                                      menuList: (baseStyles) => ({
-                                        ...baseStyles,
-                                        maxHeight: null,
-                                        minHeight: "100%",
-                                      }),
-                                    }
-                                  }
-                                />
-                              )
-                            ) : field.type === "textarea" ? (
-                              <textarea
-                                name={field.name}
-                                value={formData[field.name] || ""}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                required={field.required}
-                                placeholder={field.placeholder}
-                                rows={field.rows}
-                                className={`rounded border p-2 ${
-                                  validationErrors[field.name]
-                                    ? "border-red-600"
-                                    : "border-gray-300"
-                                }`}
-                              ></textarea>
-                            ) : field.type === "file" ? (
-                              <>
-                                <input
-                                  type="file"
-                                  name={field.name}
-                                  onChange={handleChange}
-                                  required={field.required}
-                                  multiple={field.allowMultiple}
-                                  className="rounded border p-2"
-                                />
-                                {field.fileHelper && (
-                                  <p className="text-sm text-gray-600">
-                                    {field.fileHelper}
-                                  </p>
-                                )}
-                                {selectedFiles[field.name] && (
-                                  <div className="mt-2 flex flex-wrap">
-                                    {selectedFiles[field.name].map(
-                                      (file, index) => (
-                                        <FilePill
-                                          key={index}
-                                          file={file}
-                                          onRemove={() =>
-                                            handleRemoveFile(file, field.name)
-                                          }
-                                        />
-                                      )
-                                    )}
-                                  </div>
-                                )}
-                              </>
-                            ) : field.type === "description" ? (
-                              <p>
-                                <span
-                                  dangerouslySetInnerHTML={{
-                                    __html: field.text,
-                                  }}
-                                />
-                              </p>
-                            ) : field.type === "multitext" ? (
-                              <MultiTextInput
-                                name={field.name}
-                                value={formData[field.name] || ""}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                required={field.required || false}
-                                placeholder={
-                                  field.placeholder || "Type and press enter"
-                                }
-                                className={`w-full rounded border p-2 ${
-                                  validationErrors[field.name]
-                                    ? "border-red-600"
-                                    : "border-gray-300"
-                                }`}
-                              />
-                            ) : (
-                              <input
-                                type={field.type}
-                                name={field.name}
-                                value={formData[field.name] || ""}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                placeholder={field.placeholder}
-                                required={field.required}
-                                className={`rounded border p-2 ${
-                                  validationErrors[field.name]
-                                    ? "border-red-600"
-                                    : "border-gray-300"
-                                }`}
-                              />
-                            )}
-                          </>
-                        )
-                      )}
-                    </div>
-                  )
-              )}
-              <div className="mt-4 flex justify-between">
-                {currentSectionIndex > 0 && (
-                  <button
-                    type="button"
-                    onClick={handlePrevSection}
-                    className="rounded bg-gray-600 px-4 py-2 text-white"
-                  >
-                    Previous
-                  </button>
-                )}
-                {currentSectionIndex < formConfig.sections.length - 1 ? (
-                  <button
-                    type="button"
-                    onClick={handleNextSection}
-                    className="rounded bg-blue-600 px-4 py-2 text-white"
-                  >
-                    Next
-                  </button>
-                ) : (
-                  <>
+    <div>
+      {isPrintable ? (
+        <PrintableForm formConfig={formConfig} formData={formData} />
+      ) : (
+        <div className="flex grid sm:grid-cols-1 md:grid-cols-3">
+          {formConfig.showProgressIndicator === "vertical" && (
+            <div className="m-4 md:col-span-1 md:col-start-1 md:row-start-2">
+              <SectionProgressIndicator
+                sections={formConfig.sections}
+                currentSectionIndex={currentSectionIndex}
+              />
+            </div>
+          )}
+          {formConfig.showProgressIndicator === "horizontal" && (
+            <div className="my-4 md:col-span-3 md:col-start-1 md:row-start-1">
+              <HorizontalProgressBar
+                sections={formConfig.sections}
+                currentSectionIndex={currentSectionIndex}
+                highlightColor={formConfig.sectionHighlightColor}
+              />
+            </div>
+          )}
+          <div
+            className={
+              formConfig.showProgressIndicator === "vertical" ||
+              !formConfig.showProgressIndicator
+                ? "m-4 md:col-span-2 md:col-start-2 md:row-start-2"
+                : "mt-4 md:col-span-3 md:col-start-1 md:row-start-2"
+            }
+          >
+            <form
+              id="reusable-form"
+              onSubmit={handleSubmit}
+              className="space-y-4 rounded-lg bg-gray-100 p-4"
+            >
+              {isReviewMode || transactionComplete ? (
+                renderReview()
+              ) : (
+                <>
+                  <h2 className="flex items-center justify-between text-xl font-bold">
+                    {formConfig.sections[currentSectionIndex].title}
                     <button
                       type="button"
-                      onClick={handleReview}
-                      className="rounded bg-yellow-600 px-4 py-2 text-white"
+                      onClick={handleClearData}
+                      className="text-sm font-light text-rose-800 hover:text-rose-600"
                     >
-                      Review
+                      Reset Form
                     </button>
-                    <button
-                      type="submit"
-                      className="rounded bg-green-600 px-4 py-2 text-white"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? "Processing..." : "Submit"}
-                    </button>
-                  </>
-                )}
-              </div>
-              {/* <div className="mt-4 flex justify-between">
+                  </h2>
+                  {formConfig.sections[currentSectionIndex].fields.map(
+                    (field) =>
+                      isFieldVisible(field) && (
+                        <div
+                          key={field.name}
+                          className={`${!field.table ? "flex flex-col" : ""}`}
+                        >
+                          {field.type !== "description" &&
+                          field.type !== "hidden" &&
+                          !field.table ? (
+                            <label className="mt-2 mb-2 flex items-center font-semibold">
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: field.label,
+                                }}
+                              />
+                              {field.helperText && (
+                                <div
+                                  onClick={() =>
+                                    toggleHelperText(field.helperText)
+                                  }
+                                >
+                                  <InfoIcon />
+                                </div>
+                              )}
+                            </label>
+                          ) : (
+                            <></>
+                          )}
+                          {helperText === field.helperText && (
+                            <p className="mb-2 text-sm text-gray-600">
+                              {" "}
+                              <span
+                                dangerouslySetInnerHTML={{
+                                  __html: field.helperText,
+                                }}
+                              />
+                            </p>
+                          )}
+                          {validationErrors[field.name] && !field.table && (
+                            <p className="mb-2 text-sm text-red-600">
+                              {validationErrors[field.name]}
+                            </p>
+                          )}
+                          {field.type === "table" ? (
+                            <table className="table-auto">
+                              <thead>
+                                <tr>
+                                  <th className="text-left">
+                                    {field.labelName}
+                                  </th>
+                                  <th className="text-right">
+                                    {field.valueName}
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {formConfig.sections
+                                  .flatMap((section) => section.fields)
+                                  .filter(
+                                    (f) =>
+                                      f.table === field.name &&
+                                      isFieldVisible(f)
+                                  )
+                                  .map((rowField, index) => (
+                                    <>
+                                      <tr
+                                        key={index}
+                                        className="border-b dark:border-gray-700 dark:bg-gray-800"
+                                      >
+                                        <td className="py-4">
+                                          {rowField.label}
+                                          {validationErrors[rowField.name] && (
+                                            <tr key={`error-${index}`}>
+                                              <td colSpan="2">
+                                                <p className="text-right text-sm text-red-600">
+                                                  {
+                                                    validationErrors[
+                                                      rowField.name
+                                                    ]
+                                                  }
+                                                </p>
+                                              </td>
+                                            </tr>
+                                          )}
+                                        </td>
+                                        <td className="py-4 text-right">
+                                          {<b>{field.units}</b> || ""}
+                                          {rowField.type === "currency" ? (
+                                            <CurrencyInput
+                                              name={rowField.name}
+                                              value={formData[rowField.name]}
+                                              onValueChange={(
+                                                value,
+                                                name,
+                                                values
+                                              ) =>
+                                                handleChange({
+                                                  target: {
+                                                    value,
+                                                    name,
+                                                    values,
+                                                  },
+                                                })
+                                              }
+                                              className={`rounded border p-2 text-right ${
+                                                validationErrors[field.name]
+                                                  ? "border-red-600"
+                                                  : "border-gray-300"
+                                              }`}
+                                            />
+                                          ) : (
+                                            <input
+                                              type="number"
+                                              name={rowField.name}
+                                              value={formData[rowField.name]}
+                                              onChange={handleChange}
+                                              onBlur={handleBlur}
+                                              className={`rounded border p-2 text-right ${
+                                                validationErrors[field.name]
+                                                  ? "border-red-600"
+                                                  : "border-gray-300"
+                                              }`}
+                                            />
+                                          )}
+                                        </td>
+                                      </tr>
+                                    </>
+                                  ))}
+                                <tr className="border-b dark:border-gray-700 dark:bg-gray-800">
+                                  <td className="py-4">
+                                    <b>{field.summary}</b>
+                                  </td>
+                                  <td className="py-4 pr-4 text-right">
+                                    {<b>{field.units}</b> || ""}
+                                    {tableSums[field.name].toLocaleString() ||
+                                      0}
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          ) : (
+                            !field.table && (
+                              <>
+                                {field.type === "hidden" ? (
+                                  <input
+                                    type="hidden"
+                                    name={field.name}
+                                    value={formData[field.name] || ""}
+                                  />
+                                ) : field.type === "select" ? (
+                                  field.fetchOptions ? (
+                                    <Select
+                                      name={field.name}
+                                      onChange={(selectedOptions) =>
+                                        handleMultiSelectChange(
+                                          selectedOptions,
+                                          field.name,
+                                          "select"
+                                        )
+                                      }
+                                      value={
+                                        dynamicOptions[field.name]
+                                          ? dynamicOptions[field.name].find(
+                                              (option) =>
+                                                option.value ===
+                                                formData[field.name]
+                                            ) || null
+                                          : null
+                                      }
+                                      options={dynamicOptions[field.name]}
+                                      className={`w-full ${
+                                        validationErrors[field.name]
+                                          ? "border-red-600"
+                                          : "border-gray-300"
+                                      }`}
+                                      styles={
+                                        field.fullHeight && {
+                                          menuList: (baseStyles) => ({
+                                            ...baseStyles,
+                                            maxHeight: null,
+                                            minHeight: "100%",
+                                          }),
+                                        }
+                                      }
+                                    />
+                                  ) : (
+                                    <Select
+                                      name={field.name}
+                                      value={
+                                        formData[field.name]
+                                          ? {
+                                              value: formData[field.name],
+                                              label: formData[field.name],
+                                            }
+                                          : ""
+                                      }
+                                      onChange={(selectedOptions) =>
+                                        handleMultiSelectChange(
+                                          selectedOptions,
+                                          field.name,
+                                          "select"
+                                        )
+                                      }
+                                      required={field.required}
+                                      options={field.options.map((option) => ({
+                                        value: option,
+                                        label: option,
+                                      }))}
+                                      className={`w-full ${
+                                        validationErrors[field.name]
+                                          ? "border-red-600"
+                                          : "border-gray-300"
+                                      }`}
+                                      styles={
+                                        field.fullHeight && {
+                                          menuList: (baseStyles) => ({
+                                            ...baseStyles,
+                                            maxHeight: null,
+                                            minHeight: "100%",
+                                          }),
+                                        }
+                                      }
+                                    />
+                                  )
+                                ) : field.type === "multiselect" ? (
+                                  field.fetchOptions ? (
+                                    <Select
+                                      name={field.name}
+                                      onChange={(selectedOptions) =>
+                                        handleMultiSelectChange(
+                                          selectedOptions,
+                                          field.name,
+                                          "multi"
+                                        )
+                                      }
+                                      value={
+                                        formData[field.name]
+                                          ? formData[field.name].map(
+                                              (value) => ({
+                                                value: value,
+                                                label:
+                                                  dynamicOptions[
+                                                    field.name
+                                                  ].find(
+                                                    (option) =>
+                                                      option.value === value
+                                                  )?.label || value,
+                                              })
+                                            )
+                                          : []
+                                      }
+                                      options={dynamicOptions[field.name]}
+                                      onBlur={handleBlur}
+                                      isMulti
+                                      required={field.required}
+                                      className="w-full"
+                                      styles={
+                                        field.fullHeight && {
+                                          menuList: (baseStyles) => ({
+                                            ...baseStyles,
+                                            maxHeight: null,
+                                            minHeight: "100%",
+                                          }),
+                                        }
+                                      }
+                                    />
+                                  ) : (
+                                    <Select
+                                      name={field.name}
+                                      value={
+                                        formData[field.name]
+                                          ? formData[field.name].map(
+                                              (option) => ({
+                                                value: option,
+                                                label: option,
+                                              })
+                                            )
+                                          : []
+                                      }
+                                      onChange={(selectedOptions) =>
+                                        handleMultiSelectChange(
+                                          selectedOptions,
+                                          field.name,
+                                          "multi"
+                                        )
+                                      }
+                                      placeholder={
+                                        field.placeholder || "Select..."
+                                      }
+                                      options={field.options.map((option) => ({
+                                        value: option,
+                                        label: option,
+                                      }))}
+                                      onBlur={handleBlur}
+                                      isMulti
+                                      required={field.required}
+                                      className="w-full"
+                                      styles={
+                                        field.fullHeight && {
+                                          menuList: (baseStyles) => ({
+                                            ...baseStyles,
+                                            maxHeight: null,
+                                            minHeight: "100%",
+                                          }),
+                                        }
+                                      }
+                                    />
+                                  )
+                                ) : field.type === "textarea" ? (
+                                  <textarea
+                                    name={field.name}
+                                    value={formData[field.name] || ""}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    required={field.required}
+                                    placeholder={field.placeholder}
+                                    rows={field.rows}
+                                    className={`rounded border p-2 ${
+                                      validationErrors[field.name]
+                                        ? "border-red-600"
+                                        : "border-gray-300"
+                                    }`}
+                                  ></textarea>
+                                ) : field.type === "file" ? (
+                                  <>
+                                    <input
+                                      type="file"
+                                      name={field.name}
+                                      onChange={handleChange}
+                                      required={field.required}
+                                      multiple={field.allowMultiple}
+                                      className="rounded border p-2"
+                                    />
+                                    {field.fileHelper && (
+                                      <p className="text-sm text-gray-600">
+                                        {field.fileHelper}
+                                      </p>
+                                    )}
+                                    {selectedFiles[field.name] && (
+                                      <div className="mt-2 flex flex-wrap">
+                                        {selectedFiles[field.name].map(
+                                          (file, index) => (
+                                            <FilePill
+                                              key={index}
+                                              file={file}
+                                              onRemove={() =>
+                                                handleRemoveFile(
+                                                  file,
+                                                  field.name
+                                                )
+                                              }
+                                            />
+                                          )
+                                        )}
+                                      </div>
+                                    )}
+                                  </>
+                                ) : field.type === "description" ? (
+                                  <p>
+                                    <span
+                                      dangerouslySetInnerHTML={{
+                                        __html: field.text,
+                                      }}
+                                    />
+                                  </p>
+                                ) : field.type === "multitext" ? (
+                                  <MultiTextInput
+                                    name={field.name}
+                                    value={formData[field.name] || ""}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    required={field.required || false}
+                                    placeholder={
+                                      field.placeholder ||
+                                      "Type and press enter"
+                                    }
+                                    className={`w-full rounded border p-2 ${
+                                      validationErrors[field.name]
+                                        ? "border-red-600"
+                                        : "border-gray-300"
+                                    }`}
+                                  />
+                                ) : (
+                                  <input
+                                    type={field.type}
+                                    name={field.name}
+                                    value={formData[field.name] || ""}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    placeholder={field.placeholder}
+                                    required={field.required}
+                                    className={`rounded border p-2 ${
+                                      validationErrors[field.name]
+                                        ? "border-red-600"
+                                        : "border-gray-300"
+                                    }`}
+                                  />
+                                )}
+                              </>
+                            )
+                          )}
+                        </div>
+                      )
+                  )}
+                  <div className="mt-4 flex justify-between">
+                    {currentSectionIndex > 0 && (
+                      <button
+                        type="button"
+                        onClick={handlePrevSection}
+                        className="rounded bg-gray-600 px-4 py-2 text-white"
+                      >
+                        Previous
+                      </button>
+                    )}
+                    {currentSectionIndex < formConfig.sections.length - 1 ? (
+                      <button
+                        type="button"
+                        onClick={handleNextSection}
+                        className="rounded bg-blue-600 px-4 py-2 text-white"
+                      >
+                        Next
+                      </button>
+                    ) : (
+                      <>
+                        <button
+                          type="button"
+                          onClick={handleReview}
+                          className="rounded bg-yellow-600 px-4 py-2 text-white"
+                        >
+                          Review
+                        </button>
+                        <button
+                          type="submit"
+                          className="rounded bg-green-600 px-4 py-2 text-white"
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting ? "Processing..." : "Submit"}
+                        </button>
+                      </>
+                    )}
+                  </div>
+                  <button
+                    onClick={handlePrint}
+                    className="text-sm font-italic font-light text-gray-800 hover:text-gray-600"
+                  >
+                    Print Form
+                  </button>
+                  {/* <div className="mt-4 flex justify-between">
                 <button
                   type="button"
                   onClick={handleSaveToFile}
@@ -1099,11 +1208,13 @@ const ReusableForm = ({ formConfig }) => {
                 </label>
               </div>
               {status && <p className="mt-4">{status}</p>} */}
-            </>
-          )}
-        </form>
-        {renderSubmissionDialog()}
-      </div>
+                </>
+              )}
+            </form>
+            {renderSubmissionDialog()}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
