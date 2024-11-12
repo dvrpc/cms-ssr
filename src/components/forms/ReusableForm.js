@@ -6,29 +6,31 @@ import HorizontalProgressBar from "./HorizontalProgressBar.js";
 import MultiTextInput from "./MultiTextInput";
 import CurrencyInput from "react-currency-input-field";
 
-const FilePill = ({ file, onRemove }) => (
+const FilePill = ({ file, onRemove, disabled = false }) => (
   <div className="mr-2 mb-2 inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800">
     <span className="mr-2">{file.name}</span>
-    <button
-      type="button"
-      className="focus:outline-none"
-      onClick={() => onRemove(file)}
-    >
-      <svg
-        className="h-4 w-4"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+    {!disabled && (
+      <button
+        type="button"
+        className="focus:outline-none"
+        onClick={() => onRemove(file)}
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M6 18L18 6M6 6l12 12"
-        ></path>
-      </svg>
-    </button>
+        <svg
+          className="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+    )}
   </div>
 );
 
@@ -189,11 +191,15 @@ const ReusableForm = ({ formConfig }) => {
   const handleRemoveFile = (file, name) => {
     setFormData((prevData) => ({
       ...prevData,
-      [name]: prevData[name].filter((f) => f !== file),
+      [name]: !prevData[name].filter((f) => f !== file).length
+        ? null
+        : prevData[name].filter((f) => f !== file),
     }));
     setSelectedFiles((prevFiles) => ({
       ...prevFiles,
-      [name]: prevFiles[name].filter((f) => f !== file),
+      [name]: !prevFiles[name].filter((f) => f !== file).length
+        ? null
+        : prevFiles[name].filter((f) => f !== file),
     }));
   };
 
@@ -270,6 +276,10 @@ const ReusableForm = ({ formConfig }) => {
     let errors = {};
     formConfig.sections.forEach((section) => {
       section.fields.forEach((field) => {
+        if (field.required && !field.condition && !formData[field.name]) {
+          errors[field.name] = "Field is required";
+        }
+
         if (field.validationPattern && formData[field.name]) {
           const regex = new RegExp(field.validationPattern);
           if (!regex.test(formData[field.name])) {
@@ -392,6 +402,12 @@ const ReusableForm = ({ formConfig }) => {
   };
 
   const handleReview = () => {
+    const errors = validateFormData();
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      setIsReviewMode(false);
+      return;
+    }
     setIsReviewMode(true);
   };
 
@@ -471,7 +487,9 @@ const ReusableForm = ({ formConfig }) => {
                   field.type !== "hidden" && (
                     <div key={field.name} className="mb-4">
                       <label className="block font-semibold">
-                        <div dangerouslySetInnerHTML={{__html:field.label }}/>
+                        <div
+                          dangerouslySetInnerHTML={{ __html: field.label }}
+                        />
                       </label>
                       <div>
                         {field.type === "file" && selectedFiles[field.name] ? (
@@ -482,6 +500,7 @@ const ReusableForm = ({ formConfig }) => {
                               onRemove={() =>
                                 handleRemoveFile(file, field.name)
                               }
+                              disabled={true}
                             />
                           ))
                         ) : (
@@ -657,7 +676,9 @@ const ReusableForm = ({ formConfig }) => {
                       field.type !== "hidden" &&
                       !field.table ? (
                         <label className="mt-2 mb-2 flex items-center font-semibold">
-                          <div dangerouslySetInnerHTML={{__html:field.label }}/>
+                          <div
+                            dangerouslySetInnerHTML={{ __html: field.label }}
+                          />
                           {field.helperText && (
                             <div
                               onClick={() => toggleHelperText(field.helperText)}
