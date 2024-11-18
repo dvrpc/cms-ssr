@@ -114,7 +114,9 @@ const ReusableForm = ({ formConfig }) => {
     if (typeof window !== "undefined") {
       const savedData = window.localStorage.getItem("formData");
       if (savedData && savedData.length > 2) {
-        setFormData(JSON.parse(savedData));
+        const parsedData = JSON.parse(savedData);
+        delete parsedData.attachments;
+        setFormData(parsedData);
       }
 
       // Initialize formData with default values for hidden fields
@@ -1181,7 +1183,7 @@ const ReusableForm = ({ formConfig }) => {
                   </div>
                   <button
                     onClick={handlePrint}
-                    className="text-sm font-italic font-light text-gray-800 hover:text-gray-600"
+                    className="font-italic text-sm font-light text-gray-800 hover:text-gray-600"
                   >
                     Print Form
                   </button>
