@@ -96,6 +96,7 @@ const HtmlParser = ({ html }) => (
             src={attribs.src}
             style={{ width: "100%", height: "100vh" }}
             waitForLoad
+            log
           />
         );
       },
