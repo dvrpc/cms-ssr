@@ -17,6 +17,7 @@ const DVRPCMap = ({ features }) => {
     [-74.32525634765625, 40.614734298694216],
   ]);
   const [clickedFeature, setClickedFeature] = useState(null);
+  const [cursor, setCursor] = useState("grab");
 
   const onClick = (event) => {
     const feature = event.features[0];
@@ -29,6 +30,9 @@ const DVRPCMap = ({ features }) => {
     }
   };
 
+  const onMouseEnter = useCallback(() => setCursor("pointer"), []);
+  const onMouseLeave = useCallback(() => setCursor("grab"), []);
+
   return (
     <div className="h-[500px] w-full">
       <Map
@@ -38,6 +42,9 @@ const DVRPCMap = ({ features }) => {
         mapboxAccessToken="pk.eyJ1IjoidGhhY2hhZG9yaWFuZHZycGMiLCJhIjoiY2x6Ymw5bjNoMDIxdTJscHJlbDMxMzM1ZyJ9.AZoU09L4abDOTWEUM5Uwdw"
         minZoom={8}
         onClick={onClick}
+        cursor={cursor}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
         <Source
           id="boundaries"
@@ -101,10 +108,10 @@ const DVRPCMap = ({ features }) => {
             maxWidth="240px"
             onClose={() => setClickedFeature(null)}
           >
-            <h3 className="bg-[#82be37] p-2.5 text-[1.3em] font-bold text-gray-100">
+            <h3 className="m-0 bg-[#82be37] p-2.5 text-[1.3em] font-bold leading-tight text-gray-100">
               {clickedFeature.feature.properties.name}
             </h3>
-            <ul class="px-2.5 pb-2.5">
+            <ul class="my-1 list-none px-2.5 pb-2.5">
               <li>
                 <span className="font-bold text-[#2e5983]">Award:</span>{" "}
                 {clickedFeature.feature.properties.award.toLocaleString(
@@ -117,7 +124,8 @@ const DVRPCMap = ({ features }) => {
               </li>
               <li>
                 <span className="font-bold text-[#2e5983]">Phase:</span>{" "}
-                {clickedFeature.feature.properties.phase}
+                {clickedFeature.feature.properties.phase} (
+                {clickedFeature.feature.properties.year})
               </li>
               <li>
                 <span className="font-bold text-[#2e5983]">Type:</span>{" "}
@@ -232,12 +240,18 @@ const Page = () => {
       </Helmet>
       <Body title={title} menu={navItem}>
         <HtmlParser html={body.processed ?? ""} />
-        <h3>Regional Trails Program - 2011 to Date</h3>
+        <h2 className="text-[var(--color-h2)]">
+          Regional Trails Program - 2011 to Date
+        </h2>
         <p>
           Click on any of the green line segments to see details about that
           trail.
         </p>
         <DVRPCMap features={features} />
+        <h2 className="text-[var(--color-h2)]">
+          List of Regional Trails Programs
+        </h2>
+        <p>click column headers to sort table</p>
         <DataTable data={features.features} columns={columns} />
       </Body>
       <StaffContact
