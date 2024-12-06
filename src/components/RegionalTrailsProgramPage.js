@@ -1,13 +1,14 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { isMatch } from "matcher";
-import HeadTemplate, { themeToCustomVars } from "./HeadTemplate";
+import { themeToCustomVars } from "./HeadTemplate";
 import Map, { Source, Layer, Popup } from "react-map-gl";
 import { LngLatBounds } from "mapbox-gl";
 import DataTable from "react-data-table-component";
 import HtmlParser from "./HtmlParser";
 import Body from "./Body";
 import StaffContact from "./StaffContact";
+import { Helmet } from "react-helmet";
 
 const DVRPCMap = ({ features }) => {
   const mapRef = useRef();
@@ -147,7 +148,15 @@ const DVRPCMap = ({ features }) => {
 };
 
 const Page = () => {
-  const { nodePage, navItem } = pageData();
+  const {
+    nodePage: {
+      body,
+      title,
+      path,
+      relationships: { field_theme, field_staff_contact },
+    },
+    navItem,
+  } = pageData();
   const [features, setFeatures] = useState([]);
   const columns = [
     {
@@ -208,16 +217,59 @@ const Page = () => {
 
   return (
     <>
-      <Body title={nodePage.title} menu={navItem}>
-        <HtmlParser html={nodePage.body.processed ?? ""} />
+      <Helmet>
+        <link
+          href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css"
+          rel="stylesheet"
+        />
+        <title>{title} | DVRPC</title>
+        {body.summary && <meta name="description" content={body.summary} />}
+        <style>
+          {`:root {
+        ${themeToCustomVars(field_theme)}
+      }`}
+        </style>
+      </Helmet>
+      <Body title={title} menu={navItem}>
+        <HtmlParser html={body.processed ?? ""} />
+        <h3>Regional Trails Program - 2011 to Date</h3>
+        <p>
+          Click on any of the green line segments to see details about that
+          trail.
+        </p>
         <DVRPCMap features={features} />
         <DataTable data={features.features} columns={columns} />
       </Body>
       <StaffContact
-        staffContact={nodePage.relationships.field_staff_contact}
-        title={nodePage.title}
-        location={nodePage.path.alias}
+        staffContact={field_staff_contact}
+        title={title}
+        location={path.alias}
       />
+    </>
+  );
+};
+
+export const Head = ({ data }) => {
+  const {
+    nodePage: {
+      body,
+      title,
+      relationships: { field_theme },
+    },
+  } = data;
+  return (
+    <>
+      <link
+        href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css"
+        rel="stylesheet"
+      />
+      <title>{title} | DVRPC</title>
+      {body?.summary && <meta name="description" content={body?.summary} />}
+      <style>
+        {`:root {
+        ${themeToCustomVars(field_theme)}
+      }`}
+      </style>
     </>
   );
 };
