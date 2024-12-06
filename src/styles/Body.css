@@ -450,3 +450,7 @@ form
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+
+.mapboxgl-popup-content {
+  padding: 0 !important;
+}
