@@ -3,9 +3,11 @@ import { graphql } from "gatsby";
 import { isMatch } from "matcher";
 import CommitteePage from "../components/CommitteePage";
 import DefaultPage from "../components/DefaultPage";
+import RegionalTrailsProgram from "../components/RegionalTrailsProgramPage";
 import HeadTemplate, { themeToCustomVars } from "../components/HeadTemplate";
 
 const templates = {
+  "/trails/regionaltrailsprogram": RegionalTrailsProgram,
   "/committees/**": CommitteePage,
   "/**": DefaultPage,
 };

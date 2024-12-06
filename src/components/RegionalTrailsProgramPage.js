@@ -1,14 +1,13 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import { isMatch } from "matcher";
-import DefaultPage from "../../components/DefaultPage";
-import HeadTemplate, { themeToCustomVars } from "../../components/HeadTemplate";
+import HeadTemplate, { themeToCustomVars } from "./HeadTemplate";
 import Map, { Source, Layer, Popup } from "react-map-gl";
 import { LngLatBounds } from "mapbox-gl";
 import DataTable from "react-data-table-component";
-import HtmlParser from "../../components/HtmlParser";
-import Body from "../../components/Body";
-import StaffContact from "../../components/StaffContact";
+import HtmlParser from "./HtmlParser";
+import Body from "./Body";
+import StaffContact from "./StaffContact";
 
 const DVRPCMap = ({ features }) => {
   const mapRef = useRef();
@@ -30,7 +29,7 @@ const DVRPCMap = ({ features }) => {
   };
 
   return (
-    <div className="h-[50vh] w-full md:h-[85vh]">
+    <div className="h-[500px] w-full">
       <Map
         interactiveLayerIds={["trail-lines"]}
         ref={mapRef}
@@ -147,8 +146,8 @@ const DVRPCMap = ({ features }) => {
   );
 };
 
-const Page = ({ data }) => {
-  const { nodePage, navItem } = data;
+const Page = () => {
+  const { nodePage, navItem } = pageData();
   const [features, setFeatures] = useState([]);
   const columns = [
     {
@@ -207,8 +206,6 @@ const Page = ({ data }) => {
     })();
   }, []);
 
-  console.log(nodePage);
-
   return (
     <>
       <Body title={nodePage.title} menu={navItem}>
@@ -217,81 +214,61 @@ const Page = ({ data }) => {
         <DataTable data={features.features} columns={columns} />
       </Body>
       <StaffContact
-        staffContact={nodePage.staffContact}
+        staffContact={nodePage.relationships.field_staff_contact}
         title={nodePage.title}
-        location={location}
+        location={nodePage.path.alias}
       />
     </>
   );
 };
 
-export const Head = ({ data }) => {
-  const {
-    nodePage: {
-      body,
-      title,
-      relationships: { field_theme },
-    },
-  } = data;
-  return (
-    <>
-      <link
-        href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css"
-        rel="stylesheet"
-      />
-      <title>{title} | DVRPC</title>
-      {body?.summary && <meta name="description" content={body?.summary} />}
-      <style>
-        {`:root {
-        ${themeToCustomVars(field_theme)}
-      }`}
-      </style>
-    </>
-  );
-};
-
-export const query = graphql`
-  query {
-    nodePage(path: { alias: { eq: "/trails/regionaltrailsprogram" } }) {
-      id
-      title
-      body {
-        processed
-        summary
-      }
-      path {
-        alias
-      }
-      relationships {
-        field_staff_contact {
-          name: field_display_name
-          title: field_title
-          mail
-        }
-        field_theme {
-          field_primary_color
-          field_secondary_color
-          field_third_color
-          field_photo_credits
+const pageData = () => {
+  const { nodePage, navItem } = useStaticQuery(
+    graphql`
+      query {
+        nodePage(path: { alias: { eq: "/trails/regionaltrailsprogram" } }) {
+          id
+          title
+          body {
+            processed
+            summary
+          }
+          path {
+            alias
+          }
           relationships {
-            field_banner_2x {
-              uri {
-                url
-              }
+            field_staff_contact {
+              name: field_display_name
+              title: field_title
+              mail
             }
-            field_banner {
-              uri {
-                url
+            field_theme {
+              field_primary_color
+              field_secondary_color
+              field_third_color
+              field_photo_credits
+              relationships {
+                field_banner_2x {
+                  uri {
+                    url
+                  }
+                }
+                field_banner {
+                  uri {
+                    url
+                  }
+                }
               }
             }
           }
         }
+        navItem(href: { eq: "/Trails/RegionalTrailsProgram/" }) {
+          ...nestednavitem
+        }
       }
-    }
-    navItem(href: { eq: "/Trails/RegionalTrailsProgram/" }) {
-      ...nestednavitem
-    }
-  }
-`;
+    `
+  );
+  return { nodePage, navItem };
+};
 
 export default Page;
