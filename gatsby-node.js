@@ -6,6 +6,7 @@ const doNotWrapLayout = [
   "/data/maps/",
   "/news/",
   "/economic/ceds/workforceanalysis/",
+  "/equity/",
 ];
 
 //Add regex to GraphQL query to match URLs in the navigation JSON
@@ -47,7 +48,7 @@ exports.onCreateNode = async ({
 };
 
 //Add optional fields to GraphQL
-exports.createSchemaCustomization = ({actions }) => {
+exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   const typeDefs = `
       type nav implements Node {
