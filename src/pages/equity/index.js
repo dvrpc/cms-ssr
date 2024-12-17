@@ -30,10 +30,11 @@ import HeadTemplate, { themeToCustomVars } from "../../components/HeadTemplate";
 const title = "Equity";
 
 const Data = ({
-  data: { allMenuLinkContentMenuLinkContent, userUser, nodeTheme },
+  data: { userUser, nodeTheme, allNodeFeaturedEquityProject },
   location,
   serverData,
 }) => {
+  console.log(allNodeFeaturedEquityProject);
   return (
     <>
       <header className="bg-white">
@@ -89,11 +90,38 @@ const Data = ({
       <div className="color-[#030a18] flex flex-col">
         <div className="container mx-auto p-8">
           <h3 className="mb-0 text-2xl font-bold text-[#0078ae]">
-            Featured Projects
+            Featured Equity Projects
           </h3>
           <Carousel>
-            {allMenuLinkContentMenuLinkContent.edges.map(({ node }) => (
-              <AppCard key={node.field_product_id} node={node} />
+            {[
+              ...allNodeFeaturedEquityProject.edges,
+              ...allNodeFeaturedEquityProject.edges,
+            ].map(({ node }) => (
+              <div className="mx-1 flex min-w-[90%] snap-center break-inside-avoid flex-col bg-white p-[0.25em] md:mx-2 md:min-w-[375px]">
+                <div className="relative overflow-hidden">
+                  <img
+                    className="h-[150px] w-full object-cover object-center"
+                    src={node.relationships.field_image.url}
+                  />
+                </div>
+                <div className="divide-y divide-slate-300 px-2">
+                  <div className="mb-[1rem] min-h-[77px]">
+                    <h4 className="m-0 w-full pt-3 text-lg text-[#0078ae]">
+                      <span className="cursor-pointer no-underline hover:underline">
+                        {node.title}
+                      </span>
+                    </h4>
+                  </div>
+                  {node.body.processed && (
+                    <div
+                      className="text-base text-slate-400"
+                      dangerouslySetInnerHTML={{
+                        __html: node.body.processed.slice(0, 160) + "...",
+                      }}
+                    ></div>
+                  )}
+                </div>
+              </div>
             ))}
           </Carousel>
         </div>
@@ -134,23 +162,16 @@ export const query = graphql`
       name: field_display_name
       title: field_title
     }
-    allMenuLinkContentMenuLinkContent(
-      filter: {
-        menu_name: { eq: "data-center-featured-apps" }
-        enabled: { eq: true }
-      }
-      sort: { weight: ASC }
-    ) {
+    allNodeFeaturedEquityProject {
       edges {
         node {
-          entity {
-            title
-            body {
-              processed
-            }
-            field_product_id
-            field_url {
-              uri
+          title
+          body {
+            processed
+          }
+          relationships {
+            field_image {
+              url
             }
           }
         }
