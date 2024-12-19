@@ -50,12 +50,12 @@ const Calendar = ({ data, header, location }) => {
             </div>
           ) : (
             data?.map((event) => {
+              const StartTime = event.StartTime ?? "00:00";
               const [, mon, day] = event.StartDate.split("-");
-              const [, endMon, endDay] = (event.EndDate ?? "").split("-");
-              let [hr, min] = [null, null];
-              if (event.StartTime) {
-                [hr, min] = event.StartTime.split(":");
-              }
+              const hour = +StartTime.substring(0, 2);
+              const start =
+                (hour > 12 ? hour - 12 : hour) + StartTime.substring(2);
+
               return (
                 <div
                   key={event.Title + event.StartDate}
@@ -65,20 +65,9 @@ const Calendar = ({ data, header, location }) => {
                     <strong className="text-xl">
                       {months[+mon]} {+day}
                     </strong>
-                    {event.EndDate !== event.StartDate ? (
-                      <strong className="text-xl">
-                        &ndash;
-                        <br />
-                        {months[+endMon]} {+endDay}
-                      </strong>
-                    ) : (
-                      event.StartTime && (
-                        <span className="text-lg">
-                          <br />
-                          {+hr % 12 || hr}:{min}
-                        </span>
-                      )
-                    )}
+                    {StartTime !== "00:00" ? (
+                      <div className="text-lg">{start}</div>
+                    ) : null}
                   </p>
                   <p>
                     {event.Info ? (
