@@ -51,6 +51,11 @@ const BoardDetails = ({ committee }) => {
 const BoardListPage = ({ data, serverData, location }) => {
   const { userUser, navItem } = data;
   const { Board, Officers } = serverData;
+  const sorted = Board.filter((i) => i.Name !== null)
+    .filter((i) => i.Members.some((m) => m.Name !== null))
+    .sort((a, b) => (a.Order > b.Order ? 1 : -1));
+  const Voting = sorted.filter((i) => i.Participatory === 1);
+  const Nonvoting = sorted.filter((i) => i.Participatory !== 1);
 
   return (
     <>
@@ -80,9 +85,17 @@ const BoardListPage = ({ data, serverData, location }) => {
           }
         )}
         <h2>Board Members and Alternates</h2>
-        {Board.sort((a, b) => (a.Order > b.Order ? 1 : -1)).map((committee) => (
+        {Voting.map((committee) => (
           <BoardDetails key={committee.Id} committee={committee} />
         ))}
+        {Nonvoting.length ? (
+          <>
+            <h2>Nonvoting Representatives to the Commission</h2>
+            {Nonvoting.map((committee) => (
+              <BoardDetails key={committee.Id} committee={committee} />
+            ))}
+          </>
+        ) : null}
       </Body>
       <StaffContact staffContact={userUser} location={location} title={title} />
     </>
