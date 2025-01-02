@@ -26,6 +26,7 @@ import Banner from "../../components/datacenter/Banner";
 import AppCard from "../../components/datacenter/AppCard";
 import Carousel from "../../components/common/Carousel";
 import HeadTemplate, { themeToCustomVars } from "../../components/HeadTemplate";
+import links from "./equity-links.json";
 
 const title = "Equity";
 
