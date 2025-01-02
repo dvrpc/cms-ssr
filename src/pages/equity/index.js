@@ -124,7 +124,7 @@ const Data = ({
         </div>
       </div>
       <div className="color-[#030a18] flex flex-col">
-        <div className="container mx-auto p-8 pb-0">
+        <div className="container mx-auto p-8">
           <h3 className="mb-0 text-2xl font-bold text-[#0078ae]">
             Featured Equity Projects
           </h3>
@@ -151,7 +151,7 @@ const Data = ({
                   </div>
                   {node.body.processed && (
                     <div
-                      className="text-base text-slate-400"
+                      className="text-base"
                       dangerouslySetInnerHTML={{
                         __html: node.body.processed,
                       }}
@@ -163,30 +163,35 @@ const Data = ({
           </Carousel>
         </div>
       </div>
-      <div className="container mx-auto p-8">
-        <hr />
+
+      <div className="container mx-auto border-t p-8">
         <h3 className="mb-0 text-2xl font-bold text-[#0078ae]">Equity Links</h3>
-        <div className="w-1/2 md:grid md:grid-cols-2 md:gap-4">
-          <Select
-            placeholder="Internal/External"
-            options={typeOptions}
-            onChange={(selected) => setType(selected)}
-            isClearable
-          />
-          <Select
-            placeholder="Category"
-            options={categoryOptions}
-            onChange={(selected) => setCategory(selected)}
-            isMulti
-          />
-        </div>
-        {filteredLinks.map((link) => (
-          <div>
-            <a href={link["Url"]} target="_blank">
-              {link["Title"]}
-            </a>
+        <p className="text-slate-400">
+          Filter through list of links related to equity projects.
+        </p>
+        <div className="flex flex-col md:flex-row md:gap-8">
+          <div className="flex w-1/3 flex-col gap-4">
+            <Select
+              placeholder="Internal/External"
+              options={typeOptions}
+              onChange={(selected) => setType(selected)}
+              isClearable
+            />
+            <Select
+              placeholder="Category"
+              options={categoryOptions}
+              onChange={(selected) => setCategory(selected)}
+              isMulti
+            />
           </div>
-        ))}
+          <div className="flex w-2/3 flex-col">
+            {filteredLinks.map((link) => (
+              <a href={link["Url"]} target="_blank">
+                {link["Title"]}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="bg-gray-300 print:hidden">
