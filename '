@@ -37,11 +37,11 @@ const Data = ({
   serverData,
 }) => {
   const [type, setType] = useState("");
-  const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState("");
   const [filteredLinks, setFilteredLinks] = useState([...links]);
   const typeOptions = [
-    { value: "Internal", label: "Internal" },
-    { value: "External", label: "External" },
+    { value: "internal", label: "Internal" },
+    { value: "external", label: "External" },
   ];
 
   const categoryOptions = [
@@ -62,14 +62,11 @@ const Data = ({
 
   useEffect(() => {
     let filteredLinks = [...links];
-    if (category.length)
-      filteredLinks = filteredLinks.filter((link) =>
-        category.some((item) => link[item.value])
-      );
-    if (type) filteredLinks = filteredLinks.filter((link) => link[type.value]);
+    filteredLinks = filteredLinks.filter((link) =>
+      category.map((item) => console.log(item))
+    );
     setFilteredLinks(filteredLinks);
-  }, [type, category]);
-
+  }, [type, category, links, filteredLinks, setFilteredLinks]);
   return (
     <>
       <header className="bg-white">
@@ -171,7 +168,6 @@ const Data = ({
             placeholder="Internal/External"
             options={typeOptions}
             onChange={(selected) => setType(selected)}
-            isClearable
           />
           <Select
             placeholder="Category"
