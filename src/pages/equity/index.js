@@ -80,8 +80,8 @@ const Data = ({
           </h2>
         </div>
       </header>
-      <div className="bg-[#e5e7eb] text-[#005475]">
-        <div className="container mx-auto p-8 text-sm font-bold">
+      <div className="bg-[#e5e7eb]">
+        <div className="container mx-auto p-8 text-sm font-bold text-[#005475]">
           <h3 className="mb-4 text-2xl">What Do You Want To Do?</h3>
           <div className="grid grid-cols-3 justify-center gap-4 [&>*]:bg-white [&>*]:p-4">
             <div>
@@ -125,7 +125,7 @@ const Data = ({
       </div>
       <div className="color-[#030a18] flex flex-col">
         <div className="container mx-auto p-8">
-          <h3 className="mb-0 text-2xl font-bold text-[#0078ae]">
+          <h3 className="mb-0 text-2xl font-bold text-[#005475]">
             Featured Equity Projects
           </h3>
           <Carousel>
@@ -139,7 +139,7 @@ const Data = ({
                 </div>
                 <div className="divide-y divide-slate-300 px-2">
                   <div className="mb-[1rem] min-h-[77px]">
-                    <h4 className="m-0 w-full pt-3 text-lg text-[#0078ae]">
+                    <h4 className="m-0 w-full pt-3 text-lg">
                       <a
                         className="cursor-pointer no-underline hover:underline"
                         href={node.field_projecturl.uri}
@@ -151,7 +151,7 @@ const Data = ({
                   </div>
                   {node.body.processed && (
                     <div
-                      className="text-base"
+                      className="text-black"
                       dangerouslySetInnerHTML={{
                         __html: node.body.processed,
                       }}
@@ -165,8 +165,8 @@ const Data = ({
       </div>
 
       <div className="container mx-auto border-t p-8">
-        <h3 className="mb-0 text-2xl font-bold text-[#0078ae]">Equity Links</h3>
-        <p className="text-slate-400">
+        <h3 className="mb-0 text-2xl font-bold text-[#005475]">Equity Links</h3>
+        <p className="text-[#888888]">
           Filter through list of links related to equity projects.
         </p>
         <div className="flex flex-col md:flex-row md:gap-8">
