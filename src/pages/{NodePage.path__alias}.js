@@ -4,9 +4,11 @@ import { isMatch } from "matcher";
 import CommitteePage from "../components/CommitteePage";
 import DefaultPage from "../components/DefaultPage";
 import RegionalTrailsProgram from "../components/RegionalTrailsProgramPage";
+import CedsPage from "../components/CedsPage.js";
 import HeadTemplate, { themeToCustomVars } from "../components/HeadTemplate";
 
 const templates = {
+  "/economic/ceds": CedsPage,
   "/trails/regionaltrailsprogram": RegionalTrailsProgram,
   "/committees/**": CommitteePage,
   "/**": DefaultPage,
