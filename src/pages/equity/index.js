@@ -40,8 +40,8 @@ const Data = ({
   const [category, setCategory] = useState([]);
   const [filteredLinks, setFilteredLinks] = useState([...links]);
   const typeOptions = [
-    { value: "Internal", label: "Internal" },
-    { value: "External", label: "External" },
+    { value: "Internal", label: "DVRPC" },
+    { value: "External", label: "non-DVRPC" },
   ];
 
   const categoryOptions = [
@@ -83,41 +83,46 @@ const Data = ({
       <div className="bg-[#e5e7eb]">
         <div className="container mx-auto p-8 text-sm font-bold text-[#005475]">
           <h3 className="mb-4 text-2xl">What Do You Want To Do?</h3>
-          <div className="grid grid-cols-3 justify-center gap-4 [&>*]:bg-white [&>*]:p-4">
+          <div className="grid grid-cols-2 justify-center gap-4 [&>*]:bg-white [&>*]:p-4">
             <div>
               <a className="text-lg" href="/equity-funding-opportunities/">
                 Apply For Funding Opportunities
               </a>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Explore funding opportunities available through the
+                Infrastructure and Jobs Act (IIJA) and the Justice40 Initiative.
+                Learn how to access regional grants and funding using federal
+                mapping tools and DVRPC resources.
               </p>
             </div>
             <div>
               <a className="text-lg" href="/equity-tools-and-data/">
-                Use Equity Tools & Data
+                Use Equity Tools and Data
               </a>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Discover federal and regional equity mapping tools and data
+                designed to advance equitable planning decisions and access
+                grant opportunities under the Justice40 Initiative.
               </p>
             </div>
             <div>
               <a className="text-lg" href="/equity-policies/">
-                Learn About Federal Equity Policy
+                Learn about Equity Policies in the Region
               </a>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Learn about the Justice40 Initiative and the associated
+                executive orders that established the initiative.
               </p>
             </div>
             <div>
               <a className="text-lg" href="/prioritizing-equity/">
-                See Equity Projects Across the Region
+                Prioritize Equity Across the Region
               </a>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                View ways DVRPC is prioritizing equity across the region through
+                plans, research, initiatives, and programs. Find out how
+                planners and members of the public can participate in an
+                equitable planning process.
               </p>
             </div>
           </div>
@@ -172,7 +177,7 @@ const Data = ({
         <div className="flex flex-col md:flex-row md:gap-8">
           <div className="flex w-1/3 flex-col gap-4">
             <Select
-              placeholder="Internal/External"
+              placeholder="DVRPC/non-DVRPC"
               options={typeOptions}
               onChange={(selected) => setType(selected)}
               isClearable
