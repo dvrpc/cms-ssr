@@ -57,45 +57,6 @@ export default function SharePage({ location, title }) {
             ></path>
           </svg>
         </A>
-        <A
-          key="twitter"
-          href={`https://twitter.com/intent/tweet?text=${title}&via=DVRPC&url=${location}`}
-          aria-label="Twitter"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="35"
-            height="35"
-            viewBox="-2.5 -3 33 33"
-          >
-            <g
-              id="Group_485"
-              data-name="Group 485"
-              transform="translate(-1635 -467)"
-            >
-              <g
-                id="Group_16"
-                data-name="Group 16"
-                transform="translate(1635 467)"
-              >
-                <circle
-                  id="Ellipse_2"
-                  data-name="Ellipse 2"
-                  cx="13.865"
-                  cy="13.865"
-                  r="13.865"
-                  fill="#484848"
-                />
-              </g>
-              <path
-                id="X-icon"
-                d="M7.408,5.387,12.046,0h-1.1L6.928,4.68,3.7,0H0L4.864,7.076,0,12.724H1.1L5.344,7.783l3.393,4.941h3.7L7.4,5.387h0ZM5.9,7.133l-.495-.707L1.492.827h1.69l3.16,4.524.495.707L10.95,11.94H9.26L5.9,7.14h0Z"
-                transform="translate(1643 474.5)"
-                fill="#fff"
-              />
-            </g>
-          </svg>
-        </A>
         <a
           target="_blank"
           href={`mailto:?to=&subject=${title}&body=I think you may find this resource interesting: ${location}`}

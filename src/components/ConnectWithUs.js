@@ -24,13 +24,6 @@ const ConnectWithUs = ({ title, location, fillColor = "#005780" }) => {
     >
       <Icon use={Linkedin} />
     </A>,
-    <A
-      key="twitter"
-      href={`https://twitter.com/intent/tweet?text=${title}&via=DVRPC&url=${location}`}
-      aria-label="Twitter"
-    >
-      <Icon use={Twitter} />
-    </A>,
   ];
   return (
     <ul

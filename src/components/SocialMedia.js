@@ -42,14 +42,6 @@ const SocialMedia = () => {
     >
       <Icon scale={4} use={Youtube} />
     </A>,
-    <A
-      id="twitter-header-icon"
-      key="twitter"
-      href="https://www.twitter.com/DVRPC"
-      label="Twitter"
-    >
-      <Icon scale={3.75} use={Twitter} />
-    </A>,
   ];
   return (
     <ul className="m-0 hidden p-0 text-[#67abd1] md:items-end md:justify-end xl:flex">
