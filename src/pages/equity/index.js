@@ -131,7 +131,7 @@ const Data = ({
       <div className="color-[#030a18] flex flex-col">
         <div className="container mx-auto p-8">
           <h3 className="mb-0 text-2xl font-bold text-[#005475]">
-            Featured Equity Projects
+            Featured Projects and Programs
           </h3>
           <Carousel>
             {allNodeFeaturedEquityProject.edges.map(({ node }) => (
