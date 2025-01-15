@@ -8,7 +8,7 @@ export default [
   },
   {
     href: "https://www.dvrpc.org/annualreport/",
-    src: "https://www.dvrpc.org/img/gatsby/9326_1650_placard.png",
+    src: "https://cms.dvrpc.org/sites/default/files/2025-01/10183_placard.png",
     label: "Annual Report",
     style: { width: 200 },
   },
