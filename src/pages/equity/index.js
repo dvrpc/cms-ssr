@@ -81,11 +81,14 @@ const Data = ({
         </div>
       </header>
       <div className="bg-[#e5e7eb]">
-        <div className="container mx-auto p-8 text-sm font-bold text-[#005475]">
-          <h3 className="mb-4 text-2xl">What Do You Want To Do?</h3>
+        <div className="container mx-auto p-8 text-sm text-[#005475]">
+          <h3 className="mb-4 text-2xl font-bold">What Do You Want To Do?</h3>
           <div className="grid grid-cols-2 justify-center gap-4 [&>*]:bg-white [&>*]:p-4">
             <div>
-              <a className="text-lg" href="/equity-funding-opportunities/">
+              <a
+                className="text-lg font-bold"
+                href="/equity-funding-opportunities/"
+              >
                 Apply For Funding Opportunities
               </a>
               <p>
@@ -96,7 +99,7 @@ const Data = ({
               </p>
             </div>
             <div>
-              <a className="text-lg" href="/equity-tools-and-data/">
+              <a className="text-lg font-bold" href="/equity-tools-and-data/">
                 Use Equity Tools and Data
               </a>
               <p>
@@ -106,7 +109,7 @@ const Data = ({
               </p>
             </div>
             <div>
-              <a className="text-lg" href="/equity-policies/">
+              <a className="text-lg font-bold" href="/equity-policies/">
                 Learn about Equity Policies in the Region
               </a>
               <p>
@@ -115,7 +118,7 @@ const Data = ({
               </p>
             </div>
             <div>
-              <a className="text-lg" href="/prioritizing-equity/">
+              <a className="text-lg font-bold" href="/prioritizing-equity/">
                 Prioritize Equity Across the Region
               </a>
               <p>
@@ -169,7 +172,9 @@ const Data = ({
         </div>
       </div>
 
-      <div className="container mx-auto border-t p-8">
+      <hr className="mx-8" />
+
+      <div className="container mx-auto p-8">
         <h3 className="mb-0 text-2xl font-bold text-[#005475]">Equity Links</h3>
         <p className="text-[#888888]">
           Filter through list of links related to equity projects.
@@ -189,11 +194,13 @@ const Data = ({
               isMulti
             />
           </div>
-          <div className="flex w-2/3 flex-col">
+          <div className="w-2/3 columns-2">
             {filteredLinks.map((link) => (
-              <a href={link["Url"]} target="_blank">
-                {link["Title"]}
-              </a>
+              <p>
+                <a href={link["Url"]} target="_blank">
+                  {link["Title"]}
+                </a>
+              </p>
             ))}
           </div>
         </div>
