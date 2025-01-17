@@ -196,7 +196,7 @@ const Data = ({
           </div>
           <div className="w-2/3 columns-2">
             {filteredLinks.map((link) => (
-              <p>
+              <p className="pb-2">
                 <a href={link["Url"]} target="_blank">
                   {link["Title"]}
                 </a>
