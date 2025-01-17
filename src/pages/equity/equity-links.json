@@ -10,16 +10,6 @@
     "Prioritizing Equity Across the Region": true
   },
   {
-    "Title": "CEJST",
-    "Internal": false,
-    "External": true,
-    "Url": "https://screeningtool.geoplatform.gov/en/",
-    "Equity Funding Opportunities": false,
-    "Equity Tools and Data": true,
-    "Equity Policies in the Region": false,
-    "Prioritizing Equity Across the Region": false
-  },
-  {
     "Title": "Camden Health Element",
     "Internal": true,
     "External": false,
@@ -30,22 +20,12 @@
     "Prioritizing Equity Across the Region": true
   },
   {
-    "Title": "Climate and Economic Justice Screening Tool",
+    "Title": "Climate and Economic Justice Screening Tool (CEJST) ",
     "Internal": false,
     "External": true,
     "Url": "https://screeningtool.geoplatform.gov/en/",
     "Equity Funding Opportunities": false,
     "Equity Tools and Data": true,
-    "Equity Policies in the Region": false,
-    "Prioritizing Equity Across the Region": false
-  },
-  {
-    "Title": "Covered Programs",
-    "Internal": false,
-    "External": true,
-    "Url": "https://www.transportation.gov/priorities/equity/justice40/covered-programs",
-    "Equity Funding Opportunities": true,
-    "Equity Tools and Data": false,
     "Equity Policies in the Region": false,
     "Prioritizing Equity Across the Region": false
   },
@@ -70,6 +50,26 @@
     "Prioritizing Equity Across the Region": true
   },
   {
+    "Title": "DOE Energy Communities IWG Site Review Tool",
+    "Internal": false,
+    "External": true,
+    "Url": "https://energycommunities.gov/iwg-site-review-tool/",
+    "Equity Funding Opportunities": false,
+    "Equity Tools and Data": true,
+    "Equity Policies in the Region": false,
+    "Prioritizing Equity Across the Region": false
+  },
+  {
+    "Title": "DOE Low-Income Energy Affordability Data (LEAD) Tool",
+    "Internal": false,
+    "External": true,
+    "Url": "https://www.energy.gov/scep/low-income-energy-affordability-data-lead-tool",
+    "Equity Funding Opportunities": false,
+    "Equity Tools and Data": true,
+    "Equity Policies in the Region": false,
+    "Prioritizing Equity Across the Region": false
+  },
+  {
     "Title": "DOT Discretionary Grants Dashboard",
     "Internal": false,
     "External": true,
@@ -80,7 +80,7 @@
     "Prioritizing Equity Across the Region": false
   },
   {
-    "Title": "DVRPC Funding Opportunities.",
+    "Title": "DVRPC Funding Opportunities",
     "Internal": true,
     "External": false,
     "Url": "https://www.dvrpc.org/funding/",
@@ -96,6 +96,16 @@
     "Url": "https://www.dvrpc.org/iija/",
     "Equity Funding Opportunities": true,
     "Equity Tools and Data": false,
+    "Equity Policies in the Region": false,
+    "Prioritizing Equity Across the Region": false
+  },
+  {
+    "Title": "DVRPC Indicators of Potential Disadvantage (IPD) ",
+    "Internal": true,
+    "External": false,
+    "Url": "https://www.dvrpc.org/webmaps/ipd/",
+    "Equity Funding Opportunities": false,
+    "Equity Tools and Data": true,
     "Equity Policies in the Region": false,
     "Prioritizing Equity Across the Region": false
   },
@@ -130,6 +140,16 @@
     "Prioritizing Equity Across the Region": true
   },
   {
+    "Title": "EJScreen: Environmental Justice Screening and Mapping Tool",
+    "Internal": false,
+    "External": true,
+    "Url": "https://www.epa.gov/ejscreen",
+    "Equity Funding Opportunities": false,
+    "Equity Tools and Data": true,
+    "Equity Policies in the Region": false,
+    "Prioritizing Equity Across the Region": false
+  },
+  {
     "Title": "EPA Environmental Justice Glossary",
     "Internal": false,
     "External": true,
@@ -140,27 +160,7 @@
     "Prioritizing Equity Across the Region": false
   },
   {
-    "Title": "ETA",
-    "Internal": true,
-    "External": false,
-    "Url": "https://www.dvrpc.org/eta/",
-    "Equity Funding Opportunities": false,
-    "Equity Tools and Data": true,
-    "Equity Policies in the Region": false,
-    "Prioritizing Equity Across the Region": false
-  },
-  {
-    "Title": "ETC Explorer",
-    "Internal": false,
-    "External": true,
-    "Url": "https://www.transportation.gov/priorities/equity/justice40/etc",
-    "Equity Funding Opportunities": false,
-    "Equity Tools and Data": true,
-    "Equity Policies in the Region": false,
-    "Prioritizing Equity Across the Region": false
-  },
-  {
-    "Title": "Equitable Development",
+    "Title": "EPA Smart Growth and Equitable Development",
     "Internal": true,
     "External": false,
     "Url": "https://www.epa.gov/smartgrowth/smart-growth-and-equitable-development",
@@ -195,7 +195,7 @@
     "External": false,
     "Url": "https://www.dvrpc.org/eta/",
     "Equity Funding Opportunities": false,
-    "Equity Tools and Data": false,
+    "Equity Tools and Data": true,
     "Equity Policies in the Region": false,
     "Prioritizing Equity Across the Region": true
   },
@@ -206,26 +206,6 @@
     "Url": "http://www.dvrpc.org/equity-tools-and-data",
     "Equity Funding Opportunities": true,
     "Equity Tools and Data": false,
-    "Equity Policies in the Region": false,
-    "Prioritizing Equity Across the Region": false
-  },
-  {
-    "Title": "Equity and Justice40 Analysis Tools",
-    "Internal": false,
-    "External": true,
-    "Url": "https://www.transportation.gov/grants/dot-navigator/equity-and-justice40-analysis-tools",
-    "Equity Funding Opportunities": true,
-    "Equity Tools and Data": false,
-    "Equity Policies in the Region": false,
-    "Prioritizing Equity Across the Region": false
-  },
-  {
-    "Title": "Equity and Justice40 Analysis Tools",
-    "Internal": false,
-    "External": true,
-    "Url": "https://www.transportation.gov/grants/dot-navigator/equity-and-justice40-analysis-tools",
-    "Equity Funding Opportunities": false,
-    "Equity Tools and Data": true,
     "Equity Policies in the Region": false,
     "Prioritizing Equity Across the Region": false
   },
@@ -250,16 +230,6 @@
     "Prioritizing Equity Across the Region": false
   },
   {
-    "Title": "IPD",
-    "Internal": true,
-    "External": false,
-    "Url": "https://www.dvrpc.org/webmaps/ipd/",
-    "Equity Funding Opportunities": false,
-    "Equity Tools and Data": true,
-    "Equity Policies in the Region": false,
-    "Prioritizing Equity Across the Region": false
-  },
-  {
     "Title": "Justice40 Initiative",
     "Internal": false,
     "External": true,
@@ -278,6 +248,16 @@
     "Equity Tools and Data": false,
     "Equity Policies in the Region": true,
     "Prioritizing Equity Across the Region": false
+  },
+  {
+    "Title": "Mobility Choices: Transportation Conversations in Three Black and Latino Communities in the Greater Philadelphia Region",
+    "Internal": true,
+    "External": false,
+    "Url": "https://www.dvrpc.org/products/22103",
+    "Equity Funding Opportunities": false,
+    "Equity Tools and Data": false,
+    "Equity Policies in the Region": false,
+    "Prioritizing Equity Across the Region": true
   },
   {
     "Title": "Public Involvement at USDOT",
@@ -300,6 +280,16 @@
     "Prioritizing Equity Across the Region": true
   },
   {
+    "Title": "ResStock Analysis Tool | Buildings | NREL",
+    "Internal": false,
+    "External": true,
+    "Url": "https://www.nrel.gov/buildings/resstock.html",
+    "Equity Funding Opportunities": false,
+    "Equity Tools and Data": true,
+    "Equity Policies in the Region": false,
+    "Prioritizing Equity Across the Region": false
+  },
+  {
     "Title": "Reviving Vine",
     "Internal": true,
     "External": false,
@@ -308,6 +298,16 @@
     "Equity Tools and Data": false,
     "Equity Policies in the Region": false,
     "Prioritizing Equity Across the Region": true
+  },
+  {
+    "Title": "SLOPE: State and Local Planning for Energy Tool",
+    "Internal": false,
+    "External": true,
+    "Url": "https://maps.nrel.gov/slope",
+    "Equity Funding Opportunities": false,
+    "Equity Tools and Data": true,
+    "Equity Policies in the Region": false,
+    "Prioritizing Equity Across the Region": false
   },
   {
     "Title": "Supporting Communities",
@@ -370,12 +370,22 @@
     "Prioritizing Equity Across the Region": true
   },
   {
+    "Title": "US DOT Equity and Justice40 Analysis Tools",
+    "Internal": false,
+    "External": true,
+    "Url": "https://www.transportation.gov/grants/dot-navigator/equity-and-justice40-analysis-tools",
+    "Equity Funding Opportunities": true,
+    "Equity Tools and Data": true,
+    "Equity Policies in the Region": false,
+    "Prioritizing Equity Across the Region": false
+  },
+  {
     "Title": "USDOT Equitable Transportation Community (ETC) Explorer",
     "Internal": false,
     "External": true,
-    "Url": "https://experience.arcgis.com/experience/0920984aa80a4362b8778d779b090723/page/Homepage/",
+    "Url": "https://www.transportation.gov/priorities/equity/justice40/etc",
     "Equity Funding Opportunities": true,
-    "Equity Tools and Data": false,
+    "Equity Tools and Data": true,
     "Equity Policies in the Region": false,
     "Prioritizing Equity Across the Region": false
   },
@@ -394,6 +404,16 @@
     "Internal": false,
     "External": true,
     "Url": "https://www.transportation.gov/grants/dot-navigator/grant-application-resources",
+    "Equity Funding Opportunities": true,
+    "Equity Tools and Data": false,
+    "Equity Policies in the Region": false,
+    "Prioritizing Equity Across the Region": false
+  },
+  {
+    "Title": "USDOT Justice40 Covered Programs",
+    "Internal": false,
+    "External": true,
+    "Url": "https://www.transportation.gov/priorities/equity/justice40/covered-programs",
     "Equity Funding Opportunities": true,
     "Equity Tools and Data": false,
     "Equity Policies in the Region": false,
