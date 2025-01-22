@@ -96,6 +96,20 @@ const BoardListPage = ({ data, serverData, location }) => {
             ))}
           </>
         ) : null}
+        <h2>Non-Voting Representatives</h2>
+        <p>
+          The DVRPC Compact allows for the participation of non-voting
+          representatives to the Commission and specifically allows for up to
+          three representatives each from the Federal Highway Administration and
+          the U.S. Department of Housing and Urban Development. The DVRPC
+          by-laws also allow for up to two non-voting representatives each from
+          the Federal Transit Administration and the U.S. Environmental
+          Protection Agency, and one representative each from the PA Department
+          of Environmental Protection, the NJ Department of Environmental
+          Protection, the PA Department of Community and Economic Development,
+          the NJ Office for Planning Advocacy, SEPTA, NJ Transit, PATCO, and
+          DRPA.
+        </p>
       </Body>
       <StaffContact staffContact={userUser} location={location} title={title} />
     </>
