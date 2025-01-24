@@ -83,7 +83,7 @@ const Data = ({
       <div className="bg-[#e5e7eb]">
         <div className="container mx-auto p-8 text-sm text-[#005475]">
           <h3 className="mb-4 text-2xl font-bold">What Do You Want To Do?</h3>
-          <div className="grid grid-cols-2 justify-center gap-4 [&>*]:bg-white [&>*]:p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 justify-center gap-4 [&>*]:bg-white [&>*]:p-4">
             <div>
               <a
                 className="text-lg font-bold"
@@ -180,7 +180,7 @@ const Data = ({
           Filter through list of links related to equity projects.
         </p>
         <div className="flex flex-col md:flex-row md:gap-8">
-          <div className="flex w-1/3 flex-col gap-4">
+          <div className="flex md:w-1/3 flex-col gap-4">
             <Select
               placeholder="DVRPC/non-DVRPC"
               options={typeOptions}
@@ -194,7 +194,7 @@ const Data = ({
               isMulti
             />
           </div>
-          <div className="w-2/3 columns-2">
+          <div className="sm:mt-4 md:w-2/3 columns-2">
             {filteredLinks.map((link) => (
               <p className="pb-2">
                 <a href={link["Url"]} target="_blank">
