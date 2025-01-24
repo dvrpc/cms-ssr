@@ -194,7 +194,7 @@ const Data = ({
               isMulti
             />
           </div>
-          <div className="sm:mt-4 md:w-2/3 columns-2">
+          <div className="sm:mt-4 md:mt-0 md:w-2/3 columns-2">
             {filteredLinks.map((link) => (
               <p className="pb-2">
                 <a href={link["Url"]} target="_blank">
