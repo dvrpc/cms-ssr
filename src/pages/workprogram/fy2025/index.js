@@ -8,6 +8,13 @@ import HeadTemplate, {
 } from "../../../components/HeadTemplate";
 
 const title = "FY2025 Work Program";
+const amendments = [
+  {
+    link: "https://www.dvrpc.org/committees/board/action/2025-01_3.pdf",
+    title:
+      "FTA Pilot Program for Transit-Oriented Development Planning – T1 Corridor TOD and Multimodal Access Analysis",
+  },
+];
 
 const WorkProgramPage = ({
   data: { userUser, navItem },
@@ -57,6 +64,15 @@ const WorkProgramPage = ({
             <option key={section}>{section}</option>
           ))}
         </select>
+        {activeFilter === "Work Program Amendments" ? (
+          <ul className="list-group">
+            {amendments.map((amendment) => (
+              <li key={amendment.link} className="list-group-item">
+                <a href={amendment.link}>{amendment.title}</a>
+              </li>
+            ))}
+          </ul>
+        ) : null}
         <ul className="list-group">
           {filteredData.map((project) => (
             <li key={project.proid} className="list-group-item">
