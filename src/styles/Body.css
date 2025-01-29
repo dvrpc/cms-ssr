@@ -248,34 +248,46 @@ main .list-group-item-heading {
 main .list-group-item-text {
   @apply mb-1 leading-tight;
 }
-main .card {
+main .card,
+main .wp-block-group__inner-container {
   @apply mb-4 overflow-hidden rounded-sm border-none bg-gray-50 p-4 shadow;
 }
-main .card > h2:first-child {
+main .card > h2:first-child,
+main .wp-block-group__inner-container > h2:first-child {
   @apply -m-4 mb-2 bg-[color:var(--color-h2)] py-2 px-4 text-white;
 }
-main .card > h3:first-child {
+main .card > h3:first-child,
+main .wp-block-group__inner-container > h3:first-child {
   @apply -m-4 mb-0 bg-[color:var(--color-h3)] py-2 px-4 text-white;
 }
 main .card > h2:first-child + *,
-main .card > h3:first-child + * {
+main .card > h3:first-child + *,
+main .wp-block-group__inner-container > h2:first-child + *,
+main .wp-block-group__inner-container > h3:first-child + * {
   @apply mt-0;
 }
 main .card > .footer,
-main .card > footer {
+main .card > footer,
+main .wp-block-group__inner-container > .footer,
+main .wp-block-group__inner-container > footer {
   @apply -m-4 mt-0 border-t border-gray-100 bg-gray-50 py-1 px-4 text-right font-bold;
 }
-main .card .list-group {
+main .card .list-group,
+main .wp-block-group__inner-container .list-group {
   @apply -mx-4 shadow-none;
 }
 main .card .list-group > .list-group-heading,
-main .card .list-group > .list-group-item {
+main .card .list-group > .list-group-item,
+main .wp-block-group__inner-container .list-group > .list-group-heading,
+main .wp-block-group__inner-container .list-group > .list-group-item {
   @apply rounded-none border-l-0;
 }
-main .card > :first-child + .list-group {
+main .card > :first-child + .list-group,
+main .wp-block-group__inner-container > :first-child + .list-group {
   @apply mt-0;
 }
-main .card .list-group:last-child {
+main .card .list-group:last-child,
+main .wp-block-group__inner-container .list-group:last-child {
   @apply -mb-4;
 }
 main .list-group > h2:first-child {
