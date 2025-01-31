@@ -2,12 +2,14 @@ import React, { useEffect, useState, useCallback } from "react";
 import GenerateCaptcha from "./GenerateCaptcha";
 
 const PPTFForm = () => {
-  const { token } = GenerateCaptcha("submit");
+  const action = "submit";
+  const { token, score, verifyCaptcha } = GenerateCaptcha(action);
+
   const handleSubmit = async (e) => {
     if (!token) return;
     event.preventDefault();
     const formData = new FormData(e.target.value);
-    console.log(formData, token);
+    verifyCaptcha(token, action);
     // try {
     //   const response = await fetch(
     //     "https://www2.dvrpc.org/asp/pptfapplication/save23.aspx",
