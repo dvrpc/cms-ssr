@@ -262,7 +262,7 @@ export const query = graphql`
       }
       field_dvrpc_webpages {
         title
-        uri
+        uri: url
       }
       field_products {
         title
@@ -270,7 +270,7 @@ export const query = graphql`
       }
       field_stories {
         title
-        uri
+        uri: uri_alias
       }
       field_websites {
         title
