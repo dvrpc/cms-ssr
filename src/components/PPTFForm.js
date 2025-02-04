@@ -27,7 +27,7 @@ const PPTFForm = () => {
           console.error(error);
         }
     },
-    [token, score]
+    [token]
   );
 
   return (
