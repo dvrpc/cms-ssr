@@ -3,29 +3,32 @@ import GenerateCaptcha from "./GenerateCaptcha";
 
 const PPTFForm = () => {
   const action = "submit";
-  const { token, score, verifyCaptcha } = GenerateCaptcha(action);
+  const { token, verifyCaptcha } = GenerateCaptcha(action);
 
-  const handleSubmit = async (e) => {
-    if (!token) return;
-    event.preventDefault();
-    const formData = new FormData(e.target.value);
-    verifyCaptcha(token, action);
-    // try {
-    //   const response = await fetch(
-    //     "https://www2.dvrpc.org/asp/pptfapplication/save23.aspx",
-    //     {
-    //       method: "POST",
-    //       body: formData,
-    //     }
-    //   );
-    //
-    //   if (!response.ok) {
-    //     throw new Error("Failed to submit form");
-    //   }
-    // } catch (error) {
-    //   console.error(error);
-    // }
-  };
+  const handleSubmit = useCallback(
+    async (event) => {
+      if (!token) return;
+      event.preventDefault();
+      const formData = new FormData(event.target.value);
+      if (verifyCaptcha(token, action))
+        try {
+          const response = await fetch(
+            "https://www2.dvrpc.org/asp/pptfapplication/save23.aspx",
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("Failed to submit form");
+          }
+        } catch (error) {
+          console.error(error);
+        }
+    },
+    [token, score]
+  );
 
   return (
     <form onSubmit={handleSubmit}>
