@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 
 import Body from "./Body";
 import StaffContact from "./StaffContact";
+import TitleIV from "./TitleVI";
 
 const BusinessView = ({ children, data, serverData, location, title }) => {
   const { userUser, navItem } = data;
@@ -196,46 +197,7 @@ https://procurement.opengov.com/portal/embed/dvrpc/project-list?departmentId=all
           and subsequent evaluation by contacting the Procurement and Contracts
           Manager, <a href="mailto:jcrouch@dvrpc.org">jcrouch@dvrpc.org</a>.
         </p>
-
-        <h2>Title VI Statement</h2>
-        <p>
-          The Delaware Valley Regional Planning Commission (DVRPC) fully
-          complies with Title VI of the Civil Rights Act of 1964, the Civil
-          Rights Restoration Act of 1987, Executive Order 12898 on Environmental
-          Justice, and related nondiscrimination mandates in all programs and
-          activities. DVRPC's website,{" "}
-          <a href="https://www.dvrpc.org/">www.dvrpc.org</a>, may be translated
-          into multiple languages. Publications and other public documents can
-          usually be made available in alternative languages and formats, if
-          requested. DVRPC’s public meetings are always held in ADA-accessible
-          facilities, and held in transit-accessible locations whenever
-          possible. Translation, interpretation, or other auxiliary services can
-          be provided to individuals who submit a request at least seven days
-          prior to a public meeting. Translation and interpretation services for
-          DVRPC’s projects, products, and planning processes are available,
-          generally free of charge, by calling{" "}
-          <a href="tel:2155921800">(215) 592-1800</a>. All requests will be
-          accommodated to the greatest extent possible.
-        </p>
-        <p>
-          Any person who believes they have been aggrieved by an unlawful
-          discriminatory practice by DVRPC under Title VI has a right to file a
-          formal complaint. Any such complaint must be in writing and filed with
-          DVRPC's Title VI Compliance Manager and/or the appropriate state or
-          federal agency within 180 days of the alleged discriminatory
-          occurrence. For more information on DVRPC's Title VI program or to
-          obtain a{" "}
-          <a href="https://www.dvrpc.org/GetInvolved/TitleVI/pdf/TitleVIComplaintForm_English.pdf">
-            Title VI Complaint Form
-          </a>
-          , please visit:{" "}
-          <a href="https://www.dvrpc.org/GetInvolved/TitleVI/">
-            www.dvrpc.org/GetInvolved/TitleVI
-          </a>
-          , call <a href="tel:1-215-592-1800">(215) 592-1800</a>, or email{" "}
-          <a href="mailto:public_affairs@dvrpc.org">public_affairs@dvrpc.org</a>
-          .
-        </p>
+        <TitleIV />
 
         <h2>Disadvantaged Business Enterprises</h2>
         <p>
