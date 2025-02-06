@@ -110,7 +110,7 @@ main .gallery {
   @apply max-w-full border-none p-2;
 }
 main .has-nested-images {
-  @apply flex flex-row items-start gap-2;
+  @apply flex flex-row items-start gap-4;
 }
 main .blocks-gallery-grid {
   @apply m-0 grid list-none flex-wrap gap-2 p-0;
