@@ -1,26 +1,36 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { load } from "recaptcha-v3";
 
-const GenerateCaptcha = ({ action }) => {
-  const [token, setToken] = useState("");
+const GenerateCaptcha = () => {
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    (async () => {
-      const recaptcha = await load(process.env.GATSBY_SITEKEY);
-      const token = await recaptcha.execute(action);
-      setToken(token);
-    })();
-  }, [setToken]);
+    if (typeof window === "undefined") return;
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.google.com/recaptcha/enterprise.js?render=${process.env.GATSBY_SITEKEY}`;
+    script.addEventListener("load", () => setLoaded(true));
+    document.body.appendChild(script);
+  }, [loaded]);
 
-  const verifyCaptcha = async (action) => {
+  const generateToken = async (action) => {
+    if (!loaded) return;
+    const token = await window.grecaptcha.enterprise.execute(
+      process.env.GATSBY_SITEKEY,
+      {
+        action,
+      }
+    );
+    return token;
+  };
+
+  const verifyCaptcha = async (token, action) => {
     try {
-      const req = await fetch("http://localhost:3000/recaptcha/v3", {
+      const req = await fetch("https://alpha.dvrpc.org/recaptcha/v3", {
         method: "POST",
         headers: {
-          Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token, action }),
+        body: JSON.stringify({ token: token }),
       });
       const res = await req.json();
       if (res.google_response.score > 0.8) return true;
@@ -31,7 +41,7 @@ const GenerateCaptcha = ({ action }) => {
     }
   };
 
-  return { token, verifyCaptcha };
+  return { generateToken, verifyCaptcha };
 };
 
 export default GenerateCaptcha;
