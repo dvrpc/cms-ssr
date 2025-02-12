@@ -3,32 +3,39 @@ import GenerateCaptcha from "./GenerateCaptcha";
 
 const PPTFForm = () => {
   const action = "submit";
-  const { token, verifyCaptcha } = GenerateCaptcha(action);
+  const { generateToken, verifyCaptcha } = GenerateCaptcha();
 
-  const handleSubmit = useCallback(
-    async (event) => {
-      if (!token) return;
-      event.preventDefault();
-      const formData = new FormData(event.target.value);
-      if (verifyCaptcha(token, action))
-        try {
-          const response = await fetch(
-            "https://www2.dvrpc.org/asp/pptfapplication/save23.aspx",
-            {
-              method: "POST",
-              body: formData,
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Failed to submit form");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const token = await generateToken(action);
+    if (!token) return;
+    const formData = new FormData(event.target);
+    if (verifyCaptcha(token, action))
+      try {
+        const response = await fetch(
+          "https://www2.dvrpc.org/asp/pptfapplication/save23.aspx",
+          {
+            method: "POST",
+            body: formData,
           }
-        } catch (error) {
-          console.error(error);
+        );
+
+        if (!response.ok) {
+          window.alert("Failed to submit form");
+          throw new Error("Failed to submit form");
         }
-    },
-    [token]
-  );
+        const success = confirm(
+          "Thank you for applying to the Public Participation Task Force (PPTF)"
+        );
+        if (success) window.location.reload();
+      } catch (error) {
+        console.error(error);
+      }
+    else {
+      window.alert("Error verifying reCaptcha, please try again...");
+      throw new Error("Failed to submit form");
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
