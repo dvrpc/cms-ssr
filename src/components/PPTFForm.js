@@ -27,7 +27,10 @@ const PPTFForm = () => {
         const success = confirm(
           "Thank you for applying to the Public Participation Task Force (PPTF)"
         );
-        if (success) window.location.reload();
+        if (success) {
+          event.target.reset();
+          window.location.reload();
+        }
       } catch (error) {
         console.error(error);
       }
