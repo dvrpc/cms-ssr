@@ -27,10 +27,7 @@ const PPTFForm = () => {
         const success = confirm(
           "Thank you for applying to the Public Participation Task Force (PPTF)"
         );
-        if (success) {
-          event.target.reset();
-          window.location.reload();
-        }
+        if (success) window.location.reload();
       } catch (error) {
         console.error(error);
       }
@@ -41,7 +38,7 @@ const PPTFForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} autocomplete="off">
       <label htmlFor="name">Name</label>
       <input type="text" name="name" id="name" required />
       <label htmlFor="email">Email</label>
