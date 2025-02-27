@@ -1,0 +1,2002 @@
+[
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4201705616",
+		"namelsad" : "Bensalem township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 8
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4201705616",
+		"namelsad" : "Bensalem township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4201705616",
+		"namelsad" : "Bensalem township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4201705616",
+		"namelsad" : "Bensalem township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 2
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4201705616",
+		"namelsad" : "Bensalem township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 14
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4201708760",
+		"namelsad" : "Bristol borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 4
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4201708760",
+		"namelsad" : "Bristol borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4201708760",
+		"namelsad" : "Bristol borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4201708760",
+		"namelsad" : "Bristol borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4201708760",
+		"namelsad" : "Bristol borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4201708768",
+		"namelsad" : "Bristol township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 6
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4201708768",
+		"namelsad" : "Bristol township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4201708768",
+		"namelsad" : "Bristol township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4201708768",
+		"namelsad" : "Bristol township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4201708768",
+		"namelsad" : "Bristol township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 18
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4201725112",
+		"namelsad" : "Falls township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4201725112",
+		"namelsad" : "Falls township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4201725112",
+		"namelsad" : "Falls township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4201725112",
+		"namelsad" : "Falls township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4201725112",
+		"namelsad" : "Falls township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 12
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4201736192",
+		"namelsad" : "Hulmeville borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4201736192",
+		"namelsad" : "Hulmeville borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4201736192",
+		"namelsad" : "Hulmeville borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4201736192",
+		"namelsad" : "Hulmeville borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4201736192",
+		"namelsad" : "Hulmeville borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4201741392",
+		"namelsad" : "Langhorne borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4201741392",
+		"namelsad" : "Langhorne borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4201741392",
+		"namelsad" : "Langhorne borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4201741392",
+		"namelsad" : "Langhorne borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4201741392",
+		"namelsad" : "Langhorne borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4201741416",
+		"namelsad" : "Langhorne Manor borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4201741416",
+		"namelsad" : "Langhorne Manor borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4201741416",
+		"namelsad" : "Langhorne Manor borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4201741416",
+		"namelsad" : "Langhorne Manor borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4201741416",
+		"namelsad" : "Langhorne Manor borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4201745112",
+		"namelsad" : "Lower Southampton township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 2
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4201745112",
+		"namelsad" : "Lower Southampton township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4201745112",
+		"namelsad" : "Lower Southampton township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4201745112",
+		"namelsad" : "Lower Southampton township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4201745112",
+		"namelsad" : "Lower Southampton township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4201749120",
+		"namelsad" : "Middletown township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4201749120",
+		"namelsad" : "Middletown township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4201749120",
+		"namelsad" : "Middletown township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 5
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4201749120",
+		"namelsad" : "Middletown township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4201749120",
+		"namelsad" : "Middletown township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 12
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4201751144",
+		"namelsad" : "Morrisville borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4201751144",
+		"namelsad" : "Morrisville borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4201751144",
+		"namelsad" : "Morrisville borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4201751144",
+		"namelsad" : "Morrisville borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4201751144",
+		"namelsad" : "Morrisville borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4201758936",
+		"namelsad" : "Penndel borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4201758936",
+		"namelsad" : "Penndel borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4201758936",
+		"namelsad" : "Penndel borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4201758936",
+		"namelsad" : "Penndel borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4201758936",
+		"namelsad" : "Penndel borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4201777744",
+		"namelsad" : "Tullytown borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4201777744",
+		"namelsad" : "Tullytown borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4201777744",
+		"namelsad" : "Tullytown borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4201777744",
+		"namelsad" : "Tullytown borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4201777744",
+		"namelsad" : "Tullytown borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 2
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204513208",
+		"namelsad" : "Chester city",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 2
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204513208",
+		"namelsad" : "Chester city",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204513208",
+		"namelsad" : "Chester city",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204513208",
+		"namelsad" : "Chester city",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 2
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204513208",
+		"namelsad" : "Chester city",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 10
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204518160",
+		"namelsad" : "Darby township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204518160",
+		"namelsad" : "Darby township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204518160",
+		"namelsad" : "Darby township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204518160",
+		"namelsad" : "Darby township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204518160",
+		"namelsad" : "Darby township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204522296",
+		"namelsad" : "Eddystone borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 1,
+		"base" : 2
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204522296",
+		"namelsad" : "Eddystone borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204522296",
+		"namelsad" : "Eddystone borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204522296",
+		"namelsad" : "Eddystone borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204522296",
+		"namelsad" : "Eddystone borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204526408",
+		"namelsad" : "Folcroft borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204526408",
+		"namelsad" : "Folcroft borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204526408",
+		"namelsad" : "Folcroft borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204526408",
+		"namelsad" : "Folcroft borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204526408",
+		"namelsad" : "Folcroft borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 2
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204544888",
+		"namelsad" : "Lower Chichester township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204544888",
+		"namelsad" : "Lower Chichester township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204544888",
+		"namelsad" : "Lower Chichester township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204544888",
+		"namelsad" : "Lower Chichester township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204544888",
+		"namelsad" : "Lower Chichester township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204547344",
+		"namelsad" : "Marcus Hook borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 1,
+		"base" : 2
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204547344",
+		"namelsad" : "Marcus Hook borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204547344",
+		"namelsad" : "Marcus Hook borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204547344",
+		"namelsad" : "Marcus Hook borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204547344",
+		"namelsad" : "Marcus Hook borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204553104",
+		"namelsad" : "Nether Providence township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 2
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204553104",
+		"namelsad" : "Nether Providence township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204553104",
+		"namelsad" : "Nether Providence township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204553104",
+		"namelsad" : "Nether Providence township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204553104",
+		"namelsad" : "Nether Providence township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 5
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204555664",
+		"namelsad" : "Norwood borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204555664",
+		"namelsad" : "Norwood borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204555664",
+		"namelsad" : "Norwood borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204555664",
+		"namelsad" : "Norwood borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204555664",
+		"namelsad" : "Norwood borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204562792",
+		"namelsad" : "Prospect Park borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204562792",
+		"namelsad" : "Prospect Park borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204562792",
+		"namelsad" : "Prospect Park borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204562792",
+		"namelsad" : "Prospect Park borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204562792",
+		"namelsad" : "Prospect Park borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204564800",
+		"namelsad" : "Ridley township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 7
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204564800",
+		"namelsad" : "Ridley township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204564800",
+		"namelsad" : "Ridley township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204564800",
+		"namelsad" : "Ridley township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204564800",
+		"namelsad" : "Ridley township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 10
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204564832",
+		"namelsad" : "Ridley Park borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204564832",
+		"namelsad" : "Ridley Park borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204564832",
+		"namelsad" : "Ridley Park borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204564832",
+		"namelsad" : "Ridley Park borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204564832",
+		"namelsad" : "Ridley Park borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204569752",
+		"namelsad" : "Sharon Hill borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204569752",
+		"namelsad" : "Sharon Hill borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204569752",
+		"namelsad" : "Sharon Hill borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204569752",
+		"namelsad" : "Sharon Hill borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204569752",
+		"namelsad" : "Sharon Hill borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 2
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204576792",
+		"namelsad" : "Tinicum township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 1,
+		"base" : 2
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204576792",
+		"namelsad" : "Tinicum township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204576792",
+		"namelsad" : "Tinicum township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204576792",
+		"namelsad" : "Tinicum township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204576792",
+		"namelsad" : "Tinicum township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204577288",
+		"namelsad" : "Trainer borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204577288",
+		"namelsad" : "Trainer borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204577288",
+		"namelsad" : "Trainer borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204577288",
+		"namelsad" : "Trainer borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204577288",
+		"namelsad" : "Trainer borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204578712",
+		"namelsad" : "Upland borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204578712",
+		"namelsad" : "Upland borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204578712",
+		"namelsad" : "Upland borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204578712",
+		"namelsad" : "Upland borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204578712",
+		"namelsad" : "Upland borough",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 2
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4204578776",
+		"namelsad" : "Upper Chichester township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4204578776",
+		"namelsad" : "Upper Chichester township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4204578776",
+		"namelsad" : "Upper Chichester township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4204578776",
+		"namelsad" : "Upper Chichester township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4204578776",
+		"namelsad" : "Upper Chichester township",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 6
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4210160101",
+		"namelsad" : "North",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 6
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4210160101",
+		"namelsad" : "North",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4210160101",
+		"namelsad" : "North",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4210160101",
+		"namelsad" : "North",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4210160101",
+		"namelsad" : "North",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 54
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4210160102",
+		"namelsad" : "Lower Southwest",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 1,
+		"S2100_1in100" : 1,
+		"base" : 2
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4210160102",
+		"namelsad" : "Lower Southwest",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4210160102",
+		"namelsad" : "Lower Southwest",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4210160102",
+		"namelsad" : "Lower Southwest",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4210160102",
+		"namelsad" : "Lower Southwest",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 11
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4210160103",
+		"namelsad" : "Central",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 8
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4210160103",
+		"namelsad" : "Central",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 6
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4210160103",
+		"namelsad" : "Central",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4210160103",
+		"namelsad" : "Central",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 10
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4210160103",
+		"namelsad" : "Central",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 49
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4210160104",
+		"namelsad" : "North Delaware",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 4
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4210160104",
+		"namelsad" : "North Delaware",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4210160104",
+		"namelsad" : "North Delaware",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4210160104",
+		"namelsad" : "North Delaware",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4210160104",
+		"namelsad" : "North Delaware",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 25
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4210160105",
+		"namelsad" : "Lower South",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4210160105",
+		"namelsad" : "Lower South",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4210160105",
+		"namelsad" : "Lower South",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4210160105",
+		"namelsad" : "Lower South",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4210160105",
+		"namelsad" : "Lower South",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4210160106",
+		"namelsad" : "West Park",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4210160106",
+		"namelsad" : "West Park",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4210160106",
+		"namelsad" : "West Park",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 4
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4210160106",
+		"namelsad" : "West Park",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4210160106",
+		"namelsad" : "West Park",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 17
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4210160107",
+		"namelsad" : "Lower North",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 4
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4210160107",
+		"namelsad" : "Lower North",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 4
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4210160107",
+		"namelsad" : "Lower North",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4210160107",
+		"namelsad" : "Lower North",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4210160107",
+		"namelsad" : "Lower North",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 50
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4210160109",
+		"namelsad" : "River Wards",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4210160109",
+		"namelsad" : "River Wards",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4210160109",
+		"namelsad" : "River Wards",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4210160109",
+		"namelsad" : "River Wards",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4210160109",
+		"namelsad" : "River Wards",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 25
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4210160110",
+		"namelsad" : "University Southwest",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 2
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4210160110",
+		"namelsad" : "University Southwest",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 4
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4210160110",
+		"namelsad" : "University Southwest",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 5
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4210160110",
+		"namelsad" : "University Southwest",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4210160110",
+		"namelsad" : "University Southwest",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 25
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4210160112",
+		"namelsad" : "South",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 7
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4210160112",
+		"namelsad" : "South",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 2
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4210160112",
+		"namelsad" : "South",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 2
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4210160112",
+		"namelsad" : "South",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 4
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4210160112",
+		"namelsad" : "South",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 38
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4210160114",
+		"namelsad" : "Lower Northeast",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4210160114",
+		"namelsad" : "Lower Northeast",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 4
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4210160114",
+		"namelsad" : "Lower Northeast",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 1
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4210160114",
+		"namelsad" : "Lower Northeast",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4210160114",
+		"namelsad" : "Lower Northeast",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 19
+	},
+	{
+		"type" : "Fire Stations",
+		"geoid" : "4210160118",
+		"namelsad" : "Central Northeast",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Hospitals",
+		"geoid" : "4210160118",
+		"namelsad" : "Central Northeast",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 3
+	},
+	{
+		"type" : "Nursing Home\/Assisted Care Facilities",
+		"geoid" : "4210160118",
+		"namelsad" : "Central Northeast",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 9
+	},
+	{
+		"type" : "Police Stations",
+		"geoid" : "4210160118",
+		"namelsad" : "Central Northeast",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : null
+	},
+	{
+		"type" : "Schools",
+		"geoid" : "4210160118",
+		"namelsad" : "Central Northeast",
+		"S2050" : 0,
+		"S2100_low" : 0,
+		"S2100_high" : 0,
+		"S2100_1in100" : 0,
+		"base" : 15
+	}
+]
