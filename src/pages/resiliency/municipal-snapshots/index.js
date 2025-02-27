@@ -40,7 +40,7 @@ const MunicipalityDropdown = ({municipalities}) => {
           </option>
           {municipalities.map((municipality) => (
             <option key={municipality.geoid} value={municipality.name}>
-              {municipality.name}
+              {municipality.name}, {municipality.county}
             </option>
           ))}
         </select>
@@ -170,6 +170,7 @@ export const query = graphql`
       nodes {
         geoid
         name
+        county
       }
     }
   }

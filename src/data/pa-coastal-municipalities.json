@@ -1,198 +1,282 @@
 [
-  {
-    "geoid": 4201705616,
-    "county": "Bucks County",
-    "name": "Bensalem Township",
-    "slug": "bensalem-township",
-    "population": 60507
-  },
-  {
-    "geoid": 4201708760,
-    "county": "Bucks County",
-    "name": "Bristol Borough",
-    "slug": "bristol-borough",
-    "population": 9576
-  },
-  {
-    "geoid": 4201708768,
-    "county": "Bucks County",
-    "name": "Bristol Township",
-    "slug": "bristol-township",
-    "population": 53473
-  },
-  {
-    "geoid": 4204513208,
-    "county": "Delaware County",
-    "name": "Chester City",
-    "slug": "chester-city",
-    "population": 34000
-  },
-  {
-    "geoid": 4204518160,
-    "county": "Delaware County",
-    "name": "Darby Township",
-    "slug": "darby-township",
-    "population": 9279
-  },
-  {
-    "geoid": 4204522296,
-    "county": "Delaware County",
-    "name": "Eddystone Borough",
-    "slug": "eddystone-borough",
-    "population": 2412
-  },
-  {
-    "geoid": 4201725112,
-    "county": "Bucks County",
-    "name": "Falls Township",
-    "slug": "falls-township",
-    "population": 33520
-  },
-  {
-    "geoid": 4204526408,
-    "county": "Delaware County",
-    "name": "Folcroft Borough",
-    "slug": "folcroft-borough",
-    "population": 6632
-  },
-  {
-    "geoid": 4201736192,
-    "county": "Bucks County",
-    "name": "Hulmeville Borough",
-    "slug": "hulmeville-borough",
-    "population": 999
-  },
-  {
-    "geoid": 4201741392,
-    "county": "Bucks County",
-    "name": "Langhorne Borough",
-    "slug": "langhorne-borough",
-    "population": 1580
-  },
-  {
-    "geoid": 4201741416,
-    "county": "Bucks County",
-    "name": "Langhorne Manor Borough",
-    "slug": "langhorne-manor-borough",
-    "population": 1424
-  },
-  {
-    "geoid": 4204544888,
-    "county": "Delaware County",
-    "name": "Lower Chichester Township",
-    "slug": "lower-chichester-township",
-    "population": 3473
-  },
-  {
-    "geoid": 4201745112,
-    "county": "Bucks County",
-    "name": "Lower Southampton Township",
-    "slug": "lower-southampton-township",
-    "population": 19177
-  },
-  {
-    "geoid": 4204547344,
-    "county": "Delaware County",
-    "name": "Marcus Hook Borough",
-    "slug": "marcus-hook-borough",
-    "population": 2402
-  },
-  {
-    "geoid": 4201749120,
-    "county": "Bucks County",
-    "name": "Middletown Township",
-    "slug": "middletown-township",
-    "population": 44966
-  },
-  {
-    "geoid": 4201751144,
-    "county": "Bucks County",
-    "name": "Morrisville Borough",
-    "slug": "morrisville-borough",
-    "population": 8521
-  },
-  {
-    "geoid": 4204553104,
-    "county": "Delaware County",
-    "name": "Nether Providence Township",
-    "slug": "nether-providence-township",
-    "population": 13780
-  },
-  {
-    "geoid": 4204555664,
-    "county": "Delaware County",
-    "name": "Norwood Borough",
-    "slug": "norwood-borough",
-    "population": 5897
-  },
-  {
-    "geoid": 4201758936,
-    "county": "Bucks County",
-    "name": "Penndel Borough",
-    "slug": "penndel-borough",
-    "population": 2157
-  },
-  {
-    "geoid": 4204562792,
-    "county": "Delaware County",
-    "name": "Prospect Park Borough",
-    "slug": "prospect-park-borough",
-    "population": 6492
-  },
-  {
-    "geoid": 4204564832,
-    "county": "Delaware County",
-    "name": "Ridley Park Borough",
-    "slug": "ridley-park-borough",
-    "population": 7065
-  },
-  {
-    "geoid": 4204564800,
-    "county": "Delaware County",
-    "name": "Ridley Township",
-    "slug": "ridley-township",
-    "population": 31204
-  },
-  {
-    "geoid": 4204569752,
-    "county": "Delaware County",
-    "name": "Sharon Hill Borough",
-    "slug": "sharon-hill-borough",
-    "population": 5689
-  },
-  {
-    "geoid": 4204576792,
-    "county": "Delaware County",
-    "name": "Tinicum Township",
-    "slug": "tinicum-township",
-    "population": 4111
-  },
-  {
-    "geoid": 4204577288,
-    "county": "Delaware County",
-    "name": "Trainer Borough",
-    "slug": "trainer-borough",
-    "population": 1836
-  },
-  {
-    "geoid": 4201777744,
-    "county": "Bucks County",
-    "name": "Tullytown Borough",
-    "slug": "tullytown-borough",
-    "population": 2181
-  },
-  {
-    "geoid": 4204578712,
-    "county": "Delaware County",
-    "name": "Upland Borough",
-    "slug": "upland-borough",
-    "population": 3326
-  },
-  {
-    "geoid": 4204578776,
-    "county": "Delaware County",
-    "name": "Upper Chichester Township",
-    "slug": "upper-chichester-township",
-    "population": 16959
-  }
+	{
+		"geoid": 4201705616,
+		"county": "Bucks County",
+		"name": "Bensalem Township",
+		"slug": "bensalem-township",
+		"population": 62707
+	},
+	{
+		"geoid": 4201708760,
+		"county": "Bucks County",
+		"name": "Bristol Borough",
+		"slug": "bristol-borough",
+		"population": 9861
+	},
+	{
+		"geoid": 4201708768,
+		"county": "Bucks County",
+		"name": "Bristol Township",
+		"slug": "bristol-township",
+		"population": 54291
+	},
+	{
+		"geoid": 4201725112,
+		"county": "Bucks County",
+		"name": "Falls Township",
+		"slug": "falls-township",
+		"population": 34716
+	},
+	{
+		"geoid": 4201736192,
+		"county": "Bucks County",
+		"name": "Hulmeville Borough",
+		"slug": "hulmeville-borough",
+		"population": 982
+	},
+	{
+		"geoid": 4201741392,
+		"county": "Bucks County",
+		"name": "Langhorne Borough",
+		"slug": "langhorne-borough",
+		"population": 1643
+	},
+	{
+		"geoid": 4201741416,
+		"county": "Bucks County",
+		"name": "Langhorne Manor Borough",
+		"slug": "langhorne-manor-borough",
+		"population": 1496
+	},
+	{
+		"geoid": 4201745112,
+		"county": "Bucks County",
+		"name": "Lower Southampton Township",
+		"slug": "lower-southampton-township",
+		"population": 20599
+	},
+	{
+		"geoid": 4201749120,
+		"county": "Bucks County",
+		"name": "Middletown Township",
+		"slug": "middletown-township",
+		"population": 46040
+	},
+	{
+		"geoid": 4201751144,
+		"county": "Bucks County",
+		"name": "Morrisville Borough",
+		"slug": "morrisville-borough",
+		"population": 9809
+	},
+	{
+		"geoid": 4201758936,
+		"county": "Bucks County",
+		"name": "Penndel Borough",
+		"slug": "penndel-borough",
+		"population": 2515
+	},
+	{
+		"geoid": 4201777744,
+		"county": "Bucks County",
+		"name": "Tullytown Borough",
+		"slug": "tullytown-borough",
+		"population": 2282
+	},
+	{
+		"geoid": 4204513208,
+		"county": "Delaware County",
+		"name": "Chester City",
+		"slug": "chester-city",
+		"population": 32605
+	},
+	{
+		"geoid": 4204518160,
+		"county": "Delaware County",
+		"name": "Darby Township",
+		"slug": "darby-township",
+		"population": 9219
+	},
+	{
+		"geoid": 4204522296,
+		"county": "Delaware County",
+		"name": "Eddystone Borough",
+		"slug": "eddystone-borough",
+		"population": 2459
+	},
+	{
+		"geoid": 4204526408,
+		"county": "Delaware County",
+		"name": "Folcroft Borough",
+		"slug": "folcroft-borough",
+		"population": 6792
+	},
+	{
+		"geoid": 4204544888,
+		"county": "Delaware County",
+		"name": "Lower Chichester Township",
+		"slug": "lower-chichester-township",
+		"population": 3425
+	},
+	{
+		"geoid": 4204547344,
+		"county": "Delaware County",
+		"name": "Marcus Hook Borough",
+		"slug": "marcus-hook-borough",
+		"population": 2454
+	},
+	{
+		"geoid": 4204553104,
+		"county": "Delaware County",
+		"name": "Nether Providence Township",
+		"slug": "nether-providence-township",
+		"population": 14525
+	},
+	{
+		"geoid": 4204555664,
+		"county": "Delaware County",
+		"name": "Norwood Borough",
+		"slug": "norwood-borough",
+		"population": 5943
+	},
+	{
+		"geoid": 4204562792,
+		"county": "Delaware County",
+		"name": "Prospect Park Borough",
+		"slug": "prospect-park-borough",
+		"population": 6427
+	},
+	{
+		"geoid": 4204564832,
+		"county": "Delaware County",
+		"name": "Ridley Park Borough",
+		"slug": "ridley-park-borough",
+		"population": 7186
+	},
+	{
+		"geoid": 4204564800,
+		"county": "Delaware County",
+		"name": "Ridley Township",
+		"slug": "ridley-township",
+		"population": 31053
+	},
+	{
+		"geoid": 4204569752,
+		"county": "Delaware County",
+		"name": "Sharon Hill Borough",
+		"slug": "sharon-hill-borough",
+		"population": 6014
+	},
+	{
+		"geoid": 4204576792,
+		"county": "Delaware County",
+		"name": "Tinicum Township",
+		"slug": "tinicum-township",
+		"population": 3983
+	},
+	{
+		"geoid": 4204577288,
+		"county": "Delaware County",
+		"name": "Trainer Borough",
+		"slug": "trainer-borough",
+		"population": 1976
+	},
+	{
+		"geoid": 4204578712,
+		"county": "Delaware County",
+		"name": "Upland Borough",
+		"slug": "upland-borough",
+		"population": 3068
+	},
+	{
+		"geoid": 4204578776,
+		"county": "Delaware County",
+		"name": "Upper Chichester Township",
+		"slug": "upper-chichester-township",
+		"population": 16898
+	},
+	{
+		"geoid": 4210160103,
+		"county": "City of Philadelphia",
+		"name": "Central",
+		"slug": "central",
+		"population": 151916
+	},
+	{
+		"geoid": 4210160118,
+		"county": "City of Philadelphia",
+		"name": "Central Northeast",
+		"slug": "central-northeast",
+		"population": 85324
+	},
+	{
+		"geoid": 4210160107,
+		"county": "City of Philadelphia",
+		"name": "Lower North",
+		"slug": "lower-north",
+		"population": 104689
+	},
+	{
+		"geoid": 4210160114,
+		"county": "City of Philadelphia",
+		"name": "Lower Northeast",
+		"slug": "lower-northeast",
+		"population": 102978
+	},
+	{
+		"geoid": 4210160105,
+		"county": "City of Philadelphia",
+		"name": "Lower South",
+		"slug": "lower-south",
+		"population": 5925
+	},
+	{
+		"geoid": 4210160102,
+		"county": "City of Philadelphia",
+		"name": "Lower Southwest",
+		"slug": "lower-southwest",
+		"population": 41892
+	},
+	{
+		"geoid": 4210160101,
+		"county": "City of Philadelphia",
+		"name": "North",
+		"slug": "north",
+		"population": 131905
+	},
+	{
+		"geoid": 4210160104,
+		"county": "City of Philadelphia",
+		"name": "North Delaware",
+		"slug": "north-delaware",
+		"population": 105079
+	},
+	{
+		"geoid": 4210160109,
+		"county": "City of Philadelphia",
+		"name": "River Wards",
+		"slug": "river-wards",
+		"population": 69972
+	},
+	{
+		"geoid": 4210160112,
+		"county": "City of Philadelphia",
+		"name": "South",
+		"slug": "south",
+		"population": 139999
+	},
+	{
+		"geoid": 4210160110,
+		"county": "City of Philadelphia",
+		"name": "University Southwest",
+		"slug": "university-southwest",
+		"population": 86416
+	},
+	{
+		"geoid": 4210160106,
+		"county": "City of Philadelphia",
+		"name": "West Park",
+		"slug": "west-park",
+		"population": 43120
+	}
 ]

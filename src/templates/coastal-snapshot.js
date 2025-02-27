@@ -35,7 +35,7 @@ ChartJS.register(
 );
 const title = "Municipal Snapshot";
 
-const chartDataCountyFloods = { "Bucks County": 152, "Delaware County": 219 };
+const chartDataCountyFloods = { "Bucks County": 152, "Delaware County": 219, "City of Philadelphia":246 };
 
 const SidebarNav = () => {
   const [activeSection, setActiveSection] = useState("");
@@ -148,7 +148,7 @@ const DVRPCMap = ({ muni }) => {
   };
   const fetchBoundingBoxFromEsri = async (geoid) => {
     const esriUrl =
-      "https://arcgis.dvrpc.org/portal/rest/services/boundaries/municipalboundaries/FeatureServer/0/query";
+      "https://arcgis.dvrpc.org/portal/rest/services/demographics/census_mcds_phipd_2020/FeatureServer/0/query";
     const params = new URLSearchParams({
       where: `geoid='${geoid}'`,
       returnExtentOnly: true,
@@ -253,7 +253,29 @@ const DVRPCMap = ({ muni }) => {
               "fill-color": "#B6C1C6",
               "fill-opacity": 0.7,
             }}
+            filter={["all",
+              ["!=", ["to-number", ["get", "geoid"]], muni], 
+              ["!=", ["to-number", ["get", "geoid"]], 4210160000] 
+            ]}
+          />
+          <Layer
+            id="phl-outline-focus"
+            type="fill"
+            source-layer="phlplanningareas"
+            paint={{
+              "fill-color": "#B6C1C6",
+              "fill-opacity": 0.7,
+            }}
             filter={["!=", ["to-number", ["get", "geoid"]], muni]}
+          />
+          <Layer
+            id="phl-outline"
+            type="line"
+            source-layer="phlplanningareas"
+            paint={{
+              "line-width": 0.5,
+              "line-color": "#efefef",
+            }}
           />
           <Layer
             id="municipality-outline"
