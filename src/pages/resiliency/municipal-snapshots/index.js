@@ -10,7 +10,7 @@ import HeadTemplate, {
 } from "../../../components/HeadTemplate";
 
 import bgImage from "../../../images/mcvs_banner.jpg";
-const title = "PA Coastal Resilience";
+const title = "PA Municipal Coastal Vulnerability Snapshots";
 
 const MunicipalityDropdown = ({municipalities}) => {
   
