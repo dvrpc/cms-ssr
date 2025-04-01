@@ -736,10 +736,8 @@ const MunicipalityPage = ({ data }) => {
               History of Flood Events
             </h2>
             <p>
-              As shown in Figure 1, there were undefined flood events in{" "}
-              {municipality.name} between 1996 and 2022. During the same time
-              period, there were {chartDataCountyFloods[municipality.county]}{" "}
-              flood events countywide.
+              As shown in Figure 1, there were {chartDataCountyFloods[municipality.county]}{" "}
+              flood events countywide between 1996 and 2022. 
             </p>
             <figcaption className="px-0">
               Figure 1: Flood Events by Year for {municipality.county} (1996-2022)
@@ -793,6 +791,11 @@ const MunicipalityPage = ({ data }) => {
                   <span className="text-sm text-gray-800">{item.label}</span>
                 </div>
               ))}
+            </div>
+            <div
+              style={{ marginTop: "10px", fontSize: "12px", color: "#757575" }}
+            >
+              Source: DVRPC, 2019
             </div>
             <p>
               By <b>2050</b>, approximately <b>{areaData.ac_s2050_land}</b> acres
@@ -870,18 +873,33 @@ const MunicipalityPage = ({ data }) => {
                 </h3>
                 <VariableChart chartData={socialChart} />
                 <TableBuilder location={municipality.name} data={socialData} />
+                <div
+                  style={{ marginTop: "10px", fontSize: "12px", color: "#757575" }}
+                >
+                  Source: U.S. Census Bureau. <em>American Community Survey (ACS) 5-Year Estimates</em>, 2018-2022
+                </div>
                 <br />
                 <h3 className="text-[#2B7F93]">
                   Vulnerable Population by Household Characteristics
                 </h3>
                 <VariableChart chartData={householdChart} />
                 <TableBuilder location={municipality.name} data={householdData} />
+                <div
+                  style={{ marginTop: "10px", fontSize: "12px", color: "#757575" }}
+                >
+                  Source: U.S. Census Bureau. <em>American Community Survey (ACS) 5-Year Estimates</em>, 2018-2022
+                </div>
                 <br />
                 <h3 className="text-[#2B7F93]">
                   Vulnerable Population by Racial and Ethnic Minority
                 </h3>
                 <VariableChart chartData={racialChart} />
                 <TableBuilder location={municipality.name} data={racialData} />
+                <div
+                  style={{ marginTop: "10px", fontSize: "12px", color: "#757575" }}
+                >
+                  Source: U.S. Census Bureau. <em>American Community Survey (ACS) 5-Year Estimates</em>, 2018-2022
+                </div>
                 <br />
                 <h3 className="text-[#2B7F93]">
                   Vulnerable Population by Housing Type/Transportation
@@ -891,6 +909,11 @@ const MunicipalityPage = ({ data }) => {
                   location={municipality.name}
                   data={structureTypeData}
                 />
+                <div
+                  style={{ marginTop: "10px", fontSize: "12px", color: "#757575" }}
+                >
+                  Source: U.S. Census Bureau. <em>American Community Survey (ACS) 5-Year Estimates</em>, 2018-2022
+                </div>
                 <p>
                   <em>
                     *Multi-unit structures are defined here as 10 or more housing
@@ -914,8 +937,8 @@ const MunicipalityPage = ({ data }) => {
             <p>
               In addition to the SVI, there are a number of other data sets and
               tools that analyze and map different facets of vulnerability. The
-              chart below shows how {municipality.name}'s {sviData.length} census
-              tracts compare across different platforms and different geographies.
+              chart below shows how {municipality.name}'s {sviData.length} census 
+              {sviData.length > 1 ? ' tracts compare' : ' tract compares'} across different platforms and different geographies.
             </p>
             <SviTable data={sviData} />
           </section>
@@ -928,13 +951,18 @@ const MunicipalityPage = ({ data }) => {
               Critical assets and infrastructure are the essential facilities that
               a community needs to provide services to its residents. This
               includes police and fire stations, hospitals, schools, and other
-              municipal facilities. Roads and transit stations are also critical
-              infrastructure that provide access to these critical facilities. The
-              following analysis documents the number of critical assets and
-              amount of roadway that may be inundated under the four flooding
+              municipal facilities. {/* Roads and transit stations are also critical
+              infrastructure that provide access to these critical facilities. */}The
+              following analysis documents the number of critical assets {/* and
+              amount of roadway */}that may be inundated under the four flooding
               scenarios.
             </p>
             <FacilityImpactTable location={municipality.name} data={facilityData} />
+            <div
+              style={{ marginTop: "10px", fontSize: "12px", color: "#757575" }}
+            >
+              Source: U.S. Department of Homeland Security. <em>Homeland Infrastructure Foundation-Level Data</em>, 2024; National Center for Education Statistics, 2022; U.S. Geological Survey. <em>National Structures Dataset</em>, 2024
+            </div>
           </section>
           {/* <h2 id="property" className="text-[#1C617A]">Affected Property</h2>
           <p>
