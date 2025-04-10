@@ -167,30 +167,32 @@ const Page = ({ data: { nodePage, userUser }, location }) => {
         </div>
         <div className="space-y-4 p-4 px-7 print:hidden md:col-span-1 md:col-start-1 md:row-start-2 md:mt-4 md:flex-col md:items-end md:p-0 md:px-0">
           <BackButton />
-          <div className="w-full bg-[#EFF0F2] p-4">
-            <h3 className="text-lg font-bold md:mb-2">RELATED</h3>
-            {Object.entries(related).map(
-              ([sectionName, data]) =>
-                data?.length > 0 && (
-                  <>
-                    <p className="mt-2 mb-1 font-bold">{sectionName}</p>
-                    <hr className="!m-0 border-[#CDCDCD]" />
-                    <p className="my-2">
-                      {data.map((item) => (
-                        <a
-                          className="block text-[#03688D] hover:underline"
-                          href={item.uri}
-                          target="_blank"
-                          key={item.uri}
-                        >
-                          {item.title}
-                        </a>
-                      ))}
-                    </p>
-                  </>
-                )
-            )}
-          </div>
+          {Object.values(related).some((data) => data?.length) ? (
+            <div className="w-full bg-[#EFF0F2] p-4">
+              <h3 className="text-lg font-bold md:mb-2">RELATED</h3>
+              {Object.entries(related).map(
+                ([sectionName, data]) =>
+                  data?.length > 0 && (
+                    <>
+                      <p className="mt-2 mb-1 font-bold">{sectionName}</p>
+                      <hr className="!m-0 border-[#CDCDCD]" />
+                      <p className="my-2">
+                        {data.map((item) => (
+                          <a
+                            className="block text-[#03688D] hover:underline"
+                            href={item.uri}
+                            target="_blank"
+                            key={item.uri}
+                          >
+                            {item.title}
+                          </a>
+                        ))}
+                      </p>
+                    </>
+                  )
+              )}
+            </div>
+          ) : null}
           <div className="hidden md:block">
             <NewsRoomInfo />
           </div>
