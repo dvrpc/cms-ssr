@@ -9,7 +9,7 @@ import HeadTemplate, {
 } from "../../../components/HeadTemplate";
 import WorkProgramView from "../../../components/workprogram/WorkProgramView";
 
-const title = "FY2025 Work Program";
+const title = "FY2027 Work Program";
 
 const WorkProgramDetailsPage = ({
   data: { userUser, navItem },
@@ -30,7 +30,7 @@ export const Head = ({ data: { nodeTheme } }) =>
   HeadTemplate({
     title: "Product Details",
     summary:
-      "The Fiscal Year (FY) 2025 Unified Planning Work Program (UPWP) outlines all of the federally-funded planning projects slated for the nine-county region.",
+      "The Fiscal Year (FY) 2027 Unified Planning Work Program (UPWP) outlines all of the federally-funded planning projects slated for the nine-county region.",
     css: themeToCustomVars(nodeTheme, defaultThemeConfig),
   });
 
@@ -60,7 +60,7 @@ export const query = graphql`
         }
       }
     }
-    navItem(href: { regex: "/^/workprogram/fy2025/?$/i" }) {
+    navItem(href: { regex: "/^/workprogram/fy2027/?$/i" }) {
       ...nestednavitem
     }
   }
@@ -71,7 +71,7 @@ export default WorkProgramDetailsPage;
 export async function getServerData({ params }) {
   try {
     const res = await fetch(
-      `https://apps.dvrpc.org/ords/workprogram25new/workprogram/projects?proid=${params.id}`
+      `https://apps.dvrpc.org/ords/WORKPROGRAM27/workprogram/projects?proid=${params.id}`
     );
 
     if (!res.ok) {
