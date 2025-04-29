@@ -112,6 +112,10 @@ main .gallery {
 main .has-nested-images {
   @apply flex flex-row items-start gap-8;
 }
+
+main div .columns {
+  @apply flex gap-1;
+}
 main .blocks-gallery-grid {
   @apply m-0 grid list-none flex-wrap gap-2 p-0;
 }
