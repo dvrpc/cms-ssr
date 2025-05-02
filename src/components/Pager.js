@@ -102,11 +102,8 @@ const Pager = ({
   }, [page, items, firstRender]);
 
   useEffect(() => {
-    if (pageLoad.current && page !== currentPage) {
-      setPage(currentPage);
-      setRenderedItems(onPageChange(currentPage));
-    } else pageLoad.current = true;
-  }, [currentPage, setRenderedItems, onPageChange, pageLoad]);
+    setRenderedItems(onPageChange(currentPage));
+  }, [currentPage, setRenderedItems, onPageChange]);
 
   return (
     <>
