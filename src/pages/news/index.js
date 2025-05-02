@@ -90,7 +90,7 @@ const Article = ({
                         else prev.delete(tag.name);
                         return new Set(prev);
                       });
-                      setPageNumber(new Set([1]));
+                      setPageNumber(1);
                     }}
                   >
                     {tag.name}
@@ -171,7 +171,7 @@ const SidebarContent = ({
               .querySelectorAll("input[type=checkbox]")
               .forEach((el) => (el.checked = false));
             setCategories(new Set());
-            setPageNumber(new Set([1]));
+            setPageNumber(1);
           }}
         >
           clear all
@@ -192,7 +192,7 @@ const SidebarContent = ({
                     else prev.delete(event.target.value);
                     return new Set(prev);
                   });
-                  setPageNumber(new Set([1]));
+                  setPageNumber(1);
                 }}
                 checked={categories.size && categories.has(tag.node.name)}
               ></input>
@@ -212,14 +212,16 @@ const DrupalPage = ({ data }) => {
   const debounceInput = useDebounce(input);
   const [categories, setCategories] = useState(new Set());
   const [tags, setTags] = useState(new Set());
-  const [pageNumber, setPageNumber] = useState(new Set([1]));
+  const [pageNumber, setPageNumber] = useState(() => {
+    let params = new URLSearchParams(document.location.search);
+    return parseInt(params.get("page") || 1);
+  });
   useQueryParamArray([
     { paramName: "categories", params: categories, setParams: setCategories },
     { paramName: "tags", params: tags, setParams: setTags },
     { paramName: "page", params: pageNumber, setParams: setPageNumber },
   ]);
   const lastDateHeader = useRef(null);
-  const firstRender = useRef(true);
   let pathname = typeof window !== "undefined" ? window.location.pathname : "";
 
   useEffect(() => {
@@ -259,11 +261,6 @@ const DrupalPage = ({ data }) => {
     setArticles,
     setPageNumber,
   ]);
-
-  useEffect(() => {
-    if (!firstRender.current) setPageNumber(new Set([1]));
-    firstRender.current = false;
-  }, [debounceInput, firstRender, setPageNumber]);
 
   const toggleModal = (event) => {
     event.preventDefault();
@@ -315,7 +312,7 @@ const DrupalPage = ({ data }) => {
                         prev.delete(param);
                         return new Set(prev);
                       });
-                      setPageNumber(new Set([1]));
+                      setPageNumber(1);
                     }}
                   >
                     {param}{" "}
@@ -332,7 +329,7 @@ const DrupalPage = ({ data }) => {
                         prev.delete(param);
                         return new Set(prev);
                       });
-                      setPageNumber(new Set([1]));
+                      setPageNumber(1);
                     }}
                   >
                     {param}{" "}
@@ -362,12 +359,12 @@ const DrupalPage = ({ data }) => {
               )}
 
               <Pager
-                currentPage={[...pageNumber][0]}
+                currentPage={pageNumber}
                 items={articles}
                 onPageChange={(pageNumber) => {
                   const parent = document.querySelector("main");
                   window.scroll({ top: parent.offsetTop, behavior: "smooth" });
-                  setPageNumber(new Set([pageNumber]));
+                  setPageNumber(pageNumber);
                   return articles.slice(pageNumber * 5 - 5, pageNumber * 5);
                 }}
                 itemsPerPage={5}

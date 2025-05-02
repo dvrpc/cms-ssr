@@ -1,38 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const useQueryParamArray = (params) => {
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    params.map((item) => {
-      if (urlParams.has(item.paramName)) {
-        let arr = urlParams.get(item.paramName).split(",");
-        arr = arr.map((val) => {
-          const isInt = parseInt(val);
-          if (isNaN(isInt))
-            return val.replaceAll("and", "&").replaceAll("-", " ");
-          else return isInt;
-        });
-        item.setParams(new Set([...arr]));
-      }
-    });
-  }, []);
+  const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
     let path = "";
+
     params.map((item) => {
       const { paramName, params, setParams } = item;
-      if (params.size !== 0) {
+
+      if (firstRender && urlParams.has(paramName)) {
+        if (typeof params === "object") {
+          let arr = urlParams.get(paramName).split(",");
+          arr = arr.map((val) =>
+            val.replaceAll("and", "&").replaceAll("-", " ")
+          );
+          setParams(new Set([...arr]));
+        } else item.setParams(parseInt(params) || params);
+      }
+
+      if (params.size !== 0 || params.length) {
         if (!path.length) path = `?${paramName}=`;
         else path += `&${paramName}=`;
-        Array.from(params).map((param, idx, arr) => {
-          param = param.toString().replaceAll("&", "and");
-          param = param.replaceAll(" ", "-");
-          path += param;
-          if (idx !== arr.length - 1) path += ",";
-        });
+        if (typeof params === "object") {
+          Array.from(params).map((param, idx, arr) => {
+            param = param.toString().replaceAll("&", "and");
+            param = param.replaceAll(" ", "-");
+            path += param;
+            if (idx !== arr.length - 1) path += ",";
+          });
+        } else path += params;
       }
+
+      if (firstRender) {
+        window.history.replaceState(null, null, location.pathname + path);
+        setFirstRender(false);
+      } else window.history.pushState(null, null, location.pathname + path);
     });
-    window.history.replaceState(null, null, location.pathname + path);
   }, [params]);
 };
 
