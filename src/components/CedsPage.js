@@ -786,7 +786,7 @@ const pageData = () => {
             }
           }
         }
-        navItem(href: { eq: "/economic/ceds/" }) {
+        navItem(href: { eq: "/Economic/CEDS/" }) {
           ...nestednavitem
         }
       }
