@@ -7,7 +7,7 @@ import HeadTemplate, {
   themeToCustomVars,
 } from "../../../components/HeadTemplate";
 
-const title = "FY2027 Work Program";
+const title = "FY2026 Work Program";
 
 const WorkProgramPage = ({
   data: { userUser, navItem },
@@ -71,7 +71,7 @@ const WorkProgramPage = ({
         <ul className="list-group">
           {filteredData.map((project) => (
             <li key={project.proid} className="list-group-item">
-              <Link to={`/workprogram/fy2027/${project.proid}`}>
+              <Link to={`/workprogram/fy2026/${project.proid}`}>
                 {project.proid}: {project.proname}
               </Link>
             </li>
@@ -87,7 +87,7 @@ export const Head = ({ data: { nodeTheme } }) =>
   HeadTemplate({
     title,
     summary:
-      "The Fiscal Year (FY) 2027 Unified Planning Work Program (UPWP) outlines all of the federally-funded planning projects slated for the nine-county region.",
+      "The Fiscal Year (FY) 2026 Unified Planning Work Program (UPWP) outlines all of the federally-funded planning projects slated for the nine-county region.",
     css: themeToCustomVars(nodeTheme, defaultThemeConfig),
   });
 
@@ -117,7 +117,7 @@ export const query = graphql`
         }
       }
     }
-    navItem(href: { regex: "/^/workprogram/fy2027/?$/i" }) {
+    navItem(href: { regex: "/^/workprogram/fy2026/?$/i" }) {
       ...nestednavitem
     }
   }
@@ -128,10 +128,10 @@ export default WorkProgramPage;
 export async function getServerData() {
   try {
     const res = await fetch(
-      "https://apps.dvrpc.org/ords/WORKPROGRAM27/workprogram/liveProjectsForWeb"
+      "https://apps.dvrpc.org/ords/workprogram26/workprogram/liveProjectsForWeb"
     );
     const res2 = await fetch(
-      "https://apps.dvrpc.org/ords/WORKPROGRAM27/workprogram/externalProjects"
+      "https://apps.dvrpc.org/ords/workprogram26/workprogram/externalProjects"
     );
     if (!res.ok || !res2.ok) {
       throw new Error("Response failed");
