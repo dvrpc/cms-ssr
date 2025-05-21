@@ -320,41 +320,23 @@ https://procurement.opengov.com/portal/embed/dvrpc/project-list?departmentId=all
         <h3>Budget Proposals</h3>
         <ul className="list-group">
           <li className="list-group-item">
-            <a href="files/DVRPC-price-proposal-consultant.xlsx">
+            <a href="files/DVRPC-Budget-Proposal-Consultant.xlsx">
               Consultant Contract Budget Proposal
             </a>
             <span className="sm"> [0.1 MB xlsx]</span>
           </li>
           <li className="list-group-item">
-            <a href="files/DVRPC-price-proposal-non-profit.xls">
-              Non-profit Contract Budget Proposal
+            <a href="files/DVRPC-Budget-Proposal-Subrecipient.xlsx">
+              Subrecipient Contract Budget Proposal
             </a>
             <span className="sm"> [0.1 MB xls]</span>
-          </li>
-          <li className="list-group-item">
-            <a href="files/DVRPC-price-proposal-member-government.xlsx">
-              Member Government Contract Budget Proposal
-            </a>
-            <span className="sm"> [0.1 MB xlsx]</span>
           </li>
         </ul>
         <h3>Invoice Forms</h3>
         <ul className="list-group">
           <li className="list-group-item">
-            <a href="files/DVRPC-Sample-Invoice-Forms-Consultant.xlsx">
+            <a href="files/DVRPC-Invoicing-Template.xlsx">
               Consultant Sample Invoice Forms
-            </a>
-            <span className="sm"> [0.1 MB xlsx]</span>
-          </li>
-          <li className="list-group-item">
-            <a href="files/DVRPC-Sample-Invoice-Forms-Non-Profit.xlsx">
-              Non-profit Sample Invoice Forms
-            </a>
-            <span className="sm"> [0.1 MB xlsx]</span>
-          </li>
-          <li className="list-group-item">
-            <a href="files/DVRPC-Sample-Invoice-Forms-Member-Government.xlsx">
-              Member Government Sample Invoice Forms
             </a>
             <span className="sm"> [0.1 MB xlsx]</span>
           </li>
