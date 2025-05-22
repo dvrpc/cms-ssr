@@ -336,7 +336,7 @@ https://procurement.opengov.com/portal/embed/dvrpc/project-list?departmentId=all
         <ul className="list-group">
           <li className="list-group-item">
             <a href="files/DVRPC-Invoicing-Template.xlsx">
-              Consultant Sample Invoice Forms
+              Sample Invoice Forms
             </a>
             <span className="sm"> [0.1 MB xlsx]</span>
           </li>
