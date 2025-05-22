@@ -103,7 +103,8 @@ const Pager = ({
 
   useEffect(() => {
     setRenderedItems(onPageChange(currentPage));
-  }, [currentPage, setRenderedItems, onPageChange]);
+    setPage(currentPage);
+  }, [currentPage, setRenderedItems, onPageChange, setPage]);
 
   return (
     <>
