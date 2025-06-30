@@ -26,7 +26,6 @@ const Highlight = ({ input, data }) => (
 const title = "Draft FY2026 TIP for New Jersey Public Comments and Responses";
 
 const CommentViewer = ({ data, location, serverData }) => {
-  console.log(serverData);
   const [input, setInput] = useState("");
   const comments = serverData.items;
   const [filteredComments, setFilteredComments] = useState([...comments]);
