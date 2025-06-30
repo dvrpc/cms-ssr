@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import response from "./PATIPcommentResponse.json";
 import "./defaults.css";
 import DataTable from "react-data-table-component";
 import { graphql } from "gatsby";
@@ -38,12 +37,11 @@ const CommentViewer = ({ data, location, serverData }) => {
     let filteredComments = [...comments];
     filteredComments = filteredComments.filter(
       (item) =>
-        item.commentid.includes(filter) ||
+        item.commentid.toString().includes(filter) ||
         item.commentor.toLowerCase().includes(filter) ||
-        item.agency.toLowerCase().includes(filter) ||
-        item.mpms.toLowerCase().includes(filter) ||
-        item.comment.toLowerCase().includes(filter) ||
-        item.Responses.toLowerCase().includes(filter)
+        (item.agency && item.agency.toLowerCase().includes(filter)) ||
+        (item.mpms && item.mpms.toLowerCase().includes(filter)) ||
+        item.comments.toLowerCase().includes(filter)
     );
     setFilteredComments(filteredComments);
   };
@@ -51,7 +49,9 @@ const CommentViewer = ({ data, location, serverData }) => {
   const columns = [
     {
       name: "Comment ID",
-      cell: (row) => <Highlight data={row.commentid} input={input} />,
+      cell: (row) => (
+        <Highlight data={row.commentid.toString()} input={input} />
+      ),
       sortable: true,
       maxWidth: "10%",
       sortFunction: (a, b) => a.commentid - b.commentid,
@@ -74,19 +74,19 @@ const CommentViewer = ({ data, location, serverData }) => {
     },
     {
       name: "PDF",
-      cell: (row) => <Highlight data={row.FILELINK2} input={input} />,
+      cell: (row) =>
+        row.pdf ? <Highlight data={row.pdf} input={input} /> : row.pdf,
       sortable: true,
-      sortFunction: (a, b) =>
-        (a.FILELINK2 === "") - (b.FILELINK2 === "") ||
-        a.FILELINK2 - b.FILELINK2,
+      sortFunction: (a, b) => (a.pdf === "") - (b.pdf === "") || a.pdf - b.pdf,
       maxWidth: "10%",
     },
     {
       name: "MPMS #",
-      cell: (row) => <Highlight data={row.mpms} input={input} />,
+      cell: (row) =>
+        row.mpms ? <Highlight data={row.mpms} input={input} /> : row.mpms,
       sortable: true,
       sortFunction: (a, b) =>
-        (a.mpms === "") - (b.MPMS === "") || a.MPMS - b.MPMS,
+        (a.mpms === "") - (b.mpms === "") || a.mpms - b.mpms,
     },
   ];
 
@@ -140,7 +140,6 @@ const CommentViewer = ({ data, location, serverData }) => {
                 }
                 input={input}
               />
-              <Highlight data={data.Responses} input={input} />
             </div>
           )}
         ></DataTable>
