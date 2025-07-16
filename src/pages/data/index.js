@@ -39,7 +39,7 @@ const Data = ({
         <LogoBar />
         <Banner />
       </header>
-      <div className="bg-[#5c4f92] text-white">
+      <div className="bg-[#0078ae] text-white">
         <div className="container mx-auto grid gap-12 px-8 sm:grid-cols-1 md:grid-cols-3">
           <div className="text-left md:col-span-3">
             <ul className="my-3 flex list-none px-0 text-sm md:text-base">
@@ -50,14 +50,17 @@ const Data = ({
               </li> */}
               <li className="flex-1">
                 <a
-                  className="no-underline hover:underline"
+                  className="font-bold !no-underline hover:!underline"
                   href="https://catalog.dvrpc.org/"
                 >
                   Data Catalog
                 </a>
               </li>
               <li className="flex-1">
-                <Link className="no-underline hover:underline" to="/data/maps">
+                <Link
+                  className="!no-underline hover:!underline"
+                  to="/data/maps"
+                >
                   Maps & Applications
                 </Link>
               </li>
