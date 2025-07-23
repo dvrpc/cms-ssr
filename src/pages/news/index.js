@@ -139,8 +139,8 @@ const SidebarContent = ({
 }) => {
   const categoryMap = new Set([
     "Bicycle & Pedestrian",
-    "Climate & Energy",
     "Health & Safety",
+    "Infrastructure & Utility Services",
     "Economy",
     "Environment",
     "Freight & Aviation",
