@@ -8,6 +8,7 @@ import HeadTemplate, {
 import Body from "../../../components/Body";
 import HtmlParser from "../../../components/HtmlParser";
 import StaffContact from "../../../components/StaffContact";
+import TitleVI from "../../../components/TitleVI";
 
 const AgendaPage = ({ data, serverData, location, name }) => {
   const {
@@ -104,6 +105,7 @@ const AgendaPage = ({ data, serverData, location, name }) => {
           {Locationnote2}
         </p>
         <HtmlParser html={Meetingdetail} />
+        <TitleVI />
       </Body>
       <StaffContact
         staffContact={nodePage.relationships.field_staff_contact}
