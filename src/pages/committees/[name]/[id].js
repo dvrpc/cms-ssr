@@ -105,6 +105,7 @@ const AgendaPage = ({ data, serverData, location, name }) => {
           {Locationnote2}
         </p>
         <HtmlParser html={Meetingdetail} />
+        <hr />
         <TitleVI />
       </Body>
       <StaffContact

@@ -30,7 +30,7 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
           <b>{date.toLocaleString("en-US", { month: "short" })}</b>{" "}
           {date.toLocaleString("en-US", { year: "numeric" })}
         </td>
-        <td>
+        <td className="w-3/4">
           {agenda.Title ? <em>{agenda.Title}</em> : null}
           <div className="flex gap-2 divide-x underline">
             <a href={`/committees/${data.Shortname}/${agenda.Id}`}>Agenda</a>
@@ -60,8 +60,7 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
           </div>
         ) : (
           <>
-            <h3>Information</h3>
-            <dl>
+            <table className="table w-full table-fixed">
               {Object.entries({
                 "Chair(s)": data.Chair,
                 "Vice-Chair": data.Vicechair,
@@ -71,26 +70,28 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
               })
                 .filter(([key, val]) => !!val)
                 .map(([key, val]) => (
-                  <React.Fragment key={key}>
-                    <dt>{key}:</dt> <dd>{val}</dd>
-                  </React.Fragment>
+                  <tr key={key}>
+                    <th>{key}:</th> <td className="w-3/4">{val}</td>
+                  </tr>
                 ))}
-            </dl>
-            <small>
-              Minutes are draft until approved by the committee members.
-            </small>
+            </table>
+            {data.Shortname === "BOARD" ? (
+              <small>
+                Minutes are draft until approved by the committee members.
+              </small>
+            ) : null}
             <h3 className="text-lg font-bold">Meetings</h3>
             <table className="w-full table-auto">
               <tbody>{current.map(renderRow)}</tbody>
             </table>
-            {archive.length && (
+            {archive.length > 0 ? (
               <details>
                 <summary>Past Meetings</summary>
                 <table className="ml-0 mr-0 w-full table-auto">
                   <tbody>{archive.map(renderRow)}</tbody>
                 </table>
               </details>
-            )}
+            ) : null}
           </>
         )}
       </Body>
