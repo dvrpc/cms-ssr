@@ -98,7 +98,6 @@ const Data = ({
                 "Demographics+%26+Housing": Housing,
                 Economy: Economy,
                 Environment: Environment,
-                "Equity+%26+Diversity": Equity,
                 "Freight+%26+Aviation": Freight,
                 Imagery: Imagery,
                 "Long-Range+Plan": Connections2050,
