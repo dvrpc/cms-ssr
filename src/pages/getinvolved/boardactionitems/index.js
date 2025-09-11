@@ -12,8 +12,6 @@ const title = "Board Action Items";
 const BoardActionItems = ({ data, location, serverData }) => {
   const { userUser, navItem } = data;
 
-  console.log(navItem);
-
   return (
     <>
       <Body title={title} menu={navItem}>
@@ -47,6 +45,9 @@ const BoardActionItems = ({ data, location, serverData }) => {
             submitted will be forwarded to DVRPC Board members. We ask that
             comments at the Board meeting be limited to no more than 3 minutes.
           </p>
+          <h4 className="max-w-[80ch] px-4 text-xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-2 md:col-start-2 md:p-0">
+            Action Items
+          </h4>
           <ul className="list-group">
             {serverData.map((action) => (
               <li>
