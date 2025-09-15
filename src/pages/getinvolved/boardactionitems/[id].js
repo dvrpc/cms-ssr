@@ -11,7 +11,7 @@ const title = "Board Action Item";
 
 const isOpenToComment = (boardDate) => {
   let closedDate = new Date(boardDate);
-  closedDate.setDate(closedDate.getHours() - 12);
+  closedDate.setHours(closedDate.getHours() - 12);
   const today = new Date();
   if (today < closedDate) return true;
   else return false;
