@@ -20,6 +20,8 @@ const isOpenToComment = (boardDate) => {
 const BoardActionItems = ({ data, location, serverData, id }) => {
   const { userUser, navItem } = data;
 
+  console.log(serverData);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -61,8 +63,27 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
           <span className="underline">{serverData.Title}</span>
         </h2>
         <div dangerouslySetInnerHTML={{ __html: serverData.Details }} />
+        {(serverData.Rtc || serverData.Staff) && <h2>Recommendations:</h2>}
+        {serverData.Rtc && (
+          <p>
+            <span className="font-bold underline">
+              Regional Technical Committee (RTC):
+            </span>{" "}
+            {serverData.Rtc}
+          </p>
+        )}
+        {serverData.Staff && (
+          <p>
+            <span className="font-bold underline">DVRPC Staff:</span>{" "}
+            {serverData.Staff}
+          </p>
+        )}
         <h2>Action Proposed:</h2>
         <div dangerouslySetInnerHTML={{ __html: serverData.Action }} />
+        <h2>Attachments</h2>
+        <a href={serverData.PdfLink} target="_blank">
+          Download attachments for this action item
+        </a>
         {isOpenToComment(serverData.Boarddate) ? (
           <form onSubmit={handleSubmit} autocomplete="off">
             <p>
@@ -109,13 +130,13 @@ export const Head = ({ data: { nodeTheme } }) =>
 
 export const query = graphql`
   query {
-    userUser(mail: { eq: "sakins@dvrpc.org" }) {
+    userUser(mail: { eq: "ahastings@dvrpc.org" }) {
       id
       mail
       name: field_display_name
       title: field_title
     }
-    nodeTheme(id: { eq: "5ae19d55-9213-5cd6-8db0-74e59dc2bfa3" }) {
+    nodeTheme {
       field_primary_color
       field_secondary_color
       field_third_color
