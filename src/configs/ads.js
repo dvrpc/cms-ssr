@@ -13,7 +13,7 @@ export default [
     style: { width: 225 },
   },
   {
-    src: "https://www.dvrpc.org/img/gatsby/C2050_WebPlacard[FINAL].png",
+    src: "https://cms.dvrpc.org/sites/default/files/2025-10/U_C2050_WebPlacard.png",
     href: "https://www.dvrpc.org/Plan/",
     label: "Connections 2050",
     style: { width: 200 },
