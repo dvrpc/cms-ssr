@@ -105,12 +105,10 @@ const CommentViewer = ({ data, location }) => {
           DVRPC firmly believes that meaningful public participation results in
           better planning outcomes. Public participation is a process, not a
           single event. DVRPC provides multiple opportunities for a wide variety
-          of stakeholders, including vulnerable and historically marginalized
-          populations, public officials, and the private sector, to provide
-          comments on and stay informed about transportation planning and
-          programming decisions. By incorporating local information, residents'
-          lived experiences, and subject matter expertise, plans are more
-          implementable, beneficial, and sustainable.
+          of stakeholders to provide comments on and stay informed about
+          transportation planning and programming decisions. By incorporating
+          local information, residents' lived experiences, and subject matter
+          expertise, plans are more implementable, beneficial, and sustainable.
         </p>
         <input
           className="py- 1 rounded border px-2 outline-none"
