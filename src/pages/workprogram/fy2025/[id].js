@@ -19,7 +19,7 @@ const WorkProgramDetailsPage = ({
   return (
     <>
       <Body title={title} menu={navItem}>
-        <WorkProgramView project={serverData} />
+        <WorkProgramView project={serverData} year={"FY2025"} />
       </Body>
       <StaffContact staffContact={userUser} title={title} location={location} />
     </>

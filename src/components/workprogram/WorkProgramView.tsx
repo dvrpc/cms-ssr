@@ -56,12 +56,12 @@ const USDollar = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 0,
 });
 
-const year = "FY2025";
-
 export default function WorkProgramProjectView({
   project,
+  year,
 }: {
   project: Project | Amendment;
+  year: string;
 }) {
   return (
     project && (
