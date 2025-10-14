@@ -7,6 +7,7 @@ import HeadTemplate, {
 import Body from "../../components/Body";
 import StaffContact from "../../components/StaffContact";
 import PPTFForm from "../../components/PPTFForm";
+import TitleVI from "../../components/TitleVI";
 
 const title = "Public Participation Task Force Application";
 
@@ -29,8 +30,8 @@ const PPTFApplicationPage = ({ data, location }) => {
           <p>
             By applying to become a member of the Task Force, you understand
             that you will be working alongside other region residents to work
-            with DVRPC to establish a diverse and engaged body to address the
-            region's planning and public participation practices throughout
+            with DVRPC to establish a representative and engaged body to address
+            the region's planning and public participation practices throughout
             DVRPC’s nine-county region. This application is an opportunity for
             you to share with us your personal experience living in the region
             and with planning projects. We take a holistic approach to selecting
@@ -70,43 +71,7 @@ const PPTFApplicationPage = ({ data, location }) => {
         {/* </div> */}
         <hr />
         <div className="font-bold italic">
-          <p>
-            The Delaware Valley Regional Planning Commission (DVRPC) fully
-            complies with Title VI of the Civil Rights Act of 1964, the Civil
-            Rights Restoration Act of 1987, Executive Order 12898 on
-            Environmental Justice, and related nondiscrimination mandates in all
-            programs and activities. DVRPC's website, www.dvrpc.org, may be
-            translated into multiple languages.
-          </p>
-          <p>
-            Publications and other public documents can usually be made
-            available in alternative languages and formats if requested. DVRPC’s
-            public meetings are always held in ADA-accessible facilities, and
-            held in transit-accessible locations whenever possible. Translation,
-            interpretation, or other auxiliary services can be provided to
-            individuals who submit a request at least seven days prior to a
-            public meeting. Translation and interpretation services for DVRPC’s
-            projects, products, and planning processes are available, generally
-            free of charge, by calling (215) 592-1800. All requests will be
-            accommodated to the greatest extent possible.
-          </p>
-          <p>
-            Any person who believes they have been aggrieved by an unlawful
-            discriminatory practice by DVRPC under Title VI has a right to file
-            a formal complaint. Any such complaint must be in writing and filed
-            with DVRPC's Title VI Compliance Manager and/or the appropriate
-            state or federal agency within 180 days of the alleged
-            discriminatory occurrence. For more information on DVRPC's Title VI
-            program or to obtain a Title VI Complaint Form please visit{" "}
-            <a href="https://www.dvrpc.org/GetInvolved/TitleVI">
-              www.dvrpc.org/GetInvolved/TitleVI
-            </a>{" "}
-            or email{" "}
-            <a href="mailto:public_affairs@dvrpc.org">
-              public_affairs@dvrpc.org
-            </a>
-            .
-          </p>
+          <TitleVI />
         </div>
       </Body>
       <StaffContact staffContact={userUser} location={location} title={title} />

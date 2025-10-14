@@ -199,9 +199,9 @@ const PPTFForm = () => {
           <input
             type="checkbox"
             name="expertise"
-            value="Climate Change or Environmental Justice"
+            value="Natural Resource Management or Environmental Planning"
           />{" "}
-          Climate Change or Environmental Justice
+          Natural Resource Management or Environmental Planning
         </label>
         <label className="pt-1 font-normal">
           <input
@@ -223,9 +223,9 @@ const PPTFForm = () => {
           <input
             type="checkbox"
             name="expertise"
-            value="Good movements or Freight"
+            value="Goods movement or Freight"
           />{" "}
-          Good movements or Freight
+          Goods movement or Freight
         </label>
         <label className="pt-1 font-normal">
           <input
@@ -380,9 +380,10 @@ const PPTFForm = () => {
       />
       <h3>Demographics</h3>
       <p>
-        Task Force membership will ideally represent the region by geographic
-        and demographic diversity. Please help us create a more inclusive group
-        by sharing some of your demographic characteristics.
+        We aim for Task Force membership to reflect the geographic and
+        population makeup of the region. To help us build a group that
+        represents a broad range of backgrounds and experiences, please consider
+        sharing some information about yourself.
       </p>
       <label htmlFor="age">Age</label>
       <select name="age" id="age" required>
