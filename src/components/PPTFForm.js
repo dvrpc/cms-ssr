@@ -215,9 +215,9 @@ const PPTFForm = () => {
           <input
             type="checkbox"
             name="expertise"
-            value="Geographical Information Systems (GIS)"
+            value="Geographic Information Systems (GIS)"
           />{" "}
-          Geographical Information Systems (GIS)
+          Geographic Information Systems (GIS)
         </label>
         <label className="pt-1 font-normal">
           <input
@@ -303,9 +303,9 @@ const PPTFForm = () => {
           <input
             type="checkbox"
             name="learn"
-            value="Climate Change or Environmental Justice"
+            value="Natural Resource Management or Environmental Planning"
           />{" "}
-          Climate Change or Environmental Justice
+          Natural Resource Management or Environmental Planning
         </label>
         <label className="pt-1 font-normal">
           <input type="checkbox" name="learn" value="Community Engagement" />{" "}
@@ -315,17 +315,17 @@ const PPTFForm = () => {
           <input
             type="checkbox"
             name="learn"
-            value="Geographical Information Systems (GIS)"
+            value="Geographic Information Systems (GIS)"
           />{" "}
-          Geographical Information Systems (GIS)
+          Geographic Information Systems (GIS)
         </label>
         <label className="pt-1 font-normal">
           <input
             type="checkbox"
             name="learn"
-            value="Good movements or Freight"
+            value="Goods movement or Freight"
           />{" "}
-          Good movements or Freight
+          Goods movement or Freight
         </label>
         <label className="pt-1 font-normal">
           <input
