@@ -47,14 +47,14 @@ const ProductsListView = ({ children, data, serverData, location, title }) => {
             className="appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
           />
         </form>
-        {serverData
-          .sort((a, b) => new Date(b.DateLive) - new Date(a.DateLive))
+        {serverData.items
+          .sort((a, b) => new Date(b.datelive) - new Date(a.datelive))
           .map((product) => (
             <Product
-              key={product.Id}
+              key={product.id}
               {...product}
-              Title={highlight(trunc(product.Title), query)}
-              Abstract={highlight(trunc(product.Abstract), query)}
+              Title={highlight(trunc(product.title), query)}
+              Abstract={highlight(trunc(product.abstract), query)}
             />
           ))}
 
@@ -76,15 +76,17 @@ const ProductsListView = ({ children, data, serverData, location, title }) => {
           </a>
           <span>
             {+offset + 1} &ndash;{" "}
-            {serverData.length === LIMIT ? +offset + LIMIT : serverData.length}
+            {serverData.items.length === LIMIT
+              ? +offset + LIMIT
+              : serverData.items.length}
           </span>
           <a
             href={
-              serverData.length === LIMIT
+              serverData.items.length === LIMIT
                 ? `?q=${query}&offset=${+offset + LIMIT}`
                 : null
             }
-            aria-disabled={serverData.length < LIMIT}
+            aria-disabled={serverData.items.length < LIMIT}
             aria-label="Next"
             className="aria-disabled:text-gray-400"
           >

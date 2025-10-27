@@ -36,14 +36,18 @@ const Events = ({ dataReader }) =>
 const Products = ({ dataReader }) =>
   dataReader.isLoading
     ? [...Array(6)].map((_, i) => <ProductLoader key={i} />)
-    : dataReader.data.map((d) => <Product type="card" key={d.Id} {...d} />);
+    : dataReader.data.items.map((d) => (
+        <Product type="card" key={d.id} {...d} />
+      ));
 
 const HomePage = ({ data }) => {
   const { allNodeArticle, allNodeAnnouncement } = data;
   const eventsReader = useData(
     "https://www.dvrpc.org/asp/homepage/getCalendarItems.aspx?maxresults=4"
   );
-  const productsReader = useData("https://www.dvrpc.org/api/products?limit=6");
+  const productsReader = useData(
+    "https://apis.dvrpc.org/internal/dvrpc_products/products/product?onlyFeatured=true"
+  );
   const alert = data.blockContentAlertBanner?.body?.processed ?? "";
   const anns = [...allNodeArticle.nodes, ...allNodeAnnouncement.nodes].sort(
     (a, b) => new Date(b.created) - new Date(a.created)

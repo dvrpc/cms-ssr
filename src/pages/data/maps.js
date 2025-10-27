@@ -24,9 +24,11 @@ const Data = ({ data: { userUser: staffContact }, location }) => {
   const [filter, setFilter] = useState("");
   const resultIncrement = 10;
   useEffect(() => {
-    fetch("https://www.dvrpc.org/api/products?type=data%20center&limit=999")
+    fetch(
+      "https://apis.dvrpc.org/internal/dvrpc_products/products/product?tags=Data%20Center&limit=999"
+    )
       .then((response) => response.json())
-      .then((resultData) => setApps(resultData));
+      .then((resultData) => setApps(resultData.items));
   }, []);
 
   const filteredApps = !filter
@@ -160,18 +162,22 @@ const Data = ({ data: { userUser: staffContact }, location }) => {
               <div className="py-4 lg:p-4">
                 <a
                   className="my-6 text-lg font-bold text-[#0078ae] no-underline hover:underline"
-                  href={app.Urllink}
+                  href={
+                    app.urllink && app.urllink.trim()
+                      ? app.urllink
+                      : `https://dvrpc.org/products/${app.id}`
+                  }
                   target="_blank"
                 >
-                  {app.Title}
+                  {app.title}
                 </a>
                 <div className="flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
                   <img
                     className="w-[402px] border border-gray-300 object-cover sm:max-w-[40%]"
-                    src={`https://www.dvrpc.org/asp/pubs/402px/${app.Id}.png`}
+                    src={`https://www.dvrpc.org/asp/pubs/201px/${app.id}.png`}
                   ></img>
                   <span className="text-gray-400">
-                    <HtmlParser html={trunc(app.Abstract)} />
+                    <HtmlParser html={trunc(app.abstract)} />
                   </span>
                 </div>
               </div>

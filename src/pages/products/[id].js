@@ -11,15 +11,16 @@ import HtmlParser from "../../components/HtmlParser";
 import TitleVI from "../../components/TitleVI";
 
 const ProductDetailsPage = ({ data, serverData = {}, location, title }) => {
+  serverData = serverData.items[0];
   if (!serverData) serverData = {};
   const { userUser, navItem } = data;
   const [isSubmitted, setIsSubmitted] = useState(false);
   const heading1 = (
     <>
-      {serverData.Title}
-      {serverData.Subtitle ? (
+      {serverData.title}
+      {serverData.subtitle ? (
         <div>
-          <small>{serverData.Subtitle}</small>
+          <small>{serverData.subtitle}</small>
         </div>
       ) : null}
     </>
@@ -27,11 +28,11 @@ const ProductDetailsPage = ({ data, serverData = {}, location, title }) => {
 
   let year = "";
   let month = "";
-  if (serverData.DateLive) {
-    [year, month] = serverData.DateLive.split("-");
+  if (serverData.datelive) {
+    [year, month] = serverData.datelive.split("-");
   }
-  if (serverData.DatePublished) {
-    [year, month] = serverData.DatePublished.split("-");
+  if (serverData.datepublished) {
+    [year, month] = serverData.datepublished.split("-");
   }
 
   return (
@@ -41,29 +42,29 @@ const ProductDetailsPage = ({ data, serverData = {}, location, title }) => {
           <a
             target="_blank"
             href={
-              serverData.Urllink?.trim().length
-                ? serverData.Urllink
+              serverData.urllink?.trim().length
+                ? serverData.urllink
                 : `/Reports/${serverData.Id}.pdf`
             }
           >
             <img
-              src={`https://www.dvrpc.org/asp/pubs/402px/${serverData.Id}.png`}
+              src={`https://www.dvrpc.org/asp/pubs/402px/${serverData.id}.png`}
               alt={serverData.Title}
             />
           </a>
         </figure>
 
         <p>
-          <b>Product No.:</b> {serverData.Id}
+          <b>Product No.:</b> {serverData.id}
           <br />
           <b>Date Published:</b> {month}/{year}
           <br />
         </p>
-        {serverData.Urllink?.trim().length ? (
+        {serverData.urllink?.trim().length ? (
           <a
             className="btn btn-primary trackLink"
             rel="external"
-            href={serverData.Urllink}
+            href={serverData.urllink}
           >
             Launch Product
           </a>
@@ -72,7 +73,7 @@ const ProductDetailsPage = ({ data, serverData = {}, location, title }) => {
             <p>
               <a
                 className="btn btn-primary trackLink"
-                href={`/Reports/${serverData.Id}.pdf`}
+                href={`/Reports/${serverData.id}.pdf`}
               >
                 View/Download PDF
               </a>
@@ -89,12 +90,12 @@ const ProductDetailsPage = ({ data, serverData = {}, location, title }) => {
             </p>
           </>
         )}
-        <HtmlParser html={serverData.Abstract} />
+        <HtmlParser html={serverData.abstract} />
         <p>
-          <strong>Geographic Area Covered:</strong> {serverData.Geography}
+          <strong>Geographic Area Covered:</strong> {serverData.geography}
         </p>
         <p>
-          <strong>Key Words:</strong> {serverData.Keywords}
+          <strong>Key Words:</strong> {serverData.keywords}
         </p>
 
         <p>
@@ -102,29 +103,29 @@ const ProductDetailsPage = ({ data, serverData = {}, location, title }) => {
         </p>
         <ul>
           <li>
-            <b>{serverData.StaffContactName}</b> (
-            <a href={`mailto:${serverData.StaffContact}@dvrpc.org`}>
-              {serverData.StaffContact}@dvrpc.org
+            <b>{serverData.staffcontactname}</b> (
+            <a href={`mailto:${serverData.staffcontact}@dvrpc.org`}>
+              {serverData.staffcontact}@dvrpc.org
             </a>
             )
           </li>
-          {serverData.StaffContact2?.length ? (
+          {serverData.staffcontact2?.length ? (
             <li>
-              <b>{serverData.StaffContact2Name}</b> (
-              <a href={`mailto:${serverData.StaffContact2}@dvrpc.org`}>
-                {serverData.StaffContact2}@dvrpc.org
+              <b>{serverData.staffcontact2name}</b> (
+              <a href={`mailto:${serverData.staffcontact2}@dvrpc.org`}>
+                {serverData.staffcontact2}@dvrpc.org
               </a>
               )
             </li>
           ) : null}
         </ul>
-        {serverData.ProjectTeam?.length ? (
+        {serverData.projectteam?.length ? (
           <>
             <p>
               <strong>Project Team</strong>
             </p>
             <ul>
-              {serverData.ProjectTeam?.map((p) => (
+              {JSON.parse(serverData.projectteam)?.map((p) => (
                 <li key={p.Name}>
                   <strong>{p.Name}</strong> {p.Title}
                 </li>
@@ -322,7 +323,7 @@ export default ProductDetailsPage;
 export async function getServerData({ params, query }) {
   try {
     const res = await fetch(
-      `https://www.dvrpc.org/api/Products/${params.id}?key=${query.key}`
+      `https://apis.dvrpc.org/internal/dvrpc_products/products/product?id=${params.id}&keyword=${query.key}`
     );
 
     if (!res.ok) {

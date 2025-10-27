@@ -59,9 +59,12 @@ export default ProductsPage;
 
 export async function getServerData({ query }) {
   try {
-    let url = "https://www.dvrpc.org/api/products?onlyFeatured=false";
-    if (query.q) url += `&keywords=${query.q}`;
-    if (query.offset) url += `&offset=${query.offset}`;
+    let url = "https://apis.dvrpc.org/internal/dvrpc_products/products/";
+    if (query.q) url += `search?keyword=${query.q}&`;
+    else url += "product?";
+    if (query.offset) url += `offset=${query.offset}&`;
+    url += "limit=10";
+
     const res = await fetch(url);
     if (!res.ok) {
       throw new Error("Response failed");

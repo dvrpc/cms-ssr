@@ -23,25 +23,25 @@ export const trunc = (str) => {
 };
 
 const Product = (props) => {
-  const title = highlight(trunc(props.Title), props.Query);
-  const abstract = highlight(trunc(props.Abstract), props.Query);
+  const title = highlight(trunc(props.title), props.Query);
+  const abstract = highlight(trunc(props.abstract), props.Query);
 
   return props.type === "card" ? (
-    <div key={props.Id} className="my-4 flex w-full items-center gap-4 pr-6">
+    <div key={props.id} className="my-4 flex w-full items-center gap-4 pr-6">
       <a
         className="shrink-0"
-        href={`https://www.dvrpc.org/Products/${props.Id}`}
+        href={`https://www.dvrpc.org/Products/${props.id}`}
       >
         <img
           className="w-[100.5px] border border-solid border-gray-400 bg-white"
-          src={`https://www.dvrpc.org/asp/pubs/201px/${props.Id}.png`}
+          src={`https://www.dvrpc.org/asp/pubs/201px/${props.id}.png`}
           alt="cover"
         />
       </a>
       <h4 className="m-0 text-lg font-normal">
         <a
           className="no-underline"
-          href={`https://www.dvrpc.org/Products/${props.Id}`}
+          href={`https://www.dvrpc.org/Products/${props.id}`}
         >
           {title}
         </a>
@@ -53,17 +53,17 @@ const Product = (props) => {
       className="mb-4 flow-root space-y-1 border-b border-gray-200 pb-4"
     >
       <p className="mb-0 text-gray-700">
-        {new Date(props.DateLive).toLocaleDateString("en-US", {
+        {new Date(props.datelive).toLocaleDateString("en-US", {
           dateStyle: "long",
         })}
       </p>
       <img
-        src={`https://www.dvrpc.org/asp/pubs/402px/${props.Id}.png`}
+        src={`https://www.dvrpc.org/asp/pubs/402px/${props.id}.png`}
         alt={title}
         className="float-right m-4 mt-0 w-[201px] border border-gray-300"
       />
       <a
-        href={`https://www.dvrpc.org/products/${props.Id}`}
+        href={`https://www.dvrpc.org/products/${props.id}`}
         className="text-2xl text-[color:var(--color-h1)] no-underline"
       >
         <HtmlParser html={title} />
@@ -74,7 +74,7 @@ const Product = (props) => {
       <p>
         <a
           className="font-bold text-[color:var(--color-h1)] no-underline hover:underline"
-          href={`https://www.dvrpc.org/products/${props.Id}`}
+          href={`https://www.dvrpc.org/products/${props.id}`}
         >
           Read More
           <svg

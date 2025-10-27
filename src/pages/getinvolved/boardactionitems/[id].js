@@ -20,8 +20,6 @@ const isOpenToComment = (boardDate) => {
 const BoardActionItems = ({ data, location, serverData, id }) => {
   const { userUser, navItem } = data;
 
-  console.log(serverData);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
