@@ -17,15 +17,17 @@ const StaffRow = ({ emp }) => {
         className="print:font-bold print:no-underline"
         href={`https://www.dvrpc.org/asp/email/?${emp.Id}`}
       >
-        {[emp.Nickname ?? emp.FirstName, emp.LastName, emp.Suffix]
+        {[emp.nickname ?? emp.firstname, emp.lastname, emp.suffix]
           .filter(Boolean)
           .join(" ")}
       </a>{" "}
-      <span className="float-right ml-4 shrink-0">
-        <span className="print:hidden">(215) 238-</span>
-        {emp.Ext}
-      </span>
-      <span className="print:block print:text-xs">{emp.Title}</span>
+      {emp.ext && (
+        <span className="float-right ml-4 shrink-0">
+          <span className="print:hidden">(215) 238-</span>
+          {emp.ext}
+        </span>
+      )}
+      <span className="print:block print:text-xs">{emp.title}</span>
     </li>
   );
 };
@@ -74,19 +76,19 @@ const StaffListPage = ({ data, serverData, location }) => {
           </ul>
           <h2 className="print:m-0">Directors</h2>
           <ul className="list-group">
-            {serverData
-              .filter((emp) => emp.Sortorder)
-              .sort((a, b) => a.Sortorder - b.Sortorder)
+            {serverData.items
+              .filter((emp) => emp.sortorder)
+              .sort((a, b) => a.sortorder - b.sortorder)
               .map((emp) => (
-                <StaffRow key={emp.Id} emp={emp} />
+                <StaffRow key={emp.id} emp={emp} />
               ))}
           </ul>
           <h2 className="print:m-0 print:break-before-column">Staff</h2>
           <ul className="list-group">
-            {serverData
-              .filter((emp) => !emp.Sortorder)
+            {serverData.items
+              .filter((emp) => !emp.sortorder)
               .map((emp) => (
-                <StaffRow key={emp.Id} emp={emp} />
+                <StaffRow key={emp.id} emp={emp} />
               ))}
           </ul>
         </div>
@@ -139,7 +141,9 @@ export default StaffListPage;
 
 export async function getServerData() {
   try {
-    const res = await fetch("https://www.dvrpc.org/api/staff");
+    const res = await fetch(
+      "https://apps.dvrpc.org/ords/dvrpcstaff/stafflist/employees"
+    );
     if (!res.ok) {
       throw new Error("Response failed");
     }
