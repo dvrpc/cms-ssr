@@ -12,26 +12,27 @@ import TitleVI from "../../../components/TitleVI";
 
 const AgendaPage = ({ data, serverData, location, name }) => {
   const {
-    Address1,
-    Address2,
-    City,
-    Committee,
-    CommitteeId,
-    Locationname,
-    Locationnote1,
-    Locationnote2,
-    Meetingdate,
-    Meetingdetail,
-    Meetingtime,
-    Note1,
-    Note2,
-    Note3,
-    State,
-    Title,
-  } = serverData;
-  const title = Committee.Name;
+    address1,
+    address2,
+    city,
+    committee,
+    committeeid,
+    locationname,
+    locationnote1,
+    locationnote2,
+    meetingdate,
+    meetingdetail,
+    meetingtime,
+    note1,
+    note2,
+    note3,
+    state,
+    title,
+    name: committeename,
+  } = serverData.items[0];
+  const pagetitle = committeename;
   const nodePage = data.allNodePage.nodes.filter(
-    (node) => node.path.alias.indexOf(CommitteeId.toLowerCase()) > -1
+    (node) => node.path.alias.indexOf(committeeid.toLowerCase()) > -1
   )[0];
 
   data.navItem.href = "";
@@ -40,7 +41,7 @@ const AgendaPage = ({ data, serverData, location, name }) => {
     parent: {
       ...data.navItem.parent,
       links: [
-        { link: title, href: `/committees/${name}` },
+        { link: pagetitle, href: `/committees/${name}` },
         ...data.navItem.parent.links,
       ],
     },
@@ -48,70 +49,70 @@ const AgendaPage = ({ data, serverData, location, name }) => {
 
   return (
     <>
-      <Body title={title} menu={navItem}>
-        {Title ? <h2>{Title}</h2> : null}
+      <Body title={pagetitle} menu={navItem}>
+        {pagetitle ? <h2>{pagetitle}</h2> : null}
         <p>
-          {Meetingtime},{" "}
+          {meetingtime},{" "}
           <strong>
-            {new Date(Meetingdate).toLocaleDateString("en-us", {
+            {new Date(meetingdate).toLocaleDateString("en-us", {
               month: "long",
               day: "numeric",
               year: "numeric",
             })}
           </strong>
         </p>
-        {new Date(Meetingdate) > new Date() && !!Note3 ? (
-          <a href={Note3} className="btn btn-primary">
+        {new Date(meetingdate) > new Date() && !!note3 ? (
+          <a href={note3} className="btn btn-primary">
             Register Now
           </a>
         ) : null}
-        {new Date(Meetingdate).toLocaleDateString() ===
-          new Date().toLocaleDateString() && !!Note3 ? (
-          <a href={Note3} className="btn btn-primary">
+        {new Date(meetingdate).toLocaleDateString() ===
+          new Date().toLocaleDateString() && !!note3 ? (
+          <a href={note3} className="btn btn-primary">
             Join Meeting
           </a>
         ) : null}
-        {Note2 ? (
-          <a href={Note2} className="btn btn-primary">
+        {note2 ? (
+          <a href={note2} className="btn btn-primary">
             Watch Recording
           </a>
         ) : null}
-        {Note1 ? <p>{Note1}</p> : null}
+        {note1 ? <p>{note1}</p> : null}
         <p>
-          {Locationname ? (
+          {locationname ? (
             <span>
-              {Locationname}
+              {locationname}
               <br />
             </span>
           ) : null}
-          {Address1 ? (
+          {address1 ? (
             <span>
-              {Address1}
+              {address1}
               <br />
             </span>
           ) : null}
-          {Address2 ? (
+          {address2 ? (
             <span>
-              {Address2}
+              {address2}
               <br />
             </span>
           ) : null}
-          {City ? <span>{City}, </span> : null}
-          {State}
+          {city ? <span>{city}, </span> : null}
+          {state}
         </p>
         <p>
-          {Locationnote1}
+          {locationnote1}
           <br />
-          {Locationnote2}
+          {locationnote2}
         </p>
-        <HtmlParser html={Meetingdetail} />
+        <HtmlParser html={meetingdetail} />
         <hr />
         <TitleVI />
       </Body>
       <StaffContact
         staffContact={nodePage.relationships.field_staff_contact}
         location={location}
-        title={title}
+        pagetitle={pagetitle}
       />
     </>
   );
@@ -119,14 +120,16 @@ const AgendaPage = ({ data, serverData, location, name }) => {
 
 export const Head = ({ data, serverData }) => {
   const nodePage = data.allNodePage.nodes.filter(
-    (node) => node.path.alias.indexOf(serverData.CommitteeId.toLowerCase()) > -1
+    (node) =>
+      node.path.alias.indexOf(serverData.items[0].committeeid.toLowerCase()) >
+      -1
   )[0];
 
   return HeadTemplate({
-    title: serverData.Committee.Name,
-    summary: `${serverData.Committee.Name} on ${
-      serverData.Meetingdate.split(":")[0]
-    } at ${serverData.Meetingtime}`,
+    title: serverData.items[0].name,
+    summary: `${serverData.items[0].name} on ${
+      serverData.items[0].meetingdate.split(":")[0]
+    } at ${serverData.items[0].meetingtime}`,
     css: themeToCustomVars(
       nodePage.relationships.field_theme,
       defaultThemeConfig
@@ -184,7 +187,9 @@ export default AgendaPage;
 
 export async function getServerData({ params }) {
   try {
-    const res = await fetch(`https://www.dvrpc.org/api/agenda/${params.id}`);
+    const res = await fetch(
+      `https://apis.dvrpc.org/internal/dvrpcagenda/agendas/agenda?id=${params.id}`
+    );
     if (!res.ok) {
       throw new Error("Response failed");
     }

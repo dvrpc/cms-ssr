@@ -74,7 +74,9 @@ export default AgendaPage;
 
 export async function getServerData({ params }) {
   try {
-    const res = await fetch(`https://www.dvrpc.org/api/agenda/${params.id}`);
+    const res = await fetch(
+      `https://apis.dvrpc.org/internal/dvrpcagenda/agendas/agenda?id=${params.id}`
+    );
     if (!res.ok) {
       throw new Error("Response failed");
     }
