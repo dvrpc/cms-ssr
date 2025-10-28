@@ -5,7 +5,6 @@ import StaffContact from "./StaffContact";
 import useData from "./common/useData";
 
 const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
-  const [loading, setLoading] = useState(true);
   const { isLoading, data } = useData(
     `https://apis.dvrpc.org/internal/dvrpcagenda/agendas/agenda?committee=${location
       .split("/")
@@ -23,22 +22,8 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
       const date = new Date(agenda.meetingdate).toISOString().slice(0, 7);
       const minutesURL = `https://www.dvrpc.org/asp/committee/committees/${agenda.committeeid}/${date}.pdf`;
       const presentationsURL = `https://www.dvrpc.org/asp/committee/committees/${agenda.committeeid}/presentations/${date}.pdf`;
-
-      // @TODO: only check this years documents for 404 assume past years are uploaded for now
-      if (isCurrent) {
-        const minutes = fetch(minutesURL, { method: "HEAD" }).then((res) => {
-          if (res.ok) agenda.minutes = minutesURL;
-        });
-        const presentations = fetch(presentationsURL, { method: "HEAD" }).then(
-          (res) => {
-            if (res.ok) agenda.presentations = presentationsURL;
-          }
-        );
-        Promise.all([minutes, presentations]).then(() => setLoading(false));
-      } else {
-        agenda.minutes = minutesURL;
-        agenda.presentations = presentationsURL;
-      }
+      agenda.minutes = minutesURL;
+      agenda.presentations = presentationsURL;
 
       result[isCurrent ? 0 : 1].push(agenda);
       return result;
@@ -46,8 +31,22 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
     [[], []]
   ) ?? [[], []];
 
-  const renderRow = (agenda) => {
+  const renderRow = (agenda, isCurrent) => {
     const date = new Date(agenda.meetingdate);
+
+    // @TODO: only check this years documents for 404 assume past years are uploaded for now
+    if (isCurrent) {
+      const minutes = fetch(agenda.minutes, { method: "HEAD" }).then((res) => {
+        if (!res.ok) agenda.minutes = null;
+      });
+      const presentations = fetch(agenda.presentations, {
+        method: "HEAD",
+      }).then((res) => {
+        if (!res.ok) agenda.presentations = null;
+      });
+      Promise.all([minutes, presentations]);
+    }
+
     return (
       <tr key={agenda.id}>
         <td className="align-top">
@@ -112,13 +111,15 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
             ) : null}
             <h3 className="text-lg font-bold">Meetings</h3>
             <table className="w-full table-auto">
-              <tbody>{!loading && current.map(renderRow)}</tbody>
+              <tbody>{current.map((agenda) => renderRow(agenda, true))}</tbody>
             </table>
             {archive.length > 0 ? (
               <details>
                 <summary>Past Meetings</summary>
                 <table className="ml-0 mr-0 w-full table-auto">
-                  <tbody>{archive.map(renderRow)}</tbody>
+                  <tbody>
+                    {archive.map((agenda) => renderRow(agenda, false))}
+                  </tbody>
                 </table>
               </details>
             ) : null}
