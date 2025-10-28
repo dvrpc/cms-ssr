@@ -44,12 +44,12 @@ const ProductDetailsPage = ({ data, serverData = {}, location, title }) => {
             href={
               serverData.urllink?.trim().length
                 ? serverData.urllink
-                : `/Reports/${serverData.Id}.pdf`
+                : `/Reports/${serverData.id}.pdf`
             }
           >
             <img
               src={`https://www.dvrpc.org/asp/pubs/402px/${serverData.id}.png`}
-              alt={serverData.Title}
+              alt={serverData.title}
             />
           </a>
         </figure>
@@ -323,7 +323,7 @@ export default ProductDetailsPage;
 export async function getServerData({ params, query }) {
   try {
     const res = await fetch(
-      `https://apis.dvrpc.org/internal/dvrpc_products/products/product?id=${params.id}&keyword=${query.key}`
+      `https://apis.dvrpc.org/internal/dvrpc_products/products/product?id=${params.id}&key=${query.key}`
     );
 
     if (!res.ok) {
