@@ -3,6 +3,47 @@ import HtmlParser from "./HtmlParser";
 import Body from "./Body";
 import StaffContact from "./StaffContact";
 import useData from "./common/useData";
+import useSWR from "swr";
+
+const CurrentRow = ({ agenda }) => {
+  const date = new Date(agenda.meetingdate);
+  const fetcher = async (url) => {
+    const res = await fetch(url, { method: "HEAD" });
+    if (res.ok) return url;
+    else return null;
+  };
+  const { data: minutes, isLoading: minutesIsLoading } = useSWR(
+    agenda.minutes,
+    fetcher
+  );
+  const { data: presentations, isLoading: presentationsIsLoading } = useSWR(
+    agenda.presentations,
+    fetcher
+  );
+
+  return (
+    <tr key={agenda.id}>
+      <td className="align-top">
+        <b>{date.toLocaleString("en-US", { month: "short" })}</b>{" "}
+        {date.toLocaleString("en-US", { year: "numeric" })}
+      </td>
+      <td className="w-3/4">
+        {agenda.title ? <em>{agenda.title}</em> : null}
+        <div className="flex gap-2 divide-x underline">
+          <a href={`/committees/${agenda.committeeid}/${agenda.id}`}>Agenda</a>
+          {!minutesIsLoading && minutes && (
+            <a href={minutes}>Meeting/Highlights</a>
+          )}
+          {!presentationsIsLoading && presentations && (
+            <a href={presentations}>Presentations</a>
+          )}
+          {agenda.comments && <a href={agenda.comments}>Comments</a>}
+          {agenda.note2 && <a href={agenda.note2}>Recording</a>}
+        </div>
+      </td>
+    </tr>
+  );
+};
 
 const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
   const { isLoading, data } = useData(
@@ -31,21 +72,8 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
     [[], []]
   ) ?? [[], []];
 
-  const renderRow = (agenda, isCurrent) => {
+  const renderRow = (agenda) => {
     const date = new Date(agenda.meetingdate);
-
-    // @TODO: only check this years documents for 404 assume past years are uploaded for now
-    if (isCurrent) {
-      const minutes = fetch(agenda.minutes, { method: "HEAD" }).then((res) => {
-        if (!res.ok) agenda.minutes = null;
-      });
-      const presentations = fetch(agenda.presentations, {
-        method: "HEAD",
-      }).then((res) => {
-        if (!res.ok) agenda.presentations = null;
-      });
-      Promise.all([minutes, presentations]);
-    }
 
     return (
       <tr key={agenda.id}>
@@ -111,15 +139,17 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
             ) : null}
             <h3 className="text-lg font-bold">Meetings</h3>
             <table className="w-full table-auto">
-              <tbody>{current.map((agenda) => renderRow(agenda, true))}</tbody>
+              <tbody>
+                {current.map((agenda) => (
+                  <CurrentRow agenda={agenda} />
+                ))}
+              </tbody>
             </table>
             {archive.length > 0 ? (
               <details>
                 <summary>Past Meetings</summary>
                 <table className="ml-0 mr-0 w-full table-auto">
-                  <tbody>
-                    {archive.map((agenda) => renderRow(agenda, false))}
-                  </tbody>
+                  <tbody>{archive.map((agenda) => renderRow(agenda))}</tbody>
                 </table>
               </details>
             ) : null}
