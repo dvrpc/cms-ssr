@@ -8,15 +8,16 @@ import HeadTemplate, {
 import AgendaPage from "../[name]/[id]";
 
 export const Head = ({ data, serverData }) => {
+  serverData = serverData.items[0];
   const nodePage = data.allNodePage.nodes.filter(
-    (node) => node.path.alias.indexOf(serverData.CommitteeId.toLowerCase()) > -1
+    (node) => node.path.alias.indexOf(serverData.committeeid.toLowerCase()) > -1
   )[0];
 
   return HeadTemplate({
-    title: serverData.Committee.Name,
-    summary: `${serverData.Committee.Name} on ${
-      serverData.Meetingdate.split(":")[0]
-    } at ${serverData.Meetingtime}`,
+    title: serverData.name,
+    summary: `${serverData.name} on ${
+      serverData.meetingdate.split(":")[0]
+    } at ${serverData.meetingtime}`,
     css: themeToCustomVars(
       nodePage.relationships.field_theme,
       defaultThemeConfig
