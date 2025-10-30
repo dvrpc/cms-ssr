@@ -15,7 +15,7 @@ const StaffRow = ({ emp }) => {
     <li className="list-group-item print:!m-0 print:break-inside-avoid print:!border-0 print:!border-b print:!border-black print:!p-0">
       <a
         className="print:font-bold print:no-underline"
-        href={`https://www.dvrpc.org/asp/email/?${emp.Id}`}
+        href={`https://www.dvrpc.org/asp/email/?${emp.id}`}
       >
         {[emp.nickname ?? emp.firstname, emp.lastname, emp.suffix]
           .filter(Boolean)
@@ -107,7 +107,7 @@ export const Head = ({ data: { nodeTheme } }) =>
 
 export const query = graphql`
   query {
-    userUser(mail: { eq: "psmith@dvrpc.org" }) {
+    userUser(mail: { eq: "kkozik-yarnell@dvrpc.org" }) {
       id
       mail
       name: field_display_name
