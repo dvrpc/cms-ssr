@@ -8,7 +8,7 @@ import HeadTemplate, {
 import Body from "../../../components/Body";
 import StaffContact from "../../../components/StaffContact";
 
-const title = "Board Members";
+const title = "DVRPC Board";
 
 const BoardDetails = ({ committee }) => {
   return (
@@ -54,20 +54,27 @@ const BoardListPage = ({ data, serverData, location }) => {
   const sorted = Board.filter((i) => i.Name !== null)
     .filter((i) => i.Members.some((m) => m.Name !== null))
     .sort((a, b) => (a.Order > b.Order ? 1 : -1));
-  const Voting = sorted.filter((i) => i.Participatory === 1);
+  const Voting = sorted.filter(
+    (i) => i.Participatory === 1 && i.Members[0].Name !== ""
+  );
   const Nonvoting = sorted.filter((i) => i.Participatory !== 1);
 
   return (
     <>
       <Body title={title} menu={navItem}>
         <div className="mt-4">
-          The DVRPC Board is composed of eight county representatives and one
-          city/county representative, representing each county in the region;
-          three representatives for the cities of Camden, Chester, and Trenton;
-          and six state representatives including ex officio state leadership
-          and gubernatorial appointees. The state representatives, the
-          representatives for Philadelphia and the City of Camden, and two
-          county representatives comprise the Executive Committee.
+          The Board is an 18-member body having the authority and responsibility
+          to make decisions affecting the entire organization as well as the
+          nine-county region. It creates and defines the duties of the Office of
+          the Executive Director and the various DVRPC committees; and approves
+          and adopts the annual planning work program. In its capacity as the
+          Metropolitan Planning Organization (MPO) for the region, the Board
+          establishes regional transportation policies, determines allocation of
+          available transportation funds and prioritizes transportation projects
+          for the region. In addition to transportation planning for highways,
+          transit, airports and freight, the agency develops plans and policies
+          for other regional physical planning elements such as land use, air
+          quality, housing, water supply and water quality.
         </div>
         <h2>Officers:</h2>
         {Officers.sort((a, b) => (a.Order > b.Order ? 1 : -1)).map(
@@ -83,29 +90,27 @@ const BoardListPage = ({ data, serverData, location }) => {
         {Voting.map((committee) => (
           <BoardDetails key={committee.Id} committee={committee} />
         ))}
-        {Nonvoting.length ? (
-          <>
-            <h2>Nonvoting Representatives to the Commission</h2>
-            {Nonvoting.map((committee) => (
-              <BoardDetails key={committee.Id} committee={committee} />
-            ))}
-          </>
-        ) : null}
+        {/* {Nonvoting.length ? ( */}
+        {/*   <> */}
+        {/*     <h2>Nonvoting Representatives to the Commission</h2> */}
+        {/*     {Nonvoting.map((committee) => ( */}
+        {/*       <BoardDetails key={committee.Id} committee={committee} /> */}
+        {/*     ))} */}
+        {/*   </> */}
+        {/* ) : null} */}
         <h2>Non-Voting Representatives</h2>
         <p>
           The DVRPC Compact allows for the participation of non-voting
-          representatives to the Commission. It allows for up to three
-          representatives each from the Federal Highway Administration and the
-          U.S. Department of Housing and Urban Development. The DVRPC by-laws
-          also allow for up to two non-voting representatives each from the
-          Federal Transit Administration and the U.S. Environmental Protection
-          Agency, and one representative each from the Pennsylvania Department
-          of Environmental Protection, the New Jersey Department of
-          Environmental Protection, the Pennsylvania Department of Community and
-          Economic Development, the New Jersey Office for Planning Advocacy,
-          Southeastern Pennsylvania Transportation Authority (SEPTA), NJ
-          Transit, Port Authority Transit Corporation (PATCO), and Delaware
-          River Port Authority (DRPA).
+          representatives to the Commission and specifically allows for up to
+          three representatives each from the Federal Highway Administration and
+          the U.S. Department of Housing and Urban Development. The DVRPC
+          by-laws also allow for up to two non-voting representatives each from
+          the Federal Transit Administration and the U.S. Environmental
+          Protection Agency, and one representative each from the PA Department
+          of Environmental Protection, the NJ Department of Environmental
+          Protection, the PA Department of Community and Economic Development,
+          the NJ Office for Planning Advocacy, SEPTA, NJ Transit, PATCO, and
+          DRPA.
         </p>
       </Body>
       <StaffContact staffContact={userUser} location={location} title={title} />
@@ -157,7 +162,7 @@ export default BoardListPage;
 
 export async function getServerData() {
   try {
-    const res = await fetch(`https://www.dvrpc.org/api/board`);
+    const res = await fetch(`https://apps.dvrpc.org/ords/dvrpcboard/board/all`);
     if (!res.ok) {
       throw new Error("Response failed");
     }
