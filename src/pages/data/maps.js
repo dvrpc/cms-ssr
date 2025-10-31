@@ -35,9 +35,9 @@ const Data = ({ data: { userUser: staffContact }, location }) => {
     ? apps
     : apps.filter(
         (app) =>
-          app.Title.toLowerCase().includes(filter.toLowerCase()) ||
-          (app.Keywords &&
-            app.Keywords.toLowerCase().includes(filter.toLowerCase()))
+          app.title.toLowerCase().includes(filter.toLowerCase()) ||
+          (app.keywords &&
+            app.keywords.toLowerCase().includes(filter.toLowerCase()))
       );
 
   return (
