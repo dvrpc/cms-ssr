@@ -155,7 +155,7 @@ const ProductDetailsPage = ({ data, serverData = {}, location, title }) => {
             <input
               type="hidden"
               name="Product ID"
-              defaultValue={serverData.Id}
+              defaultValue={serverData.id}
               id="productId"
             />
             <fieldset>
