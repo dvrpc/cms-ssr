@@ -46,12 +46,9 @@ const CurrentRow = ({ agenda }) => {
 };
 
 const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
+  const id = location.split("/").filter(Boolean).reverse()[0].toUpperCase();
   const { isLoading, data } = useData(
-    `https://apis.dvrpc.org/internal/dvrpcagenda/agendas/agenda?committee=${location
-      .split("/")
-      .filter(Boolean)
-      .reverse()[0]
-      .toUpperCase()}&limit=100`
+    `https://apis.dvrpc.org/internal/dvrpcagenda/agendas/agenda?committee=${id}&limit=100`
   );
 
   const [current, archive] = data?.items?.reduce(
@@ -100,7 +97,7 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
   };
 
   const { data: dataCommittee, isLoading: isLoadingCommittee } = useData(
-    "https://apis.dvrpc.org/internal/dvrpcagenda/agendas/committee?id=PPTF"
+    `https://apis.dvrpc.org/internal/dvrpcagenda/agendas/committee?id=${id}`
   );
 
   return (
