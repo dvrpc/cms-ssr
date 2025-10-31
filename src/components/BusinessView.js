@@ -5,9 +5,8 @@ import Body from "./Body";
 import StaffContact from "./StaffContact";
 import TitleIV from "./TitleVI";
 
-const BusinessView = ({ children, data, serverData, location, title }) => {
+const BusinessView = ({ children, data, location, title }) => {
   const { userUser, navItem } = data;
-  const { opportunities, selectedconsultants } = serverData;
   return (
     <>
       <Body title="Doing Business with DVRPC" menu={navItem}>
@@ -122,53 +121,53 @@ https://procurement.opengov.com/portal/embed/dvrpc/project-list?departmentId=all
         >
           <p>Your browser does not support iframes.</p>
         </iframe>
-        <div className="card">
-          <h2>TCDI Opportunities (not posted to OpenGov)</h2>
-          <table className="w-full table-auto">
-            <thead>
-              <tr className="font-bold">
-                <td>Title of Opportunity</td>
-                <td>Organization</td>
-                <td>Submission Date</td>
-              </tr>
-            </thead>
-            <tbody>
-              {opportunities?.map((business) => (
-                <tr key={business.Id}>
-                  <td className="py-2">
-                    <a
-                      className="block no-underline"
-                      href={`/business/${business.Id}`}
-                    >
-                      {business.AddendumLink && (
-                        <span
-                          title="Additional information is available"
-                          className="float-right text-2xl leading-none text-[var(--color-h1)]"
-                        >
-                          🛈
-                        </span>
-                      )}
-                      {business.Title}
-                    </a>
-                  </td>
-                  <td>{business.Organization}</td>
-                  <td>
-                    {business.SubmissionDate
-                      ? new Date(business.SubmissionDate).toLocaleDateString()
-                      : "rolling basis"}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colSpan="3">
-                  <div className="w-100 flex justify-between">{children}</div>
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
+        {/* <div className="card"> */}
+        {/*   <h2>TCDI Opportunities (not posted to OpenGov)</h2> */}
+        {/*   <table className="w-full table-auto"> */}
+        {/*     <thead> */}
+        {/*       <tr className="font-bold"> */}
+        {/*         <td>Title of Opportunity</td> */}
+        {/*         <td>Organization</td> */}
+        {/*         <td>Submission Date</td> */}
+        {/*       </tr> */}
+        {/*     </thead> */}
+        {/*     <tbody> */}
+        {/*       {opportunities?.map((business) => ( */}
+        {/*         <tr key={business.Id}> */}
+        {/*           <td className="py-2"> */}
+        {/*             <a */}
+        {/*               className="block no-underline" */}
+        {/*               href={`/business/${business.Id}`} */}
+        {/*             > */}
+        {/*               {business.AddendumLink && ( */}
+        {/*                 <span */}
+        {/*                   title="Additional information is available" */}
+        {/*                   className="float-right text-2xl leading-none text-[var(--color-h1)]" */}
+        {/*                 > */}
+        {/*                   🛈 */}
+        {/*                 </span> */}
+        {/*               )} */}
+        {/*               {business.Title} */}
+        {/*             </a> */}
+        {/*           </td> */}
+        {/*           <td>{business.Organization}</td> */}
+        {/*           <td> */}
+        {/*             {business.SubmissionDate */}
+        {/*               ? new Date(business.SubmissionDate).toLocaleDateString() */}
+        {/*               : "rolling basis"} */}
+        {/*           </td> */}
+        {/*         </tr> */}
+        {/*       ))} */}
+        {/*     </tbody> */}
+        {/*     <tfoot> */}
+        {/*       <tr> */}
+        {/*         <td colSpan="3"> */}
+        {/*           <div className="w-100 flex justify-between">{children}</div> */}
+        {/*         </td> */}
+        {/*       </tr> */}
+        {/*     </tfoot> */}
+        {/*   </table> */}
+        {/* </div> */}
 
         <h2>Important Notices</h2>
         {/* <p>
@@ -356,16 +355,16 @@ https://procurement.opengov.com/portal/embed/dvrpc/project-list?departmentId=all
             <span className="sm"> [0.4 MB pdf]</span>
           </li>
         </ul>
-        <h2>Recent Vendor Selections</h2>
-        <ul className="list-group">
-          {selectedconsultants?.map((consultant) => (
-            <li key={consultant.Title} className="list-group-item">
-              <strong>{consultant.Title}</strong>
-              <br />
-              {consultant.SelectedConsultant}
-            </li>
-          ))}
-        </ul>
+        {/* <h2>Recent Vendor Selections</h2> */}
+        {/* <ul className="list-group"> */}
+        {/*   {selectedconsultants?.map((consultant) => ( */}
+        {/*     <li key={consultant.Title} className="list-group-item"> */}
+        {/*       <strong>{consultant.Title}</strong> */}
+        {/*       <br /> */}
+        {/*       {consultant.SelectedConsultant} */}
+        {/*     </li> */}
+        {/*   ))} */}
+        {/* </ul> */}
       </Body>
       <StaffContact staffContact={userUser} title={title} location={location} />
     </>
