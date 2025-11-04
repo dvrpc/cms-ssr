@@ -58,6 +58,7 @@ const AgendaPage = ({ data, serverData, location, name }) => {
               month: "long",
               day: "numeric",
               year: "numeric",
+              timeZone: "UTC",
             })}
           </strong>
         </p>
