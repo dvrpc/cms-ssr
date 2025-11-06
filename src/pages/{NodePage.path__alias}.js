@@ -5,6 +5,7 @@ import CommitteePage from "../components/CommitteePage";
 import DefaultPage from "../components/DefaultPage";
 import RegionalTrailsProgram from "../components/RegionalTrailsProgramPage";
 import CedsPage from "../components/CedsPage.js";
+import MunicipalExchange from "../components/MunicipalExchange";
 import HeadTemplate, { themeToCustomVars } from "../components/HeadTemplate";
 
 const templates = {
