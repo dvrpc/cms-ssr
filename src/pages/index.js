@@ -45,6 +45,7 @@ const HomePage = ({ data }) => {
   const eventsReader = useData(
     "https://www.dvrpc.org/asp/homepage/getCalendarItems.aspx?maxresults=4"
   );
+
   const productsReader = useData(
     "https://apis.dvrpc.org/internal/dvrpc_products/products/product?onlyFeatured=true"
   );
@@ -124,22 +125,24 @@ const HomePage = ({ data }) => {
         </div>
       </Header>
       <main>
-        <div className="flex justify-center bg-[#bbe2f2]">
-          <div className="container px-8 md:pb-8">
-            <h3 className="text-3xl">
-              <a
-                className="text-[#296591]"
-                href="https://www.dvrpc.org/Calendar/"
-              >
-                Events
-              </a>
-            </h3>
-            {/* className="min-h-fit flex-auto items-center justify-between md:flex" */}
-            <div className="flex flex-col md:-ml-4 md:grid md:grid-cols-4">
-              <Events dataReader={eventsReader} />
+        {!eventsReader.error && (
+          <div className="flex justify-center bg-[#bbe2f2]">
+            <div className="container px-8 md:pb-8">
+              <h3 className="text-3xl">
+                <a
+                  className="text-[#296591]"
+                  href="https://www.dvrpc.org/Calendar/"
+                >
+                  Events
+                </a>
+              </h3>
+              {/* className="min-h-fit flex-auto items-center justify-between md:flex" */}
+              <div className="flex flex-col md:-ml-4 md:grid md:grid-cols-4">
+                <Events dataReader={eventsReader} />
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         <div className="flex justify-center bg-[#e4f5f7]">
           <div className="container px-8">
