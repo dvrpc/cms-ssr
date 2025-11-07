@@ -8,16 +8,37 @@ The `ReusableForm` component is a flexible form builder that allows you to creat
 
 The `formConfig` object consists of several sections, each containing a set of fields. Below is the structure and options for the configuration.
 
-Sure, here are the options for `formConfig`, `section`, and `field` as tables in markdown:
-
 ### FormConfig
 
-| Option                  | Type   | Description                                                              |
-| ----------------------- | ------ | ------------------------------------------------------------------------ |
-| `endpoint`              | string | The URL where the form data will be submitted.                           |
-| `showProgressIndicator` | string | The type of progress indicator to show (`"vertical"` or `"horizontal"`). |
-| `sectionHighlightColor` | string | The highlight color for the current section in the progress bar.         |
-| `sections`              | array  | An array of section objects.                                             |
+| Option                  | Type   | Description                                                                                           |
+| ----------------------- | ------ | ----------------------------------------------------------------------------------------------------- |
+| `endpoint`              | string | The URL where the form data will be submitted.                                                        |
+| `showProgressIndicator` | string | The type of progress indicator to show (`"vertical"` or `"horizontal"`).                              |
+| `sectionHighlightColor` | string | The highlight color for the current section in the progress bar.                                      |
+| `submissionMessages`    | object | Optional custom messages for submission success and error dialogs. See table below for configuration. |
+| `sections`              | array  | An array of section objects.                                                                          |
+
+#### SubmissionMessages
+
+Defines optional custom text shown when a form is submitted successfully or fails.
+
+| Option           | Type   | Default Value                                                                                                                  | Description                                              |
+| ---------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------- |
+| `successTitle`   | string | `"Success"`                                                                                                                    | Title text displayed when the form is successfully sent. |
+| `successMessage` | string | `"Your application was submitted successfully!"`                                                                               | Message body shown on success.                           |
+| `errorTitle`     | string | `"Error"`                                                                                                                      | Title text displayed when submission fails.              |
+| `errorMessage`   | string | `"There was an issue submitting your application. Please try again. If this issue persists, please contact data@dvrpc.org..."` | Message body shown on error or failed submission.        |
+
+**Example:**
+
+```json
+"submissionMessages": {
+  "successTitle": "Thank You!",
+  "successMessage": "Your submission has been received. You’ll receive a confirmation email shortly.",
+  "errorTitle": "Submission Failed",
+  "errorMessage": "We couldn’t process your submission at this time. Please try again later."
+}
+```
 
 ### Section
 
@@ -51,18 +72,56 @@ Sure, here are the options for `formConfig`, `section`, and `field` as tables in
 | `rows`              | number  | The number of rows for textarea fields.                                                                                | `"textarea"`                         |
 | `condition`         | object  | Condition to determine if the field should be visible (optional).                                                      | All fields                           |
 
-#### FetchOptions
+### FetchOptions
 
-| Option           | Type   | Description                                                          |
-| ---------------- | ------ | -------------------------------------------------------------------- |
-| `url`            | string | The URL to fetch options from.                                       |
-| `method`         | string | The HTTP method to use for fetching options (`"GET"` or `"POST"`).   |
-| `target`         | string | The key in the response data that contains the options.              |
-| `valueField`     | string | The field in the response data to use as the option value.           |
-| `labelField`     | array  | An array of fields in the response data to use for the option label. |
-| `labelSeparator` | string | The separator to use between label fields (optional).                |
+Supports both simple and advanced label/value assembly.
 
-#### Condition
+| Option           | Type          | Description                                                                                      |
+| ---------------- | ------------- | ------------------------------------------------------------------------------------------------ |
+| `url`            | string        | The URL to fetch options from.                                                                   |
+| `method`         | string        | The HTTP method to use for fetching options (`"GET"` or `"POST"`).                               |
+| `target`         | string        | The key in the response data that contains the array of option objects.                          |
+| `valueField`     | string/object | The field(s) or configuration used to assemble the option value. See **Assembly Options** below. |
+| `labelField`     | string/object | The field(s) or configuration used to assemble the option label. See **Assembly Options** below. |
+| `valueSeparator` | string        | Separator for legacy multi-field `valueField` arrays (optional, backward-compatible).            |
+| `labelSeparator` | string        | Separator for legacy multi-field `labelField` arrays (optional, backward-compatible).            |
+
+#### Assembly Options (Advanced Form)
+
+For both `labelField` and `valueField`, you can now provide either:
+
+- a single string (simple field reference)
+- an array of field names (legacy form)
+- or an **object** with detailed assembly rules:
+
+| Property    | Type   | Description                                           |
+| ----------- | ------ | ----------------------------------------------------- |
+| `fields`    | array  | Array of field names to combine.                      |
+| `separator` | string | Separator between fields (default: `" "`).            |
+| `prefix`    | string | Optional text prepended to the assembled label/value. |
+| `suffix`    | string | Optional text appended to the assembled label/value.  |
+
+**Example:**
+
+```json
+"fetchOptions": {
+  "url": "https://example.com/api/items",
+  "method": "GET",
+  "target": "data",
+  "labelField": {
+    "fields": ["first_name", "last_name"],
+    "separator": " ",
+    "prefix": "Name: "
+  },
+  "valueField": {
+    "fields": ["id", "region_code"],
+    "separator": "-",
+    "suffix": "_val"
+  }
+}
+```
+
+### Condition
 
 | Option     | Type    | Description                                                              |
 | ---------- | ------- | ------------------------------------------------------------------------ |
@@ -73,15 +132,19 @@ Sure, here are the options for `formConfig`, `section`, and `field` as tables in
 
 ## Examples
 
-### Example Configuration
-
-Here is an example of a simple form configuration:
+### Example Configuration (with submission messages)
 
 ```json
 {
   "endpoint": "https://example.com/submit",
   "showProgressIndicator": "horizontal",
   "sectionHighlightColor": "#4caf50",
+  "submissionMessages": {
+    "successTitle": "Thank You!",
+    "successMessage": "We’ve received your registration. You will get a confirmation shortly.",
+    "errorTitle": "Submission Error",
+    "errorMessage": "Something went wrong while submitting. Please try again later."
+  },
   "sections": [
     {
       "title": "Personal Information",
@@ -90,50 +153,23 @@ Here is an example of a simple form configuration:
           "name": "firstName",
           "label": "First Name",
           "type": "text",
-          "required": true,
-          "placeholder": "Enter your first name"
+          "required": true
         },
         {
-          "name": "lastName",
-          "label": "Last Name",
-          "type": "text",
-          "required": true,
-          "placeholder": "Enter your last name"
-        },
-        {
-          "name": "gender",
-          "label": "Gender",
+          "name": "country",
+          "label": "Country",
           "type": "select",
-          "required": true,
-          "options": ["Male", "Female", "Other"]
-        },
-        {
-          "name": "bio",
-          "label": "Bio",
-          "type": "textarea",
-          "rows": 5,
-          "placeholder": "Tell us about yourself"
-        }
-      ]
-    },
-    {
-      "title": "Account Details",
-      "fields": [
-        {
-          "name": "email",
-          "label": "Email",
-          "type": "text",
-          "required": true,
-          "placeholder": "Enter your email",
-          "validationPattern": "^\\S+@\\S+\\.\\S+$",
-          "validationWarning": "Please enter a valid email address"
-        },
-        {
-          "name": "password",
-          "label": "Password",
-          "type": "password",
-          "required": true,
-          "placeholder": "Enter your password"
+          "fetchOptions": {
+            "url": "https://example.com/countries",
+            "method": "GET",
+            "target": "results",
+            "valueField": "id",
+            "labelField": {
+              "fields": ["name", "iso_code"],
+              "separator": " (",
+              "suffix": ")"
+            }
+          }
         }
       ]
     }
@@ -141,27 +177,11 @@ Here is an example of a simple form configuration:
 }
 ```
 
-This configuration will create a form with two sections, "Personal Information" and "Account Details," each containing several fields.
+## Change History
 
-## Custom Fetch Options
-
-Fields can dynamically fetch options from an API using the `fetchOptions` property. Here is an example of a field with fetch options:
-
-```json
-{
-  "name": "country",
-  "label": "Country",
-  "type": "select",
-  "required": true,
-  "fetchOptions": {
-    "url": "https://example.com/countries",
-    "method": "GET",
-    "target": "countries",
-    "valueField": "id",
-    "labelField": ["name"],
-    "labelSeparator": ", "
-  }
-}
-```
-
-In this example, the field will fetch options from the specified URL and use the `id` field as the value and the `name` field as the label for each option.
+| Version  | Date       | Description                                                                                      |
+| -------- | ---------- | ------------------------------------------------------------------------------------------------ |
+| **v1.0** | 2024-07-01 | Initial version documenting core configuration and field types.                                  |
+| **v1.1** | 2024-08-15 | Added dynamic `fetchOptions` section and improved `condition` visibility rules.                  |
+| **v1.2** | 2024-10-01 | Added progress indicators and table field summary support.                                       |
+| **v1.3** | 2025-11-07 | Added `submissionMessages` configuration and enhanced `fetchOptions` with prefix/suffix support. |
