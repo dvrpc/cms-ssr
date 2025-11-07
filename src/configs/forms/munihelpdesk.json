@@ -1,0 +1,124 @@
+{
+  "name": "Municipal Help Desk Request",
+  "endpoint": "https://cloud.dvrpc.org/api/project-intake/v1/submit-form",
+  "showProgressIndicator": "horizontal",
+  "submissionMessages": {
+    "successTitle": "Thank You!",
+    "successMessage": "Your help desk request has been received. You'll get a confirmation email shortly.",
+    "errorTitle": "Submission Failed",
+    "errorMessage": "We couldn't process your request at this time. Please retry or contact munihelpdesk@dvrpc.org."
+  },
+  "sections": [
+    { "title": "Municipal Help Desk Request",
+      "fields": [
+        {
+          "type": "hidden",
+          "name": "source",
+          "value": "munihelpdesk"
+        },
+        {
+          "type": "text",
+          "name": "name",
+          "label": "Your Name",
+          "required": true
+        },
+        {
+          "type": "text",
+          "name": "role",
+          "label": "Your Title or Municipal Role",
+          "required": true
+        },
+        {
+          "type": "select",
+          "name": "municipality",
+          "label": "Name of your municipality",
+          "required": true,
+          "placeholder": "Type name to find...",
+          "fetchOptions": {
+            "url": "https://arcgis.dvrpc.org/portal/rest/services/boundaries/municipalboundaries/FeatureServer/0/query?outFields=mun_name,co_name&where=dvrpc_reg=%27Yes%27&returnGeometry=false&orderByFields=mun_name%20ASC&f=json",
+            "method": "GET",
+            "valueField": {
+              "fields": ["attributes.mun_name", "attributes.co_name"],
+              "separator": ", ",
+              "suffix": " County"
+            },
+            "labelField": {
+              "fields": ["attributes.mun_name", "attributes.co_name"],
+              "separator": ", ",
+              "suffix": " County"
+            },
+            "target": "features"
+          }
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "label": "Email Address",
+          "placeholder": "name@gmail.com",
+          "required": true,
+          "validationPattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+          "validationWarning": "Please enter a valid email address."
+        },
+        {
+          "type": "text",
+          "name": "phone",
+          "label": "Phone Number",
+          "required": true
+        },
+        {
+          "type": "select",
+          "name": "contact_pref",
+          "label": "What is your preferred method of communication?",
+          "required": false,
+          "placeholder": "Select...",
+          "options": [
+                "Email",
+                "Phone",
+                "Other"
+            ]
+        },
+        {
+          "type": "text",
+          "name": "contact_pref_other",
+          "label": "What other form do you prefer?",
+          "condition": {
+            "field": "contact_pref",
+            "value": "Other"
+          }
+        },
+        {
+          "type": "multiselect",
+          "name": "category",
+          "label": "What can we help you with?",
+          "required": false,
+          "placeholder": "Select all that apply...",
+          "options": [
+            "Support in community engagement work",
+            "Technical assistance support on planning ideas",
+            "Information on DVRPC's funding opportunities",
+            "Seeking other funding",
+            "Data and/or GIS support",
+            "Other"
+          ]        
+        },
+        {
+          "type": "text",
+          "name": "category_other",
+          "label": "Describe the other support:",
+          "condition": {
+            "field": "category",
+            "value": "Other"
+          }
+        },
+        {
+          "type": "textarea",
+          "name": "support_request",
+          "label": "Please provide your questions or requests in a detailed description below:",
+          "required": true,
+          "rows": 8
+        }
+      ]
+    }
+    
+  ]
+}
