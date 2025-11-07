@@ -12,6 +12,7 @@ const templates = {
   "/economic/ceds": CedsPage,
   "/trails/regionaltrailsprogram": RegionalTrailsProgram,
   "/committees/**": CommitteePage,
+  "/municipalhelpdesk": MunicipalExchange,
   "/**": DefaultPage,
 };
 

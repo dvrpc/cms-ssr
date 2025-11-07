@@ -6,6 +6,9 @@ import Body from "./Body";
 import StaffContact from "./StaffContact";
 import { Helmet } from "react-helmet";
 
+import ReusableForm from './forms/ReusableForm';
+import formConfig from '../configs/forms/munihelpdesk.json';
+
 const Page = () => {
   const {
     nodePage: {
@@ -20,21 +23,20 @@ const Page = () => {
   return (
     <>
       <Helmet>
-        <link
-          href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css"
-          rel="stylesheet"
-        />
         <title>{title} | DVRPC</title>
         {body.summary && <meta name="description" content={body.summary} />}
-        <style>
-          {`:root {
-        ${themeToCustomVars(field_theme)}
-      }`}
-        </style>
+        <style type="text/css">{`
+          :root {
+            ${themeToCustomVars(field_theme)}
+          }
+          main label {
+            padding: 0 !important;
+          }
+        `}</style>
       </Helmet>
       <Body title={title} menu={navItem}>
         <HtmlParser html={body.processed ?? ""} />
-        {/* form goes here */}
+        <ReusableForm formConfig={formConfig} />
       </Body>
       <StaffContact
         staffContact={field_staff_contact}
