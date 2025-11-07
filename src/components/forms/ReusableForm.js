@@ -179,27 +179,56 @@ const ReusableForm = ({ formConfig }) => {
     return dotNotation.split(".").reduce((acc, key) => acc[key], obj);
   };
 
-  const assembleLabel = (option, labelFieldAssembly, separator = " ") => {
-    return labelFieldAssembly
+  const assembleField = (option, assemblyConfig, legacySeparator) => {
+    if (!assemblyConfig) return "";
+
+    if (Array.isArray(assemblyConfig)) {
+      return assemblyConfig
+        .map((field) => getFieldFromDotNotation(option, field))
+        .filter((v) => v !== undefined && v !== null)
+        .join(legacySeparator || " ");
+    }
+
+    if (typeof assemblyConfig === "string") {
+      return getFieldFromDotNotation(option, assemblyConfig);
+    }
+
+    const {
+      fields = [],
+      separator = " ",
+      prefix = "",
+      suffix = "",
+    } = assemblyConfig;
+
+    const joined = fields
       .map((field) => getFieldFromDotNotation(option, field))
+      .filter((v) => v !== undefined && v !== null)
       .join(separator);
+
+    return `${prefix}${joined}${suffix}`;
   };
+
 
   const fetchOptions = async (field) => {
     try {
       const response = await fetch(field.fetchOptions.url, {
-        method: field.fetchOptions.method,
+        method: field.fetchOptions.method || "GET",
       });
       const data = await response.json();
 
       const options = data[field.fetchOptions.target].map((option) => ({
-        value: getFieldFromDotNotation(option, field.fetchOptions.valueField),
-        label: assembleLabel(
+        value: assembleField(
+          option,
+          field.fetchOptions.valueField,
+          field.fetchOptions.valueSeparator
+        ),
+        label: assembleField(
           option,
           field.fetchOptions.labelField,
           field.fetchOptions.labelSeparator
         ),
       }));
+
       setDynamicOptions((prevOptions) => ({
         ...prevOptions,
         [field.name]: options,
@@ -208,6 +237,7 @@ const ReusableForm = ({ formConfig }) => {
       console.error("Error fetching options:", error);
     }
   };
+
 
   const handleChange = (event) => {
     const { name, value, files } = event.target;
@@ -622,6 +652,18 @@ const ReusableForm = ({ formConfig }) => {
   };
 
   const renderSubmissionDialog = () => {
+    const {
+      submissionMessages = {},
+    } = formConfig || {};
+
+    const {
+      successTitle = "Success",
+      successMessage = "Your application was submitted successfully!",
+      errorTitle = "Error",
+      errorMessage = `There was an issue submitting your application. Please try again. 
+      If this issue persists, please contact data@dvrpc.org and provide the detailed error message below.`,
+    } = submissionMessages;
+
     if (isSubmitting) {
       return (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50">
@@ -633,17 +675,18 @@ const ReusableForm = ({ formConfig }) => {
     }
 
     if (submitResult) {
+      const { success, data, message } = submitResult;
       return (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50">
-          <div className="rounded-lg bg-white p-4 shadow-lg">
-            {submitResult.success ? (
+          <div className="rounded-lg bg-white p-4 shadow-lg max-w-md">
+            {success ? (
               <div>
-                <h2 className="text-xl font-bold">Success</h2>
-                <p>Your application was submitted successfully!</p>
+                <h2 className="text-xl font-bold">{successTitle}</h2>
+                <p>{successMessage}</p>
                 <button
                   type="button"
                   onClick={() => {
-                    setProjectID(submitResult.data.id);
+                    setProjectID(data?.id);
                     setSubmitResult(null);
                     setTransactionComplete(true);
                   }}
@@ -654,11 +697,9 @@ const ReusableForm = ({ formConfig }) => {
               </div>
             ) : (
               <div>
-                <h2 className="text-xl font-bold text-red-600">Error</h2>
+                <h2 className="text-xl font-bold text-red-600">{errorTitle}</h2>
                 <p>
-                  There was an issue submitting your application. Please try
-                  again. If this issue persists, please contact data@dvrpc.org
-                  and provide the detailed error message below.
+                  {errorMessage}
                   <br />
                   <button
                     onClick={toggleAccordion}
@@ -669,7 +710,7 @@ const ReusableForm = ({ formConfig }) => {
                 </p>
                 {isOpen && (
                   <div className="mt-2 rounded bg-red-100 p-4">
-                    <p>{submitResult.message}</p>
+                    <p>{message}</p>
                   </div>
                 )}
                 <button
@@ -695,7 +736,7 @@ const ReusableForm = ({ formConfig }) => {
         <PrintableForm formConfig={formConfig} formData={formData} />
       ) : (
         <div className="flex grid sm:grid-cols-1 md:grid-cols-3">
-          {formConfig.showProgressIndicator === "vertical" && (
+          {formConfig.showProgressIndicator === "vertical" && formConfig.sections.length > 1 && (
             <div className="m-4 md:col-span-1 md:col-start-1 md:row-start-2">
               <SectionProgressIndicator
                 sections={formConfig.sections}
@@ -703,7 +744,7 @@ const ReusableForm = ({ formConfig }) => {
               />
             </div>
           )}
-          {formConfig.showProgressIndicator === "horizontal" && (
+          {formConfig.showProgressIndicator === "horizontal"  && formConfig.sections.length > 1 && (
             <div className="my-4 md:col-span-3 md:col-start-1 md:row-start-1">
               <HorizontalProgressBar
                 sections={formConfig.sections}
