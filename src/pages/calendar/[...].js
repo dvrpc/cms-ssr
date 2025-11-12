@@ -9,22 +9,45 @@ import Body from "../../components/Body";
 import StaffContact from "../../components/StaffContact";
 import Calendar from "../../components/Calendar";
 import TitleVI from "../../components/TitleVI";
+import GenerateCaptcha from "../../components/GenerateCaptcha";
 
 const title = "Calendar";
 
 const CalendarPage = ({ data, serverData, location }) => {
   const { userUser, navItem } = data;
-  const submitForm = async (event) => {
+  const action = "submit";
+  const { generateToken, verifyCaptcha } = GenerateCaptcha();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.target);
-    try {
-      await fetch("https://www.dvrpc.org/getinvolved/events/send.aspx", {
-        method: "POST",
-        body: data,
-      });
-      if (window) window.location.reload();
-    } catch (error) {
-      console.error(error);
+    setIsSubmitted(true);
+    const token = await generateToken(action);
+    if (!token) return;
+    const formData = new FormData(event.target);
+    if (verifyCaptcha(token, action))
+      try {
+        const response = await fetch(
+          "https://www.dvrpc.org/asp/pubs/send.aspx",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        if (!response.ok) {
+          window.alert("Failed to submit form");
+          throw new Error("Failed to submit form");
+        }
+        const success = confirm(
+          "Thank you for submitting a translation request."
+        );
+        if (success) window.location.reload();
+      } catch (error) {
+        console.error(error);
+      }
+    else {
+      window.alert("Error verifying reCaptcha, please try again...");
+      throw new Error("Failed to submit form");
     }
   };
 

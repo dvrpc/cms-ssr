@@ -66,11 +66,11 @@ const AgendaPage = ({ data, serverData, location, name }) => {
             })}
           </strong>
         </p>
-        {meetingRegistrationTime > new Date() && (
+        {meetingRegistrationTime > new Date() && !!note3 ? (
           <a href={note3} className="btn btn-primary">
             Register Now
           </a>
-        )}
+        ): null}
         {new Date(meetingdate).toLocaleDateString() ===
           new Date().toLocaleDateString() && !!note3 ? (
           <a href={note3} className="btn btn-primary">
