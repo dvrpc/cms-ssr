@@ -105,7 +105,7 @@ const CalendarPage = ({ data, serverData, location }) => {
           </p>
           <div className="card">
             <h2>Interpretation or Accommodation Request</h2>
-            <form method="POST" onSubmit={submitForm}>
+            <form method="POST" onSubmit={handleSubmit}>
               <fieldset form="interpretation-request">
                 <label htmlFor="First Name">First Name: </label>
                 <input
