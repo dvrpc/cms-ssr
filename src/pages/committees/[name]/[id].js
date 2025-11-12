@@ -23,6 +23,7 @@ const AgendaPage = ({ data, serverData, location, name }) => {
     meetingdate,
     meetingdetail,
     meetingtime,
+    meetingdatetime,
     note1,
     note2,
     note3,
@@ -47,8 +48,8 @@ const AgendaPage = ({ data, serverData, location, name }) => {
     },
   };
 
-  const meetingRegistrationTime = new Date(meetingdate);
-  meetingRegistrationTime.setHours(meetingRegistrationTime.getHours() - 2);
+  const meetingRegistrationTime = new Date(meetingdatetime);
+  meetingRegistrationTime.setHours(meetingRegistrationTime.getHours() + 2);
 
   return (
     <>
@@ -65,11 +66,11 @@ const AgendaPage = ({ data, serverData, location, name }) => {
             })}
           </strong>
         </p>
-        {meetingRegistrationTime > new Date() && !!note3 ? (
+        {meetingRegistrationTime > new Date() && (
           <a href={note3} className="btn btn-primary">
             Register Now
           </a>
-        ) : null}
+        )}
         {new Date(meetingdate).toLocaleDateString() ===
           new Date().toLocaleDateString() && !!note3 ? (
           <a href={note3} className="btn btn-primary">
