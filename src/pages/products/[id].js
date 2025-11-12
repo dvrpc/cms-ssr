@@ -9,8 +9,45 @@ import HeadTemplate, {
 } from "../../components/HeadTemplate";
 import HtmlParser from "../../components/HtmlParser";
 import TitleVI from "../../components/TitleVI";
+import GenerateCaptcha from "../../components/GenerateCaptcha";
 
 const ProductDetailsPage = ({ data, serverData = {}, location, title }) => {
+  const action = "submit";
+  const { generateToken, verifyCaptcha } = GenerateCaptcha();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitted(true);
+    const token = await generateToken(action);
+    if (!token) return;
+    const formData = new FormData(event.target);
+    if (verifyCaptcha(token, action))
+      try {
+        const response = await fetch(
+          "https://www.dvrpc.org/asp/pubs/send.aspx",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        if (!response.ok) {
+          window.alert("Failed to submit form");
+          throw new Error("Failed to submit form");
+        }
+        const success = confirm(
+          "Thank you for submitting a translation request."
+        );
+        if (success) window.location.reload();
+      } catch (error) {
+        console.error(error);
+      }
+    else {
+      window.alert("Error verifying reCaptcha, please try again...");
+      throw new Error("Failed to submit form");
+    }
+  };
+
   serverData = serverData.items[0];
   if (!serverData) serverData = {};
   const { userUser, navItem } = data;
@@ -148,7 +185,7 @@ const ProductDetailsPage = ({ data, serverData = {}, location, title }) => {
           </p>
 
           <form
-            onSubmit={() => setIsSubmitted(true)}
+            onSubmit={handleSubmit}
             action="https://www.dvrpc.org/asp/pubs/send.aspx"
             method="POST"
           >
