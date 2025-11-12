@@ -47,6 +47,9 @@ const AgendaPage = ({ data, serverData, location, name }) => {
     },
   };
 
+  const meetingRegistrationTime = new Date(meetingdate);
+  meetingRegistrationTime.setHours(meetingRegistrationTime.getHours() - 2);
+
   return (
     <>
       <Body title={pagetitle} menu={navItem}>
@@ -62,7 +65,7 @@ const AgendaPage = ({ data, serverData, location, name }) => {
             })}
           </strong>
         </p>
-        {new Date(meetingdate) > new Date() && !!note3 ? (
+        {meetingRegistrationTime > new Date() && !!note3 ? (
           <a href={note3} className="btn btn-primary">
             Register Now
           </a>
