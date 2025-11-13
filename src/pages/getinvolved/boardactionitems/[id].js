@@ -61,7 +61,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
       .toISOString()
       .slice(0, 7)}_${
       serverData.type === "TIP" ? "TIP" : serverData.agendanum
-    }`,
+    }.pdf`,
     fetcher
   );
 
@@ -102,7 +102,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
         )}
         <h2>Action Proposed:</h2>
         <div dangerouslySetInnerHTML={{ __html: serverData.details }} />
-        {!attachementIsLoading && !error && (
+        {!attachementIsLoading && !error && actionattachment && (
           <>
             <h2>Attachments</h2>
             <a
@@ -112,7 +112,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
                 .toISOString()
                 .slice(0, 7)}_${
                 serverData.type === "TIP" ? "TIP" : serverData.agendanum
-              }`}
+              }.pdf`}
               target="_blank"
             >
               Download attachments for this action item
