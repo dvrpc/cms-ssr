@@ -26,10 +26,13 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
     const formData = new FormData(event.target);
     formData.append("ActionItemId", id);
     try {
-      const response = await fetch("https://www.dvrpc.org/api/comments", {
-        method: "POST",
-        body: new URLSearchParams(formData),
-      });
+      const response = await fetch(
+        "https://apis.dvrpc.org/internal/boardactioncomment/comments/all",
+        {
+          method: "POST",
+          body: new URLSearchParams(formData),
+        }
+      );
 
       if (!response.ok) {
         window.alert("Failed to submit form");
