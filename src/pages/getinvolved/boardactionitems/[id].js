@@ -6,6 +6,7 @@ import HeadTemplate, {
 } from "../../../components/HeadTemplate";
 import Body from "../../../components/Body";
 import StaffContact from "../../../components/StaffContact";
+import useSWR from "swr";
 
 const title = "Board Action Item";
 
@@ -25,7 +26,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
     const formData = new FormData(event.target);
     formData.append("ActionItemId", id);
     try {
-      const response = await fetch("https://www2.dvrpc.org/api/comments", {
+      const response = await fetch("https://www.dvrpc.org/api/comments", {
         method: "POST",
         body: new URLSearchParams(formData),
       });
@@ -41,6 +42,26 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
     }
   };
 
+  const fetcher = async (url) => {
+    const res = await fetch(url, { method: "HEAD" });
+    if (res.ok) return url;
+    else return null;
+  };
+  const {
+    data: actionattachment,
+    isLoading: attachementIsLoading,
+    error,
+  } = useSWR(
+    `https://www.dvrpc.org/committees/board/action/${new Date(
+      serverData.boarddate
+    )
+      .toISOString()
+      .slice(0, 7)}_${
+      serverData.type === "TIP" ? "TIP" : serverData.agendanum
+    }`,
+    fetcher
+  );
+
   return (
     <>
       <Body menu={navItem}>
@@ -48,7 +69,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
           <h2 className="m-0">Action Item</h2>
           <span className="ml-auto">
             Date Prepared:{" "}
-            {new Date(serverData.Dateadded).toLocaleDateString("en-US", {
+            {new Date(serverData.date_added).toLocaleDateString("en-US", {
               month: "2-digit",
               day: "2-digit",
               year: "numeric",
@@ -57,32 +78,37 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
         </div>
         <h2 className="underline">Agenda Item:</h2>
         <h2>
-          <span>{serverData.Agendanum}.</span>{" "}
-          <span className="underline">{serverData.Title}</span>
+          <span>{serverData.Agendanum}</span>{" "}
+          <span className="underline">{serverData.title}</span>
         </h2>
-        <div dangerouslySetInnerHTML={{ __html: serverData.Details }} />
-        {(serverData.Rtc || serverData.Staff) && <h2>Recommendations:</h2>}
-        {serverData.Rtc && (
+        <div dangerouslySetInnerHTML={{ __html: serverData.details }} />
+        {(serverData.rtc || serverData.staff) && <h2>Recommendations:</h2>}
+        {serverData.rtc && (
           <p>
             <span className="font-bold underline">
               Regional Technical Committee (RTC):
             </span>{" "}
-            {serverData.Rtc}
+            {serverData.rtc}
           </p>
         )}
-        {serverData.Staff && (
+        {serverData.staff && (
           <p>
             <span className="font-bold underline">DVRPC Staff:</span>{" "}
-            {serverData.Staff}
+            {serverData.staff}
           </p>
         )}
         <h2>Action Proposed:</h2>
-        <div dangerouslySetInnerHTML={{ __html: serverData.Action }} />
-        <h2>Attachments</h2>
-        <a href={serverData.PdfLink} target="_blank">
-          Download attachments for this action item
-        </a>
-        {isOpenToComment(serverData.Boarddate) ? (
+        <div dangerouslySetInnerHTML={{ __html: serverData.details }} />
+        {!attachementIsLoading && !error && (
+          <>
+            <h2>Attachments</h2>
+            <a href={serverData.pdflink} target="_blank">
+              Download attachments for this action item
+            </a>
+          </>
+        )}
+
+        {isOpenToComment(serverData.boarddate) ? (
           <form onSubmit={handleSubmit} autocomplete="off">
             <p>
               Enter a comment about this action item for review by the DVRPC
@@ -163,7 +189,7 @@ export default BoardActionItems;
 export async function getServerData(context) {
   try {
     const res = await fetch(
-      `https://www.dvrpc.org/api/actionitems/${context.params.id}`
+      `https://apis.dvrpc.org/internal/boardactioncomment/actionitems/${context.params.id}`
     );
 
     if (!res.ok) {

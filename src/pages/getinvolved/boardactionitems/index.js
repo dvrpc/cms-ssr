@@ -49,10 +49,10 @@ const BoardActionItems = ({ data, location, serverData }) => {
             Action Items
           </h4>
           <ul className="list-group">
-            {serverData.map((action) => (
+            {serverData.items.map((action) => (
               <li>
-                <Link to={`/getinvolved/boardactionitems/${action.Id}`}>
-                  {action.Title}
+                <Link to={`/getinvolved/boardactionitems/${action.id}`}>
+                  {action.title}
                 </Link>
               </li>
             ))}
@@ -106,7 +106,9 @@ export default BoardActionItems;
 
 export async function getServerData() {
   try {
-    const res = await fetch("https://www.dvrpc.org/api/actionitems");
+    const res = await fetch(
+      "https://apis.dvrpc.org/internal/boardactioncomment/actionitems/latest"
+    );
 
     if (!res.ok) {
       throw new Error("Response failed");
