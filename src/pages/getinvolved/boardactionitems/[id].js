@@ -102,7 +102,16 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
         {!attachementIsLoading && !error && (
           <>
             <h2>Attachments</h2>
-            <a href={serverData.pdflink} target="_blank">
+            <a
+              href={`https://www.dvrpc.org/committees/board/action/${new Date(
+                serverData.boarddate
+              )
+                .toISOString()
+                .slice(0, 7)}_${
+                serverData.type === "TIP" ? "TIP" : serverData.agendanum
+              }`}
+              target="_blank"
+            >
               Download attachments for this action item
             </a>
           </>
