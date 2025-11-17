@@ -81,7 +81,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
         </div>
         <h2 className="underline">Agenda Item:</h2>
         <h2>
-          <span>{serverData.Agendanum}</span>{" "}
+          <span>{serverData.agendanum}</span>{" "}
           <span className="underline">{serverData.title}</span>
         </h2>
         <div dangerouslySetInnerHTML={{ __html: serverData.details }} />
@@ -101,7 +101,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
           </p>
         )}
         <h2>Action Proposed:</h2>
-        <div dangerouslySetInnerHTML={{ __html: serverData.details }} />
+        <div dangerouslySetInnerHTML={{ __html: serverData.action }} />
         {!attachementIsLoading && !error && actionattachment && (
           <>
             <h2>Attachments</h2>
