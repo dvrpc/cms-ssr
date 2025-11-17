@@ -13,7 +13,7 @@ const PPTFForm = () => {
     if (verifyCaptcha(token, action))
       try {
         const response = await fetch(
-          "https://www2.dvrpc.org/asp/pptfapplication/save23.aspx",
+          "https://apis.dvrpc.org/internal/publicparticipation/pptf/pptfapplication",
           {
             method: "POST",
             body: formData,
