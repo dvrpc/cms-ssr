@@ -20,6 +20,10 @@ const CurrentRow = ({ agenda }) => {
     agenda.presentations,
     fetcher
   );
+  const { data: comments, isLoading: commentsIsLoading } = useSWR(
+    agenda.comments,
+    fetcher
+  );
 
   return (
     <tr key={agenda.id}>
@@ -37,7 +41,7 @@ const CurrentRow = ({ agenda }) => {
           {!presentationsIsLoading && presentations && (
             <a href={presentations}>Presentations</a>
           )}
-          {agenda.comments && <a href={agenda.comments}>Comments</a>}
+          {!commentsIsLoading && comments && <a href={comments}>Comments</a>}
           {agenda.note2 && <a href={agenda.note2}>Recording</a>}
         </div>
       </td>
@@ -60,8 +64,10 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
       const date = new Date(agenda.meetingdate).toISOString().slice(0, 7);
       const minutesURL = `https://www.dvrpc.org/asp/committee/committees/${agenda.committeeid}/${date}.pdf`;
       const presentationsURL = `https://www.dvrpc.org/asp/committee/committees/${agenda.committeeid}/presentations/${date}.pdf`;
+      const commentsURL = `https://www.dvrpc.org/asp/committee/committees/${agenda.committeeid}/presentations/${date}.pdf`;
       agenda.minutes = minutesURL;
       agenda.presentations = presentationsURL;
+      agenda.comments = commentsURL;
 
       result[isCurrent ? 0 : 1].push(agenda);
       return result;
@@ -88,7 +94,14 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
             {agenda.presentations && (
               <a href={agenda.presentations}>Presentations</a>
             )}
-            {agenda.comments && <a href={agenda.comments}>Comments</a>}
+            <a
+              href={`https://dvrpc.org/asp/committee/committees/${
+                agenda.committeeid
+              }/comments/${date.toISOString().slice(0, 7)}.pdf`}
+            >
+              Comments
+            </a>
+
             {agenda.note2 && <a href={agenda.note2}>Recording</a>}
           </div>
         </td>
