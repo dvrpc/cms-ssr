@@ -67,7 +67,7 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
       const date = new Date(agenda.meetingdate).toISOString().slice(0, 7);
       const minutesURL = `https://www.dvrpc.org/asp/committee/committees/${agenda.committeeid}/${date}.pdf`;
       const presentationsURL = `https://www.dvrpc.org/asp/committee/committees/${agenda.committeeid}/presentations/${date}.pdf`;
-      const commentsURL = `https://www.dvrpc.org/asp/committee/committees/${agenda.committeeid}/presentations/${date}.pdf`;
+      const commentsURL = `https://www.dvrpc.org/asp/committee/committees/${agenda.committeeid}/comments/${date}.pdf`;
       agenda.minutes = minutesURL;
       agenda.presentations = presentationsURL;
       agenda.comments = commentsURL;
