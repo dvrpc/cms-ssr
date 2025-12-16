@@ -47,8 +47,8 @@ const rootNavArr = [
     href: "/LivableCommunities/",
   },
   {
-    link: "Planning Assistance",
-    href: "/Planning/",
+    link: "Municipal Support",
+    href: "/municipalities/",
   },
   {
     link: "Commuters",
