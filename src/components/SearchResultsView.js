@@ -1,17 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Body from "./Body";
 import StaffContact from "./StaffContact";
 import HtmlParser from "./HtmlParser";
+import useSWR from "swr";
 
 const LIMIT = 10;
 
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
 const SearchResultsView = ({ data, serverData, location, title }) => {
   const { userUser, navItem } = data;
-  const { items, searchInformation } = serverData;
   const query = new URLSearchParams(location.search).get("q") ?? "";
   const offset = new URLSearchParams(location.search).get("offset") ?? 0;
   useEffect(() => window.document.querySelector("h1").scrollIntoView(), []);
+  const {
+    data: items,
+    isLoading,
+    error,
+  } = useSWR(
+    query
+      ? `https://www.googleapis.com/customsearch/v1?key=AIzaSyBtZ_d6pCMAS92nGbySJ6U5IeUn2gw9NuM&cx=42a4661f3cebe4f7b&q=${query}&start=${
+          offset ?? 0
+        }`
+      : null,
+    fetcher
+  );
 
   return (
     <>
@@ -23,15 +37,15 @@ const SearchResultsView = ({ data, serverData, location, title }) => {
             type="search"
             className="appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
           />
-          {searchInformation && (
+          {query && !isLoading && (
             <span className="py-2 px-3 font-bold leading-tight text-gray-700">
-              {searchInformation?.totalResults} results found
+              {items.searchInformation.totalResults} results found
             </span>
           )}
         </form>
-        {query ? (
+        {query && !isLoading ? (
           <div>
-            {items.map((result) => (
+            {items.items.map((result) => (
               <div
                 key={result.link}
                 className="mb-4 space-y-1 border-b border-gray-200 pb-4"
@@ -84,15 +98,15 @@ const SearchResultsView = ({ data, serverData, location, title }) => {
               </a>
               <span>
                 {+offset + 1} &ndash;{" "}
-                {items.length === LIMIT ? +offset + LIMIT : items.length}
+                {items.items.length === LIMIT ? +offset + LIMIT : items.length}
               </span>
               <a
                 href={
-                  items.length === LIMIT
+                  items.items.length === LIMIT
                     ? `?q=${query}&offset=${+offset + LIMIT}`
                     : null
                 }
-                aria-disabled={items.length < LIMIT}
+                aria-disabled={items.items.length < LIMIT}
                 aria-label="Next"
                 className="aria-disabled:text-gray-400"
               >

@@ -9,7 +9,9 @@ import SearchResultsView from "../../components/SearchResultsView";
 
 const title = "DVRPC Search";
 
-const SearchPage = (props) => <SearchResultsView title={title} {...props} />;
+const SearchPage = (props) => {
+  return <SearchResultsView title={title} {...props} />;
+};
 
 export const Head = ({ data: { nodeTheme } }) =>
   HeadTemplate({
@@ -52,26 +54,3 @@ export const query = graphql`
 `;
 
 export default SearchPage;
-
-export async function getServerData({ query }) {
-  try {
-    const res = await fetch(
-      `https://www.dvrpc.org/api/search?q=${query.q ?? ""}&offset=${
-        query.offset ?? 0
-      }`
-    );
-    if (!res.ok) {
-      throw new Error("Response failed");
-    }
-
-    return {
-      props: await res.json(),
-    };
-  } catch (error) {
-    return {
-      status: 500,
-      headers: {},
-      props: {},
-    };
-  }
-}
