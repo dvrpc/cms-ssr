@@ -87,6 +87,7 @@ const StaffListPage = ({ data, serverData, location }) => {
           <ul className="list-group">
             {serverData.items
               .filter((emp) => !emp.sortorder)
+              .sort((a, b) => a.lastname > b.lastname)
               .map((emp) => (
                 <StaffRow key={emp.id} emp={emp} />
               ))}
