@@ -70,8 +70,8 @@ const AgendaPage = ({ data, serverData, location, name }) => {
           <a href={note3} className="btn btn-primary">
             Register Now
           </a>
-        ): null}
-        {new Date(meetingdate).toLocaleDateString() ===
+        ) : null}
+        {new Date(meetingRegistrationTime).toLocaleDateString() ===
           new Date().toLocaleDateString() && !!note3 ? (
           <a href={note3} className="btn btn-primary">
             Join Meeting
