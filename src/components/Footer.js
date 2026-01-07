@@ -23,7 +23,7 @@ const Footer = () => {
             <br />
             Philadelphia, PA 19106-1520
             <br />
-            215.592.1800
+            215-592-1800
           </p>
           <div className="mt-2 md:flex md:justify-between">
             <ul className="m-0 list-none gap-2 divide-stone-400 p-0 md:flex md:divide-x">

@@ -197,7 +197,7 @@ const Data = ({
                 <br />
                 Philadelphia, PA 19106-1520
                 <br />
-                215.592.1800
+                215-592-1800
               </small>
             </div>
             <small className="mt-4 self-end md:m-0">
