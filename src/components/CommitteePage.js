@@ -134,7 +134,7 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
           <>
             <table className="table w-full table-fixed">
               {Object.entries({
-                "Chair(s)": dataCommittee.chari,
+                "Chair(s)": dataCommittee.chair,
                 "Vice-Chair": dataCommittee.vicechair,
                 Coordinator: dataCommittee.coordinator,
                 "Assistant Coordinator": dataCommittee.asstcoordinator,
