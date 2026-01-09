@@ -122,7 +122,7 @@ const CommitteePage = ({ body, title, navItem, location, staffContact }) => {
     <>
       <Body title={title} menu={navItem}>
         <HtmlParser html={body ?? ""} />
-        {isLoading ? (
+        {isLoading || isLoadingCommittee ? (
           <div className="h-40 animate-pulse">
             <p className="my-4 h-4 w-64 bg-gray-300" />
             <p className="my-4 h-4 w-56 bg-gray-300" />
