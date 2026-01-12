@@ -34,7 +34,6 @@ const BoardActionItems = ({ data, location, serverData }) => {
               by U.S. Mail (c/o Office of Communications & Engagement, DVRPC,
               190 N. Independence Mall West, 8th Fl., Philadelphia, PA 19106);
             </li>
-            <li>by fax at 215-592-9125; or,</li>
             <li>via e-mail at public_affairs@dvrpc.org.</li>
           </ul>
           <p>
