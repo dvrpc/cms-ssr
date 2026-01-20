@@ -31,13 +31,11 @@ const WorkProgramPage = ({
     <>
       <Body title={title} menu={navItem}>
         <div className="my-4">
-          At its January 25, 2024 meeting, the DVRPC Board adopted the Fiscal
-          Year (FY) 2025 Unified Planning Work Program (UPWP). This document
+          At its January 23, 2025 meeting, the DVRPC Board adopted the Fiscal
+          Year (FY) 2026 Unified Planning Work Program (UPWP). This document
           outlines all of the federally-funded planning projects slated for the
-          nine-county region from July 1, 2024 to June 30, 2025. The PDF links
-          below reflect the final version of DVRPC's adopted FY2025 UPWP as of
-          July 1, 2024. As future amendments to the FY2025 UPWP are approved,
-          they will be shown in the Work Program Amendments list.
+          nine-county region from July 1, 2025 to June 30, 2026. View different
+          elements of the UPWP by toggling through the choices below.
         </div>
         <select
           className="form-control"
