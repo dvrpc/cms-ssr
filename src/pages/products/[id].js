@@ -162,9 +162,9 @@ const ProductDetailsPage = ({ data, serverData = {}, location, title }) => {
               <strong>Project Team</strong>
             </p>
             <ul>
-              {JSON.parse(serverData.projectteam)?.map((p) => (
-                <li key={p.Name}>
-                  <strong>{p.Name}</strong> {p.Title}
+              {serverData.projectteam?.map((p) => (
+                <li key={p.name}>
+                  <strong>{p.name}</strong> {p.title}
                 </li>
               ))}
             </ul>

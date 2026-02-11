@@ -28,10 +28,7 @@ const Product = (props) => {
 
   return props.type === "card" ? (
     <div key={props.id} className="my-4 flex w-full items-center gap-4 pr-6">
-      <a
-        className="shrink-0"
-        href={`https://www.dvrpc.org/Products/${props.id}`}
-      >
+      <a className="shrink-0" href={`/products/${props.id}`}>
         <img
           className="w-[100.5px] border border-solid border-gray-400 bg-white"
           src={`https://www.dvrpc.org/asp/pubs/201px/${props.id}.png`}
@@ -63,7 +60,7 @@ const Product = (props) => {
         className="float-right m-4 mt-0 w-[201px] border border-gray-300"
       />
       <a
-        href={`https://www.dvrpc.org/products/${props.id}`}
+        href={`/products/${props.id}`}
         className="text-2xl text-[color:var(--color-h1)] no-underline"
       >
         <HtmlParser html={title} />
