@@ -3,9 +3,9 @@ import { graphql, Link } from "gatsby";
 import HeadTemplate, {
   defaultThemeConfig,
   themeToCustomVars,
-} from "../../../components/HeadTemplate";
-import Body from "../../../components/Body";
-import StaffContact from "../../../components/StaffContact";
+} from "../../../../components/HeadTemplate";
+import Body from "../../../../components/Body";
+import StaffContact from "../../../../components/StaffContact";
 
 const title = "Board Action Items";
 
@@ -54,7 +54,7 @@ const BoardActionItems = ({ data, location, serverData }) => {
           <ul className="list-group">
             {serverData.items.map((action) => (
               <li>
-                <Link to={`/getinvolved/boardactionitems/${action.id}`}>
+                <Link to={`/committees/board/actionitems/${action.id}`}>
                   {action.title}
                 </Link>
               </li>
@@ -110,7 +110,7 @@ export default BoardActionItems;
 export async function getServerData() {
   try {
     const res = await fetch(
-      "https://apis.dvrpc.org/internal/boardactioncomment/actionitems/latest"
+      "https://apis.dvrpc.org/internal/boardactioncomment/actionitems/latest?committee=BOARD"
     );
 
     if (!res.ok) {

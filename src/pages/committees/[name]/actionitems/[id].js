@@ -3,12 +3,12 @@ import { graphql } from "gatsby";
 import HeadTemplate, {
   defaultThemeConfig,
   themeToCustomVars,
-} from "../../../components/HeadTemplate";
-import Body from "../../../components/Body";
-import StaffContact from "../../../components/StaffContact";
+} from "../../../../components/HeadTemplate";
+import Body from "../../../../components/Body";
+import StaffContact from "../../../../components/StaffContact";
 import useSWR from "swr";
 
-const title = "Board Action Item";
+const title = "Action Item";
 
 const isOpenToComment = (boardDate) => {
   let closedDate = new Date(boardDate);
@@ -55,11 +55,9 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
     isLoading: attachementIsLoading,
     error,
   } = useSWR(
-    `https://www.dvrpc.org/committees/board/action/${new Date(
-      serverData.boarddate
-    )
-      .toISOString()
-      .slice(0, 7)}_${
+    `https://www.dvrpc.org/asp/committee/committees/${
+      serverData.committee
+    }/action/${new Date(serverData.boarddate).toISOString().slice(0, 7)}_${
       serverData.type === "TIP" ? "TIP" : serverData.agendanum
     }.pdf`,
     fetcher
@@ -106,9 +104,9 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
           <>
             <h2>Attachments</h2>
             <a
-              href={`https://www.dvrpc.org/committees/board/action/${new Date(
-                serverData.boarddate
-              )
+              href={`https://www.dvrpc.org/committees/${
+                serverData.committee
+              }/action/${new Date(serverData.boarddate)
                 .toISOString()
                 .slice(0, 7)}_${
                 serverData.type === "TIP" ? "TIP" : serverData.agendanum
@@ -158,11 +156,12 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
   );
 };
 
-export const Head = ({ data: { nodeTheme } }) =>
-  HeadTemplate({
+export const Head = ({ data: { nodeTheme } }) => {
+  return HeadTemplate({
     title,
     css: themeToCustomVars(nodeTheme, defaultThemeConfig),
   });
+};
 
 export const query = graphql`
   query {
