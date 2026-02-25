@@ -118,7 +118,8 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
           </>
         )}
 
-        {isOpenToComment(serverData.boarddate) ? (
+        {isOpenToComment(serverData.boarddate) &&
+        serverData.committee === "BOARD" ? (
           <form onSubmit={handleSubmit} autocomplete="off">
             <p>
               Enter a comment about this action item for review by the DVRPC
