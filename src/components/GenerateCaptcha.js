@@ -25,7 +25,7 @@ const GenerateCaptcha = () => {
 
   const verifyCaptcha = async (token, action) => {
     try {
-      const req = await fetch("https://alpha.dvrpc.org/recaptcha/v3", {
+      const req = await fetch("https://cloud.dvrpc.org/api/recaptcha/v3", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
