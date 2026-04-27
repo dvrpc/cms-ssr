@@ -6,7 +6,6 @@ const doNotWrapLayout = [
   "/data/maps/",
   "/news/",
   "/economic/ceds/workforceanalysis/",
-  "/equity/",
 ];
 
 //Add regex to GraphQL query to match URLs in the navigation JSON
