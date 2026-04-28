@@ -31,7 +31,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
         {
           method: "POST",
           body: new URLSearchParams(formData),
-        }
+        },
       );
 
       if (!response.ok) {
@@ -60,14 +60,35 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
     }/action/${new Date(serverData.boarddate).toISOString().slice(0, 7)}_${
       serverData.type === "TIP" ? "TIP" : serverData.agendanum
     }.pdf`,
-    fetcher
+    fetcher,
   );
 
   return (
     <>
       <Body menu={navItem}>
+        <div className="mb-4">
+          <a
+            onClick={() => {
+              return history.back();
+            }}
+            href="#"
+            className="text-stone-600"
+          >
+            ⟵ Agenda
+          </a>
+        </div>
         <div className="flex items-center">
-          <h2 className="m-0">Action Item</h2>
+          <h3 className="m-0">
+            {new Date(serverData.boarddate).toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}{" "}
+            {serverData.committee === "BOARD"
+              ? "DVRPC Board"
+              : serverData.committee}{" "}
+            Action Item
+          </h3>
           <span className="ml-auto">
             Date Prepared:{" "}
             {new Date(serverData.date_added).toLocaleDateString("en-US", {
@@ -77,16 +98,14 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
             })}
           </span>
         </div>
-        <h2 className="underline">Agenda Item:</h2>
         <h2>
-          <span>{serverData.agendanum}</span>{" "}
-          <span className="underline">{serverData.title}</span>
+          {serverData.agendanum}. {serverData.title}
         </h2>
         <div dangerouslySetInnerHTML={{ __html: serverData.details }} />
-        {(serverData.rtc || serverData.staff) && <h2>Recommendations:</h2>}
+        {(serverData.rtc || serverData.staff) && <h2>Recommendations</h2>}
         {serverData.rtc && (
           <p>
-            <span className="font-bold underline">
+            <span className="font-bold">
               Regional Technical Committee (RTC):
             </span>{" "}
             {serverData.rtc}
@@ -94,16 +113,16 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
         )}
         {serverData.staff && (
           <p>
-            <span className="font-bold underline">DVRPC Staff:</span>{" "}
-            {serverData.staff}
+            <span className="font-bold">DVRPC Staff:</span> {serverData.staff}
           </p>
         )}
-        <h2>Action Proposed:</h2>
+        <h2>Action Proposed</h2>
         <div dangerouslySetInnerHTML={{ __html: serverData.action }} />
         {!attachementIsLoading && !error && actionattachment && (
           <>
             <h2>Attachments</h2>
             <a
+              className="btn btn-primary mb-4"
               href={`https://www.dvrpc.org/committees/${
                 serverData.committee
               }/action/${new Date(serverData.boarddate)
@@ -120,32 +139,35 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
 
         {isOpenToComment(serverData.boarddate) &&
         serverData.committee === "BOARD" ? (
-          <form onSubmit={handleSubmit} autocomplete="off">
-            <p>
-              Enter a comment about this action item for review by the DVRPC
-              Board.
-            </p>
-            <label htmlFor="fname">First Name:</label>
-            <input type="text" id="fname" name="FirstName" required />
-            <label htmlFor="lname">Last Name:</label>
-            <input type="text" id="lname" name="LastName" required />
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="Email" required />
-            <label htmlFor="zip">Zip Code:</label>
-            <input type="text" maxlength="5" name="Zip" id="zip" required />
-            <label htmlFor="comment">Comments:</label>
-            <textarea id="comment" name="Comments" required></textarea>
-            <button className="btn btn-primary mt-4" type="submit">
-              Submit
-            </button>
-            <p className="italic text-[#666]">
-              DVRPC reserves the right to delete comments that are offensive,
-              abusive, or off-topic. Only one comment per action item will be
-              recorded per verified email account. Comments that are not
-              verified by clicking on the link sent to the email you provided us
-              will be treated as spam and eventually deleted by our program.
-            </p>
-          </form>
+          <div className="card">
+            <form onSubmit={handleSubmit} autocomplete="off">
+              <p>
+                Enter a comment about this action item for review by the DVRPC
+                Board.
+              </p>
+              <label htmlFor="fname">First Name:</label>
+              <input type="text" id="fname" name="FirstName" required />
+              <label htmlFor="lname">Last Name:</label>
+              <input type="text" id="lname" name="LastName" required />
+              <label htmlFor="email">Email:</label>
+              <input type="email" id="email" name="Email" required />
+              <label htmlFor="zip">Zip Code:</label>
+              <input type="text" maxlength="5" name="Zip" id="zip" required />
+              <label htmlFor="comment">Comments:</label>
+              <textarea id="comment" name="Comments" required></textarea>
+              <button className="btn btn-primary mt-4" type="submit">
+                Submit
+              </button>
+              <p className="italic text-[#666]">
+                DVRPC reserves the right to delete comments that are offensive,
+                abusive, or off-topic. Only one comment per action item will be
+                recorded per verified email account. Comments that are not
+                verified by clicking on the link sent to the email you provided
+                us will be treated as spam and eventually deleted by our
+                program.
+              </p>
+            </form>
+          </div>
         ) : (
           <div className="text-red-500">
             Comments for this action item are currently not being accepted.
@@ -201,7 +223,7 @@ export default BoardActionItems;
 export async function getServerData(context) {
   try {
     const res = await fetch(
-      `https://apis.dvrpc.org/internal/boardactioncomment/actionitems/${context.params.id}`
+      `https://apis.dvrpc.org/internal/boardactioncomment/actionitems/${context.params.id}`,
     );
 
     if (!res.ok) {

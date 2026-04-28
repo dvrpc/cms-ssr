@@ -33,7 +33,7 @@ const AgendaPage = ({ data, serverData, location, name }) => {
   } = serverData.items[0];
   const pagetitle = committeename;
   const nodePage = data.allNodePage.nodes.filter(
-    (node) => node.path.alias.indexOf(committeeid.toLowerCase()) > -1
+    (node) => node.path.alias.indexOf(committeeid.toLowerCase()) > -1,
   )[0];
 
   data.navItem.href = "";
@@ -54,7 +54,6 @@ const AgendaPage = ({ data, serverData, location, name }) => {
   return (
     <>
       <Body title={pagetitle} menu={navItem}>
-        {pagetitle ? <h2>{pagetitle}</h2> : null}
         <p>
           {meetingtime},{" "}
           <strong>
@@ -127,7 +126,7 @@ export const Head = ({ data, serverData }) => {
   const nodePage = data.allNodePage.nodes.filter(
     (node) =>
       node.path.alias.indexOf(serverData.items[0].committeeid.toLowerCase()) >
-      -1
+      -1,
   )[0];
 
   return HeadTemplate({
@@ -137,7 +136,7 @@ export const Head = ({ data, serverData }) => {
     } at ${serverData.items[0].meetingtime}`,
     css: themeToCustomVars(
       nodePage.relationships.field_theme,
-      defaultThemeConfig
+      defaultThemeConfig,
     ),
   });
 };
@@ -193,7 +192,7 @@ export default AgendaPage;
 export async function getServerData({ params }) {
   try {
     const res = await fetch(
-      `https://apis.dvrpc.org/internal/dvrpcagenda/agendas/agenda?id=${params.id}`
+      `https://apis.dvrpc.org/internal/dvrpcagenda/agendas/agenda?id=${params.id}`,
     );
     if (!res.ok) {
       throw new Error("Response failed");
