@@ -31,7 +31,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
         {
           method: "POST",
           body: new URLSearchParams(formData),
-        },
+        }
       );
 
       if (!response.ok) {
@@ -60,7 +60,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
     }/action/${new Date(serverData.boarddate).toISOString().slice(0, 7)}_${
       serverData.type === "TIP" ? "TIP" : serverData.agendanum
     }.pdf`,
-    fetcher,
+    fetcher
   );
 
   return (
@@ -102,7 +102,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
           {serverData.agendanum}. {serverData.title}
         </h2>
         <div dangerouslySetInnerHTML={{ __html: serverData.details }} />
-        {(serverData.rtc || serverData.staff) && <h2>Recommendations</h2>}
+        {(serverData.rtc || serverData.staff) && <h3>Recommendations</h3>}
         {serverData.rtc && (
           <p>
             <span className="font-bold">
@@ -116,11 +116,11 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
             <span className="font-bold">DVRPC Staff:</span> {serverData.staff}
           </p>
         )}
-        <h2>Action Proposed</h2>
+        <h3>Action Proposed</h3>
         <div dangerouslySetInnerHTML={{ __html: serverData.action }} />
         {!attachementIsLoading && !error && actionattachment && (
           <>
-            <h2>Attachments</h2>
+            <h3>Attachments</h3>
             <a
               className="btn btn-primary mb-4"
               href={`https://www.dvrpc.org/committees/${
@@ -223,7 +223,7 @@ export default BoardActionItems;
 export async function getServerData(context) {
   try {
     const res = await fetch(
-      `https://apis.dvrpc.org/internal/boardactioncomment/actionitems/${context.params.id}`,
+      `https://apis.dvrpc.org/internal/boardactioncomment/actionitems/${context.params.id}`
     );
 
     if (!res.ok) {
