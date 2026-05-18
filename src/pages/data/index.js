@@ -31,7 +31,6 @@ const title = "Data Center";
 const Data = ({
   data: { allMenuLinkContentMenuLinkContent, userUser: staffContact },
   location,
-  serverData,
 }) => {
   return (
     <>
@@ -43,11 +42,6 @@ const Data = ({
         <div className="container mx-auto grid gap-12 px-8 sm:grid-cols-1 md:grid-cols-3">
           <div className="text-left md:col-span-3">
             <ul className="my-3 flex list-none px-0 text-sm md:text-base">
-              {/* <li className="flex-1">
-                <Link className="no-underline hover:underline" to="/data/about">
-                  About
-                </Link>
-              </li> */}
               <li className="flex-1">
                 <a
                   className="font-bold !no-underline hover:!underline"
@@ -65,22 +59,6 @@ const Data = ({
                 </Link>
               </li>
               <li className="flex-1"></li>
-              {/*<li className="flex-1">
-                <Link
-                  className="no-underline hover:underline"
-                  to="/data/howdoi"
-                >
-                  Resource Center
-                </Link>
-              </li>
-               <li className="flex-1">
-                <Link
-                  className="no-underline hover:underline"
-                  to="/data/stayinformed"
-                >
-                  Stay Informed
-                </Link>
-              </li> */}
             </ul>
           </div>
         </div>
@@ -267,25 +245,3 @@ export const query = graphql`
 `;
 
 export default Data;
-
-export async function getServerData() {
-  try {
-    const res = await fetch(`https://alpha.dvrpc.org/news/getTop18`);
-
-    if (!res.ok) {
-      throw new Error("Response failed");
-    }
-
-    const data = await res.json();
-
-    return {
-      props: data.filter((r) => r.type === "New Data"),
-    };
-  } catch (error) {
-    return {
-      status: 500,
-      headers: {},
-      props: {},
-    };
-  }
-}
