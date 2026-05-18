@@ -79,14 +79,12 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
         </div>
         <div className="flex items-center">
           <h3 className="m-0">
-            {new Date(serverData.boarddate.split("Z")[0]).toLocaleDateString(
-              "en-US",
-              {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              },
-            )}{" "}
+            {new Date(serverData.boarddate).toLocaleDateString("en-US", {
+              timeZone: "UTC",
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}{" "}
             {serverData.committee === "BOARD"
               ? "DVRPC Board"
               : serverData.committee}{" "}
@@ -94,14 +92,12 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
           </h3>
           <span className="ml-auto">
             Date Prepared:{" "}
-            {new Date(serverData.date_added.split("Z")[0]).toLocaleDateString(
-              "en-US",
-              {
-                month: "2-digit",
-                day: "2-digit",
-                year: "numeric",
-              },
-            )}
+            {new Date(serverData.date_added).toLocaleDateString("en-US", {
+              timeZone: "UTC",
+              month: "2-digit",
+              day: "2-digit",
+              year: "numeric",
+            })}
           </span>
         </div>
         <h2>
@@ -146,7 +142,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
         {isOpenToComment(serverData.boarddate) &&
         serverData.committee === "BOARD" ? (
           <div className="card">
-            <form onSubmit={handleSubmit} autocomplete="off">
+            <form onSubmit={handleSubmit} autoComplete="off">
               <p>
                 Enter a comment about this action item for review by the DVRPC
                 Board.
@@ -158,7 +154,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
               <label htmlFor="email">Email:</label>
               <input type="email" id="email" name="Email" required />
               <label htmlFor="zip">Zip Code:</label>
-              <input type="text" maxlength="5" name="Zip" id="zip" required />
+              <input type="text" maxLength="5" name="Zip" id="zip" required />
               <label htmlFor="comment">Comments:</label>
               <textarea id="comment" name="Comments" required></textarea>
               <button className="btn btn-primary mt-4" type="submit">
