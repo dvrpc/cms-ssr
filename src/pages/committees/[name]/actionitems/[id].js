@@ -31,7 +31,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
         {
           method: "POST",
           body: new URLSearchParams(formData),
-        }
+        },
       );
 
       if (!response.ok) {
@@ -60,7 +60,7 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
     }/action/${new Date(serverData.boarddate).toISOString().slice(0, 7)}_${
       serverData.type === "TIP" ? "TIP" : serverData.agendanum
     }.pdf`,
-    fetcher
+    fetcher,
   );
 
   return (
@@ -79,11 +79,14 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
         </div>
         <div className="flex items-center">
           <h3 className="m-0">
-            {new Date(serverData.boarddate).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}{" "}
+            {new Date(serverData.boarddate.split("Z")[0]).toLocaleDateString(
+              "en-US",
+              {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              },
+            )}{" "}
             {serverData.committee === "BOARD"
               ? "DVRPC Board"
               : serverData.committee}{" "}
@@ -91,11 +94,14 @@ const BoardActionItems = ({ data, location, serverData, id }) => {
           </h3>
           <span className="ml-auto">
             Date Prepared:{" "}
-            {new Date(serverData.date_added).toLocaleDateString("en-US", {
-              month: "2-digit",
-              day: "2-digit",
-              year: "numeric",
-            })}
+            {new Date(serverData.date_added.split("Z")[0]).toLocaleDateString(
+              "en-US",
+              {
+                month: "2-digit",
+                day: "2-digit",
+                year: "numeric",
+              },
+            )}
           </span>
         </div>
         <h2>
@@ -223,7 +229,7 @@ export default BoardActionItems;
 export async function getServerData(context) {
   try {
     const res = await fetch(
-      `https://apis.dvrpc.org/internal/boardactioncomment/actionitems/${context.params.id}`
+      `https://apis.dvrpc.org/internal/boardactioncomment/actionitems/${context.params.id}`,
     );
 
     if (!res.ok) {
