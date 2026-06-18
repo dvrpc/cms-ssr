@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { graphql, Link } from "gatsby";
 import HeadTemplate, {
   defaultThemeConfig,
@@ -48,14 +48,24 @@ const BoardActionItems = ({ data, location, serverData }) => {
             submitted will be forwarded to DVRPC Board members. We ask that
             comments at the Board meeting be limited to no more than 3 minutes.
           </p>
-          <h4 className="max-w-[80ch] px-4 text-xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-2 md:col-start-2 md:p-0">
+          <h2 className="max-w-[80ch] px-4 text-xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-2 md:col-start-2 md:p-0">
             Action Items
-          </h4>
+          </h2>
+          <h3>Transportation Improvement Actions:</h3>
           <ul className="list-group">
-            {serverData.items.map((action) => (
+            {serverData.tip.map((item) => (
               <li>
-                <Link to={`/committees/board/actionitems/${action.id}`}>
-                  {action.title}
+                <Link to={`/committees/board/actionitems/${item.id}`}>
+                  {item.agendanum} - {item.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <ul className="list-group">
+            {serverData.other.map((item) => (
+              <li>
+                <Link to={`/committees/board/actionitems/${item.id}`}>
+                  {item.agendanum} - {item.title}
                 </Link>
               </li>
             ))}
@@ -109,16 +119,26 @@ export default BoardActionItems;
 
 export async function getServerData() {
   try {
+    const ret = { tip: [], other: [] };
     const res = await fetch(
       "https://apis.dvrpc.org/internal/boardactioncomment/actionitems/latest?committee=BOARD"
     );
+    const data = await res.json();
+    const sortAlphaNum = (a, b) =>
+      a.agendanum.localeCompare(b.agendanum, "en", { numeric: true });
+    const sortedItems = data.items.sort(sortAlphaNum);
+    sortedItems.map((item, idx) => {
+      if (item.type === "TIP" || item.agendanum.includes("5"))
+        ret.tip.push(item);
+      else ret.other.push(item);
+    });
 
     if (!res.ok) {
       throw new Error("Response failed");
     }
 
     return {
-      props: await res.json(),
+      props: ret,
     };
   } catch (error) {
     return {
