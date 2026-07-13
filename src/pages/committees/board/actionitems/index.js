@@ -51,7 +51,7 @@ const BoardActionItems = ({ data, location, serverData }) => {
           <h2 className="max-w-[80ch] px-4 text-xl font-bold text-[color:var(--color-h1)] print:max-w-full print:p-0 md:col-span-2 md:col-start-2 md:p-0">
             Action Items
           </h2>
-          <h3>Transportation Improvement Actions:</h3>
+          <h3>Transportation Improvement Program (TIP) Actions:</h3>
           <ul className="list-group">
             {serverData.tip.map((item) => (
               <li>
@@ -61,6 +61,7 @@ const BoardActionItems = ({ data, location, serverData }) => {
               </li>
             ))}
           </ul>
+          <h3>Other Action Items:</h3>
           <ul className="list-group">
             {serverData.other.map((item) => (
               <li>
